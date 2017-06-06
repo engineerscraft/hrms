@@ -1,0 +1,377 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #fff;
+  color: #555;
+  font-size: 18px;
+  text-rendering: optimizeLegibility;
+}
+
+h2 {
+  font-family: 'lato', 'arial', sans-serif;
+  font-size: 150%;
+  font-weight: 300;
+  letter-spacing: 2px;
+	transition: font-size 0.3s;
+  word-spacing: 4px;
+}
+
+h1 {
+	font-family: 'lato', 'arial', sans-serif;
+  font-size: 150%;
+  font-weight: 300;
+  letter-spacing: 2px;
+	transition: font-size 0.3s;
+  word-spacing: 4px;
+}
+
+h3 {
+  font-family: 'lato', 'arial', sans-serif;
+  font-weight: 300;
+}
+
+fieldset {
+  border-style: none;
+}
+
+@font-face {
+  font-family: "EricssonCapital";
+  src: url("/assets/font/ericssoncapitaltt-webfont.ttf");
+}
+
+.loading {
+  opacity: 0;
+  transition: opacity .8s ease-in-out;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  background: #fff;
+  z-index: -1;
+}
+
+.loading > h1 {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+/* .loading screen is visible when app is not bootstraped yet, .my-app is empty */
+my-app:empty + .loading {
+    opacity: 1;
+    z-index: 100;
+}
+
+input, button {
+  outline: none;
+  border: none;
+}
+
+.body {
+  left: 90px;
+  position: absolute;
+  top: 90px;
+  width: calc(100% - 90px);
+  padding-top: 40px;
+  padding-bottom: 100px;
+  padding-left: 30px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 40px;
+  max-width: 800px;
+}
+
+.table {
+  margin: 40px 10px;
+  width: calc(100% - 92px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  display: table;
+}
+
+.row {
+  display: table-row;
+}
+
+.table .row {
+  background: #E3EEFF;
+}
+
+.table .row:nth-child(1) {
+  background-color: #4CA1AF;
+  color: #fff;
+}
+
+.table .row:hover {
+  background: #83D6DE;  
+}
+
+.table .row:nth-child(1):hover {
+  background: #4CA1AF;
+}
+
+.cell{
+  padding: 6px 12px;
+  display: table-cell;
+  border-color: #fff;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+}
+
+.page-header {
+  width: 100%;
+  left: 92px;
+  top: 0;
+  color: #fff;
+  background-color: #4CA1AF;
+  padding: 40px;
+  display: block;
+  position: fixed;
+  z-index: 5;
+}
+
+/*  GRID COLUMN SETUP   ==================================================================== */
+
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+
+.col:first-child { margin-left: 0; } /* all browsers except IE6 and lower */
+
+
+/*  GRID OF FOUR   ============================================================================= */
+
+.span_4_of_4 {
+	width: 100%; 
+}
+
+.span_3_of_4 {
+	width: 74.6%; 
+}
+
+.span_2_of_4 {
+	width: 49.2%; 
+}
+
+.span_1_of_4 {
+	width: 23.8%; 
+}
+
+
+/* Text box*/
+
+input {
+  color: #8f8f8f;
+}
+
+.group { 
+  position: relative; 
+  margin-top: 30px;
+  margin-bottom: 10px; 
+  margin-left: 10px;
+}
+
+.inputMaterial {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #dfdfdf;
+  outline:none;
+}
+
+label 				 {
+  color: #999; 
+  font-size: 14px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+}
+
+/* active state */
+.inputMaterial:focus ~ label		{
+  top: -15px;
+  font-size: 14px;
+  color: #4CA1AF;
+}
+
+.inputMaterial:valid ~ label {
+  top: -15px;
+  font-size: 14px;
+  color: #4CA1AF;
+}
+
+.inputMaterial:read-only ~ label {
+  top: -15px;
+  font-size: 14px;
+  color: #4CA1AF;
+}
+
+.inputMaterial:read-only {
+  color: #afafaf;
+}
+
+.read-only ~ label {
+  top: -15px;
+  font-size: 14px;
+  color: #4CA1AF;
+}
+
+.read-only {
+  color: #afafaf;
+}
+
+/* BOTTOM BARS ================================= */
+.bar { 
+  position: relative; 
+  display: block; 
+}
+
+.bar:before, .bar:after {
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background: #009688; 
+  transition:0.2s ease all; 
+}
+
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+.inputMaterial:focus ~ .bar:before, .inputMaterial:focus ~ .bar:after {
+  width:50%;
+}
+
+.inputMaterial:focus ~ .highlight {
+  animation: inputHighlighter 0.3s ease;
+}
+
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+
+.input-size-extra-small {
+  width: 15rem;
+}
+
+.input-size-small {
+  width: 20rem;
+}
+
+.input-size-medium {
+  width: 25rem;
+}
+
+.input-size-large {
+  width: 30rem;
+}
+
+.input-size-extra-large {
+  width: 35rem;
+}
+
+app-spinner {
+  position: absolute;
+  top: 20rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.context-menu {
+  width: 200px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  z-index: 7;
+  background-color: white;
+}
+
+.context-menu-item {
+  padding: 10px;
+}
+
+.context-menu-item:hover {
+  background-color: #4CA1AF;
+  color: #fff;
+}
+
+/* Modal Content */
+.modal {
+    top: 50%;
+    left: calc(50% + 90px);
+    transform: translate(-50%, -50%);
+    position: fixed;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 52rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    z-index: 5;
+}
+
+@keyframes animatetop {
+    from {opacity:0}
+    to {opacity:1}
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 20px 40px;
+    background-color: #4CA1AF;
+    color: white;
+}
+
+.modal-body {padding: 20px 40px;}
+
+.btn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    border: none;
+    margin-top: 3px;
+    font-size: 18px;
+    background-color: #4CA1AF;
+    transition: background-color 0.3s;
+	  pointer-events: auto;
+    margin-left: 10px;
+}
+
+.btn:hover {
+    background-color: rgba(76, 161, 175, 0.8);
+}

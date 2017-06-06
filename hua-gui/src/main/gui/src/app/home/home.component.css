@@ -1,0 +1,43 @@
+.herotext {
+    color: #fff;
+    font-family: ElMessiri-Regular;
+    font-size: 3rem;
+    text-align: center;
+    padding: 6rem 8rem 2rem 8rem;
+}
+
+.zainlogo {
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    height: 15rem;
+    width: 30rem;
+    
+}
+
+.home-background {
+  background: linear-gradient(to right, #4CA1AF , #C4E0E5);;
+}
+
+.body {
+  background-color: #fff;
+  height: 100%;
+  left: 90px;
+  position: fixed;
+  top: 0px;
+  width: calc(100% - 90px);
+  padding-top: 40px;
+}
+
+.page-header {
+  width: 100%;
+  left: 90px;
+  top: 0;
+  color: #fff;
+  background-color: #4CA1AF;
+  padding: 40px;
+  display: block;
+}

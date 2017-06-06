@@ -1,0 +1,101 @@
+version: 1
+dn: dc=example,dc=com
+objectclass: domain
+objectclass: top
+dc: example
+
+dn: ou=roleusers,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: roleusers
+
+dn: cn=READ,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: READ
+uniqueMember: cn=TEST03,ou=users,dc=example,dc=com
+
+dn: cn=ADMIN,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: ADMIN
+uniqueMember: cn=TEST02,ou=users,dc=example,dc=com
+
+dn: ou=users,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: users
+
+dn: cn=TEST03,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: TEST03
+sn: TEST03
+userPassword:: e1NTSEF9RUlzQkp5NmFUZXJEalRIT2tBMjRwcUhuS1dPUFRycHdEQWNidWRNN
+ WRKNnBXVndGVjFRYUtnPT0=
+
+dn: cn=TEST02,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: TEST02
+sn: TEST02
+userPassword:: e1NTSEF9WVBVKzRGSVNyQW44WStFaUxmV2ducXQwK0liZzhXbWtqRnVaK1J0a
+ URFNHN4ZHNCdVowa2FBPT0=
+
+dn: ou=permissions,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: permissions
+
+dn: cn=EMPLOYEE_UPDATE,ou=permissions,dc=example,dc=com
+objectClass: organizationalRole
+objectClass: top
+cn: EMPLOYEE_UPDATE
+
+dn: cn=EMPLOYEE_CREATE,ou=permissions,dc=example,dc=com
+objectClass: organizationalRole
+objectClass: top
+cn: employee_create
+
+dn: cn=EMPLOYEE_SEARCH,ou=permissions,dc=example,dc=com
+objectClass: organizationalRole
+objectClass: top
+cn: EMPLOYEE_SEARCH
+
+dn: cn=EMPLOYEE_DELETE,ou=permissions,dc=example,dc=com
+objectClass: organizationalRole
+objectClass: top
+cn: EMPLOYEE_DELETE
+
+dn: cn=EMPLOYEE_READ,ou=permissions,dc=example,dc=com
+objectClass: organizationalRole
+objectClass: top
+cn: EMPLOYEE_READ
+
+dn: ou=rolepermissions,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: roles
+ou: rolepermissions
+
+dn: cn=ADMIN,ou=rolepermissions,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: ADMIN
+uniqueMember: cn=EMPLOYEE_CREATE,ou=permissions,dc=example,dc=com
+uniqueMember: cn=EMPLOYEE_UPDATE,ou=permissions,dc=example,dc=com
+uniqueMember: cn=EMPLOYEE_DELETE,ou=permissions,dc=example,dc=com
+uniqueMember: cn=EMPLOYEE_READ,ou=permissions,dc=example,dc=com
+uniqueMember: cn=EMPLOYEE_SEARCH,ou=permissions,dc=example,dc=com
+
+dn: cn=READ,ou=rolepermissions,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: READ
+uniqueMember: cn=EMPLOYEE_SEARCH,ou=permissions,dc=example,dc=com
+uniqueMember: cn=EMPLOYEE_READ,ou=permissions,dc=example,dc=com
+

@@ -1,0 +1,20 @@
+<div class="heroimage">
+</div>
+
+
+<div class="login">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div [@heroState]="getLoginStatus()" class="alert alert-danger">Invalid username or password</div>
+    <h1 class="herotext">HUMDARD UNIVERSITY ACCOUNTING CENTRE</h1>
+    <form [formGroup]="formGroup" (ngSubmit)="onClick()" method="post" class="loginform">
+        <fieldset [disabled]="isProcessingInProgress()">
+            <div class="loginrow">
+                <input formControlName="username" type="text" class="logininput name" placeholder="Username"/>
+            </div>
+            <div class="loginrow">
+                <input formControlName="password" type="password" class="logininput pass" placeholder="Password"/>
+            </div>
+            <button type="submit" class="loginsubmit">Sign in</button>
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorinterval="300" status="info" strict="true">
+    <Properties>
+        <Property name="filePath">${env:BSCS_LOG}/SCX</Property>
+        <Property name="filename">${env:BSCS_LOG}/SCX/scx
+        </Property>
+        <property name="logSize">10 MB</property>
+    </Properties>
+    <Appenders>
+        <RollingFile name="RollingFileRegular" fileName="${filename}.log"
+            filePattern="${filePath}/sample-%d{yyyy-dd-MM}-%i.log">
+            <Filters>
+                <MarkerFilter marker="SQL" onMatch="ACCEPT"
+                    onMismatch="NEUTRAL" />
+            </Filters>
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss,SSS} %m%n
+                </Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy
+                    interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy
+                    size="${logSize}" />
+
+            </Policies>
+        </RollingFile>
+        <RollingFile name="RollingFileError" fileName="${filename}_error.log"
+            filePattern="${filePath}/sample_error-%d{yyyy-dd-MM}-%i.log"
+            immediateFlush="true">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss,SSS} %p %c{1.}[%L] [%t] %m%n
+                </Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy
+                    interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy
+                    size="${logSize}" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <AsyncLogger name="com"
+            level="debug">
+            <AppenderRef ref="RollingFileRegular"/>
+        </AsyncLogger>
+        <AsyncLogger name="org"
+            level="info">
+            <AppenderRef ref="RollingFileRegular"/>
+        </AsyncLogger>
+        <Root includeLocation="true" level="trace">
+            <AppenderRef ref="RollingFileError" level="error" />
+        </Root>        
+    </Loggers>
+</Configuration>

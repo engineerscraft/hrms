@@ -1,0 +1,96 @@
+<div class="sidebar" [ngClass]="{'sidebar-open': getOpen() === true}">
+  <div class="menu-icon" (click)="changeClass()" [ngClass]="{'open': getOpen() === true}">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="home-icon" (click)="goHome()">
+    <span class="span1">
+      <span class="span2">
+      </span>
+    </span>
+  </div>
+  <div class="logout-icon" (click)="logout()">
+    <span class="span3">
+    </span>
+  </div>
+</div>
+  <div class="menu" [ngClass]="{'show-menu': getOpen() === true}" *ngIf="getOpen()">
+    <div class="sidebar-row">
+      <div class="col span_4_of_4">
+        <h2 class="menu-header">Roaming Interconnect</h2>
+      </div>
+    </div>
+    <div class="sidebar-row">
+      <div class="col span_2_of_4">
+        <h3 class="menu-subheader">Operations</h3>
+        <ol>
+          <li><a class="menu-item">Manual TAP Dispatch</a></li>
+          <li><a class="menu-item">HUR Dispatch Failure Management</a></li>
+          <li><a class="menu-item">HUR Report</a></li>
+          <li><a class="menu-item">TAPIN Adjustment Request Submission</a></li>
+          <li><a class="menu-item">TAPIN Adjustment Request View</a></li>
+          <li><a class="menu-item">Rejection Handling for UDR</a></li>
+          <li><a class="menu-item">Rejection Handling for BIR</a></li>
+        </ol>
+      </div>
+      <div class="col span_2_of_4">
+        <h3 class="menu-subheader">Configuration</h3>
+        <ol>
+          <li><a class="menu-item">Exchange Rate</a></li>
+          <li><a class="menu-item">Roaming Batch Scheduling</a></li>
+          <li><a class="menu-item">Bulk Interconnect Rate Update</a></li>
+        </ol>
+      </div>
+    </div>
+    <div class="sidebar-row">
+      <div class="col span_4_of_4">
+        <h2 class="menu-header">Resource Administration</h2>
+      </div>
+    </div>
+    <div class="sidebar-row">
+      <div class="col span_2_of_4">
+        <h3 class="menu-subheader">Operations</h3>
+        <ol>
+          <li><a class="menu-item">Number Reclassification</a></li>
+          <li><a class="menu-item">Number Classification Override</a></li>
+          <li><a class="menu-item">Number Reservation</a></li>
+          <li><a class="menu-item">Corporate Number Reservation</a></li>
+          <li><a class="menu-item">MSISDN Lock / Unlock</a></li>
+          <li><a class="menu-item">Number Sequence Generator</a></li>
+        </ol>
+      </div>
+      <div class="col span_2_of_4">
+        <h3 class="menu-subheader">Configuration</h3>
+        <ol>
+          <li><a class="menu-item">Number Classification</a></li>
+          <li><a class="menu-item">Role / Dealer Mapping</a></li>
+          <li><a class="menu-item">Number Series Restriction</a></li>
+          <li><a class="menu-item">Include / Exclude Number Range</a></li>
+          <li><a class="menu-item">Dealer Threshold</a></li>
+          <li><a class="menu-item">Dealer Exclusion List</a></li>
+          <li><a class="menu-item">Quarantine Period Setup</a></li>
+        </ol>
+      </div>
+    </div>
+    <div class="sidebar-row">
+      <div class="col span_4_of_4">
+        <h2 class="menu-header">Utilities</h2>
+      </div>
+    </div>
+    <div class="sidebar-row">
+      <div class="col span_2_of_4">
+        <h3 class="menu-subheader">Operations</h3>
+        <ol>
+          <li><a class="menu-item">Manage Alarms</a></li>
+        </ol>
+      </div>
+      <div class="col span_2_of_4">
+        <h3 class="menu-subheader">Configuration</h3>
+        <ol>
+          <li><a class="menu-item">Alarm</a></li>
+          <li *ngIf="isAuthorized('SCX_PARAMETER_READ_VIEW') == true"><a class="menu-item" (click)="onClickParameter()" >Parameters</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>

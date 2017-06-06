@@ -1,0 +1,257 @@
+.sidebar {
+    background-color: #333;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: width 0.5s;
+    width: 90px;
+    z-index: 6;
+}
+
+.sidebar:after {
+  content: "";
+  border: 1px solid #fff;
+  height: 100%;
+  position:absolute;
+  left: 90px;
+}
+
+.menu {
+  position:absolute;
+  top: 90px;
+  width: 0;
+  opacity: 0;
+  left: 90px;
+  z-index: 6;
+  padding-bottom: 150px;
+}
+
+.show-menu {
+  animation: show-menu-animation;
+  width: 60rem;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+@keyframes show-menu-animation {
+  0% {
+    opacity: 0;
+    left: 3rem;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    left: 6rem;
+  }
+}
+
+.menu-header {
+  color: white;
+  font-size: 28px;
+  text-align: left;
+  color: #4CA1AF;
+}
+
+.menu-subheader {
+  color: white;
+  padding-bottom: 1.2rem;
+  font-size: 20px;
+  color: #f68b1f;
+}
+
+.menu-item {
+  position: relative;
+  color: white;
+  padding: 8px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  word-spacing: 4px;
+  text-decoration: none;
+}
+
+.menu li {
+  list-style-type: none;
+}
+
+.menu-item:after {
+  display:block;
+  content: '';
+  border-bottom: solid 2px #fff;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+
+.menu-item:hover:after { transform: scaleX(1); }
+
+.menu-icon {
+  top: 2rem;
+  left: 2.5rem;
+  width: 60px;
+  height: 45px;
+  position: absolute;
+  transform: rotate(0deg) translateX(-50%);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+.menu-icon span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: white;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.menu-icon span:nth-child(1) {
+  top: 0px;
+  transform-origin: left center;
+}
+
+.menu-icon span:nth-child(2) {
+  top: 18px;
+  transform-origin: left center;
+}
+
+.menu-icon span:nth-child(3) {
+  top: 36px;
+  transform-origin: left center;
+}
+
+.menu-icon.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: -3px;
+  left: 8px;
+}
+
+.menu-icon.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.menu-icon.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 39px;
+  left: 8px;
+}
+
+.sidebar-open {
+    width: 70rem;
+}
+
+.sidebar-row {
+    max-width: 50rem;
+    margin: 0 auto 0 10rem;
+    width:100%;
+}
+
+.home-icon {
+  top: 10rem;
+  left: 2.5rem;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 45px;
+  margin: 20px 15px;
+  position: absolute;
+  padding: 0;
+  cursor: pointer;
+  margin: 20px 10px;
+}
+
+.span1 {
+  height:40px; 
+  width:40px; 
+  display:block; 
+  position:relative;
+} 
+
+.span1:before {
+  content:''; 
+  height:10px; 
+  width:5px; 
+  display:block; 
+  position:absolute; 
+  top:6px; 
+  left:28px; 
+  background:#fff;
+}
+
+.span1:after {
+  content:''; 
+  height:24px; 
+  width:23px; 
+  border-top:4px #fff solid; 
+  border-right:4px #fff solid; 
+  position:absolute; 
+  top:8px; 
+  left:7px; 
+  transform:scale(1,0.8) rotate(-45deg);
+}
+
+.span2 { 
+  width:29px; 
+  height:20px; 
+  display:block; 
+  position:absolute; 
+  top:18px; 
+  left:6px; 
+  border:4px solid #fff; 
+  border-width:0 4px;}
+
+.span2:before {
+  content:''; 
+  height:4px; 
+  width:4px; 
+  display:block; 
+  position:absolute; 
+  top:6px; 
+  left:6px; 
+  background:#fff; 
+  box-shadow:5px 0 0 #fff, 0 5px 0 #fff, 5px 5px 0 #fff;}
+
+
+.logout-icon {
+  top: 14rem;
+  left: 2.5rem;
+  transform: translateX(-45%);
+  width: 60px;
+  height: 45px;
+  margin: 20px 15px;
+  position: absolute;
+  padding: 0;
+  cursor: pointer;
+  margin: 20px 10px;  
+}
+
+.span3 {
+  display:block; 
+  position:relative; 
+} 
+
+.span3 {
+  height:35px; 
+  width:35px; 
+  border:3px #fff solid; 
+  border-radius:100%;
+}
+
+.span3:before {
+  content:''; 
+  left: 7px; 
+  top: 7px;
+  height:15px; 
+  width:15px; 
+  background:#fff; 
+  border-radius:100%; 
+  position:absolute; 
+}
+
