@@ -3,7 +3,11 @@ package com.hamdard.hua.repository;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.naming.directory.DirContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -72,9 +76,10 @@ public class AuthenticationRepository {
     @Autowired
     private LdapTemplate ldapTemplate;
 
-    public void authenticate(String username, String password) {
+    public String authenticate(String username, String password) {
         try {
-            contextSource.getContext("cn=" + username + ",ou=users," + baseDn, password);
+            DirContext dirContext = contextSource.getContext("cn=" + username + ",ou=users," + baseDn, password);
+            return dirContext.getAttributes("cn=" + username + ",ou=users").get("displayName").get().toString();
         } catch (Exception e) {
             logger.error("User authentication failed", e);
             throw new AuthenticationFailure("User authentication failed");
@@ -90,7 +95,7 @@ public class AuthenticationRepository {
         }
     }
 
-    public Token issueToken(String username, Long id) {
+    public Token issueToken(String username, String userDisplayName, Long id) {
         try {
             Calendar now = Calendar.getInstance();
             long nowInMillis = now.getTimeInMillis();
@@ -114,11 +119,13 @@ public class AuthenticationRepository {
                 if (rowsUpdated == 0) {
                     throw new AuthenticationFailure("Token revoked");
                 }
-                accessToken = Jwts.builder().setId(id.toString()).setSubject(username).setExpiration(accessTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
-                refreshToken = Jwts.builder().setId(id.toString()).setSubject(username).setExpiration(refreshTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
+                Map<String,Object> claims = new HashMap();
+                claims.put("DISPLAY_NAME", userDisplayName);
+                accessToken = Jwts.builder().setId(id.toString()).setClaims(claims).setSubject(username).setExpiration(accessTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
+                refreshToken = Jwts.builder().setId(id.toString()).setClaims(claims).setSubject(username).setExpiration(refreshTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
             }
 
-            return new Token(accessToken, refreshToken);
+            return new Token(accessToken, refreshToken, username, userDisplayName);
         } catch (Exception e) {
             logger.error("Token could not be issued", e);
             throw new AuthenticationFailure("Token could not be issued");

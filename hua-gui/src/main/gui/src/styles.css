@@ -183,7 +183,7 @@ input {
 
 .inputMaterial {
   font-size: 18px;
-  padding: 10px 10px 10px 5px;
+  padding: 10px 0px 10px 0px;
   display: block;
   border: none;
   border-bottom: 1px solid #dfdfdf;
@@ -196,7 +196,7 @@ label 				 {
   font-weight: normal;
   position: absolute;
   pointer-events: none;
-  left: 5px;
+  left: 0px;
   top: 10px;
   transition: 0.2s ease all;
 }
@@ -314,7 +314,7 @@ app-spinner {
 }
 
 /* Modal Content */
-.modal {
+.modal-small {
     top: 50%;
     left: calc(50% + 90px);
     transform: translate(-50%, -50%);
@@ -322,7 +322,22 @@ app-spinner {
     background-color: #fefefe;
     margin: auto;
     border: 1px solid #888;
-    width: 52rem;
+    width: 25rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    z-index: 5;
+}
+
+.modal-medium {
+    top: 50%;
+    left: calc(50% + 90px);
+    transform: translate(-50%, -50%);
+    position: fixed;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 50rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
     animation-duration: 0.4s;
@@ -369,7 +384,7 @@ app-spinner {
     background-color: #4CA1AF;
     transition: background-color 0.3s;
 	  pointer-events: auto;
-    margin-left: 10px;
+    margin: 20px 10px;
 }
 
 .btn:hover {

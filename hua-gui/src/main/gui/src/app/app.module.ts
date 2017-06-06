@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     HomeComponent,
     ParameterComponent,
     SideBarComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

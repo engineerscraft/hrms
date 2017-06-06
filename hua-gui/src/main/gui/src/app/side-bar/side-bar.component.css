@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: #333;
+    background-color: #0F6177;
     height: 100vh;
     left: 0;
     position: fixed;
@@ -37,15 +37,32 @@
 @keyframes show-menu-animation {
   0% {
     opacity: 0;
-    left: 3rem;
+    left: 0rem;
   }
   50% {
     opacity: 0;
   }
   100% {
     opacity: 1;
-    left: 6rem;
+    left: 3rem;
   }
+}
+
+.username {
+  color: #f68b1f;
+  padding-bottom: 5px;
+  text-align: right;
+}
+
+.change-password {
+  position: relative;
+  color: white;
+  padding: 8px 0;
+  font-size: 16px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  word-spacing: 4px;
+  text-align: right;  
 }
 
 .menu-header {
@@ -53,6 +70,8 @@
   font-size: 28px;
   text-align: left;
   color: #4CA1AF;
+  border-bottom: solid 1px #4CA1AF;
+  padding-top: 30px;
 }
 
 .menu-subheader {
@@ -65,11 +84,11 @@
 .menu-item {
   position: relative;
   color: white;
-  padding: 8px;
+  padding: 8px 0;
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   word-spacing: 4px;
   text-decoration: none;
 }

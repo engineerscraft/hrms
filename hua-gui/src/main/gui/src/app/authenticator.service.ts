@@ -25,6 +25,8 @@ export class AuthenticatorService {
       .map(res => {
         localStorage.setItem("accessToken", res.json().accessToken);
         localStorage.setItem("refreshToken", res.json().refreshToken);
+        localStorage.setItem("userName", res.json().userName);
+        localStorage.setItem("userDisplayName", res.json().userDisplayName);        
       })
       .flatMap(res => {
         let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });

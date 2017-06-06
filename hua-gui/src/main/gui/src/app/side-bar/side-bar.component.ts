@@ -48,4 +48,14 @@ export class SideBarComponent implements OnInit {
   isAuthorized(permission: string) {
     return this.authenticatorService.isAuthorized(permission);
   }
+
+  getUserName() {
+    return localStorage.getItem("userDisplayName")+" ("+localStorage.getItem("userName")+")";
+  }
+
+  onClickChangePassword() {
+    window.scrollTo(0,0);
+    this.router.navigate(['changePassword']);
+    this.open = false;
+  }
 }

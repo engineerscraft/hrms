@@ -32,11 +32,11 @@ public class AuthenticationEndpoint {
     public Token authenticateUser(LoginDetails loginDetails) {
 
         if (loginDetails.getUsername() != null) {
-            authenticationRepository.authenticate(loginDetails.getUsername(), loginDetails.getPassword());
-            return authenticationRepository.issueToken(loginDetails.getUsername(), 0L);
+            String userDisplayName = authenticationRepository.authenticate(loginDetails.getUsername(), loginDetails.getPassword());
+            return authenticationRepository.issueToken(loginDetails.getUsername(), userDisplayName, 0L);
         } else if (loginDetails.getToken() != null) {
             Jws<Claims> jws = authenticationRepository.validateToken(loginDetails.getToken());
-            return authenticationRepository.issueToken(jws.getBody().getSubject(), Long.valueOf(jws.getBody().getId()));
+            return authenticationRepository.issueToken(jws.getBody().getSubject(), (String)jws.getBody().get("DISPLAY_NAME"), Long.valueOf(jws.getBody().getId()));
         } else {
             logger.error("Username/Password or token is mandatory");
             throw new AuthenticationFailure("Authentication failed");
