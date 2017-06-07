@@ -105,11 +105,10 @@ public class AuthenticationRepository {
             Date refreshTokenExpiryDate = new Date(nowInMillis + (Integer.parseInt(this.refreshTokenValidityPeriod) * ONE_MINUTE_IN_MILLIS));
             
             if (id == 0) {
-                //Long accessId = jdbcTemplate.queryForObject(accessIdFetchingSql, new Object[] {}, Long.class);
-                Long accessId=1L;
+                Long accessId = jdbcTemplate.queryForObject(accessIdFetchingSql, new Object[] {}, Long.class);
                 logger.info(sqlMarker, newTokenSavingSql);
                 logger.info(sqlMarker, "Params {}, {}, {}", () -> accessId, () -> username, () -> accessTokenExpiryDate);
-                //jdbcTemplate.update(newTokenSavingSql, new Object[] { accessId, username, accessTokenExpiryDate });
+                jdbcTemplate.update(newTokenSavingSql, new Object[] { accessId, username, accessTokenExpiryDate });
                 accessToken = Jwts.builder().setId(accessId.toString()).setSubject(username).setExpiration(accessTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
                 refreshToken = Jwts.builder().setId(accessId.toString()).setSubject(username).setExpiration(refreshTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
             } else {

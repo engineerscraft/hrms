@@ -14,7 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AccountManagementComponent } from './account-management/account-management.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ParameterComponent,
     SideBarComponent,
     SpinnerComponent,
-    ChangePasswordComponent
+    AccountManagementComponent
   ],
   imports: [
     BrowserModule,

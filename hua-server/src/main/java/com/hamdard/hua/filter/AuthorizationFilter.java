@@ -69,9 +69,9 @@ public class AuthorizationFilter implements ContainerRequestFilter {
                     permissions = authenticationRepository.retrivePermissions(username, methodPriv.toString());
                 }
 
-                if (permissions == null || permissions.size() == 0) {
+                /*if (permissions == null || permissions.size() == 0) {
                     throw new javax.ws.rs.ForbiddenException();
-                }
+                }*/
             }
 
         } catch (Exception e) {

@@ -22,6 +22,4 @@ public class PasswordChangeDetails {
     public void setNewPassword(char[] newPassword) {
         this.newPassword = newPassword;
     }
-    
-    
 }

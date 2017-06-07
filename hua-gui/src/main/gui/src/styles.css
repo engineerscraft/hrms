@@ -178,7 +178,8 @@ input {
   position: relative; 
   margin-top: 30px;
   margin-bottom: 10px; 
-  margin-left: 10px;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
 }
 
 .inputMaterial {
@@ -390,3 +391,5 @@ app-spinner {
 .btn:hover {
     background-color: rgba(76, 161, 175, 0.8);
 }
+
+
