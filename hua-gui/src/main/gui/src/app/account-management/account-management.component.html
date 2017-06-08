@@ -12,6 +12,11 @@
 <div class="body">
 
   <app-spinner *ngIf="processingInProgress"></app-spinner>
+  <div class="row">
+    <div class="group">
+    <a class="circle-btn ripple" href="javascript:void(0)" (click)="showCreateAccountDialog()"></a>
+    </div>
+  </div>
 
   <div class="row">
     <div class="cell span_1_of_4">
@@ -31,11 +36,18 @@
       </div>
     </div>
     <div class="cell span_1_of_4">
-      <div class="group">
-        <input class="inputMaterial span_4_of_4" type="text" (keyup)="filterParameters()" #inputMaterial required>
+      <div class="group combo-group">
         <label>Account Type</label>
-        <span class="highlight"></span>
-        <span class="bar span_4_of_4"></span>
+        <div class="select select-fancy select-fancy-image span_4_of_4">
+          <select class="span_4_of_4">
+            <option> - Select - </option>
+            <option>Asset</option>
+            <option>Liability</option>
+            <option>Equity</option>
+            <option>Income</option>
+            <option>Expense</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -122,4 +134,44 @@
 
   </div>
 
+</div>
+
+<div class="modal-medium" *ngIf="getShowCreateAccount()">
+  <div class="modal-header">
+    <h1>GL Account Creation</h1>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroup" (ngSubmit)="onClick()" method="post" class="loginform">
+      <fieldset [disabled]="isProcessingInProgress()">
+
+        <div class="group">
+          <input class="inputMaterial input-size-medium" formControlName="accountCode" type="text" required>
+          <label>Account Code</label>
+          <span class="highlight"></span>
+          <span class="bar input-size-medium"></span>
+        </div>
+        <div class="group">
+          <input class="inputMaterial input-size-medium" formControlName="accountName" type="text" required>
+          <label>Account Name</label>
+          <span class="highlight"></span>
+          <span class="bar input-size-medium"></span>
+        </div>
+      <div class="group combo-group">
+        <label>Account Type</label>
+        <div class="select select-fancy select-fancy-image">
+          <select class="input-size-medium">
+            <option> - Select - </option>
+            <option>Asset</option>
+            <option>Liability</option>
+            <option>Equity</option>
+            <option>Income</option>
+            <option>Expense</option>
+          </select>
+        </div>
+      </div>
+        <button type="submit" class="btn ripple">Create</button>
+        <button type="button" class="btn ripple" (click)="onCancelCreateAccount()">Cancel</button>
+      </fieldset>
+    </form>
+  </div>
 </div>

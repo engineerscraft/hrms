@@ -171,7 +171,7 @@ input, button {
 /* Text box*/
 
 input {
-  color: #8f8f8f;
+  color: #3e3e3e;
 }
 
 .group { 
@@ -318,7 +318,7 @@ app-spinner {
 .modal-small {
     top: 50%;
     left: calc(50% + 90px);
-    transform: translate(-50%, -50%);
+    transform: translate(-60%, -40%);
     position: fixed;
     background-color: #fefefe;
     margin: auto;
@@ -333,12 +333,12 @@ app-spinner {
 .modal-medium {
     top: 50%;
     left: calc(50% + 90px);
-    transform: translate(-50%, -50%);
+    transform: translate(-60%, -40%);
     position: fixed;
     background-color: #fefefe;
     margin: auto;
     border: 1px solid #888;
-    width: 50rem;
+    width: 30rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
     animation-duration: 0.4s;
@@ -385,11 +385,105 @@ app-spinner {
     background-color: #4CA1AF;
     transition: background-color 0.3s;
 	  pointer-events: auto;
-    margin: 20px 10px;
+    margin: 40px 10px;
 }
 
 .btn:hover {
     background-color: rgba(76, 161, 175, 0.8);
 }
 
+/*Combo*/
 
+.select-fancy {
+	display: inline-block;
+	border: 1px solid #e5e5e5;
+	position: relative;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: inset 0 -2px 5px rgba(255, 255, 255, 0.4);
+  top: 15px;
+}
+
+.select-fancy, .select-fancy > * {
+	cursor: pointer;
+}
+
+.select-fancy select {
+	background: #fff;
+	border: 0;
+	outline: 0;
+	padding: 5px 0 5px 8px;
+	font-size: 12px;
+	height: 35px;
+	user-select: none;
+  font-size: 18px;
+  color: #3e3e3e;
+}
+
+select * {
+    color: #999; 
+  font-size: 14px;
+}
+
+.combo-group label {
+  font-size: 14px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 0px;
+  top: -15px;
+  color: #4CA1AF;
+}
+
+.select-fancy-image {
+	/*background: url("http://css.yipitcdn.com/img/arrow-down.png") no-repeat right;*/
+}
+/*Combo Ends*/
+
+
+/******Ripple Effect*************/
+.ripple {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000000 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+.ripple:active:after {
+  transform: scale(0, 0);
+  opacity: .2;
+  transition: 0s;
+}
+
+/*************Ripple Effect Ends***************/
+
+.circle-btn{
+    background: url("/assets/img/ic_add_white_24px.svg") no-repeat 13px center;
+    width:50px;
+    height: 50px;
+    border-radius:100%;
+    color:#fff;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #4CA1AF;
+    text-decoration: none;
+}
+.circle-btn > .material-icons{font-size:20px;}
