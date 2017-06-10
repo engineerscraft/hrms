@@ -1,6 +1,7 @@
 package com.hamdard.hua.rest;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
@@ -10,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.exception.AuthenticationFailure;
 import com.hamdard.hua.model.LoginDetails;
 import com.hamdard.hua.model.Token;
 import com.hamdard.hua.repository.AuthenticationRepository;
@@ -39,7 +39,7 @@ public class AuthenticationEndpoint {
             return authenticationRepository.issueToken(jws.getBody().getSubject(), (String)jws.getBody().get("DISPLAY_NAME"), Long.valueOf(jws.getBody().getId()));
         } else {
             logger.error("Username/Password or token is mandatory");
-            throw new AuthenticationFailure("Authentication failed");
+            throw new NotAuthorizedException("Bearer");
         }
 
     }

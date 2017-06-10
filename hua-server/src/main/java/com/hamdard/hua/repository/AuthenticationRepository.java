@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.naming.directory.DirContext;
+import javax.ws.rs.NotAuthorizedException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +22,6 @@ import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.exception.AuthenticationFailure;
 import com.hamdard.hua.model.Token;
 
 import io.jsonwebtoken.Claims;
@@ -82,7 +82,7 @@ public class AuthenticationRepository {
             return dirContext.getAttributes("cn=" + username + ",ou=users").get("displayName").get().toString();
         } catch (Exception e) {
             logger.error("User authentication failed", e);
-            throw new AuthenticationFailure("User authentication failed");
+            throw new NotAuthorizedException("Bearer");
         }
     }
 
@@ -91,7 +91,7 @@ public class AuthenticationRepository {
             return Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token);
         } catch (Exception e) {
             logger.error("Token validation failed", e);
-            throw new AuthenticationFailure("Token validation failed");
+            throw new NotAuthorizedException("Bearer");
         }
     }
 
@@ -116,7 +116,7 @@ public class AuthenticationRepository {
                 logger.info(sqlMarker, "Params {}, {}, {}", () -> accessTokenExpiryDate, () -> id, () -> username);
                 int rowsUpdated = jdbcTemplate.update(existingTokenUpdateSql, new Object[] { accessTokenExpiryDate, id, username });
                 if (rowsUpdated == 0) {
-                    throw new AuthenticationFailure("Token revoked");
+                    throw new NotAuthorizedException("Bearer");
                 }
                 Map<String,Object> claims = new HashMap();
                 claims.put("DISPLAY_NAME", userDisplayName);
@@ -127,7 +127,7 @@ public class AuthenticationRepository {
             return new Token(accessToken, refreshToken, username, userDisplayName);
         } catch (Exception e) {
             logger.error("Token could not be issued", e);
-            throw new AuthenticationFailure("Token could not be issued");
+            throw new NotAuthorizedException("Bearer");
         }
     }
 

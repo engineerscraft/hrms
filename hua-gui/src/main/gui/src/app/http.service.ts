@@ -12,7 +12,7 @@ export class HttpService {
 
   private token: { accessToken: string, refreshToken: string };
 
-  callHttp(url: string) {
+  callHttpGet(url: string) {
     let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
     let options = new RequestOptions({ headers: headers });
 
@@ -29,6 +29,89 @@ export class HttpService {
                 let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
                 let options = new RequestOptions({ headers: headers });
                 return me.http.get(url, options);
+              }
+              return Observable.throw(initialError);
+            });
+        }
+        else {
+          return Observable.throw(initialError);
+        }
+      });
+  }
+
+
+  callHttpPut(url: string, body: object) {
+    let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
+    let options = new RequestOptions({ headers: headers });
+
+    var me = this;
+    return this.http.put(url, body, options)
+      .catch(initialError => {
+        if (initialError && initialError.status === 401) {
+          // token might be expired, try to refresh token
+          var tokenObject = new Object();
+          tokenObject["token"] = localStorage.getItem("refreshToken");
+          return me.authenticatorService.authenticate(tokenObject)
+            .flatMap(res => {
+              if (res.status == 200) {
+                let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
+                let options = new RequestOptions({ headers: headers });
+                return me.http.put(url, body, options);
+              }
+              return Observable.throw(initialError);
+            });
+        }
+        else {
+          return Observable.throw(initialError);
+        }
+      });
+  }
+
+
+callHttpDelete(url: string) {
+    let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
+    let options = new RequestOptions({ headers: headers });
+
+    var me = this;
+    return this.http.delete(url, options)
+      .catch(initialError => {
+        if (initialError && initialError.status === 401) {
+          // token might be expired, try to refresh token
+          var tokenObject = new Object();
+          tokenObject["token"] = localStorage.getItem("refreshToken");
+          return me.authenticatorService.authenticate(tokenObject)
+            .flatMap(res => {
+              if (res.status == 200) {
+                let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
+                let options = new RequestOptions({ headers: headers });
+                return me.http.delete(url, options);
+              }
+              return Observable.throw(initialError);
+            });
+        }
+        else {
+          return Observable.throw(initialError);
+        }
+      });
+  }
+
+callHttpPost(url: string, body: object) {
+    let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
+    let options = new RequestOptions({ headers: headers });
+
+    var me = this;
+    return this.http.post(url, body, options)
+      .catch(initialError => {
+        if (initialError && initialError.status === 401) {
+          // token might be expired, try to refresh token
+          var tokenObject = new Object();
+          tokenObject["token"] = localStorage.getItem("refreshToken");
+          return me.authenticatorService.authenticate(tokenObject)
+            .flatMap(res => {
+              if (res.status == 200 || res.status == 201) {
+                let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
+                let options = new RequestOptions({ headers: headers });
+                return me.http.post(url, body, options);
               }
               return Observable.throw(initialError);
             });

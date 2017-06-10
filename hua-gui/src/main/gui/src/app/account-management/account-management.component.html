@@ -6,7 +6,7 @@
 
 <div class="context-menu" [ngStyle]="getContextMenuCss()">
   <div class="context-menu-item" (click)="onModifyClick()">Modify</div>
-  <div class="context-menu-item" (click)="onModifyClick()">Delete</div>
+  <div class="context-menu-item" (click)="onDeleteClick()">Delete</div>
 </div>
 
 <div class="body">
@@ -14,14 +14,14 @@
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div class="row">
     <div class="group">
-    <a class="circle-btn ripple" href="javascript:void(0)" (click)="showCreateAccountDialog()"></a>
+      <a class="circle-btn ripple" href="javascript:void(0)" (click)="showCreateAccountDialog()"></a>
     </div>
   </div>
 
   <div class="row">
     <div class="cell span_1_of_4">
       <div class="group">
-        <input class="inputMaterial span_4_of_4" type="text" (keyup)="filterParameters()" #inputMaterial required>
+        <input #accountCode class="inputMaterial span_4_of_4" type="text" (keyup)="filterAccount()" required>
         <label>Account Code</label>
         <span class="highlight"></span>
         <span class="bar span_4_of_4"></span>
@@ -29,7 +29,7 @@
     </div>
     <div class="cell span_2_of_4">
       <div class="group">
-        <input class="inputMaterial span_4_of_4" type="text" (keyup)="filterParameters()" #inputMaterial required>
+        <input #accountName class="inputMaterial span_4_of_4" type="text" (keyup)="filterAccount()" required>
         <label>Account Name</label>
         <span class="highlight"></span>
         <span class="bar span_4_of_4"></span>
@@ -39,7 +39,7 @@
       <div class="group combo-group">
         <label>Account Type</label>
         <div class="select select-fancy select-fancy-image span_4_of_4">
-          <select class="span_4_of_4">
+          <select #accountType class="span_4_of_4" (change)="filterAccount()">
             <option> - Select - </option>
             <option>Asset</option>
             <option>Liability</option>
@@ -67,81 +67,67 @@
     </div>
 
 
-    <div class="row" *ngFor="let param of parameters" (contextmenu)="onRightClick($event, param.key, param.value, param.clobValue, param.description)">
+    <div class="row" *ngFor="let account of accounts" (contextmenu)="onRightClick($event, account.accountCode, account.accountName, account.accountType)">
       <div class="cell">
-        {{param.key}}
+        {{account.accountCode}}
       </div>
       <div class="cell">
-        {{param.description}}
+        {{account.accountName}}
       </div>
       <div class="cell">
-        {{param.value}}
+        {{account.accountType}}
       </div>
     </div>
   </div>
+</div>
 
-  <div *ngIf="showParameterModifyPage">
-    <div>
-      <div class="row">
-        <div class="col .span_4_of_4">
-          <div class="group">
-            <input class="inputMaterial input-size-extra-large read-only" type="text" value={{parameter.key}} required readonly/>
-            <span class="highlight"></span>
-            <span class="bar input-size-extra-large"></span>
-            <label>Name</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col .span_4_of_4">
-          <div class="group">
-            <textarea class="inputMaterial input-size-extra-large read-only" rows="2" value={{parameter.description}} required readonly></textarea>
-            <span class="highlight"></span>
-            <span class="bar input-size-extra-large"></span>
-            <label>Description</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col .span_4_of_4">
-          <div class="group">
-            <textarea class="inputMaterial input-size-extra-large" rows="5" value={{parameter.value}} required></textarea>
-            <span class="highlight"></span>
-            <span class="bar input-size-extra-large"></span>
-            <label>Value</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col .span_4_of_4">
-          <div class="group">
-            <textarea class="inputMaterial input-size-extra-large" rows="5" value={{parameter.clobValue}} required></textarea>
-            <span class="highlight"></span>
-            <span class="bar input-size-extra-large"></span>
-            <label>CLOB Value</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col .span_1_of_4">
-          <button type="submit" class="btn">Save</button>
-        </div>
-        <div class="col .span_1_of_4">
-          <button type="submit" class="btn" (click)="onBackClick()">Back</button>
-        </div>
-      </div>
-    </div>
-
+<div class="modal-medium" *ngIf="getShowModifyAccount()">
+  <app-spinner *ngIf="processingModifyInProgress"></app-spinner>
+  <div class="modal-header">
+    <h1>GL Account Modification</h1>
   </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroupModify" (ngSubmit)="modify()" method="post" class="loginform">
+      <fieldset [disabled]="isProcessingInProgress()">
 
+        <div class="group">
+          <input class="inputMaterial input-size-medium" readOnly formControlName="accountCode" type="text" value="{{account.accountCode}}" required>
+          <label>Account Code</label>
+          <span class="highlight"></span>
+          <span class="bar input-size-medium"></span>
+        </div>
+        <div class="group">
+          <input class="inputMaterial input-size-medium" formControlName="accountName" type="text" value="{{account.accountName}}" required>
+          <label>Account Name</label>
+          <span class="highlight"></span>
+          <span class="bar input-size-medium"></span>
+        </div>
+        <div class="group combo-group">
+          <label>Account Type</label>
+          <div class="select select-fancy select-fancy-image">
+            <select class="input-size-medium" formControlName="accountType" value="{{account.accountType}}">
+            <option value="ASSET">Asset</option>
+            <option value="LIABILITY">Liability</option>
+            <option value="EQUITY">Equity</option>
+            <option value="INCOME">Income</option>
+            <option value="EXPENSE">Expense</option>
+          </select>
+          </div>
+        </div>
+        <button type="submit" [disabled]="!formGroupModify.valid" class="btn ripple">Modify</button>
+        <button type="button" class="btn ripple" (click)="onCancelCreateAccount()">Cancel</button>
+      </fieldset>
+    </form>
+  </div>
 </div>
 
 <div class="modal-medium" *ngIf="getShowCreateAccount()">
+  <app-spinner *ngIf="processingCreateInProgress"></app-spinner>
   <div class="modal-header">
     <h1>GL Account Creation</h1>
   </div>
   <div class="modal-body">
-    <form [formGroup]="formGroup" (ngSubmit)="onClick()" method="post" class="loginform">
+    <form [formGroup]="formGroupCreate" (ngSubmit)="create()" method="post" class="loginform">
       <fieldset [disabled]="isProcessingInProgress()">
 
         <div class="group">
@@ -156,22 +142,46 @@
           <span class="highlight"></span>
           <span class="bar input-size-medium"></span>
         </div>
-      <div class="group combo-group">
-        <label>Account Type</label>
-        <div class="select select-fancy select-fancy-image">
-          <select class="input-size-medium">
-            <option> - Select - </option>
-            <option>Asset</option>
-            <option>Liability</option>
-            <option>Equity</option>
-            <option>Income</option>
-            <option>Expense</option>
+        <div class="group combo-group">
+          <label>Account Type</label>
+          <div class="select select-fancy select-fancy-image">
+            <select formControlName="accountType" class="input-size-medium">
+            <option value="ASSET">Asset</option>
+            <option value="LIABILITY">Liability</option>
+            <option value="EQUITY">Equity</option>
+            <option value="INCOME">Income</option>
+            <option value="EXPENSE">Expense</option>
           </select>
+          </div>
         </div>
-      </div>
-        <button type="submit" class="btn ripple">Create</button>
+        <button type="submit" [disabled]="!formGroupCreate.valid" class="btn ripple">Create</button>
         <button type="button" class="btn ripple" (click)="onCancelCreateAccount()">Cancel</button>
       </fieldset>
     </form>
+  </div>
+</div>
+
+<div class="modal-small" *ngIf="getShowInformationMessageBox()">
+  <div class="modal-header">
+    <h1>Information</h1>
+  </div>
+  <div class="modal-body">
+    <div class="group">
+      <p>{{informationMessage}}</p>
+      <button type="button center" class="btn ripple" (click)="OnClickMessageBoxOk()">OK</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-small" *ngIf="getShowConfirmationMessageBox()">
+  <div class="modal-header">
+    <h1>Confirmation</h1>
+  </div>
+  <div class="modal-body">
+    <div class="group">
+      <p>{{confirmationMessage}}</p>
+      <button type="button" class="btn ripple" (click)="OnClickConfirmationBoxYes()">Yes</button>
+      <button type="button" class="btn ripple" (click)="OnClickConfirmationBoxNo()">No</button>
+    </div>
   </div>
 </div>

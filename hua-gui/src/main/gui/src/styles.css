@@ -293,7 +293,7 @@ label 				 {
 
 app-spinner {
   position: absolute;
-  top: 20rem;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -485,5 +485,12 @@ select * {
     border-bottom: none; 
     background-color: #4CA1AF;
     text-decoration: none;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
 }
 .circle-btn > .material-icons{font-size:20px;}
+
+.btn:disabled {
+  opacity: 0.5;
+}

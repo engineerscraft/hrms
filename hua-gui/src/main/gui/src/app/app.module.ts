@@ -7,11 +7,10 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthenticatorService } from './authenticator.service';
-import { ParameterService } from './parameter.service';
+import { AccountService } from './account.service';
 import { HttpService } from './http.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
-import { ParameterComponent } from './parameter/parameter.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
@@ -21,7 +20,6 @@ import { AccountManagementComponent } from './account-management/account-managem
     AppComponent,
     LoginFormComponent,
     HomeComponent,
-    ParameterComponent,
     SideBarComponent,
     SpinnerComponent,
     AccountManagementComponent
@@ -36,7 +34,7 @@ import { AccountManagementComponent } from './account-management/account-managem
   ],
   providers: [
     AuthenticatorService,
-    ParameterService,
+    AccountService,
     HttpService,
     { provide: "windowObject", useValue: window}
   ],
