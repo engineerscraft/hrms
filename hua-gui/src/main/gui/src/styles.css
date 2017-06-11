@@ -97,6 +97,12 @@ input, button {
   display: table;
 }
 
+.display-table {
+   display: table;
+   width: calc(100% - 92px);
+   table-layout: fixed;
+}
+
 .row {
   display: table-row;
 }

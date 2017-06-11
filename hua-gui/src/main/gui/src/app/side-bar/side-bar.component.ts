@@ -87,4 +87,10 @@ export class SideBarComponent implements OnInit {
     this.router.navigate(['accountManagement']);
     this.open = false;
   }
+
+  onClickEmployeeSearch() {
+    window.scrollTo(0,0);
+    this.router.navigate(['employeeManagement']);
+    this.open = false;
+  }
 }

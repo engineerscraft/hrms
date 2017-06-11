@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
+import { EmployeeManagementComponent } from './employee-management/employee-management.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AccountManagementComponent } from './account-management/account-managem
     HomeComponent,
     SideBarComponent,
     SpinnerComponent,
-    AccountManagementComponent
+    AccountManagementComponent,
+    EmployeeManagementComponent
   ],
   imports: [
     BrowserModule,
