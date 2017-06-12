@@ -8,6 +8,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,16 @@ public class EmployeeResource {
 	public Employee createEmployee(Employee employee) {
         return employeeRepository.createEmployee(employee);
     }
+    
+    @GET
+    @Path("/")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public List<String> getEmployeeAutocomplete(@QueryParam("name") String name, @QueryParam("value") String value) {
+        List<String> list = new ArrayList<String>();
+        list.add("John");
+        list.add("Johny");
+        return list;
+    }
+
     
 }

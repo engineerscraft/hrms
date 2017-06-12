@@ -8,6 +8,9 @@ import com.hamdard.hua.filter.AuthenticationFilter;
 import com.hamdard.hua.filter.AuthorizationFilter;
 import com.hamdard.hua.rest.AccountResource;
 import com.hamdard.hua.rest.AuthenticationEndpoint;
+import com.hamdard.hua.rest.CollegeResource;
+import com.hamdard.hua.rest.DepartmentResource;
+import com.hamdard.hua.rest.DesignationResource;
 import com.hamdard.hua.rest.EmployeeResource;
 import com.hamdard.hua.rest.HealthCheckEndpoint;
 import com.hamdard.hua.rest.PermissionEndpoint;
@@ -21,6 +24,9 @@ public class RestConfig extends ResourceConfig {
         		AuthorizationFilter.class, 
         		HealthCheckEndpoint.class, 
         		PermissionEndpoint.class,
-        		EmployeeResource.class);
+        		EmployeeResource.class,
+        		CollegeResource.class,
+        		DepartmentResource.class,
+        		DesignationResource.class);
     }
 }

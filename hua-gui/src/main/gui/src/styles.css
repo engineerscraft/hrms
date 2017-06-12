@@ -173,6 +173,17 @@ input, button {
 	width: 23.8%; 
 }
 
+.span_3_of_3 {
+	width: 100%; 
+}
+
+.span_2_of_3 {
+	width: 66.13%; 
+}
+
+.span_1_of_3 {
+	width: 32.26%; 
+}
 
 /* Text box*/
 

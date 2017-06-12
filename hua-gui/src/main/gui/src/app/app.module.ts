@@ -8,6 +8,10 @@ import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthenticatorService } from './authenticator.service';
 import { AccountService } from './account.service';
+import { CollegeService } from './college.service';
+import { EmployeeService } from './employee.service';
+import { DepartmentService } from './department.service';
+import { DesignationService } from './designation.service';
 import { HttpService } from './http.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
@@ -37,6 +41,10 @@ import { EmployeeManagementComponent } from './employee-management/employee-mana
   providers: [
     AuthenticatorService,
     AccountService,
+    CollegeService,
+    EmployeeService,
+    DepartmentService,
+    DesignationService,
     HttpService,
     { provide: "windowObject", useValue: window}
   ],
