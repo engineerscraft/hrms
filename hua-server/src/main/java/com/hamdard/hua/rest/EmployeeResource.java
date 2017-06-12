@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,6 +43,13 @@ public class EmployeeResource {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Employee getEmployee(@PathParam("id") Long id) {
         return employeeRepository.getEmployeeById(id);
+    }
+    
+    @POST
+    @Path("/")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Employee createEmployee(Employee employee) {
+        return employeeRepository.createEmployee(employee);
     }
     
 }
