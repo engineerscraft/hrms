@@ -55,8 +55,8 @@ public class EmployeeRepository {
 		//ID,FIRST_NAME,MIDDLE_NAME,LAST_NAME,EMAIL_ADDRESS,
     	//COLLEGE_NAME,STREET_ADDRESS,CITY,CONTACT_NUMBER,EMERGENCY_CONTACT_NAME,EMERGENCY_CONTACT_NUMBER,DESIGNATION,DATE_OF_BIRTH,QUALIFICATION
     	jdbcTemplate.update(employeeCreateSql, employeeId,e.getFirstName(),e.getMiddleName(),e.getLastName(),e.getEmailAddress(),
-    			e.getCollegeName(),e.getStreetAddress(),e.getCity(),e.getContactNumber(),e.getEmergencyContact(),e.getEmergencyContactNumber(),
-    			e.getDesignation(),e.getDateOfBirth(),e.getQualification());
+    			e.getCollegeId(),e.getStreetAddress(),e.getCityId(),e.getContactNumber(),e.getEmergencyContact(),e.getEmergencyContactNumber(),
+    			e.getDesignationId(),e.getDateOfBirth(),e.getQualification(),e.getPostalCode(),e.getDepartmentId());
     	return getEmployeeById(employeeId);
     }
     public Employee getEmployeeById(Long id){

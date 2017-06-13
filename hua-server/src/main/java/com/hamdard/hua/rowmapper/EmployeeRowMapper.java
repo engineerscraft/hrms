@@ -15,15 +15,17 @@ public class EmployeeRowMapper implements RowMapper<Employee>{
 	        employee.setFirstName(rs.getString("FIRST_NAME"));
 	        employee.setLastName(rs.getString("LAST_NAME"));
 	        employee.setMiddleName(rs.getString("MIDDLE_NAME"));
-	        employee.setCollegeName(rs.getString("COLLEGE_NAME"));
+	        employee.setCollegeId(rs.getLong("COLLEGE_ID"));
 	        employee.setStreetAddress(rs.getString("STREET_ADDRESS"));
 	        employee.setDateOfBirth(rs.getDate("DATE_OF_BIRTH"));
-	        employee.setDesignation(rs.getString("DESIGNATION"));
+	        employee.setDesignationId(rs.getLong("DESIGNATION_ID"));
 	        employee.setQualification(rs.getString("QUALIFICATION"));
-	        employee.setCity(rs.getString("CITY"));
+	        employee.setCityId(rs.getLong("CITY_ID"));
 	        employee.setEmergencyContact(rs.getString("EMERGENCY_CONTACT_NAME"));
-	        employee.setEmergencyContactNumber(rs.getLong("EMERGENCY_CONTACT_NUMBER"));
-	        employee.setContactNumber(rs.getLong("CONTACT_NUMBER"));
+	        employee.setEmergencyContactNumber(rs.getString("EMERGENCY_CONTACT_NUMBER"));
+	        employee.setContactNumber(rs.getString("CONTACT_NUMBER"));
+	        employee.setPostalCode(rs.getString("POSTAL_CODE"));
+	        employee.setDepartmentId(rs.getLong("DEPARTMENT_ID"));
 	        return employee;
 	    }
 }

@@ -3,20 +3,23 @@ package com.hamdard.hua.model;
 import java.util.Date;
 
 public class Employee {
+
 	private Long id;
 	private String firstName;
 	private String middleName;
 	private String lastName;
 	private String emailAddress;
-	private String collegeName;
-	private Date dateOfBirth;
+	private Long collegeId;
 	private String streetAddress;
-	private String designation;
-	private String qualification;
-	private String city;
+	private Long cityId;
+	private String postalCode;
+	private String contactNumber;
 	private String emergencyContact;
-	private Long contactNumber;
-	private Long emergencyContactNumber;
+	private String emergencyContactNumber;
+	private Date dateOfBirth;
+	private Long designationId;
+	private Long departmentId;
+	private String qualification;
 	
 	public Long getId() {
 		return id;
@@ -42,12 +45,6 @@ public class Employee {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-	public String getCollegeName() {
-		return collegeName;
-	}
-	public void setCollegeName(String collegeName) {
-		this.collegeName = collegeName;
-	}
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -59,12 +56,6 @@ public class Employee {
 	}
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
-	}
-	public String getDesignation() {
-		return designation;
-	}
-	public void setDesignation(String designation) {
-		this.designation = designation;
 	}
 	
 	public String getMiddleName() {
@@ -79,29 +70,52 @@ public class Employee {
 	public void setQualification(String qualification) {
 		this.qualification = qualification;
 	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
 	public String getEmergencyContact() {
 		return emergencyContact;
 	}
 	public void setEmergencyContact(String emergencyContact) {
 		this.emergencyContact = emergencyContact;
 	}
-	public Long getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
-	public void setContactNumber(Long contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
-	public Long getEmergencyContactNumber() {
+	public String getEmergencyContactNumber() {
 		return emergencyContactNumber;
 	}
-	public void setEmergencyContactNumber(Long emergencyContactNumber) {
+	public void setEmergencyContactNumber(String emergencyContactNumber) {
 		this.emergencyContactNumber = emergencyContactNumber;
 	}
-	
+	public Long getCollegeId() {
+		return collegeId;
+	}
+	public void setCollegeId(Long collegeId) {
+		this.collegeId = collegeId;
+	}
+	public Long getCityId() {
+		return cityId;
+	}
+	public void setCityId(Long cityId) {
+		this.cityId = cityId;
+	}
+	public String getPostalCode() {
+		return postalCode;
+	}
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+	public Long getDesignationId() {
+		return designationId;
+	}
+	public void setDesignationId(Long designationId) {
+		this.designationId = designationId;
+	}
+	public Long getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
+	}
 }
