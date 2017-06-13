@@ -60,7 +60,7 @@ public class EmployeeRepository {
     	return getEmployeeById(employeeId);
     }
     public List<String> getValues(String columnName, String valueLike){
-    	String sql ="SELECT <COLUMN_NAME> from employee where <COLUMN_NAME> like '<COLUMN_VALUE>%'";
+    	String sql ="SELECT DISTINCT <COLUMN_NAME> from employee where <COLUMN_NAME> like '<COLUMN_VALUE>%' LIMIT 5";
     	sql=sql.replace("<COLUMN_NAME>", columnName);
     	sql=sql.replace("<COLUMN_VALUE>", valueLike);
     	Object[] inputs={valueLike};
