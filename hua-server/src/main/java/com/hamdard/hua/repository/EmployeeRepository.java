@@ -59,6 +59,14 @@ public class EmployeeRepository {
     			e.getDesignationId(),e.getDateOfBirth(),e.getQualification(),e.getPostalCode(),e.getDepartmentId());
     	return getEmployeeById(employeeId);
     }
+    public List<String> getValues(String columnName, String valueLike){
+    	String sql ="SELECT <COLUMN_NAME> from employee where <COLUMN_NAME> like '<COLUMN_VALUE>%'";
+    	sql=sql.replace("<COLUMN_NAME>", columnName);
+    	sql=sql.replace("<COLUMN_VALUE>", valueLike);
+    	Object[] inputs={valueLike};
+    	List<String> values = (List<String>) jdbcTemplate.queryForList(sql, String.class);
+    	return values;
+    }
     public Employee getEmployeeById(Long id){
     	try {
     		Object[] args={id};

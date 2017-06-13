@@ -57,10 +57,7 @@ public class EmployeeResource {
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public List<String> getEmployeeAutocomplete(@QueryParam("name") String name, @QueryParam("value") String value) {
-        List<String> list = new ArrayList<String>();
-        list.add("John");
-        list.add("Johny");
-        return list;
+    	return employeeRepository.getValues(name,value);
     }
 
     
