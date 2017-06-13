@@ -1,22 +1,22 @@
 package com.hamdard.hua.model;
 
 public class Department {
-	private long departentId;
+	private long departmentId;
 	private String departmentName;
 	public Department() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Department(long departentId, String departmentName) {
+	public Department(long departmentId, String departmentName) {
 		super();
-		this.departentId = departentId;
+		this.departmentId = departmentId;
 		this.departmentName = departmentName;
 	}
-	public long getDepartentId() {
-		return departentId;
+	public long getDepartmentId() {
+		return departmentId;
 	}
-	public void setDepartentId(long departentId) {
-		this.departentId = departentId;
+	public void setDepartmentId(long departmentId) {
+		this.departmentId = departmentId;
 	}
 	public String getDepartmentName() {
 		return departmentName;
@@ -26,7 +26,7 @@ public class Department {
 	}
 	@Override
 	public String toString() {
-		return "Department [departentId=" + departentId + ", departmentName=" + departmentName + "]";
+		return "Department [departmentId=" + departmentId + ", departmentName=" + departmentName + "]";
 	}
 	
 	

@@ -43,7 +43,7 @@ public class EmployeeRepository {
     	try {
             logger.info(sqlMarker, employeeListSql);
             List<Employee> employees = (List<Employee>) jdbcTemplate.query(employeeListSql, new EmployeeRowMapper());
-            logger.debug("Retrieved accounts: {}", () -> employees);
+            logger.debug("Retrieved employees: {}", () -> employees);
             return employees;
         } catch (Exception e) {
             logger.error("No parameter found", e);
