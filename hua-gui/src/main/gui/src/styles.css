@@ -185,6 +185,76 @@ input, button {
 	width: 32.26%; 
 }
 
+.span_6_of_6 {
+	width: 100%;
+}
+
+.span_5_of_6 {
+  	width: 83.06%;
+}
+
+.span_4_of_6 {
+  	width: 66.13%;
+}
+
+.span_3_of_6 {
+  	width: 49.2%;
+}
+
+.span_2_of_6 {
+  	width: 32.26%;
+}
+
+.span_1_of_6 {
+  	width: 15.33%;
+}
+.span_7_of_7 {
+	width: 100%;
+}
+
+.span_6_of_7 {
+	width: 85.48%;
+}
+
+.span_5_of_7 {
+  	width: 70.97%;
+}
+
+.span_4_of_7 {
+  	width: 56.45%;
+}
+
+.span_3_of_7 {
+  	width: 41.94%;
+}
+
+.span_2_of_7 {
+  	width: 27.42%;
+}
+
+.span_1_of_7 {
+  	width: 12.91%;
+}
+.span_5_of_5 {
+	width: 100%;
+}
+
+.span_4_of_5 {
+  	width: 79.68%; 
+}
+
+.span_3_of_5 {
+  	width: 59.36%; 
+}
+
+.span_2_of_5 {
+  	width: 39.04%;
+}
+
+.span_1_of_5 {
+  	width: 18.72%;
+}
+
 /* Text box*/
 
 input {
@@ -502,12 +572,87 @@ select * {
     border-bottom: none; 
     background-color: #4CA1AF;
     text-decoration: none;
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
 }
 .circle-btn > .material-icons{font-size:20px;}
 
+.circle-btn-fixed {
+  position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+
+.back-btn{
+    background: url("/assets/img/ic_replay_white_24px.svg") no-repeat 13px center;
+    width:50px;
+    height: 50px;
+    border-radius:100%;
+    color:#fff;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #4CA1AF;
+    text-decoration: none;
+}
+.back-btn > .material-icons{font-size:20px;}
+
+.back-btn-fixed {
+  position: fixed;
+    top: 7rem;
+    right: 1rem;
+}
+
+.previous-btn {
+    width:40px;
+    height: 40px;
+    border-radius:100%;
+    color:#4CA1AF;
+    border-color:#4CA1AF;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #fff;
+    text-decoration: none;
+    border-width:2px;
+    border-style: solid;
+    margin: 0 5px;
+}
+
+.next-btn {
+    width:40px;
+    height: 40px;
+    border-radius:100%;
+    color:#fff;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #4CA1AF;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.center {
+  text-align: center;
+}
+
+
 .btn:disabled {
   opacity: 0.5;
+}
+
+.page-status {
+  color:#4CA1AF;
+  font-family: 'lato', 'arial', sans-serif;
+  font-size: 14px;
+  margin: 10px;
+  word-spacing: 10px;
 }

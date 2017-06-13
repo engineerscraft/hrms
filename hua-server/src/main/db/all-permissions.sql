@@ -101,3 +101,34 @@ INSERT INTO EMPLOYEE VALUES(97,	'Leslie',	NULL,	'Christensen',	'Leslie.Christens
 INSERT INTO EMPLOYEE VALUES(98,	'Eddie',	NULL,	'Jefferson',	'Eddie.Jefferson@hamdard.edu',	1,	'ABC',	1,	'ABC',	123,	'ABC',	123,	1,	1,	SYSDATE(),	'ABC');
 INSERT INTO EMPLOYEE VALUES(99,	'Floyd',	NULL,	'Pearson',	'Floyd.Pearson@hamdard.edu',	1,	'ABC',	1,	'ABC',	123,	'ABC',	123,	1,	1,	SYSDATE(),	'ABC');
 
+INSERT INTO COLLEGE VALUES(1,'East Bridge College');
+INSERT INTO COLLEGE VALUES(2,'Ravenwood Conservatory');
+INSERT INTO COLLEGE VALUES(3,'Timber Creek Grammar School');
+INSERT INTO COLLEGE VALUES(4,'Woodside Elementary');
+INSERT INTO COLLEGE VALUES(5,'Darwin High');
+INSERT INTO COLLEGE VALUES(6,'Promise School for Girls');
+INSERT INTO COLLEGE VALUES(7,'Sunnyside School for Girls');
+INSERT INTO COLLEGE VALUES(8,'Summerville Middle School');
+INSERT INTO COLLEGE VALUES(9,'Patriot School for Boys');
+INSERT INTO COLLEGE VALUES(10,'Ocean View High School');
+
+INSERT INTO DEPARTMENT VALUES(1,'Department of History');
+INSERT INTO DEPARTMENT VALUES(2,'Department of Hospitality and Tourism Management');
+INSERT INTO DEPARTMENT VALUES(3,'Department of International Studies');
+INSERT INTO DEPARTMENT VALUES(4,'Department of Management and Marketing');
+INSERT INTO DEPARTMENT VALUES(5,'Department of Mathematics');
+INSERT INTO DEPARTMENT VALUES(6,'Department of Music');
+INSERT INTO DEPARTMENT VALUES(7,'Department of Philosophy');
+INSERT INTO DEPARTMENT VALUES(8,'Department of Physics and Astronomy');
+INSERT INTO DEPARTMENT VALUES(9,'Department of Political Science');
+INSERT INTO DEPARTMENT VALUES(10,'Department of Psychology');
+
+INSERT INTO DESIGNATION VALUES(1,'C++ Professor');
+INSERT INTO DESIGNATION VALUES(2,'Computer Information Systems Professor');
+INSERT INTO DESIGNATION VALUES(3,'Computer Programming Professor');
+INSERT INTO DESIGNATION VALUES(4,'Information Systems Professor');
+INSERT INTO DESIGNATION VALUES(5,'Information Technology Professor');
+INSERT INTO DESIGNATION VALUES(6,'IT Professor');
+INSERT INTO DESIGNATION VALUES(7,'Java Programming Professor');
+
+

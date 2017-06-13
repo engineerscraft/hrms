@@ -7,11 +7,16 @@
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div class="row">
     <div class="group">
-      <a class="circle-btn ripple" href="javascript:void(0)" (click)="showCreateAccountDialog()"></a>
+      <a class="circle-btn ripple circle-btn-fixed" href="javascript:void(0)" (click)="showCreateAccountDialog()"></a>
     </div>
   </div>
-  <form [formGroup]="formGroupSearch" (ngSubmit)="search()" method="post" class="loginform">
-    <fieldset [disabled]="isSearchingInProgress()">
+  <div *ngIf="searchResultAvailable" class="row">
+    <div class="group">
+      <a class="back-btn ripple back-btn-fixed" href="javascript:void(0)" (click)="modifySearchCriteria()"></a>
+    </div>
+  </div>
+  <form *ngIf="searchResultAvailable===false" [formGroup]="formGroupSearch" (ngSubmit)="search()" method="get" class="loginform">
+    <fieldset [disabled]="processingInProgress">
 
       <div class="display-table">
         <div class="row">
@@ -44,6 +49,35 @@
                 <option *ngFor="let lastNameSuggestion of lastNameSuggestions" value="{{lastNameSuggestion}}">
               </datalist>
               <label>Last Name</label>
+              <span class="highlight"></span>
+              <span class="bar span_4_of_4"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cell span_1_of_3">
+            <div class="group">
+              <input #employeeId class="inputMaterial span_4_of_4" type="text" formControlName="employeeId" required>
+              <label>Employee Id</label>
+              <span class="highlight"></span>
+              <span class="bar span_4_of_4"></span>
+            </div>
+          </div>
+          <div class="cell span_1_of_3">
+            <div class="group">
+              <input #emailId list="emailId" class="inputMaterial span_4_of_4" type="text" formControlName="emailId" required>
+              <datalist id="emailId">
+                <option *ngFor="let emailIdSuggestion of emailIdSuggestions" value="{{emailIdSuggestion}}">
+              </datalist>
+              <label>Email Id</label>
+              <span class="highlight"></span>
+              <span class="bar span_4_of_4"></span>
+            </div>
+          </div>
+          <div class="cell span_1_of_3">
+            <div class="group">
+              <input #contactNo class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" required>
+              <label>Contact Number</label>
               <span class="highlight"></span>
               <span class="bar span_4_of_4"></span>
             </div>
@@ -84,38 +118,102 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="cell span_1_of_3">
-            <div class="group">
-              <input #employeeId class="inputMaterial span_4_of_4" type="text" formControlName="employeeId" required>
-              <label>Employee Id</label>
-              <span class="highlight"></span>
-              <span class="bar span_4_of_4"></span>
-            </div>
-          </div>
-          <div class="cell span_1_of_3">
-            <div class="group">
-              <input #emailId list="emailId" class="inputMaterial span_4_of_4" type="text" formControlName="emailId" required>
-              <datalist id="emailId">
-                <option *ngFor="let emailIdSuggestion of emailIdSuggestions" value="{{emailIdSuggestion}}">
-              </datalist>
-              <label>Email Id</label>
-              <span class="highlight"></span>
-              <span class="bar span_4_of_4"></span>
-            </div>
-          </div>
-          <div class="cell span_1_of_3">
-            <div class="group">
-              <input #contactNo class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" required>
-              <label>Contact Number</label>
-              <span class="highlight"></span>
-              <span class="bar span_4_of_4"></span>
-            </div>
-          </div>
+      </div>
+      <div class="row">
+        <div class="cell span_4_of_4">
+          <button type="submit" class="btn ripple">Search</button>
         </div>
       </div>
-      <button type="submit" class="btn ripple">Search</button>
-      <button type="button" class="btn ripple" (click)="onReset()">Reset</button>
     </fieldset>
   </form>
+  <div *ngIf="searchResultAvailable">
+  <div class="display-table">
+    <div class="row">
+      <div class="cell span_1_of_5">
+        <div class="group">
+          <input #employeeId class="inputMaterial span_4_of_4" type="text" required>
+          <label>Employee Id</label>
+          <span class="highlight"></span>
+          <span class="bar span_4_of_4"></span>
+        </div>
+      </div>
+      <div class="cell span_1_of_5">
+        <div class="group">
+          <input #employeeName class="inputMaterial span_4_of_4" type="text" required>
+          <label>Name</label>
+          <span class="highlight"></span>
+          <span class="bar span_4_of_4"></span>
+        </div>
+      </div>
+      <div class="cell span_1_of_5">
+        <div class="group">
+          <input #emailId class="inputMaterial span_4_of_4" type="text" required>
+          <label>Email</label>
+          <span class="highlight"></span>
+          <span class="bar span_4_of_4"></span>
+        </div>
+      </div>
+      <div class="cell span_1_of_5">
+        <div class="group">
+          <input #contact Number class="inputMaterial span_4_of_4" type="text" required>
+          <label>Contact No.</label>
+          <span class="highlight"></span>
+          <span class="bar span_4_of_4"></span>
+        </div>
+      </div>
+      <div class="cell span_1_of_5">
+        <div class="group">
+          <input #designation Number class="inputMaterial span_4_of_4" type="text" required>
+          <label>Designation</label>
+          <span class="highlight"></span>
+          <span class="bar span_4_of_4"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="table" #table>
+
+    <div class="row">
+      <div class="cell span_1_of_5">
+        Employee Id
+      </div>
+      <div class="cell span_1_of_5">
+        Name
+      </div>
+      <div class="cell span_1_of_5">
+        Email
+      </div>
+      <div class="cell span_1_of_5">
+        Contact No.
+      </div>
+      <div class="cell span_1_of_5">
+        Designation
+      </div>
+    </div>
+
+
+    <div class="row" *ngFor="let employee of employees">
+      <div class="cell">
+        {{employee.id}}
+      </div>
+      <div class="cell">
+        {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+      </div>
+      <div class="cell">
+        {{employee.emailAddress}}
+      </div>
+      <div class="cell">
+        {{employee.contactNumber}}
+      </div>
+      <div class="cell">
+        {{employee.designation}}
+      </div>
+    </div>
+  </div>
+  <div class="group center">
+      <a class="previous-btn ripple" href="javascript:void(0)" (click)="previous()">&laquo;</a>
+      <a class="next-btn ripple" href="javascript:void(0)" (click)="next()">&raquo;</a>
+      <p class="page-status">{{lowerRange}} to {{upperRange}} of {{searchResultSetSize}}</p>
+  </div>
+  </div>
 </div>
