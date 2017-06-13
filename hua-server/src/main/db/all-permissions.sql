@@ -1,4 +1,7 @@
-INSERT INTO APP_SEQUENCE VALUES ('ACCESS_ID',1);INSERT INTO APP_SEQUENCE VALUES ('EMPLOYEE_ID',1);INSERT INTO EMPLOYEE VALUES(1,	'Anne',	NULL,	'Moody',	'Anne.Moody@hamdard.edu',	1,	'ABC',	1,	'ABC',	123,	'ABC',	123,	1,	1,	SYSDATE(),	'ABC');
+INSERT INTO APP_SEQUENCE VALUES ('ACCESS_ID',1);
+INSERT INTO APP_SEQUENCE VALUES ('EMPLOYEE_ID',1);
+
+INSERT INTO EMPLOYEE VALUES(1,	'Anne',	NULL,	'Moody',	'Anne.Moody@hamdard.edu',	1,	'ABC',	1,	'ABC',	123,	'ABC',	123,	1,	1,	SYSDATE(),	'ABC');
 INSERT INTO EMPLOYEE VALUES(2,	'Winston',	NULL,	'Figueroa',	'Winston.Figueroa@hamdard.edu',	1,	'ABC',	1,	'ABC',	123,	'ABC',	123,	1,	1,	SYSDATE(),	'ABC');
 INSERT INTO EMPLOYEE VALUES(3,	'Patti',	NULL,	'Arnold',	'Patti.Arnold@hamdard.edu',	1,	'ABC',	1,	'ABC',	123,	'ABC',	123,	1,	1,	SYSDATE(),	'ABC');
 INSERT INTO EMPLOYEE VALUES(4,	'Bertha',	NULL,	'Castro',	'Bertha.Castro@hamdard.edu',	1,	'ABC',	1,	'ABC',	123,	'ABC',	123,	1,	1,	SYSDATE(),	'ABC');
