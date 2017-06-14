@@ -1,0 +1,36 @@
+<app-side-bar></app-side-bar>
+<div class="page-header">
+  <h1>Employee Creation</h1>
+</div>
+<div class="body">
+
+  <app-spinner *ngIf="processingInProgress"></app-spinner>
+<div class="tab_container">
+<input id="tab1" type="radio" name="tabs" value="1" checked>
+<label for="tab1" class="tab-header">Personal Details</label>
+
+<input id="tab2" type="radio" name="tabs" value="2">
+<label for="tab2" class="tab-header" >Employment Details</label>
+
+<input id="tab3" type="radio" name="tabs" value="3">
+<label for="tab3" class="tab-header" >Payroll Details</label>
+
+<input id="tab4" type="radio" value="4" name="tabs" >
+<label for="tab4" class="tab-header">Document Details</label>
+
+
+<section id="content1" class="tab-content">
+  <!--content goes here-->
+</section>
+<section id="content2" class="tab-content">
+<!--content goes here-->
+</section>
+<section id="content3" class="tab-content">
+<!--content goes here-->
+</section>
+<section id="content4" class="tab-content">
+<!--content goes here-->
+</section>
+</div>
+
+</div>

@@ -33,6 +33,7 @@ export class AccountManagementComponent implements OnInit {
   private informationMessage = "";
   private confirmationMessage = "";
   private showConfirmationMessageBox = false;
+  
 
   constructor(private formBuilder: FormBuilder, private accountService: AccountService, private router: Router) { }
 

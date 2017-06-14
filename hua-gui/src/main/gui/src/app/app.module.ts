@@ -19,6 +19,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { EmployeeManagementComponent } from './employee-management/employee-management.component';
+import { EmployeeCreationComponent } from './employee-creation/employee-creation.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EmployeeManagementComponent } from './employee-management/employee-mana
     SideBarComponent,
     SpinnerComponent,
     AccountManagementComponent,
-    EmployeeManagementComponent
+    EmployeeManagementComponent,
+    EmployeeCreationComponent
   ],
   imports: [
     BrowserModule,

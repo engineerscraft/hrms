@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/map';
-import {EventEmitter} from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import 'rxjs/add/operator/debounceTime.js';
 
 @Component({
@@ -29,18 +29,15 @@ export class EmployeeManagementComponent implements OnInit {
   private emailIdSuggestions;
   private employees: Array<any>;
   private searchResult: Array<any>;
-  private searchResultSetSize = 0;
-  private pageSize = 20;
-  private lowerRange = 0;
-  private upperRange = 0;
-  private disableNext = false;
-  private disablePrevious = false;
+  private filteredResult: Array<any>;
   private searchResultAvailable = false;
+  private pagination = { pageSize: 20, lowerRange: 0, upperRange: 0, disableNext: false, disablePrevious: false, searchResultSetSize: 0 };
+  private filter = { employeeId: String, employeeName: String, emailId: String, contactNumber: String, designation: String };
 
   constructor(private formBuilder: FormBuilder, private collegeService: CollegeService, private departmentService: DepartmentService, private designationService: DesignationService, private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit() {
-  this.formGroupSearch = this.formBuilder.group({
+    this.formGroupSearch = this.formBuilder.group({
       firstName: ['', []],
       middleName: ['', []],
       lastName: ['', []],
@@ -49,58 +46,58 @@ export class EmployeeManagementComponent implements OnInit {
       college: ['', []],
       employeeId: ['', []],
       emailId: ['', []],
-      contactNo: ['', []] 
+      contactNo: ['', []]
     });
 
     this.formGroupSearch.get("firstName").valueChanges.debounceTime(400)
       .subscribe(
-        firstName => {
-          this.employeeService.autoComplete('FIRST_NAME', firstName)
-            .subscribe(
-              data => {
-                this.firstNameSuggestions = data;
-              }
-            )
-        }
+      firstName => {
+        this.employeeService.autoComplete('FIRST_NAME', firstName)
+          .subscribe(
+          data => {
+            this.firstNameSuggestions = data;
+          }
+          )
+      }
       )
 
     this.formGroupSearch.get("middleName").valueChanges.debounceTime(400)
       .subscribe(
-        middleName => {
-          this.employeeService.autoComplete('MIDDLE_NAME', middleName)
-            .subscribe(
-              data => {
-                this.middleNameSuggestions = data;
-              }
-            )
-        }
+      middleName => {
+        this.employeeService.autoComplete('MIDDLE_NAME', middleName)
+          .subscribe(
+          data => {
+            this.middleNameSuggestions = data;
+          }
+          )
+      }
       )
 
     this.formGroupSearch.get("lastName").valueChanges.debounceTime(400)
       .subscribe(
-        lastName => {
-          this.employeeService.autoComplete('LAST_NAME', lastName)
-            .subscribe(
-              data => {
-                this.lastNameSuggestions = data;
-              }
-            )
-        }
+      lastName => {
+        this.employeeService.autoComplete('LAST_NAME', lastName)
+          .subscribe(
+          data => {
+            this.lastNameSuggestions = data;
+          }
+          )
+      }
       )
 
     this.formGroupSearch.get("emailId").valueChanges.debounceTime(400)
       .subscribe(
-        emailId => {
-          this.employeeService.autoComplete('EMAIL_ADDRESS', emailId)
-            .subscribe(
-              data => {
-                this.emailIdSuggestions = data;
-              }
-            )
-        }
+      emailId => {
+        this.employeeService.autoComplete('EMAIL_ADDRESS', emailId)
+          .subscribe(
+          data => {
+            this.emailIdSuggestions = data;
+          }
+          )
+      }
       )
 
-   this.processingInProgress = true;
+    this.processingInProgress = true;
     let collegeObservable = this.collegeService.getColleges();
     let departmentObservable = this.departmentService.getDepartments();
     let designationObservable = this.designationService.getDesignations();
@@ -108,18 +105,50 @@ export class EmployeeManagementComponent implements OnInit {
 
     Observable.forkJoin([collegeObservable, departmentObservable, designationObservable])
       .subscribe(
-        data => {
-          this.colleges = data[0];
-          this.departments = data[1];
-          this.designations = data[2];
-        },
-        (err: any) => {
-          this.processingInProgress = false;
-        },
-        () => {
-          this.processingInProgress = false;
-        }
+      data => {
+        this.colleges = data[0];
+        this.departments = data[1];
+        this.designations = data[2];
+      },
+      (err: any) => {
+        this.processingInProgress = false;
+      },
+      () => {
+        this.processingInProgress = false;
+      }
       );
+  }
+
+  filterEmployee($event, fieldName) {
+    if (fieldName === "employeeId")
+      this.filter.employeeId = $event.target.value;
+    if (fieldName === "employeeName")
+      this.filter.employeeName = $event.target.value;
+    if (fieldName === "emailId")
+      this.filter.emailId = $event.target.value;
+    if (fieldName === "contactNumber")
+      this.filter.contactNumber = $event.target.value;
+    if (fieldName === "designation")
+      this.filter.designation = $event.target.value;
+    let filteredEmp: Array<any> = new Array();
+
+
+
+    for (let emp of this.searchResult) {
+      if ((!!this.filter.employeeId && (new String(emp.id)).toUpperCase().indexOf(this.filter.employeeId.toString().toUpperCase()) > -1)
+        || (!!this.filter.employeeName && (new String(emp.firstName + " " + emp.middleName + " " + emp.lastName)).toUpperCase().indexOf(this.filter.employeeName.toString().toUpperCase()) > -1)
+        || (!!this.filter.emailId && (new String(emp.emailAddress)).toUpperCase().indexOf(this.filter.emailId.toString().toUpperCase()) > -1)
+        || (!!this.filter.contactNumber && (new String(emp.contactNumber)).toUpperCase().indexOf(this.filter.contactNumber.toString().toUpperCase()) > -1)
+        || (!!this.filter.designation && (new String(emp.designation)).toUpperCase().indexOf(this.filter.designation.toString().toUpperCase()) > -1)
+      ) {
+        filteredEmp.push(emp);
+      }
+      else if (!$event.target.value) {
+        filteredEmp.push(emp);
+      }
+    }
+    this.filteredResult = filteredEmp;
+    this.goToFirstPage(this.filteredResult)
   }
 
   search() {
@@ -128,58 +157,68 @@ export class EmployeeManagementComponent implements OnInit {
       .subscribe(
       res => {
         this.searchResult = res;
-        this.lowerRange = 1;
-        if(this.searchResult.length >= this.pageSize) {
-          this.employees = this.searchResult.slice(0,this.pageSize);
-          this.upperRange = this.lowerRange + this.pageSize - 1;
-          this.disableNext = false;
-          this.disablePrevious = true;
-        }
-        else {
-          this.employees = this.searchResult;
-          this.upperRange = this.searchResult.length;
-          this.disableNext = true;
-          this.disablePrevious = true;
-        }
-        this.searchResultSetSize = this.searchResult.length;
+        this.filteredResult = res;
         this.searchResultAvailable = true;
+        this.goToFirstPage(this.filteredResult);
       },
       err => {
         this.processingInProgress = false;
       },
       () => {
         this.processingInProgress = false;
-      });    
+      });
+  }
+
+
+  goToFirstPage(filteredResult) {
+    this.pagination.lowerRange = filteredResult.length===0?0:1;
+    if (filteredResult.length >= this.pagination.pageSize) {
+      this.employees = this.filteredResult.slice(0, this.pagination.pageSize);
+      this.pagination.upperRange = this.pagination.lowerRange + this.pagination.pageSize - 1;
+      this.pagination.disableNext = false;
+      this.pagination.disablePrevious = true;
+    }
+    else {
+      this.employees = this.filteredResult;
+      this.pagination.upperRange = this.filteredResult.length;
+      this.pagination.disableNext = true;
+      this.pagination.disablePrevious = true;
+    }
+    this.pagination.searchResultSetSize = this.filteredResult.length;
   }
 
   next() {
-    if(this.disableNext)
+    if (this.pagination.disableNext)
       return;
-    this.lowerRange = this.lowerRange + this.pageSize;
-    this.upperRange = this.lowerRange + this.pageSize - 1;
-    this.disablePrevious = false;
-    if(this.upperRange >= this.searchResultSetSize) {
-      this.upperRange = this.searchResultSetSize;
-      this.disableNext = true;
+    this.pagination.lowerRange = this.pagination.lowerRange + this.pagination.pageSize;
+    this.pagination.upperRange = this.pagination.lowerRange + this.pagination.pageSize - 1;
+    this.pagination.disablePrevious = false;
+    if (this.pagination.upperRange >= this.pagination.searchResultSetSize) {
+      this.pagination.upperRange = this.pagination.searchResultSetSize;
+      this.pagination.disableNext = true;
     }
-    this.employees = this.searchResult.slice(this.lowerRange -1,this.upperRange);
+    this.employees = this.filteredResult.slice(this.pagination.lowerRange - 1, this.pagination.upperRange);
   }
 
   previous() {
-    if(this.disablePrevious)
+    if (this.pagination.disablePrevious)
       return;
-    this.lowerRange = this.lowerRange - this.pageSize;
-    this.upperRange = this.lowerRange + this.pageSize - 1;
-    this.disableNext = false;
-    if(this.lowerRange <=1) {
-      this.lowerRange = 1;
-      this.disablePrevious = true;
+    this.pagination.lowerRange = this.pagination.lowerRange - this.pagination.pageSize;
+    this.pagination.upperRange = this.pagination.lowerRange + this.pagination.pageSize - 1;
+    this.pagination.disableNext = false;
+    if (this.pagination.lowerRange <= 1) {
+      this.pagination.lowerRange = 1;
+      this.pagination.disablePrevious = true;
     }
-    this.employees = this.searchResult.slice(this.lowerRange -1,this.upperRange);
+    this.employees = this.filteredResult.slice(this.pagination.lowerRange - 1, this.pagination.upperRange);
   }
 
   modifySearchCriteria() {
     this.searchResultAvailable = false;
   }
 
+  showCreateEmployeePage() {
+    window.scrollTo(0,0);
+    this.router.navigate(['employeeCreation']);
+  }
 }
