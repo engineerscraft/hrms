@@ -99,7 +99,7 @@ input, button {
 
 .display-table {
    display: table;
-   width: calc(100% - 92px);
+   width: 100%;
    table-layout: fixed;
 }
 
@@ -278,7 +278,7 @@ input {
   outline:none;
 }
 
-label 				 {
+.text-input-label {
   color: #999; 
   font-size: 14px;
   font-weight: normal;
@@ -290,19 +290,19 @@ label 				 {
 }
 
 /* active state */
-.inputMaterial:focus ~ label		{
+.inputMaterial:focus ~ .text-input-label		{
   top: -15px;
   font-size: 14px;
   color: #4CA1AF;
 }
 
-.inputMaterial:valid ~ label {
+.inputMaterial:valid ~ .text-input-label {
   top: -15px;
   font-size: 14px;
   color: #4CA1AF;
 }
 
-.inputMaterial:read-only ~ label {
+.inputMaterial:read-only ~ .text-input-label {
   top: -15px;
   font-size: 14px;
   color: #4CA1AF;
@@ -312,7 +312,7 @@ label 				 {
   color: #afafaf;
 }
 
-.read-only ~ label {
+.read-only ~ .text-input-label {
   top: -15px;
   font-size: 14px;
   color: #4CA1AF;
@@ -512,7 +512,7 @@ select * {
   font-size: 14px;
 }
 
-.combo-group label {
+.combo-group .text-input-label {
   font-size: 14px;
   font-weight: normal;
   position: absolute;
@@ -663,17 +663,18 @@ select * {
 .tab-header {
   display: block;
   float: left;
-  width: 20%;
-  color: #4CA1AF;
+  color: #fff;
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  background: #f0f0f0;
+  background: rgba(76, 161, 175, 0.5);
   position:relative;
   padding: 10px 0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
-input[type="radio"] {
+.tab-radio {
         display: none;
         clear: both;
     }
@@ -693,6 +694,7 @@ input[type="radio"] {
 .tab_container [id^="tab"]:checked + .tab-header {
   background: #fff;
   box-shadow: inset 0 3px #4CA1AF;
+  color: #4CA1AF;
 }
 
 @keyframes fadeInScale {

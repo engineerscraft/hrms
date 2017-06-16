@@ -12,4 +12,7 @@ export class EmployeeCreationComponent implements OnInit {
   ngOnInit() {
   }
 
+  onTabClick(event) {
+    console.log(event);
+  }
 }

@@ -5,32 +5,38 @@
 <div class="body">
 
   <app-spinner *ngIf="processingInProgress"></app-spinner>
-<div class="tab_container">
-<input id="tab1" type="radio" name="tabs" value="1" checked>
-<label for="tab1" class="tab-header">Personal Details</label>
+  <div class="display-table">
+    <div class="row span_4_of_4">
+      <div>
 
-<input id="tab2" type="radio" name="tabs" value="2">
-<label for="tab2" class="tab-header" >Employment Details</label>
+        <div class="tab_container">
+          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
+          <label for="tab1" class="tab-header span_1_of_4 cell">Personal Details</label>
 
-<input id="tab3" type="radio" name="tabs" value="3">
-<label for="tab3" class="tab-header" >Payroll Details</label>
+          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" />
+          <label for="tab2" class="tab-header span_1_of_4 cell">Employment Details</label>
 
-<input id="tab4" type="radio" value="4" name="tabs" >
-<label for="tab4" class="tab-header">Document Details</label>
+          <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
+          <label for="tab3" class="tab-header span_1_of_4 cell">Payroll Details</label>
 
+          <input id="tab4" class="tab-radio" type="radio" name="tabs" value="4" />
+          <label for="tab4" class="tab-header span_1_of_4 cell">Document Details</label>
 
-<section id="content1" class="tab-content">
-  <!--content goes here-->
-</section>
-<section id="content2" class="tab-content">
-<!--content goes here-->
-</section>
-<section id="content3" class="tab-content">
-<!--content goes here-->
-</section>
-<section id="content4" class="tab-content">
-<!--content goes here-->
-</section>
-</div>
+          <section id="content1" class="tab-content">
+            <!--content goes here-->
+          </section>
+          <section id="content2" class="tab-content">
+            <!--content goes here-->
+          </section>
+          <section id="content3" class="tab-content">
+            <!--content goes here-->
+          </section>
+          <section id="content4" class="tab-content">
+            <!--content goes here-->
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
