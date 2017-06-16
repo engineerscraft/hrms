@@ -36,7 +36,7 @@ public class AuthenticationEndpoint {
             return authenticationRepository.issueToken(loginDetails.getUsername(), userDisplayName, 0L);
         } else if (loginDetails.getToken() != null) {
             Jws<Claims> jws = authenticationRepository.validateToken(loginDetails.getToken());
-            return authenticationRepository.issueToken(jws.getBody().getSubject(), (String)jws.getBody().get("DISPLAY_NAME"), Long.valueOf(jws.getBody().getId()));
+            return authenticationRepository.issueToken(jws.getBody().getSubject(), (String)jws.getBody().get("DISPLAY_NAME"), Long.valueOf(jws.getBody().get("TOKEN_ID").toString()));
         } else {
             logger.error("Username/Password or token is mandatory");
             throw new NotAuthorizedException("Bearer");

@@ -109,8 +109,11 @@ public class AuthenticationRepository {
                 logger.info(sqlMarker, newTokenSavingSql);
                 logger.info(sqlMarker, "Params {}, {}, {}", () -> accessId, () -> username, () -> accessTokenExpiryDate);
                 jdbcTemplate.update(newTokenSavingSql, new Object[] { accessId, username, accessTokenExpiryDate });
-                accessToken = Jwts.builder().setId(accessId.toString()).setSubject(username).setExpiration(accessTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
-                refreshToken = Jwts.builder().setId(accessId.toString()).setSubject(username).setExpiration(refreshTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
+                Map<String,Object> claims = new HashMap();
+                claims.put("DISPLAY_NAME", userDisplayName);
+                claims.put("TOKEN_ID", accessId.toString());
+                accessToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(accessTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
+                refreshToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(refreshTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
             } else {
                 logger.info(sqlMarker, existingTokenUpdateSql);
                 logger.info(sqlMarker, "Params {}, {}, {}", () -> accessTokenExpiryDate, () -> id, () -> username);
@@ -120,8 +123,9 @@ public class AuthenticationRepository {
                 }
                 Map<String,Object> claims = new HashMap();
                 claims.put("DISPLAY_NAME", userDisplayName);
-                accessToken = Jwts.builder().setId(id.toString()).setClaims(claims).setSubject(username).setExpiration(accessTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
-                refreshToken = Jwts.builder().setId(id.toString()).setClaims(claims).setSubject(username).setExpiration(refreshTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
+                claims.put("TOKEN_ID", id.toString());
+                accessToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(accessTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
+                refreshToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(refreshTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
             }
 
             return new Token(accessToken, refreshToken, username, userDisplayName);
