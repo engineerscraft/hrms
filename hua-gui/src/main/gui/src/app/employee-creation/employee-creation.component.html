@@ -19,21 +19,97 @@
           <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
           <label for="tab3" class="tab-header span_1_of_4 cell">Payroll Details</label>
 
-          <input id="tab4" class="tab-radio" type="radio" name="tabs" value="4" />
+          <input id="tab4" class="tab-radio" type="radio" disabled name="tabs" value="4" />
           <label for="tab4" class="tab-header span_1_of_4 cell">Document Details</label>
+          <form [formGroup]="formGroupSearch" (ngSubmit)="create()" method="get" class="loginform">
+            <fieldset>
+              <section id="content1" class="tab-content">
+                <div class="display-table">
+                  <div class="row">
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #firstName list="firstName" class="inputMaterial span_4_of_4" type="text" formControlName="firstName" required>
+                        <datalist id="firstName">
+                          <option *ngFor="let firstNameSuggestion of firstNameSuggestions" value="{{firstNameSuggestion}}">
+                        </datalist>
+                        <label class="text-input-label">First Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #middleName list="middleName" class="inputMaterial span_4_of_4" type="text" formControlName="middleName" required>
+                        <datalist id="middleName">
+                          <option *ngFor="let middleNameSuggestion of middleNameSuggestions" value="{{middleNameSuggestion}}">
+                        </datalist>
+                        <label class="text-input-label">Middle Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #lastName list="lastName" class="inputMaterial span_4_of_4" type="text" formControlName="lastName" required>
+                        <datalist id="lastName">
+                          <option *ngFor="let lastNameSuggestion of lastNameSuggestions" value="{{lastNameSuggestion}}">
+                        </datalist>
+                        <label class="text-input-label">Last Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #employeeId class="inputMaterial span_4_of_4" type="text" formControlName="employeeId" required>
+                        <label class="text-input-label">Employee Id</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #emailId list="emailId" class="inputMaterial span_4_of_4" type="text" formControlName="emailId" required>
+                        <datalist id="emailId">
+                          <option *ngFor="let emailIdSuggestion of emailIdSuggestions" value="{{emailIdSuggestion}}">
+                        </datalist>
+                        <label class="text-input-label">Email Id</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #contactNo class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" required>
+                        <label class="text-input-label">Contact Number</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <section id="content1" class="tab-content">
-            <!--content goes here-->
-          </section>
-          <section id="content2" class="tab-content">
-            <!--content goes here-->
-          </section>
-          <section id="content3" class="tab-content">
-            <!--content goes here-->
-          </section>
-          <section id="content4" class="tab-content">
-            <!--content goes here-->
-          </section>
+              </section>
+              <section id="content2" class="tab-content">
+                <!--content goes here-->
+              </section>
+              <section id="content3" class="tab-content">
+                <!--content goes here-->
+              </section>
+              <section id="content4" class="tab-content">
+                <!--content goes here-->
+              </section>
+              <div class="row">
+                <div class="cell span_4_of_4">
+                  <button type="submit" class="btn ripple">Create</button>
+                </div>
+              </div>
+
+            </fieldset>
+          </form>
+
         </div>
       </div>
     </div>

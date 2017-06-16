@@ -3,6 +3,11 @@
 <div class="page-header">
   <h1>Employee Management</h1>
 </div>
+
+<div class="context-menu" [ngStyle]="getContextMenuCss()">
+  <div class="context-menu-item" (click)="onViewClick()">View</div>
+</div>
+
 <div class="body">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div class="row">
@@ -12,7 +17,7 @@
   </div>
   <div *ngIf="searchResultAvailable" class="row">
     <div class="group">
-      <a class="back-btn ripple back-btn-fixed" href="javascript:void(0)" (click)="modifySearchCriteria()"></a>
+      <a class="back-btn ripple back-btn-fixed" href="javascript:void(0)" (click)="back()"></a>
     </div>
   </div>
   <form *ngIf="searchResultAvailable===false" [formGroup]="formGroupSearch" (ngSubmit)="search()" method="get" class="loginform">
@@ -126,94 +131,246 @@
       </div>
     </fieldset>
   </form>
-  <div *ngIf="searchResultAvailable">
-  <div class="display-table">
-    <div class="row">
-      <div class="cell span_1_of_5">
-        <div class="group">
-          <input #employeeId class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'employeeId')" required>
-          <label class="text-input-label">Employee Id</label>
-          <span class="highlight"></span>
-          <span class="bar span_4_of_4"></span>
+  <div *ngIf="searchResultAvailable == true && displayViewEmployee == false">
+    <div class="display-table">
+      <div class="row">
+        <div class="cell span_1_of_5">
+          <div class="group">
+            <input #employeeId class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'employeeId')" required>
+            <label class="text-input-label">Employee Id</label>
+            <span class="highlight"></span>
+            <span class="bar span_4_of_4"></span>
+          </div>
         </div>
-      </div>
-      <div class="cell span_1_of_5">
-        <div class="group">
-          <input #employeeName class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'employeeName')" required>
-          <label class="text-input-label">Name</label>
-          <span class="highlight"></span>
-          <span class="bar span_4_of_4"></span>
+        <div class="cell span_1_of_5">
+          <div class="group">
+            <input #employeeName class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'employeeName')" required>
+            <label class="text-input-label">Name</label>
+            <span class="highlight"></span>
+            <span class="bar span_4_of_4"></span>
+          </div>
         </div>
-      </div>
-      <div class="cell span_1_of_5">
-        <div class="group">
-          <input #emailId class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'emailId')" required>
-          <label class="text-input-label">Email</label>
-          <span class="highlight"></span>
-          <span class="bar span_4_of_4"></span>
+        <div class="cell span_1_of_5">
+          <div class="group">
+            <input #emailId class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'emailId')" required>
+            <label class="text-input-label">Email</label>
+            <span class="highlight"></span>
+            <span class="bar span_4_of_4"></span>
+          </div>
         </div>
-      </div>
-      <div class="cell span_1_of_5">
-        <div class="group">
-          <input #contactNumber class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'contactNumber')" required>
-          <label class="text-input-label">Contact No.</label>
-          <span class="highlight"></span>
-          <span class="bar span_4_of_4"></span>
+        <div class="cell span_1_of_5">
+          <div class="group">
+            <input #contactNumber class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'contactNumber')" required>
+            <label class="text-input-label">Contact No.</label>
+            <span class="highlight"></span>
+            <span class="bar span_4_of_4"></span>
+          </div>
         </div>
-      </div>
-      <div class="cell span_1_of_5">
-        <div class="group">
-          <input #designation class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'designation')" required>
-          <label class="text-input-label">Designation</label>
-          <span class="highlight"></span>
-          <span class="bar span_4_of_4"></span>
+        <div class="cell span_1_of_5">
+          <div class="group">
+            <input #designation class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'designation')" required>
+            <label class="text-input-label">Designation</label>
+            <span class="highlight"></span>
+            <span class="bar span_4_of_4"></span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="table" #table>
+    <div class="table" #table>
 
-    <div class="row">
-      <div class="cell span_1_of_5">
-        Employee Id
+      <div class="row">
+        <div class="cell span_1_of_5">
+          Employee Id
+        </div>
+        <div class="cell span_1_of_5">
+          Name
+        </div>
+        <div class="cell span_1_of_5">
+          Email
+        </div>
+        <div class="cell span_1_of_5">
+          Contact No.
+        </div>
+        <div class="cell span_1_of_5">
+          Designation
+        </div>
       </div>
-      <div class="cell span_1_of_5">
-        Name
-      </div>
-      <div class="cell span_1_of_5">
-        Email
-      </div>
-      <div class="cell span_1_of_5">
-        Contact No.
-      </div>
-      <div class="cell span_1_of_5">
-        Designation
+
+
+      <div class="row" *ngFor="let employee of employees" (contextmenu)="onRightClick($event, employee.id)">
+        <div class="cell">
+          {{employee.id}}
+        </div>
+        <div class="cell">
+          {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+        </div>
+        <div class="cell">
+          {{employee.emailAddress}}
+        </div>
+        <div class="cell">
+          {{employee.contactNumber}}
+        </div>
+        <div class="cell">
+          {{employee.designation}}
+        </div>
       </div>
     </div>
-
-
-    <div class="row" *ngFor="let employee of employees">
-      <div class="cell">
-        {{employee.id}}
-      </div>
-      <div class="cell">
-        {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
-      </div>
-      <div class="cell">
-        {{employee.emailAddress}}
-      </div>
-      <div class="cell">
-        {{employee.contactNumber}}
-      </div>
-      <div class="cell">
-        {{employee.designation}}
-      </div>
-    </div>
-  </div>
-  <div class="group center">
+    <div class="group center">
       <a class="previous-btn ripple" href="javascript:void(0)" (click)="previous()">&laquo;</a>
       <a class="next-btn ripple" href="javascript:void(0)" (click)="next()">&raquo;</a>
       <p class="page-status">{{pagination.lowerRange}} to {{pagination.upperRange}} of {{pagination.searchResultSetSize}}</p>
+    </div>
   </div>
+
+  <div class="display-table" *ngIf="displayViewEmployee">
+    <div class="row span_4_of_4">
+      <div>
+
+        <div class="tab_container">
+          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
+          <label for="tab1" class="tab-header span_1_of_4 cell">Personal Details</label>
+
+          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" />
+          <label for="tab2" class="tab-header span_1_of_4 cell">Employment Details</label>
+
+          <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
+          <label for="tab3" class="tab-header span_1_of_4 cell">Payroll Details</label>
+
+          <input id="tab4" class="tab-radio" type="radio" name="tabs" value="4" />
+          <label for="tab4" class="tab-header span_1_of_4 cell">Document Details</label>
+          <form [formGroup]="formGroupModify" (ngSubmit)="modify()" method="get" class="loginform">
+            <fieldset>
+              <section id="content1" class="tab-content">
+                <div class="display-table">
+                  <div class="row">
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #firstName list="firstName" class="inputMaterial span_4_of_4" type="text" formControlName="firstName" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">First Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #middleName list="middleName" class="inputMaterial span_4_of_4" type="text" formControlName="middleName" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Middle Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #lastName list="lastName" class="inputMaterial span_4_of_4" type="text" formControlName="lastName" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Last Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #employeeId class="inputMaterial span_4_of_4" type="text" formControlName="employeeId" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Employee Id</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #emailId list="emailId" class="inputMaterial span_4_of_4" type="text" formControlName="emailId" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Email Id</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #contactNo class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Contact Number</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </section>
+              <section id="content2" class="tab-content">
+                <div class="display-table">
+                  <div class="row">
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #firstName list="firstName" class="inputMaterial span_4_of_4" type="text" formControlName="firstName" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">First Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #middleName list="middleName" class="inputMaterial span_4_of_4" type="text" formControlName="middleName" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Middle Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #lastName list="lastName" class="inputMaterial span_4_of_4" type="text" formControlName="lastName" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Last Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #employeeId class="inputMaterial span_4_of_4" type="text" formControlName="employeeId" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Employee Id</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #emailId list="emailId" class="inputMaterial span_4_of_4" type="text" formControlName="emailId" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Email Id</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_3">
+                      <div class="group">
+                        <input #contactNo class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" required [attr.readonly]="modifyAttribute === false? '' : null">
+                        <label class="text-input-label">Contact Number</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="content3" class="tab-content">
+                <!--content goes here-->
+              </section>
+              <section id="content4" class="tab-content">
+                <!--content goes here-->
+              </section>
+              <div class="row">
+                <div class="cell span_4_of_4">
+                  <button type="submit" class="btn ripple">{{modifyButtonName}}</button>
+                </div>
+              </div>
+
+            </fieldset>
+          </form>
+
+        </div>
+      </div>
+    </div>
   </div>
+
 </div>

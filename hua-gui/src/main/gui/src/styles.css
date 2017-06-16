@@ -37,6 +37,7 @@ h3 {
 
 fieldset {
   border-style: none;
+  clear: both;
 }
 
 @font-face {
@@ -99,7 +100,7 @@ input, button {
 
 .display-table {
    display: table;
-   width: 100%;
+   width: calc(100% - 92px);
    table-layout: fixed;
 }
 
@@ -572,6 +573,7 @@ select * {
     border-bottom: none; 
     background-color: #4CA1AF;
     text-decoration: none;
+    z-index: 100;
 }
 .circle-btn > .material-icons{font-size:20px;}
 
@@ -596,6 +598,7 @@ select * {
     border-bottom: none; 
     background-color: #4CA1AF;
     text-decoration: none;
+    z-index: 100;
 }
 .back-btn > .material-icons{font-size:20px;}
 
@@ -669,7 +672,7 @@ select * {
   text-align: center;
   background: rgba(76, 161, 175, 0.5);
   position:relative;
-  padding: 10px 0;
+  padding: 15px 0;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -683,17 +686,21 @@ select * {
   display: none;
 }
 
-#tab1:checked ~ #content1,
-#tab2:checked ~ #content2,
-#tab3:checked ~ #content3,
-#tab4:checked ~ #content4,
-#tab5:checked ~ #content5 {
+#tab1:checked ~ form #content1,
+#tab2:checked ~ form #content2,
+#tab3:checked ~ form #content3,
+#tab4:checked ~ form #content4 {
   display: block;
 }
 
 .tab_container [id^="tab"]:checked + .tab-header {
   background: #fff;
   box-shadow: inset 0 3px #4CA1AF;
+  color: #4CA1AF;
+}
+
+.tab-radio:disabled ~ .tab-header{
+  background-color: #efefef;
   color: #4CA1AF;
 }
 
@@ -713,4 +720,9 @@ select * {
 .tab_container .tab-content p,
 .tab_container .tab-content h3 {
  animation: fadeInScale 0.7s ease-in-out;
+}
+
+.display-table .display-table {
+  width:100%;
+  padding-right: 50px;
 }

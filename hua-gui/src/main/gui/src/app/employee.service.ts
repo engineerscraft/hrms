@@ -31,4 +31,9 @@ export class EmployeeService {
             +"&contactNumber="+employee.get("contactNo").value)
       .map(res => res.json());
   }
+
+  read(employeeId: String) {
+    return this.httpService.callHttpGet("/resources/employee/"+employeeId)
+      .map(res => res.json());
+  }
 }
