@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="HUA" type="MySQL - 5.7.18-log">
+   <tables>
+      <table name="access_token" numRows="85" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="ACCESS_ID" nullable="true" remarks="" size="19" type="BIGINT"/>
+         <column autoUpdated="false" digits="0" id="1" name="INSERT_DTM" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="2" name="USER_NAME" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="EXPIRY_DTM" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="4" name="REFRESH_COUNT" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="5" name="LAST_REFRESH_DTM" nullable="true" remarks="" size="19" type="DATETIME"/>
+      </table>
+      <table name="activity_history" numRows="52" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="INSERT_DTM" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="1" name="USER_NAME" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="MESSAGE" nullable="true" remarks="" size="4000" type="VARCHAR"/>
+      </table>
+      <table name="app_sequence" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="SEQ_NAME" nullable="false" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="1" name="SEQ_VALUE" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED"/>
+         <primaryKey column="SEQ_NAME" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="SEQ_NAME"/>
+         </index>
+      </table>
+      <table name="college" numRows="10" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="ID" nullable="true" remarks="" size="10" type="INT">
+            <parent column="ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="NAME" nullable="true" remarks="" size="50" type="VARCHAR"/>
+      </table>
+      <table name="department" numRows="10" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="ID" nullable="true" remarks="" size="10" type="INT">
+            <parent column="ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="NAME" nullable="true" remarks="" size="50" type="VARCHAR"/>
+      </table>
+      <table name="designation" numRows="7" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="ID" nullable="true" remarks="" size="10" type="INT">
+            <parent column="ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="NAME" nullable="true" remarks="" size="50" type="VARCHAR"/>
+      </table>
+      <table name="employee" numRows="100" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="ID" nullable="false" remarks="" size="10" type="INT">
+            <child column="ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="college"/>
+            <child column="ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="department"/>
+            <child column="ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="designation"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="FIRST_NAME" nullable="false" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="MIDDLE_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="LAST_NAME" nullable="false" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="EMAIL_ADDRESS" nullable="false" remarks="" size="64" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="COLLEGE_ID" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="6" name="STREET_ADDRESS" nullable="false" remarks="" size="256" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="CITY_ID" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="8" name="POSTAL_CODE" nullable="false" remarks="" size="10" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="CONTACT_NUMBER" nullable="false" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="EMERGENCY_CONTACT_NAME" nullable="false" remarks="" size="128" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="11" name="EMERGENCY_CONTACT_NUMBER" nullable="false" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="12" name="DESIGNATION_ID" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="13" name="DEPARTMENT_ID" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="14" name="DATE_OF_BIRTH" nullable="false" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="15" name="QUALIFICATION" nullable="false" remarks="" size="64" type="VARCHAR"/>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+      </table>
+      <table name="gl_account" numRows="10" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="ACCOUNT_CODE" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="1" name="ACCOUNT_NAME" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="ACCOUNT_TYPE" nullable="true" remarks="" size="15" type="VARCHAR"/>
+      </table>
+      <table name="gl_account_history" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="HISTID" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="INSERT_DTM" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="2" name="USERNAME" nullable="true" remarks="" size="20" type="CHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="OPERATION" nullable="true" remarks="" size="10" type="CHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="ACCOUNT_CODE" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="ACCOUNT_NAME" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="ACCOUNT_TYPE" nullable="true" remarks="" size="15" type="VARCHAR"/>
+         <primaryKey column="HISTID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="HISTID"/>
+         </index>
+      </table>
+   </tables>
+</database>

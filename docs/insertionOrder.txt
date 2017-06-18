@@ -1,0 +1,9 @@
+employee
+college
+department
+designation
+access_token
+activity_history
+app_sequence
+gl_account
+gl_account_history
