@@ -20,10 +20,10 @@
 1. Go inside the trunk folder and run the command `mvn clean install`. Note: For the first time, it will download a lot of stuff and hence it may take quite some time
 
 # Setting Up LDAP & DB
-1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer (login using localhost:10389)
+1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer (login using localhost and port 10389)
 2. Execute the SQL files: all-ddl.sql & all-permissions.sql at the location huac\trunk\hua_setup\ in MySQL
 3. If after hua DB import-setup, not able to login with HUAPPUSER, then execute below SQL using root login in MySQL.
-    GRANT ALL PRIVILEGES ON HUA.* TO HUAAPPUSER@'localhost';
+    `GRANT ALL PRIVILEGES ON HUA.* TO HUAAPPUSER@'localhost';`
 
 # Running the servers
 1. Open the command terminal, go to the folder huac\trunk\hua-gui\src\main\gui and run the command `npm start`
