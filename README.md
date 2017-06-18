@@ -9,6 +9,7 @@
 8. Eclipse (For Java development)
 9. Visual Studio Code (For Angular development)
 10. Tortoise SVN (include command line utility as well)
+11. Java 1.8 (JAVA_HOME environment variable to be set correctly and JDK bin folder path to be added to PATH environment variable)
 
 # Code Checkout
 1. Create a folder in your local machine where you want to checkout the source code
@@ -19,7 +20,7 @@
 1. Go inside the trunk folder and run the command `mvn clean install`. Note: For the first time, it will download a lot of stuff and hence it may take quite some time
 
 # Setting Up LDAP & DB
-1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer
+1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer (login using localhost:10389)
 2. Execute the SQL files: all-ddl.sql & all-permissions.sql at the location huac\trunk\hua_setup\ in MySQL
 3. If after hua DB import-setup, not able to login with HUAPPUSER, then execute below SQL using root login in MySQL.
     GRANT ALL PRIVILEGES ON HUA.* TO HUAAPPUSER@'localhost';
