@@ -1,0 +1,39 @@
+// dot 2.38.0 on Windows 7 6.1
+// SchemaSpy rev 590
+digraph "address" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+    nodesep="0.18"
+    ranksep="0.46"
+    fontname="Helvetica"
+    fontsize="11"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "address" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">address</TD></TR>
+      <TR><TD PORT="EMP_ID" COLSPAN="3" ALIGN="LEFT">EMP_ID</TD></TR>
+      <TR><TD PORT="HOUSE_NO" COLSPAN="3" ALIGN="LEFT">HOUSE_NO</TD></TR>
+      <TR><TD PORT="STREET_NAME" COLSPAN="3" ALIGN="LEFT">STREET_NAME</TD></TR>
+      <TR><TD PORT="AREA" COLSPAN="3" ALIGN="LEFT">AREA</TD></TR>
+      <TR><TD PORT="REGION" COLSPAN="3" ALIGN="LEFT">REGION</TD></TR>
+      <TR><TD PORT="PIN_NO" COLSPAN="3" ALIGN="LEFT">PIN_NO</TD></TR>
+      <TR><TD PORT="DISTRICT" COLSPAN="3" ALIGN="LEFT">DISTRICT</TD></TR>
+      <TR><TD PORT="STATE" COLSPAN="3" ALIGN="LEFT">STATE</TD></TR>
+      <TR><TD PORT="COUNTRY" COLSPAN="3" ALIGN="LEFT">COUNTRY</TD></TR>
+      <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/address.html"
+    tooltip="address"
+  ];
+}

@@ -27,7 +27,7 @@ digraph "access_token" {
       <TR><TD PORT="EXPIRY_DTM" COLSPAN="3" ALIGN="LEFT">EXPIRY_DTM</TD></TR>
       <TR><TD PORT="REFRESH_COUNT" COLSPAN="3" ALIGN="LEFT">REFRESH_COUNT</TD></TR>
       <TR><TD PORT="LAST_REFRESH_DTM" COLSPAN="3" ALIGN="LEFT">LAST_REFRESH_DTM</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">85 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/access_token.html"
     tooltip="access_token"
