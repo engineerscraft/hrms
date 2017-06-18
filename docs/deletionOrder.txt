@@ -1,9 +1,0 @@
-gl_account_history
-gl_account
-app_sequence
-activity_history
-access_token
-designation
-department
-college
-employee
