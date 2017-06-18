@@ -14,6 +14,7 @@ import com.hamdard.hua.rest.DesignationResource;
 import com.hamdard.hua.rest.EmployeeResource;
 import com.hamdard.hua.rest.HealthCheckEndpoint;
 import com.hamdard.hua.rest.PermissionEndpoint;
+import com.hamdard.hua.rest.UserManagementEndpoint;
 
 @ApplicationPath("/resources")
 public class RestConfig extends ResourceConfig {
@@ -27,6 +28,7 @@ public class RestConfig extends ResourceConfig {
         		EmployeeResource.class,
         		CollegeResource.class,
         		DepartmentResource.class,
-        		DesignationResource.class);
+        		DesignationResource.class,
+        		UserManagementEndpoint.class);
     }
 }
