@@ -31,6 +31,7 @@
 2. Execute the SQL files: all-ddl.sql & all-permissions.sql at the location huac\trunk\hua_setup\ in MySQL
 3. If after hua DB import-setup, not able to login with HUAPPUSER, then execute below SQL using root login in MySQL.
     `GRANT ALL PRIVILEGES ON HUA.* TO HUAAPPUSER@'localhost';`
+4. Create an environment variable HRMS_ROOT. Create a folder called log in the folder pointed to by HRMS_ROOT. All logs will be generated here.
 
 # Running the servers
 1. Open the command terminal, go to the folder huac\trunk\hua-gui\src\main\gui and run the command `npm start`
