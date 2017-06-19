@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hamdard.hua.model.Account;
@@ -23,6 +24,7 @@ import com.hamdard.hua.privileges.Privilege;
 import com.hamdard.hua.repository.AccountRepository;
 import com.hamdard.hua.security.Secured;
 
+@Component
 @Path("/account")
 public class AccountResource {
 

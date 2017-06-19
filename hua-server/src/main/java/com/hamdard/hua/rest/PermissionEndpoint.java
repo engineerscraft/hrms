@@ -10,10 +10,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.hamdard.hua.repository.AuthenticationRepository;
 import com.hamdard.hua.security.Secured;
 
+@Component
 @Path("/permission")
 public class PermissionEndpoint {
     

@@ -20,7 +20,14 @@
 1. Go inside the trunk folder and run the command `mvn clean install`. Note: For the first time, it will download a lot of stuff and hence it may take quite some time
 
 # Setting Up LDAP & DB
-1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer (login using localhost and port 10389)
+1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer 
+   Note: Login details of LDAP
+   a. Host: localhost
+   b. Port: 10389
+   c. User DN: uid=admin,ou=system 
+   d. Password: secret
+   e. Protocol: LDAPv3
+   f. Level: User + Password
 2. Execute the SQL files: all-ddl.sql & all-permissions.sql at the location huac\trunk\hua_setup\ in MySQL
 3. If after hua DB import-setup, not able to login with HUAPPUSER, then execute below SQL using root login in MySQL.
     `GRANT ALL PRIVILEGES ON HUA.* TO HUAAPPUSER@'localhost';`
@@ -29,3 +36,15 @@
 1. Open the command terminal, go to the folder huac\trunk\hua-gui\src\main\gui and run the command `npm start`
 2. Open another terminal, go to the folder huac\trunk\hua-server and run the command `mvn spring-boot:run`
 3. Open a web browser and go to the URL http://localhost:4200 and login using the credentials TEST03/TEST03
+
+# Generate REST API documentation
+1. Go to location hua-server
+2. Run the command `mvn -P doc install`
+3. The document will ge generated at docs\api
+4. The document will be available at http://techsnippet.online/hrms/api/
+
+# Generate DB structure documentation
+1. Go to location hua-server
+2. Run the command `mvn -P doc site`
+3. The document will ge generated at docs\database\schemaspy
+4. The document will be available at http://techsnippet.online/hrms/database/schemaspy/

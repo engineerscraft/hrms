@@ -4,6 +4,8 @@
 dist/
 tmp/
 out-tsc/
+asciidoc/
+generated/
 
 # dependencies
 node_modules/
