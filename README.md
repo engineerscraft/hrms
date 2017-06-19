@@ -22,12 +22,12 @@
 # Setting Up LDAP & DB
 1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer 
    Note: Login details of LDAP
-   a. Host: localhost
-   b. Port: 10389
-   c. User DN: uid=admin,ou=system 
-   d. Password: secret
-   e. Protocol: LDAPv3
-   f. Level: User + Password
+   * Host: localhost
+   * Port: 10389
+   * User DN: uid=admin,ou=system 
+   * Password: secret
+   * Protocol: LDAPv3
+   * Level: User + Password
 2. Execute the SQL files: all-ddl.sql & all-permissions.sql at the location huac\trunk\hua_setup\ in MySQL
 3. If after hua DB import-setup, not able to login with HUAPPUSER, then execute below SQL using root login in MySQL.
     `GRANT ALL PRIVILEGES ON HUA.* TO HUAAPPUSER@'localhost';`
