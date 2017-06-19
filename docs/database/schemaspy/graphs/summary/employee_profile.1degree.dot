@@ -1,0 +1,31 @@
+// dot 2.38.0 on Windows 7 6.1
+digraph "employee_profile" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "employee_profile" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="employee_profile.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_profile</TD></TR>
+      <TR><TD PORT="EMP_ID" COLSPAN="3" ALIGN="LEFT">EMP_ID</TD></TR>
+      <TR><TD PORT="QUALIFICATION" COLSPAN="3" ALIGN="LEFT">QUALIFICATION</TD></TR>
+      <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
+      <TR><TD PORT="CERTIFICATE_DOC" COLSPAN="3" ALIGN="LEFT">CERTIFICATE_DOC</TD></TR>
+      <TR><TD PORT="IDENTIFICATION_DOC" COLSPAN="3" ALIGN="LEFT">IDENTIFICATION_DOC</TD></TR>
+      <TR><TD PORT="EMPLOYEE_IMAGE" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_IMAGE</TD></TR>
+      <TR><TD PORT="COMMENTS" COLSPAN="3" ALIGN="LEFT">COMMENTS</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/employee_profile.html#"
+    tooltip="employee_profile"
+  ];
+}
