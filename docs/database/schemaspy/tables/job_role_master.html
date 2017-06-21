@@ -76,39 +76,25 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody valign='top'>
 <tr>
- <td class='primaryKey' title='Primary Key'>ROLE_ID</td>
+ <td class='primaryKey' title='Primary Key'>ORG_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='center'></td>
- <td></td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>JOB_ROLE_DESCRIPTION</td>
- <td class='detail'>varchar</td>
- <td class='detail' align='right'>52</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='indexedColumn' title='Indexed'>DEPARTMENT_ID</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
  <td></td>
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
-    <td class='relatedTable' title="job_role_master.DEPARTMENT_ID refs department_master.DEPARTMENT_ID via job_role_master_ibfk_1"><a href='department_master.html'>department_master</a><span class='relatedKey'>.DEPARTMENT_ID</span>
+    <td class='relatedTable' title="appraisal_rating.[ORG_ID, GRADE, DESIGNATION] refs job_role_master.[ORG_ID, GRADE, DESIGNATION] via appraisal_rating_ibfk_1"><a href='appraisal_rating.html'>appraisal_rating</a><span class='relatedKey'>.ORG_ID</span>
+    </td>
+    <td class='constraint'>appraisal_rating_ibfk_1</td>
+   </tr>
+  </table>
+</td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="job_role_master.ORG_ID refs organisation_master.ORG_ID via job_role_master_ibfk_1"><a href='organisation_master.html'>organisation_master</a><span class='relatedKey'>.ORG_ID</span>
     </td>
     <td class='constraint'>job_role_master_ibfk_1</td>
    </tr>
@@ -117,57 +103,40 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>SUPERVISOR_ID</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='primaryKey' title='Primary Key'>GRADE</td>
+ <td class='detail'>varchar</td>
+ <td class='detail' align='right'>32</td>
  <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
+ <td class='detail' align='center'></td>
  <td></td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="appraisal_rating.[ORG_ID, GRADE, DESIGNATION] refs job_role_master.[ORG_ID, GRADE, DESIGNATION] via appraisal_rating_ibfk_1"><a href='appraisal_rating.html'>appraisal_rating</a><span class='relatedKey'>.GRADE</span>
+    </td>
+    <td class='constraint'>appraisal_rating_ibfk_1</td>
+   </tr>
+  </table>
+</td>
  <td> </td>
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>GRADE</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>DESIGNATION</td>
+ <td class='primaryKey' title='Primary Key'>DESIGNATION</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>52</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>HR_FLAG</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
  <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>HR_ID</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="appraisal_rating.[ORG_ID, GRADE, DESIGNATION] refs job_role_master.[ORG_ID, GRADE, DESIGNATION] via appraisal_rating_ibfk_1"><a href='appraisal_rating.html'>appraisal_rating</a><span class='relatedKey'>.DESIGNATION</span>
+    </td>
+    <td class='constraint'>appraisal_rating_ibfk_1</td>
+   </tr>
+  </table>
+</td>
  <td> </td>
  <td class='comment'></td>
 </tr>
@@ -194,7 +163,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 0 rows at Mon Jun 19 15:28 IST 2017
+<p/>Table contained 0 rows at Wed Jun 21 19:27 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -209,16 +178,10 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody>
  <tr>
-  <td class='primaryKey'>ROLE_ID</td>
+  <td class='primaryKey'>ORG_ID + GRADE + DESIGNATION</td>
   <td class='detail'>Primary key</td>
-  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>PRIMARY</td>
- </tr>
- <tr>
-  <td class='indexedColumn'>DEPARTMENT_ID</td>
-  <td class='detail'>Performance</td>
-  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
-  <td class='constraint' style='text-align:left;'>DEPARTMENT_ID</td>
  </tr>
 </table>
 </div>
@@ -229,14 +192,18 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/job_role_master.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="job_role_master.html#" title="job_role_master" alt="" coords="232,5,535,309"/>
-<area shape="rect" id="node2" href="department_master.html#graph" title="department_master" alt="" coords="5,56,184,211"/>
+<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="525,5,768,208"/>
+<area shape="rect" id="node2" href="job_role_master.html#" title="job_role_master" alt="" coords="216,75,477,259"/>
+<area shape="rect" id="node3" href="organisation_master.html#graph" title="organisation_master" alt="" coords="5,77,168,232"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="department_master.html#graph" title="department_master" alt="" coords="187,60,365,215"/>
-<area shape="rect" id="node2" href="unit_master.html#graph" title="unit_master" alt="" coords="5,132,139,191"/>
-<area shape="rect" id="node3" href="employee.html#graph" title="employee" alt="" coords="504,5,625,64"/>
-<area shape="rect" id="node4" href="job_role_master.html#" title="job_role_master" alt="" coords="413,88,716,392"/>
+<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="772,19,1015,221"/>
+<area shape="rect" id="node2" href="appraisal_cycle.html#graph" title="appraisal_cycle" alt="" coords="528,5,659,64"/>
+<area shape="rect" id="node3" href="job_role_master.html#" title="job_role_master" alt="" coords="463,88,724,272"/>
+<area shape="rect" id="node5" href="organisation_master.html#graph" title="organisation_master" alt="" coords="252,272,415,427"/>
+<area shape="rect" id="node4" href="employee.html#graph" title="employee" alt="" coords="527,296,660,355"/>
+<area shape="rect" id="node6" href="organisation_type_master.html#graph" title="organisation_type_master" alt="" coords="5,344,204,403"/>
+<area shape="rect" id="node7" href="unit_master.html#graph" title="unit_master" alt="" coords="527,379,660,437"/>
 </map>
 </td></tr></table>
 </div>

@@ -76,12 +76,12 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody valign='top'>
 <tr>
- <td class='primaryKey' title='Primary Key'>SALARY_ID</td>
+ <td class='detail'>SALARY_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
- <td class='detail' align='center'></td>
- <td></td>
+ <td class='detail' align='right'>null</td>
  <td></td>
  <td> </td>
  <td class='comment'></td>
@@ -98,7 +98,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>JOB_ROLE_ID</td>
+ <td class='detail'>GRADE_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -119,9 +119,14 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
-    <td class='relatedTable' title="salary_master.SAL_COMP_ID refs salary_component_master.COMPONENT_ID via salary_master_ibfk_1"><a href='salary_component_master.html'>salary_component_master</a><span class='relatedKey'>.COMPONENT_ID</span>
+    <td class='relatedTable' title="salary_master.SAL_COMP_ID refs salary_component_master.COMP_ID via SAL_COMP_FK"><a href='salary_component_master.html'>salary_component_master</a><span class='relatedKey'>.COMP_ID</span>
     </td>
-    <td class='constraint'>salary_master_ibfk_1</td>
+    <td class='constraint'>SAL_COMP_FK</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="salary_master.SAL_COMP_ID refs salary_opt_component_master.OPT_COMP_ID via SAL_OPT_COMP_FK"><a href='salary_opt_component_master.html'>salary_opt_component_master</a><span class='relatedKey'>.OPT_COMP_ID</span>
+    </td>
+    <td class='constraint'>SAL_OPT_COMP_FK</td>
    </tr>
   </table>
  </td>
@@ -139,26 +144,18 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='indexedColumn' title='Indexed'>SAL_OPT_COMP_ID</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
+ <td class='detail'>MAX_ALLOW_LIMIT</td>
+ <td class='detail'>decimal</td>
+ <td class='detail' align='right'>32,2</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
  <td></td>
- <td>
-  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
-   <tr valign='top'>
-    <td class='relatedTable' title="salary_master.SAL_OPT_COMP_ID refs salary_opt_component_master.OPT_COMPONENT_ID via salary_master_ibfk_2"><a href='salary_opt_component_master.html'>salary_opt_component_master</a><span class='relatedKey'>.OPT_COMPONENT_ID</span>
-    </td>
-    <td class='constraint'>salary_master_ibfk_2</td>
-   </tr>
-  </table>
- </td>
+ <td> </td>
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>SAL_OPT_COMP_VALUE</td>
+ <td class='detail'>SAL_OPT_COMP_FLAG</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -169,7 +166,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 0 rows at Mon Jun 19 15:28 IST 2017
+<p/>Table contained 0 rows at Wed Jun 21 19:27 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -184,31 +181,30 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody>
  <tr>
-  <td class='primaryKey'>SALARY_ID</td>
-  <td class='detail'>Primary key</td>
-  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
-  <td class='constraint' style='text-align:left;'>PRIMARY</td>
- </tr>
- <tr>
   <td class='indexedColumn'>SAL_COMP_ID</td>
   <td class='detail'>Performance</td>
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
-  <td class='constraint' style='text-align:left;'>SAL_COMP_ID</td>
- </tr>
- <tr>
-  <td class='indexedColumn'>SAL_OPT_COMP_ID</td>
-  <td class='detail'>Performance</td>
-  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
-  <td class='constraint' style='text-align:left;'>SAL_OPT_COMP_ID</td>
+  <td class='constraint' style='text-align:left;'>SAL_OPT_COMP_FK</td>
  </tr>
 </table>
 </div>
 <table width='100%' border='0'><tr><td class='container'>
-<br/><form action='get'><b>Close relationships:</b></form>  <a name='graph'><img src='../graphs/salary_master.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
+<br/><form action='get'><b>Close relationships</b><span class='degrees' id='degrees'>
+&nbsp;within <input type='radio' name='degrees' id='oneDegree' onclick="if (!this.checked) selectGraph('../graphs/salary_master.2degrees.png', '#twoDegreesRelationshipsGraph');else selectGraph('../graphs/salary_master.1degree.png', '#oneDegreeRelationshipsGraph'); " checked>one
+  <input type='radio' name='degrees' id='twoDegrees' onclick="if (this.checked) selectGraph('../graphs/salary_master.2degrees.png', '#twoDegreesRelationshipsGraph');else selectGraph('../graphs/salary_master.1degree.png', '#oneDegreeRelationshipsGraph'); ">two degrees of separation
+</span><b>:</b></form>
+  <a name='graph'><img src='../graphs/salary_master.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="salary_master.html#" title="salary_master" alt="" coords="285,5,589,237"/>
-<area shape="rect" id="node2" href="salary_component_master.html#graph" title="salary_component_master" alt="" coords="19,15,223,169"/>
-<area shape="rect" id="node3" href="salary_opt_component_master.html#graph" title="salary_opt_component_master" alt="" coords="5,193,237,348"/>
+<area shape="rect" id="node1" href="salary_master.html#" title="salary_master" alt="" coords="285,20,580,252"/>
+<area shape="rect" id="node2" href="salary_component_master.html#graph" title="salary_component_master" alt="" coords="19,5,223,160"/>
+<area shape="rect" id="node3" href="salary_opt_component_master.html#graph" title="salary_opt_component_master" alt="" coords="5,184,237,459"/>
+</map>
+<map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
+<area shape="rect" id="node1" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="327,9,538,68"/>
+<area shape="rect" id="node2" href="salary_opt_component_master.html#graph" title="salary_opt_component_master" alt="" coords="5,5,237,280"/>
+<area shape="rect" id="node3" href="employee_salary.html#graph" title="employee_salary" alt="" coords="363,348,503,407"/>
+<area shape="rect" id="node4" href="salary_component_master.html#graph" title="salary_component_master" alt="" coords="19,313,223,468"/>
+<area shape="rect" id="node5" href="salary_master.html#" title="salary_master" alt="" coords="285,92,580,324"/>
 </map>
 </td></tr></table>
 </div>

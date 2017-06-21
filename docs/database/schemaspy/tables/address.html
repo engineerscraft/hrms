@@ -76,14 +76,22 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody valign='top'>
 <tr>
- <td class='detail'>EMP_ID</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='primaryKey' title='Primary Key'>EMP_ID</td>
+ <td class='detail'>varchar</td>
+ <td class='detail' align='right'>20</td>
  <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
+ <td class='detail' align='center'></td>
  <td></td>
- <td> </td>
+ <td></td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="address.EMP_ID refs employee.EMP_ID via address_ibfk_1"><a href='employee.html'>employee</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>address_ibfk_1</td>
+   </tr>
+  </table>
+ </td>
  <td class='comment'></td>
 </tr>
 <tr>
@@ -142,36 +150,60 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>DISTRICT</td>
- <td class='detail'>varchar</td>
- <td class='detail' align='right'>32</td>
+ <td class='indexedColumn' title='Indexed'>DISTRICT_ID</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
  <td></td>
- <td> </td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="address.DISTRICT_ID refs district_master.DISTRICT_ID via address_ibfk_2"><a href='district_master.html'>district_master</a><span class='relatedKey'>.DISTRICT_ID</span>
+    </td>
+    <td class='constraint'>address_ibfk_2</td>
+   </tr>
+  </table>
+ </td>
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>STATE</td>
- <td class='detail'>varchar</td>
- <td class='detail' align='right'>32</td>
+ <td class='indexedColumn' title='Indexed'>STATE_ID</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
  <td></td>
- <td> </td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="address.STATE_ID refs state_master.STATE_ID via address_ibfk_3"><a href='state_master.html'>state_master</a><span class='relatedKey'>.STATE_ID</span>
+    </td>
+    <td class='constraint'>address_ibfk_3</td>
+   </tr>
+  </table>
+ </td>
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>COUNTRY</td>
- <td class='detail'>varchar</td>
- <td class='detail' align='right'>32</td>
+ <td class='indexedColumn' title='Indexed'>COUNTRY_ID</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
  <td></td>
- <td> </td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="address.COUNTRY_ID refs country_master.COUNTRY_ID via address_ibfk_4"><a href='country_master.html'>country_master</a><span class='relatedKey'>.COUNTRY_ID</span>
+    </td>
+    <td class='constraint'>address_ibfk_4</td>
+   </tr>
+  </table>
+ </td>
  <td class='comment'></td>
 </tr>
 <tr>
@@ -186,7 +218,75 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 0 rows at Mon Jun 19 15:28 IST 2017
+<p/>Table contained 0 rows at Wed Jun 21 19:27 IST 2017
+</td></tr></table>
+<div class='indent'>
+<b>Indexes:</b>
+<table class='dataTable' border='1' rules='groups'><colgroup><colgroup><colgroup><colgroup>
+<thead>
+ <tr>
+  <th>Column(s)</th>
+  <th>Type</th>
+  <th>Sort</th>
+  <th class='constraint' style='text-align:left;'>Constraint Name</th>
+ </tr>
+</thead>
+<tbody>
+ <tr>
+  <td class='primaryKey'>EMP_ID</td>
+  <td class='detail'>Primary key</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>PRIMARY</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>COUNTRY_ID</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>COUNTRY_ID</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>DISTRICT_ID</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>DISTRICT_ID</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>STATE_ID</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>STATE_ID</td>
+ </tr>
+</table>
+</div>
+<table width='100%' border='0'><tr><td class='container'>
+<br/><form action='get'><b>Close relationships</b><span class='degrees' id='degrees'>
+&nbsp;within <input type='radio' name='degrees' id='oneDegree' onclick="if (!this.checked) selectGraph('../graphs/address.2degrees.png', '#twoDegreesRelationshipsGraph');else selectGraph('../graphs/address.1degree.png', '#oneDegreeRelationshipsGraph'); " checked>one
+  <input type='radio' name='degrees' id='twoDegrees' onclick="if (this.checked) selectGraph('../graphs/address.2degrees.png', '#twoDegreesRelationshipsGraph');else selectGraph('../graphs/address.1degree.png', '#oneDegreeRelationshipsGraph'); ">two degrees of separation
+</span><b>:</b></form>
+  <a name='graph'><img src='../graphs/address.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
+<map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
+<area shape="rect" id="node1" href="address.html#" title="address" alt="" coords="273,427,505,731"/>
+<area shape="rect" id="node2" href="country_master.html#graph" title="country_master" alt="" coords="40,781,191,888"/>
+<area shape="rect" id="node3" href="district_master.html#graph" title="district_master" alt="" coords="43,520,188,627"/>
+<area shape="rect" id="node4" href="employee.html#graph" title="employee" alt="" coords="5,5,225,496"/>
+<area shape="rect" id="node5" href="state_master.html#graph" title="state_master" alt="" coords="53,651,178,757"/>
+</map>
+<map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
+<area shape="rect" id="node1" href="address.html#" title="address" alt="" coords="484,5,716,309"/>
+<area shape="rect" id="node2" href="country_master.html#graph" title="country_master" alt="" coords="251,307,401,413"/>
+<area shape="rect" id="node3" href="district_master.html#graph" title="district_master" alt="" coords="253,45,399,152"/>
+<area shape="rect" id="node4" href="employee.html#graph" title="employee" alt="" coords="216,516,436,1007"/>
+<area shape="rect" id="node5" href="state_master.html#graph" title="state_master" alt="" coords="263,176,389,283"/>
+<area shape="rect" id="node7" href="department_master.html#graph" title="department_master" alt="" coords="7,791,166,849"/>
+<area shape="rect" id="node8" href="organisation_master.html#graph" title="organisation_master" alt="" coords="5,625,168,684"/>
+<area shape="rect" id="node9" href="unit_master.html#graph" title="unit_master" alt="" coords="20,708,153,767"/>
+<area shape="rect" id="node6" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="533,581,667,640"/>
+<area shape="rect" id="node10" href="employee_additional_details.html#graph" title="employee_additional_details" alt="" coords="494,664,706,723"/>
+<area shape="rect" id="node11" href="employee_hierarchy_status.html#graph" title="employee_hierarchy_status" alt="" coords="495,747,705,805"/>
+<area shape="rect" id="node12" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="495,333,705,392"/>
+<area shape="rect" id="node13" href="employee_profile.html#graph" title="employee_profile" alt="" coords="530,416,670,475"/>
+<area shape="rect" id="node14" href="employee_salary.html#graph" title="employee_salary" alt="" coords="530,499,670,557"/>
+</map>
 </td></tr></table>
 </div>
 </body>

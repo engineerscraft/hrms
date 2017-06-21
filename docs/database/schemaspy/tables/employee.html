@@ -76,14 +76,65 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody valign='top'>
 <tr>
- <td class='primaryKey' title='Primary Key'>EMPLOYEE_ID</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
+ <td class='primaryKey' title='Primary Key'>EMP_ID</td>
+ <td class='detail'>varchar</td>
+ <td class='detail' align='right'>20</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='center'></td>
  <td></td>
- <td></td>
- <td> </td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="address.EMP_ID refs employee.EMP_ID via address_ibfk_1"><a href='address.html'>address</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>address_ibfk_1</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="appraisal_rating.EMP_ID refs employee.EMP_ID via appraisal_rating_ibfk_2"><a href='appraisal_rating.html'>appraisal_rating</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>appraisal_rating_ibfk_2</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="employee_additional_details.EMP_ID refs employee.EMP_ID via employee_additional_details_ibfk_1"><a href='employee_additional_details.html'>employee_additional_details</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>employee_additional_details_ibfk_1</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="employee_hierarchy_status.EMP_ID refs employee.EMP_ID via employee_hierarchy_status_ibfk_1"><a href='employee_hierarchy_status.html'>employee_hierarchy_status</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>employee_hierarchy_status_ibfk_1</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="employee_hierarchy_status.SUPERVISOR_ID refs employee.EMP_ID via employee_hierarchy_status_ibfk_2"><a href='employee_hierarchy_status.html'>employee_hierarchy_status</a><span class='relatedKey'>.SUPERVISOR_ID</span>
+    </td>
+    <td class='constraint'>employee_hierarchy_status_ibfk_2</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="employee_optional_benefits.EMP_ID refs employee.EMP_ID via employee_optional_benefits_ibfk_2"><a href='employee_optional_benefits.html'>employee_optional_benefits</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>employee_optional_benefits_ibfk_2</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="employee_profile.EMP_ID refs employee.EMP_ID via employee_profile_ibfk_1"><a href='employee_profile.html'>employee_profile</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>employee_profile_ibfk_1</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="employee_salary.EMP_ID refs employee.EMP_ID via employee_salary_ibfk_1"><a href='employee_salary.html'>employee_salary</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>employee_salary_ibfk_1</td>
+   </tr>
+  </table>
+</td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr class='impliedRelationship' valign='top'>
+    <td class='relatedTable' title="employee.EMP_ID's name implies that it's a child of employee_docs.EMP_ID, but it doesn't reference that column."><a href='employee_docs.html'>employee_docs</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>Implied Constraint</td>
+   </tr>
+  </table>
+ </td>
  <td class='comment'></td>
 </tr>
 <tr>
@@ -132,8 +183,8 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </tr>
 <tr>
  <td class='detail'>DATE_OF_JOINING</td>
- <td class='detail'>date</td>
- <td class='detail' align='right'>10</td>
+ <td class='detail'>datetime</td>
+ <td class='detail' align='right'>19</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
@@ -199,39 +250,6 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>DEPARTMENT_NAME</td>
- <td class='detail'>varchar</td>
- <td class='detail' align='right'>32</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>JOB_ROLE_ID</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>DESIGNATION</td>
- <td class='detail'>varchar</td>
- <td class='detail' align='right'>32</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
  <td class='detail'>NATIONALITY</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>32</td>
@@ -255,8 +273,8 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </tr>
 <tr>
  <td class='detail'>DATE_OF_BIRTH</td>
- <td class='detail'>date</td>
- <td class='detail' align='right'>10</td>
+ <td class='detail'>datetime</td>
+ <td class='detail' align='right'>19</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
@@ -288,7 +306,18 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </tr>
 <tr>
  <td class='detail'>ENTRY_DATE</td>
- <td class='detail'>date</td>
+ <td class='detail'>datetime</td>
+ <td class='detail' align='right'>19</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
+<tr>
+ <td class='detail'>HR_FLAG</td>
+ <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
@@ -297,8 +326,30 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td> </td>
  <td class='comment'></td>
 </tr>
+<tr>
+ <td class='detail'>SUPERVISOR_FLAG</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
+<tr>
+ <td class='detail'>EMPLOYEE_IMAGE</td>
+ <td class='detail'>longblob</td>
+ <td class='detail' align='right'>2147483647</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
 </table>
-<p/>Table contained 0 rows at Mon Jun 19 15:28 IST 2017
+<p/>Table contained 0 rows at Wed Jun 21 19:27 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -313,7 +364,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody>
  <tr>
-  <td class='primaryKey'>EMPLOYEE_ID</td>
+  <td class='primaryKey'>EMP_ID</td>
   <td class='detail'>Primary key</td>
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>PRIMARY</td>
@@ -345,18 +396,38 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/employee.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="employee.html#" title="employee" alt="" coords="232,13,547,509"/>
-<area shape="rect" id="node2" href="department_master.html#graph" title="department_master" alt="" coords="5,363,184,517"/>
-<area shape="rect" id="node3" href="organisation_master.html#graph" title="organisation_master" alt="" coords="13,5,176,160"/>
-<area shape="rect" id="node4" href="unit_master.html#graph" title="unit_master" alt="" coords="28,184,161,339"/>
+<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="759,5,896,304"/>
+<area shape="rect" id="node2" href="employee.html#" title="employee" alt="" coords="272,911,648,1407"/>
+<area shape="rect" id="node4" href="department_master.html#graph" title="department_master" alt="" coords="5,1308,224,1487"/>
+<area shape="rect" id="node5" href="organisation_master.html#graph" title="organisation_master" alt="" coords="33,903,196,1057"/>
+<area shape="rect" id="node6" href="unit_master.html#graph" title="unit_master" alt="" coords="29,1081,200,1284"/>
+<area shape="rect" id="node3" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="706,328,949,531"/>
+<area shape="rect" id="node7" href="employee_additional_details.html#graph" title="employee_additional_details" alt="" coords="704,555,951,877"/>
+<area shape="rect" id="node8" href="employee_hierarchy_status.html#graph" title="employee_hierarchy_status" alt="" coords="696,901,959,1320"/>
+<area shape="rect" id="node9" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="722,1344,933,1667"/>
+<area shape="rect" id="node10" href="employee_profile.html#graph" title="employee_profile" alt="" coords="757,1691,897,1845"/>
+<area shape="rect" id="node11" href="employee_salary.html#graph" title="employee_salary" alt="" coords="757,1869,897,2072"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="employee.html#" title="employee" alt="" coords="479,5,793,501"/>
-<area shape="rect" id="node2" href="department_master.html#graph" title="department_master" alt="" coords="252,440,431,595"/>
-<area shape="rect" id="node3" href="organisation_master.html#graph" title="organisation_master" alt="" coords="260,75,423,229"/>
-<area shape="rect" id="node4" href="unit_master.html#graph" title="unit_master" alt="" coords="275,253,408,408"/>
-<area shape="rect" id="node6" href="organisation_type_master.html#graph" title="organisation_type_master" alt="" coords="5,75,204,133"/>
-<area shape="rect" id="node5" href="job_role_master.html#graph" title="job_role_master" alt="" coords="569,525,703,584"/>
+<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="1005,5,1143,304"/>
+<area shape="rect" id="node2" href="country_master.html#graph" title="country_master" alt="" coords="641,488,773,547"/>
+<area shape="rect" id="node3" href="district_master.html#graph" title="district_master" alt="" coords="643,144,770,203"/>
+<area shape="rect" id="node4" href="employee.html#" title="employee" alt="" coords="519,696,895,1192"/>
+<area shape="rect" id="node5" href="state_master.html#graph" title="state_master" alt="" coords="646,227,767,285"/>
+<area shape="rect" id="node8" href="department_master.html#graph" title="department_master" alt="" coords="252,1023,471,1201"/>
+<area shape="rect" id="node9" href="organisation_master.html#graph" title="organisation_master" alt="" coords="280,476,443,631"/>
+<area shape="rect" id="node10" href="unit_master.html#graph" title="unit_master" alt="" coords="276,796,447,999"/>
+<area shape="rect" id="node6" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="953,1296,1195,1499"/>
+<area shape="rect" id="node7" href="appraisal_cycle.html#graph" title="appraisal_cycle" alt="" coords="641,1344,772,1403"/>
+<area shape="rect" id="node19" href="organisation_type_master.html#graph" title="organisation_type_master" alt="" coords="5,476,204,535"/>
+<area shape="rect" id="node11" href="employee_additional_details.html#graph" title="employee_additional_details" alt="" coords="951,328,1197,651"/>
+<area shape="rect" id="node12" href="employee_hierarchy_status.html#graph" title="employee_hierarchy_status" alt="" coords="943,675,1205,1093"/>
+<area shape="rect" id="node13" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="969,1523,1179,1845"/>
+<area shape="rect" id="node14" href="salary_opt_component_master.html#graph" title="salary_opt_component_master" alt="" coords="591,1571,823,1629"/>
+<area shape="rect" id="node15" href="employee_profile.html#graph" title="employee_profile" alt="" coords="1004,1117,1144,1272"/>
+<area shape="rect" id="node16" href="employee_salary.html#graph" title="employee_salary" alt="" coords="1004,1869,1144,2072"/>
+<area shape="rect" id="node17" href="salary_component_master.html#graph" title="salary_component_master" alt="" coords="605,1941,809,2000"/>
+<area shape="rect" id="node18" href="job_role_master.html#graph" title="job_role_master" alt="" coords="639,405,774,464"/>
 </map>
 </td></tr></table>
 </div>

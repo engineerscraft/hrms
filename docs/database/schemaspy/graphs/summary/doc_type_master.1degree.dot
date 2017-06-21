@@ -1,0 +1,26 @@
+// dot 2.38.0 on Windows 7 6.1
+digraph "doc_type_master" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "doc_type_master" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="doc_type_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">doc_type_master</TD></TR>
+      <TR><TD PORT="DOC_TYPE_ID" COLSPAN="3" ALIGN="LEFT">DOC_TYPE_ID</TD></TR>
+      <TR><TD PORT="DOC_TYPE_NAME" COLSPAN="3" ALIGN="LEFT">DOC_TYPE_NAME</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/doc_type_master.html#"
+    tooltip="doc_type_master"
+  ];
+}

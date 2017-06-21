@@ -30,6 +30,7 @@
 <table width='100%' border='0'>
 <tr valign='top'><td class='container' align='left' valign='top'>
 <form name='options' action=''>
+ <input type=checkbox id='implied' onclick="if (!this.checked) selectGraph('../graphs/employee_profile_history.1degree.png', '#oneDegreeRelationshipsGraph'); else selectGraph('../graphs/employee_profile_history.implied2degrees.png', '#impliedTwoDegreesRelationshipsGraph'); toggle(11);toggle(26);syncDegrees();" checked>Implied relationships
  <input type=checkbox onclick="toggle(21);" id=showRelatedCols>Related columns
  <input type=checkbox onclick="toggle(22);" id=showConstNames>Constraint names
  <input type=checkbox onclick="toggle(23);" id=showComments>Comments
@@ -77,13 +78,21 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 <tbody valign='top'>
 <tr>
  <td class='detail'>EMP_ID</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
+ <td class='detail'>varchar</td>
+ <td class='detail' align='right'>20</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
  <td></td>
- <td> </td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr class='impliedRelationship' valign='top'>
+    <td class='relatedTable' title="employee_profile_history.EMP_ID's name implies that it's a child of employee_docs.EMP_ID, but it doesn't reference that column."><a href='employee_docs.html'>employee_docs</a><span class='relatedKey'>.EMP_ID</span>
+    </td>
+    <td class='constraint'>Implied Constraint</td>
+   </tr>
+  </table>
+ </td>
  <td class='comment'></td>
 </tr>
 <tr>
@@ -165,8 +174,8 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </tr>
 <tr>
  <td class='detail'>LAST_MOD_DATE</td>
- <td class='detail'>date</td>
- <td class='detail' align='right'>10</td>
+ <td class='detail'>datetime</td>
+ <td class='detail' align='right'>19</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
@@ -175,7 +184,21 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 0 rows at Mon Jun 19 15:28 IST 2017
+<p/>Table contained 0 rows at Wed Jun 21 19:27 IST 2017
+</td></tr></table>
+<table width='100%' border='0'><tr><td class='container'>
+<br/><form action='get'><b>Close relationships:</b></form>  <a name='graph'><img src='../graphs/employee_profile_history.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
+<map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
+<area shape="rect" id="node1" href="employee_profile_history.html#" title="employee_profile_history" alt="" coords="5,5,345,285"/>
+</map>
+<map id="impliedTwoDegreesRelationshipsGraph" name="impliedTwoDegreesRelationshipsGraph">
+<area shape="rect" id="node1" href="employee.html#graph" title="employee" alt="" coords="295,5,429,64"/>
+<area shape="rect" id="node2" href="employee_docs.html#graph" title="employee_docs" alt="" coords="5,147,144,349"/>
+<area shape="rect" id="node3" href="employee_additional_details_history.html#graph" title="employee_additional_details_history" alt="" coords="231,88,493,147"/>
+<area shape="rect" id="node4" href="employee_hierarchy_status_history.html#graph" title="employee_hierarchy_status_history" alt="" coords="232,171,492,229"/>
+<area shape="rect" id="node5" href="employee_history.html#graph" title="employee_history" alt="" coords="290,253,434,312"/>
+<area shape="rect" id="node6" href="employee_profile_history.html#" title="employee_profile_history" alt="" coords="192,336,532,616"/>
+</map>
 </td></tr></table>
 </div>
 </body>

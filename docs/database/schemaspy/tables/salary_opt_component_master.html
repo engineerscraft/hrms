@@ -76,7 +76,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody valign='top'>
 <tr>
- <td class='primaryKey' title='Primary Key'>OPT_COMPONENT_ID</td>
+ <td class='primaryKey' title='Primary Key'>OPT_COMP_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center'></td>
@@ -85,9 +85,14 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
-    <td class='relatedTable' title="salary_master.SAL_OPT_COMP_ID refs salary_opt_component_master.OPT_COMPONENT_ID via salary_master_ibfk_2"><a href='salary_master.html'>salary_master</a><span class='relatedKey'>.SAL_OPT_COMP_ID</span>
+    <td class='relatedTable' title="employee_optional_benefits.OPT_COMP_ID refs salary_opt_component_master.OPT_COMP_ID via employee_optional_benefits_ibfk_1"><a href='employee_optional_benefits.html'>employee_optional_benefits</a><span class='relatedKey'>.OPT_COMP_ID</span>
     </td>
-    <td class='constraint'>salary_master_ibfk_2</td>
+    <td class='constraint'>employee_optional_benefits_ibfk_1</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="salary_master.SAL_COMP_ID refs salary_opt_component_master.OPT_COMP_ID via SAL_OPT_COMP_FK"><a href='salary_master.html'>salary_master</a><span class='relatedKey'>.SAL_COMP_ID</span>
+    </td>
+    <td class='constraint'>SAL_OPT_COMP_FK</td>
    </tr>
   </table>
 </td>
@@ -127,8 +132,63 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td> </td>
  <td class='comment'></td>
 </tr>
+<tr>
+ <td class='detail'>OPT_TYPE</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
+<tr>
+ <td class='detail'>FREQUENCY</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
+<tr>
+ <td class='detail'>END_DATE</td>
+ <td class='detail'>datetime</td>
+ <td class='detail' align='right'>19</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
+<tr>
+ <td class='detail'>CREDIT_DEBIT_FLAG</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
+<tr>
+ <td class='detail'>EMP_OPT_OUT_FLAG</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
 </table>
-<p/>Table contained 0 rows at Mon Jun 19 15:28 IST 2017
+<p/>Table contained 0 rows at Wed Jun 21 19:27 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -143,7 +203,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody>
  <tr>
-  <td class='primaryKey'>OPT_COMPONENT_ID</td>
+  <td class='primaryKey'>OPT_COMP_ID</td>
   <td class='detail'>Primary key</td>
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>PRIMARY</td>
@@ -157,13 +217,16 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/salary_opt_component_master.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="salary_master.html#graph" title="salary_master" alt="" coords="352,5,555,232"/>
-<area shape="rect" id="node2" href="salary_opt_component_master.html#" title="salary_opt_component_master" alt="" coords="5,123,304,283"/>
+<area shape="rect" id="node1" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="360,5,571,328"/>
+<area shape="rect" id="node2" href="salary_opt_component_master.html#" title="salary_opt_component_master" alt="" coords="5,224,312,504"/>
+<area shape="rect" id="node3" href="salary_master.html#graph" title="salary_master" alt="" coords="369,352,562,579"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="salary_master.html#graph" title="salary_master" alt="" coords="352,5,555,232"/>
-<area shape="rect" id="node2" href="salary_component_master.html#graph" title="salary_component_master" alt="" coords="53,71,257,129"/>
-<area shape="rect" id="node3" href="salary_opt_component_master.html#" title="salary_opt_component_master" alt="" coords="5,153,304,313"/>
+<area shape="rect" id="node1" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="360,5,571,328"/>
+<area shape="rect" id="node2" href="employee.html#graph" title="employee" alt="" coords="92,29,225,88"/>
+<area shape="rect" id="node3" href="salary_opt_component_master.html#" title="salary_opt_component_master" alt="" coords="5,128,312,408"/>
+<area shape="rect" id="node4" href="salary_master.html#graph" title="salary_master" alt="" coords="369,352,562,579"/>
+<area shape="rect" id="node5" href="salary_component_master.html#graph" title="salary_component_master" alt="" coords="57,448,261,507"/>
 </map>
 </td></tr></table>
 </div>

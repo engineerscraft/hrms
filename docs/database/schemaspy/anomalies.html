@@ -47,8 +47,24 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody>
  <tr>
+  <td class='detail'><a href='tables/employee.html'>employee</a>.EMP_ID</td>
+  <td class='detail'><a href='tables/employee_docs.html'>employee_docs</a>.EMP_ID</td>
+ </tr>
+ <tr>
+  <td class='detail'><a href='tables/employee_additional_details_history.html'>employee_additional_details_history</a>.EMP_ID</td>
+  <td class='detail'><a href='tables/employee_docs.html'>employee_docs</a>.EMP_ID</td>
+ </tr>
+ <tr>
+  <td class='detail'><a href='tables/employee_hierarchy_status_history.html'>employee_hierarchy_status_history</a>.EMP_ID</td>
+  <td class='detail'><a href='tables/employee_docs.html'>employee_docs</a>.EMP_ID</td>
+ </tr>
+ <tr>
   <td class='detail'><a href='tables/employee_history.html'>employee_history</a>.DEPARTMENT_ID</td>
   <td class='detail'><a href='tables/department_master.html'>department_master</a>.DEPARTMENT_ID</td>
+ </tr>
+ <tr>
+  <td class='detail'><a href='tables/employee_history.html'>employee_history</a>.EMP_ID</td>
+  <td class='detail'><a href='tables/employee_docs.html'>employee_docs</a>.EMP_ID</td>
  </tr>
  <tr>
   <td class='detail'><a href='tables/employee_history.html'>employee_history</a>.ORG_ID</td>
@@ -58,9 +74,13 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail'><a href='tables/employee_history.html'>employee_history</a>.UNIT_ID</td>
   <td class='detail'><a href='tables/unit_master.html'>unit_master</a>.UNIT_ID</td>
  </tr>
+ <tr>
+  <td class='detail'><a href='tables/employee_profile_history.html'>employee_profile_history</a>.EMP_ID</td>
+  <td class='detail'><a href='tables/employee_docs.html'>employee_docs</a>.EMP_ID</td>
+ </tr>
 </tbody>
 </table>
-3 instances of anomaly detected<p/></li>
+8 instances of anomaly detected<p/></li>
 <li>
 <b>Tables without indexes:</b>
 <table class='dataTable' border='1' rules='groups'>
@@ -73,15 +93,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody>
  <tr>
-  <td class='detail'><a href='tables/access_token.html'>access_token</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
-  <td class='detail'><a href='tables/address.html'>address</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
-  <td class='detail'><a href='tables/employee_additional_details.html'>employee_additional_details</a></td>
+  <td class='detail'><a href='tables/doc_type_master.html'>doc_type_master</a></td>
   <td class='detail' align='right'>0</td>
  </tr>
  <tr>
@@ -89,44 +101,12 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail' align='right'>0</td>
  </tr>
  <tr>
-  <td class='detail'><a href='tables/employee_hierarchy_status.html'>employee_hierarchy_status</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
-  <td class='detail'><a href='tables/employee_hierarchy_status_history.html'>employee_hierarchy_status_history</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
-  <td class='detail'><a href='tables/employee_history.html'>employee_history</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
-  <td class='detail'><a href='tables/employee_optional_benefits.html'>employee_optional_benefits</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
-  <td class='detail'><a href='tables/employee_optional_benefits_history.html'>employee_optional_benefits_history</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
-  <td class='detail'><a href='tables/employee_profile.html'>employee_profile</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
   <td class='detail'><a href='tables/employee_profile_history.html'>employee_profile_history</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
-  <td class='detail'><a href='tables/employee_salary.html'>employee_salary</a></td>
-  <td class='detail' align='right'>0</td>
- </tr>
- <tr>
-  <td class='detail'><a href='tables/employee_salary_history.html'>employee_salary_history</a></td>
   <td class='detail' align='right'>0</td>
  </tr>
 </tbody>
 </table>
-13 instances of anomaly detected<p/></li>
+3 instances of anomaly detected<p/></li>
 <li>
 <b>Columns that are flagged as both 'nullable' and 'must be unique':</b>
 <br>Anomaly not detected<p/></li>
