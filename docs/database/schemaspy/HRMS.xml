@@ -470,8 +470,8 @@
          <column autoUpdated="false" digits="0" id="1" name="DESCRIPTION" nullable="true" remarks="" size="100" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="2" name="GRADE_ID" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="3" name="SAL_COMP_ID" nullable="true" remarks="" size="10" type="INT">
-            <parent column="COMP_ID" foreignKey="SAL_COMP_FK" implied="false" onDeleteCascade="false" table="salary_component_master"/>
             <parent column="OPT_COMP_ID" foreignKey="SAL_OPT_COMP_FK" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
+            <parent column="COMP_ID" foreignKey="SAL_COMP_FK" implied="false" onDeleteCascade="false" table="salary_component_master"/>
          </column>
          <column autoUpdated="false" digits="2" id="4" name="SAL_VALUE" nullable="true" remarks="" size="32" type="DECIMAL"/>
          <column autoUpdated="false" digits="2" id="5" name="MAX_ALLOW_LIMIT" nullable="true" remarks="" size="32" type="DECIMAL"/>

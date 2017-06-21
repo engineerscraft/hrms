@@ -368,7 +368,8 @@ CREATE TABLE EMPLOYEE_DOCS (
 	REMARKS VARCHAR(2000),
 	UPLOAD_DATE DATETIME,
 	UPLOADED_BY VARCHAR(20),
-	DOCUMENT LONGBLOB
+	DOCUMENT LONGBLOB,
+	FOREIGN KEY(EMP_ID) REFERENCES EMPLOYEE(EMP_ID)
 );
 --============================================================================================================================
 CREATE TABLE EMPLOYEE_HISTORY(

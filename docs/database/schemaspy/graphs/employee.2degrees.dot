@@ -18,7 +18,6 @@ digraph "twoDegreesRelationshipsGraph" {
   "address":"DISTRICT_ID":w -> "district_master":"district_master.heading":e [arrowtail=crowodot arrowhead=none];
   "address":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=tee arrowhead=none];
   "address":"STATE_ID":w -> "state_master":"state_master.heading":e [arrowtail=crowodot arrowhead=none];
-  "appraisal_rating":"APPRAISAL_ID":w -> "appraisal_cycle":"appraisal_cycle.heading":e [arrowtail=crowtee arrowhead=none];
   "appraisal_rating":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=crowtee arrowhead=none];
   "employee":"DEPARTMENT_ID":w -> "department_master":"DEPARTMENT_ID":e [arrowtail=crowodot arrowhead=none];
   "employee":"ORG_ID":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
@@ -29,6 +28,7 @@ digraph "twoDegreesRelationshipsGraph" {
   "employee_optional_benefits":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=crowodot arrowhead=none];
   "employee_optional_benefits":"OPT_COMP_ID":w -> "salary_opt_component_master":"salary_opt_component_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_profile":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=tee arrowhead=none];
+  "employee_salary":"APPRAISAL_ID":w -> "appraisal_cycle":"appraisal_cycle.heading":e [arrowtail=crowtee arrowhead=none];
   "employee_salary":"COMP_ID":w -> "salary_component_master":"salary_component_master.heading":e [arrowtail=crowtee arrowhead=none];
   "employee_salary":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=crowtee arrowhead=none];
   "job_role_master":"job_role_master.heading":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowtee arrowhead=none];

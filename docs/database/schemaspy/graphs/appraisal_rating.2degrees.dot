@@ -21,14 +21,14 @@ digraph "twoDegreesRelationshipsGraph" {
   "appraisal_rating":"GRADE":w -> "job_role_master":"GRADE":e [arrowtail=crowodot arrowhead=none];
   "appraisal_rating":"ORG_ID":w -> "job_role_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
   "employee":"DEPARTMENT_ID":w -> "department_master":"department_master.heading":e [arrowtail=crowodot arrowhead=none];
-  "employee":"ORG_ID":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee":"UNIT_ID":w -> "unit_master":"unit_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_additional_details":"employee_additional_details.heading":w -> "employee":"EMP_ID":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"EMP_ID":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"EMP_ID":e [arrowtail=crowodot arrowhead=none];
   "employee_optional_benefits":"employee_optional_benefits.heading":w -> "employee":"EMP_ID":e [arrowtail=crowodot arrowhead=none];
   "employee_profile":"employee_profile.heading":w -> "employee":"EMP_ID":e [arrowtail=tee arrowhead=none];
-  "employee_salary":"employee_salary.heading":w -> "employee":"EMP_ID":e [arrowtail=crowtee arrowhead=none];
+  "employee_salary":"employee_salary.heading":w -> "appraisal_cycle":"APPRAISAL_ID":e [arrowtail=crowtee arrowhead=none];
+  "job_role_master":"ORG_ID":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowtee arrowhead=none];
   "address" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
