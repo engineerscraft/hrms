@@ -14,9 +14,8 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "employee_additional_details_history":"employee_additional_details_history.heading":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=crowodot arrowhead=none style=dashed];
-  "employee_hierarchy_status":"EMP_ID":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
-  "employee_hierarchy_status":"SUPERVISOR_ID":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
+  "employee":"employee.heading":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none];
+  "employee_additional_details_history":"employee_additional_details_history.heading":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
   "employee_hierarchy_status_history":"employee_hierarchy_status_history.heading":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
   "employee_history":"DEPARTMENT_ID":w -> "department_master":"DEPARTMENT_ID":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_history":"EMP_ID":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
@@ -66,6 +65,11 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="SUPERVISOR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">SUPERVISOR_ID</TD></TR>
       <TR><TD PORT="HR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">HR_ID</TD></TR>
       <TR><TD PORT="STATUS" COLSPAN="3" ALIGN="LEFT">STATUS</TD></TR>
+      <TR><TD PORT="CL" COLSPAN="3" ALIGN="LEFT">CL</TD></TR>
+      <TR><TD PORT="PL" COLSPAN="3" ALIGN="LEFT">PL</TD></TR>
+      <TR><TD PORT="PATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">PATERNITY_LEAVE</TD></TR>
+      <TR><TD PORT="SICK_LEAVE" COLSPAN="3" ALIGN="LEFT">SICK_LEAVE</TD></TR>
+      <TR><TD PORT="MATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">MATERNITY_LEAVE</TD></TR>
       <TR><TD PORT="SPECIAL_LEAVE" COLSPAN="3" ALIGN="LEFT">SPECIAL_LEAVE</TD></TR>
       <TR><TD PORT="PROVISION_PERIOD_END_DATE" COLSPAN="3" ALIGN="LEFT">PROVISION_PERIOD_END_DATE</TD></TR>
       <TR><TD PORT="NOTICE_PERIOD_LAST_DATE" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD_LAST_DATE</TD></TR>
@@ -93,14 +97,20 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="EMPLOYEE_FIRST_NAME" COLSPAN="2" ALIGN="LEFT">EMPLOYEE_FIRST_NAME</TD><TD PORT="EMPLOYEE_FIRST_NAME.type" ALIGN="LEFT">varchar[60]</TD></TR>
       <TR><TD PORT="EMPLOYEE_MIDDLE_NAME" COLSPAN="2" ALIGN="LEFT">EMPLOYEE_MIDDLE_NAME</TD><TD PORT="EMPLOYEE_MIDDLE_NAME.type" ALIGN="LEFT">varchar[30]</TD></TR>
       <TR><TD PORT="EMPLOYEE_LAST_NAME" COLSPAN="2" ALIGN="LEFT">EMPLOYEE_LAST_NAME</TD><TD PORT="EMPLOYEE_LAST_NAME.type" ALIGN="LEFT">varchar[60]</TD></TR>
+      <TR><TD PORT="SEX" COLSPAN="2" ALIGN="LEFT">SEX</TD><TD PORT="SEX.type" ALIGN="LEFT">varchar[10]</TD></TR>
+      <TR><TD PORT="EMP_TYPE" COLSPAN="2" ALIGN="LEFT">EMP_TYPE</TD><TD PORT="EMP_TYPE.type" ALIGN="LEFT">varchar[15]</TD></TR>
+      <TR><TD PORT="MARITAL_STATUS" COLSPAN="2" ALIGN="LEFT">MARITAL_STATUS</TD><TD PORT="MARITAL_STATUS.type" ALIGN="LEFT">varchar[10]</TD></TR>
       <TR><TD PORT="DATE_OF_JOINING" COLSPAN="2" ALIGN="LEFT">DATE_OF_JOINING</TD><TD PORT="DATE_OF_JOINING.type" ALIGN="LEFT">datetime[19]</TD></TR>
       <TR><TD PORT="ORG_ID" COLSPAN="2" ALIGN="LEFT">ORG_ID</TD><TD PORT="ORG_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="UNIT_ID" COLSPAN="2" ALIGN="LEFT">UNIT_ID</TD><TD PORT="UNIT_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="DEPARTMENT_ID" COLSPAN="2" ALIGN="LEFT">DEPARTMENT_ID</TD><TD PORT="DEPARTMENT_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="NATIONALITY" COLSPAN="2" ALIGN="LEFT">NATIONALITY</TD><TD PORT="NATIONALITY.type" ALIGN="LEFT">varchar[32]</TD></TR>
+      <TR><TD PORT="IDENTITY_DOC_TYPE_ID" COLSPAN="2" ALIGN="LEFT">IDENTITY_DOC_TYPE_ID</TD><TD PORT="IDENTITY_DOC_TYPE_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="IDENTITY_NUMBER" COLSPAN="2" ALIGN="LEFT">IDENTITY_NUMBER</TD><TD PORT="IDENTITY_NUMBER.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD PORT="DATE_OF_BIRTH" COLSPAN="2" ALIGN="LEFT">DATE_OF_BIRTH</TD><TD PORT="DATE_OF_BIRTH.type" ALIGN="LEFT">datetime[19]</TD></TR>
       <TR><TD PORT="FATHER_NAME" COLSPAN="2" ALIGN="LEFT">FATHER_NAME</TD><TD PORT="FATHER_NAME.type" ALIGN="LEFT">varchar[120]</TD></TR>
+      <TR><TD PORT="EMAIL_ID" COLSPAN="2" ALIGN="LEFT">EMAIL_ID</TD><TD PORT="EMAIL_ID.type" ALIGN="LEFT">varchar[30]</TD></TR>
+      <TR><TD PORT="CONTACTNO" COLSPAN="2" ALIGN="LEFT">CONTACTNO</TD><TD PORT="CONTACTNO.type" ALIGN="LEFT">varchar[15]</TD></TR>
       <TR><TD PORT="ENTRY_BY" COLSPAN="2" ALIGN="LEFT">ENTRY_BY</TD><TD PORT="ENTRY_BY.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD PORT="ENTRY_DATE" COLSPAN="2" ALIGN="LEFT">ENTRY_DATE</TD><TD PORT="ENTRY_DATE.type" ALIGN="LEFT">datetime[19]</TD></TR>
       <TR><TD PORT="HR_FLAG" COLSPAN="2" ALIGN="LEFT">HR_FLAG</TD><TD PORT="HR_FLAG.type" ALIGN="LEFT">int[10]</TD></TR>

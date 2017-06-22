@@ -14,7 +14,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "employee_additional_details_history":"EMP_ID":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=crowodot arrowhead=none style=dashed];
+  "employee_additional_details_history":"EMP_ID":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
   "employee_hierarchy_status":"EMP_ID":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"SUPERVISOR_ID":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status_history":"employee_hierarchy_status_history.heading":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
@@ -33,7 +33,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_additional_details_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_additional_details_history</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">EMP_ID</TD><TD PORT="EMP_ID.type" ALIGN="LEFT">varchar[20]</TD></TR>
+      <TR><TD PORT="EMP_ID" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD><TD PORT="EMP_ID.type" ALIGN="LEFT">varchar[20]</TD></TR>
       <TR><TD PORT="NO_OF_SIBLINGS" COLSPAN="2" ALIGN="LEFT">NO_OF_SIBLINGS</TD><TD PORT="NO_OF_SIBLINGS.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="NO_OF_DEPENDENT" COLSPAN="2" ALIGN="LEFT">NO_OF_DEPENDENT</TD><TD PORT="NO_OF_DEPENDENT.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="NOMINEE_NAME1" COLSPAN="2" ALIGN="LEFT">NOMINEE_NAME1</TD><TD PORT="NOMINEE_NAME1.type" ALIGN="LEFT">varchar[120]</TD></TR>
@@ -42,6 +42,8 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="NOMINEE1_SHARE" COLSPAN="2" ALIGN="LEFT">NOMINEE1_SHARE</TD><TD PORT="NOMINEE1_SHARE.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="NOMINEE2_SHARE" COLSPAN="2" ALIGN="LEFT">NOMINEE2_SHARE</TD><TD PORT="NOMINEE2_SHARE.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="NOMINEE3_SHARE" COLSPAN="2" ALIGN="LEFT">NOMINEE3_SHARE</TD><TD PORT="NOMINEE3_SHARE.type" ALIGN="LEFT">int[10]</TD></TR>
+      <TR><TD PORT="EMERGENCY_CONTACT_NAME" COLSPAN="2" ALIGN="LEFT">EMERGENCY_CONTACT_NAME</TD><TD PORT="EMERGENCY_CONTACT_NAME.type" ALIGN="LEFT">varchar[30]</TD></TR>
+      <TR><TD PORT="EMERGENCY_CONTACTNO" COLSPAN="2" ALIGN="LEFT">EMERGENCY_CONTACTNO</TD><TD PORT="EMERGENCY_CONTACTNO.type" ALIGN="LEFT">varchar[15]</TD></TR>
       <TR><TD PORT="PRE_MEDICAL_CHKUP_DATE" COLSPAN="2" ALIGN="LEFT">PRE_MEDICAL_CHKUP_DATE</TD><TD PORT="PRE_MEDICAL_CHKUP_DATE.type" ALIGN="LEFT">datetime[19]</TD></TR>
       <TR><TD PORT="MEDICAL_REPORT_COMMENT" COLSPAN="2" ALIGN="LEFT">MEDICAL_REPORT_COMMENT</TD><TD PORT="MEDICAL_REPORT_COMMENT.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD PORT="MOD_BY" COLSPAN="2" ALIGN="LEFT">MOD_BY</TD><TD PORT="MOD_BY.type" ALIGN="LEFT">varchar[32]</TD></TR>
@@ -59,6 +61,11 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="SUPERVISOR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">SUPERVISOR_ID</TD></TR>
       <TR><TD PORT="HR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">HR_ID</TD></TR>
       <TR><TD PORT="STATUS" COLSPAN="3" ALIGN="LEFT">STATUS</TD></TR>
+      <TR><TD PORT="CL" COLSPAN="3" ALIGN="LEFT">CL</TD></TR>
+      <TR><TD PORT="PL" COLSPAN="3" ALIGN="LEFT">PL</TD></TR>
+      <TR><TD PORT="PATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">PATERNITY_LEAVE</TD></TR>
+      <TR><TD PORT="SICK_LEAVE" COLSPAN="3" ALIGN="LEFT">SICK_LEAVE</TD></TR>
+      <TR><TD PORT="MATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">MATERNITY_LEAVE</TD></TR>
       <TR><TD PORT="SPECIAL_LEAVE" COLSPAN="3" ALIGN="LEFT">SPECIAL_LEAVE</TD></TR>
       <TR><TD PORT="PROVISION_PERIOD_END_DATE" COLSPAN="3" ALIGN="LEFT">PROVISION_PERIOD_END_DATE</TD></TR>
       <TR><TD PORT="NOTICE_PERIOD_LAST_DATE" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD_LAST_DATE</TD></TR>

@@ -241,7 +241,7 @@
          </index>
       </table>
       <table name="employee_additional_details_history" numRows="0" remarks="" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="EMP_ID" nullable="true" remarks="" size="20" type="VARCHAR">
+         <column autoUpdated="false" digits="0" id="0" name="EMP_ID" nullable="false" remarks="" size="20" type="VARCHAR">
             <parent column="EMP_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_hierarchy_status"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="NO_OF_SIBLINGS" nullable="true" remarks="" size="10" type="INT"/>
@@ -252,11 +252,14 @@
          <column autoUpdated="false" digits="0" id="6" name="NOMINEE1_SHARE" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="7" name="NOMINEE2_SHARE" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="8" name="NOMINEE3_SHARE" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="9" name="PRE_MEDICAL_CHKUP_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="10" name="MEDICAL_REPORT_COMMENT" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="11" name="MOD_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="12" name="LAST_MOD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <index name="EMP_ADD_DET_IDX" unique="false">
+         <column autoUpdated="false" digits="0" id="9" name="EMERGENCY_CONTACT_NAME" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="EMERGENCY_CONTACTNO" nullable="true" remarks="" size="15" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="11" name="PRE_MEDICAL_CHKUP_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="12" name="MEDICAL_REPORT_COMMENT" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="13" name="MOD_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="14" name="LAST_MOD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <primaryKey column="EMP_ID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
             <column ascending="true" name="EMP_ID"/>
          </index>
       </table>
@@ -294,10 +297,15 @@
          </column>
          <column autoUpdated="false" digits="0" id="2" name="HR_ID" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="3" name="STATUS" nullable="true" remarks="" size="4" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="4" name="SPECIAL_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="5" name="PROVISION_PERIOD_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="6" name="NOTICE_PERIOD_LAST_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="7" name="LAST_MOD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="4" name="CL" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="5" name="PL" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="6" name="PATERNITY_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="7" name="SICK_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="8" name="MATERNITY_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="9" name="SPECIAL_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="10" name="PROVISION_PERIOD_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="11" name="NOTICE_PERIOD_LAST_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="12" name="LAST_MOD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
          <primaryKey column="EMP_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="EMP_ID"/>
@@ -316,11 +324,16 @@
          <column autoUpdated="false" digits="0" id="1" name="SUPERVISOR_ID" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="2" name="HR_ID" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="3" name="STATUS" nullable="true" remarks="" size="4" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="4" name="SPECIAL_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="5" name="PROBATION_PERIOD_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="6" name="NOTICE_PERIOD_LAST_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="7" name="LAST_MOD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="8" name="MOD_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="CL" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="5" name="PL" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="6" name="PATERNITY_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="7" name="SICK_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="8" name="MATERNITY_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="9" name="SPECIAL_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="10" name="PROBATION_PERIOD_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="11" name="NOTICE_PERIOD_LAST_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="12" name="LAST_MOD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="13" name="MOD_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
          <primaryKey column="EMP_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="EMP_ID"/>
@@ -343,32 +356,35 @@
          <column autoUpdated="false" digits="0" id="2" name="EMPLOYEE_FIRST_NAME" nullable="true" remarks="" size="60" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="3" name="EMPLOYEE_MIDDLE_NAME" nullable="true" remarks="" size="30" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="4" name="EMPLOYEE_LAST_NAME" nullable="true" remarks="" size="60" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="5" name="DATE_OF_JOINING" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="6" name="ORG_ID" nullable="true" remarks="" size="10" type="INT">
+         <column autoUpdated="false" digits="0" id="5" name="SEX" nullable="true" remarks="" size="10" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="EMP_TYPE" nullable="true" remarks="" size="15" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="MARITAL_STATUS" nullable="true" remarks="" size="10" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="DATE_OF_JOINING" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="9" name="ORG_ID" nullable="true" remarks="" size="10" type="INT">
             <parent column="ORG_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="organisation_master"/>
          </column>
-         <column autoUpdated="false" digits="0" id="7" name="UNIT_ID" nullable="true" remarks="" size="10" type="INT">
+         <column autoUpdated="false" digits="0" id="10" name="UNIT_ID" nullable="true" remarks="" size="10" type="INT">
             <parent column="UNIT_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="unit_master"/>
          </column>
-         <column autoUpdated="false" digits="0" id="8" name="DEPARTMENT_ID" nullable="true" remarks="" size="10" type="INT">
+         <column autoUpdated="false" digits="0" id="11" name="DEPARTMENT_ID" nullable="true" remarks="" size="10" type="INT">
             <parent column="DEPARTMENT_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="department_master"/>
          </column>
-         <column autoUpdated="false" digits="0" id="9" name="NATIONALITY" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="10" name="IDENTITY_NUMBER" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="11" name="DATE_OF_BIRTH" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="12" name="FATHER_NAME" nullable="true" remarks="" size="120" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="13" name="ENTRY_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="14" name="ENTRY_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="15" name="HR_FLAG" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="16" name="SUPERVISOR_FLAG" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="17" name="EMPLOYEE_IMAGE" nullable="true" remarks="" size="2147483647" type="LONGBLOB"/>
-         <column autoUpdated="false" digits="0" id="18" name="MOD_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="19" name="LAST_MOD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="12" name="NATIONALITY" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="13" name="IDENTITY_DOC_TYPE_ID" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="14" name="IDENTITY_NUMBER" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="15" name="DATE_OF_BIRTH" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="16" name="FATHER_NAME" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="17" name="EMAIL_ID" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="18" name="CONTACTNO" nullable="true" remarks="" size="15" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="19" name="ENTRY_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="20" name="ENTRY_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="21" name="HR_FLAG" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="22" name="SUPERVISOR_FLAG" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="23" name="EMPLOYEE_IMAGE" nullable="true" remarks="" size="2147483647" type="LONGBLOB"/>
+         <column autoUpdated="false" digits="0" id="24" name="MOD_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="25" name="LAST_MOD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
          <primaryKey column="EMP_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
-            <column ascending="true" name="EMP_ID"/>
-         </index>
-         <index name="EMP_HIST_IDX" unique="false">
             <column ascending="true" name="EMP_ID"/>
          </index>
       </table>
@@ -610,8 +626,8 @@
             <parent column="JOB_ROLE_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="job_role_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="3" name="SAL_COMP_ID" nullable="true" remarks="" size="10" type="INT">
-            <parent column="OPT_COMP_ID" foreignKey="SAL_OPT_COMP_FK" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
             <parent column="COMP_ID" foreignKey="SAL_COMP_FK" implied="false" onDeleteCascade="false" table="salary_component_master"/>
+            <parent column="OPT_COMP_ID" foreignKey="SAL_OPT_COMP_FK" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
          </column>
          <column autoUpdated="false" digits="2" id="4" name="SAL_VALUE" nullable="true" remarks="" size="32" type="DECIMAL"/>
          <column autoUpdated="false" digits="2" id="5" name="MAX_ALLOW_LIMIT" nullable="true" remarks="" size="32" type="DECIMAL"/>
