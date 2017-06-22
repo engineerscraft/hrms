@@ -17,7 +17,6 @@ employee_additional_details_history
 employee_additional_details
 job_role_master
 employee_hierarchy_status
-grade_master
 employee
 department_master
 unit_master
@@ -26,6 +25,7 @@ state_master
 role_master
 permission_master
 organisation_type_master
+grade_master
 district_master
 country_master
 salary_opt_component_master

@@ -351,12 +351,11 @@ digraph "compactImpliedRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="grade_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">grade_master</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_ID</TD></TR>
       <TR><TD PORT="GRADE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">GRADE_ID</TD></TR>
       <TR><TD PORT="GRADE" COLSPAN="3" ALIGN="LEFT">GRADE</TD></TR>
       <TR><TD PORT="PROBATION_NOTICE_PERIOD" COLSPAN="3" ALIGN="LEFT">PROBATION_NOTICE_PERIOD</TD></TR>
       <TR><TD PORT="NOTICE_PERIOD" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/grade_master.html#"
     tooltip="grade_master"
@@ -408,7 +407,7 @@ digraph "compactImpliedRelationshipsGraph" {
       <TR><TD PORT="ORG_NAME" COLSPAN="3" ALIGN="LEFT">ORG_NAME</TD></TR>
       <TR><TD PORT="ORG_TYPE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_TYPE_ID</TD></TR>
       <TR><TD PORT="ADDRESS" COLSPAN="3" ALIGN="LEFT">ADDRESS</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="tables/organisation_master.html#"
     tooltip="organisation_master"
@@ -565,7 +564,6 @@ digraph "compactImpliedRelationshipsGraph" {
   "employee_salary":"APPRAISAL_ID":w -> "appraisal_cycle":"APPRAISAL_ID":e [arrowtail=crowtee arrowhead=none];
   "employee_salary":"COMP_ID":w -> "salary_component_master":"COMP_ID":e [arrowtail=crowtee arrowhead=none];
   "employee_salary":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=crowtee arrowhead=none];
-  "grade_master":"ORG_ID":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
   "job_role_designation":"DESIGNATION_ID":w -> "designation_master":"DESIGNATION_ID":e [arrowtail=crowtee arrowhead=none];
   "job_role_designation":"JOB_ROLE_ID":w -> "job_role_master":"JOB_ROLE_ID":e [arrowtail=crowtee arrowhead=none style=dashed];
   "job_role_master":"GRADE_ID":w -> "grade_master":"GRADE_ID":e [arrowtail=crowodot arrowhead=none];

@@ -5,6 +5,7 @@ salary_component_master
 salary_opt_component_master
 country_master
 district_master
+grade_master
 organisation_type_master
 permission_master
 role_master
@@ -13,7 +14,6 @@ organisation_master
 unit_master
 department_master
 employee
-grade_master
 employee_hierarchy_status
 job_role_master
 employee_additional_details

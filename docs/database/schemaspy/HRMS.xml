@@ -452,21 +452,15 @@
          </index>
       </table>
       <table name="grade_master" numRows="0" remarks="" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="ORG_ID" nullable="true" remarks="" size="10" type="INT">
-            <parent column="ORG_ID" foreignKey="grade_master_ibfk_1" implied="false" onDeleteCascade="false" table="organisation_master"/>
-         </column>
-         <column autoUpdated="false" digits="0" id="1" name="GRADE_ID" nullable="false" remarks="" size="10" type="INT">
+         <column autoUpdated="false" digits="0" id="0" name="GRADE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="GRADE_ID" foreignKey="job_role_master_ibfk_2" implied="false" onDeleteCascade="false" table="job_role_master"/>
          </column>
-         <column autoUpdated="false" digits="0" id="2" name="GRADE" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="3" name="PROBATION_NOTICE_PERIOD" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="4" name="NOTICE_PERIOD" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="GRADE" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="PROBATION_NOTICE_PERIOD" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="3" name="NOTICE_PERIOD" nullable="true" remarks="" size="10" type="INT"/>
          <primaryKey column="GRADE_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="GRADE_ID"/>
-         </index>
-         <index name="ORG_ID" unique="false">
-            <column ascending="true" name="ORG_ID"/>
          </index>
       </table>
       <table name="job_role_designation" numRows="0" remarks="" type="TABLE">
@@ -528,7 +522,6 @@
          <column autoUpdated="false" digits="0" id="0" name="ORG_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="ORG_ID" foreignKey="employee_ibfk_2" implied="false" onDeleteCascade="false" table="employee"/>
             <child column="ORG_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_history"/>
-            <child column="ORG_ID" foreignKey="grade_master_ibfk_1" implied="false" onDeleteCascade="false" table="grade_master"/>
             <child column="ORG_ID" foreignKey="job_role_master_ibfk_1" implied="false" onDeleteCascade="false" table="job_role_master"/>
             <child column="ORG_ID" foreignKey="org_leave_ibfk_1" implied="false" onDeleteCascade="false" table="org_leave"/>
             <child column="ORG_ID" foreignKey="unit_master_ibfk_1" implied="false" onDeleteCascade="false" table="unit_master"/>
