@@ -12,7 +12,7 @@ tags:
 schemes:
   - http
 paths:
-  '/employee/{id}/document':
+  /employee/{id}/document:
     post:
       tags:
         - employee
@@ -53,7 +53,7 @@ paths:
             - 'write:create_employee_document'
             - 'read:read_employee_documents'
             - 'read:employee'
-  '/employee/{id}/document/{docId}':
+  /employee/{id}/document/{docId}:
     put:
       tags:
         - employee
@@ -95,7 +95,7 @@ paths:
             - 'write:update_employee_document'
             - 'read:read_employee_documents'
             - 'read:employee'
-  '/employee/{id}/additionaldetails':
+  /employee/{id}/additionaldetails:
     put:
       tags:
         - employee
@@ -132,7 +132,7 @@ paths:
             - 'write:update_employee_additional_details'
             - 'read:read_employee_additional_details'
             - 'read:employee'
-  '/employee/{id}/basicinfo':
+  /employee/{id}/basicinfo:
     put:
       tags:
         - employee
@@ -169,7 +169,7 @@ paths:
             - 'write:update_employee_basic_details'
             - 'read:read_employee_basic_details'
             - 'read:employee'
-  '/employee/{id}/hierarchystatus':
+  /employee/{id}/hierarchystatus:
     put:
       tags:
         - employee
@@ -206,7 +206,7 @@ paths:
             - 'write:update_employee_hierarchy'
             - 'read:read_employee_hierarchy'
             - 'read:employee'
-  '/employee/{id}/profile':
+  /employee/{id}/profile:
     get:
       tags:
         - employee
