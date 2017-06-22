@@ -14,7 +14,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "employee_additional_details_history":"employee_additional_details_history.heading":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=crowodot arrowhead=none style=dashed];
+  "employee_additional_details_history":"employee_additional_details_history.heading":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
   "employee_hierarchy_status":"EMP_ID":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"SUPERVISOR_ID":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status_history":"EMP_ID":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
@@ -46,6 +46,11 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="SUPERVISOR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">SUPERVISOR_ID</TD></TR>
       <TR><TD PORT="HR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">HR_ID</TD></TR>
       <TR><TD PORT="STATUS" COLSPAN="3" ALIGN="LEFT">STATUS</TD></TR>
+      <TR><TD PORT="CL" COLSPAN="3" ALIGN="LEFT">CL</TD></TR>
+      <TR><TD PORT="PL" COLSPAN="3" ALIGN="LEFT">PL</TD></TR>
+      <TR><TD PORT="PATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">PATERNITY_LEAVE</TD></TR>
+      <TR><TD PORT="SICK_LEAVE" COLSPAN="3" ALIGN="LEFT">SICK_LEAVE</TD></TR>
+      <TR><TD PORT="MATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">MATERNITY_LEAVE</TD></TR>
       <TR><TD PORT="SPECIAL_LEAVE" COLSPAN="3" ALIGN="LEFT">SPECIAL_LEAVE</TD></TR>
       <TR><TD PORT="PROVISION_PERIOD_END_DATE" COLSPAN="3" ALIGN="LEFT">PROVISION_PERIOD_END_DATE</TD></TR>
       <TR><TD PORT="NOTICE_PERIOD_LAST_DATE" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD_LAST_DATE</TD></TR>
@@ -63,6 +68,11 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="SUPERVISOR_ID" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">SUPERVISOR_ID</TD><TD PORT="SUPERVISOR_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="HR_ID" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">HR_ID</TD><TD PORT="HR_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="STATUS" COLSPAN="2" ALIGN="LEFT">STATUS</TD><TD PORT="STATUS.type" ALIGN="LEFT">varchar[4]</TD></TR>
+      <TR><TD PORT="CL" COLSPAN="2" ALIGN="LEFT">CL</TD><TD PORT="CL.type" ALIGN="LEFT">int[10]</TD></TR>
+      <TR><TD PORT="PL" COLSPAN="2" ALIGN="LEFT">PL</TD><TD PORT="PL.type" ALIGN="LEFT">int[10]</TD></TR>
+      <TR><TD PORT="PATERNITY_LEAVE" COLSPAN="2" ALIGN="LEFT">PATERNITY_LEAVE</TD><TD PORT="PATERNITY_LEAVE.type" ALIGN="LEFT">int[10]</TD></TR>
+      <TR><TD PORT="SICK_LEAVE" COLSPAN="2" ALIGN="LEFT">SICK_LEAVE</TD><TD PORT="SICK_LEAVE.type" ALIGN="LEFT">int[10]</TD></TR>
+      <TR><TD PORT="MATERNITY_LEAVE" COLSPAN="2" ALIGN="LEFT">MATERNITY_LEAVE</TD><TD PORT="MATERNITY_LEAVE.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="SPECIAL_LEAVE" COLSPAN="2" ALIGN="LEFT">SPECIAL_LEAVE</TD><TD PORT="SPECIAL_LEAVE.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="PROBATION_PERIOD_END_DATE" COLSPAN="2" ALIGN="LEFT">PROBATION_PERIOD_END_DATE</TD><TD PORT="PROBATION_PERIOD_END_DATE.type" ALIGN="LEFT">datetime[19]</TD></TR>
       <TR><TD PORT="NOTICE_PERIOD_LAST_DATE" COLSPAN="2" ALIGN="LEFT">NOTICE_PERIOD_LAST_DATE</TD><TD PORT="NOTICE_PERIOD_LAST_DATE.type" ALIGN="LEFT">datetime[19]</TD></TR>
