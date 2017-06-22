@@ -34,6 +34,12 @@
 13. We will create one new branch for every release. So even after multiple releases we will have all the codes of all individual releases
 14. For any production hot-fixes, we will create a separate hot-fix branch, fix the bug, test it and merge it wil the master branch and the appropriate release branch
 
+# Git best pratices
+1. Make a point to commit all your changes before you plan to pull.
+2. Commit often, and regularly do a pull / push! This will save us from complicated merge operations. 
+3. And like any version control system, please write clear commit messages. 
+4. There is a tool called 'gitk' (should be available by default), that presents a nice view of the changes done by various commits. 
+
 # Setting Up LDAP & DB
 1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer 
    Note: Login details of LDAP
