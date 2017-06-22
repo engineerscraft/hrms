@@ -30,6 +30,7 @@
 <table width='100%' border='0'>
 <tr valign='top'><td class='container' align='left' valign='top'>
 <form name='options' action=''>
+ <input type=checkbox id='implied' onclick="if (!this.checked) selectGraph('../graphs/job_role_master.2degrees.png', '#twoDegreesRelationshipsGraph'); else selectGraph('../graphs/job_role_master.implied2degrees.png', '#impliedTwoDegreesRelationshipsGraph'); toggle(11);toggle(26);syncDegrees();">Implied relationships
  <input type=checkbox onclick="toggle(21);" id=showRelatedCols>Related columns
  <input type=checkbox onclick="toggle(22);" id=showConstNames>Constraint names
  <input type=checkbox onclick="toggle(23);" id=showComments>Comments
@@ -143,7 +144,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 0 rows at Thu Jun 22 18:17 IST 2017
+<p/>Table contained 0 rows at Thu Jun 22 18:36 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -192,6 +193,23 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 <area shape="rect" id="node2" href="job_role_master.html#" title="job_role_master" alt="" coords="297,99,481,235"/>
 <area shape="rect" id="node3" href="grade_master.html#graph" title="grade_master" alt="" coords="5,215,249,393"/>
 <area shape="rect" id="node4" href="organisation_master.html#graph" title="organisation_master" alt="" coords="46,36,209,191"/>
+</map>
+<map id="impliedTwoDegreesRelationshipsGraph" name="impliedTwoDegreesRelationshipsGraph">
+<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="824,5,1076,208"/>
+<area shape="rect" id="node2" href="appraisal_cycle.html#graph" title="appraisal_cycle" alt="" coords="595,53,725,112"/>
+<area shape="rect" id="node3" href="designation_master.html#graph" title="designation_master" alt="" coords="581,143,739,201"/>
+<area shape="rect" id="node4" href="job_role_master.html#" title="job_role_master" alt="" coords="568,308,752,444"/>
+<area shape="rect" id="node6" href="organisation_master.html#graph" title="organisation_master" alt="" coords="293,503,455,657"/>
+<area shape="rect" id="node9" href="grade_master.html#graph" title="grade_master" alt="" coords="252,300,496,479"/>
+<area shape="rect" id="node5" href="employee.html#graph" title="employee" alt="" coords="593,225,727,284"/>
+<area shape="rect" id="node11" href="organisation_type_master.html#graph" title="organisation_type_master" alt="" coords="5,503,204,561"/>
+<area shape="rect" id="node7" href="employee_history.html#graph" title="employee_history" alt="" coords="588,468,732,527"/>
+<area shape="rect" id="node8" href="job_role_designation.html#graph" title="job_role_designation" alt="" coords="869,311,1031,417"/>
+<area shape="rect" id="node10" href="org_leave.html#graph" title="org_leave" alt="" coords="599,551,721,609"/>
+<area shape="rect" id="node12" href="salary_master.html#graph" title="salary_master" alt="" coords="853,620,1047,847"/>
+<area shape="rect" id="node13" href="salary_component_master.html#graph" title="salary_component_master" alt="" coords="558,799,762,857"/>
+<area shape="rect" id="node14" href="salary_opt_component_master.html#graph" title="salary_opt_component_master" alt="" coords="544,716,776,775"/>
+<area shape="rect" id="node15" href="unit_master.html#graph" title="unit_master" alt="" coords="593,633,727,692"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
 <area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="776,243,1028,445"/>

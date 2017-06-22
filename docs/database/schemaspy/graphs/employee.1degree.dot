@@ -81,7 +81,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="doc_type_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">doc_type_master</TD></TR>
       <TR><TD PORT="DOC_TYPE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DOC_TYPE_ID</TD></TR>
       <TR><TD PORT="DOC_TYPE_NAME" COLSPAN="3" ALIGN="LEFT">DOC_TYPE_NAME</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="doc_type_master.html#graph"
     tooltip="doc_type_master"
@@ -151,7 +151,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="UPLOAD_DATE" COLSPAN="3" ALIGN="LEFT">UPLOAD_DATE</TD></TR>
       <TR><TD PORT="UPLOADED_BY" COLSPAN="3" ALIGN="LEFT">UPLOADED_BY</TD></TR>
       <TR><TD PORT="DOCUMENT" COLSPAN="3" ALIGN="LEFT">DOCUMENT</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_docs.html#graph"
     tooltip="employee_docs"

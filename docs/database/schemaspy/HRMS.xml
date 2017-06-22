@@ -151,7 +151,7 @@
       <table name="doc_type_master" numRows="0" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="DOC_TYPE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="IDENTITY_DOC_TYPE_ID" foreignKey="employee_ibfk_4" implied="false" onDeleteCascade="false" table="employee"/>
-            <child column="DOC_TYPE_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_docs"/>
+            <child column="DOC_TYPE_ID" foreignKey="employee_docs_ibfk_2" implied="false" onDeleteCascade="false" table="employee_docs"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="DOC_TYPE_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
          <primaryKey column="DOC_TYPE_ID" sequenceNumberInPK="1"/>
@@ -265,7 +265,7 @@
             <parent column="EMP_ID" foreignKey="employee_docs_ibfk_1" implied="false" onDeleteCascade="false" table="employee"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="DOC_TYPE_ID" nullable="false" remarks="" size="10" type="INT">
-            <parent column="DOC_TYPE_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="doc_type_master"/>
+            <parent column="DOC_TYPE_ID" foreignKey="employee_docs_ibfk_2" implied="false" onDeleteCascade="false" table="doc_type_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="2" name="REMARKS" nullable="true" remarks="" size="2000" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="3" name="UPLOAD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
@@ -275,6 +275,9 @@
          <primaryKey column="EMP_ID" sequenceNumberInPK="2"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="EMP_ID"/>
+            <column ascending="true" name="DOC_TYPE_ID"/>
+         </index>
+         <index name="DOC_TYPE_ID" unique="false">
             <column ascending="true" name="DOC_TYPE_ID"/>
          </index>
       </table>
@@ -614,8 +617,8 @@
             <parent column="JOB_ROLE_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="job_role_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="3" name="SAL_COMP_ID" nullable="true" remarks="" size="10" type="INT">
-            <parent column="COMP_ID" foreignKey="SAL_COMP_FK" implied="false" onDeleteCascade="false" table="salary_component_master"/>
             <parent column="OPT_COMP_ID" foreignKey="SAL_OPT_COMP_FK" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
+            <parent column="COMP_ID" foreignKey="SAL_COMP_FK" implied="false" onDeleteCascade="false" table="salary_component_master"/>
          </column>
          <column autoUpdated="false" digits="2" id="4" name="SAL_VALUE" nullable="true" remarks="" size="32" type="DECIMAL"/>
          <column autoUpdated="false" digits="2" id="5" name="MAX_ALLOW_LIMIT" nullable="true" remarks="" size="32" type="DECIMAL"/>
