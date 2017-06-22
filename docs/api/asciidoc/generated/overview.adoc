@@ -1,9 +1,9 @@
-= Swagger Petstore YAML
+= HRMS API specification
 
 
 [[_overview]]
 == Overview
-This is a sample server Petstore server. You can find out more about Swagger at <a href="http://swagger.io">http://swagger.io</a> or on irc.freenode.net, #swagger. For this sample, you can use the api key "special-key" to test the authorization filters
+This is a specification document for all the HRMS API!
 
 
 === Version information
@@ -11,29 +11,15 @@ This is a sample server Petstore server. You can find out more about Swagger at 
 __Version__ : 1.0.0
 
 
-=== Contact information
-[%hardbreaks]
-__Contact Email__ : apiteam@swagger.io
-
-
-=== License information
-[%hardbreaks]
-__License__ : Apache 2.0
-__License URL__ : http://www.apache.org/licenses/LICENSE-2.0.html
-__Terms of service__ : http://swagger.io/terms/
-
-
 === URI scheme
 [%hardbreaks]
-__BasePath__ : /v2
+__BasePath__ : /
 __Schemes__ : HTTP
 
 
 === Tags
 
-* pet : Everything about your Pets
-* store : Operations about user
-* user : Access to Petstore orders
+* employee : Everything about the employee management related APIs (creation, search, update etc)
 
 
 

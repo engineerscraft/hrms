@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>Swagger Petstore YAML</title>
+<title>HRMS API specification</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,50 +419,50 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Swagger Petstore YAML</h1>
+<h1>HRMS API specification</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_overview">1. Overview</a>
 <ul class="sectlevel2">
 <li><a href="#_version_information">1.1. Version information</a></li>
-<li><a href="#_contact_information">1.2. Contact information</a></li>
-<li><a href="#_license_information">1.3. License information</a></li>
-<li><a href="#_uri_scheme">1.4. URI scheme</a></li>
-<li><a href="#_tags">1.5. Tags</a></li>
+<li><a href="#_uri_scheme">1.2. URI scheme</a></li>
+<li><a href="#_tags">1.3. Tags</a></li>
 </ul>
 </li>
 <li><a href="#_securityscheme">2. Security</a>
 <ul class="sectlevel2">
-<li><a href="#_petstore_auth">2.1. petstore_auth</a></li>
+<li><a href="#_employee_operation_auth">2.1. employee_operation_auth</a></li>
 <li><a href="#_api_key">2.2. api_key</a></li>
 </ul>
 </li>
 <li><a href="#_paths">3. Paths</a>
 <ul class="sectlevel2">
-<li><a href="#_addpet">3.1. Add a new pet to the store</a>
+<li><a href="#_updateadditionaldetails">3.1. update additional details associated to an employee</a>
 <ul class="sectlevel3">
-<li><a href="#_parameters">3.1.1. Parameters</a></li>
-<li><a href="#_responses">3.1.2. Responses</a></li>
-<li><a href="#_consumes">3.1.3. Consumes</a></li>
-<li><a href="#_produces">3.1.4. Produces</a></li>
-<li><a href="#_tags_2">3.1.5. Tags</a></li>
-<li><a href="#_security">3.1.6. Security</a></li>
+<li><a href="#_description">3.1.1. Description</a></li>
+<li><a href="#_parameters">3.1.2. Parameters</a></li>
+<li><a href="#_responses">3.1.3. Responses</a></li>
+<li><a href="#_consumes">3.1.4. Consumes</a></li>
+<li><a href="#_produces">3.1.5. Produces</a></li>
+<li><a href="#_tags_2">3.1.6. Tags</a></li>
+<li><a href="#_security">3.1.7. Security</a></li>
 </ul>
 </li>
-<li><a href="#_updatepet">3.2. Update an existing pet</a>
+<li><a href="#_updatebasicdetails">3.2. update basic info associated to an employee</a>
 <ul class="sectlevel3">
-<li><a href="#_parameters_2">3.2.1. Parameters</a></li>
-<li><a href="#_responses_2">3.2.2. Responses</a></li>
-<li><a href="#_consumes_2">3.2.3. Consumes</a></li>
-<li><a href="#_produces_2">3.2.4. Produces</a></li>
-<li><a href="#_tags_3">3.2.5. Tags</a></li>
-<li><a href="#_security_2">3.2.6. Security</a></li>
+<li><a href="#_description_2">3.2.1. Description</a></li>
+<li><a href="#_parameters_2">3.2.2. Parameters</a></li>
+<li><a href="#_responses_2">3.2.3. Responses</a></li>
+<li><a href="#_consumes_2">3.2.4. Consumes</a></li>
+<li><a href="#_produces_2">3.2.5. Produces</a></li>
+<li><a href="#_tags_3">3.2.6. Tags</a></li>
+<li><a href="#_security_2">3.2.7. Security</a></li>
 </ul>
 </li>
-<li><a href="#_findpetsbystatus">3.3. Finds Pets by status</a>
+<li><a href="#_adddocument">3.3. Add a new document against the employee</a>
 <ul class="sectlevel3">
-<li><a href="#_description">3.3.1. Description</a></li>
+<li><a href="#_description_3">3.3.1. Description</a></li>
 <li><a href="#_parameters_3">3.3.2. Parameters</a></li>
 <li><a href="#_responses_3">3.3.3. Responses</a></li>
 <li><a href="#_consumes_3">3.3.4. Consumes</a></li>
@@ -471,168 +471,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_security_3">3.3.7. Security</a></li>
 </ul>
 </li>
-<li><a href="#_findpetsbytags">3.4. Finds Pets by tags</a>
+<li><a href="#_updatedocument">3.4. update a document against the employee</a>
 <ul class="sectlevel3">
-<li><a href="#_description_2">3.4.1. Description</a></li>
+<li><a href="#_description_4">3.4.1. Description</a></li>
 <li><a href="#_parameters_4">3.4.2. Parameters</a></li>
 <li><a href="#_responses_4">3.4.3. Responses</a></li>
-<li><a href="#_produces_4">3.4.4. Produces</a></li>
-<li><a href="#_tags_5">3.4.5. Tags</a></li>
-<li><a href="#_security_4">3.4.6. Security</a></li>
+<li><a href="#_consumes_4">3.4.4. Consumes</a></li>
+<li><a href="#_produces_4">3.4.5. Produces</a></li>
+<li><a href="#_tags_5">3.4.6. Tags</a></li>
+<li><a href="#_security_4">3.4.7. Security</a></li>
 </ul>
 </li>
-<li><a href="#_updatepetwithform">3.5. Updates a pet in the store with form data</a>
+<li><a href="#_updatehierarchy">3.5. update reporting information associated to an employee</a>
 <ul class="sectlevel3">
-<li><a href="#_parameters_5">3.5.1. Parameters</a></li>
-<li><a href="#_responses_5">3.5.2. Responses</a></li>
-<li><a href="#_consumes_4">3.5.3. Consumes</a></li>
-<li><a href="#_produces_5">3.5.4. Produces</a></li>
-<li><a href="#_tags_6">3.5.5. Tags</a></li>
-<li><a href="#_security_5">3.5.6. Security</a></li>
+<li><a href="#_description_5">3.5.1. Description</a></li>
+<li><a href="#_parameters_5">3.5.2. Parameters</a></li>
+<li><a href="#_responses_5">3.5.3. Responses</a></li>
+<li><a href="#_consumes_5">3.5.4. Consumes</a></li>
+<li><a href="#_produces_5">3.5.5. Produces</a></li>
+<li><a href="#_tags_6">3.5.6. Tags</a></li>
+<li><a href="#_security_5">3.5.7. Security</a></li>
 </ul>
 </li>
-<li><a href="#_getpetbyid">3.6. Find pet by ID</a>
+<li><a href="#_getprofile">3.6. Get the entire profile of an employee</a>
 <ul class="sectlevel3">
-<li><a href="#_description_3">3.6.1. Description</a></li>
+<li><a href="#_description_6">3.6.1. Description</a></li>
 <li><a href="#_parameters_6">3.6.2. Parameters</a></li>
 <li><a href="#_responses_6">3.6.3. Responses</a></li>
-<li><a href="#_consumes_5">3.6.4. Consumes</a></li>
+<li><a href="#_consumes_6">3.6.4. Consumes</a></li>
 <li><a href="#_produces_6">3.6.5. Produces</a></li>
 <li><a href="#_tags_7">3.6.6. Tags</a></li>
 <li><a href="#_security_6">3.6.7. Security</a></li>
-</ul>
-</li>
-<li><a href="#_deletepet">3.7. Deletes a pet</a>
-<ul class="sectlevel3">
-<li><a href="#_parameters_7">3.7.1. Parameters</a></li>
-<li><a href="#_responses_7">3.7.2. Responses</a></li>
-<li><a href="#_consumes_6">3.7.3. Consumes</a></li>
-<li><a href="#_produces_7">3.7.4. Produces</a></li>
-<li><a href="#_tags_8">3.7.5. Tags</a></li>
-<li><a href="#_security_7">3.7.6. Security</a></li>
-</ul>
-</li>
-<li><a href="#_uploadfile">3.8. uploads an image</a>
-<ul class="sectlevel3">
-<li><a href="#_parameters_8">3.8.1. Parameters</a></li>
-<li><a href="#_responses_8">3.8.2. Responses</a></li>
-<li><a href="#_consumes_7">3.8.3. Consumes</a></li>
-<li><a href="#_produces_8">3.8.4. Produces</a></li>
-<li><a href="#_tags_9">3.8.5. Tags</a></li>
-<li><a href="#_security_8">3.8.6. Security</a></li>
-</ul>
-</li>
-<li><a href="#_getinventory">3.9. Returns pet inventories by status</a>
-<ul class="sectlevel3">
-<li><a href="#_description_4">3.9.1. Description</a></li>
-<li><a href="#_responses_9">3.9.2. Responses</a></li>
-<li><a href="#_produces_9">3.9.3. Produces</a></li>
-<li><a href="#_tags_10">3.9.4. Tags</a></li>
-<li><a href="#_security_9">3.9.5. Security</a></li>
-</ul>
-</li>
-<li><a href="#_placeorder">3.10. Place an order for a pet</a>
-<ul class="sectlevel3">
-<li><a href="#_parameters_9">3.10.1. Parameters</a></li>
-<li><a href="#_responses_10">3.10.2. Responses</a></li>
-<li><a href="#_produces_10">3.10.3. Produces</a></li>
-<li><a href="#_tags_11">3.10.4. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_getorderbyid">3.11. Find purchase order by ID</a>
-<ul class="sectlevel3">
-<li><a href="#_description_5">3.11.1. Description</a></li>
-<li><a href="#_parameters_10">3.11.2. Parameters</a></li>
-<li><a href="#_responses_11">3.11.3. Responses</a></li>
-<li><a href="#_produces_11">3.11.4. Produces</a></li>
-<li><a href="#_tags_12">3.11.5. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_deleteorder">3.12. Delete purchase order by ID</a>
-<ul class="sectlevel3">
-<li><a href="#_description_6">3.12.1. Description</a></li>
-<li><a href="#_parameters_11">3.12.2. Parameters</a></li>
-<li><a href="#_responses_12">3.12.3. Responses</a></li>
-<li><a href="#_produces_12">3.12.4. Produces</a></li>
-<li><a href="#_tags_13">3.12.5. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_createuser">3.13. Create user</a>
-<ul class="sectlevel3">
-<li><a href="#_description_7">3.13.1. Description</a></li>
-<li><a href="#_parameters_12">3.13.2. Parameters</a></li>
-<li><a href="#_responses_13">3.13.3. Responses</a></li>
-<li><a href="#_produces_13">3.13.4. Produces</a></li>
-<li><a href="#_tags_14">3.13.5. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_createuserswitharrayinput">3.14. Creates list of users with given input array</a>
-<ul class="sectlevel3">
-<li><a href="#_parameters_13">3.14.1. Parameters</a></li>
-<li><a href="#_responses_14">3.14.2. Responses</a></li>
-<li><a href="#_produces_14">3.14.3. Produces</a></li>
-<li><a href="#_tags_15">3.14.4. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_createuserswithlistinput">3.15. Creates list of users with given input array</a>
-<ul class="sectlevel3">
-<li><a href="#_parameters_14">3.15.1. Parameters</a></li>
-<li><a href="#_responses_15">3.15.2. Responses</a></li>
-<li><a href="#_produces_15">3.15.3. Produces</a></li>
-<li><a href="#_tags_16">3.15.4. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_loginuser">3.16. Logs user into the system</a>
-<ul class="sectlevel3">
-<li><a href="#_parameters_15">3.16.1. Parameters</a></li>
-<li><a href="#_responses_16">3.16.2. Responses</a></li>
-<li><a href="#_produces_16">3.16.3. Produces</a></li>
-<li><a href="#_tags_17">3.16.4. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_logoutuser">3.17. Logs out current logged in user session</a>
-<ul class="sectlevel3">
-<li><a href="#_responses_17">3.17.1. Responses</a></li>
-<li><a href="#_produces_17">3.17.2. Produces</a></li>
-<li><a href="#_tags_18">3.17.3. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_getuserbyname">3.18. Get user by user name</a>
-<ul class="sectlevel3">
-<li><a href="#_parameters_16">3.18.1. Parameters</a></li>
-<li><a href="#_responses_18">3.18.2. Responses</a></li>
-<li><a href="#_produces_18">3.18.3. Produces</a></li>
-<li><a href="#_tags_19">3.18.4. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_updateuser">3.19. Updated user</a>
-<ul class="sectlevel3">
-<li><a href="#_description_8">3.19.1. Description</a></li>
-<li><a href="#_parameters_17">3.19.2. Parameters</a></li>
-<li><a href="#_responses_19">3.19.3. Responses</a></li>
-<li><a href="#_produces_19">3.19.4. Produces</a></li>
-<li><a href="#_tags_20">3.19.5. Tags</a></li>
-</ul>
-</li>
-<li><a href="#_deleteuser">3.20. Delete user</a>
-<ul class="sectlevel3">
-<li><a href="#_description_9">3.20.1. Description</a></li>
-<li><a href="#_parameters_18">3.20.2. Parameters</a></li>
-<li><a href="#_responses_20">3.20.3. Responses</a></li>
-<li><a href="#_produces_20">3.20.4. Produces</a></li>
-<li><a href="#_tags_21">3.20.5. Tags</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_definitions">4. Definitions</a>
 <ul class="sectlevel2">
-<li><a href="#_apiresponse">4.1. ApiResponse</a></li>
-<li><a href="#_category">4.2. Category</a></li>
-<li><a href="#_order">4.3. Order</a></li>
-<li><a href="#_pet">4.4. Pet</a></li>
-<li><a href="#_tag">4.5. Tag</a></li>
-<li><a href="#_user">4.6. User</a></li>
+<li><a href="#_additionaldetails">4.1. AdditionalDetails</a></li>
+<li><a href="#_basicdetails">4.2. BasicDetails</a></li>
+<li><a href="#_document">4.3. Document</a></li>
+<li><a href="#_supervisor">4.4. Supervisor</a></li>
 </ul>
 </li>
 </ul>
@@ -643,7 +522,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is a sample server Petstore server. You can find out more about Swagger at &lt;a href="http://swagger.io"&gt;<a href="http://swagger.io&lt;/a&gt" class="bare">http://swagger.io&lt;/a&gt</a>; or on irc.freenode.net, #swagger. For this sample, you can use the api key "special-key" to test the authorization filters</p>
+<p>This is a specification document for all the HRMS API!</p>
 </div>
 <div class="sect2">
 <h3 id="_version_information"><a class="anchor" href="#_version_information"></a>1.1. Version information</h3>
@@ -652,38 +531,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_contact_information"><a class="anchor" href="#_contact_information"></a>1.2. Contact information</h3>
+<h3 id="_uri_scheme"><a class="anchor" href="#_uri_scheme"></a>1.2. URI scheme</h3>
 <div class="paragraph">
-<p><em>Contact Email</em> : <a href="mailto:apiteam@swagger.io">apiteam@swagger.io</a></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_license_information"><a class="anchor" href="#_license_information"></a>1.3. License information</h3>
-<div class="paragraph">
-<p><em>License</em> : Apache 2.0<br>
-<em>License URL</em> : <a href="http://www.apache.org/licenses/LICENSE-2.0.html" class="bare">http://www.apache.org/licenses/LICENSE-2.0.html</a><br>
-<em>Terms of service</em> : <a href="http://swagger.io/terms/" class="bare">http://swagger.io/terms/</a></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_uri_scheme"><a class="anchor" href="#_uri_scheme"></a>1.4. URI scheme</h3>
-<div class="paragraph">
-<p><em>BasePath</em> : /v2<br>
+<p><em>BasePath</em> : /<br>
 <em>Schemes</em> : HTTP</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tags"><a class="anchor" href="#_tags"></a>1.5. Tags</h3>
+<h3 id="_tags"><a class="anchor" href="#_tags"></a>1.3. Tags</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>pet : Everything about your Pets</p>
-</li>
-<li>
-<p>store : Operations about user</p>
-</li>
-<li>
-<p>user : Access to Petstore orders</p>
+<p>employee : Everything about the employee management related APIs (creation, search, update etc)</p>
 </li>
 </ul>
 </div>
@@ -694,11 +553,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_securityscheme"><a class="anchor" href="#_securityscheme"></a>2. Security</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_petstore_auth"><a class="anchor" href="#_petstore_auth"></a>2.1. petstore_auth</h3>
+<h3 id="_employee_operation_auth"><a class="anchor" href="#_employee_operation_auth"></a>2.1. employee_operation_auth</h3>
 <div class="paragraph">
 <p><em>Type</em> : oauth2<br>
 <em>Flow</em> : implicit<br>
-<em>Token URL</em> : <a href="http://petstore.swagger.io/api/oauth/dialog" class="bare">http://petstore.swagger.io/api/oauth/dialog</a></p>
+<em>Token URL</em> : <a href="http:///permission" class="bare">http:///permission</a></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -713,12 +572,48 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:pets</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">modify pets in your account</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:employee</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Modify an employee</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">read:pets</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">read your pets</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">read:employee</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Read an employee</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:create_employee_document</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Create document for an employee</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">read:read_employee_documents</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Read document of an employee</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_hierarchy</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">update employee&#8217;s hierarchy mapping</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">read:read_employee_hierarchy</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Read employee&#8217;s hierarchy info</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_document</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Update employee&#8217;s documents</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_additional_details</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Update additonal details of employee</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">read:read_employee_additional_details</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">read additional details of an employee</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_basic_details</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Update basic details of employee</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">read:read_employee_basic_details</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Read basic deails of employee</p></td>
 </tr>
 </tbody>
 </table>
@@ -737,14 +632,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_paths"><a class="anchor" href="#_paths"></a>3. Paths</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_addpet"><a class="anchor" href="#_addpet"></a>3.1. Add a new pet to the store</h3>
+<h3 id="_updateadditionaldetails"><a class="anchor" href="#_updateadditionaldetails"></a>3.1. update additional details associated to an employee</h3>
 <div class="literalblock">
 <div class="content">
-<pre>POST /v2/pet</pre>
+<pre>PUT //employee/{id}/additionaldetails</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>3.1.1. Parameters</h4>
+<h4 id="_description"><a class="anchor" href="#_description"></a>3.1.1. Description</h4>
+<div class="paragraph">
+<p>Updates additional details associated to an employee</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>3.1.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -762,17 +663,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Pet object that needs to be added to the store</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_pet">Pet</a></p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Additonal details that needs to be parsed and updated to DB</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_additionaldetails">AdditionalDetails</a></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses"><a class="anchor" href="#_responses"></a>3.1.2. Responses</h4>
+<h4 id="_responses"><a class="anchor" href="#_responses"></a>3.1.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -787,6 +695,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
@@ -796,25 +719,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_consumes"><a class="anchor" href="#_consumes"></a>3.1.3. Consumes</h4>
+<h4 id="_consumes"><a class="anchor" href="#_consumes"></a>3.1.4. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
 <p><code>application/json</code></p>
 </li>
-<li>
-<p><code>application/xml</code></p>
-</li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_produces"><a class="anchor" href="#_produces"></a>3.1.4. Produces</h4>
+<h4 id="_produces"><a class="anchor" href="#_produces"></a>3.1.5. Produces</h4>
 <div class="ulist">
 <ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
 <li>
 <p><code>application/json</code></p>
 </li>
@@ -822,17 +739,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_2"><a class="anchor" href="#_tags_2"></a>3.1.5. Tags</h4>
+<h4 id="_tags_2"><a class="anchor" href="#_tags_2"></a>3.1.6. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>pet</p>
+<p>employee</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_security"><a class="anchor" href="#_security"></a>3.1.6. Security</h4>
+<h4 id="_security"><a class="anchor" href="#_security"></a>3.1.7. Security</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 15%;">
@@ -849,22 +766,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_petstore_auth">petstore_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:pets,read:pets</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_additional_details,read:read_employee_additional_details,read:employee</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_updatepet"><a class="anchor" href="#_updatepet"></a>3.2. Update an existing pet</h3>
+<h3 id="_updatebasicdetails"><a class="anchor" href="#_updatebasicdetails"></a>3.2. update basic info associated to an employee</h3>
 <div class="literalblock">
 <div class="content">
-<pre>PUT /v2/pet</pre>
+<pre>PUT //employee/{id}/basicinfo</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>3.2.1. Parameters</h4>
+<h4 id="_description_2"><a class="anchor" href="#_description_2"></a>3.2.1. Description</h4>
+<div class="paragraph">
+<p>Updates basic details associated to an employee</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>3.2.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -882,17 +805,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Pet object that needs to be added to the store</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_pet">Pet</a></p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Basic details that needs to be parsed and updated to DB</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_basicdetails">BasicDetails</a></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_2"><a class="anchor" href="#_responses_2"></a>3.2.2. Responses</h4>
+<h4 id="_responses_2"><a class="anchor" href="#_responses_2"></a>3.2.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -908,43 +838,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid ID supplied</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Pet not found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Validation exception</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_consumes_2"><a class="anchor" href="#_consumes_2"></a>3.2.3. Consumes</h4>
+<h4 id="_consumes_2"><a class="anchor" href="#_consumes_2"></a>3.2.4. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
 <p><code>application/json</code></p>
 </li>
-<li>
-<p><code>application/xml</code></p>
-</li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_produces_2"><a class="anchor" href="#_produces_2"></a>3.2.4. Produces</h4>
+<h4 id="_produces_2"><a class="anchor" href="#_produces_2"></a>3.2.5. Produces</h4>
 <div class="ulist">
 <ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
 <li>
 <p><code>application/json</code></p>
 </li>
@@ -952,17 +881,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_3"><a class="anchor" href="#_tags_3"></a>3.2.5. Tags</h4>
+<h4 id="_tags_3"><a class="anchor" href="#_tags_3"></a>3.2.6. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>pet</p>
+<p>employee</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_security_2"><a class="anchor" href="#_security_2"></a>3.2.6. Security</h4>
+<h4 id="_security_2"><a class="anchor" href="#_security_2"></a>3.2.7. Security</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 15%;">
@@ -979,35 +908,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_petstore_auth">petstore_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:pets,read:pets</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_basic_details,read:read_employee_basic_details,read:employee</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_findpetsbystatus"><a class="anchor" href="#_findpetsbystatus"></a>3.3. Finds Pets by status</h3>
+<h3 id="_adddocument"><a class="anchor" href="#_adddocument"></a>3.3. Add a new document against the employee</h3>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/pet/findByStatus</pre>
+<pre>POST //employee/{id}/document</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description"><a class="anchor" href="#_description"></a>3.3.1. Description</h4>
+<h4 id="_description_3"><a class="anchor" href="#_description_3"></a>3.3.1. Description</h4>
 <div class="paragraph">
-<p>Multiple status values can be provided with comma separated strings</p>
+<p>Adds a new document against the employee mentioned by {id}. The actual document should come as an attachment to the message. Additional details related to the document (for example its type etc) must be specified in the message body</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>3.3.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 45%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
@@ -1015,17 +943,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
-<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Status values that need to be considered for filter</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array(multi)</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"available"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee for which document is being uploaded</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Document object that needs to be uploaded / saved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_document">Document</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -1048,12 +981,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_pet">Pet</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid status value</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 </tbody>
@@ -1064,16 +1007,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/xml</code></p>
-</li>
-<li>
 <p><code>application/json</code></p>
-</li>
-<li>
-<p><code>multipart/form-data</code></p>
-</li>
-<li>
-<p><code>application/x-www-form-urlencoded</code></p>
 </li>
 </ul>
 </div>
@@ -1082,9 +1016,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_produces_3"><a class="anchor" href="#_produces_3"></a>3.3.5. Produces</h4>
 <div class="ulist">
 <ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
 <li>
 <p><code>application/json</code></p>
 </li>
@@ -1096,7 +1027,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>pet</p>
+<p>employee</p>
 </li>
 </ul>
 </div>
@@ -1119,24 +1050,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_petstore_auth">petstore_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:pets,read:pets</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:create_employee_document,read:read_employee_documents,read:employee</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_findpetsbytags"><a class="anchor" href="#_findpetsbytags"></a>3.4. Finds Pets by tags</h3>
+<h3 id="_updatedocument"><a class="anchor" href="#_updatedocument"></a>3.4. update a document against the employee</h3>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/pet/findByTags</pre>
+<pre>PUT //employee/{id}/document/{docId}</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_2"><a class="anchor" href="#_description_2"></a>3.4.1. Description</h4>
+<h4 id="_description_4"><a class="anchor" href="#_description_4"></a>3.4.1. Description</h4>
 <div class="paragraph">
-<p>Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.</p>
+<p>Overrrides an existing document (specified by its docId), with a new one</p>
 </div>
 </div>
 <div class="sect3">
@@ -1158,11 +1089,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>tags</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Tags to filter by</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array(multi)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>docId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of the document which is being updated</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee for which document is being uploaded</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Document object that needs to be uploaded / saved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_document">Document</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -1185,24 +1130,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_pet">Pet</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid tag value</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_4"><a class="anchor" href="#_produces_4"></a>3.4.4. Produces</h4>
+<h4 id="_consumes_4"><a class="anchor" href="#_consumes_4"></a>3.4.4. Consumes</h4>
 <div class="ulist">
 <ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
 <li>
 <p><code>application/json</code></p>
 </li>
@@ -1210,17 +1162,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_5"><a class="anchor" href="#_tags_5"></a>3.4.5. Tags</h4>
+<h4 id="_produces_4"><a class="anchor" href="#_produces_4"></a>3.4.5. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>pet</p>
+<p><code>application/json</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_security_4"><a class="anchor" href="#_security_4"></a>3.4.6. Security</h4>
+<h4 id="_tags_5"><a class="anchor" href="#_tags_5"></a>3.4.6. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>employee</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_security_4"><a class="anchor" href="#_security_4"></a>3.4.7. Security</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 15%;">
@@ -1237,22 +1199,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_petstore_auth">petstore_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:pets,read:pets</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_document,read:read_employee_documents,read:employee</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_updatepetwithform"><a class="anchor" href="#_updatepetwithform"></a>3.5. Updates a pet in the store with form data</h3>
+<h3 id="_updatehierarchy"><a class="anchor" href="#_updatehierarchy"></a>3.5. update reporting information associated to an employee</h3>
 <div class="literalblock">
 <div class="content">
-<pre>POST /v2/pet/{petId}</pre>
+<pre>PUT //employee/{id}/hierarchystatus</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>3.5.1. Parameters</h4>
+<h4 id="_description_5"><a class="anchor" href="#_description_5"></a>3.5.1. Description</h4>
+<div class="paragraph">
+<p>Updates reporting information associated to an employee</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>3.5.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -1271,30 +1239,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>petId</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of pet that needs to be updated</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FormData</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>name</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Updated name of the pet</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FormData</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Updated status of the pet</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Details of supervisor</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_supervisor">Supervisor</a></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_5"><a class="anchor" href="#_responses_5"></a>3.5.2. Responses</h4>
+<h4 id="_responses_5"><a class="anchor" href="#_responses_5"></a>3.5.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -1310,6 +1271,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
@@ -1318,22 +1294,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_consumes_4"><a class="anchor" href="#_consumes_4"></a>3.5.3. Consumes</h4>
+<h4 id="_consumes_5"><a class="anchor" href="#_consumes_5"></a>3.5.4. Consumes</h4>
 <div class="ulist">
 <ul>
-<li>
-<p><code>application/x-www-form-urlencoded</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces_5"><a class="anchor" href="#_produces_5"></a>3.5.4. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
 <li>
 <p><code>application/json</code></p>
 </li>
@@ -1341,17 +1304,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_6"><a class="anchor" href="#_tags_6"></a>3.5.5. Tags</h4>
+<h4 id="_produces_5"><a class="anchor" href="#_produces_5"></a>3.5.5. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>pet</p>
+<p><code>application/json</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_security_5"><a class="anchor" href="#_security_5"></a>3.5.6. Security</h4>
+<h4 id="_tags_6"><a class="anchor" href="#_tags_6"></a>3.5.6. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>employee</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_security_5"><a class="anchor" href="#_security_5"></a>3.5.7. Security</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 15%;">
@@ -1368,24 +1341,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_petstore_auth">petstore_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:pets,read:pets</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_hierarchy,read:read_employee_hierarchy,read:employee</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getpetbyid"><a class="anchor" href="#_getpetbyid"></a>3.6. Find pet by ID</h3>
+<h3 id="_getprofile"><a class="anchor" href="#_getprofile"></a>3.6. Get the entire profile of an employee</h3>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/pet/{petId}</pre>
+<pre>GET //employee/{id}/profile</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_3"><a class="anchor" href="#_description_3"></a>3.6.1. Description</h4>
+<h4 id="_description_6"><a class="anchor" href="#_description_6"></a>3.6.1. Description</h4>
 <div class="paragraph">
-<p>Returns a single pet</p>
+<p>Read the entire profile of an employee</p>
 </div>
 </div>
 <div class="sect3">
@@ -1408,10 +1381,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>petId</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of pet to return</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
 </table>
@@ -1434,28 +1407,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_pet">Pet</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid ID supplied</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Pet not found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_consumes_5"><a class="anchor" href="#_consumes_5"></a>3.6.4. Consumes</h4>
+<h4 id="_consumes_6"><a class="anchor" href="#_consumes_6"></a>3.6.4. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/x-www-form-urlencoded</code></p>
+<p><code>application/json</code></p>
 </li>
 </ul>
 </div>
@@ -1464,9 +1442,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_produces_6"><a class="anchor" href="#_produces_6"></a>3.6.5. Produces</h4>
 <div class="ulist">
 <ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
 <li>
 <p><code>application/json</code></p>
 </li>
@@ -1478,7 +1453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>pet</p>
+<p>employee</p>
 </li>
 </ul>
 </div>
@@ -1500,1328 +1475,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>apiKey</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_api_key">api_key</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_petstore_auth">petstore_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:pets,read:pets</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">read:employee</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_deletepet"><a class="anchor" href="#_deletepet"></a>3.7. Deletes a pet</h3>
-<div class="literalblock">
-<div class="content">
-<pre>DELETE /v2/pet/{petId}</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>3.7.1. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>api_key</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>petId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Pet id to delete</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_7"><a class="anchor" href="#_responses_7"></a>3.7.2. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid pet value</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_consumes_6"><a class="anchor" href="#_consumes_6"></a>3.7.3. Consumes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>multipart/form-data</code></p>
-</li>
-<li>
-<p><code>application/x-www-form-urlencoded</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces_7"><a class="anchor" href="#_produces_7"></a>3.7.4. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_8"><a class="anchor" href="#_tags_8"></a>3.7.5. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>pet</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_7"><a class="anchor" href="#_security_7"></a>3.7.6. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_petstore_auth">petstore_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:pets,read:pets</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_uploadfile"><a class="anchor" href="#_uploadfile"></a>3.8. uploads an image</h3>
-<div class="literalblock">
-<div class="content">
-<pre>POST /v2/pet/{petId}/uploadImage</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>3.8.1. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>petId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of pet to update</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FormData</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>additionalMetadata</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Additional data to pass to server</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FormData</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>file</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">file to upload</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">file</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_8"><a class="anchor" href="#_responses_8"></a>3.8.2. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_apiresponse">ApiResponse</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_consumes_7"><a class="anchor" href="#_consumes_7"></a>3.8.3. Consumes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>multipart/form-data</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces_8"><a class="anchor" href="#_produces_8"></a>3.8.4. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_9"><a class="anchor" href="#_tags_9"></a>3.8.5. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>pet</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_8"><a class="anchor" href="#_security_8"></a>3.8.6. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_petstore_auth">petstore_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:pets,read:pets</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_getinventory"><a class="anchor" href="#_getinventory"></a>3.9. Returns pet inventories by status</h3>
-<div class="literalblock">
-<div class="content">
-<pre>GET /v2/store/inventory</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_4"><a class="anchor" href="#_description_4"></a>3.9.1. Description</h4>
-<div class="paragraph">
-<p>Returns a map of status codes to quantities</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_responses_9"><a class="anchor" href="#_responses_9"></a>3.9.2. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string, integer (int32) &gt; map</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_9"><a class="anchor" href="#_produces_9"></a>3.9.3. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_10"><a class="anchor" href="#_tags_10"></a>3.9.4. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>store</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_9"><a class="anchor" href="#_security_9"></a>3.9.5. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 42%;">
-<col style="width: 57%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>apiKey</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_api_key">api_key</a></strong></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_placeorder"><a class="anchor" href="#_placeorder"></a>3.10. Place an order for a pet</h3>
-<div class="literalblock">
-<div class="content">
-<pre>POST /v2/store/order</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a>3.10.1. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">order placed for purchasing the pet</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_order">Order</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_10"><a class="anchor" href="#_responses_10"></a>3.10.2. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_order">Order</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid Order</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_10"><a class="anchor" href="#_produces_10"></a>3.10.3. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_11"><a class="anchor" href="#_tags_11"></a>3.10.4. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>store</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_getorderbyid"><a class="anchor" href="#_getorderbyid"></a>3.11. Find purchase order by ID</h3>
-<div class="literalblock">
-<div class="content">
-<pre>GET /v2/store/order/{orderId}</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_5"><a class="anchor" href="#_description_5"></a>3.11.1. Description</h4>
-<div class="paragraph">
-<p>For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values will generated exceptions</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a>3.11.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orderId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of pet that needs to be fetched</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_11"><a class="anchor" href="#_responses_11"></a>3.11.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_order">Order</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid ID supplied</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Order not found</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_11"><a class="anchor" href="#_produces_11"></a>3.11.4. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_12"><a class="anchor" href="#_tags_12"></a>3.11.5. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>store</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_deleteorder"><a class="anchor" href="#_deleteorder"></a>3.12. Delete purchase order by ID</h3>
-<div class="literalblock">
-<div class="content">
-<pre>DELETE /v2/store/order/{orderId}</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_6"><a class="anchor" href="#_description_6"></a>3.12.1. Description</h4>
-<div class="paragraph">
-<p>For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_11"><a class="anchor" href="#_parameters_11"></a>3.12.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orderId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of the order that needs to be deleted</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_12"><a class="anchor" href="#_responses_12"></a>3.12.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid ID supplied</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Order not found</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_12"><a class="anchor" href="#_produces_12"></a>3.12.4. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_13"><a class="anchor" href="#_tags_13"></a>3.12.5. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>store</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_createuser"><a class="anchor" href="#_createuser"></a>3.13. Create user</h3>
-<div class="literalblock">
-<div class="content">
-<pre>POST /v2/user</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_7"><a class="anchor" href="#_description_7"></a>3.13.1. Description</h4>
-<div class="paragraph">
-<p>This can only be done by the logged in user.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_12"><a class="anchor" href="#_parameters_12"></a>3.13.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Created user object</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_user">User</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_13"><a class="anchor" href="#_responses_13"></a>3.13.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>default</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_13"><a class="anchor" href="#_produces_13"></a>3.13.4. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_14"><a class="anchor" href="#_tags_14"></a>3.13.5. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>user</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_createuserswitharrayinput"><a class="anchor" href="#_createuserswitharrayinput"></a>3.14. Creates list of users with given input array</h3>
-<div class="literalblock">
-<div class="content">
-<pre>POST /v2/user/createWithArray</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_13"><a class="anchor" href="#_parameters_13"></a>3.14.1. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">List of user object</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_user">User</a> &gt; array</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_14"><a class="anchor" href="#_responses_14"></a>3.14.2. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>default</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_14"><a class="anchor" href="#_produces_14"></a>3.14.3. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_15"><a class="anchor" href="#_tags_15"></a>3.14.4. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>user</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_createuserswithlistinput"><a class="anchor" href="#_createuserswithlistinput"></a>3.15. Creates list of users with given input array</h3>
-<div class="literalblock">
-<div class="content">
-<pre>POST /v2/user/createWithList</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_14"><a class="anchor" href="#_parameters_14"></a>3.15.1. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">List of user object</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_user">User</a> &gt; array</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_15"><a class="anchor" href="#_responses_15"></a>3.15.2. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>default</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_15"><a class="anchor" href="#_produces_15"></a>3.15.3. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_16"><a class="anchor" href="#_tags_16"></a>3.15.4. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>user</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_loginuser"><a class="anchor" href="#_loginuser"></a>3.16. Logs user into the system</h3>
-<div class="literalblock">
-<div class="content">
-<pre>GET /v2/user/login</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_15"><a class="anchor" href="#_parameters_15"></a>3.16.1. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>password</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The password for login in clear text</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The user name for login</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_16"><a class="anchor" href="#_responses_16"></a>3.16.2. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation<br>
-<strong>Headers</strong> : <br>
-<code>X-Rate-Limit</code> (integer (int32)) : calls per hour allowed by the user.<br>
-<code>X-Expires-After</code> (string (date-time)) : date in UTC when toekn expires.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid username/password supplied</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_16"><a class="anchor" href="#_produces_16"></a>3.16.3. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_17"><a class="anchor" href="#_tags_17"></a>3.16.4. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>user</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_logoutuser"><a class="anchor" href="#_logoutuser"></a>3.17. Logs out current logged in user session</h3>
-<div class="literalblock">
-<div class="content">
-<pre>GET /v2/user/logout</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_responses_17"><a class="anchor" href="#_responses_17"></a>3.17.1. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>default</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_17"><a class="anchor" href="#_produces_17"></a>3.17.2. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_18"><a class="anchor" href="#_tags_18"></a>3.17.3. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>user</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_getuserbyname"><a class="anchor" href="#_getuserbyname"></a>3.18. Get user by user name</h3>
-<div class="literalblock">
-<div class="content">
-<pre>GET /v2/user/{username}</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_16"><a class="anchor" href="#_parameters_16"></a>3.18.1. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The name that needs to be fetched. Use user1 for testing.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_18"><a class="anchor" href="#_responses_18"></a>3.18.2. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_user">User</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid username supplied</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User not found</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_18"><a class="anchor" href="#_produces_18"></a>3.18.3. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_19"><a class="anchor" href="#_tags_19"></a>3.18.4. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>user</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_updateuser"><a class="anchor" href="#_updateuser"></a>3.19. Updated user</h3>
-<div class="literalblock">
-<div class="content">
-<pre>PUT /v2/user/{username}</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_8"><a class="anchor" href="#_description_8"></a>3.19.1. Description</h4>
-<div class="paragraph">
-<p>This can only be done by the logged in user.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_17"><a class="anchor" href="#_parameters_17"></a>3.19.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">name that need to be deleted</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Updated user object</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_user">User</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_19"><a class="anchor" href="#_responses_19"></a>3.19.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid user supplied</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User not found</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_19"><a class="anchor" href="#_produces_19"></a>3.19.4. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_20"><a class="anchor" href="#_tags_20"></a>3.19.5. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>user</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_deleteuser"><a class="anchor" href="#_deleteuser"></a>3.20. Delete user</h3>
-<div class="literalblock">
-<div class="content">
-<pre>DELETE /v2/user/{username}</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_9"><a class="anchor" href="#_description_9"></a>3.20.1. Description</h4>
-<div class="paragraph">
-<p>This can only be done by the logged in user.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_18"><a class="anchor" href="#_parameters_18"></a>3.20.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The name that needs to be deleted</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_20"><a class="anchor" href="#_responses_20"></a>3.20.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid username supplied</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User not found</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_20"><a class="anchor" href="#_produces_20"></a>3.20.4. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/xml</code></p>
-</li>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_21"><a class="anchor" href="#_tags_21"></a>3.20.5. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>user</p>
-</li>
-</ul>
-</div>
 </div>
 </div>
 </div>
@@ -2830,66 +1489,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_definitions"><a class="anchor" href="#_definitions"></a>4. Definitions</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_apiresponse"><a class="anchor" href="#_apiresponse"></a>4.1. ApiResponse</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 42%;">
-<col style="width: 57%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>code</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>message</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>type</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_category"><a class="anchor" href="#_category"></a>4.2. Category</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 42%;">
-<col style="width: 57%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>name</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_order"><a class="anchor" href="#_order"></a>4.3. Order</h3>
+<h3 id="_additionaldetails"><a class="anchor" href="#_additionaldetails"></a>4.1. AdditionalDetails</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -2905,46 +1505,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>complete</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>details</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>petId</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>quantity</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>shipDate</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Order Status</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (placed, approved, delivered)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Additional details object</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">object</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_pet"><a class="anchor" href="#_pet"></a>4.4. Pet</h3>
+<h3 id="_basicdetails"><a class="anchor" href="#_basicdetails"></a>4.2. BasicDetails</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -2960,73 +1530,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>category</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>details</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_category">Category</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>name</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Example</strong> : <code>"doggie"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>photoUrls</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">pet status in the store</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (available, pending, sold)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>tags</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_tag">Tag</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Basic details object</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">object</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_tag"><a class="anchor" href="#_tag"></a>4.5. Tag</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 42%;">
-<col style="width: 57%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>name</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_user"><a class="anchor" href="#_user"></a>4.6. User</h3>
+<h3 id="_document"><a class="anchor" href="#_document"></a>4.3. Document</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -3042,51 +1555,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>email</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>docType</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The type of the document that is being uploaded</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_supervisor"><a class="anchor" href="#_supervisor"></a>4.4. Supervisor</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>firstName</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>supervisorId</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>lastName</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>password</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>phone</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>userStatus</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User Status</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Id of the supervisor</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -3097,7 +1593,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-06-19 16:09:23 IST
+Last updated 2017-06-22 18:48:11 IST
 </div>
 </div>
 </body>
