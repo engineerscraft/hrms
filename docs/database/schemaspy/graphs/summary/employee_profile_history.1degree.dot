@@ -16,7 +16,7 @@ digraph "employee_profile_history" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_profile_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_profile_history</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" ALIGN="LEFT">EMP_ID</TD></TR>
+      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">EMP_ID</TD></TR>
       <TR><TD PORT="QUALIFICATION" COLSPAN="3" ALIGN="LEFT">QUALIFICATION</TD></TR>
       <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
       <TR><TD PORT="CERTIFICATE_DOC" COLSPAN="3" ALIGN="LEFT">CERTIFICATE_DOC</TD></TR>

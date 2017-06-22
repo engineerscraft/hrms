@@ -76,7 +76,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody valign='top'>
 <tr>
- <td class='primaryKey' title='Primary Key'>ORG_ID</td>
+ <td class='primaryKey' title='Primary Key'>JOB_ROLE_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center'></td>
@@ -85,12 +85,33 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
-    <td class='relatedTable' title="appraisal_rating.[ORG_ID, GRADE, DESIGNATION] refs job_role_master.[ORG_ID, GRADE, DESIGNATION] via appraisal_rating_ibfk_1"><a href='appraisal_rating.html'>appraisal_rating</a><span class='relatedKey'>.ORG_ID</span>
+    <td class='relatedTable' title="appraisal_rating.JOB_ROLE_ID refs job_role_master.JOB_ROLE_ID via appraisal_rating_ibfk_1"><a href='appraisal_rating.html'>appraisal_rating</a><span class='relatedKey'>.JOB_ROLE_ID</span>
     </td>
     <td class='constraint'>appraisal_rating_ibfk_1</td>
    </tr>
+   <tr class='impliedRelationship' valign='top'>
+    <td class='relatedTable' title="job_role_designation.JOB_ROLE_ID's name implies that it's a child of job_role_master.JOB_ROLE_ID, but it doesn't reference that column."><a href='job_role_designation.html'>job_role_designation</a><span class='relatedKey'>.JOB_ROLE_ID</span>
+    </td>
+    <td class='constraint'>Implied Constraint</td>
+   </tr>
+   <tr class='impliedRelationship' valign='top'>
+    <td class='relatedTable' title="salary_master.JOB_ROLE_ID's name implies that it's a child of job_role_master.JOB_ROLE_ID, but it doesn't reference that column."><a href='salary_master.html'>salary_master</a><span class='relatedKey'>.JOB_ROLE_ID</span>
+    </td>
+    <td class='constraint'>Implied Constraint</td>
+   </tr>
   </table>
 </td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
+<tr>
+ <td class='indexedColumn' title='Indexed'>ORG_ID</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
@@ -103,85 +124,60 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='primaryKey' title='Primary Key'>GRADE</td>
- <td class='detail'>varchar</td>
- <td class='detail' align='right'>32</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='center'></td>
- <td></td>
- <td>
-  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
-   <tr valign='top'>
-    <td class='relatedTable' title="appraisal_rating.[ORG_ID, GRADE, DESIGNATION] refs job_role_master.[ORG_ID, GRADE, DESIGNATION] via appraisal_rating_ibfk_1"><a href='appraisal_rating.html'>appraisal_rating</a><span class='relatedKey'>.GRADE</span>
-    </td>
-    <td class='constraint'>appraisal_rating_ibfk_1</td>
-   </tr>
-  </table>
-</td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='primaryKey' title='Primary Key'>DESIGNATION</td>
- <td class='detail'>varchar</td>
- <td class='detail' align='right'>52</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='center'></td>
- <td></td>
- <td>
-  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
-   <tr valign='top'>
-    <td class='relatedTable' title="appraisal_rating.[ORG_ID, GRADE, DESIGNATION] refs job_role_master.[ORG_ID, GRADE, DESIGNATION] via appraisal_rating_ibfk_1"><a href='appraisal_rating.html'>appraisal_rating</a><span class='relatedKey'>.DESIGNATION</span>
-    </td>
-    <td class='constraint'>appraisal_rating_ibfk_1</td>
-   </tr>
-  </table>
-</td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>PROVISION_PERIOD</td>
+ <td class='indexedColumn' title='Indexed'>GRADE_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
  <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>NOTICE_PERIOD</td>
- <td class='detail'>int</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="job_role_master.GRADE_ID refs grade_master.GRADE_ID via job_role_master_ibfk_2"><a href='grade_master.html'>grade_master</a><span class='relatedKey'>.GRADE_ID</span>
+    </td>
+    <td class='constraint'>job_role_master_ibfk_2</td>
+   </tr>
+  </table>
+ </td>
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 0 rows at Wed Jun 21 19:33 IST 2017
+<p/>Table contained 0 rows at Thu Jun 22 18:17 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
-<table class='dataTable' border='1' rules='groups'><colgroup><colgroup><colgroup><colgroup>
+<table class='dataTable' border='1' rules='groups'><colgroup><colgroup><colgroup><colgroup><colgroup>
 <thead>
  <tr>
   <th>Column(s)</th>
   <th>Type</th>
   <th>Sort</th>
   <th class='constraint' style='text-align:left;'>Constraint Name</th>
+  <th>Anomalies</th>
  </tr>
 </thead>
 <tbody>
  <tr>
-  <td class='primaryKey'>ORG_ID + GRADE + DESIGNATION</td>
+  <td class='primaryKey'>JOB_ROLE_ID</td>
   <td class='detail'>Primary key</td>
-  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>PRIMARY</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>GRADE_ID</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>GRADE_ID</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>ORG_ID + GRADE_ID</td>
+  <td class='detail'>Must be unique</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>ORG_ID</td>
+  <td class='detail'>These unique columns are also nullable</td>
  </tr>
 </table>
 </div>
@@ -192,18 +188,22 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/job_role_master.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="525,5,768,208"/>
-<area shape="rect" id="node2" href="job_role_master.html#" title="job_role_master" alt="" coords="216,75,477,259"/>
-<area shape="rect" id="node3" href="organisation_master.html#graph" title="organisation_master" alt="" coords="5,77,168,232"/>
+<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="529,5,781,208"/>
+<area shape="rect" id="node2" href="job_role_master.html#" title="job_role_master" alt="" coords="297,99,481,235"/>
+<area shape="rect" id="node3" href="grade_master.html#graph" title="grade_master" alt="" coords="5,215,249,393"/>
+<area shape="rect" id="node4" href="organisation_master.html#graph" title="organisation_master" alt="" coords="46,36,209,191"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="772,19,1015,221"/>
-<area shape="rect" id="node2" href="appraisal_cycle.html#graph" title="appraisal_cycle" alt="" coords="528,5,659,64"/>
-<area shape="rect" id="node3" href="job_role_master.html#" title="job_role_master" alt="" coords="463,88,724,272"/>
-<area shape="rect" id="node5" href="organisation_master.html#graph" title="organisation_master" alt="" coords="252,272,415,427"/>
-<area shape="rect" id="node4" href="employee.html#graph" title="employee" alt="" coords="527,296,660,355"/>
-<area shape="rect" id="node6" href="organisation_type_master.html#graph" title="organisation_type_master" alt="" coords="5,344,204,403"/>
-<area shape="rect" id="node7" href="unit_master.html#graph" title="unit_master" alt="" coords="527,379,660,437"/>
+<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="776,243,1028,445"/>
+<area shape="rect" id="node2" href="appraisal_cycle.html#graph" title="appraisal_cycle" alt="" coords="571,5,701,64"/>
+<area shape="rect" id="node3" href="designation_master.html#graph" title="designation_master" alt="" coords="557,496,715,555"/>
+<area shape="rect" id="node4" href="job_role_master.html#" title="job_role_master" alt="" coords="544,336,728,472"/>
+<area shape="rect" id="node6" href="organisation_master.html#graph" title="organisation_master" alt="" coords="293,177,455,332"/>
+<area shape="rect" id="node7" href="grade_master.html#graph" title="grade_master" alt="" coords="252,363,496,541"/>
+<area shape="rect" id="node5" href="employee.html#graph" title="employee" alt="" coords="569,88,703,147"/>
+<area shape="rect" id="node9" href="organisation_type_master.html#graph" title="organisation_type_master" alt="" coords="5,177,204,236"/>
+<area shape="rect" id="node8" href="org_leave.html#graph" title="org_leave" alt="" coords="575,171,697,229"/>
+<area shape="rect" id="node10" href="unit_master.html#graph" title="unit_master" alt="" coords="569,253,703,312"/>
 </map>
 </td></tr></table>
 </div>

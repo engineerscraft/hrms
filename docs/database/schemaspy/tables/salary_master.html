@@ -76,12 +76,12 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody valign='top'>
 <tr>
- <td class='detail'>SALARY_ID</td>
+ <td class='primaryKey' title='Primary Key'>SALARY_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
+ <td class='detail' align='center'></td>
+ <td></td>
  <td></td>
  <td> </td>
  <td class='comment'></td>
@@ -98,14 +98,22 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>GRADE_ID</td>
+ <td class='indexedColumn' title='Indexed'>JOB_ROLE_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='right'>null</td>
  <td></td>
- <td> </td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr class='impliedRelationship' valign='top'>
+    <td class='relatedTable' title="salary_master.JOB_ROLE_ID's name implies that it's a child of job_role_master.JOB_ROLE_ID, but it doesn't reference that column."><a href='job_role_master.html'>job_role_master</a><span class='relatedKey'>.JOB_ROLE_ID</span>
+    </td>
+    <td class='constraint'>Implied Constraint</td>
+   </tr>
+  </table>
+ </td>
  <td class='comment'></td>
 </tr>
 <tr>
@@ -119,14 +127,14 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
-    <td class='relatedTable' title="salary_master.SAL_COMP_ID refs salary_opt_component_master.OPT_COMP_ID via SAL_OPT_COMP_FK"><a href='salary_opt_component_master.html'>salary_opt_component_master</a><span class='relatedKey'>.OPT_COMP_ID</span>
-    </td>
-    <td class='constraint'>SAL_OPT_COMP_FK</td>
-   </tr>
-   <tr valign='top'>
     <td class='relatedTable' title="salary_master.SAL_COMP_ID refs salary_component_master.COMP_ID via SAL_COMP_FK"><a href='salary_component_master.html'>salary_component_master</a><span class='relatedKey'>.COMP_ID</span>
     </td>
     <td class='constraint'>SAL_COMP_FK</td>
+   </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="salary_master.SAL_COMP_ID refs salary_opt_component_master.OPT_COMP_ID via SAL_OPT_COMP_FK"><a href='salary_opt_component_master.html'>salary_opt_component_master</a><span class='relatedKey'>.OPT_COMP_ID</span>
+    </td>
+    <td class='constraint'>SAL_OPT_COMP_FK</td>
    </tr>
   </table>
  </td>
@@ -166,25 +174,41 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 0 rows at Wed Jun 21 19:33 IST 2017
+<p/>Table contained 0 rows at Thu Jun 22 18:17 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
-<table class='dataTable' border='1' rules='groups'><colgroup><colgroup><colgroup><colgroup>
+<table class='dataTable' border='1' rules='groups'><colgroup><colgroup><colgroup><colgroup><colgroup>
 <thead>
  <tr>
   <th>Column(s)</th>
   <th>Type</th>
   <th>Sort</th>
   <th class='constraint' style='text-align:left;'>Constraint Name</th>
+  <th>Anomalies</th>
  </tr>
 </thead>
 <tbody>
+ <tr>
+  <td class='primaryKey'>SALARY_ID</td>
+  <td class='detail'>Primary key</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>PRIMARY</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>JOB_ROLE_ID + SAL_COMP_ID</td>
+  <td class='detail'>Must be unique</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>JOB_ROLE_ID</td>
+  <td class='detail'>These unique columns are also nullable</td>
+ </tr>
  <tr>
   <td class='indexedColumn'>SAL_COMP_ID</td>
   <td class='detail'>Performance</td>
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>SAL_OPT_COMP_FK</td>
+  <td>&nbsp;</td>
  </tr>
 </table>
 </div>

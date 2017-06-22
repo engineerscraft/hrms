@@ -14,16 +14,17 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "employee":"employee.heading":w -> "employee_docs":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
-  "employee_additional_details_history":"employee_additional_details_history.heading":w -> "employee_docs":"EMP_ID":e [arrowtail=crowodot arrowhead=none style=dashed];
-  "employee_hierarchy_status_history":"employee_hierarchy_status_history.heading":w -> "employee_docs":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
-  "employee_history":"employee_history.heading":w -> "employee_docs":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
-  "employee_profile_history":"EMP_ID":w -> "employee_docs":"EMP_ID":e [arrowtail=crowodot arrowhead=none style=dashed];
+  "employee_additional_details_history":"employee_additional_details_history.heading":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=crowodot arrowhead=none style=dashed];
+  "employee_hierarchy_status":"EMP_ID":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
+  "employee_hierarchy_status":"SUPERVISOR_ID":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
+  "employee_hierarchy_status_history":"employee_hierarchy_status_history.heading":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
+  "employee_history":"employee_history.heading":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=tee arrowhead=none style=dashed];
+  "employee_profile_history":"EMP_ID":w -> "employee_hierarchy_status":"EMP_ID":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">8 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">9 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -37,20 +38,22 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     URL="employee_additional_details_history.html#graph"
     tooltip="employee_additional_details_history"
   ];
-  "employee_docs" [
+  "employee_hierarchy_status" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="employee_docs.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_docs</TD></TR>
+      <TR><TD PORT="employee_hierarchy_status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status</TD></TR>
       <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="DOC_TYPE_ID" COLSPAN="3" ALIGN="LEFT">DOC_TYPE_ID</TD></TR>
-      <TR><TD PORT="REMARKS" COLSPAN="3" ALIGN="LEFT">REMARKS</TD></TR>
-      <TR><TD PORT="UPLOAD_DATE" COLSPAN="3" ALIGN="LEFT">UPLOAD_DATE</TD></TR>
-      <TR><TD PORT="UPLOADED_BY" COLSPAN="3" ALIGN="LEFT">UPLOADED_BY</TD></TR>
-      <TR><TD PORT="DOCUMENT" COLSPAN="3" ALIGN="LEFT">DOCUMENT</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+      <TR><TD PORT="SUPERVISOR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">SUPERVISOR_ID</TD></TR>
+      <TR><TD PORT="HR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">HR_ID</TD></TR>
+      <TR><TD PORT="STATUS" COLSPAN="3" ALIGN="LEFT">STATUS</TD></TR>
+      <TR><TD PORT="SPECIAL_LEAVE" COLSPAN="3" ALIGN="LEFT">SPECIAL_LEAVE</TD></TR>
+      <TR><TD PORT="PROVISION_PERIOD_END_DATE" COLSPAN="3" ALIGN="LEFT">PROVISION_PERIOD_END_DATE</TD></TR>
+      <TR><TD PORT="NOTICE_PERIOD_LAST_DATE" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD_LAST_DATE</TD></TR>
+      <TR><TD PORT="LAST_MOD_DATE" COLSPAN="3" ALIGN="LEFT">LAST_MOD_DATE</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
-    URL="employee_docs.html#graph"
-    tooltip="employee_docs"
+    URL="employee_hierarchy_status.html#graph"
+    tooltip="employee_hierarchy_status"
   ];
   "employee_hierarchy_status_history" [
     label=<
@@ -74,7 +77,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_profile_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_profile_history</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="2" ALIGN="LEFT">EMP_ID</TD><TD PORT="EMP_ID.type" ALIGN="LEFT">varchar[20]</TD></TR>
+      <TR><TD PORT="EMP_ID" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">EMP_ID</TD><TD PORT="EMP_ID.type" ALIGN="LEFT">varchar[20]</TD></TR>
       <TR><TD PORT="QUALIFICATION" COLSPAN="2" ALIGN="LEFT">QUALIFICATION</TD><TD PORT="QUALIFICATION.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD PORT="DESCRIPTION" COLSPAN="2" ALIGN="LEFT">DESCRIPTION</TD><TD PORT="DESCRIPTION.type" ALIGN="LEFT">varchar[256]</TD></TR>
       <TR><TD PORT="CERTIFICATE_DOC" COLSPAN="2" ALIGN="LEFT">CERTIFICATE_DOC</TD><TD PORT="CERTIFICATE_DOC.type" ALIGN="LEFT">longblob[2147483647]</TD></TR>
