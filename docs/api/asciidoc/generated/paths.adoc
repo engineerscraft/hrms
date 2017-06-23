@@ -27,6 +27,7 @@ __required__|Access token|string
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_countrymodel,CountryModel>>
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -44,7 +45,7 @@ __required__|Access token|string
 
 
 [[_getdepartments]]
-=== Returns list of Departments in a Given Unit
+=== Returns List of Departments in a Given Unit
 ....
 GET /resources/v1/department
 ....
@@ -70,6 +71,7 @@ __required__|to filter out the result based upon unit ID|string
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_departmentmodel,DepartmentModel>>
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -113,6 +115,7 @@ __required__|to filter out the result based on job role|integer
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_designationmodel,DesignationModel>>
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -156,6 +159,7 @@ __required__|to filter out the result based upon state ID|string
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_districtmodel,DistrictModel>>
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -201,6 +205,7 @@ __required__|Access token|string
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctypemodel,DocTypeModel>>
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -217,7 +222,7 @@ __required__|Access token|string
 * meta
 
 
-[[_getdoctypes]]
+[[_getidentitydoctypes]]
 === Gets List of Identity Document Types
 ....
 GET /resources/v1/doctype/identitydoctypes
@@ -246,6 +251,7 @@ __required__|Access token|string
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctypemodel,DocTypeModel>>
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -262,10 +268,10 @@ __required__|Access token|string
 * meta
 
 
-[[_getorganizations]]
+[[_getemployeeautocomplete]]
 === Returns Autocomplete List for a Given Employee Attribute
 ....
-GET /resources/v1/employee
+GET /resources/v1/employee/
 ....
 
 
@@ -280,13 +286,13 @@ This API will be mainly used to provide autocomplete experience to users as they
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
 __required__|Access token|string
-|**Path**|**attributeName** +
+|**Query**|**attributeName** +
 __required__|Name of the attribute which could be firstName, middleName, lastName or emailAddress|string
-|**Path**|**attributeValuePrefix** +
+|**Query**|**attributeValuePrefix** +
 __required__|firstName, middleName, lastName or emailAddress starts with this value|string
-|**Path**|**numberOfItems** +
+|**Query**|**numberOfItems** +
 __required__|The number of items to be returned|integer
-|**Path**|**restricted** +
+|**Query**|**restricted** +
 __required__|The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organization|boolean
 |===
 
@@ -297,6 +303,7 @@ __required__|The search will be restricted to the hierarchy of the user only if 
 |===
 |HTTP Code|Description|Schema
 |**200**|OK|No Content
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -344,6 +351,7 @@ __optional__|Employee Address parameters in JSON Body|<<_employeeaddressmodel,Em
 |===
 |HTTP Code|Description|Schema
 |**200**|OK|No Content
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -387,6 +395,7 @@ __required__|to filter out the result based on organization|integer
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_jobrolemodel,JobRoleModel>>
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -432,6 +441,7 @@ __required__|Access token|string
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_organizationmodel,OrganizationModel>>
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -476,11 +486,12 @@ __required__|Country for which the list of states will be retrieved|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|Successful operation +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_statemodel,StateModel>>
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errorresponse,ErrorResponse>>
+|**403**|User does not have permission to execute this command|No Content
+|**404**|No data found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -522,6 +533,7 @@ __required__|The organizationId to be used as filter|string
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_unitmodel,UnitModel>>
+|**403**|User does not have permission to execute this command|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===

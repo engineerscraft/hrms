@@ -54,8 +54,8 @@ __required__|Name of the designation +
 |===
 
 
-[[_district]]
-=== District
+[[_districtmodel]]
+=== DistrictModel
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -148,7 +148,7 @@ __optional__|The description or landmark of the address. +
 |**districtId** +
 __required__|The unique identifier of the district.|integer (int(32))
 |**districtName** +
-__optional__|The name of the district. This field will be ignored during employee creation. +
+__required__|The name of the district. This field will be ignored during employee creation. +
 **Maximal length** : `32`|string (varchar)
 |**houseNo** +
 __required__|The number of the house. +
@@ -170,26 +170,8 @@ __required__|The name of the street. +
 |===
 
 
-[[_employeeprofilemodel]]
-=== EmployeeProfileModel
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**comments** +
-__optional__|The comments. +
-**Maximal length** : `52`|string (varchar)
-|**description** +
-__optional__|The description of the employee. +
-**Maximal length** : `256`|string (varchar)
-|**qualification** +
-__optional__|The highest qualification of the employee. +
-**Maximal length** : `32`|string (varchar)
-|===
-
-
-[[_enployeehierarchymodel]]
-=== EnployeeHierarchyModel
+[[_employeehierarchymodel]]
+=== EmployeeHierarchyModel
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -217,6 +199,140 @@ __required__|The status of the employee. +
 |**supervisorId** +
 __required__|The employee id of the supervisor. +
 **Maximal length** : `20`|string (varchar)
+|===
+
+
+[[_employeemodel]]
+=== EmployeeModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**contactNo** +
+__optional__|The contact number of the employee. +
+**Maximal length** : `15`|string (varchar)
+|**department** +
+__optional__|The department the employee belongs to.|<<_departmentmodel,DepartmentModel>>
+|**dob** +
+__optional__|Date of birth of the employee.|string (date-time)
+|**doj** +
+__optional__|date of joining of the employee.|string (date-time)
+|**emailId** +
+__optional__|Email address of the employee. +
+**Maximal length** : `30`|string (varchar)
+|**empFirstName** +
+__optional__|First name of the employee. +
+**Maximal length** : `60`|string (varchar)
+|**empId** +
+__optional__|Unique identifier of the employee. This field will be ignored during employee creation.|integer (int(32))
+|**empLastName** +
+__optional__|Last name of the employee. +
+**Maximal length** : `60`|string (varchar)
+|**empMiddleName** +
+__optional__|Middle name of the employee. +
+**Maximal length** : `30`|string (varchar)
+|**empType** +
+__optional__|Permanent or Contract employee. +
+**Maximal length** : `15`|string (varchar)
+|**employeeAddlDetails** +
+__optional__|The employee additional details.|<<_employeeaddldetailsmodel,EmployeeAddlDetailsModel>>
+|**employeeAddress** +
+__optional__|The employee address.|<<_employeeaddressmodel,EmployeeAddressModel>>
+|**employeeHierarchy** +
+__optional__|The employee hierarchy.|<<_employeehierarchymodel,EmployeeHierarchyModel>>
+|**employeeOptionalBenefit** +
+__optional__|The employee optional benefit.|<<_employeeoptionalbenefitmodel,EmployeeOptionalBenefitModel>>
+|**employeeProfile** +
+__optional__|The employee profile.|<<_employeeprofilemodel,EmployeeProfileModel>>
+|**employeeSalary** +
+__optional__|The employee salary.|<<_employeesalarymodel,EmployeeSalaryModel>>
+|**entryBy** +
+__optional__|The username that entered the record. +
+**Maximal length** : `32`|string (varchar)
+|**entryDate** +
+__optional__|Entry date and time.|string (date-time)
+|**fatherName** +
+__optional__|Father's name of the employee. +
+**Maximal length** : `120`|string (varchar)
+|**hrFlag** +
+__optional__|Indicates if the employee is a HR.|boolean
+|**identityDocType** +
+__optional__|The identity document type.|<<_doctypemodel,DocTypeModel>>
+|**identityNumber** +
+__optional__|The identification document number of the employee. +
+**Maximal length** : `32`|string (varchar)
+|**maritalStatus** +
+__optional__|Marital status of the employee. +
+**Maximal length** : `10`|string (varchar)
+|**nationality** +
+__optional__|Nationality of the employee. +
+**Maximal length** : `32`|string (varchar)
+|**organization** +
+__optional__|The organization the employee belongs to.|<<_organizationmodel,OrganizationModel>>
+|**sex** +
+__optional__|Sex of the employee. +
+**Maximal length** : `10`|string (varchar)
+|**supervisorFlag** +
+__optional__|Indicates if the employee is a supervisor.|boolean
+|**title** +
+__optional__|Title of the employee. +
+**Maximal length** : `5`|string (varchar)
+|**unit** +
+__optional__|The unit the employee belongs to.|<<_unitmodel,UnitModel>>
+|===
+
+
+[[_employeeoptionalbenefitmodel]]
+=== EmployeeOptionalBenefitModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**benefitValue** +
+__required__|The benefit value for the employee.|number (double)
+|**frequency** +
+__optional__|Frequency of the benefit in months.|integer (int(32))
+|**iterations** +
+__optional__|Number of times the benefit will be given to the employee. Value -1 means infinite, Value 0 indicates the current benefit has been completed and will no longer be given to the employee. After every due date when the payroll runs, the iterations will be reduced by one.|integer (int(32))
+|**nextDueDate** +
+__optional__|The next due date of this benefit for the employee.|string (date-time)
+|**optSalaryComponent** +
+__required__|Optional salary component.|<<_salaryoptcomponentmodel,SalaryOptComponentModel>>
+|**startDate** +
+__required__|The start date of this benefit for the employee.|string (date-time)
+|**stopDate** +
+__optional__|The stop date of this benefit for the employee.|string (date-time)
+|===
+
+
+[[_employeeprofilemodel]]
+=== EmployeeProfileModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**comments** +
+__optional__|The comments. +
+**Maximal length** : `52`|string (varchar)
+|**description** +
+__optional__|The description of the employee. +
+**Maximal length** : `256`|string (varchar)
+|**qualification** +
+__optional__|The highest qualification of the employee. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_employeesalarymodel]]
+=== EmployeeSalaryModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**salaryComponent** +
+__required__|Salary Component.|<<_definitions_salarycomponentmodel,#definitions/SalaryComponentModel>>
+|**salaryValue** +
+__required__|The salary value of the employee for the given salary component.|number (double)
 |===
 
 
@@ -254,11 +370,11 @@ __required__|Name of the grade +
 |**NoticePeriod** +
 __required__|Notice period if the employee returns after the probation period.|integer (int(32))
 |**grade** +
-__required__|Name of the grade model|<<_grademodel,GradeModel>>
+__required__|Name of the grade model|<<_definitions_grademodel,#definitions/GradeModel>>
 |**jobRoleId** +
 __required__|To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.|integer (int(32))
 |**organization** +
-__required__|Name of the organization model|<<_organizationmodel,OrganizationModel>>
+__required__|Name of the organization model|<<_definitions_organizationmodel,#definitions/OrganizationModel>>
 |**probationNoticePeriod** +
 __required__|Notice period if the employee resigns during the probation period.|integer (int(32))
 |===
@@ -270,10 +386,10 @@ __required__|Notice period if the employee resigns during the probation period.|
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**maxAllowLimit** +
-__optional__|The maximum allowable limit.|number (double)
+|**maxAllowedLimit** +
+__required__|The maximum allowable limit.|number (double)
 |**optSalaryComponent** +
-__required__|The Salary component.|<<_salaryoptcomponentmodel,SalaryOptComponentModel>>
+__required__|The Salary component.|<<_definitions_salaryoptcomponentmodel,#definitions/SalaryOptComponentModel>>
 |**salaryValue** +
 __required__|The default value of the salary Component for the paricular job role id.|number (double)
 |===
@@ -368,14 +484,12 @@ __required__|This flag indicates whether the employee can opt out from the benef
 |**endDate** +
 __required__|The end date of this benefit in company policy.|string (date-time)
 |**frequency** +
-__required__|Frequency of the component.|integer (int(32))
+__required__|Frequency of the component in months.|integer (int(32))
 |**optCompId** +
 __required__|Unique identifier of the optional salary component. This field will be ignored during optional salary component creation.|integer (int(32))
 |**optCompName** +
 __required__|Name of the salary component. +
 **Maximal length** : `32`|string (varchar)
-|**optType** +
-__required__|Optional component type.|integer (int(32))
 |**salOptComponent** +
 __optional__|Salary componenet. +
 **Maximal length** : `32`|string (varchar)

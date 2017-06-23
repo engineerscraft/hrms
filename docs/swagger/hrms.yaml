@@ -50,7 +50,7 @@ paths:
           type: string
       responses:
         '200':
-          description: OK
+          description: Successful operation
           schema:
             $ref: '#/definitions/StateModel'
           headers:
@@ -58,14 +58,16 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
-          description: Not Found
+          description: No data found
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/ErrorResponse'
+            $ref: '#/definitions/ErrorModel'
   /v1/doctype:
     get:
       tags:
@@ -92,6 +94,8 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -106,7 +110,7 @@ paths:
         - meta
       summary: Gets List of Identity Document Types
       description: Get the list of identity document types
-      operationId: getDocTypes
+      operationId: getIdentityDocTypes
       produces:
         - application/xml
         - application/json
@@ -126,6 +130,8 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -163,6 +169,8 @@ paths:
       responses:
         '200':
           description: OK
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -171,13 +179,13 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/ErrorModel'
-  /v1/employee:
+  /v1/employee/:
     get:
       tags:
         - employee
       summary: Returns Autocomplete List for a Given Employee Attribute
       description: This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees
-      operationId: getOrganizations
+      operationId: getEmployeeAutocomplete
       produces:
         - application/xml
         - application/json
@@ -188,22 +196,22 @@ paths:
           required: true
           type: string
         - name: attributeName
-          in: path
+          in: query
           type: string
           description: Name of the attribute which could be firstName, middleName, lastName or emailAddress
           required: true
         - name: attributeValuePrefix
-          in: path
+          in: query
           type: string
           description: firstName, middleName, lastName or emailAddress starts with this value
           required: true
         - name: numberOfItems
-          in: path
+          in: query
           type: integer
           description: The number of items to be returned
           required: true
         - name: restricted
-          in: path
+          in: query
           type: boolean
           description: The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organization
           required: true
@@ -213,6 +221,8 @@ paths:
           type: array
           items:
             type: string
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -247,6 +257,8 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -285,6 +297,8 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -297,7 +311,7 @@ paths:
     get:
       tags:
         - department
-      summary: Returns list of Departments in a Given Unit
+      summary: Returns List of Departments in a Given Unit
       operationId: getDepartments
       produces:
         - application/xml
@@ -323,6 +337,8 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -356,6 +372,8 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -394,6 +412,8 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -432,6 +452,8 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -470,6 +492,8 @@ paths:
               description: Caching
               type: string
               default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command
         '404':
           description: Not Found
           schema:
@@ -528,7 +552,7 @@ definitions:
       - stateName
       - countryId
       - countryName
-  District:
+  DistrictModel:
     type: object
     properties:
       districtId:
@@ -586,7 +610,6 @@ definitions:
         format: varchar
         maxLength: 32
         description: The name of the street.
-        required: true
       area:
         type: string
         format: varchar
@@ -637,10 +660,9 @@ definitions:
     required: 
       - houseNo
       - streetName
-      - identityDoc
       - pinno
       - districtId
-      - distrctName
+      - districtName
       - stateId
       - stateName
       - countryId
@@ -653,7 +675,6 @@ definitions:
         format: varchar
         maxLength: 32
         description: The highest qualification of the employee.
-        required: true
       description:
         type: string
         format: varchar
@@ -721,7 +742,7 @@ definitions:
         format: varchar
         maxLength: 32
         description: The overall medical report comment.
-  EnployeeHierarchyModel:
+  EmployeeHierarchyModel:
     type: object
     properties:
       supervisorId: 
@@ -729,49 +750,40 @@ definitions:
         format: varchar
         maxLength: 20
         description: The employee id of the supervisor.
-        required: true
       hrId:
         type: string
         format: varchar
         maxLength: 20
         description: The employee id of the HR.
-        required: true
       status:
         type: string
         format: varchar
         maxLength: 4
         description: The status of the employee.
-        required: true
       cl:
         type: integer
         format: int(32)
         description: The casual leaves of the employee.
-        required: true
       pl:
         type: integer
         format: int(32)
         description: The paid leaves of the employee.
-        required: true
       paternityLeave:
         type: integer
         format: int(32)
         description: The paternity leaves of the employee.
-        required: true
       maternityLeave:
         type: integer
         format: int(32)
         description: The maternity leaves of the employee.
-        required: true
       specialLeave:
         type: integer
         format: int(32)
         description: The special leaves of the employee.
-        required: true
       probationPeriodEndDate:
         type: string
         format: date-time
         description: The probation period end date.
-        required: true
       noticePeriodEndDate:
         type: string
         format: date-time
@@ -819,7 +831,7 @@ definitions:
         maxLength: 100
         description: Name of the organization.
       orgType:
-        $ref: OrganizationTypeModel
+        $ref: '#/definitions/OrganizationTypeModel'
         description: The organization type.
       address:
         type: string
@@ -838,41 +850,34 @@ definitions:
         type: integer
         format: int(32)
         description: To uniquly identify an unit.
-        required: true
       unitName:
         type: string
         format: varchar
         maxLength: 100
         description: Name of the unit.
-        required: true
       empIdPrefix:
         type: string
         format: varchar
         maxLength: 10
         description: Prefix of employee id.
-        required: true
       empIdSeqName:
         type: string
         format: varchar
         maxLength: 20
-        required: true
       address:
         type: string
         format: varchar
         maxLength: 256
         description: Address of the unit.
-        required: true
       orgId:
         type: integer
         format: int(32)
         description: unique identifier of the organization.
-        required: true
       orgName:
         type: string
         format: varchar
         maxLength: 100
         description: Name of the organization. This field will be ignored during unit creation.
-        required: true
     required:
       - unitId
       - unitName
@@ -924,13 +929,11 @@ definitions:
         type: integer
         format: int(32)
         description: To uniquly identify a grade. This field will be ignored during grade creation.
-        required: true
       gradeName:
         type: string
         format: varchar
         maxLength: 32
         description: Name of the grade
-        required: true
     required:
       - gradeId
       - gradeName
@@ -942,10 +945,10 @@ definitions:
         format: int(32)
         description: To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.
       grade:
-        $ref: GradeModel
+        $ref: '#definitions/GradeModel'
         description: Name of the grade model
       organization:
-        $ref: OrganizationModel
+        $ref: '#definitions/OrganizationModel'
         description: Name of the organization model
       probationNoticePeriod:
         type: integer
@@ -980,7 +983,7 @@ definitions:
     type: object
     properties:
       salaryComponent:
-        $ref: SalaryComponentModel
+        $ref: '#/definitions/SalaryComponentModel'
         description: The Salary component.
       salaryValue:
         type: number
@@ -998,13 +1001,13 @@ definitions:
     type: object
     properties:
       optSalaryComponent:
-        $ref: SalaryOptComponentModel
+        $ref: '#definitions/SalaryOptComponentModel'
         description: The Salary component.
       salaryValue:
         type: number
         format: double
         description: The default value of the salary Component for the paricular job role id.
-      maxAllowLimit:
+      maxAllowedLimit:
         type: number
         format: double
         description: The maximum allowable limit.
@@ -1080,7 +1083,6 @@ definitions:
     required:
       - optCompId
       - optCompName
-      - optType
       - frequency
       - endDate
       - creditDebitFlag
@@ -1089,7 +1091,7 @@ definitions:
     type: object
     properties:
       salaryComponent:
-        $ref: SalaryComponentModel
+        $ref: '#definitions/SalaryComponentModel'
         description: Salary Component.
       salaryValue:
         type: number
@@ -1102,7 +1104,7 @@ definitions:
     type: object
     properties:
       optSalaryComponent:
-        $ref: OptSalaryComponentModel
+        $ref: '#/definitions/SalaryOptComponentModel'
         description: Optional salary component.
       startDate:
         type: string
@@ -1132,3 +1134,124 @@ definitions:
       - optSalaryComponent
       - startDate
       - benefitValue
+  EmployeeModel:
+    type: object
+    properties:
+      empId:        
+        type: integer
+        format: int(32)
+        description: Unique identifier of the employee. This field will be ignored during employee creation.
+      title:
+        type: string
+        format: varchar
+        maxLength: 5
+        description: Title of the employee.
+      empFirstName:
+        type: string
+        format: varchar
+        maxLength: 60
+        description: First name of the employee.
+      empMiddleName:
+        type: string
+        format: varchar
+        maxLength: 30
+        description: Middle name of the employee.
+      empLastName:
+        type: string
+        format: varchar
+        maxLength: 60
+        description: Last name of the employee.
+      sex:
+        type: string
+        format: varchar
+        maxLength: 10
+        description: Sex of the employee.
+      empType:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: Permanent or Contract employee.
+      maritalStatus:
+        type: string
+        format: varchar
+        maxLength: 10
+        description: Marital status of the employee.
+      doj:
+        type: string
+        format: date-time
+        description: date of joining of the employee.
+      organization:
+        $ref: '#/definitions/OrganizationModel'
+        description: The organization the employee belongs to.
+      unit:
+        $ref: '#/definitions/UnitModel'
+        description: The unit the employee belongs to.
+      department:
+        $ref: '#/definitions/DepartmentModel'
+        description: The department the employee belongs to.
+      nationality: 
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Nationality of the employee.
+      identityDocType:
+        $ref: '#/definitions/DocTypeModel'
+        description: The identity document type.
+      identityNumber: 
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The identification document number of the employee.      
+      dob:
+        type: string
+        format: date-time
+        description: Date of birth of the employee.
+      fatherName:
+        type: string
+        format: varchar
+        maxLength: 120
+        description: Father's name of the employee.
+      emailId:
+        type: string
+        format: varchar
+        maxLength: 30
+        description: Email address of the employee.
+      contactNo:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: The contact number of the employee.
+      entryBy:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The username that entered the record.
+      entryDate:
+        type: string
+        format: date-time
+        description: Entry date and time.
+      hrFlag:
+        type: boolean
+        description: Indicates if the employee is a HR.
+      supervisorFlag:
+        type: boolean
+        description: Indicates if the employee is a supervisor.
+      employeeOptionalBenefit:
+        $ref: '#/definitions/EmployeeOptionalBenefitModel'
+        description: The employee optional benefit.
+      employeeSalary:
+        $ref: '#/definitions/EmployeeSalaryModel'
+        description: The employee salary.
+      employeeHierarchy:
+        $ref: '#/definitions/EmployeeHierarchyModel'
+        description: The employee hierarchy.
+      employeeAddlDetails:
+        $ref: '#/definitions/EmployeeAddlDetailsModel'
+        description: The employee additional details.
+      employeeAddress:
+        $ref: '#/definitions/EmployeeAddressModel'
+        description: The employee address.
+      employeeProfile:
+        $ref: '#/definitions/EmployeeProfileModel'
+        description: The employee profile.
+        
