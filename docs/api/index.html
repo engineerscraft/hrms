@@ -432,7 +432,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_paths">2. Paths</a>
 <ul class="sectlevel2">
-<li><a href="#_getunits">2.1. Return list of units of a given organization</a>
+<li><a href="#_getcountries">2.1. Returns List of Countries</a>
 <ul class="sectlevel3">
 <li><a href="#_parameters">2.1.1. Parameters</a></li>
 <li><a href="#_responses">2.1.2. Responses</a></li>
@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_2">2.1.4. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getcountries">2.2. Return list of countries</a>
+<li><a href="#_getdepartments">2.2. Returns list of Departments in a Given Unit</a>
 <ul class="sectlevel3">
 <li><a href="#_parameters_2">2.2.1. Parameters</a></li>
 <li><a href="#_responses_2">2.2.2. Responses</a></li>
@@ -448,7 +448,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_3">2.2.4. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getdepartments">2.3. Return list of departments of a given unit</a>
+<li><a href="#_getdesignationsofjobrole">2.3. Returns List of Designations in a Given Job Role.</a>
 <ul class="sectlevel3">
 <li><a href="#_parameters_3">2.3.1. Parameters</a></li>
 <li><a href="#_responses_3">2.3.2. Responses</a></li>
@@ -456,7 +456,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_4">2.3.4. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getdistricts">2.4. Return list of districts</a>
+<li><a href="#_getdistricts">2.4. Returns List of Districts</a>
 <ul class="sectlevel3">
 <li><a href="#_parameters_4">2.4.1. Parameters</a></li>
 <li><a href="#_responses_4">2.4.2. Responses</a></li>
@@ -464,7 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_5">2.4.4. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getdoctypes">2.5. Get the list of document types</a>
+<li><a href="#_getdoctypes">2.5. Gets List of Document Types</a>
 <ul class="sectlevel3">
 <li><a href="#_description">2.5.1. Description</a></li>
 <li><a href="#_parameters_5">2.5.2. Parameters</a></li>
@@ -473,7 +473,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_6">2.5.5. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getdoctypes">2.6. Get the list of identity document types</a>
+<li><a href="#_getdoctypes">2.6. Gets List of Identity Document Types</a>
 <ul class="sectlevel3">
 <li><a href="#_description_2">2.6.1. Description</a></li>
 <li><a href="#_parameters_6">2.6.2. Parameters</a></li>
@@ -482,31 +482,56 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_7">2.6.5. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_updateempaddress">2.7. Update Employee Address details.</a>
+<li><a href="#_getorganizations">2.7. Returns Autocomplete List for a Given Employee Attribute</a>
 <ul class="sectlevel3">
 <li><a href="#_description_3">2.7.1. Description</a></li>
 <li><a href="#_parameters_7">2.7.2. Parameters</a></li>
 <li><a href="#_responses_7">2.7.3. Responses</a></li>
-<li><a href="#_consumes">2.7.4. Consumes</a></li>
+<li><a href="#_produces_7">2.7.4. Produces</a></li>
 <li><a href="#_tags_8">2.7.5. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getorganizations">2.8. Return a list of Organization objects</a>
+<li><a href="#_updateempaddress">2.8. Updates Employee Address Details</a>
 <ul class="sectlevel3">
 <li><a href="#_description_4">2.8.1. Description</a></li>
 <li><a href="#_parameters_8">2.8.2. Parameters</a></li>
 <li><a href="#_responses_8">2.8.3. Responses</a></li>
-<li><a href="#_produces_7">2.8.4. Produces</a></li>
+<li><a href="#_consumes">2.8.4. Consumes</a></li>
 <li><a href="#_tags_9">2.8.5. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getstates">2.9. Get the list of states for a given country.</a>
+<li><a href="#_getjobrolesoforg">2.9. Returns List of Job Roles in a Given Organization</a>
 <ul class="sectlevel3">
-<li><a href="#_description_5">2.9.1. Description</a></li>
-<li><a href="#_parameters_9">2.9.2. Parameters</a></li>
-<li><a href="#_responses_9">2.9.3. Responses</a></li>
-<li><a href="#_produces_8">2.9.4. Produces</a></li>
-<li><a href="#_tags_10">2.9.5. Tags</a></li>
+<li><a href="#_parameters_9">2.9.1. Parameters</a></li>
+<li><a href="#_responses_9">2.9.2. Responses</a></li>
+<li><a href="#_produces_8">2.9.3. Produces</a></li>
+<li><a href="#_tags_10">2.9.4. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getorganizations">2.10. Returns List of Organizations</a>
+<ul class="sectlevel3">
+<li><a href="#_description_5">2.10.1. Description</a></li>
+<li><a href="#_parameters_10">2.10.2. Parameters</a></li>
+<li><a href="#_responses_10">2.10.3. Responses</a></li>
+<li><a href="#_produces_9">2.10.4. Produces</a></li>
+<li><a href="#_tags_11">2.10.5. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getstates">2.11. Gets List of States for a Given Country</a>
+<ul class="sectlevel3">
+<li><a href="#_description_6">2.11.1. Description</a></li>
+<li><a href="#_parameters_11">2.11.2. Parameters</a></li>
+<li><a href="#_responses_11">2.11.3. Responses</a></li>
+<li><a href="#_produces_10">2.11.4. Produces</a></li>
+<li><a href="#_tags_12">2.11.5. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getunits">2.12. Returns List of Units in a Given Organization</a>
+<ul class="sectlevel3">
+<li><a href="#_parameters_12">2.12.1. Parameters</a></li>
+<li><a href="#_responses_12">2.12.2. Responses</a></li>
+<li><a href="#_produces_11">2.12.3. Produces</a></li>
+<li><a href="#_tags_13">2.12.4. Tags</a></li>
 </ul>
 </li>
 </ul>
@@ -520,16 +545,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_doctypemodel">3.5. DocTypeModel</a></li>
 <li><a href="#_employeeaddldetailsmodel">3.6. EmployeeAddlDetailsModel</a></li>
 <li><a href="#_employeeaddressmodel">3.7. EmployeeAddressModel</a></li>
-<li><a href="#_employeeid">3.8. EmployeeId</a></li>
-<li><a href="#_employeeprofilemodel">3.9. EmployeeProfileModel</a></li>
-<li><a href="#_enployeehierarchymodel">3.10. EnployeeHierarchyModel</a></li>
-<li><a href="#_errormodel">3.11. ErrorModel</a></li>
-<li><a href="#_grademodel">3.12. GradeModel</a></li>
-<li><a href="#_jobrolemodel">3.13. JobRoleModel</a></li>
+<li><a href="#_employeeprofilemodel">3.8. EmployeeProfileModel</a></li>
+<li><a href="#_enployeehierarchymodel">3.9. EnployeeHierarchyModel</a></li>
+<li><a href="#_errormodel">3.10. ErrorModel</a></li>
+<li><a href="#_grademodel">3.11. GradeModel</a></li>
+<li><a href="#_jobrolemodel">3.12. JobRoleModel</a></li>
+<li><a href="#_optionalsalarymodel">3.13. OptionalSalaryModel</a></li>
 <li><a href="#_organizationmodel">3.14. OrganizationModel</a></li>
 <li><a href="#_organizationtypemodel">3.15. OrganizationTypeModel</a></li>
-<li><a href="#_statemodel">3.16. StateModel</a></li>
-<li><a href="#_unitmodel">3.17. UnitModel</a></li>
+<li><a href="#_salarycomponentmodel">3.16. SalaryComponentModel</a></li>
+<li><a href="#_salarymodel">3.17. SalaryModel</a></li>
+<li><a href="#_salaryoptcomponentmodel">3.18. SalaryOptComponentModel</a></li>
+<li><a href="#_statemodel">3.19. StateModel</a></li>
+<li><a href="#_unitmodel">3.20. UnitModel</a></li>
 </ul>
 </li>
 </ul>
@@ -567,10 +595,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>department : It&#8217;s all about departments</p>
 </li>
 <li>
+<p>designation : Everything about the designation</p>
+</li>
+<li>
 <p>district : Everything about the district</p>
 </li>
 <li>
 <p>employee : Employee related resources</p>
+</li>
+<li>
+<p>jobrole : Everything about the job role</p>
 </li>
 <li>
 <p>meta : Meta/Master Data Access</p>
@@ -590,21 +624,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_paths"><a class="anchor" href="#_paths"></a>2. Paths</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_getunits"><a class="anchor" href="#_getunits"></a>2.1. Return list of units of a given organization</h3>
+<h3 id="_getcountries"><a class="anchor" href="#_getcountries"></a>2.1. Returns List of Countries</h3>
 <div class="literalblock">
 <div class="content">
-<pre>GET /resources/unit</pre>
+<pre>GET /resources/v1/country</pre>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_parameters"><a class="anchor" href="#_parameters"></a>2.1.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 45%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
@@ -612,7 +645,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
-<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
@@ -622,23 +654,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>organizationId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The organizationId to be used as filter</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>
@@ -661,8 +676,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_unitmodel">UnitModel</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_countrymodel">CountryModel</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
@@ -695,28 +712,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>unit</p>
+<p>country</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getcountries"><a class="anchor" href="#_getcountries"></a>2.2. Return list of countries</h3>
+<h3 id="_getdepartments"><a class="anchor" href="#_getdepartments"></a>2.2. Returns list of Departments in a Given Unit</h3>
 <div class="literalblock">
 <div class="content">
-<pre>GET /resources/v1/country</pre>
+<pre>GET /resources/v1/department</pre>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>2.2.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 45%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
@@ -724,7 +740,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
-<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
@@ -734,15 +749,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitId</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">to filter out the result based upon unit ID</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -765,8 +778,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_countrymodel">CountryModel</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_departmentmodel">DepartmentModel</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
@@ -799,28 +814,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>country</p>
+<p>department</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getdepartments"><a class="anchor" href="#_getdepartments"></a>2.3. Return list of departments of a given unit</h3>
+<h3 id="_getdesignationsofjobrole"><a class="anchor" href="#_getdesignationsofjobrole"></a>2.3. Returns List of Designations in a Given Job Role.</h3>
 <div class="literalblock">
 <div class="content">
-<pre>GET /resources/v1/department</pre>
+<pre>GET /resources/v1/designation</pre>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>2.3.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 45%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
@@ -828,7 +842,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
-<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
@@ -838,23 +851,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitId</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>jobRoleId</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">to filter out the result based upon unit ID</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">to filter out the result based on job role</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer</p></td>
 </tr>
 </tbody>
 </table>
@@ -877,8 +880,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_departmentmodel">DepartmentModel</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_designationmodel">DesignationModel</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
@@ -911,14 +916,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>department</p>
+<p>designation</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getdistricts"><a class="anchor" href="#_getdistricts"></a>2.4. Return list of districts</h3>
+<h3 id="_getdistricts"><a class="anchor" href="#_getdistricts"></a>2.4. Returns List of Districts</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/district</pre>
@@ -928,11 +933,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>2.4.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 45%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
@@ -940,7 +944,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
-<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
@@ -950,15 +953,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
@@ -966,7 +960,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">to filter out the result based upon state ID</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>
@@ -989,7 +982,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_districtmodel">DistrictModel</a></p></td>
 </tr>
 <tr>
@@ -1030,7 +1025,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getdoctypes"><a class="anchor" href="#_getdoctypes"></a>2.5. Get the list of document types</h3>
+<h3 id="_getdoctypes"><a class="anchor" href="#_getdoctypes"></a>2.5. Gets List of Document Types</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/doctype</pre>
@@ -1046,11 +1041,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>2.5.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 45%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
@@ -1058,7 +1052,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
-<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
@@ -1068,15 +1061,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1099,7 +1083,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_doctypemodel">DocTypeModel</a></p></td>
 </tr>
 <tr>
@@ -1140,7 +1126,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getdoctypes"><a class="anchor" href="#_getdoctypes"></a>2.6. Get the list of identity document types</h3>
+<h3 id="_getdoctypes"><a class="anchor" href="#_getdoctypes"></a>2.6. Gets List of Identity Document Types</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/doctype/identitydoctypes</pre>
@@ -1156,11 +1142,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>2.6.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 45%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
@@ -1168,7 +1153,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
-<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
@@ -1178,15 +1162,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1209,7 +1184,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_doctypemodel">DocTypeModel</a></p></td>
 </tr>
 <tr>
@@ -1250,20 +1227,147 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_updateempaddress"><a class="anchor" href="#_updateempaddress"></a>2.7. Update Employee Address details.</h3>
+<h3 id="_getorganizations"><a class="anchor" href="#_getorganizations"></a>2.7. Returns Autocomplete List for a Given Employee Attribute</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/employee</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_3"><a class="anchor" href="#_description_3"></a>2.7.1. Description</h4>
+<div class="paragraph">
+<p>This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>2.7.2. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>attributeName</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the attribute which could be firstName, middleName, lastName or emailAddress</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>attributeValuePrefix</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">firstName, middleName, lastName or emailAddress starts with this value</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>numberOfItems</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The number of items to be returned</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>restricted</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organization</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_7"><a class="anchor" href="#_responses_7"></a>2.7.3. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_7"><a class="anchor" href="#_produces_7"></a>2.7.4. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_8"><a class="anchor" href="#_tags_8"></a>2.7.5. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>employee</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updateempaddress"><a class="anchor" href="#_updateempaddress"></a>2.8. Updates Employee Address Details</h3>
 <div class="literalblock">
 <div class="content">
 <pre>PUT /resources/v1/employee/{id}/address</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_3"><a class="anchor" href="#_description_3"></a>2.7.1. Description</h4>
+<h4 id="_description_4"><a class="anchor" href="#_description_4"></a>2.8.1. Description</h4>
 <div class="paragraph">
 <p>Update Employee Address details.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>2.7.2. Parameters</h4>
+<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>2.8.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -1305,7 +1409,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_7"><a class="anchor" href="#_responses_7"></a>2.7.3. Responses</h4>
+<h4 id="_responses_8"><a class="anchor" href="#_responses_8"></a>2.8.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -1339,7 +1443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_consumes"><a class="anchor" href="#_consumes"></a>2.7.4. Consumes</h4>
+<h4 id="_consumes"><a class="anchor" href="#_consumes"></a>2.8.4. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1352,7 +1456,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_8"><a class="anchor" href="#_tags_8"></a>2.7.5. Tags</h4>
+<h4 id="_tags_9"><a class="anchor" href="#_tags_9"></a>2.8.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1363,27 +1467,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getorganizations"><a class="anchor" href="#_getorganizations"></a>2.8. Return a list of Organization objects</h3>
+<h3 id="_getjobrolesoforg"><a class="anchor" href="#_getjobrolesoforg"></a>2.9. Returns List of Job Roles in a Given Organization</h3>
 <div class="literalblock">
 <div class="content">
-<pre>GET /resources/v1/organization</pre>
+<pre>GET /resources/v1/jobrole</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_4"><a class="anchor" href="#_description_4"></a>2.8.1. Description</h4>
-<div class="paragraph">
-<p>OrganizationType will be a child object under each Organization object</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>2.8.2. Parameters</h4>
+<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a>2.9.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 45%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
@@ -1391,7 +1488,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
-<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
@@ -1401,21 +1497,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgId</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">to filter out the result based on organization</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_8"><a class="anchor" href="#_responses_8"></a>2.8.3. Responses</h4>
+<h4 id="_responses_9"><a class="anchor" href="#_responses_9"></a>2.9.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -1432,7 +1526,110 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_jobrolemodel">JobRoleModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_8"><a class="anchor" href="#_produces_8"></a>2.9.3. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_10"><a class="anchor" href="#_tags_10"></a>2.9.4. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>jobrole</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getorganizations"><a class="anchor" href="#_getorganizations"></a>2.10. Returns List of Organizations</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/organization</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_5"><a class="anchor" href="#_description_5"></a>2.10.1. Description</h4>
+<div class="paragraph">
+<p>OrganizationType will be a child object under each Organization object</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a>2.10.2. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_10"><a class="anchor" href="#_responses_10"></a>2.10.3. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_organizationmodel">OrganizationModel</a></p></td>
 </tr>
 <tr>
@@ -1449,7 +1646,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_7"><a class="anchor" href="#_produces_7"></a>2.8.4. Produces</h4>
+<h4 id="_produces_9"><a class="anchor" href="#_produces_9"></a>2.10.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1462,7 +1659,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_9"><a class="anchor" href="#_tags_9"></a>2.8.5. Tags</h4>
+<h4 id="_tags_11"><a class="anchor" href="#_tags_11"></a>2.10.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1473,27 +1670,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getstates"><a class="anchor" href="#_getstates"></a>2.9. Get the list of states for a given country.</h3>
+<h3 id="_getstates"><a class="anchor" href="#_getstates"></a>2.11. Gets List of States for a Given Country</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/state</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_5"><a class="anchor" href="#_description_5"></a>2.9.1. Description</h4>
+<h4 id="_description_6"><a class="anchor" href="#_description_6"></a>2.11.1. Description</h4>
 <div class="paragraph">
 <p>Get the list of states for a given country.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a>2.9.2. Parameters</h4>
+<h4 id="_parameters_11"><a class="anchor" href="#_parameters_11"></a>2.11.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 45%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
@@ -1501,7 +1697,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
-<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
@@ -1511,15 +1706,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
@@ -1527,13 +1713,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Country for which the list of states will be retrieved</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_9"><a class="anchor" href="#_responses_9"></a>2.9.3. Responses</h4>
+<h4 id="_responses_11"><a class="anchor" href="#_responses_11"></a>2.11.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -1550,7 +1735,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_statemodel">StateModel</a></p></td>
 </tr>
 <tr>
@@ -1567,7 +1754,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_8"><a class="anchor" href="#_produces_8"></a>2.9.4. Produces</h4>
+<h4 id="_produces_10"><a class="anchor" href="#_produces_10"></a>2.11.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1580,11 +1767,113 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_10"><a class="anchor" href="#_tags_10"></a>2.9.5. Tags</h4>
+<h4 id="_tags_12"><a class="anchor" href="#_tags_12"></a>2.11.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
 <p>meta</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getunits"><a class="anchor" href="#_getunits"></a>2.12. Returns List of Units in a Given Organization</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/unit</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_12"><a class="anchor" href="#_parameters_12"></a>2.12.1. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>organizationId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The organizationId to be used as filter</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_12"><a class="anchor" href="#_responses_12"></a>2.12.2. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK<br>
+<strong>Headers</strong> : <br>
+<code>Cache-Control</code> (string) : Caching. <strong>Default</strong> : <code>"private, no-store, max-age=300"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_unitmodel">UnitModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_11"><a class="anchor" href="#_produces_11"></a>2.12.3. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_13"><a class="anchor" href="#_tags_13"></a>2.12.4. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>unit</p>
 </li>
 </ul>
 </div>
@@ -1613,13 +1902,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a country. This field will be ignored during country creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the country.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -1645,20 +1934,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>address</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Address of the department<br>
 <strong>Maximal length</strong> : <code>256</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>departmentId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a department. This field will be ignored during department creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>departmentName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the department<br>
 <strong>Maximal length</strong> : <code>100</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -1671,13 +1960,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To identify the parent of a particular department</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the unit that the department belongs to. The field will be ignored during department creation.<br>
 <strong>Maximal length</strong> : <code>256</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -1703,13 +1992,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>designationId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify the designation. This field will be ignored durin the designation creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>designationName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the designation<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -1735,26 +2024,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>districtId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a district. This field will be ignored during district creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>districtName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the district.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a state.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the state. This field will be ignored during district creation.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -1780,23 +2069,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>docTypeId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify the type of document viz. passport, birth certificate etc. This field will be ignored during doc type creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>docTypeName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the document type.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>identityDoc</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">If the document if a identity document, the value will be "X".<br>
-<strong>Maximal length</strong> : <code>1</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">If the document if a identity document, the value will be true, otherwise false.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 </tr>
 </tbody>
 </table>
@@ -1923,13 +2211,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The unique identifier of the country.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the country. This field will be ignored during employee creation.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -1943,7 +2231,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>districtId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The unique identifier of the district.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
@@ -1956,14 +2244,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>houseNo</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The number of the house.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pinno</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The zip code of the location.<br>
 <strong>Maximal length</strong> : <code>15</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -1977,20 +2265,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The unique identifier of the state.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the state. This field will be ignored during employee creation.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>streetName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the street.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -1999,13 +2287,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_employeeid"><a class="anchor" href="#_employeeid"></a>3.8. EmployeeId</h3>
-<div class="paragraph">
-<p><em>Type</em> : string</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_employeeprofilemodel"><a class="anchor" href="#_employeeprofilemodel"></a>3.9. EmployeeProfileModel</h3>
+<h3 id="_employeeprofilemodel"><a class="anchor" href="#_employeeprofilemodel"></a>3.8. EmployeeProfileModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -2045,7 +2327,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_enployeehierarchymodel"><a class="anchor" href="#_enployeehierarchymodel"></a>3.10. EnployeeHierarchyModel</h3>
+<h3 id="_enployeehierarchymodel"><a class="anchor" href="#_enployeehierarchymodel"></a>3.9. EnployeeHierarchyModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -2062,20 +2344,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>cl</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The casual leaves of the employee.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>hrId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The employee id of the HR.<br>
 <strong>Maximal length</strong> : <code>20</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>maternityLeave</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The maternity leaves of the employee.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
@@ -2087,38 +2369,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>paternityLeave</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The paternity leaves of the employee.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pl</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The paid leaves of the employee.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>probationPeriodEndDate</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The probation period end date.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>specialLeave</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The special leaves of the employee.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The status of the employee.<br>
 <strong>Maximal length</strong> : <code>4</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>supervisorId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The employee id of the supervisor.<br>
 <strong>Maximal length</strong> : <code>20</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -2127,7 +2409,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_errormodel"><a class="anchor" href="#_errormodel"></a>3.11. ErrorModel</h3>
+<h3 id="_errormodel"><a class="anchor" href="#_errormodel"></a>3.10. ErrorModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -2144,7 +2426,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>errorMessage</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Detailed Error Message.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -2152,7 +2434,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_grademodel"><a class="anchor" href="#_grademodel"></a>3.12. GradeModel</h3>
+<h3 id="_grademodel"><a class="anchor" href="#_grademodel"></a>3.11. GradeModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -2169,13 +2451,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>gradeId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a grade. This field will be ignored during grade creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>gradeName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the grade<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -2184,7 +2466,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_jobrolemodel"><a class="anchor" href="#_jobrolemodel"></a>3.13. JobRoleModel</h3>
+<h3 id="_jobrolemodel"><a class="anchor" href="#_jobrolemodel"></a>3.12. JobRoleModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -2201,33 +2483,70 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NoticePeriod</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Notice period if the employee returns after the probation period.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>grade</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the grade model</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_grademodel">GradeModel</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>jobRoleId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>organization</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the organization model</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_organizationmodel">OrganizationModel</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>probationNoticePeriod</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Notice period if the employee resigns during the probation period.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_optionalsalarymodel"><a class="anchor" href="#_optionalsalarymodel"></a>3.13. OptionalSalaryModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>maxAllowLimit</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The maximum allowable limit.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">number (double)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>optSalaryComponent</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The Salary component.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_salaryoptcomponentmodel">SalaryOptComponentModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>salaryValue</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The default value of the salary Component for the paricular job role id.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">number (double)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2250,27 +2569,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>address</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Address of the organization<br>
 <strong>Maximal length</strong> : <code>256</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">unique identifier of the organization. This field will be ignored during organization creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the organization.<br>
 <strong>Maximal length</strong> : <code>100</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgType</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The organization type.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_organizationtypemodel">OrganizationTypeModel</a></p></td>
 </tr>
@@ -2302,13 +2621,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgTypeId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">unique identifier of the organization type. This field will be ignored during organization type creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgTypeName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the organization type.<br>
 <strong>Maximal length</strong> : <code>100</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -2317,7 +2636,168 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_statemodel"><a class="anchor" href="#_statemodel"></a>3.16. StateModel</h3>
+<h3 id="_salarycomponentmodel"><a class="anchor" href="#_salarycomponentmodel"></a>3.16. SalaryComponentModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>compId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identifier of the salary component. This field will be ignored during salary component creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>compName</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the salary component.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Description of the salary component.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>salComponent</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Salary componenet.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_salarymodel"><a class="anchor" href="#_salarymodel"></a>3.17. SalaryModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>maxAllowedLimit</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The maximum allowable limit.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">number (double)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>salaryComponent</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The Salary component.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_salarycomponentmodel">SalaryComponentModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>salaryValue</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The default value of the salary Component for the paricular job role id.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">number (double)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_salaryoptcomponentmodel"><a class="anchor" href="#_salaryoptcomponentmodel"></a>3.18. SalaryOptComponentModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>creditDebitFlag</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This flag indicates whether the amount will be credited &#169; to the employee&#8217;s account or debited (D) from the employee&#8217;s account.<br>
+<strong>Maximal length</strong> : <code>1</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Description of the salary component.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>empOptOutFlag</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This flag indicates whether the employee can opt out from the benefit (Y) or no (N).<br>
+<strong>Maximal length</strong> : <code>1</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>endDate</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The end date of this benefit in company policy.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>frequency</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Frequency of the component.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>optCompId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identifier of the optional salary component. This field will be ignored during optional salary component creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>optCompName</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the salary component.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>optType</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional component type.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>salOptComponent</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Salary componenet.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_statemodel"><a class="anchor" href="#_statemodel"></a>3.19. StateModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -2334,26 +2814,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a country.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the country. This field will be ignored during state creation.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a state. This field will be ignored during state creation.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the state.<br>
 <strong>Maximal length</strong> : <code>32</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
@@ -2362,7 +2842,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_unitmodel"><a class="anchor" href="#_unitmodel"></a>3.17. UnitModel</h3>
+<h3 id="_unitmodel"><a class="anchor" href="#_unitmodel"></a>3.20. UnitModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -2379,46 +2859,46 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>address</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Address of the unit.<br>
 <strong>Maximal length</strong> : <code>256</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>empIdPrefix</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Prefix of employee id.<br>
 <strong>Maximal length</strong> : <code>10</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>empIdSeqName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Maximal length</strong> : <code>20</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">unique identifier of the organization.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the organization. This field will be ignored during unit creation.<br>
 <strong>Maximal length</strong> : <code>100</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitId</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify an unit.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitName</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the unit.<br>
 <strong>Maximal length</strong> : <code>100</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>

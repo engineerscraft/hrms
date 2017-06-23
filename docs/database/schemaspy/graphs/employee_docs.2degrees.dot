@@ -24,6 +24,7 @@ digraph "twoDegreesRelationshipsGraph" {
   "employee_docs":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=crowtee arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
+  "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_optional_benefits":"employee_optional_benefits.heading":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_profile":"employee_profile.heading":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
   "employee_salary":"employee_salary.heading":w -> "employee":"employee.heading":e [arrowtail=crowtee arrowhead=none];
@@ -94,7 +95,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="HR_FLAG" COLSPAN="3" ALIGN="LEFT">HR_FLAG</TD></TR>
       <TR><TD PORT="SUPERVISOR_FLAG" COLSPAN="3" ALIGN="LEFT">SUPERVISOR_FLAG</TD></TR>
       <TR><TD PORT="EMPLOYEE_IMAGE" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_IMAGE</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">9 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -127,7 +128,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_hierarchy_status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_hierarchy_status.html#graph"
     tooltip="employee_hierarchy_status"

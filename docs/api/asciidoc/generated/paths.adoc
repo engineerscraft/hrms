@@ -2,51 +2,8 @@
 [[_paths]]
 == Paths
 
-[[_getunits]]
-=== Return list of units of a given organization
-....
-GET /resources/unit
-....
-
-
-==== Parameters
-
-[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
-|===
-|Type|Name|Description|Schema|Default
-|**Header**|**Authorization: Bearer ** +
-__required__|Access token|string|
-|**Header**|**Cache-Control** +
-__required__|Caching|string|`"private, no-store, max-age=300"`
-|**Query**|**organizationId** +
-__required__|The organizationId to be used as filter|string|
-|===
-
-
-==== Responses
-
-[options="header", cols=".^2,.^14,.^4"]
-|===
-|HTTP Code|Description|Schema
-|**200**|OK|<<_unitmodel,UnitModel>>
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
-|===
-
-
-==== Produces
-
-* `application/xml`
-* `application/json`
-
-
-==== Tags
-
-* unit
-
-
 [[_getcountries]]
-=== Return list of countries
+=== Returns List of Countries
 ....
 GET /resources/v1/country
 ....
@@ -54,13 +11,11 @@ GET /resources/v1/country
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
+|Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string|
-|**Header**|**Cache-Control** +
-__required__|Caching|string|`"private, no-store, max-age=300"`
+__required__|Access token|string
 |===
 
 
@@ -69,7 +24,9 @@ __required__|Caching|string|`"private, no-store, max-age=300"`
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_countrymodel,CountryModel>>
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_countrymodel,CountryModel>>
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -87,7 +44,7 @@ __required__|Caching|string|`"private, no-store, max-age=300"`
 
 
 [[_getdepartments]]
-=== Return list of departments of a given unit
+=== Returns list of Departments in a Given Unit
 ....
 GET /resources/v1/department
 ....
@@ -95,15 +52,13 @@ GET /resources/v1/department
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
+|Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string|
-|**Header**|**Cache-Control** +
-__required__|Caching|string|`"private, no-store, max-age=300"`
+__required__|Access token|string
 |**Query**|**unitId** +
-__required__|to filter out the result based upon unit ID|string|
+__required__|to filter out the result based upon unit ID|string
 |===
 
 
@@ -112,7 +67,9 @@ __required__|to filter out the result based upon unit ID|string|
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_departmentmodel,DepartmentModel>>
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_departmentmodel,DepartmentModel>>
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -129,24 +86,22 @@ __required__|to filter out the result based upon unit ID|string|
 * department
 
 
-[[_getdistricts]]
-=== Return list of districts
+[[_getdesignationsofjobrole]]
+=== Returns List of Designations in a Given Job Role.
 ....
-GET /resources/v1/district
+GET /resources/v1/designation
 ....
 
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
+|Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string|
-|**Header**|**Cache-Control** +
-__required__|Caching|string|`"private, no-store, max-age=300"`
-|**Query**|**stateId** +
-__required__|to filter out the result based upon state ID|string|
+__required__|Access token|string
+|**Query**|**jobRoleId** +
+__required__|to filter out the result based on job role|integer
 |===
 
 
@@ -155,7 +110,52 @@ __required__|to filter out the result based upon state ID|string|
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_districtmodel,DistrictModel>>
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_designationmodel,DesignationModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* designation
+
+
+[[_getdistricts]]
+=== Returns List of Districts
+....
+GET /resources/v1/district
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string
+|**Query**|**stateId** +
+__required__|to filter out the result based upon state ID|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_districtmodel,DistrictModel>>
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -173,7 +173,7 @@ __required__|to filter out the result based upon state ID|string|
 
 
 [[_getdoctypes]]
-=== Get the list of document types
+=== Gets List of Document Types
 ....
 GET /resources/v1/doctype
 ....
@@ -185,13 +185,11 @@ Get the list of document types
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
+|Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string|
-|**Header**|**Cache-Control** +
-__required__|Caching|string|`"private, no-store, max-age=300"`
+__required__|Access token|string
 |===
 
 
@@ -200,7 +198,9 @@ __required__|Caching|string|`"private, no-store, max-age=300"`
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_doctypemodel,DocTypeModel>>
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctypemodel,DocTypeModel>>
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -218,7 +218,7 @@ __required__|Caching|string|`"private, no-store, max-age=300"`
 
 
 [[_getdoctypes]]
-=== Get the list of identity document types
+=== Gets List of Identity Document Types
 ....
 GET /resources/v1/doctype/identitydoctypes
 ....
@@ -230,13 +230,11 @@ Get the list of identity document types
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
+|Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string|
-|**Header**|**Cache-Control** +
-__required__|Caching|string|`"private, no-store, max-age=300"`
+__required__|Access token|string
 |===
 
 
@@ -245,7 +243,9 @@ __required__|Caching|string|`"private, no-store, max-age=300"`
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_doctypemodel,DocTypeModel>>
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctypemodel,DocTypeModel>>
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -262,8 +262,59 @@ __required__|Caching|string|`"private, no-store, max-age=300"`
 * meta
 
 
+[[_getorganizations]]
+=== Returns Autocomplete List for a Given Employee Attribute
+....
+GET /resources/v1/employee
+....
+
+
+==== Description
+This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string
+|**Path**|**attributeName** +
+__required__|Name of the attribute which could be firstName, middleName, lastName or emailAddress|string
+|**Path**|**attributeValuePrefix** +
+__required__|firstName, middleName, lastName or emailAddress starts with this value|string
+|**Path**|**numberOfItems** +
+__required__|The number of items to be returned|integer
+|**Path**|**restricted** +
+__required__|The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organization|boolean
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
 [[_updateempaddress]]
-=== Update Employee Address details.
+=== Updates Employee Address Details
 ....
 PUT /resources/v1/employee/{id}/address
 ....
@@ -309,8 +360,51 @@ __optional__|Employee Address parameters in JSON Body|<<_employeeaddressmodel,Em
 * employee
 
 
+[[_getjobrolesoforg]]
+=== Returns List of Job Roles in a Given Organization
+....
+GET /resources/v1/jobrole
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string
+|**Query**|**orgId** +
+__required__|to filter out the result based on organization|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_jobrolemodel,JobRoleModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* jobrole
+
+
 [[_getorganizations]]
-=== Return a list of Organization objects
+=== Returns List of Organizations
 ....
 GET /resources/v1/organization
 ....
@@ -322,13 +416,11 @@ OrganizationType will be a child object under each Organization object
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
+|Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string|
-|**Header**|**Cache-Control** +
-__required__|Caching|string|`"private, no-store, max-age=300"`
+__required__|Access token|string
 |===
 
 
@@ -337,7 +429,9 @@ __required__|Caching|string|`"private, no-store, max-age=300"`
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_organizationmodel,OrganizationModel>>
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_organizationmodel,OrganizationModel>>
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
@@ -355,7 +449,7 @@ __required__|Caching|string|`"private, no-store, max-age=300"`
 
 
 [[_getstates]]
-=== Get the list of states for a given country.
+=== Gets List of States for a Given Country
 ....
 GET /resources/v1/state
 ....
@@ -367,15 +461,13 @@ Get the list of states for a given country.
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
+|Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string|
-|**Header**|**Cache-Control** +
-__required__|Caching|string|`"private, no-store, max-age=300"`
+__required__|Access token|string
 |**Query**|**countryId** +
-__required__|Country for which the list of states will be retrieved|string|
+__required__|Country for which the list of states will be retrieved|string
 |===
 
 
@@ -384,7 +476,9 @@ __required__|Country for which the list of states will be retrieved|string|
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_statemodel,StateModel>>
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_statemodel,StateModel>>
 |**404**|Not Found|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errorresponse,ErrorResponse>>
 |===
@@ -399,6 +493,49 @@ __required__|Country for which the list of states will be retrieved|string|
 ==== Tags
 
 * meta
+
+
+[[_getunits]]
+=== Returns List of Units in a Given Organization
+....
+GET /resources/v1/unit
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string
+|**Query**|**organizationId** +
+__required__|The organizationId to be used as filter|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_unitmodel,UnitModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* unit
 
 
 

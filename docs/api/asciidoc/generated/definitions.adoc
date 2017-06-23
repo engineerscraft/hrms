@@ -9,9 +9,9 @@
 |===
 |Name|Description|Schema
 |**countryId** +
-__optional__|To uniquly identify a country. This field will be ignored during country creation.|integer (int(32))
+__required__|To uniquly identify a country. This field will be ignored during country creation.|integer (int(32))
 |**countryName** +
-__optional__|Name of the country. +
+__required__|Name of the country. +
 **Maximal length** : `32`|string (varchar)
 |===
 
@@ -23,19 +23,19 @@ __optional__|Name of the country. +
 |===
 |Name|Description|Schema
 |**address** +
-__optional__|Address of the department +
+__required__|Address of the department +
 **Maximal length** : `256`|string (varchar)
 |**departmentId** +
-__optional__|To uniquly identify a department. This field will be ignored during department creation.|integer (int(32))
+__required__|To uniquly identify a department. This field will be ignored during department creation.|integer (int(32))
 |**departmentName** +
-__optional__|Name of the department +
+__required__|Name of the department +
 **Maximal length** : `100`|string (varchar)
 |**parentDepartmentId** +
 __optional__|To identify the parent of a particular department|integer (int(32))
 |**unitId** +
-__optional__|To identify the parent of a particular department|integer (int(32))
+__required__|To identify the parent of a particular department|integer (int(32))
 |**unitName** +
-__optional__|Name of the unit that the department belongs to. The field will be ignored during department creation. +
+__required__|Name of the unit that the department belongs to. The field will be ignored during department creation. +
 **Maximal length** : `256`|string (varchar)
 |===
 
@@ -47,9 +47,9 @@ __optional__|Name of the unit that the department belongs to. The field will be 
 |===
 |Name|Description|Schema
 |**designationId** +
-__optional__|To uniquly identify the designation. This field will be ignored durin the designation creation.|integer (int(32))
+__required__|To uniquly identify the designation. This field will be ignored durin the designation creation.|integer (int(32))
 |**designationName** +
-__optional__|Name of the designation +
+__required__|Name of the designation +
 **Maximal length** : `32`|string (varchar)
 |===
 
@@ -61,14 +61,14 @@ __optional__|Name of the designation +
 |===
 |Name|Description|Schema
 |**districtId** +
-__optional__|To uniquly identify a district. This field will be ignored during district creation.|integer (int(32))
+__required__|To uniquly identify a district. This field will be ignored during district creation.|integer (int(32))
 |**districtName** +
-__optional__|Name of the district. +
+__required__|Name of the district. +
 **Maximal length** : `32`|string (varchar)
 |**stateId** +
-__optional__|To uniquly identify a state.|integer (int(32))
+__required__|To uniquly identify a state.|integer (int(32))
 |**stateName** +
-__optional__|Name of the state. This field will be ignored during district creation. +
+__required__|Name of the state. This field will be ignored during district creation. +
 **Maximal length** : `32`|string (varchar)
 |===
 
@@ -80,13 +80,12 @@ __optional__|Name of the state. This field will be ignored during district creat
 |===
 |Name|Description|Schema
 |**docTypeId** +
-__optional__|To uniquly identify the type of document viz. passport, birth certificate etc. This field will be ignored during doc type creation.|integer (int(32))
+__required__|To uniquly identify the type of document viz. passport, birth certificate etc. This field will be ignored during doc type creation.|integer (int(32))
 |**docTypeName** +
-__optional__|The name of the document type. +
+__required__|The name of the document type. +
 **Maximal length** : `32`|string (varchar)
 |**identityDoc** +
-__optional__|If the document if a identity document, the value will be "X". +
-**Maximal length** : `1`|string (varchar)
+__required__|If the document if a identity document, the value will be true, otherwise false.|boolean
 |===
 
 
@@ -139,41 +138,36 @@ __optional__|The number of siblings of the employee.|integer (int(32))
 __optional__|The name of the area. +
 **Maximal length** : `32`|string (varchar)
 |**countryId** +
-__optional__|The unique identifier of the country.|integer (int(32))
+__required__|The unique identifier of the country.|integer (int(32))
 |**countryName** +
-__optional__|The name of the country. This field will be ignored during employee creation. +
+__required__|The name of the country. This field will be ignored during employee creation. +
 **Maximal length** : `32`|string (varchar)
 |**description** +
 __optional__|The description or landmark of the address. +
 **Maximal length** : `100`|string (varchar)
 |**districtId** +
-__optional__|The unique identifier of the district.|integer (int(32))
+__required__|The unique identifier of the district.|integer (int(32))
 |**districtName** +
 __optional__|The name of the district. This field will be ignored during employee creation. +
 **Maximal length** : `32`|string (varchar)
 |**houseNo** +
-__optional__|The number of the house. +
+__required__|The number of the house. +
 **Maximal length** : `32`|string (varchar)
 |**pinno** +
-__optional__|The zip code of the location. +
+__required__|The zip code of the location. +
 **Maximal length** : `15`|string (varchar)
 |**region** +
 __optional__|The name of the region. +
 **Maximal length** : `32`|string (varchar)
 |**stateId** +
-__optional__|The unique identifier of the state.|integer (int(32))
+__required__|The unique identifier of the state.|integer (int(32))
 |**stateName** +
-__optional__|The name of the state. This field will be ignored during employee creation. +
+__required__|The name of the state. This field will be ignored during employee creation. +
 **Maximal length** : `32`|string (varchar)
 |**streetName** +
-__optional__|The name of the street. +
+__required__|The name of the street. +
 **Maximal length** : `32`|string (varchar)
 |===
-
-
-[[_employeeid]]
-=== EmployeeId
-__Type__ : string
 
 
 [[_employeeprofilemodel]]
@@ -201,27 +195,27 @@ __optional__|The highest qualification of the employee. +
 |===
 |Name|Description|Schema
 |**cl** +
-__optional__|The casual leaves of the employee.|integer (int(32))
+__required__|The casual leaves of the employee.|integer (int(32))
 |**hrId** +
-__optional__|The employee id of the HR. +
+__required__|The employee id of the HR. +
 **Maximal length** : `20`|string (varchar)
 |**maternityLeave** +
-__optional__|The maternity leaves of the employee.|integer (int(32))
+__required__|The maternity leaves of the employee.|integer (int(32))
 |**noticePeriodEndDate** +
 __optional__|The notice period end date.|string (date-time)
 |**paternityLeave** +
-__optional__|The paternity leaves of the employee.|integer (int(32))
+__required__|The paternity leaves of the employee.|integer (int(32))
 |**pl** +
-__optional__|The paid leaves of the employee.|integer (int(32))
+__required__|The paid leaves of the employee.|integer (int(32))
 |**probationPeriodEndDate** +
-__optional__|The probation period end date.|string (date-time)
+__required__|The probation period end date.|string (date-time)
 |**specialLeave** +
-__optional__|The special leaves of the employee.|integer (int(32))
+__required__|The special leaves of the employee.|integer (int(32))
 |**status** +
-__optional__|The status of the employee. +
+__required__|The status of the employee. +
 **Maximal length** : `4`|string (varchar)
 |**supervisorId** +
-__optional__|The employee id of the supervisor. +
+__required__|The employee id of the supervisor. +
 **Maximal length** : `20`|string (varchar)
 |===
 
@@ -233,7 +227,7 @@ __optional__|The employee id of the supervisor. +
 |===
 |Name|Description|Schema
 |**errorMessage** +
-__optional__|Detailed Error Message.|string
+__required__|Detailed Error Message.|string
 |===
 
 
@@ -244,9 +238,9 @@ __optional__|Detailed Error Message.|string
 |===
 |Name|Description|Schema
 |**gradeId** +
-__optional__|To uniquly identify a grade. This field will be ignored during grade creation.|integer (int(32))
+__required__|To uniquly identify a grade. This field will be ignored during grade creation.|integer (int(32))
 |**gradeName** +
-__optional__|Name of the grade +
+__required__|Name of the grade +
 **Maximal length** : `32`|string (varchar)
 |===
 
@@ -258,15 +252,30 @@ __optional__|Name of the grade +
 |===
 |Name|Description|Schema
 |**NoticePeriod** +
-__optional__|Notice period if the employee returns after the probation period.|integer (int(32))
+__required__|Notice period if the employee returns after the probation period.|integer (int(32))
 |**grade** +
-__optional__|Name of the grade model|<<_grademodel,GradeModel>>
+__required__|Name of the grade model|<<_grademodel,GradeModel>>
 |**jobRoleId** +
-__optional__|To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.|integer (int(32))
+__required__|To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.|integer (int(32))
 |**organization** +
-__optional__|Name of the organization model|<<_organizationmodel,OrganizationModel>>
+__required__|Name of the organization model|<<_organizationmodel,OrganizationModel>>
 |**probationNoticePeriod** +
-__optional__|Notice period if the employee resigns during the probation period.|integer (int(32))
+__required__|Notice period if the employee resigns during the probation period.|integer (int(32))
+|===
+
+
+[[_optionalsalarymodel]]
+=== OptionalSalaryModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**maxAllowLimit** +
+__optional__|The maximum allowable limit.|number (double)
+|**optSalaryComponent** +
+__required__|The Salary component.|<<_salaryoptcomponentmodel,SalaryOptComponentModel>>
+|**salaryValue** +
+__required__|The default value of the salary Component for the paricular job role id.|number (double)
 |===
 
 
@@ -277,15 +286,15 @@ __optional__|Notice period if the employee resigns during the probation period.|
 |===
 |Name|Description|Schema
 |**address** +
-__optional__|Address of the organization +
+__required__|Address of the organization +
 **Maximal length** : `256`|string (varchar)
 |**orgId** +
-__optional__|unique identifier of the organization. This field will be ignored during organization creation.|integer (int(32))
+__required__|unique identifier of the organization. This field will be ignored during organization creation.|integer (int(32))
 |**orgName** +
-__optional__|Name of the organization. +
+__required__|Name of the organization. +
 **Maximal length** : `100`|string (varchar)
 |**orgType** +
-__optional__|The organization type.|<<_organizationtypemodel,OrganizationTypeModel>>
+__required__|The organization type.|<<_organizationtypemodel,OrganizationTypeModel>>
 |===
 
 
@@ -299,10 +308,77 @@ __optional__|The organization type.|<<_organizationtypemodel,OrganizationTypeMod
 __optional__|The description of the organization type. +
 **Maximal length** : `100`|string (varchar)
 |**orgTypeId** +
-__optional__|unique identifier of the organization type. This field will be ignored during organization type creation.|integer (int(32))
+__required__|unique identifier of the organization type. This field will be ignored during organization type creation.|integer (int(32))
 |**orgTypeName** +
-__optional__|The name of the organization type. +
+__required__|The name of the organization type. +
 **Maximal length** : `100`|string (varchar)
+|===
+
+
+[[_salarycomponentmodel]]
+=== SalaryComponentModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**compId** +
+__required__|Unique identifier of the salary component. This field will be ignored during salary component creation.|integer (int(32))
+|**compName** +
+__required__|Name of the salary component. +
+**Maximal length** : `32`|string (varchar)
+|**description** +
+__optional__|Description of the salary component. +
+**Maximal length** : `32`|string (varchar)
+|**salComponent** +
+__optional__|Salary componenet. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_salarymodel]]
+=== SalaryModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**maxAllowedLimit** +
+__required__|The maximum allowable limit.|number (double)
+|**salaryComponent** +
+__required__|The Salary component.|<<_salarycomponentmodel,SalaryComponentModel>>
+|**salaryValue** +
+__required__|The default value of the salary Component for the paricular job role id.|number (double)
+|===
+
+
+[[_salaryoptcomponentmodel]]
+=== SalaryOptComponentModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**creditDebitFlag** +
+__required__|This flag indicates whether the amount will be credited (C) to the employee's account or debited (D) from the employee's account. +
+**Maximal length** : `1`|string (varchar)
+|**description** +
+__optional__|Description of the salary component. +
+**Maximal length** : `32`|string (varchar)
+|**empOptOutFlag** +
+__required__|This flag indicates whether the employee can opt out from the benefit (Y) or no (N). +
+**Maximal length** : `1`|string (varchar)
+|**endDate** +
+__required__|The end date of this benefit in company policy.|string (date-time)
+|**frequency** +
+__required__|Frequency of the component.|integer (int(32))
+|**optCompId** +
+__required__|Unique identifier of the optional salary component. This field will be ignored during optional salary component creation.|integer (int(32))
+|**optCompName** +
+__required__|Name of the salary component. +
+**Maximal length** : `32`|string (varchar)
+|**optType** +
+__required__|Optional component type.|integer (int(32))
+|**salOptComponent** +
+__optional__|Salary componenet. +
+**Maximal length** : `32`|string (varchar)
 |===
 
 
@@ -313,14 +389,14 @@ __optional__|The name of the organization type. +
 |===
 |Name|Description|Schema
 |**countryId** +
-__optional__|To uniquly identify a country.|integer (int(32))
+__required__|To uniquly identify a country.|integer (int(32))
 |**countryName** +
-__optional__|Name of the country. This field will be ignored during state creation. +
+__required__|Name of the country. This field will be ignored during state creation. +
 **Maximal length** : `32`|string (varchar)
 |**stateId** +
-__optional__|To uniquly identify a state. This field will be ignored during state creation.|integer (int(32))
+__required__|To uniquly identify a state. This field will be ignored during state creation.|integer (int(32))
 |**stateName** +
-__optional__|Name of the state. +
+__required__|Name of the state. +
 **Maximal length** : `32`|string (varchar)
 |===
 
@@ -332,22 +408,22 @@ __optional__|Name of the state. +
 |===
 |Name|Description|Schema
 |**address** +
-__optional__|Address of the unit. +
+__required__|Address of the unit. +
 **Maximal length** : `256`|string (varchar)
 |**empIdPrefix** +
-__optional__|Prefix of employee id. +
+__required__|Prefix of employee id. +
 **Maximal length** : `10`|string (varchar)
 |**empIdSeqName** +
-__optional__|**Maximal length** : `20`|string (varchar)
+__required__|**Maximal length** : `20`|string (varchar)
 |**orgId** +
-__optional__|unique identifier of the organization.|integer (int(32))
+__required__|unique identifier of the organization.|integer (int(32))
 |**orgName** +
-__optional__|Name of the organization. This field will be ignored during unit creation. +
+__required__|Name of the organization. This field will be ignored during unit creation. +
 **Maximal length** : `100`|string (varchar)
 |**unitId** +
-__optional__|To uniquly identify an unit.|integer (int(32))
+__required__|To uniquly identify an unit.|integer (int(32))
 |**unitName** +
-__optional__|Name of the unit. +
+__required__|Name of the unit. +
 **Maximal length** : `100`|string (varchar)
 |===
 

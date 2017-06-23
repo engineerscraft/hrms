@@ -5,11 +5,6 @@ info:
   title: HRMS
 host: 'localhost:8080'
 basePath: /resources
-security: [
-  {
-    access-token: []
-  }
-]
 tags:
   - name: meta
     description: Meta/Master Data Access
@@ -25,6 +20,10 @@ tags:
     description: Everything about the country
   - name: district
     description: Everything about the district
+  - name: designation
+    description: Everything about the designation
+  - name: jobrole
+    description: Everything about the job role
 schemes:
   - http
 paths:
@@ -32,7 +31,7 @@ paths:
     get:
       tags:
         - meta
-      summary: Get the list of states for a given country.
+      summary: Gets List of States for a Given Country
       description: Get the list of states for a given country. 
       operationId: getStates
       produces:
@@ -44,12 +43,6 @@ paths:
           description: Access token
           required: true
           type: string
-        - name: Cache-Control
-          in: header
-          description: Caching
-          required: true
-          type: string
-          default: private, no-store, max-age=300
         - name: countryId
           in: query
           description: Country for which the list of states will be retrieved
@@ -60,6 +53,11 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/StateModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
         '404':
           description: Not Found
           schema:
@@ -72,7 +70,7 @@ paths:
     get:
       tags:
         - meta
-      summary: Get the list of document types
+      summary: Gets List of Document Types
       description: Get the list of document types
       operationId: getDocTypes
       produces:
@@ -84,17 +82,16 @@ paths:
           description: Access token
           required: true
           type: string
-        - name: Cache-Control
-          in: header
-          description: Caching
-          required: true
-          type: string
-          default: private, no-store, max-age=300
       responses:
         '200':
           description: OK
           schema:
             $ref: '#/definitions/DocTypeModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
         '404':
           description: Not Found
           schema:
@@ -107,7 +104,7 @@ paths:
     get:
       tags:
         - meta
-      summary: Get the list of identity document types
+      summary: Gets List of Identity Document Types
       description: Get the list of identity document types
       operationId: getDocTypes
       produces:
@@ -119,17 +116,16 @@ paths:
           description: Access token
           required: true
           type: string
-        - name: Cache-Control
-          in: header
-          description: Caching
-          required: true
-          type: string
-          default: private, no-store, max-age=300
       responses:
         '200':
           description: OK
           schema:
             $ref: '#/definitions/DocTypeModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
         '404':
           description: Not Found
           schema:
@@ -142,7 +138,7 @@ paths:
     put:
       tags:
         - employee
-      summary: Update Employee Address details.
+      summary: Updates Employee Address Details
       description: Update Employee Address details.
       operationId: updateEmpAddress
       consumes:
@@ -175,11 +171,61 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/ErrorModel'
+  /v1/employee:
+    get:
+      tags:
+        - employee
+      summary: Returns Autocomplete List for a Given Employee Attribute
+      description: This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees
+      operationId: getOrganizations
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: attributeName
+          in: path
+          type: string
+          description: Name of the attribute which could be firstName, middleName, lastName or emailAddress
+          required: true
+        - name: attributeValuePrefix
+          in: path
+          type: string
+          description: firstName, middleName, lastName or emailAddress starts with this value
+          required: true
+        - name: numberOfItems
+          in: path
+          type: integer
+          description: The number of items to be returned
+          required: true
+        - name: restricted
+          in: path
+          type: boolean
+          description: The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organization
+          required: true
+      responses:
+        '200':
+          description: OK
+          type: array
+          items:
+            type: string
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'  
   /v1/organization:
     get:
       tags:
         - organization
-      summary: Return a list of Organization objects
+      summary: Returns List of Organizations
       description: OrganizationType will be a child object under each Organization object
       operationId: getOrganizations
       produces:
@@ -191,17 +237,16 @@ paths:
           description: Access token
           required: true
           type: string
-        - name: Cache-Control
-          in: header
-          description: Caching
-          required: true
-          type: string
-          default: private, no-store, max-age=300
       responses:
         '200':
           description: OK
           schema:
             $ref: '#/definitions/OrganizationModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
         '404':
           description: Not Found
           schema:
@@ -210,11 +255,11 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/ErrorModel'
-  /unit:
+  /v1/unit:
     get:
       tags:
         - unit
-      summary: Return list of units of a given organization
+      summary: Returns List of Units in a Given Organization
       operationId: getUnits
       produces:
         - application/xml
@@ -225,12 +270,6 @@ paths:
           description: Access token
           required: true
           type: string
-        - name: Cache-Control
-          in: header
-          description: Caching
-          required: true
-          type: string
-          default: private, no-store, max-age=300
         - name: organizationId
           in: query
           description: The organizationId to be used as filter
@@ -241,6 +280,11 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/UnitModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
         '404':
           description: Not Found
           schema:
@@ -253,7 +297,7 @@ paths:
     get:
       tags:
         - department
-      summary: Return list of departments of a given unit
+      summary: Returns list of Departments in a Given Unit
       operationId: getDepartments
       produces:
         - application/xml
@@ -264,12 +308,6 @@ paths:
           description: Access token
           required: true
           type: string
-        - name: Cache-Control
-          in: header
-          description: Caching
-          required: true
-          type: string
-          default: private, no-store, max-age=300
         - name: unitId
           in: query
           description: to filter out the result based upon unit ID
@@ -280,6 +318,11 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/DepartmentModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
         '404':
           description: Not Found
           schema:
@@ -292,7 +335,7 @@ paths:
     get:
       tags:
         - country
-      summary: Return list of countries
+      summary: Returns List of Countries
       operationId: getCountries
       produces:
         - application/xml
@@ -303,17 +346,16 @@ paths:
           description: Access token
           required: true
           type: string
-        - name: Cache-Control
-          in: header
-          description: Caching
-          required: true
-          type: string
-          default: private, no-store, max-age=300
       responses:
         '200':
           description: OK
           schema:
             $ref: '#/definitions/CountryModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
         '404':
           description: Not Found
           schema:
@@ -326,7 +368,7 @@ paths:
     get:
       tags:
         - district
-      summary: Return list of districts
+      summary: Returns List of Districts
       operationId: getDistricts
       produces:
         - application/xml
@@ -337,12 +379,6 @@ paths:
           description: Access token
           required: true
           type: string
-        - name: Cache-Control
-          in: header
-          description: Caching
-          required: true
-          type: string
-          default: private, no-store, max-age=300
         - name: stateId
           in: query
           description: to filter out the result based upon state ID
@@ -353,6 +389,87 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/DistrictModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/jobrole:
+    get:
+      tags:
+        - jobrole
+      summary: Returns List of Job Roles in a Given Organization
+      operationId: getJobRolesOfOrg
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: orgId
+          in: query
+          description: to filter out the result based on organization
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JobRoleModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/designation:
+    get:
+      tags:
+        - designation
+      summary: Returns List of Designations in a Given Job Role.
+      operationId: getDesignationsOfJobRole
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: jobRoleId
+          in: query
+          description: to filter out the result based on job role
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DesignationModel'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
         '404':
           description: Not Found
           schema:
@@ -368,8 +485,8 @@ definitions:
       errorMessage:
         type: string
         description: Detailed Error Message.
-        required:
-          - errorMessage
+    required: 
+      - errorMessage
   CountryModel:
     type: object
     properties:
@@ -382,6 +499,9 @@ definitions:
         format: varchar
         maxLength: 32
         description: Name of the country.
+    required: 
+      - countryId
+      - countryName
   StateModel:
     type: object
     properties:
@@ -403,6 +523,11 @@ definitions:
         format: varchar
         maxLength: 32
         description: Name of the country. This field will be ignored during state creation.
+    required: 
+      - stateId
+      - stateName
+      - countryId
+      - countryName
   District:
     type: object
     properties:
@@ -424,6 +549,11 @@ definitions:
         format: varchar
         maxLength: 32
         description: Name of the state. This field will be ignored during district creation.
+    required: 
+      - districtId
+      - districtName
+      - stateId
+      - stateName
   DocTypeModel:
     type: object
     properties:
@@ -437,10 +567,12 @@ definitions:
         maxLength: 32
         description: The name of the document type.
       identityDoc:
-        type: string
-        format: varchar
-        maxLength: 1
-        description: If the document if a identity document, the value will be "X".        
+        type: boolean
+        description: If the document if a identity document, the value will be true, otherwise false.        
+    required: 
+      - docTypeId
+      - docTypeName
+      - identityDoc
   EmployeeAddressModel:
     type: object
     properties:
@@ -454,6 +586,7 @@ definitions:
         format: varchar
         maxLength: 32
         description: The name of the street.
+        required: true
       area:
         type: string
         format: varchar
@@ -501,6 +634,17 @@ definitions:
         format: varchar
         maxLength: 100
         description: The description or landmark of the address.
+    required: 
+      - houseNo
+      - streetName
+      - identityDoc
+      - pinno
+      - districtId
+      - distrctName
+      - stateId
+      - stateName
+      - countryId
+      - countryName
   EmployeeProfileModel:
     type: object
     properties:
@@ -509,6 +653,7 @@ definitions:
         format: varchar
         maxLength: 32
         description: The highest qualification of the employee.
+        required: true
       description:
         type: string
         format: varchar
@@ -584,44 +729,63 @@ definitions:
         format: varchar
         maxLength: 20
         description: The employee id of the supervisor.
+        required: true
       hrId:
         type: string
         format: varchar
         maxLength: 20
         description: The employee id of the HR.
+        required: true
       status:
         type: string
         format: varchar
         maxLength: 4
         description: The status of the employee.
+        required: true
       cl:
         type: integer
         format: int(32)
         description: The casual leaves of the employee.
+        required: true
       pl:
         type: integer
         format: int(32)
         description: The paid leaves of the employee.
+        required: true
       paternityLeave:
         type: integer
         format: int(32)
         description: The paternity leaves of the employee.
+        required: true
       maternityLeave:
         type: integer
         format: int(32)
         description: The maternity leaves of the employee.
+        required: true
       specialLeave:
         type: integer
         format: int(32)
         description: The special leaves of the employee.
+        required: true
       probationPeriodEndDate:
         type: string
         format: date-time
         description: The probation period end date.
+        required: true
       noticePeriodEndDate:
         type: string
         format: date-time
         description: The notice period end date.
+    required:
+      - supervisorId
+      - hrId
+      - status
+      - cl
+      - pl
+      - paternityLeave
+      - maternityLeave
+      - specialLeave
+      - probationPeriodEndDate
   OrganizationTypeModel:
     type: object
     properties:
@@ -639,6 +803,9 @@ definitions:
         format: varchar
         maxLength: 100
         description: The description of the organization type.
+    required:
+      - orgTypeId
+      - orgTypeName
   OrganizationModel:
     type: object
     properties:
@@ -659,6 +826,11 @@ definitions:
         format: varchar
         maxLength: 256
         description: Address of the organization
+    required:
+      - orgId
+      - orgType
+      - orgName
+      - address
   UnitModel:
     type: object
     properties:
@@ -666,34 +838,49 @@ definitions:
         type: integer
         format: int(32)
         description: To uniquly identify an unit.
+        required: true
       unitName:
         type: string
         format: varchar
         maxLength: 100
         description: Name of the unit.
+        required: true
       empIdPrefix:
         type: string
         format: varchar
         maxLength: 10
         description: Prefix of employee id.
+        required: true
       empIdSeqName:
         type: string
         format: varchar
         maxLength: 20
+        required: true
       address:
         type: string
         format: varchar
         maxLength: 256
         description: Address of the unit.
+        required: true
       orgId:
         type: integer
         format: int(32)
         description: unique identifier of the organization.
+        required: true
       orgName:
         type: string
         format: varchar
         maxLength: 100
         description: Name of the organization. This field will be ignored during unit creation.
+        required: true
+    required:
+      - unitId
+      - unitName
+      - empIdPrefix
+      - empIdSeqName
+      - address
+      - orgId
+      - orgName
   DepartmentModel:
     type: object
     properties:
@@ -724,6 +911,12 @@ definitions:
         format: varchar
         maxLength: 256
         description: Name of the unit that the department belongs to. The field will be ignored during department creation.
+    required:
+      - departmentId
+      - departmentName
+      - address
+      - unitId
+      - unitName
   GradeModel:
     type: object
     properties:
@@ -731,11 +924,16 @@ definitions:
         type: integer
         format: int(32)
         description: To uniquly identify a grade. This field will be ignored during grade creation.
+        required: true
       gradeName:
         type: string
         format: varchar
         maxLength: 32
         description: Name of the grade
+        required: true
+    required:
+      - gradeId
+      - gradeName
   JobRoleModel:
     type: object
     properties:
@@ -757,6 +955,12 @@ definitions:
         type: integer
         format: int(32)
         description: Notice period if the employee returns after the probation period.      
+    required:
+      - jobRoleId
+      - grade
+      - organization
+      - probationNoticePeriod
+      - NoticePeriod
   DesignationModel:
     type: object
     properties:
@@ -769,5 +973,162 @@ definitions:
         format: varchar
         maxLength: 32
         description: Name of the designation
-  EmployeeId:
-    type: string
+    required:
+      - designationId
+      - designationName
+  SalaryModel:
+    type: object
+    properties:
+      salaryComponent:
+        $ref: SalaryComponentModel
+        description: The Salary component.
+      salaryValue:
+        type: number
+        format: double
+        description: The default value of the salary Component for the paricular job role id.
+      maxAllowedLimit:
+        type: number
+        format: double
+        description: The maximum allowable limit.
+    required:
+      - salaryComponent
+      - salaryValue
+      - maxAllowedLimit
+  OptionalSalaryModel:
+    type: object
+    properties:
+      optSalaryComponent:
+        $ref: SalaryOptComponentModel
+        description: The Salary component.
+      salaryValue:
+        type: number
+        format: double
+        description: The default value of the salary Component for the paricular job role id.
+      maxAllowLimit:
+        type: number
+        format: double
+        description: The maximum allowable limit.
+    required:
+      - optSalaryComponent
+      - salaryValue
+      - maxAllowedLimit
+  SalaryComponentModel:
+    type: object
+    properties:
+      compId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of the salary component. This field will be ignored during salary component creation.
+      compName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the salary component.
+      description:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Description of the salary component.
+      salComponent:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Salary componenet.
+    required:
+      - compId
+      - compName
+  SalaryOptComponentModel:
+    type: object
+    properties:
+      optCompId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of the optional salary component. This field will be ignored during optional salary component creation.
+      optCompName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the salary component.
+      description:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Description of the salary component.
+      salOptComponent:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Salary componenet.
+      frequency:
+        type: integer
+        format: int(32)
+        description: Frequency of the component in months.
+      endDate:
+        type: string
+        format: date-time
+        description: The end date of this benefit in company policy.
+      creditDebitFlag:
+        type: string
+        format: varchar
+        maxLength: 1
+        description: This flag indicates whether the amount will be credited (C) to the employee's account or debited (D) from the employee's account.
+      empOptOutFlag:
+        type: string
+        format: varchar
+        maxLength: 1
+        description: This flag indicates whether the employee can opt out from the benefit (Y) or no (N).
+    required:
+      - optCompId
+      - optCompName
+      - optType
+      - frequency
+      - endDate
+      - creditDebitFlag
+      - empOptOutFlag
+  EmployeeSalaryModel:
+    type: object
+    properties:
+      salaryComponent:
+        $ref: SalaryComponentModel
+        description: Salary Component.
+      salaryValue:
+        type: number
+        format: double
+        description: The salary value of the employee for the given salary component.        
+    required:
+      - salaryComponent
+      - salaryValue
+  EmployeeOptionalBenefitModel:
+    type: object
+    properties:
+      optSalaryComponent:
+        $ref: OptSalaryComponentModel
+        description: Optional salary component.
+      startDate:
+        type: string
+        format: date-time
+        description: The start date of this benefit for the employee.
+      stopDate:
+        type: string
+        format: date-time
+        description: The stop date of this benefit for the employee.
+      nextDueDate:
+        type: string
+        format: date-time
+        description: The next due date of this benefit for the employee.
+      frequency:
+        type: integer
+        format: int(32)
+        description: Frequency of the benefit in months.
+      iterations:
+        type: integer
+        format: int(32)
+        description: Number of times the benefit will be given to the employee. Value -1 means infinite, Value 0 indicates the current benefit has been completed and will no longer be given to the employee. After every due date when the payroll runs, the iterations will be reduced by one.
+      benefitValue:
+        type: number
+        format: double
+        description: The benefit value for the employee.        
+    required:
+      - optSalaryComponent
+      - startDate
+      - benefitValue

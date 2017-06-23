@@ -23,6 +23,7 @@ digraph "oneDegreeRelationshipsGraph" {
   "employee_additional_details":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=tee arrowhead=none];
   "employee_docs":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=crowtee arrowhead=none];
   "employee_hierarchy_status":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=tee arrowhead=none];
+  "employee_hierarchy_status":"HR_ID":w -> "employee":"EMP_ID.type":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"SUPERVISOR_ID":w -> "employee":"EMP_ID.type":e [arrowtail=crowodot arrowhead=none];
   "employee_optional_benefits":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=crowodot arrowhead=none];
   "employee_profile":"EMP_ID":w -> "employee":"EMP_ID.type":e [arrowtail=tee arrowhead=none];
@@ -112,10 +113,10 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="CONTACTNO" COLSPAN="2" ALIGN="LEFT">CONTACTNO</TD><TD PORT="CONTACTNO.type" ALIGN="LEFT">varchar[15]</TD></TR>
       <TR><TD PORT="ENTRY_BY" COLSPAN="2" ALIGN="LEFT">ENTRY_BY</TD><TD PORT="ENTRY_BY.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD PORT="ENTRY_DATE" COLSPAN="2" ALIGN="LEFT">ENTRY_DATE</TD><TD PORT="ENTRY_DATE.type" ALIGN="LEFT">datetime[19]</TD></TR>
-      <TR><TD PORT="HR_FLAG" COLSPAN="2" ALIGN="LEFT">HR_FLAG</TD><TD PORT="HR_FLAG.type" ALIGN="LEFT">int[10]</TD></TR>
-      <TR><TD PORT="SUPERVISOR_FLAG" COLSPAN="2" ALIGN="LEFT">SUPERVISOR_FLAG</TD><TD PORT="SUPERVISOR_FLAG.type" ALIGN="LEFT">int[10]</TD></TR>
+      <TR><TD PORT="HR_FLAG" COLSPAN="2" ALIGN="LEFT">HR_FLAG</TD><TD PORT="HR_FLAG.type" ALIGN="LEFT">varchar[1]</TD></TR>
+      <TR><TD PORT="SUPERVISOR_FLAG" COLSPAN="2" ALIGN="LEFT">SUPERVISOR_FLAG</TD><TD PORT="SUPERVISOR_FLAG.type" ALIGN="LEFT">varchar[1]</TD></TR>
       <TR><TD PORT="EMPLOYEE_IMAGE" COLSPAN="2" ALIGN="LEFT">EMPLOYEE_IMAGE</TD><TD PORT="EMPLOYEE_IMAGE.type" ALIGN="LEFT">longblob[2147483647]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">9 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#"
     tooltip="employee"
@@ -171,10 +172,10 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="SICK_LEAVE" COLSPAN="3" ALIGN="LEFT">SICK_LEAVE</TD></TR>
       <TR><TD PORT="MATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">MATERNITY_LEAVE</TD></TR>
       <TR><TD PORT="SPECIAL_LEAVE" COLSPAN="3" ALIGN="LEFT">SPECIAL_LEAVE</TD></TR>
-      <TR><TD PORT="PROVISION_PERIOD_END_DATE" COLSPAN="3" ALIGN="LEFT">PROVISION_PERIOD_END_DATE</TD></TR>
+      <TR><TD PORT="PROBATION_PERIOD_END_DATE" COLSPAN="3" ALIGN="LEFT">PROBATION_PERIOD_END_DATE</TD></TR>
       <TR><TD PORT="NOTICE_PERIOD_LAST_DATE" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD_LAST_DATE</TD></TR>
       <TR><TD PORT="LAST_MOD_DATE" COLSPAN="3" ALIGN="LEFT">LAST_MOD_DATE</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_hierarchy_status.html#graph"
     tooltip="employee_hierarchy_status"
@@ -189,6 +190,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="SAL_OPT_VALUE" COLSPAN="3" ALIGN="LEFT">SAL_OPT_VALUE</TD></TR>
       <TR><TD PORT="SAL_OPT_START_DATE" COLSPAN="3" ALIGN="LEFT">SAL_OPT_START_DATE</TD></TR>
       <TR><TD PORT="SAL_OPT_END_DATE" COLSPAN="3" ALIGN="LEFT">SAL_OPT_END_DATE</TD></TR>
+      <TR><TD PORT="NEXT_DUE_DATE" COLSPAN="3" ALIGN="LEFT">NEXT_DUE_DATE</TD></TR>
       <TR><TD PORT="REMARKS" COLSPAN="3" ALIGN="LEFT">REMARKS</TD></TR>
       <TR><TD PORT="ENTRY_BY" COLSPAN="3" ALIGN="LEFT">ENTRY_BY</TD></TR>
       <TR><TD PORT="ENTRY_DATE" COLSPAN="3" ALIGN="LEFT">ENTRY_DATE</TD></TR>

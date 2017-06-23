@@ -30,7 +30,6 @@
 <table width='100%' border='0'>
 <tr valign='top'><td class='container' align='left' valign='top'>
 <form name='options' action=''>
- <input type=checkbox id='implied' onclick="if (!this.checked) selectGraph('../graphs/job_role_master.2degrees.png', '#twoDegreesRelationshipsGraph'); else selectGraph('../graphs/job_role_master.implied2degrees.png', '#impliedTwoDegreesRelationshipsGraph'); toggle(11);toggle(26);syncDegrees();">Implied relationships
  <input type=checkbox onclick="toggle(21);" id=showRelatedCols>Related columns
  <input type=checkbox onclick="toggle(22);" id=showConstNames>Constraint names
  <input type=checkbox onclick="toggle(23);" id=showComments>Comments
@@ -90,15 +89,15 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
     </td>
     <td class='constraint'>appraisal_rating_ibfk_1</td>
    </tr>
-   <tr class='impliedRelationship' valign='top'>
-    <td class='relatedTable' title="job_role_designation.JOB_ROLE_ID's name implies that it's a child of job_role_master.JOB_ROLE_ID, but it doesn't reference that column."><a href='job_role_designation.html'>job_role_designation</a><span class='relatedKey'>.JOB_ROLE_ID</span>
+   <tr valign='top'>
+    <td class='relatedTable' title="job_role_designation.JOB_ROLE_ID refs job_role_master.JOB_ROLE_ID via job_role_designation_ibfk_2"><a href='job_role_designation.html'>job_role_designation</a><span class='relatedKey'>.JOB_ROLE_ID</span>
     </td>
-    <td class='constraint'>Implied Constraint</td>
+    <td class='constraint'>job_role_designation_ibfk_2</td>
    </tr>
-   <tr class='impliedRelationship' valign='top'>
-    <td class='relatedTable' title="salary_master.JOB_ROLE_ID's name implies that it's a child of job_role_master.JOB_ROLE_ID, but it doesn't reference that column."><a href='salary_master.html'>salary_master</a><span class='relatedKey'>.JOB_ROLE_ID</span>
+   <tr valign='top'>
+    <td class='relatedTable' title="salary_master.JOB_ROLE_ID refs job_role_master.JOB_ROLE_ID via salary_master_ibfk_1"><a href='salary_master.html'>salary_master</a><span class='relatedKey'>.JOB_ROLE_ID</span>
     </td>
-    <td class='constraint'>Implied Constraint</td>
+    <td class='constraint'>salary_master_ibfk_1</td>
    </tr>
   </table>
 </td>
@@ -109,9 +108,9 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='indexedColumn' title='Indexed'>ORG_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
+ <td class='detail' align='center'></td>
+ <td></td>
  <td></td>
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
@@ -128,9 +127,9 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='indexedColumn' title='Indexed'>GRADE_ID</td>
  <td class='detail'>int</td>
  <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
+ <td class='detail' align='center'></td>
+ <td></td>
  <td></td>
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
@@ -143,19 +142,40 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  </td>
  <td class='comment'></td>
 </tr>
+<tr>
+ <td class='detail'>PROBATION_NOTICE_PERIOD</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
+<tr>
+ <td class='detail'>NOTICE_PERIOD</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td> </td>
+ <td class='comment'></td>
+</tr>
 </table>
-<p/>Table contained 0 rows at Fri Jun 23 17:47 IST 2017
+<p/>Table contained 0 rows at Sat Jun 24 01:01 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
-<table class='dataTable' border='1' rules='groups'><colgroup><colgroup><colgroup><colgroup><colgroup>
+<table class='dataTable' border='1' rules='groups'><colgroup><colgroup><colgroup><colgroup>
 <thead>
  <tr>
   <th>Column(s)</th>
   <th>Type</th>
   <th>Sort</th>
   <th class='constraint' style='text-align:left;'>Constraint Name</th>
-  <th>Anomalies</th>
  </tr>
 </thead>
 <tbody>
@@ -164,21 +184,18 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail'>Primary key</td>
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>PRIMARY</td>
-  <td>&nbsp;</td>
  </tr>
  <tr>
   <td class='indexedColumn'>GRADE_ID</td>
   <td class='detail'>Performance</td>
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>GRADE_ID</td>
-  <td>&nbsp;</td>
  </tr>
  <tr>
   <td class='indexedColumn'>ORG_ID + GRADE_ID</td>
   <td class='detail'>Must be unique</td>
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>ORG_ID</td>
-  <td class='detail'>These unique columns are also nullable</td>
  </tr>
 </table>
 </div>
@@ -189,39 +206,28 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/job_role_master.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="529,5,781,208"/>
-<area shape="rect" id="node2" href="job_role_master.html#" title="job_role_master" alt="" coords="297,99,481,235"/>
-<area shape="rect" id="node3" href="grade_master.html#graph" title="grade_master" alt="" coords="5,227,249,381"/>
-<area shape="rect" id="node4" href="organisation_master.html#graph" title="organisation_master" alt="" coords="46,48,209,203"/>
-</map>
-<map id="impliedTwoDegreesRelationshipsGraph" name="impliedTwoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="824,5,1076,208"/>
-<area shape="rect" id="node2" href="appraisal_cycle.html#graph" title="appraisal_cycle" alt="" coords="595,53,725,112"/>
-<area shape="rect" id="node3" href="designation_master.html#graph" title="designation_master" alt="" coords="581,148,739,207"/>
-<area shape="rect" id="node4" href="job_role_master.html#" title="job_role_master" alt="" coords="568,231,752,367"/>
-<area shape="rect" id="node6" href="organisation_master.html#graph" title="organisation_master" alt="" coords="293,455,455,609"/>
-<area shape="rect" id="node9" href="grade_master.html#graph" title="grade_master" alt="" coords="252,276,496,431"/>
-<area shape="rect" id="node5" href="employee.html#graph" title="employee" alt="" coords="593,639,727,697"/>
-<area shape="rect" id="node11" href="organisation_type_master.html#graph" title="organisation_type_master" alt="" coords="5,527,204,585"/>
-<area shape="rect" id="node7" href="employee_history.html#graph" title="employee_history" alt="" coords="588,391,732,449"/>
-<area shape="rect" id="node8" href="job_role_designation.html#graph" title="job_role_designation" alt="" coords="869,233,1031,340"/>
-<area shape="rect" id="node10" href="org_leave.html#graph" title="org_leave" alt="" coords="599,473,721,532"/>
-<area shape="rect" id="node12" href="salary_master.html#graph" title="salary_master" alt="" coords="853,625,1047,852"/>
-<area shape="rect" id="node13" href="salary_component_master.html#graph" title="salary_component_master" alt="" coords="558,804,762,863"/>
-<area shape="rect" id="node14" href="salary_opt_component_master.html#graph" title="salary_opt_component_master" alt="" coords="544,721,776,780"/>
-<area shape="rect" id="node15" href="unit_master.html#graph" title="unit_master" alt="" coords="593,556,727,615"/>
+<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="561,5,813,208"/>
+<area shape="rect" id="node2" href="job_role_master.html#" title="job_role_master" alt="" coords="216,229,513,413"/>
+<area shape="rect" id="node4" href="grade_master.html#graph" title="grade_master" alt="" coords="26,357,147,464"/>
+<area shape="rect" id="node5" href="organisation_master.html#graph" title="organisation_master" alt="" coords="5,179,168,333"/>
+<area shape="rect" id="node3" href="job_role_designation.html#graph" title="job_role_designation" alt="" coords="606,232,769,339"/>
+<area shape="rect" id="node6" href="salary_master.html#graph" title="salary_master" alt="" coords="591,363,784,589"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="776,5,1028,208"/>
-<area shape="rect" id="node2" href="appraisal_cycle.html#graph" title="appraisal_cycle" alt="" coords="571,16,701,75"/>
-<area shape="rect" id="node3" href="designation_master.html#graph" title="designation_master" alt="" coords="557,507,715,565"/>
-<area shape="rect" id="node4" href="job_role_master.html#" title="job_role_master" alt="" coords="544,99,728,235"/>
-<area shape="rect" id="node6" href="organisation_master.html#graph" title="organisation_master" alt="" coords="293,317,455,472"/>
-<area shape="rect" id="node7" href="grade_master.html#graph" title="grade_master" alt="" coords="252,139,496,293"/>
-<area shape="rect" id="node5" href="employee.html#graph" title="employee" alt="" coords="569,259,703,317"/>
-<area shape="rect" id="node9" href="organisation_type_master.html#graph" title="organisation_type_master" alt="" coords="5,389,204,448"/>
-<area shape="rect" id="node8" href="org_leave.html#graph" title="org_leave" alt="" coords="575,341,697,400"/>
-<area shape="rect" id="node10" href="unit_master.html#graph" title="unit_master" alt="" coords="569,424,703,483"/>
+<area shape="rect" id="node1" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="808,5,1060,208"/>
+<area shape="rect" id="node2" href="appraisal_cycle.html#graph" title="appraisal_cycle" alt="" coords="546,53,677,112"/>
+<area shape="rect" id="node3" href="designation_master.html#graph" title="designation_master" alt="" coords="532,143,691,201"/>
+<area shape="rect" id="node4" href="job_role_master.html#" title="job_role_master" alt="" coords="463,473,760,657"/>
+<area shape="rect" id="node6" href="organisation_master.html#graph" title="organisation_master" alt="" coords="252,315,415,469"/>
+<area shape="rect" id="node8" href="grade_master.html#graph" title="grade_master" alt="" coords="273,524,394,631"/>
+<area shape="rect" id="node5" href="employee.html#graph" title="employee" alt="" coords="541,225,682,284"/>
+<area shape="rect" id="node10" href="organisation_type_master.html#graph" title="organisation_type_master" alt="" coords="5,387,204,445"/>
+<area shape="rect" id="node7" href="job_role_designation.html#graph" title="job_role_designation" alt="" coords="853,465,1015,572"/>
+<area shape="rect" id="node9" href="org_leave.html#graph" title="org_leave" alt="" coords="551,308,672,367"/>
+<area shape="rect" id="node11" href="salary_master.html#graph" title="salary_master" alt="" coords="837,596,1031,823"/>
+<area shape="rect" id="node12" href="salary_component_master.html#graph" title="salary_component_master" alt="" coords="509,687,713,745"/>
+<area shape="rect" id="node13" href="salary_opt_component_master.html#graph" title="salary_opt_component_master" alt="" coords="495,769,727,828"/>
+<area shape="rect" id="node14" href="unit_master.html#graph" title="unit_master" alt="" coords="545,391,678,449"/>
 </map>
 </td></tr></table>
 </div>
