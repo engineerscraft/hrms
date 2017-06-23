@@ -101,6 +101,7 @@
       <table name="country_master" numRows="0" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="COUNTRY_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="COUNTRY_ID" foreignKey="address_ibfk_4" implied="false" onDeleteCascade="false" table="address"/>
+            <child column="COUNTRY_ID" foreignKey="state_master_ibfk_1" implied="false" onDeleteCascade="false" table="state_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="COUNTRY_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
          <primaryKey column="COUNTRY_ID" sequenceNumberInPK="1"/>
@@ -143,9 +144,15 @@
             <child column="DISTRICT_ID" foreignKey="address_ibfk_2" implied="false" onDeleteCascade="false" table="address"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="DISTRICT_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="state_ID" nullable="true" remarks="" size="10" type="INT">
+            <parent column="STATE_ID" foreignKey="district_master_ibfk_1" implied="false" onDeleteCascade="false" table="state_master"/>
+         </column>
          <primaryKey column="DISTRICT_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="DISTRICT_ID"/>
+         </index>
+         <index name="state_ID" unique="false">
+            <column ascending="true" name="state_ID"/>
          </index>
       </table>
       <table name="doc_type_master" numRows="0" remarks="" type="TABLE">
@@ -666,11 +673,18 @@
       <table name="state_master" numRows="0" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="STATE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="STATE_ID" foreignKey="address_ibfk_3" implied="false" onDeleteCascade="false" table="address"/>
+            <child column="state_ID" foreignKey="district_master_ibfk_1" implied="false" onDeleteCascade="false" table="district_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="STATE_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="COUNTRY_ID" nullable="true" remarks="" size="10" type="INT">
+            <parent column="COUNTRY_ID" foreignKey="state_master_ibfk_1" implied="false" onDeleteCascade="false" table="country_master"/>
+         </column>
          <primaryKey column="STATE_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="STATE_ID"/>
+         </index>
+         <index name="COUNTRY_ID" unique="false">
+            <column ascending="true" name="COUNTRY_ID"/>
          </index>
       </table>
       <table name="unit_master" numRows="0" remarks="" type="TABLE">

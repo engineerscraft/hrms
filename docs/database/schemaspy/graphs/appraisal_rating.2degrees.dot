@@ -28,7 +28,7 @@ digraph "twoDegreesRelationshipsGraph" {
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"EMP_ID":e [arrowtail=crowodot arrowhead=none];
   "employee_optional_benefits":"employee_optional_benefits.heading":w -> "employee":"EMP_ID":e [arrowtail=crowodot arrowhead=none];
   "employee_profile":"employee_profile.heading":w -> "employee":"EMP_ID":e [arrowtail=tee arrowhead=none];
-  "employee_salary":"employee_salary.heading":w -> "employee":"EMP_ID":e [arrowtail=crowtee arrowhead=none];
+  "employee_salary":"employee_salary.heading":w -> "appraisal_cycle":"APPRAISAL_ID":e [arrowtail=crowtee arrowhead=none];
   "job_role_designation":"job_role_designation.heading":w -> "designation_master":"DESIGNATION_ID":e [arrowtail=crowtee arrowhead=none];
   "job_role_master":"GRADE_ID":w -> "grade_master":"grade_master.heading":e [arrowtail=crowodot arrowhead=none];
   "job_role_master":"ORG_ID":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none];

@@ -1,9 +1,9 @@
-= HRMS API specification
+= HRMS
 
 
 [[_overview]]
 == Overview
-This is a specification document for all the HRMS API!
+This is an API documentation for HRMS
 
 
 === Version information
@@ -13,13 +13,20 @@ __Version__ : 1.0.0
 
 === URI scheme
 [%hardbreaks]
-__BasePath__ : /
+__Host__ : localhost:8080
+__BasePath__ : /resources
 __Schemes__ : HTTP
 
 
 === Tags
 
-* employee : Everything about the employee management related APIs (creation, search, update etc)
+* country : Everything about the country
+* department : It's all about departments
+* district : Everything about the district
+* employee : Employee related resources
+* meta : Meta/Master Data Access
+* organization : Everything about your organization
+* unit : Everything about the unit
 
 
 

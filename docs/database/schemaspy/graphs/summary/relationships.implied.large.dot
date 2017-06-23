@@ -71,7 +71,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="country_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">country_master</TD></TR>
       <TR><TD PORT="COUNTRY_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">COUNTRY_ID</TD></TR>
       <TR><TD PORT="COUNTRY_NAME" COLSPAN="3" ALIGN="LEFT">COUNTRY_NAME</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/country_master.html#"
     tooltip="country_master"
@@ -107,7 +107,8 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="district_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">district_master</TD></TR>
       <TR><TD PORT="DISTRICT_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DISTRICT_ID</TD></TR>
       <TR><TD PORT="DISTRICT_NAME" COLSPAN="3" ALIGN="LEFT">DISTRICT_NAME</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD PORT="state_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">state_ID</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/district_master.html#"
     tooltip="district_master"
@@ -530,7 +531,8 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="state_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">state_master</TD></TR>
       <TR><TD PORT="STATE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">STATE_ID</TD></TR>
       <TR><TD PORT="STATE_NAME" COLSPAN="3" ALIGN="LEFT">STATE_NAME</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD PORT="COUNTRY_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">COUNTRY_ID</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/state_master.html#"
     tooltip="state_master"
@@ -559,6 +561,7 @@ digraph "largeImpliedRelationshipsGraph" {
   "appraisal_rating":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=crowtee arrowhead=none];
   "appraisal_rating":"JOB_ROLE_ID":w -> "job_role_master":"JOB_ROLE_ID":e [arrowtail=crowodot arrowhead=none];
   "department_master":"UNIT_ID":w -> "unit_master":"UNIT_ID":e [arrowtail=crowodot arrowhead=none];
+  "district_master":"state_ID":w -> "state_master":"STATE_ID":e [arrowtail=crowodot arrowhead=none];
   "employee":"DEPARTMENT_ID":w -> "department_master":"DEPARTMENT_ID":e [arrowtail=crowodot arrowhead=none];
   "employee":"IDENTITY_DOC_TYPE_ID":w -> "doc_type_master":"DOC_TYPE_ID":e [arrowtail=crowodot arrowhead=none];
   "employee":"ORG_ID":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
@@ -592,5 +595,6 @@ digraph "largeImpliedRelationshipsGraph" {
   "salary_master":"JOB_ROLE_ID":w -> "job_role_master":"JOB_ROLE_ID":e [arrowtail=crowodot arrowhead=none style=dashed];
   "salary_master":"SAL_COMP_ID":w -> "salary_component_master":"COMP_ID":e [arrowtail=crowodot arrowhead=none];
   "salary_master":"SAL_COMP_ID":w -> "salary_opt_component_master":"OPT_COMP_ID":e [arrowtail=crowodot arrowhead=none];
+  "state_master":"COUNTRY_ID":w -> "country_master":"COUNTRY_ID":e [arrowtail=crowodot arrowhead=none];
   "unit_master":"ORG_ID":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
 }

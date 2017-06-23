@@ -14,10 +14,10 @@ digraph "twoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "address":"COUNTRY_ID":w -> "country_master":"country_master.heading":e [arrowtail=crowodot arrowhead=none];
   "address":"DISTRICT_ID":w -> "district_master":"DISTRICT_ID.type":e [arrowtail=crowodot arrowhead=none];
-  "address":"EMP_ID":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
-  "address":"STATE_ID":w -> "state_master":"state_master.heading":e [arrowtail=crowodot arrowhead=none];
+  "address":"address.heading":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
+  "district_master":"state_ID":w -> "state_master":"STATE_ID":e [arrowtail=crowodot arrowhead=none];
+  "state_master":"state_master.heading":w -> "country_master":"country_master.heading":e [arrowtail=crowodot arrowhead=none];
   "address" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -41,7 +41,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="country_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">country_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="country_master.html#graph"
     tooltip="country_master"
@@ -52,7 +52,8 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="district_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">district_master</TD></TR>
       <TR><TD PORT="DISTRICT_ID" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">DISTRICT_ID</TD><TD PORT="DISTRICT_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="DISTRICT_NAME" COLSPAN="2" ALIGN="LEFT">DISTRICT_NAME</TD><TD PORT="DISTRICT_NAME.type" ALIGN="LEFT">varchar[32]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD PORT="state_ID" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">state_ID</TD><TD PORT="state_ID.type" ALIGN="LEFT">int[10]</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="district_master.html#"
     tooltip="district_master"
@@ -70,7 +71,10 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="state_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">state_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD PORT="STATE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">STATE_ID</TD></TR>
+      <TR><TD PORT="STATE_NAME" COLSPAN="3" ALIGN="LEFT">STATE_NAME</TD></TR>
+      <TR><TD PORT="COUNTRY_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">COUNTRY_ID</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="state_master.html#graph"
     tooltip="state_master"

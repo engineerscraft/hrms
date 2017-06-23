@@ -1,279 +1,773 @@
 swagger: '2.0'
 info:
-  description: This is a specification document for all the HRMS API!
+  description: This is an API documentation for HRMS
   version: 1.0.0
-  title: HRMS API specification
-basePath: /
+  title: HRMS
+host: 'localhost:8080'
+basePath: /resources
+security: [
+  {
+    access-token: []
+  }
+]
 tags:
+  - name: meta
+    description: Meta/Master Data Access
   - name: employee
-    description: >-
-      Everything about the employee management related APIs (creation, search,
-      update etc)
+    description: Employee related resources
+  - name: organization
+    description: Everything about your organization
+  - name: unit
+    description: Everything about the unit
+  - name: department
+    description: It's all about departments
+  - name: country
+    description: Everything about the country
+  - name: district
+    description: Everything about the district
 schemes:
   - http
 paths:
-  /employee/{id}/document:
-    post:
-      tags:
-        - employee
-      summary: Add a new document against the employee
-      description: >-
-        Adds a new document against the employee mentioned by {id}. The actual
-        document should come as an attachment to the message. Additional details
-        related to the document (for example its type etc) must be specified in
-        the message body
-      operationId: addDocument
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          description: ID of employee for which document is being uploaded
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Document object that needs to be uploaded / saved
-          required: true
-          schema:
-            $ref: '#/definitions/Document'
-      responses:
-        '200':
-          description: Successful operation
-        '403':
-          description: User does not have permission to update document
-        '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:create_employee_document'
-            - 'read:read_employee_documents'
-            - 'read:employee'
-  /employee/{id}/document/{docId}:
-    put:
-      tags:
-        - employee
-      summary: update a document against the employee
-      description: 'Overrrides an existing document (specified by its docId), with a new one'
-      operationId: updateDocument
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          description: ID of employee for which document is being uploaded
-          required: true
-          type: string
-        - name: docId
-          in: path
-          description: ID of the document which is being updated
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Document object that needs to be uploaded / saved
-          required: true
-          schema:
-            $ref: '#/definitions/Document'
-      responses:
-        '200':
-          description: Successful operation
-        '403':
-          description: User does not have permission to update document
-        '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:update_employee_document'
-            - 'read:read_employee_documents'
-            - 'read:employee'
-  /employee/{id}/additionaldetails:
-    put:
-      tags:
-        - employee
-      summary: update additional details associated to an employee
-      description: Updates additional details associated to an employee
-      operationId: updateAdditionalDetails
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          description: ID of employee
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Additonal details that needs to be parsed and updated to DB
-          required: true
-          schema:
-            $ref: '#/definitions/AdditionalDetails'
-      responses:
-        '200':
-          description: Successful operation
-        '403':
-          description: User does not have permission to update document
-        '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:update_employee_additional_details'
-            - 'read:read_employee_additional_details'
-            - 'read:employee'
-  /employee/{id}/basicinfo:
-    put:
-      tags:
-        - employee
-      summary: update basic info associated to an employee
-      description: Updates basic details associated to an employee
-      operationId: updateBasicDetails
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          description: ID of employee
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Basic details that needs to be parsed and updated to DB
-          required: true
-          schema:
-            $ref: '#/definitions/BasicDetails'
-      responses:
-        '200':
-          description: Successful operation
-        '403':
-          description: User does not have permission to update document
-        '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:update_employee_basic_details'
-            - 'read:read_employee_basic_details'
-            - 'read:employee'
-  /employee/{id}/hierarchystatus:
-    put:
-      tags:
-        - employee
-      summary: update reporting information associated to an employee
-      description: Updates reporting information associated to an employee
-      operationId: updateHierarchy
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          description: ID of employee
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Details of supervisor
-          required: true
-          schema:
-            $ref: '#/definitions/Supervisor'
-      responses:
-        '200':
-          description: Successful operation
-        '403':
-          description: User does not have permission to update document
-        '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:update_employee_hierarchy'
-            - 'read:read_employee_hierarchy'
-            - 'read:employee'
-  /employee/{id}/profile:
+  /v1/state:
     get:
       tags:
-        - employee
-      summary: Get the entire profile of an employee
-      description: Read the entire profile of an employee
-      operationId: getProfile
-      consumes:
-        - application/json
+        - meta
+      summary: Get the list of states for a given country.
+      description: Get the list of states for a given country. 
+      operationId: getStates
       produces:
+        - application/xml
         - application/json
       parameters:
-        - name: id
-          in: path
-          description: ID of employee
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: Cache-Control
+          in: header
+          description: Caching
+          required: true
+          type: string
+          default: private, no-store, max-age=300
+        - name: countryId
+          in: query
+          description: Country for which the list of states will be retrieved
           required: true
           type: string
       responses:
         '200':
-          description: Successful operation
-        '403':
-          description: User does not have permission
+          description: OK
+          schema:
+            $ref: '#/definitions/StateModel'
         '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'read:employee'
-securityDefinitions:
-  employee_operation_auth:
-    type: oauth2
-    authorizationUrl: 'http:///permission'
-    flow: implicit
-    scopes:
-      'write:employee': Modify an employee
-      'read:employee': Read an employee
-      'write:create_employee_document': Create document for an employee
-      'read:read_employee_documents': Read document of an employee
-      'write:update_employee_hierarchy': update employee's hierarchy mapping
-      'read:read_employee_hierarchy': Read employee's hierarchy info
-      'write:update_employee_document': Update employee's documents
-      'write:update_employee_additional_details': Update additonal details of employee
-      'read:read_employee_additional_details': read additional details of an employee
-      'write:update_employee_basic_details': Update basic details of employee
-      'read:read_employee_basic_details': Read basic deails of employee
-  api_key:
-    type: apiKey
-    name: api_key
-    in: header
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/doctype:
+    get:
+      tags:
+        - meta
+      summary: Get the list of document types
+      description: Get the list of document types
+      operationId: getDocTypes
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: Cache-Control
+          in: header
+          description: Caching
+          required: true
+          type: string
+          default: private, no-store, max-age=300
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DocTypeModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/doctype/identitydoctypes:
+    get:
+      tags:
+        - meta
+      summary: Get the list of identity document types
+      description: Get the list of identity document types
+      operationId: getDocTypes
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: Cache-Control
+          in: header
+          description: Caching
+          required: true
+          type: string
+          default: private, no-store, max-age=300
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DocTypeModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/employee/{id}/address:
+    put:
+      tags:
+        - employee
+      summary: Update Employee Address details.
+      description: Update Employee Address details.
+      operationId: updateEmpAddress
+      consumes:
+        - application/json
+        - application/xml
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: id
+          in: path
+          type: string
+          description: Employee ID
+          required: true
+        - name: reqBody
+          in: body
+          description: Employee Address parameters in JSON Body
+          schema:
+            $ref: '#/definitions/EmployeeAddressModel'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/organization:
+    get:
+      tags:
+        - organization
+      summary: Return a list of Organization objects
+      description: OrganizationType will be a child object under each Organization object
+      operationId: getOrganizations
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: Cache-Control
+          in: header
+          description: Caching
+          required: true
+          type: string
+          default: private, no-store, max-age=300
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrganizationModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /unit:
+    get:
+      tags:
+        - unit
+      summary: Return list of units of a given organization
+      operationId: getUnits
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: Cache-Control
+          in: header
+          description: Caching
+          required: true
+          type: string
+          default: private, no-store, max-age=300
+        - name: organizationId
+          in: query
+          description: The organizationId to be used as filter
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UnitModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/department:
+    get:
+      tags:
+        - department
+      summary: Return list of departments of a given unit
+      operationId: getDepartments
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: Cache-Control
+          in: header
+          description: Caching
+          required: true
+          type: string
+          default: private, no-store, max-age=300
+        - name: unitId
+          in: query
+          description: to filter out the result based upon unit ID
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DepartmentModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/country:
+    get:
+      tags:
+        - country
+      summary: Return list of countries
+      operationId: getCountries
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: Cache-Control
+          in: header
+          description: Caching
+          required: true
+          type: string
+          default: private, no-store, max-age=300
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/CountryModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/district:
+    get:
+      tags:
+        - district
+      summary: Return list of districts
+      operationId: getDistricts
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token
+          required: true
+          type: string
+        - name: Cache-Control
+          in: header
+          description: Caching
+          required: true
+          type: string
+          default: private, no-store, max-age=300
+        - name: stateId
+          in: query
+          description: to filter out the result based upon state ID
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DistrictModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
 definitions:
-  Document:
+  ErrorModel:
+    type: object
     properties:
-      docType:
+      errorMessage:
         type: string
-        description: The type of the document that is being uploaded
-  AdditionalDetails:
+        description: Detailed Error Message.
+        required:
+          - errorMessage
+  CountryModel:
+    type: object
     properties:
-      details:
-        type: object
-        description: Additional details object
-  BasicDetails:
-    properties:
-      details:
-        type: object
-        description: Basic details object
-  Supervisor:
-    properties:
-      supervisorId:
+      countryId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify a country. This field will be ignored during country creation.
+      countryName:
         type: string
-        description: Id of the supervisor
+        format: varchar
+        maxLength: 32
+        description: Name of the country.
+  StateModel:
+    type: object
+    properties:
+      stateId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify a state. This field will be ignored during state creation.
+      stateName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the state.
+      countryId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify a country.
+      countryName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the country. This field will be ignored during state creation.
+  District:
+    type: object
+    properties:
+      districtId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify a district. This field will be ignored during district creation.
+      districtName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the district.
+      stateId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify a state. 
+      stateName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the state. This field will be ignored during district creation.
+  DocTypeModel:
+    type: object
+    properties:
+      docTypeId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify the type of document viz. passport, birth certificate etc. This field will be ignored during doc type creation.
+      docTypeName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the document type.
+      identityDoc:
+        type: string
+        format: varchar
+        maxLength: 1
+        description: If the document if a identity document, the value will be "X".        
+  EmployeeAddressModel:
+    type: object
+    properties:
+      houseNo:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The number of the house.
+      streetName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the street.
+      area:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the area.
+      region:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the region.
+      pinno:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: The zip code of the location.
+      districtId:
+        type: integer
+        format: int(32)
+        description: The unique identifier of the district.
+      districtName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the district. This field will be ignored during employee creation.
+      stateId:
+        type: integer
+        format: int(32)
+        description: The unique identifier of the state.
+      stateName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the state. This field will be ignored during employee creation.
+      countryId:
+        type: integer
+        format: int(32)
+        description: The unique identifier of the country.
+      countryName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the country. This field will be ignored during employee creation.
+      description:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: The description or landmark of the address.
+  EmployeeProfileModel:
+    type: object
+    properties:
+      qualification:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The highest qualification of the employee.
+      description:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: The description of the employee.
+      comments:
+        type: string
+        format: varchar
+        maxLength: 52
+        description: The comments.
+  EmployeeAddlDetailsModel:
+    type: object
+    properties:
+      siblingNo:
+        type: integer
+        format: int(32)
+        description: The number of siblings of the employee.
+      dependentNo:
+        type: integer
+        format: int(32)
+        description: The number of dependents of the employee.
+      nomineeName1:
+        type: string
+        format: varchar
+        maxLength: 120
+        description: The name of the first nominee.
+      nomineeName2:
+        type: string
+        format: varchar
+        maxLength: 120
+        description: The name of the second nominee.
+      nomineeName3:
+        type: string
+        format: varchar
+        maxLength: 120
+        description: The name of the third nominee.
+      nomineeShare1:
+        type: integer
+        format: int(32)
+        description: The share of the first nominee.
+      nomineeShare2:
+        type: integer
+        format: int(32)
+        description: The share of the second nominee.
+      nomineeShare3:
+        type: integer
+        format: int(32)
+        description: The share of the third nominee.
+      emergencyContactName:
+        type: string
+        format: varchar
+        maxLength: 30
+        description: The name emergency contact.
+      emergencyContactNo:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: The contact number of the emergency contact.
+      preMedicalCheckUpDate:
+        type: string
+        format: date-time
+        description: The contact number of the emergency contact.
+      medicalReportComment:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The overall medical report comment.
+  EnployeeHierarchyModel:
+    type: object
+    properties:
+      supervisorId: 
+        type: string
+        format: varchar
+        maxLength: 20
+        description: The employee id of the supervisor.
+      hrId:
+        type: string
+        format: varchar
+        maxLength: 20
+        description: The employee id of the HR.
+      status:
+        type: string
+        format: varchar
+        maxLength: 4
+        description: The status of the employee.
+      cl:
+        type: integer
+        format: int(32)
+        description: The casual leaves of the employee.
+      pl:
+        type: integer
+        format: int(32)
+        description: The paid leaves of the employee.
+      paternityLeave:
+        type: integer
+        format: int(32)
+        description: The paternity leaves of the employee.
+      maternityLeave:
+        type: integer
+        format: int(32)
+        description: The maternity leaves of the employee.
+      specialLeave:
+        type: integer
+        format: int(32)
+        description: The special leaves of the employee.
+      probationPeriodEndDate:
+        type: string
+        format: date-time
+        description: The probation period end date.
+      noticePeriodEndDate:
+        type: string
+        format: date-time
+        description: The notice period end date.
+  OrganizationTypeModel:
+    type: object
+    properties:
+      orgTypeId:
+        type: integer
+        format: int(32)
+        description: unique identifier of the organization type. This field will be ignored during organization type creation.        
+      orgTypeName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: The name of the organization type.
+      description:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: The description of the organization type.
+  OrganizationModel:
+    type: object
+    properties:
+      orgId:
+        type: integer
+        format: int(32)
+        description: unique identifier of the organization. This field will be ignored during organization creation.
+      orgName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Name of the organization.
+      orgType:
+        $ref: OrganizationTypeModel
+        description: The organization type.
+      address:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: Address of the organization
+  UnitModel:
+    type: object
+    properties:
+      unitId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify an unit.
+      unitName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Name of the unit.
+      empIdPrefix:
+        type: string
+        format: varchar
+        maxLength: 10
+        description: Prefix of employee id.
+      empIdSeqName:
+        type: string
+        format: varchar
+        maxLength: 20
+      address:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: Address of the unit.
+      orgId:
+        type: integer
+        format: int(32)
+        description: unique identifier of the organization.
+      orgName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Name of the organization. This field will be ignored during unit creation.
+  DepartmentModel:
+    type: object
+    properties:
+      departmentId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify a department. This field will be ignored during department creation.
+      departmentName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Name of the department
+      address:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: Address of the department
+      parentDepartmentId:
+        type: integer
+        format: int(32)
+        description: To identify the parent of a particular department
+      unitId:
+        type: integer
+        format: int(32)
+        description: To identify the parent of a particular department
+      unitName:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: Name of the unit that the department belongs to. The field will be ignored during department creation.
+  GradeModel:
+    type: object
+    properties:
+      gradeId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify a grade. This field will be ignored during grade creation.
+      gradeName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the grade
+  JobRoleModel:
+    type: object
+    properties:
+      jobRoleId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.
+      grade:
+        $ref: GradeModel
+        description: Name of the grade model
+      organization:
+        $ref: OrganizationModel
+        description: Name of the organization model
+      probationNoticePeriod:
+        type: integer
+        format: int(32)
+        description: Notice period if the employee resigns during the probation period.
+      NoticePeriod:
+        type: integer
+        format: int(32)
+        description: Notice period if the employee returns after the probation period.      
+  DesignationModel:
+    type: object
+    properties:
+      designationId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify the designation. This field will be ignored durin the designation creation.
+      designationName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the designation
+  EmployeeId:
+    type: string

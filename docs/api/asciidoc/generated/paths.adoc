@@ -2,26 +2,24 @@
 [[_paths]]
 == Paths
 
-[[_updateadditionaldetails]]
-=== update additional details associated to an employee
+[[_getunits]]
+=== Return list of units of a given organization
 ....
-PUT //employee/{id}/additionaldetails
+GET /resources/unit
 ....
-
-
-==== Description
-Updates additional details associated to an employee
 
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4"]
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
 |===
-|Type|Name|Description|Schema
-|**Path**|**id** +
-__required__|ID of employee|string
-|**Body**|**body** +
-__required__|Additonal details that needs to be parsed and updated to DB|<<_additionaldetails,AdditionalDetails>>
+|Type|Name|Description|Schema|Default
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string|
+|**Header**|**Cache-Control** +
+__required__|Caching|string|`"private, no-store, max-age=300"`
+|**Query**|**organizationId** +
+__required__|The organizationId to be used as filter|string|
 |===
 
 
@@ -30,57 +28,39 @@ __required__|Additonal details that needs to be parsed and updated to DB|<<_addi
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|OK|<<_unitmodel,UnitModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
-
-
-==== Consumes
-
-* `application/json`
 
 
 ==== Produces
 
+* `application/xml`
 * `application/json`
 
 
 ==== Tags
 
-* employee
+* unit
 
 
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:update_employee_additional_details,read:read_employee_additional_details,read:employee
-|===
-
-
-[[_updatebasicdetails]]
-=== update basic info associated to an employee
+[[_getcountries]]
+=== Return list of countries
 ....
-PUT //employee/{id}/basicinfo
+GET /resources/v1/country
 ....
-
-
-==== Description
-Updates basic details associated to an employee
 
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4"]
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
 |===
-|Type|Name|Description|Schema
-|**Path**|**id** +
-__required__|ID of employee|string
-|**Body**|**body** +
-__required__|Basic details that needs to be parsed and updated to DB|<<_basicdetails,BasicDetails>>
+|Type|Name|Description|Schema|Default
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string|
+|**Header**|**Cache-Control** +
+__required__|Caching|string|`"private, no-store, max-age=300"`
 |===
 
 
@@ -89,57 +69,41 @@ __required__|Basic details that needs to be parsed and updated to DB|<<_basicdet
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|OK|<<_countrymodel,CountryModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
-
-
-==== Consumes
-
-* `application/json`
 
 
 ==== Produces
 
+* `application/xml`
 * `application/json`
 
 
 ==== Tags
 
-* employee
+* country
 
 
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:update_employee_basic_details,read:read_employee_basic_details,read:employee
-|===
-
-
-[[_adddocument]]
-=== Add a new document against the employee
+[[_getdepartments]]
+=== Return list of departments of a given unit
 ....
-POST //employee/{id}/document
+GET /resources/v1/department
 ....
-
-
-==== Description
-Adds a new document against the employee mentioned by {id}. The actual document should come as an attachment to the message. Additional details related to the document (for example its type etc) must be specified in the message body
 
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4"]
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
 |===
-|Type|Name|Description|Schema
-|**Path**|**id** +
-__required__|ID of employee for which document is being uploaded|string
-|**Body**|**body** +
-__required__|Document object that needs to be uploaded / saved|<<_document,Document>>
+|Type|Name|Description|Schema|Default
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string|
+|**Header**|**Cache-Control** +
+__required__|Caching|string|`"private, no-store, max-age=300"`
+|**Query**|**unitId** +
+__required__|to filter out the result based upon unit ID|string|
 |===
 
 
@@ -148,59 +112,41 @@ __required__|Document object that needs to be uploaded / saved|<<_document,Docum
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|OK|<<_departmentmodel,DepartmentModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
-
-
-==== Consumes
-
-* `application/json`
 
 
 ==== Produces
 
+* `application/xml`
 * `application/json`
 
 
 ==== Tags
 
-* employee
+* department
 
 
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:create_employee_document,read:read_employee_documents,read:employee
-|===
-
-
-[[_updatedocument]]
-=== update a document against the employee
+[[_getdistricts]]
+=== Return list of districts
 ....
-PUT //employee/{id}/document/{docId}
+GET /resources/v1/district
 ....
-
-
-==== Description
-Overrrides an existing document (specified by its docId), with a new one
 
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4"]
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
 |===
-|Type|Name|Description|Schema
-|**Path**|**docId** +
-__required__|ID of the document which is being updated|string
-|**Path**|**id** +
-__required__|ID of employee for which document is being uploaded|string
-|**Body**|**body** +
-__required__|Document object that needs to be uploaded / saved|<<_document,Document>>
+|Type|Name|Description|Schema|Default
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string|
+|**Header**|**Cache-Control** +
+__required__|Caching|string|`"private, no-store, max-age=300"`
+|**Query**|**stateId** +
+__required__|to filter out the result based upon state ID|string|
 |===
 
 
@@ -209,57 +155,43 @@ __required__|Document object that needs to be uploaded / saved|<<_document,Docum
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|OK|<<_districtmodel,DistrictModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
-
-
-==== Consumes
-
-* `application/json`
 
 
 ==== Produces
 
+* `application/xml`
 * `application/json`
 
 
 ==== Tags
 
-* employee
+* district
 
 
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:update_employee_document,read:read_employee_documents,read:employee
-|===
-
-
-[[_updatehierarchy]]
-=== update reporting information associated to an employee
+[[_getdoctypes]]
+=== Get the list of document types
 ....
-PUT //employee/{id}/hierarchystatus
+GET /resources/v1/doctype
 ....
 
 
 ==== Description
-Updates reporting information associated to an employee
+Get the list of document types
 
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4"]
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
 |===
-|Type|Name|Description|Schema
-|**Path**|**id** +
-__required__|ID of employee|string
-|**Body**|**body** +
-__required__|Details of supervisor|<<_supervisor,Supervisor>>
+|Type|Name|Description|Schema|Default
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string|
+|**Header**|**Cache-Control** +
+__required__|Caching|string|`"private, no-store, max-age=300"`
 |===
 
 
@@ -268,55 +200,43 @@ __required__|Details of supervisor|<<_supervisor,Supervisor>>
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|OK|<<_doctypemodel,DocTypeModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
-
-
-==== Consumes
-
-* `application/json`
 
 
 ==== Produces
 
+* `application/xml`
 * `application/json`
 
 
 ==== Tags
 
-* employee
+* meta
 
 
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:update_employee_hierarchy,read:read_employee_hierarchy,read:employee
-|===
-
-
-[[_getprofile]]
-=== Get the entire profile of an employee
+[[_getdoctypes]]
+=== Get the list of identity document types
 ....
-GET //employee/{id}/profile
+GET /resources/v1/doctype/identitydoctypes
 ....
 
 
 ==== Description
-Read the entire profile of an employee
+Get the list of identity document types
 
 
 ==== Parameters
 
-[options="header", cols=".^2,.^3,.^9,.^4"]
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
 |===
-|Type|Name|Description|Schema
-|**Path**|**id** +
-__required__|ID of employee|string
+|Type|Name|Description|Schema|Default
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string|
+|**Header**|**Cache-Control** +
+__required__|Caching|string|`"private, no-store, max-age=300"`
 |===
 
 
@@ -325,21 +245,63 @@ __required__|ID of employee|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|OK|<<_doctypemodel,DocTypeModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* meta
+
+
+[[_updateempaddress]]
+=== Update Employee Address details.
+....
+PUT /resources/v1/employee/{id}/address
+....
+
+
+==== Description
+Update Employee Address details.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string
+|**Path**|**id** +
+__required__|Employee ID|string
+|**Body**|**reqBody** +
+__optional__|Employee Address parameters in JSON Body|<<_employeeaddressmodel,EmployeeAddressModel>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
 
 
 ==== Consumes
 
 * `application/json`
-
-
-==== Produces
-
-* `application/json`
+* `application/xml`
 
 
 ==== Tags
@@ -347,13 +309,96 @@ __required__|ID of employee|string
 * employee
 
 
-==== Security
+[[_getorganizations]]
+=== Return a list of Organization objects
+....
+GET /resources/v1/organization
+....
 
-[options="header", cols=".^3,.^4,.^13"]
+
+==== Description
+OrganizationType will be a child object under each Organization object
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
 |===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|read:employee
+|Type|Name|Description|Schema|Default
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string|
+|**Header**|**Cache-Control** +
+__required__|Caching|string|`"private, no-store, max-age=300"`
 |===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_organizationmodel,OrganizationModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* organization
+
+
+[[_getstates]]
+=== Get the list of states for a given country.
+....
+GET /resources/v1/state
+....
+
+
+==== Description
+Get the list of states for a given country.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token|string|
+|**Header**|**Cache-Control** +
+__required__|Caching|string|`"private, no-store, max-age=300"`
+|**Query**|**countryId** +
+__required__|Country for which the list of states will be retrieved|string|
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_statemodel,StateModel>>
+|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errorresponse,ErrorResponse>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* meta
 
 
 

@@ -2,47 +2,353 @@
 [[_definitions]]
 == Definitions
 
-[[_additionaldetails]]
-=== AdditionalDetails
+[[_countrymodel]]
+=== CountryModel
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**details** +
-__optional__|Additional details object|object
+|**countryId** +
+__optional__|To uniquly identify a country. This field will be ignored during country creation.|integer (int(32))
+|**countryName** +
+__optional__|Name of the country. +
+**Maximal length** : `32`|string (varchar)
 |===
 
 
-[[_basicdetails]]
-=== BasicDetails
+[[_departmentmodel]]
+=== DepartmentModel
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**details** +
-__optional__|Basic details object|object
+|**address** +
+__optional__|Address of the department +
+**Maximal length** : `256`|string (varchar)
+|**departmentId** +
+__optional__|To uniquly identify a department. This field will be ignored during department creation.|integer (int(32))
+|**departmentName** +
+__optional__|Name of the department +
+**Maximal length** : `100`|string (varchar)
+|**parentDepartmentId** +
+__optional__|To identify the parent of a particular department|integer (int(32))
+|**unitId** +
+__optional__|To identify the parent of a particular department|integer (int(32))
+|**unitName** +
+__optional__|Name of the unit that the department belongs to. The field will be ignored during department creation. +
+**Maximal length** : `256`|string (varchar)
 |===
 
 
-[[_document]]
-=== Document
+[[_designationmodel]]
+=== DesignationModel
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**docType** +
-__optional__|The type of the document that is being uploaded|string
+|**designationId** +
+__optional__|To uniquly identify the designation. This field will be ignored durin the designation creation.|integer (int(32))
+|**designationName** +
+__optional__|Name of the designation +
+**Maximal length** : `32`|string (varchar)
 |===
 
 
-[[_supervisor]]
-=== Supervisor
+[[_district]]
+=== District
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
+|**districtId** +
+__optional__|To uniquly identify a district. This field will be ignored during district creation.|integer (int(32))
+|**districtName** +
+__optional__|Name of the district. +
+**Maximal length** : `32`|string (varchar)
+|**stateId** +
+__optional__|To uniquly identify a state.|integer (int(32))
+|**stateName** +
+__optional__|Name of the state. This field will be ignored during district creation. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_doctypemodel]]
+=== DocTypeModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**docTypeId** +
+__optional__|To uniquly identify the type of document viz. passport, birth certificate etc. This field will be ignored during doc type creation.|integer (int(32))
+|**docTypeName** +
+__optional__|The name of the document type. +
+**Maximal length** : `32`|string (varchar)
+|**identityDoc** +
+__optional__|If the document if a identity document, the value will be "X". +
+**Maximal length** : `1`|string (varchar)
+|===
+
+
+[[_employeeaddldetailsmodel]]
+=== EmployeeAddlDetailsModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**dependentNo** +
+__optional__|The number of dependents of the employee.|integer (int(32))
+|**emergencyContactName** +
+__optional__|The name emergency contact. +
+**Maximal length** : `30`|string (varchar)
+|**emergencyContactNo** +
+__optional__|The contact number of the emergency contact. +
+**Maximal length** : `15`|string (varchar)
+|**medicalReportComment** +
+__optional__|The overall medical report comment. +
+**Maximal length** : `32`|string (varchar)
+|**nomineeName1** +
+__optional__|The name of the first nominee. +
+**Maximal length** : `120`|string (varchar)
+|**nomineeName2** +
+__optional__|The name of the second nominee. +
+**Maximal length** : `120`|string (varchar)
+|**nomineeName3** +
+__optional__|The name of the third nominee. +
+**Maximal length** : `120`|string (varchar)
+|**nomineeShare1** +
+__optional__|The share of the first nominee.|integer (int(32))
+|**nomineeShare2** +
+__optional__|The share of the second nominee.|integer (int(32))
+|**nomineeShare3** +
+__optional__|The share of the third nominee.|integer (int(32))
+|**preMedicalCheckUpDate** +
+__optional__|The contact number of the emergency contact.|string (date-time)
+|**siblingNo** +
+__optional__|The number of siblings of the employee.|integer (int(32))
+|===
+
+
+[[_employeeaddressmodel]]
+=== EmployeeAddressModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**area** +
+__optional__|The name of the area. +
+**Maximal length** : `32`|string (varchar)
+|**countryId** +
+__optional__|The unique identifier of the country.|integer (int(32))
+|**countryName** +
+__optional__|The name of the country. This field will be ignored during employee creation. +
+**Maximal length** : `32`|string (varchar)
+|**description** +
+__optional__|The description or landmark of the address. +
+**Maximal length** : `100`|string (varchar)
+|**districtId** +
+__optional__|The unique identifier of the district.|integer (int(32))
+|**districtName** +
+__optional__|The name of the district. This field will be ignored during employee creation. +
+**Maximal length** : `32`|string (varchar)
+|**houseNo** +
+__optional__|The number of the house. +
+**Maximal length** : `32`|string (varchar)
+|**pinno** +
+__optional__|The zip code of the location. +
+**Maximal length** : `15`|string (varchar)
+|**region** +
+__optional__|The name of the region. +
+**Maximal length** : `32`|string (varchar)
+|**stateId** +
+__optional__|The unique identifier of the state.|integer (int(32))
+|**stateName** +
+__optional__|The name of the state. This field will be ignored during employee creation. +
+**Maximal length** : `32`|string (varchar)
+|**streetName** +
+__optional__|The name of the street. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_employeeid]]
+=== EmployeeId
+__Type__ : string
+
+
+[[_employeeprofilemodel]]
+=== EmployeeProfileModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**comments** +
+__optional__|The comments. +
+**Maximal length** : `52`|string (varchar)
+|**description** +
+__optional__|The description of the employee. +
+**Maximal length** : `256`|string (varchar)
+|**qualification** +
+__optional__|The highest qualification of the employee. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_enployeehierarchymodel]]
+=== EnployeeHierarchyModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**cl** +
+__optional__|The casual leaves of the employee.|integer (int(32))
+|**hrId** +
+__optional__|The employee id of the HR. +
+**Maximal length** : `20`|string (varchar)
+|**maternityLeave** +
+__optional__|The maternity leaves of the employee.|integer (int(32))
+|**noticePeriodEndDate** +
+__optional__|The notice period end date.|string (date-time)
+|**paternityLeave** +
+__optional__|The paternity leaves of the employee.|integer (int(32))
+|**pl** +
+__optional__|The paid leaves of the employee.|integer (int(32))
+|**probationPeriodEndDate** +
+__optional__|The probation period end date.|string (date-time)
+|**specialLeave** +
+__optional__|The special leaves of the employee.|integer (int(32))
+|**status** +
+__optional__|The status of the employee. +
+**Maximal length** : `4`|string (varchar)
 |**supervisorId** +
-__optional__|Id of the supervisor|string
+__optional__|The employee id of the supervisor. +
+**Maximal length** : `20`|string (varchar)
+|===
+
+
+[[_errormodel]]
+=== ErrorModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**errorMessage** +
+__optional__|Detailed Error Message.|string
+|===
+
+
+[[_grademodel]]
+=== GradeModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**gradeId** +
+__optional__|To uniquly identify a grade. This field will be ignored during grade creation.|integer (int(32))
+|**gradeName** +
+__optional__|Name of the grade +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_jobrolemodel]]
+=== JobRoleModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**NoticePeriod** +
+__optional__|Notice period if the employee returns after the probation period.|integer (int(32))
+|**grade** +
+__optional__|Name of the grade model|<<_grademodel,GradeModel>>
+|**jobRoleId** +
+__optional__|To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.|integer (int(32))
+|**organization** +
+__optional__|Name of the organization model|<<_organizationmodel,OrganizationModel>>
+|**probationNoticePeriod** +
+__optional__|Notice period if the employee resigns during the probation period.|integer (int(32))
+|===
+
+
+[[_organizationmodel]]
+=== OrganizationModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**address** +
+__optional__|Address of the organization +
+**Maximal length** : `256`|string (varchar)
+|**orgId** +
+__optional__|unique identifier of the organization. This field will be ignored during organization creation.|integer (int(32))
+|**orgName** +
+__optional__|Name of the organization. +
+**Maximal length** : `100`|string (varchar)
+|**orgType** +
+__optional__|The organization type.|<<_organizationtypemodel,OrganizationTypeModel>>
+|===
+
+
+[[_organizationtypemodel]]
+=== OrganizationTypeModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**description** +
+__optional__|The description of the organization type. +
+**Maximal length** : `100`|string (varchar)
+|**orgTypeId** +
+__optional__|unique identifier of the organization type. This field will be ignored during organization type creation.|integer (int(32))
+|**orgTypeName** +
+__optional__|The name of the organization type. +
+**Maximal length** : `100`|string (varchar)
+|===
+
+
+[[_statemodel]]
+=== StateModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**countryId** +
+__optional__|To uniquly identify a country.|integer (int(32))
+|**countryName** +
+__optional__|Name of the country. This field will be ignored during state creation. +
+**Maximal length** : `32`|string (varchar)
+|**stateId** +
+__optional__|To uniquly identify a state. This field will be ignored during state creation.|integer (int(32))
+|**stateName** +
+__optional__|Name of the state. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_unitmodel]]
+=== UnitModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**address** +
+__optional__|Address of the unit. +
+**Maximal length** : `256`|string (varchar)
+|**empIdPrefix** +
+__optional__|Prefix of employee id. +
+**Maximal length** : `10`|string (varchar)
+|**empIdSeqName** +
+__optional__|**Maximal length** : `20`|string (varchar)
+|**orgId** +
+__optional__|unique identifier of the organization.|integer (int(32))
+|**orgName** +
+__optional__|Name of the organization. This field will be ignored during unit creation. +
+**Maximal length** : `100`|string (varchar)
+|**unitId** +
+__optional__|To uniquly identify an unit.|integer (int(32))
+|**unitName** +
+__optional__|Name of the unit. +
+**Maximal length** : `100`|string (varchar)
 |===
 
 

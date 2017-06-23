@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>HRMS API specification</title>
+<title>HRMS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,7 +419,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>HRMS API specification</h1>
+<h1>HRMS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -430,88 +430,106 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags">1.3. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_securityscheme">2. Security</a>
+<li><a href="#_paths">2. Paths</a>
 <ul class="sectlevel2">
-<li><a href="#_employee_operation_auth">2.1. employee_operation_auth</a></li>
-<li><a href="#_api_key">2.2. api_key</a></li>
+<li><a href="#_getunits">2.1. Return list of units of a given organization</a>
+<ul class="sectlevel3">
+<li><a href="#_parameters">2.1.1. Parameters</a></li>
+<li><a href="#_responses">2.1.2. Responses</a></li>
+<li><a href="#_produces">2.1.3. Produces</a></li>
+<li><a href="#_tags_2">2.1.4. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_paths">3. Paths</a>
+<li><a href="#_getcountries">2.2. Return list of countries</a>
+<ul class="sectlevel3">
+<li><a href="#_parameters_2">2.2.1. Parameters</a></li>
+<li><a href="#_responses_2">2.2.2. Responses</a></li>
+<li><a href="#_produces_2">2.2.3. Produces</a></li>
+<li><a href="#_tags_3">2.2.4. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getdepartments">2.3. Return list of departments of a given unit</a>
+<ul class="sectlevel3">
+<li><a href="#_parameters_3">2.3.1. Parameters</a></li>
+<li><a href="#_responses_3">2.3.2. Responses</a></li>
+<li><a href="#_produces_3">2.3.3. Produces</a></li>
+<li><a href="#_tags_4">2.3.4. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getdistricts">2.4. Return list of districts</a>
+<ul class="sectlevel3">
+<li><a href="#_parameters_4">2.4.1. Parameters</a></li>
+<li><a href="#_responses_4">2.4.2. Responses</a></li>
+<li><a href="#_produces_4">2.4.3. Produces</a></li>
+<li><a href="#_tags_5">2.4.4. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getdoctypes">2.5. Get the list of document types</a>
+<ul class="sectlevel3">
+<li><a href="#_description">2.5.1. Description</a></li>
+<li><a href="#_parameters_5">2.5.2. Parameters</a></li>
+<li><a href="#_responses_5">2.5.3. Responses</a></li>
+<li><a href="#_produces_5">2.5.4. Produces</a></li>
+<li><a href="#_tags_6">2.5.5. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getdoctypes">2.6. Get the list of identity document types</a>
+<ul class="sectlevel3">
+<li><a href="#_description_2">2.6.1. Description</a></li>
+<li><a href="#_parameters_6">2.6.2. Parameters</a></li>
+<li><a href="#_responses_6">2.6.3. Responses</a></li>
+<li><a href="#_produces_6">2.6.4. Produces</a></li>
+<li><a href="#_tags_7">2.6.5. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_updateempaddress">2.7. Update Employee Address details.</a>
+<ul class="sectlevel3">
+<li><a href="#_description_3">2.7.1. Description</a></li>
+<li><a href="#_parameters_7">2.7.2. Parameters</a></li>
+<li><a href="#_responses_7">2.7.3. Responses</a></li>
+<li><a href="#_consumes">2.7.4. Consumes</a></li>
+<li><a href="#_tags_8">2.7.5. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getorganizations">2.8. Return a list of Organization objects</a>
+<ul class="sectlevel3">
+<li><a href="#_description_4">2.8.1. Description</a></li>
+<li><a href="#_parameters_8">2.8.2. Parameters</a></li>
+<li><a href="#_responses_8">2.8.3. Responses</a></li>
+<li><a href="#_produces_7">2.8.4. Produces</a></li>
+<li><a href="#_tags_9">2.8.5. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getstates">2.9. Get the list of states for a given country.</a>
+<ul class="sectlevel3">
+<li><a href="#_description_5">2.9.1. Description</a></li>
+<li><a href="#_parameters_9">2.9.2. Parameters</a></li>
+<li><a href="#_responses_9">2.9.3. Responses</a></li>
+<li><a href="#_produces_8">2.9.4. Produces</a></li>
+<li><a href="#_tags_10">2.9.5. Tags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_definitions">3. Definitions</a>
 <ul class="sectlevel2">
-<li><a href="#_updateadditionaldetails">3.1. update additional details associated to an employee</a>
-<ul class="sectlevel3">
-<li><a href="#_description">3.1.1. Description</a></li>
-<li><a href="#_parameters">3.1.2. Parameters</a></li>
-<li><a href="#_responses">3.1.3. Responses</a></li>
-<li><a href="#_consumes">3.1.4. Consumes</a></li>
-<li><a href="#_produces">3.1.5. Produces</a></li>
-<li><a href="#_tags_2">3.1.6. Tags</a></li>
-<li><a href="#_security">3.1.7. Security</a></li>
-</ul>
-</li>
-<li><a href="#_updatebasicdetails">3.2. update basic info associated to an employee</a>
-<ul class="sectlevel3">
-<li><a href="#_description_2">3.2.1. Description</a></li>
-<li><a href="#_parameters_2">3.2.2. Parameters</a></li>
-<li><a href="#_responses_2">3.2.3. Responses</a></li>
-<li><a href="#_consumes_2">3.2.4. Consumes</a></li>
-<li><a href="#_produces_2">3.2.5. Produces</a></li>
-<li><a href="#_tags_3">3.2.6. Tags</a></li>
-<li><a href="#_security_2">3.2.7. Security</a></li>
-</ul>
-</li>
-<li><a href="#_adddocument">3.3. Add a new document against the employee</a>
-<ul class="sectlevel3">
-<li><a href="#_description_3">3.3.1. Description</a></li>
-<li><a href="#_parameters_3">3.3.2. Parameters</a></li>
-<li><a href="#_responses_3">3.3.3. Responses</a></li>
-<li><a href="#_consumes_3">3.3.4. Consumes</a></li>
-<li><a href="#_produces_3">3.3.5. Produces</a></li>
-<li><a href="#_tags_4">3.3.6. Tags</a></li>
-<li><a href="#_security_3">3.3.7. Security</a></li>
-</ul>
-</li>
-<li><a href="#_updatedocument">3.4. update a document against the employee</a>
-<ul class="sectlevel3">
-<li><a href="#_description_4">3.4.1. Description</a></li>
-<li><a href="#_parameters_4">3.4.2. Parameters</a></li>
-<li><a href="#_responses_4">3.4.3. Responses</a></li>
-<li><a href="#_consumes_4">3.4.4. Consumes</a></li>
-<li><a href="#_produces_4">3.4.5. Produces</a></li>
-<li><a href="#_tags_5">3.4.6. Tags</a></li>
-<li><a href="#_security_4">3.4.7. Security</a></li>
-</ul>
-</li>
-<li><a href="#_updatehierarchy">3.5. update reporting information associated to an employee</a>
-<ul class="sectlevel3">
-<li><a href="#_description_5">3.5.1. Description</a></li>
-<li><a href="#_parameters_5">3.5.2. Parameters</a></li>
-<li><a href="#_responses_5">3.5.3. Responses</a></li>
-<li><a href="#_consumes_5">3.5.4. Consumes</a></li>
-<li><a href="#_produces_5">3.5.5. Produces</a></li>
-<li><a href="#_tags_6">3.5.6. Tags</a></li>
-<li><a href="#_security_5">3.5.7. Security</a></li>
-</ul>
-</li>
-<li><a href="#_getprofile">3.6. Get the entire profile of an employee</a>
-<ul class="sectlevel3">
-<li><a href="#_description_6">3.6.1. Description</a></li>
-<li><a href="#_parameters_6">3.6.2. Parameters</a></li>
-<li><a href="#_responses_6">3.6.3. Responses</a></li>
-<li><a href="#_consumes_6">3.6.4. Consumes</a></li>
-<li><a href="#_produces_6">3.6.5. Produces</a></li>
-<li><a href="#_tags_7">3.6.6. Tags</a></li>
-<li><a href="#_security_6">3.6.7. Security</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_definitions">4. Definitions</a>
-<ul class="sectlevel2">
-<li><a href="#_additionaldetails">4.1. AdditionalDetails</a></li>
-<li><a href="#_basicdetails">4.2. BasicDetails</a></li>
-<li><a href="#_document">4.3. Document</a></li>
-<li><a href="#_supervisor">4.4. Supervisor</a></li>
+<li><a href="#_countrymodel">3.1. CountryModel</a></li>
+<li><a href="#_departmentmodel">3.2. DepartmentModel</a></li>
+<li><a href="#_designationmodel">3.3. DesignationModel</a></li>
+<li><a href="#_district">3.4. District</a></li>
+<li><a href="#_doctypemodel">3.5. DocTypeModel</a></li>
+<li><a href="#_employeeaddldetailsmodel">3.6. EmployeeAddlDetailsModel</a></li>
+<li><a href="#_employeeaddressmodel">3.7. EmployeeAddressModel</a></li>
+<li><a href="#_employeeid">3.8. EmployeeId</a></li>
+<li><a href="#_employeeprofilemodel">3.9. EmployeeProfileModel</a></li>
+<li><a href="#_enployeehierarchymodel">3.10. EnployeeHierarchyModel</a></li>
+<li><a href="#_errormodel">3.11. ErrorModel</a></li>
+<li><a href="#_grademodel">3.12. GradeModel</a></li>
+<li><a href="#_jobrolemodel">3.13. JobRoleModel</a></li>
+<li><a href="#_organizationmodel">3.14. OrganizationModel</a></li>
+<li><a href="#_organizationtypemodel">3.15. OrganizationTypeModel</a></li>
+<li><a href="#_statemodel">3.16. StateModel</a></li>
+<li><a href="#_unitmodel">3.17. UnitModel</a></li>
 </ul>
 </li>
 </ul>
@@ -522,7 +540,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is a specification document for all the HRMS API!</p>
+<p>This is an API documentation for HRMS</p>
 </div>
 <div class="sect2">
 <h3 id="_version_information"><a class="anchor" href="#_version_information"></a>1.1. Version information</h3>
@@ -533,7 +551,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_uri_scheme"><a class="anchor" href="#_uri_scheme"></a>1.2. URI scheme</h3>
 <div class="paragraph">
-<p><em>BasePath</em> : /<br>
+<p><em>Host</em> : localhost:8080<br>
+<em>BasePath</em> : /resources<br>
 <em>Schemes</em> : HTTP</p>
 </div>
 </div>
@@ -542,7 +561,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>employee : Everything about the employee management related APIs (creation, search, update etc)</p>
+<p>country : Everything about the country</p>
+</li>
+<li>
+<p>department : It&#8217;s all about departments</p>
+</li>
+<li>
+<p>district : Everything about the district</p>
+</li>
+<li>
+<p>employee : Employee related resources</p>
+</li>
+<li>
+<p>meta : Meta/Master Data Access</p>
+</li>
+<li>
+<p>organization : Everything about your organization</p>
+</li>
+<li>
+<p>unit : Everything about the unit</p>
 </li>
 </ul>
 </div>
@@ -550,946 +587,1016 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_securityscheme"><a class="anchor" href="#_securityscheme"></a>2. Security</h2>
+<h2 id="_paths"><a class="anchor" href="#_paths"></a>2. Paths</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_employee_operation_auth"><a class="anchor" href="#_employee_operation_auth"></a>2.1. employee_operation_auth</h3>
-<div class="paragraph">
-<p><em>Type</em> : oauth2<br>
-<em>Flow</em> : implicit<br>
-<em>Token URL</em> : <a href="http:///permission" class="bare">http:///permission</a></p>
+<h3 id="_getunits"><a class="anchor" href="#_getunits"></a>2.1. Return list of units of a given organization</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/unit</pre>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>2.1.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
+<col style="width: 10%;">
 <col style="width: 15%;">
-<col style="width: 85%;">
+<col style="width: 45%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
 </colgroup>
 <thead>
 <tr>
+<th class="tableblock halign-left valign-middle">Type</th>
 <th class="tableblock halign-left valign-middle">Name</th>
 <th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+<th class="tableblock halign-left valign-middle">Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:employee</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Modify an employee</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">read:employee</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Read an employee</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:create_employee_document</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Create document for an employee</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">read:read_employee_documents</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Read document of an employee</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_hierarchy</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">update employee&#8217;s hierarchy mapping</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">read:read_employee_hierarchy</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Read employee&#8217;s hierarchy info</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_document</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Update employee&#8217;s documents</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_additional_details</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Update additonal details of employee</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">read:read_employee_additional_details</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">read additional details of an employee</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_basic_details</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Update basic details of employee</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">read:read_employee_basic_details</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Read basic deails of employee</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>organizationId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The organizationId to be used as filter</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>
 </div>
+<div class="sect3">
+<h4 id="_responses"><a class="anchor" href="#_responses"></a>2.1.2. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_unitmodel">UnitModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces"><a class="anchor" href="#_produces"></a>2.1.3. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_2"><a class="anchor" href="#_tags_2"></a>2.1.4. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>unit</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="_api_key"><a class="anchor" href="#_api_key"></a>2.2. api_key</h3>
+<h3 id="_getcountries"><a class="anchor" href="#_getcountries"></a>2.2. Return list of countries</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/country</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>2.2.1. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 15%;">
+<col style="width: 45%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+<th class="tableblock halign-left valign-middle">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_2"><a class="anchor" href="#_responses_2"></a>2.2.2. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_countrymodel">CountryModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_2"><a class="anchor" href="#_produces_2"></a>2.2.3. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_3"><a class="anchor" href="#_tags_3"></a>2.2.4. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>country</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getdepartments"><a class="anchor" href="#_getdepartments"></a>2.3. Return list of departments of a given unit</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/department</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>2.3.1. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 15%;">
+<col style="width: 45%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+<th class="tableblock halign-left valign-middle">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">to filter out the result based upon unit ID</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_3"><a class="anchor" href="#_responses_3"></a>2.3.2. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_departmentmodel">DepartmentModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_3"><a class="anchor" href="#_produces_3"></a>2.3.3. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_4"><a class="anchor" href="#_tags_4"></a>2.3.4. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>department</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getdistricts"><a class="anchor" href="#_getdistricts"></a>2.4. Return list of districts</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/district</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>2.4.1. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 15%;">
+<col style="width: 45%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+<th class="tableblock halign-left valign-middle">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">to filter out the result based upon state ID</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_4"><a class="anchor" href="#_responses_4"></a>2.4.2. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_districtmodel">DistrictModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_4"><a class="anchor" href="#_produces_4"></a>2.4.3. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_5"><a class="anchor" href="#_tags_5"></a>2.4.4. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>district</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getdoctypes"><a class="anchor" href="#_getdoctypes"></a>2.5. Get the list of document types</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/doctype</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description"><a class="anchor" href="#_description"></a>2.5.1. Description</h4>
 <div class="paragraph">
-<p><em>Type</em> : apiKey<br>
-<em>Name</em> : api_key<br>
-<em>In</em> : HEADER</p>
+<p>Get the list of document types</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>2.5.2. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 15%;">
+<col style="width: 45%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+<th class="tableblock halign-left valign-middle">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_5"><a class="anchor" href="#_responses_5"></a>2.5.3. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_doctypemodel">DocTypeModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_5"><a class="anchor" href="#_produces_5"></a>2.5.4. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_6"><a class="anchor" href="#_tags_6"></a>2.5.5. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>meta</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getdoctypes"><a class="anchor" href="#_getdoctypes"></a>2.6. Get the list of identity document types</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/doctype/identitydoctypes</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_2"><a class="anchor" href="#_description_2"></a>2.6.1. Description</h4>
+<div class="paragraph">
+<p>Get the list of identity document types</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>2.6.2. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 15%;">
+<col style="width: 45%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+<th class="tableblock halign-left valign-middle">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_6"><a class="anchor" href="#_responses_6"></a>2.6.3. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_doctypemodel">DocTypeModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_6"><a class="anchor" href="#_produces_6"></a>2.6.4. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_7"><a class="anchor" href="#_tags_7"></a>2.6.5. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>meta</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updateempaddress"><a class="anchor" href="#_updateempaddress"></a>2.7. Update Employee Address details.</h3>
+<div class="literalblock">
+<div class="content">
+<pre>PUT /resources/v1/employee/{id}/address</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_3"><a class="anchor" href="#_description_3"></a>2.7.1. Description</h4>
+<div class="paragraph">
+<p>Update Employee Address details.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>2.7.2. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Employee ID</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>reqBody</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Employee Address parameters in JSON Body</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_employeeaddressmodel">EmployeeAddressModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_7"><a class="anchor" href="#_responses_7"></a>2.7.3. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_consumes"><a class="anchor" href="#_consumes"></a>2.7.4. Consumes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/json</code></p>
+</li>
+<li>
+<p><code>application/xml</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_8"><a class="anchor" href="#_tags_8"></a>2.7.5. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>employee</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getorganizations"><a class="anchor" href="#_getorganizations"></a>2.8. Return a list of Organization objects</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/organization</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_4"><a class="anchor" href="#_description_4"></a>2.8.1. Description</h4>
+<div class="paragraph">
+<p>OrganizationType will be a child object under each Organization object</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>2.8.2. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 15%;">
+<col style="width: 45%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+<th class="tableblock halign-left valign-middle">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_8"><a class="anchor" href="#_responses_8"></a>2.8.3. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_organizationmodel">OrganizationModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_7"><a class="anchor" href="#_produces_7"></a>2.8.4. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_9"><a class="anchor" href="#_tags_9"></a>2.8.5. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>organization</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getstates"><a class="anchor" href="#_getstates"></a>2.9. Get the list of states for a given country.</h3>
+<div class="literalblock">
+<div class="content">
+<pre>GET /resources/v1/state</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_5"><a class="anchor" href="#_description_5"></a>2.9.1. Description</h4>
+<div class="paragraph">
+<p>Get the list of states for a given country.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a>2.9.2. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 15%;">
+<col style="width: 45%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+<th class="tableblock halign-left valign-middle">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Cache-Control</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Caching</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"private, no-store, max-age=300"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Country for which the list of states will be retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_9"><a class="anchor" href="#_responses_9"></a>2.9.3. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_statemodel">StateModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errormodel">ErrorModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_errorresponse">ErrorResponse</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_produces_8"><a class="anchor" href="#_produces_8"></a>2.9.4. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_10"><a class="anchor" href="#_tags_10"></a>2.9.5. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>meta</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_paths"><a class="anchor" href="#_paths"></a>3. Paths</h2>
+<h2 id="_definitions"><a class="anchor" href="#_definitions"></a>3. Definitions</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_updateadditionaldetails"><a class="anchor" href="#_updateadditionaldetails"></a>3.1. update additional details associated to an employee</h3>
-<div class="literalblock">
-<div class="content">
-<pre>PUT //employee/{id}/additionaldetails</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description"><a class="anchor" href="#_description"></a>3.1.1. Description</h4>
-<div class="paragraph">
-<p>Updates additional details associated to an employee</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>3.1.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Additonal details that needs to be parsed and updated to DB</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_additionaldetails">AdditionalDetails</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses"><a class="anchor" href="#_responses"></a>3.1.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_consumes"><a class="anchor" href="#_consumes"></a>3.1.4. Consumes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces"><a class="anchor" href="#_produces"></a>3.1.5. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_2"><a class="anchor" href="#_tags_2"></a>3.1.6. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>employee</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security"><a class="anchor" href="#_security"></a>3.1.7. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_additional_details,read:read_employee_additional_details,read:employee</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_updatebasicdetails"><a class="anchor" href="#_updatebasicdetails"></a>3.2. update basic info associated to an employee</h3>
-<div class="literalblock">
-<div class="content">
-<pre>PUT //employee/{id}/basicinfo</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_2"><a class="anchor" href="#_description_2"></a>3.2.1. Description</h4>
-<div class="paragraph">
-<p>Updates basic details associated to an employee</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>3.2.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Basic details that needs to be parsed and updated to DB</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_basicdetails">BasicDetails</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_2"><a class="anchor" href="#_responses_2"></a>3.2.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_consumes_2"><a class="anchor" href="#_consumes_2"></a>3.2.4. Consumes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces_2"><a class="anchor" href="#_produces_2"></a>3.2.5. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_3"><a class="anchor" href="#_tags_3"></a>3.2.6. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>employee</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_2"><a class="anchor" href="#_security_2"></a>3.2.7. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_basic_details,read:read_employee_basic_details,read:employee</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_adddocument"><a class="anchor" href="#_adddocument"></a>3.3. Add a new document against the employee</h3>
-<div class="literalblock">
-<div class="content">
-<pre>POST //employee/{id}/document</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_3"><a class="anchor" href="#_description_3"></a>3.3.1. Description</h4>
-<div class="paragraph">
-<p>Adds a new document against the employee mentioned by {id}. The actual document should come as an attachment to the message. Additional details related to the document (for example its type etc) must be specified in the message body</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>3.3.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee for which document is being uploaded</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Document object that needs to be uploaded / saved</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_document">Document</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_3"><a class="anchor" href="#_responses_3"></a>3.3.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_consumes_3"><a class="anchor" href="#_consumes_3"></a>3.3.4. Consumes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces_3"><a class="anchor" href="#_produces_3"></a>3.3.5. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_4"><a class="anchor" href="#_tags_4"></a>3.3.6. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>employee</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_3"><a class="anchor" href="#_security_3"></a>3.3.7. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:create_employee_document,read:read_employee_documents,read:employee</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_updatedocument"><a class="anchor" href="#_updatedocument"></a>3.4. update a document against the employee</h3>
-<div class="literalblock">
-<div class="content">
-<pre>PUT //employee/{id}/document/{docId}</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_4"><a class="anchor" href="#_description_4"></a>3.4.1. Description</h4>
-<div class="paragraph">
-<p>Overrrides an existing document (specified by its docId), with a new one</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>3.4.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>docId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of the document which is being updated</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee for which document is being uploaded</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Document object that needs to be uploaded / saved</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_document">Document</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_4"><a class="anchor" href="#_responses_4"></a>3.4.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_consumes_4"><a class="anchor" href="#_consumes_4"></a>3.4.4. Consumes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces_4"><a class="anchor" href="#_produces_4"></a>3.4.5. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_5"><a class="anchor" href="#_tags_5"></a>3.4.6. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>employee</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_4"><a class="anchor" href="#_security_4"></a>3.4.7. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_document,read:read_employee_documents,read:employee</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_updatehierarchy"><a class="anchor" href="#_updatehierarchy"></a>3.5. update reporting information associated to an employee</h3>
-<div class="literalblock">
-<div class="content">
-<pre>PUT //employee/{id}/hierarchystatus</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_5"><a class="anchor" href="#_description_5"></a>3.5.1. Description</h4>
-<div class="paragraph">
-<p>Updates reporting information associated to an employee</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>3.5.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>body</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Details of supervisor</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_supervisor">Supervisor</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_5"><a class="anchor" href="#_responses_5"></a>3.5.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to update document</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_consumes_5"><a class="anchor" href="#_consumes_5"></a>3.5.4. Consumes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces_5"><a class="anchor" href="#_produces_5"></a>3.5.5. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_6"><a class="anchor" href="#_tags_6"></a>3.5.6. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>employee</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_5"><a class="anchor" href="#_security_5"></a>3.5.7. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">write:update_employee_hierarchy,read:read_employee_hierarchy,read:employee</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_getprofile"><a class="anchor" href="#_getprofile"></a>3.6. Get the entire profile of an employee</h3>
-<div class="literalblock">
-<div class="content">
-<pre>GET //employee/{id}/profile</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_6"><a class="anchor" href="#_description_6"></a>3.6.1. Description</h4>
-<div class="paragraph">
-<p>Read the entire profile of an employee</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>3.6.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11%;">
-<col style="width: 16%;">
-<col style="width: 50%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ID of employee</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_6"><a class="anchor" href="#_responses_6"></a>3.6.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Successful operation</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provided Id is not found or internal excepton</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Invalid input</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_consumes_6"><a class="anchor" href="#_consumes_6"></a>3.6.4. Consumes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces_6"><a class="anchor" href="#_produces_6"></a>3.6.5. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_7"><a class="anchor" href="#_tags_7"></a>3.6.6. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>employee</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_6"><a class="anchor" href="#_security_6"></a>3.6.7. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_employee_operation_auth">employee_operation_auth</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">read:employee</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_definitions"><a class="anchor" href="#_definitions"></a>4. Definitions</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_additionaldetails"><a class="anchor" href="#_additionaldetails"></a>4.1. AdditionalDetails</h3>
+<h3 id="_countrymodel"><a class="anchor" href="#_countrymodel"></a>3.1. CountryModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -1505,41 +1612,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>details</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryId</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Additional details object</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a country. This field will be ignored during country creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_basicdetails"><a class="anchor" href="#_basicdetails"></a>4.2. BasicDetails</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 61%;">
-<col style="width: 22%;">
-</colgroup>
-<thead>
 <tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>details</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryName</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Basic details object</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the country.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_document"><a class="anchor" href="#_document"></a>4.3. Document</h3>
+<h3 id="_departmentmodel"><a class="anchor" href="#_departmentmodel"></a>3.2. DepartmentModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -1555,16 +1644,49 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>docType</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>address</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The type of the document that is being uploaded</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Address of the department<br>
+<strong>Maximal length</strong> : <code>256</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>departmentId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a department. This field will be ignored during department creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>departmentName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the department<br>
+<strong>Maximal length</strong> : <code>100</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>parentDepartmentId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To identify the parent of a particular department</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To identify the parent of a particular department</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the unit that the department belongs to. The field will be ignored during department creation.<br>
+<strong>Maximal length</strong> : <code>256</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_supervisor"><a class="anchor" href="#_supervisor"></a>4.4. Supervisor</h3>
+<h3 id="_designationmodel"><a class="anchor" href="#_designationmodel"></a>3.3. DesignationModel</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -1579,11 +1701,727 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>designationId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify the designation. This field will be ignored durin the designation creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>designationName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the designation<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_district"><a class="anchor" href="#_district"></a>3.4. District</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>districtId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a district. This field will be ignored during district creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>districtName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the district.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a state.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the state. This field will be ignored during district creation.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_doctypemodel"><a class="anchor" href="#_doctypemodel"></a>3.5. DocTypeModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>docTypeId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify the type of document viz. passport, birth certificate etc. This field will be ignored during doc type creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>docTypeName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the document type.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>identityDoc</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">If the document if a identity document, the value will be "X".<br>
+<strong>Maximal length</strong> : <code>1</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_employeeaddldetailsmodel"><a class="anchor" href="#_employeeaddldetailsmodel"></a>3.6. EmployeeAddlDetailsModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>dependentNo</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The number of dependents of the employee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>emergencyContactName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name emergency contact.<br>
+<strong>Maximal length</strong> : <code>30</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>emergencyContactNo</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The contact number of the emergency contact.<br>
+<strong>Maximal length</strong> : <code>15</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>medicalReportComment</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The overall medical report comment.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>nomineeName1</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the first nominee.<br>
+<strong>Maximal length</strong> : <code>120</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>nomineeName2</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the second nominee.<br>
+<strong>Maximal length</strong> : <code>120</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>nomineeName3</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the third nominee.<br>
+<strong>Maximal length</strong> : <code>120</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>nomineeShare1</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The share of the first nominee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>nomineeShare2</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The share of the second nominee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>nomineeShare3</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The share of the third nominee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>preMedicalCheckUpDate</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The contact number of the emergency contact.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>siblingNo</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The number of siblings of the employee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_employeeaddressmodel"><a class="anchor" href="#_employeeaddressmodel"></a>3.7. EmployeeAddressModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>area</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the area.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The unique identifier of the country.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the country. This field will be ignored during employee creation.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The description or landmark of the address.<br>
+<strong>Maximal length</strong> : <code>100</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>districtId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The unique identifier of the district.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>districtName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the district. This field will be ignored during employee creation.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>houseNo</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The number of the house.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pinno</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The zip code of the location.<br>
+<strong>Maximal length</strong> : <code>15</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>region</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the region.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The unique identifier of the state.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the state. This field will be ignored during employee creation.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>streetName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the street.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_employeeid"><a class="anchor" href="#_employeeid"></a>3.8. EmployeeId</h3>
+<div class="paragraph">
+<p><em>Type</em> : string</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_employeeprofilemodel"><a class="anchor" href="#_employeeprofilemodel"></a>3.9. EmployeeProfileModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>comments</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The comments.<br>
+<strong>Maximal length</strong> : <code>52</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The description of the employee.<br>
+<strong>Maximal length</strong> : <code>256</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>qualification</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The highest qualification of the employee.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_enployeehierarchymodel"><a class="anchor" href="#_enployeehierarchymodel"></a>3.10. EnployeeHierarchyModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>cl</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The casual leaves of the employee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>hrId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The employee id of the HR.<br>
+<strong>Maximal length</strong> : <code>20</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>maternityLeave</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The maternity leaves of the employee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>noticePeriodEndDate</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The notice period end date.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>paternityLeave</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The paternity leaves of the employee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pl</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The paid leaves of the employee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>probationPeriodEndDate</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The probation period end date.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>specialLeave</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The special leaves of the employee.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The status of the employee.<br>
+<strong>Maximal length</strong> : <code>4</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>supervisorId</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Id of the supervisor</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The employee id of the supervisor.<br>
+<strong>Maximal length</strong> : <code>20</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_errormodel"><a class="anchor" href="#_errormodel"></a>3.11. ErrorModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>errorMessage</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Detailed Error Message.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_grademodel"><a class="anchor" href="#_grademodel"></a>3.12. GradeModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>gradeId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a grade. This field will be ignored during grade creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>gradeName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the grade<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_jobrolemodel"><a class="anchor" href="#_jobrolemodel"></a>3.13. JobRoleModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NoticePeriod</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Notice period if the employee returns after the probation period.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>grade</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the grade model</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_grademodel">GradeModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>jobRoleId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>organization</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the organization model</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_organizationmodel">OrganizationModel</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>probationNoticePeriod</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Notice period if the employee resigns during the probation period.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_organizationmodel"><a class="anchor" href="#_organizationmodel"></a>3.14. OrganizationModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>address</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Address of the organization<br>
+<strong>Maximal length</strong> : <code>256</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">unique identifier of the organization. This field will be ignored during organization creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the organization.<br>
+<strong>Maximal length</strong> : <code>100</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgType</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The organization type.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_organizationtypemodel">OrganizationTypeModel</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_organizationtypemodel"><a class="anchor" href="#_organizationtypemodel"></a>3.15. OrganizationTypeModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The description of the organization type.<br>
+<strong>Maximal length</strong> : <code>100</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgTypeId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">unique identifier of the organization type. This field will be ignored during organization type creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgTypeName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the organization type.<br>
+<strong>Maximal length</strong> : <code>100</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_statemodel"><a class="anchor" href="#_statemodel"></a>3.16. StateModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a country.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>countryName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the country. This field will be ignored during state creation.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify a state. This field will be ignored during state creation.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>stateName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the state.<br>
+<strong>Maximal length</strong> : <code>32</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_unitmodel"><a class="anchor" href="#_unitmodel"></a>3.17. UnitModel</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>address</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Address of the unit.<br>
+<strong>Maximal length</strong> : <code>256</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>empIdPrefix</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Prefix of employee id.<br>
+<strong>Maximal length</strong> : <code>10</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>empIdSeqName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Maximal length</strong> : <code>20</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">unique identifier of the organization.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>orgName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the organization. This field will be ignored during unit creation.<br>
+<strong>Maximal length</strong> : <code>100</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitId</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">To uniquly identify an unit.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int(32))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unitName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the unit.<br>
+<strong>Maximal length</strong> : <code>100</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1593,7 +2431,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-06-22 18:48:11 IST
+Last updated 2017-06-21 17:20:21 IST
 </div>
 </div>
 </body>
