@@ -8,25 +8,7 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.css'],
-  animations: [
-    trigger('heroState', [
-      state('inactive', style({
-        height: '0',
-        paddingTop: '0',
-        paddingBottom: '0',
-        marginTop: '0',
-        marginBottom: '0',
-        visibility: 'hidden',
-        overflowY: 'hidden'
-      })),
-      state('active', style({
-
-      })),
-      transition('inactive => active', animate('300ms ease-in')),
-      transition('active => inactive', animate('300ms ease-out'))
-    ])
-  ]
+  styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
 
@@ -57,23 +39,20 @@ export class SideBarComponent implements OnInit {
       newPassword:      ['', Validators.compose([Validators.required, Validators.minLength(6), CustomValidator.noSpace])],
       confirmedPassword: ['',Validators.compose([Validators.required, Validators.minLength(6)])]
     }, {
-        validator: this.matchingPasswords('newPassword', 'confirmedPassword')
+        validator: this.matchingPasswords
       }
     );
   }
 
-  matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
-    return (group: FormGroup): { [key: string]: any } => {
-      let password = group.controls[passwordKey];
-      let confirmPassword = group.controls[confirmPasswordKey];
-
+  matchingPasswords(group: FormGroup) {
+      let password = group.controls['newPassword'];
+      let confirmPassword = group.controls['confirmedPassword'];
       if (password.value !== confirmPassword.value) {
-        return {
-          mismatchedPasswords: true
-        };
+        confirmPassword.setErrors({matchingPasswords: true});
       }
-    }
+      return null;
   }
+
 
 
   changeClass() {
@@ -193,5 +172,37 @@ export class SideBarComponent implements OnInit {
 
    getStatus() {
     return this.statusMessage;
+  }
+
+  getErrorClass(formControlName) {
+    if(this.formGroup.controls[formControlName].hasError('required') && this.formGroup.controls[formControlName].touched) 
+      return ["error-bar"];
+    else
+      return ["bar"];
+  }
+
+  isFieldValueMissing(formControlName) {
+    if(this.formGroup.controls[formControlName].hasError('required') && this.formGroup.controls[formControlName].touched) 
+      return true;
+    else
+      return false;
+  }
+
+  isConfirmedPasswordNotMatching() {
+    if(this.formGroup.controls['newPassword'].valid && this.formGroup.controls['confirmedPassword'].touched 
+            && this.formGroup.controls['confirmedPassword'].invalid) {
+      return true;
+    }
+    else
+      return false;
+  }
+
+  isValueInvalid(formControlName) {
+    if(this.formGroup.controls[formControlName].invalid && !this.isFieldValueMissing(formControlName) && this.formGroup.controls[formControlName].touched) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

@@ -98,42 +98,40 @@
 
 <div class="modal-small" *ngIf="getShowChangePassword()">
   <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
-  <div [@heroState]="getStatus()" class="alert alert-danger">{{responseMessage}}</div>
   <div class="modal-header">
     <h1>Change Password</h1>
   </div>
   <div class="modal-body">
     <form [formGroup]="formGroup" (ngSubmit)="onChangePassword()" method="post" class="loginform">
       <fieldset [disabled]="isProcessingInProgress()">
-        <div class="group">
+        <div class="row">
+        <div class="group ">
           <input class="inputMaterial input-size-small" formControlName="currentPassword" type="password" required>
-          <label>Current Password</label>
+          <label class="text-input-label">Current Password</label>
+          <label *ngIf="isFieldValueMissing('currentPassword')" class="error-text-input-label">Please enter your current password.</label>
           <span class="highlight"></span>
-          <span class="bar input-size-small"></span>
-          <div *ngIf="formGroup.controls['currentPassword'].hasError('required') 
-            && formGroup.controls['currentPassword'].touched" class="error">Present password is required!</div>
+          <span class="input-size-small" [ngClass]="getErrorClass('currentPassword')"></span>
         </div>
+        </div>
+        <div class="row">
         <div class="group">
           <input class="inputMaterial input-size-small" formControlName="newPassword" type="password" required>
-          <label>New Password</label>
+          <label class="text-input-label">New Password</label>
+          <label *ngIf="isFieldValueMissing('newPassword')" class="error-text-input-label">Please enter your new password.</label>
+          <label *ngIf="isValueInvalid('newPassword')" class="error-text-input-label">Please enter atleast six characters.</label>
           <span class="highlight"></span>
-          <span class="bar input-size-small"></span>
-          <div *ngIf="formGroup.controls['newPassword'].hasError('required') 
-            && formGroup.controls['newPassword'].touched" class="error">Please provide the new password!</div>
-          <div *ngIf="formGroup.controls['newPassword'].hasError('minlength') 
-            && formGroup.controls['newPassword'].touched" class="error">New password should be 6 characters or more!</div>
+          <span class="input-size-small" [ngClass]="getErrorClass('newPassword')"></span>
         </div>
+        </div>
+        <div class="row">
         <div class="group">
           <input class="inputMaterial input-size-small" formControlName="confirmedPassword" type="password" required>
-          <label>Confirm Password</label>
+          <label class="text-input-label">Confirm Password</label>
+          <label *ngIf="isFieldValueMissing('confirmedPassword')" class="error-text-input-label">Please enter your new password.</label>
+          <label *ngIf="isConfirmedPasswordNotMatching()" class="error-text-input-label">The confirmed password is not matching.</label>
           <span class="highlight"></span>
-          <span class="bar input-size-small"></span>
-          <div *ngIf="formGroup.controls['confirmedPassword'].hasError('required') 
-            && formGroup.controls['confirmedPassword'].touched 
-            && formGroup.controls['newPassword'].valid" class="error">Please re-confirm the new password!</div>
-          <div *ngIf="formGroup.hasError('mismatchedPasswords') 
-            && formGroup.controls['confirmedPassword'].touched 
-            && formGroup.controls['newPassword'].valid" class="error">New and confirmed passwords donot match</div>
+          <span class="input-size-small" [ngClass]="getErrorClass('confirmedPassword')"></span>
+        </div>
         </div>
         <button type="submit" class="btn ripple" [disabled]="formGroup.invalid">Change</button>
         <button type="button" class="btn ripple" (click)="onCancelChangePassword()">Cancel</button>
