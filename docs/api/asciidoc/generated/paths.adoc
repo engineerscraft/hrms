@@ -29,7 +29,7 @@ __optional__|The login credentials of the user.|<<_logindetails,LoginDetails>>
 |===
 |HTTP Code|Description|Schema
 |**200**|Authentication is successful|<<_token,Token>>
-|**401**|The supplied refresh token is not valid or the authentication fails.|No Content
+|**401**|The supplied refresh token is not valid or the authentication fails.|<<_error,Error>>
 |**500**|Internal Server Error|<<_error,Error>>
 |===
 
@@ -80,8 +80,8 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**200**|The list of countries is retrieved successfully. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_country,Country>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No country is found.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -126,11 +126,11 @@ __required__|The id of the unit whose departments are to be retrieved.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The departments are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_department,Department>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No department is found for the given unit id.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -178,8 +178,8 @@ __required__|The id of the job role for which the designations are to be returne
 |**200**|The designations are successfully returned. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_designation,Designation>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|Not Found|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -224,11 +224,11 @@ __required__|The id of the state whose districts are to be retrieved.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The districts are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_district,District>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command|<<_error,Error>>
 |**404**|No district is found for the given state.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -274,8 +274,8 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**200**|The list of document types is successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctype,DocType>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No document type is found.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -321,8 +321,8 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**200**|The identity document types are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctype,DocType>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No identy document type is found.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -368,8 +368,8 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**201**|The employee is sucessfully created. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|string
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
 
@@ -426,8 +426,8 @@ __required__|The search will be restricted to the hierarchy of the user only if 
 |===
 |HTTP Code|Description|Schema
 |**200**|The matching values are retrieved successfully.|< string > array
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**500**|Internal Server Error|<<_error,Error>>
 |===
 
@@ -471,11 +471,11 @@ __required__|The employee id for which the data will be returned.|integer
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The employe details are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=100"`|<<_employee,Employee>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command|<<_error,Error>>
 |**404**|No employee with the given id is found.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -523,8 +523,8 @@ __optional__|Employee additional data.|<<_employeeaddldetails,EmployeeAddlDetail
 |===
 |HTTP Code|Description|Schema
 |**200**|The data is successfully updated.|No Content
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No employee is found with the given employee id.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -572,8 +572,8 @@ __optional__|Employee Address parameters in JSON Body|<<_employeeaddress,Employe
 |===
 |HTTP Code|Description|Schema
 |**200**|The address of the given employee is successfully updated.|No Content
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|The employee with the given id is not found.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -620,9 +620,9 @@ __optional__|Employee basic data.|<<_employeebasicinfo,EmployeeBasicInfo>>
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|No Content
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**200**|The employee basic info is updated successfuly.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No employee is found with the given employee id.|<<_error,Error>>
 |**500**|Internal Server Error|<<_error,Error>>
 |===
@@ -670,8 +670,8 @@ __optional__|New employee hierarchy status data.|<<_employeehierarchy,EmployeeHi
 |===
 |HTTP Code|Description|Schema
 |**200**|The data is successfully updated.|No Content
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command|<<_error,Error>>
 |**404**|No employee with the given id is found.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -719,8 +719,8 @@ __optional__|Employee optional benefit data.|<<_employeeoptionalbenefit,Employee
 |===
 |HTTP Code|Description|Schema
 |**201**|The optional benefit created successfully.|No Content
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No employee is found with the given employee id.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -770,8 +770,8 @@ __optional__|Employee optional benefit data.|<<_employeeoptionalbenefit,Employee
 |===
 |HTTP Code|Description|Schema
 |**201**|The optional benefit created successfully.|No Content
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No employee is found with the given employee id.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -819,8 +819,8 @@ __optional__|Employee profile data.|<<_employeeprofile,EmployeeProfile>>
 |===
 |HTTP Code|Description|Schema
 |**200**|The data is successfully updated.|No Content
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No employee is found with the given employee id.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -867,9 +867,9 @@ __optional__|Employee salary data.|<<_employeesalary,EmployeeSalary>>
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|No Content
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**200**|The salary information of the employee is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No employee is found with the given employee id.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -914,11 +914,11 @@ __required__|The id of the organization whose job roles are to be returned.|inte
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The job roles are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_jobrole,JobRole>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No job role is found for the given organization.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -963,9 +963,9 @@ __required__|The job role id for which the data will be retrieved.|integer
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_optionalsalary,OptionalSalary>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**200**|The optional benefits of a given job role are successfuy retrieved.|<<_optionalsalary,OptionalSalary>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No optional benefit is found with the given job role id.|<<_error,Error>>
 |**500**|Internal Server Error|<<_error,Error>>
 |===
@@ -1010,9 +1010,9 @@ __required__|The job role id for which the data will be retrieved.|integer
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_definitions_salary,#definitions/Salary>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**200**|The salary of the job role is successfully retrieved.|<<_definitions_salary,#definitions/Salary>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No salary component is found with the given job role id.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -1058,8 +1058,8 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**200**|The list of organizations are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_organization,Organization>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No organization is found.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -1104,9 +1104,9 @@ __required__|The permission level which can be either "view" (i.e. GUI related p
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_permission,Permission>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**200**|The permissions of a given user are successfully retrieved.|<<_permission,Permission>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No permission found for the logged in user.|<<_error,Error>>
 |**500**|Internal Server Error|<<_error,Error>>
 |===
@@ -1154,8 +1154,8 @@ __required__|Country for which the list of states will be retrieved.|string
 |**200**|The list of states are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_state,State>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No state found for the given country.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
@@ -1199,8 +1199,8 @@ __required__|The id of the organization whose units will be retrieved.|string
 |**200**|The units are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_unit,Unit>>
-|**401**|The access token expired or the access token is invalid.|No Content
-|**403**|User does not have permission to execute this command.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
 |**404**|No unit is found for the given organization.|<<_error,Error>>
 |**500**|Internal Server Error.|<<_error,Error>>
 |===
