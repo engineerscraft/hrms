@@ -2,47 +2,603 @@
 [[_definitions]]
 == Definitions
 
-[[_additionaldetails]]
-=== AdditionalDetails
+[[_country]]
+=== Country
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**details** +
-__optional__|Additional details object|object
+|**countryId** +
+__required__|Unique identifier of a country.|integer (int(32))
+|**countryName** +
+__required__|Name of the country. +
+**Maximal length** : `32`|string (varchar)
 |===
 
 
-[[_basicdetails]]
-=== BasicDetails
+[[_department]]
+=== Department
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**details** +
-__optional__|Basic details object|object
+|**address** +
+__required__|Address of the department +
+**Maximal length** : `256`|string (varchar)
+|**departmentId** +
+__required__|To uniquly identify a department. This field will be ignored during department creation.|integer (int(32))
+|**departmentName** +
+__required__|Name of the department +
+**Maximal length** : `100`|string (varchar)
+|**parentDepartmentId** +
+__optional__|To identify the parent of a particular department|integer (int(32))
+|**unitId** +
+__required__|To identify the parent of a particular department|integer (int(32))
+|**unitName** +
+__required__|Name of the unit that the department belongs to. The field will be ignored during department creation. +
+**Maximal length** : `256`|string (varchar)
 |===
 
 
-[[_document]]
-=== Document
+[[_designation]]
+=== Designation
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**docType** +
-__optional__|The type of the document that is being uploaded|string
+|**designationId** +
+__required__|To uniquly identify the designation. This field will be ignored durin the designation creation.|integer (int(32))
+|**designationName** +
+__required__|Name of the designation +
+**Maximal length** : `32`|string (varchar)
 |===
 
 
-[[_supervisor]]
-=== Supervisor
+[[_district]]
+=== District
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
+|**districtId** +
+__required__|Unique identifier of a district.|integer (int(32))
+|**districtName** +
+__required__|Name of the district. +
+**Maximal length** : `32`|string (varchar)
+|**stateId** +
+__required__|Unique identifier of a state.|integer (int(32))
+|**stateName** +
+__required__|Name of the state. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_doctype]]
+=== DocType
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**docTypeId** +
+__required__|Unique identifier of a document type viz. passport, birth certificate etc. This field will be ignored during doc type creation.|integer (int(32))
+|**docTypeName** +
+__required__|The name of the document type. +
+**Maximal length** : `32`|string (varchar)
+|**identityDoc** +
+__required__|If the document if a identity document, the value will be true, otherwise false.|boolean
+|===
+
+
+[[_employee]]
+=== Employee
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**employeeAddlDetails** +
+__optional__|The employee additional details.|<<_employeeaddldetails,EmployeeAddlDetails>>
+|**employeeAddress** +
+__optional__|The employee address.|<<_employeeaddress,EmployeeAddress>>
+|**employeeBasicDetails** +
+__optional__|The employee basic information.|<<_employeebasicinfo,EmployeeBasicInfo>>
+|**employeeHierarchy** +
+__optional__|The employee hierarchy.|<<_employeehierarchy,EmployeeHierarchy>>
+|**employeeOptionalBenefit** +
+__optional__|The employee optional benefit.|<<_employeeoptionalbenefit,EmployeeOptionalBenefit>>
+|**employeeProfile** +
+__optional__|The employee profile.|<<_employeeprofile,EmployeeProfile>>
+|**employeeSalary** +
+__optional__|The employee salary.|<<_employeesalary,EmployeeSalary>>
+|===
+
+
+[[_employeeaddldetails]]
+=== EmployeeAddlDetails
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**dependentNo** +
+__optional__|The number of dependents of the employee.|integer (int(32))
+|**emergencyContactName** +
+__optional__|The name emergency contact. +
+**Maximal length** : `30`|string (varchar)
+|**emergencyContactNo** +
+__optional__|The contact number of the emergency contact. +
+**Maximal length** : `15`|string (varchar)
+|**medicalReportComment** +
+__optional__|The overall medical report comment. +
+**Maximal length** : `32`|string (varchar)
+|**nomineeName1** +
+__optional__|The name of the first nominee. +
+**Maximal length** : `120`|string (varchar)
+|**nomineeName2** +
+__optional__|The name of the second nominee. +
+**Maximal length** : `120`|string (varchar)
+|**nomineeName3** +
+__optional__|The name of the third nominee. +
+**Maximal length** : `120`|string (varchar)
+|**nomineeShare1** +
+__optional__|The share of the first nominee.|integer (int(32))
+|**nomineeShare2** +
+__optional__|The share of the second nominee.|integer (int(32))
+|**nomineeShare3** +
+__optional__|The share of the third nominee.|integer (int(32))
+|**preMedicalCheckUpDate** +
+__optional__|The contact number of the emergency contact.|string (date-time)
+|**siblingNo** +
+__optional__|The number of siblings of the employee.|integer (int(32))
+|===
+
+
+[[_employeeaddress]]
+=== EmployeeAddress
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**area** +
+__optional__|The name of the area. +
+**Maximal length** : `32`|string (varchar)
+|**countryId** +
+__required__|The unique identifier of the country.|integer (int(32))
+|**countryName** +
+__required__|The name of the country. This field will be ignored during employee creation. +
+**Maximal length** : `32`|string (varchar)
+|**description** +
+__optional__|The description or landmark of the address. +
+**Maximal length** : `100`|string (varchar)
+|**districtId** +
+__required__|The unique identifier of the district.|integer (int(32))
+|**districtName** +
+__required__|The name of the district. This field will be ignored during employee creation. +
+**Maximal length** : `32`|string (varchar)
+|**houseNo** +
+__required__|The number of the house. +
+**Maximal length** : `32`|string (varchar)
+|**pinno** +
+__required__|The zip code of the location. +
+**Maximal length** : `15`|string (varchar)
+|**region** +
+__optional__|The name of the region. +
+**Maximal length** : `32`|string (varchar)
+|**stateId** +
+__required__|The unique identifier of the state.|integer (int(32))
+|**stateName** +
+__required__|The name of the state. This field will be ignored during employee creation. +
+**Maximal length** : `32`|string (varchar)
+|**streetName** +
+__required__|The name of the street. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_employeebasicinfo]]
+=== EmployeeBasicInfo
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**contactNo** +
+__required__|The contact number of the employee. +
+**Maximal length** : `15`|string (varchar)
+|**department** +
+__required__|The department the employee belongs to.|<<_department,Department>>
+|**dob** +
+__optional__|Date of birth of the employee.|string (date-time)
+|**doj** +
+__required__|date of joining of the employee.|string (date-time)
+|**emailId** +
+__optional__|Email address of the employee. +
+**Maximal length** : `30`|string (varchar)
+|**empFirstName** +
+__required__|First name of the employee. +
+**Maximal length** : `60`|string (varchar)
+|**empId** +
+__required__|Unique identifier of the employee. This field will be ignored during employee creation.|integer (int(32))
+|**empLastName** +
+__optional__|Last name of the employee. +
+**Maximal length** : `60`|string (varchar)
+|**empMiddleName** +
+__optional__|Middle name of the employee. +
+**Maximal length** : `30`|string (varchar)
+|**empType** +
+__required__|Permanent or Contract employee. +
+**Maximal length** : `15`|string (varchar)
+|**entryBy** +
+__optional__|The username that entered the record. +
+**Maximal length** : `32`|string (varchar)
+|**entryDate** +
+__optional__|Entry date and time.|string (date-time)
+|**fatherName** +
+__optional__|Father's name of the employee. +
+**Maximal length** : `120`|string (varchar)
+|**hrFlag** +
+__optional__|Indicates if the employee is a HR.|boolean
+|**identityDocType** +
+__required__|The identity document type.|<<_doctype,DocType>>
+|**identityNumber** +
+__required__|The identification document number of the employee. +
+**Maximal length** : `32`|string (varchar)
+|**maritalStatus** +
+__required__|Marital status of the employee. +
+**Maximal length** : `10`|string (varchar)
+|**nationality** +
+__required__|Nationality of the employee. +
+**Maximal length** : `32`|string (varchar)
+|**organization** +
+__required__|The organization the employee belongs to.|<<_organization,Organization>>
+|**sex** +
+__required__|Sex of the employee. +
+**Maximal length** : `10`|string (varchar)
+|**supervisorFlag** +
+__optional__|Indicates if the employee is a supervisor.|boolean
+|**title** +
+__required__|Title of the employee. +
+**Maximal length** : `5`|string (varchar)
+|**unit** +
+__required__|The unit the employee belongs to.|<<_unit,Unit>>
+|===
+
+
+[[_employeehierarchy]]
+=== EmployeeHierarchy
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**cl** +
+__required__|The casual leaves of the employee.|integer (int(32))
+|**hrId** +
+__required__|The employee id of the HR. +
+**Maximal length** : `20`|string (varchar)
+|**maternityLeave** +
+__required__|The maternity leaves of the employee.|integer (int(32))
+|**noticePeriodEndDate** +
+__optional__|The notice period end date.|string (date-time)
+|**paternityLeave** +
+__required__|The paternity leaves of the employee.|integer (int(32))
+|**pl** +
+__required__|The paid leaves of the employee.|integer (int(32))
+|**probationPeriodEndDate** +
+__required__|The probation period end date.|string (date-time)
+|**specialLeave** +
+__required__|The special leaves of the employee.|integer (int(32))
+|**status** +
+__required__|The status of the employee. +
+**Maximal length** : `4`|string (varchar)
 |**supervisorId** +
-__optional__|Id of the supervisor|string
+__required__|The employee id of the supervisor. +
+**Maximal length** : `20`|string (varchar)
+|===
+
+
+[[_employeeoptionalbenefit]]
+=== EmployeeOptionalBenefit
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**benefitValue** +
+__required__|The benefit value for the employee.|number (double)
+|**frequency** +
+__optional__|Frequency of the benefit in months.|integer (int(32))
+|**iterations** +
+__optional__|Number of times the benefit will be given to the employee. Value -1 means infinite, Value 0 indicates the current benefit has been completed and will no longer be given to the employee. After every due date when the payroll runs, the iterations will be reduced by one.|integer (int(32))
+|**nextDueDate** +
+__optional__|The next due date of this benefit for the employee.|string (date-time)
+|**optSalaryComponent** +
+__required__|Optional salary component.|<<_salaryoptcomponent,SalaryOptComponent>>
+|**startDate** +
+__required__|The start date of this benefit for the employee.|string (date-time)
+|**stopDate** +
+__optional__|The stop date of this benefit for the employee.|string (date-time)
+|===
+
+
+[[_employeeprofile]]
+=== EmployeeProfile
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**comments** +
+__optional__|The comments. +
+**Maximal length** : `52`|string (varchar)
+|**description** +
+__optional__|The description of the employee. +
+**Maximal length** : `256`|string (varchar)
+|**qualification** +
+__optional__|The highest qualification of the employee. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_employeesalary]]
+=== EmployeeSalary
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**salaryComponent** +
+__required__|Salary Component.|<<_definitions_salarycomponent,#definitions/SalaryComponent>>
+|**salaryValue** +
+__required__|The salary value of the employee for the given salary component.|number (double)
+|===
+
+
+[[_error]]
+=== Error
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**errorMessage** +
+__required__|Detailed Error Message.|string
+|===
+
+
+[[_grade]]
+=== Grade
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**gradeId** +
+__required__|To uniquly identify a grade. This field will be ignored during grade creation.|integer (int(32))
+|**gradeName** +
+__required__|Name of the grade +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_jobrole]]
+=== JobRole
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**NoticePeriod** +
+__required__|Notice period if the employee returns after the probation period.|integer (int(32))
+|**grade** +
+__required__|Name of the grade|<<_definitions_grade,#definitions/Grade>>
+|**jobRoleId** +
+__required__|To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.|integer (int(32))
+|**organization** +
+__required__|Name of the organization|<<_definitions_organization,#definitions/Organization>>
+|**probationNoticePeriod** +
+__required__|Notice period if the employee resigns during the probation period.|integer (int(32))
+|===
+
+
+[[_logindetails]]
+=== LoginDetails
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**password** +
+__optional__|The secret password of the employee.|string (varchar)
+|**token** +
+__optional__|The refresh token to be used for renewing the access token. This field should be used only when the client has a valid access token. When this field is used, the username and password need not be sent because the authentication will happen using the refresh token.|string (varchar)
+|**username** +
+__optional__|Login user name which is same as the employee id. +
+**Maximal length** : `20`|string (varchar)
+|===
+
+
+[[_optionalsalary]]
+=== OptionalSalary
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**maxAllowedLimit** +
+__required__|The maximum allowable limit.|number (double)
+|**optSalaryComponent** +
+__required__|The Salary component.|<<_definitions_salaryoptcomponent,#definitions/SalaryOptComponent>>
+|**salaryValue** +
+__required__|The default value of the salary Component for the paricular job role id.|number (double)
+|===
+
+
+[[_organization]]
+=== Organization
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**address** +
+__required__|Address of the organization +
+**Maximal length** : `256`|string (varchar)
+|**orgId** +
+__required__|unique identifier of the organization. This field will be ignored during organization creation.|integer (int(32))
+|**orgName** +
+__required__|Name of the organization. +
+**Maximal length** : `100`|string (varchar)
+|**orgType** +
+__required__|The organization type.|<<_organizationtype,OrganizationType>>
+|===
+
+
+[[_organizationtype]]
+=== OrganizationType
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**description** +
+__optional__|The description of the organization type. +
+**Maximal length** : `100`|string (varchar)
+|**orgTypeId** +
+__required__|unique identifier of the organization type. This field will be ignored during organization type creation.|integer (int(32))
+|**orgTypeName** +
+__required__|The name of the organization type. +
+**Maximal length** : `100`|string (varchar)
+|===
+
+
+[[_permission]]
+=== Permission
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**permission** +
+__optional__|The permission name. +
+**Maximal length** : `30`|string (varchar)
+|**resource** +
+__optional__|The resource name of the permission. +
+**Maximal length** : `60`|string (varchar)
+|===
+
+
+[[_salary]]
+=== Salary
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**maxAllowedLimit** +
+__required__|The maximum allowable limit.|number (double)
+|**salaryComponent** +
+__required__|The Salary component.|<<_salarycomponent,SalaryComponent>>
+|**salaryValue** +
+__required__|The default value of the salary Component for the paricular job role id.|number (double)
+|===
+
+
+[[_salarycomponent]]
+=== SalaryComponent
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**compId** +
+__required__|Unique identifier of the salary component. This field will be ignored during salary component creation.|integer (int(32))
+|**compName** +
+__required__|Name of the salary component. +
+**Maximal length** : `32`|string (varchar)
+|**description** +
+__optional__|Description of the salary component. +
+**Maximal length** : `32`|string (varchar)
+|**salComponent** +
+__optional__|Salary componenet. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_salaryoptcomponent]]
+=== SalaryOptComponent
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**creditDebitFlag** +
+__required__|This flag indicates whether the amount will be credited (C) to the employee's account or debited (D) from the employee's account. +
+**Maximal length** : `1`|string (varchar)
+|**description** +
+__optional__|Description of the salary component. +
+**Maximal length** : `32`|string (varchar)
+|**empOptOutFlag** +
+__required__|This flag indicates whether the employee can opt out from the benefit (Y) or no (N). +
+**Maximal length** : `1`|string (varchar)
+|**endDate** +
+__required__|The end date of this benefit in company policy.|string (date-time)
+|**frequency** +
+__required__|Frequency of the component in months.|integer (int(32))
+|**optCompId** +
+__required__|Unique identifier of the optional salary component. This field will be ignored during optional salary component creation.|integer (int(32))
+|**optCompName** +
+__required__|Name of the salary component. +
+**Maximal length** : `32`|string (varchar)
+|**salOptComponent** +
+__optional__|Salary componenet. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_state]]
+=== State
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**countryId** +
+__required__|Unique identifier of a state.|integer (int(32))
+|**countryName** +
+__required__|Name of the country. +
+**Maximal length** : `32`|string (varchar)
+|**stateId** +
+__required__|Unique identifier of a state.|integer (int(32))
+|**stateName** +
+__required__|Name of the state. +
+**Maximal length** : `32`|string (varchar)
+|===
+
+
+[[_token]]
+=== Token
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**accessToken** +
+__required__|The access token to be passed in the Authorization header in all the API calls.|string (varchar)
+|**refreshToken** +
+__required__|The refresh token to be used to renew the expired access token.|string (varchar)
+|**userDisplayName** +
+__required__|The actual name of the user as stored in the LDAP server.|string (varchar)
+|**userName** +
+__required__|The username used for login. +
+**Maximal length** : `20`|string (varchar)
+|===
+
+
+[[_unit]]
+=== Unit
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**address** +
+__required__|Address of the unit. +
+**Maximal length** : `256`|string (varchar)
+|**empIdPrefix** +
+__required__|Prefix of employee id. +
+**Maximal length** : `10`|string (varchar)
+|**empIdSeqName** +
+__required__|**Maximal length** : `20`|string (varchar)
+|**orgId** +
+__required__|unique identifier of the organization.|integer (int(32))
+|**orgName** +
+__required__|Name of the organization. This field will be ignored during unit creation. +
+**Maximal length** : `100`|string (varchar)
+|**unitId** +
+__required__|To uniquly identify an unit.|integer (int(32))
+|**unitName** +
+__required__|Name of the unit. +
+**Maximal length** : `100`|string (varchar)
 |===
 
 

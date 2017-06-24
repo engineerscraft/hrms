@@ -2,15 +2,15 @@
 [[_paths]]
 == Paths
 
-[[_updateadditionaldetails]]
-=== update additional details associated to an employee
+[[_authenticateuser]]
+=== Authenticates the User and Renews the Access Token
 ....
-PUT //employee/{id}/additionaldetails
+GET /resources/v1/authentication
 ....
 
 
 ==== Description
-Updates additional details associated to an employee
+Authenticates the user based on the supplied user name and password. It can also renew the access tokken using a refresh token.
 
 
 ==== Parameters
@@ -18,10 +18,8 @@ Updates additional details associated to an employee
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Path**|**id** +
-__required__|ID of employee|string
-|**Body**|**body** +
-__required__|Additonal details that needs to be parsed and updated to DB|<<_additionaldetails,AdditionalDetails>>
+|**Body**|**loginDetails** +
+__optional__|The login credentials of the user.|<<_logindetails,LoginDetails>>
 |===
 
 
@@ -30,20 +28,361 @@ __required__|Additonal details that needs to be parsed and updated to DB|<<_addi
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|Authentication is successful|<<_token,Token>>
+|**401**|The supplied refresh token is not valid or the authentication fails.|<<_error,Error>>
+|**500**|Internal Server Error|<<_error,Error>>
 |===
 
 
 ==== Consumes
 
+* `application/xml`
 * `application/json`
 
 
 ==== Produces
 
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* security
+
+
+[[_getcountries]]
+=== Returns List of Countries
+....
+GET /resources/v1/country
+....
+
+
+==== Description
+Returns list of all countries.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The list of countries is retrieved successfully. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_country,Country>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No country is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* meta
+
+
+[[_getdepartments]]
+=== Returns List of Departments in a Given Unit
+....
+GET /resources/v1/department
+....
+
+
+==== Description
+Returns list of departments within a given unit.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**unitId** +
+__required__|The id of the unit whose departments are to be retrieved.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The departments are successfully retrieved. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_department,Department>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No department is found for the given unit id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* department
+
+
+[[_getdesignationsofjobrole]]
+=== Returns List of Designations in a Given Job Role.
+....
+GET /resources/v1/designation
+....
+
+
+==== Description
+Returns list of designations in a given job role.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**jobRoleId** +
+__required__|The id of the job role for which the designations are to be returned.|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The designations are successfully returned. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_designation,Designation>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|Not Found|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* designation
+
+
+[[_getdistricts]]
+=== Returns List of Districts
+....
+GET /resources/v1/district
+....
+
+
+==== Description
+Returns list of districts in a given state.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**stateId** +
+__required__|The id of the state whose districts are to be retrieved.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The districts are successfully retrieved. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_district,District>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command|<<_error,Error>>
+|**404**|No district is found for the given state.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* meta
+
+
+[[_getdoctypes]]
+=== Gets List of Document Types
+....
+GET /resources/v1/doctype
+....
+
+
+==== Description
+Gets the list of document types. These document types will be mainly used to store various documents of the employee like passport, birth cirtificate, graduation certificate etc.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The list of document types is successfully retrieved. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctype,DocType>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No document type is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* meta
+
+
+[[_getidentitydoctypes]]
+=== Gets List of Identity Document Types
+....
+GET /resources/v1/doctype/identitydoctypes
+....
+
+
+==== Description
+Gets the list of identity document types. Out of all document types, some are that of identity documents like passport for example. Such document type is useful to identify an employee. And the number of such a document will be stored in the employee basic information for quick identification.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The identity document types are successfully retrieved. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctype,DocType>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No identy document type is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* meta
+
+
+[[_createemployee]]
+=== Creates a new employee.
+....
+POST /resources/v1/employee
+....
+
+
+==== Description
+Creates a new employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**201**|The employee is sucessfully created. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|string
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Produces
+
+* `application/xml`
 * `application/json`
 
 
@@ -52,24 +391,214 @@ __required__|Additonal details that needs to be parsed and updated to DB|<<_addi
 * employee
 
 
-==== Security
+[[_getemployeeautocomplete]]
+=== Returns Autocomplete List for a Given Employee Attribute
+....
+GET /resources/v1/employee/
+....
 
-[options="header", cols=".^3,.^4,.^13"]
+
+==== Description
+This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:update_employee_additional_details,read:read_employee_additional_details,read:employee
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**attributeName** +
+__required__|Name of the attribute which could be firstName, middleName, lastName or emailAddress.|string
+|**Query**|**attributeValuePrefix** +
+__required__|FirstName, middleName, lastName or emailAddress starts with this value.|string
+|**Query**|**numberOfItems** +
+__required__|The number of items matching the value to be returned.|integer
+|**Query**|**restricted** +
+__required__|The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organizations.|boolean
 |===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The matching values are retrieved successfully.|< string > array
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**500**|Internal Server Error|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_getcompleteemployeedetails]]
+=== Gets the Complete Details of an Employee
+....
+GET /resources/v1/employee/{id}
+....
+
+
+==== Description
+Returns the complete details of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be returned.|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The employe details are successfully retrieved. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=100"`|<<_employee,Employee>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command|<<_error,Error>>
+|**404**|No employee with the given id is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_updateadditionaldetails]]
+=== Updates the Additional Details of an Employee
+....
+PUT /resources/v1/employee/{id}/additionaldetails
+....
+
+
+==== Description
+Updates the additional details of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee additional data.|<<_employeeaddldetails,EmployeeAddlDetails>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The data is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_updateempaddress]]
+=== Updates Employee Address Details
+....
+PUT /resources/v1/employee/{id}/address
+....
+
+
+==== Description
+Updates the employee address details.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|Id of the employee whose address will be updated.|string
+|**Body**|**reqBody** +
+__optional__|Employee Address parameters in JSON Body|<<_employeeaddress,EmployeeAddress>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The address of the given employee is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|The employee with the given id is not found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Consumes
+
+* `application/json`
+* `application/xml`
+
+
+==== Tags
+
+* employee
 
 
 [[_updatebasicdetails]]
-=== update basic info associated to an employee
+=== Updates the Basic Details of an Employee
 ....
-PUT //employee/{id}/basicinfo
+PUT /resources/v1/employee/{id}/basicinfo
 ....
 
 
 ==== Description
-Updates basic details associated to an employee
+Updates the basic details of a given employee.
 
 
 ==== Parameters
@@ -77,10 +606,12 @@ Updates basic details associated to an employee
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
 |**Path**|**id** +
-__required__|ID of employee|string
-|**Body**|**body** +
-__required__|Basic details that needs to be parsed and updated to DB|<<_basicdetails,BasicDetails>>
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee basic data.|<<_employeebasicinfo,EmployeeBasicInfo>>
 |===
 
 
@@ -89,20 +620,17 @@ __required__|Basic details that needs to be parsed and updated to DB|<<_basicdet
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|The employee basic info is updated successfuly.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error|<<_error,Error>>
 |===
 
 
 ==== Consumes
 
-* `application/json`
-
-
-==== Produces
-
+* `application/xml`
 * `application/json`
 
 
@@ -111,24 +639,15 @@ __required__|Basic details that needs to be parsed and updated to DB|<<_basicdet
 * employee
 
 
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:update_employee_basic_details,read:read_employee_basic_details,read:employee
-|===
-
-
-[[_adddocument]]
-=== Add a new document against the employee
+[[_updatehierarchystatus]]
+=== Updates the Hierarchy Status of an Employee
 ....
-POST //employee/{id}/document
+PUT /resources/v1/employee/{id}/hierarchystatus
 ....
 
 
 ==== Description
-Adds a new document against the employee mentioned by {id}. The actual document should come as an attachment to the message. Additional details related to the document (for example its type etc) must be specified in the message body
+Updates the hierarchy status of a given employee.
 
 
 ==== Parameters
@@ -136,10 +655,12 @@ Adds a new document against the employee mentioned by {id}. The actual document 
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
 |**Path**|**id** +
-__required__|ID of employee for which document is being uploaded|string
-|**Body**|**body** +
-__required__|Document object that needs to be uploaded / saved|<<_document,Document>>
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|New employee hierarchy status data.|<<_employeehierarchy,EmployeeHierarchy>>
 |===
 
 
@@ -148,20 +669,17 @@ __required__|Document object that needs to be uploaded / saved|<<_document,Docum
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|The data is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command|<<_error,Error>>
+|**404**|No employee with the given id is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
 ==== Consumes
 
-* `application/json`
-
-
-==== Produces
-
+* `application/xml`
 * `application/json`
 
 
@@ -170,24 +688,15 @@ __required__|Document object that needs to be uploaded / saved|<<_document,Docum
 * employee
 
 
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:create_employee_document,read:read_employee_documents,read:employee
-|===
-
-
-[[_updatedocument]]
-=== update a document against the employee
+[[_addoptionalbenefits]]
+=== Adds an Optional Benefit to an Employee
 ....
-PUT //employee/{id}/document/{docId}
+POST /resources/v1/employee/{id}/optionalbenefits
 ....
 
 
 ==== Description
-Overrrides an existing document (specified by its docId), with a new one
+Adds an optional benefit to a given employee.
 
 
 ==== Parameters
@@ -195,12 +704,12 @@ Overrrides an existing document (specified by its docId), with a new one
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Path**|**docId** +
-__required__|ID of the document which is being updated|string
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
 |**Path**|**id** +
-__required__|ID of employee for which document is being uploaded|string
-|**Body**|**body** +
-__required__|Document object that needs to be uploaded / saved|<<_document,Document>>
+__required__|The employee id for which the optional benefit will be created.|integer
+|**Body**|**reqBody** +
+__optional__|Employee optional benefit data.|<<_employeeoptionalbenefit,EmployeeOptionalBenefit>>
 |===
 
 
@@ -209,20 +718,17 @@ __required__|Document object that needs to be uploaded / saved|<<_document,Docum
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**201**|The optional benefit created successfully.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
 ==== Consumes
 
-* `application/json`
-
-
-==== Produces
-
+* `application/xml`
 * `application/json`
 
 
@@ -231,24 +737,15 @@ __required__|Document object that needs to be uploaded / saved|<<_document,Docum
 * employee
 
 
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:update_employee_document,read:read_employee_documents,read:employee
-|===
-
-
-[[_updatehierarchy]]
-=== update reporting information associated to an employee
+[[_updateoptionalbenefits]]
+=== Updates an Optional Benefit to an Employee
 ....
-PUT //employee/{id}/hierarchystatus
+PUT /resources/v1/employee/{id}/optionalbenefits/{oid}
 ....
 
 
 ==== Description
-Updates reporting information associated to an employee
+Updates an optional benefit to a given employee.
 
 
 ==== Parameters
@@ -256,10 +753,14 @@ Updates reporting information associated to an employee
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
 |**Path**|**id** +
-__required__|ID of employee|string
-|**Body**|**body** +
-__required__|Details of supervisor|<<_supervisor,Supervisor>>
+__required__|The employee id for which the data will be updated.|integer
+|**Path**|**oid** +
+__required__|The optional benefit id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee optional benefit data.|<<_employeeoptionalbenefit,EmployeeOptionalBenefit>>
 |===
 
 
@@ -268,20 +769,17 @@ __required__|Details of supervisor|<<_supervisor,Supervisor>>
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission to update document|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**201**|The optional benefit created successfully.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
 ==== Consumes
 
-* `application/json`
-
-
-==== Produces
-
+* `application/xml`
 * `application/json`
 
 
@@ -290,24 +788,15 @@ __required__|Details of supervisor|<<_supervisor,Supervisor>>
 * employee
 
 
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|write:update_employee_hierarchy,read:read_employee_hierarchy,read:employee
-|===
-
-
-[[_getprofile]]
-=== Get the entire profile of an employee
+[[_updateprofile]]
+=== Updates the Profile of an Employee.
 ....
-GET //employee/{id}/profile
+PUT /resources/v1/employee/{id}/profile
 ....
 
 
 ==== Description
-Read the entire profile of an employee
+Updates the profile of a given employee.
 
 
 ==== Parameters
@@ -315,8 +804,12 @@ Read the entire profile of an employee
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
 |**Path**|**id** +
-__required__|ID of employee|string
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee profile data.|<<_employeeprofile,EmployeeProfile>>
 |===
 
 
@@ -325,20 +818,17 @@ __required__|ID of employee|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation|No Content
-|**403**|User does not have permission|No Content
-|**404**|Provided Id is not found or internal excepton|No Content
-|**405**|Invalid input|No Content
+|**200**|The data is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
 ==== Consumes
 
-* `application/json`
-
-
-==== Produces
-
+* `application/xml`
 * `application/json`
 
 
@@ -347,13 +837,384 @@ __required__|ID of employee|string
 * employee
 
 
-==== Security
+[[_updatesalarydetails]]
+=== Updates the Salary of an Employee
+....
+PUT /resources/v1/employee/{id}/salary
+....
 
-[options="header", cols=".^3,.^4,.^13"]
+
+==== Description
+Updates the salary of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Scopes
-|**oauth2**|**<<_employee_operation_auth,employee_operation_auth>>**|read:employee
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee salary data.|<<_employeesalary,EmployeeSalary>>
 |===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The salary information of the employee is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_getjobrolesoforg]]
+=== Returns List of Job Roles in a Given Organization
+....
+GET /resources/v1/jobrole
+....
+
+
+==== Description
+Returns list of job roles in a given organization.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**orgId** +
+__required__|The id of the organization whose job roles are to be returned.|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The job roles are successfully retrieved. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_jobrole,JobRole>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No job role is found for the given organization.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* jobrole
+
+
+[[_getjobroleoptbenefits]]
+=== Gets the Optional Benefits of a Given Job Role
+....
+GET /resources/v1/jobrole/{id}/optbenefit
+....
+
+
+==== Description
+Gets the optional benefits of a given job role.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The job role id for which the data will be retrieved.|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The optional benefits of a given job role are successfuy retrieved.|<<_optionalsalary,OptionalSalary>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No optional benefit is found with the given job role id.|<<_error,Error>>
+|**500**|Internal Server Error|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* jobrole
+
+
+[[_getjobrolesalary]]
+=== Gets the Salary of a Given Job Role
+....
+GET /resources/v1/jobrole/{id}/salary
+....
+
+
+==== Description
+Gets the salary of a given job role.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The job role id for which the data will be retrieved.|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The salary of the job role is successfully retrieved.|<<_definitions_salary,#definitions/Salary>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No salary component is found with the given job role id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* jobrole
+
+
+[[_getorganizations]]
+=== Returns List of Organizations
+....
+GET /resources/v1/organization
+....
+
+
+==== Description
+Returns a complete list of organizations defined in the system.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The list of organizations are successfully retrieved. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_organization,Organization>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No organization is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* organization
+
+
+[[_getpermissions]]
+=== Retrieves the Permissions of the Logged In User
+....
+GET /resources/v1/permission
+....
+
+
+==== Description
+Retrieves the permissions of the logged in user at the GUI level or at the API level.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**permissionLevel** +
+__required__|The permission level which can be either "view" (i.e. GUI related permissions) or "api" (i.e. REST API related permissions).|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The permissions of a given user are successfully retrieved.|<<_permission,Permission>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No permission found for the logged in user.|<<_error,Error>>
+|**500**|Internal Server Error|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* security
+
+
+[[_getstates]]
+=== Gets List of States for a Given Country
+....
+GET /resources/v1/state
+....
+
+
+==== Description
+Gets the list of states for a given country. This data will be required while saving the address of the employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**countryId** +
+__required__|Country for which the list of states will be retrieved.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The list of states are successfully retrieved. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_state,State>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No state found for the given country.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* meta
+
+
+[[_getunits]]
+=== Returns List of Units in a Given Organization
+....
+GET /resources/v1/unit
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**organizationId** +
+__required__|The id of the organization whose units will be retrieved.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The units are successfully retrieved. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_unit,Unit>>
+|**401**|The access token expired or the access token is invalid.|<<_error,Error>>
+|**403**|User does not have permission to execute this command.|<<_error,Error>>
+|**404**|No unit is found for the given organization.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* unit
 
 
 

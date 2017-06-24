@@ -105,8 +105,27 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td> </td>
  <td class='comment'></td>
 </tr>
+<tr>
+ <td class='indexedColumn' title='Indexed'>STATE_ID</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="district_master.STATE_ID refs state_master.STATE_ID via district_master_ibfk_1"><a href='state_master.html'>state_master</a><span class='relatedKey'>.STATE_ID</span>
+    </td>
+    <td class='constraint'>district_master_ibfk_1</td>
+   </tr>
+  </table>
+ </td>
+ <td class='comment'></td>
+</tr>
 </table>
-<p/>Table contained 0 rows at Thu Jun 22 19:01 IST 2017
+<p/>Table contained 0 rows at Sat Jun 24 13:09 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -126,6 +145,12 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>PRIMARY</td>
  </tr>
+ <tr>
+  <td class='indexedColumn'>STATE_ID</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>STATE_ID</td>
+ </tr>
 </table>
 </div>
 <table width='100%' border='0'><tr><td class='container'>
@@ -135,15 +160,16 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/district_master.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="285,5,423,304"/>
-<area shape="rect" id="node2" href="district_master.html#" title="district_master" alt="" coords="5,147,237,259"/>
+<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="467,5,604,304"/>
+<area shape="rect" id="node2" href="district_master.html#" title="district_master" alt="" coords="187,147,419,283"/>
+<area shape="rect" id="node3" href="state_master.html#graph" title="state_master" alt="" coords="5,197,139,328"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="285,7,423,305"/>
-<area shape="rect" id="node2" href="country_master.html#graph" title="country_master" alt="" coords="55,307,187,365"/>
-<area shape="rect" id="node3" href="district_master.html#" title="district_master" alt="" coords="5,88,237,200"/>
-<area shape="rect" id="node4" href="employee.html#graph" title="employee" alt="" coords="55,5,188,64"/>
-<area shape="rect" id="node5" href="state_master.html#graph" title="state_master" alt="" coords="61,224,182,283"/>
+<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="647,5,784,304"/>
+<area shape="rect" id="node2" href="district_master.html#" title="district_master" alt="" coords="367,147,599,283"/>
+<area shape="rect" id="node3" href="employee.html#graph" title="employee" alt="" coords="412,5,553,64"/>
+<area shape="rect" id="node4" href="state_master.html#graph" title="state_master" alt="" coords="185,197,319,328"/>
+<area shape="rect" id="node5" href="country_master.html#graph" title="country_master" alt="" coords="5,197,137,256"/>
 </map>
 </td></tr></table>
 </div>

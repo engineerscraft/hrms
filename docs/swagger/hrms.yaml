@@ -1,279 +1,1972 @@
 swagger: '2.0'
 info:
-  description: This is a specification document for all the HRMS API!
+  description: This is an API documentation for HRMS
   version: 1.0.0
-  title: HRMS API specification
-basePath: /
+  title: HRMS
+host: 'localhost:8080'
+basePath: /resources
 tags:
+  - name: meta
+    description: Meta/Master Data Access.
   - name: employee
-    description: >-
-      Everything about the employee management related APIs (creation, search,
-      update etc)
+    description: Employee related resources.
+  - name: organization
+    description: Everything about your organization.
+  - name: unit
+    description: Everything about the unit.
+  - name: department
+    description: It's all about departments.
+  - name: designation
+    description: Everything about the designation.
+  - name: jobrole
+    description: Everything about the job role.
+  - name: security
+    description: Everything about the security.
 schemes:
   - http
 paths:
-  /employee/{id}/document:
-    post:
+  /v1/state:
+    get:
       tags:
-        - employee
-      summary: Add a new document against the employee
-      description: >-
-        Adds a new document against the employee mentioned by {id}. The actual
-        document should come as an attachment to the message. Additional details
-        related to the document (for example its type etc) must be specified in
-        the message body
-      operationId: addDocument
-      consumes:
-        - application/json
+        - meta
+      summary: Gets List of States for a Given Country
+      description: Gets the list of states for a given country. This data will be required while saving the address of the employee.
+      operationId: getStates
       produces:
+        - application/xml
         - application/json
       parameters:
-        - name: id
-          in: path
-          description: ID of employee for which document is being uploaded
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
-        - in: body
-          name: body
-          description: Document object that needs to be uploaded / saved
+        - name: countryId
+          in: query
+          description: Country for which the list of states will be retrieved.
           required: true
-          schema:
-            $ref: '#/definitions/Document'
+          type: string
       responses:
         '200':
-          description: Successful operation
+          description: The list of states are successfully retrieved.
+          schema:
+            $ref: '#/definitions/State'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
         '403':
-          description: User does not have permission to update document
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
         '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:create_employee_document'
-            - 'read:read_employee_documents'
-            - 'read:employee'
-  /employee/{id}/document/{docId}:
+          description: No state found for the given country.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/doctype:
+    get:
+      tags:
+        - meta
+      summary: Gets List of Document Types
+      description: Gets the list of document types. These document types will be mainly used to store various documents of the employee like passport, birth cirtificate, graduation certificate etc.
+      operationId: getDocTypes
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The list of document types is successfully retrieved.
+          schema:
+            $ref: '#/definitions/DocType'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No document type is found.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/doctype/identitydoctypes:
+    get:
+      tags:
+        - meta
+      summary: Gets List of Identity Document Types
+      description: Gets the list of identity document types. Out of all document types, some are that of identity documents like passport for example. Such document type is useful to identify an employee. And the number of such a document will be stored in the employee basic information for quick identification.
+      operationId: getIdentityDocTypes
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The identity document types are successfully retrieved.
+          schema:
+            $ref: '#/definitions/DocType'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No identy document type is found.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/{id}/address:
     put:
       tags:
         - employee
-      summary: update a document against the employee
-      description: 'Overrrides an existing document (specified by its docId), with a new one'
-      operationId: updateDocument
+      summary: Updates Employee Address Details
+      description: Updates the employee address details.
+      operationId: updateEmpAddress
       consumes:
         - application/json
-      produces:
-        - application/json
+        - application/xml
       parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
         - name: id
           in: path
-          description: ID of employee for which document is being uploaded
-          required: true
           type: string
-        - name: docId
-          in: path
-          description: ID of the document which is being updated
+          description: Id of the employee whose address will be updated.
           required: true
-          type: string
-        - in: body
-          name: body
-          description: Document object that needs to be uploaded / saved
-          required: true
+        - name: reqBody
+          in: body
+          description: Employee Address parameters in JSON Body
           schema:
-            $ref: '#/definitions/Document'
+            $ref: '#/definitions/EmployeeAddress'
       responses:
         '200':
-          description: Successful operation
-        '403':
-          description: User does not have permission to update document
-        '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:update_employee_document'
-            - 'read:read_employee_documents'
-            - 'read:employee'
-  /employee/{id}/additionaldetails:
-    put:
-      tags:
-        - employee
-      summary: update additional details associated to an employee
-      description: Updates additional details associated to an employee
-      operationId: updateAdditionalDetails
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          description: ID of employee
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Additonal details that needs to be parsed and updated to DB
-          required: true
+          description: The address of the given employee is successfully updated.
+        '401':
+          description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/AdditionalDetails'
-      responses:
-        '200':
-          description: Successful operation
+            $ref: '#/definitions/Error'
         '403':
-          description: User does not have permission to update document
-        '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:update_employee_additional_details'
-            - 'read:read_employee_additional_details'
-            - 'read:employee'
-  /employee/{id}/basicinfo:
-    put:
-      tags:
-        - employee
-      summary: update basic info associated to an employee
-      description: Updates basic details associated to an employee
-      operationId: updateBasicDetails
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          description: ID of employee
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Basic details that needs to be parsed and updated to DB
-          required: true
+          description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/BasicDetails'
-      responses:
-        '200':
-          description: Successful operation
-        '403':
-          description: User does not have permission to update document
+            $ref: '#/definitions/Error'
         '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:update_employee_basic_details'
-            - 'read:read_employee_basic_details'
-            - 'read:employee'
-  /employee/{id}/hierarchystatus:
-    put:
-      tags:
-        - employee
-      summary: update reporting information associated to an employee
-      description: Updates reporting information associated to an employee
-      operationId: updateHierarchy
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          description: ID of employee
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Details of supervisor
-          required: true
+          description: The employee with the given id is not found.
           schema:
-            $ref: '#/definitions/Supervisor'
-      responses:
-        '200':
-          description: Successful operation
-        '403':
-          description: User does not have permission to update document
-        '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'write:update_employee_hierarchy'
-            - 'read:read_employee_hierarchy'
-            - 'read:employee'
-  /employee/{id}/profile:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/:
     get:
       tags:
         - employee
-      summary: Get the entire profile of an employee
-      description: Read the entire profile of an employee
-      operationId: getProfile
-      consumes:
-        - application/json
+      summary: Returns Autocomplete List for a Given Employee Attribute
+      description: This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees.
+      operationId: getEmployeeAutocomplete
       produces:
+        - application/xml
         - application/json
       parameters:
-        - name: id
-          in: path
-          description: ID of employee
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: attributeName
+          in: query
+          type: string
+          description: Name of the attribute which could be firstName, middleName, lastName or emailAddress.
+          required: true
+        - name: attributeValuePrefix
+          in: query
+          type: string
+          description: FirstName, middleName, lastName or emailAddress starts with this value.
+          required: true
+        - name: numberOfItems
+          in: query
+          type: integer
+          description: The number of items matching the value to be returned.
+          required: true
+        - name: restricted
+          in: query
+          type: boolean
+          description: The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organizations.
+          required: true
+      responses:
+        '200':
+          description: The matching values are retrieved successfully.
+          schema:
+            type: array
+            items:
+              type: string
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'  
+  /v1/organization:
+    get:
+      tags:
+        - organization
+      summary: Returns List of Organizations
+      description: Returns a complete list of organizations defined in the system.
+      operationId: getOrganizations
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
       responses:
         '200':
-          description: Successful operation
+          description: The list of organizations are successfully retrieved.
+          schema:
+            $ref: '#/definitions/Organization'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
         '403':
-          description: User does not have permission
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
         '404':
-          description: Provided Id is not found or internal excepton
-        '405':
-          description: Invalid input
-      security:
-        - employee_operation_auth:
-            - 'read:employee'
-securityDefinitions:
-  employee_operation_auth:
-    type: oauth2
-    authorizationUrl: 'http:///permission'
-    flow: implicit
-    scopes:
-      'write:employee': Modify an employee
-      'read:employee': Read an employee
-      'write:create_employee_document': Create document for an employee
-      'read:read_employee_documents': Read document of an employee
-      'write:update_employee_hierarchy': update employee's hierarchy mapping
-      'read:read_employee_hierarchy': Read employee's hierarchy info
-      'write:update_employee_document': Update employee's documents
-      'write:update_employee_additional_details': Update additonal details of employee
-      'read:read_employee_additional_details': read additional details of an employee
-      'write:update_employee_basic_details': Update basic details of employee
-      'read:read_employee_basic_details': Read basic deails of employee
-  api_key:
-    type: apiKey
-    name: api_key
-    in: header
+          description: No organization is found.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/unit:
+    get:
+      tags:
+        - unit
+      summary: Returns List of Units in a Given Organization
+      operationId: getUnits
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: organizationId
+          in: query
+          description: The id of the organization whose units will be retrieved.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The units are successfully retrieved.
+          schema:
+            $ref: '#/definitions/Unit'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No unit is found for the given organization.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/department:
+    get:
+      tags:
+        - department
+      summary: Returns List of Departments in a Given Unit
+      description: Returns list of departments within a given unit.
+      operationId: getDepartments
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: unitId
+          in: query
+          description: The id of the unit whose departments are to be retrieved.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The departments are successfully retrieved.
+          schema:
+            $ref: '#/definitions/Department'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No department is found for the given unit id.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/country:
+    get:
+      tags:
+        - meta
+      summary: Returns List of Countries
+      description: Returns list of all countries.
+      operationId: getCountries
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The list of countries is retrieved successfully.
+          schema:
+            $ref: '#/definitions/Country'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No country is found.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/district:
+    get:
+      tags:
+        - meta
+      summary: Returns List of Districts
+      description: Returns list of districts in a given state.
+      operationId: getDistricts
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: stateId
+          in: query
+          description: The id of the state whose districts are to be retrieved.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The districts are successfully retrieved.
+          schema:
+            $ref: '#/definitions/District'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No district is found for the given state.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/jobrole:
+    get:
+      tags:
+        - jobrole
+      summary: Returns List of Job Roles in a Given Organization
+      description: Returns list of job roles in a given organization.
+      operationId: getJobRolesOfOrg
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: orgId
+          in: query
+          description: The id of the organization whose job roles are to be returned.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: The job roles are successfully retrieved.
+          schema:
+            $ref: '#/definitions/JobRole'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No job role is found for the given organization.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/designation:
+    get:
+      tags:
+        - designation
+      summary: Returns List of Designations in a Given Job Role.
+      description: Returns list of designations in a given job role.
+      operationId: getDesignationsOfJobRole
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: jobRoleId
+          in: query
+          description: The id of the job role for which the designations are to be returned.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: The designations are successfully returned.
+          schema:
+            $ref: '#/definitions/Designation'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee:
+    post:
+      tags:
+        - employee
+      summary: Creates a new employee.
+      description: Creates a new employee.
+      operationId: createEmployee
+      consumes:
+        - application/xml
+        - application/json
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+      responses:
+        '201':
+          description: The employee is sucessfully created.
+          schema:
+            type: string
+            description: Newly created employee id.
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/{id}:
+    get:
+      tags:
+        - employee
+      summary: Gets the Complete Details of an Employee
+      description: Returns the complete details of a given employee.
+      operationId: getCompleteEmployeeDetails
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be returned.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: The employe details are successfully retrieved.
+          schema:
+            $ref: '#/definitions/Employee'
+            description: The details of the given employee id.
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=100
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No employee with the given id is found.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/{id}/hierarchystatus:
+    put:
+      tags:
+        - employee
+      summary: Updates the Hierarchy Status of an Employee
+      description: Updates the hierarchy status of a given employee.
+      operationId: updateHierarchyStatus
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: New employee hierarchy status data.
+          schema:
+            $ref: '#/definitions/EmployeeHierarchy'
+      responses:
+        '200':
+          description: The data is successfully updated.
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No employee with the given id is found.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/{id}/profile:
+    put:
+      tags:
+        - employee
+      summary: Updates the Profile of an Employee.
+      description: Updates the profile of a given employee.
+      operationId: updateProfile
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee profile data.
+          schema:
+            $ref: '#/definitions/EmployeeProfile'
+      responses:
+        '200':
+          description: The data is successfully updated.
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/{id}/basicinfo:
+    put:
+      tags:
+        - employee
+      summary: Updates the Basic Details of an Employee
+      description: Updates the basic details of a given employee.
+      operationId: updateBasicDetails
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee basic data.
+          schema:
+            $ref: '#/definitions/EmployeeBasicInfo'
+      responses:
+        '200':
+          description: The employee basic info is updated successfuly.
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/{id}/additionaldetails:
+    put:
+      tags:
+        - employee
+      summary: Updates the Additional Details of an Employee
+      description: Updates the additional details of a given employee.
+      operationId: updateAdditionalDetails
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee additional data.
+          schema:
+            $ref: '#/definitions/EmployeeAddlDetails'
+      responses:
+        '200':
+          description: The data is successfully updated.
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/{id}/salary:
+    put:
+      tags:
+        - employee
+      summary: Updates the Salary of an Employee
+      description: Updates the salary of a given employee.
+      operationId: updateSalaryDetails
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee salary data.
+          schema:
+            $ref: '#/definitions/EmployeeSalary'
+      responses:
+        '200':
+          description: The salary information of the employee is successfully updated.
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/{id}/optionalbenefits:
+    post:
+      tags:
+        - employee
+      summary: Adds an Optional Benefit to an Employee
+      description: Adds an optional benefit to a given employee.
+      operationId: addOptionalBenefits
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the optional benefit will be created.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee optional benefit data.
+          schema:
+            $ref: '#/definitions/EmployeeOptionalBenefit'
+      responses:
+        '201':
+          description: The optional benefit created successfully.
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/employee/{id}/optionalbenefits/{oid}:
+    put:
+      tags:
+        - employee
+      summary: Updates an Optional Benefit to an Employee
+      description: Updates an optional benefit to a given employee.
+      operationId: updateOptionalBenefits
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: oid
+          in: path
+          description: The optional benefit id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee optional benefit data.
+          schema:
+            $ref: '#/definitions/EmployeeOptionalBenefit'
+      responses:
+        '201':
+          description: The optional benefit created successfully.
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/jobrole/{id}/salary:
+    get:
+      tags:
+        - jobrole
+      summary: Gets the Salary of a Given Job Role
+      description: Gets the salary of a given job role.
+      operationId: getJobRoleSalary
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The job role id for which the data will be retrieved.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: The salary of the job role is successfully retrieved.
+          schema:
+            $ref: '#definitions/Salary'
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No salary component is found with the given job role id.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/jobrole/{id}/optbenefit:
+    get:
+      tags:
+        - jobrole
+      summary: Gets the Optional Benefits of a Given Job Role
+      description: Gets the optional benefits of a given job role.
+      operationId: getJobRoleOptBenefits
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The job role id for which the data will be retrieved.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: The optional benefits of a given job role are successfuy retrieved.
+          schema:
+            $ref: '#/definitions/OptionalSalary'
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No optional benefit is found with the given job role id.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/authentication:
+    get:
+      tags:
+        - security
+      summary: Authenticates the User and Renews the Access Token
+      description: Authenticates the user based on the supplied user name and password. It can also renew the access tokken using a refresh token.
+      operationId: authenticateUser
+      consumes:
+        - application/xml
+        - application/json
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: loginDetails
+          in: body
+          description: The login credentials of the user.
+          schema:
+            $ref: '#/definitions/LoginDetails'
+      responses:
+        '200':
+          description: Authentication is successful
+          schema:
+            $ref: '#/definitions/Token'
+        '401':
+          description: The supplied refresh token is not valid or the authentication fails.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /v1/permission:
+    get:
+      tags:
+        - security
+      summary: Retrieves the Permissions of the Logged In User
+      description: Retrieves the permissions of the logged in user at the GUI level or at the API level.
+      operationId: getPermissions
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: permissionLevel
+          in: query
+          description: The permission level which can be either "view" (i.e. GUI related permissions) or "api" (i.e. REST API related permissions).
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: The permissions of a given user are successfully retrieved.
+          schema:
+            $ref: '#/definitions/Permission'
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: No permission found for the logged in user.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
 definitions:
-  Document:
+  Error:
+    type: object
     properties:
-      docType:
+      errorMessage:
         type: string
-        description: The type of the document that is being uploaded
-  AdditionalDetails:
+        description: Detailed Error Message.
+    required: 
+      - errorMessage
+  Country:
+    type: object
     properties:
-      details:
-        type: object
-        description: Additional details object
-  BasicDetails:
-    properties:
-      details:
-        type: object
-        description: Basic details object
-  Supervisor:
-    properties:
-      supervisorId:
+      countryId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a country.
+      countryName:
         type: string
-        description: Id of the supervisor
+        format: varchar
+        maxLength: 32
+        description: Name of the country.
+    required: 
+      - countryId
+      - countryName
+  State:
+    type: object
+    properties:
+      stateId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a state.
+      stateName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the state.
+      countryId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a state.
+      countryName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the country.
+    required: 
+      - stateId
+      - stateName
+      - countryId
+      - countryName
+  District:
+    type: object
+    properties:
+      districtId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a district.
+      districtName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the district.
+      stateId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a state.
+      stateName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the state.
+    required: 
+      - districtId
+      - districtName
+      - stateId
+      - stateName
+  DocType:
+    type: object
+    properties:
+      docTypeId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a document type viz. passport, birth certificate etc. This field will be ignored during doc type creation.
+      docTypeName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the document type.
+      identityDoc:
+        type: boolean
+        description: If the document if a identity document, the value will be true, otherwise false.        
+    required: 
+      - docTypeId
+      - docTypeName
+      - identityDoc
+  EmployeeAddress:
+    type: object
+    properties:
+      houseNo:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The number of the house.
+      streetName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the street.
+      area:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the area.
+      region:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the region.
+      pinno:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: The zip code of the location.
+      districtId:
+        type: integer
+        format: int(32)
+        description: The unique identifier of the district.
+      districtName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the district. This field will be ignored during employee creation.
+      stateId:
+        type: integer
+        format: int(32)
+        description: The unique identifier of the state.
+      stateName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the state. This field will be ignored during employee creation.
+      countryId:
+        type: integer
+        format: int(32)
+        description: The unique identifier of the country.
+      countryName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The name of the country. This field will be ignored during employee creation.
+      description:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: The description or landmark of the address.
+    required: 
+      - houseNo
+      - streetName
+      - pinno
+      - districtId
+      - districtName
+      - stateId
+      - stateName
+      - countryId
+      - countryName
+  EmployeeProfile:
+    type: object
+    properties:
+      qualification:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The highest qualification of the employee.
+      description:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: The description of the employee.
+      comments:
+        type: string
+        format: varchar
+        maxLength: 52
+        description: The comments.
+  EmployeeAddlDetails:
+    type: object
+    properties:
+      siblingNo:
+        type: integer
+        format: int(32)
+        description: The number of siblings of the employee.
+      dependentNo:
+        type: integer
+        format: int(32)
+        description: The number of dependents of the employee.
+      nomineeName1:
+        type: string
+        format: varchar
+        maxLength: 120
+        description: The name of the first nominee.
+      nomineeName2:
+        type: string
+        format: varchar
+        maxLength: 120
+        description: The name of the second nominee.
+      nomineeName3:
+        type: string
+        format: varchar
+        maxLength: 120
+        description: The name of the third nominee.
+      nomineeShare1:
+        type: integer
+        format: int(32)
+        description: The share of the first nominee.
+      nomineeShare2:
+        type: integer
+        format: int(32)
+        description: The share of the second nominee.
+      nomineeShare3:
+        type: integer
+        format: int(32)
+        description: The share of the third nominee.
+      emergencyContactName:
+        type: string
+        format: varchar
+        maxLength: 30
+        description: The name emergency contact.
+      emergencyContactNo:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: The contact number of the emergency contact.
+      preMedicalCheckUpDate:
+        type: string
+        format: date-time
+        description: The contact number of the emergency contact.
+      medicalReportComment:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The overall medical report comment.
+  EmployeeHierarchy:
+    type: object
+    properties:
+      supervisorId: 
+        type: string
+        format: varchar
+        maxLength: 20
+        description: The employee id of the supervisor.
+      hrId:
+        type: string
+        format: varchar
+        maxLength: 20
+        description: The employee id of the HR.
+      status:
+        type: string
+        format: varchar
+        maxLength: 4
+        description: The status of the employee.
+      cl:
+        type: integer
+        format: int(32)
+        description: The casual leaves of the employee.
+      pl:
+        type: integer
+        format: int(32)
+        description: The paid leaves of the employee.
+      paternityLeave:
+        type: integer
+        format: int(32)
+        description: The paternity leaves of the employee.
+      maternityLeave:
+        type: integer
+        format: int(32)
+        description: The maternity leaves of the employee.
+      specialLeave:
+        type: integer
+        format: int(32)
+        description: The special leaves of the employee.
+      probationPeriodEndDate:
+        type: string
+        format: date-time
+        description: The probation period end date.
+      noticePeriodEndDate:
+        type: string
+        format: date-time
+        description: The notice period end date.
+    required:
+      - supervisorId
+      - hrId
+      - status
+      - cl
+      - pl
+      - paternityLeave
+      - maternityLeave
+      - specialLeave
+      - probationPeriodEndDate
+  OrganizationType:
+    type: object
+    properties:
+      orgTypeId:
+        type: integer
+        format: int(32)
+        description: unique identifier of the organization type. This field will be ignored during organization type creation.        
+      orgTypeName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: The name of the organization type.
+      description:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: The description of the organization type.
+    required:
+      - orgTypeId
+      - orgTypeName
+  Organization:
+    type: object
+    properties:
+      orgId:
+        type: integer
+        format: int(32)
+        description: unique identifier of the organization. This field will be ignored during organization creation.
+      orgName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Name of the organization.
+      orgType:
+        $ref: '#/definitions/OrganizationType'
+        description: The organization type.
+      address:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: Address of the organization
+    required:
+      - orgId
+      - orgType
+      - orgName
+      - address
+  Unit:
+    type: object
+    properties:
+      unitId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify an unit.
+      unitName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Name of the unit.
+      empIdPrefix:
+        type: string
+        format: varchar
+        maxLength: 10
+        description: Prefix of employee id.
+      empIdSeqName:
+        type: string
+        format: varchar
+        maxLength: 20
+      address:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: Address of the unit.
+      orgId:
+        type: integer
+        format: int(32)
+        description: unique identifier of the organization.
+      orgName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Name of the organization. This field will be ignored during unit creation.
+    required:
+      - unitId
+      - unitName
+      - empIdPrefix
+      - empIdSeqName
+      - address
+      - orgId
+      - orgName
+  Department:
+    type: object
+    properties:
+      departmentId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify a department. This field will be ignored during department creation.
+      departmentName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Name of the department
+      address:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: Address of the department
+      parentDepartmentId:
+        type: integer
+        format: int(32)
+        description: To identify the parent of a particular department
+      unitId:
+        type: integer
+        format: int(32)
+        description: To identify the parent of a particular department
+      unitName:
+        type: string
+        format: varchar
+        maxLength: 256
+        description: Name of the unit that the department belongs to. The field will be ignored during department creation.
+    required:
+      - departmentId
+      - departmentName
+      - address
+      - unitId
+      - unitName
+  Grade:
+    type: object
+    properties:
+      gradeId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify a grade. This field will be ignored during grade creation.
+      gradeName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the grade
+    required:
+      - gradeId
+      - gradeName
+  JobRole:
+    type: object
+    properties:
+      jobRoleId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.
+      grade:
+        $ref: '#definitions/Grade'
+        description: Name of the grade 
+      organization:
+        $ref: '#definitions/Organization'
+        description: Name of the organization 
+      probationNoticePeriod:
+        type: integer
+        format: int(32)
+        description: Notice period if the employee resigns during the probation period.
+      NoticePeriod:
+        type: integer
+        format: int(32)
+        description: Notice period if the employee returns after the probation period.      
+    required:
+      - jobRoleId
+      - grade
+      - organization
+      - probationNoticePeriod
+      - NoticePeriod
+  Designation:
+    type: object
+    properties:
+      designationId:
+        type: integer
+        format: int(32)
+        description: To uniquly identify the designation. This field will be ignored durin the designation creation.
+      designationName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the designation
+    required:
+      - designationId
+      - designationName
+  Salary:
+    type: object
+    properties:
+      salaryComponent:
+        $ref: '#/definitions/SalaryComponent'
+        description: The Salary component.
+      salaryValue:
+        type: number
+        format: double
+        description: The default value of the salary Component for the paricular job role id.
+      maxAllowedLimit:
+        type: number
+        format: double
+        description: The maximum allowable limit.
+    required:
+      - salaryComponent
+      - salaryValue
+      - maxAllowedLimit
+  OptionalSalary:
+    type: object
+    properties:
+      optSalaryComponent:
+        $ref: '#definitions/SalaryOptComponent'
+        description: The Salary component.
+      salaryValue:
+        type: number
+        format: double
+        description: The default value of the salary Component for the paricular job role id.
+      maxAllowedLimit:
+        type: number
+        format: double
+        description: The maximum allowable limit.
+    required:
+      - optSalaryComponent
+      - salaryValue
+      - maxAllowedLimit
+  SalaryComponent:
+    type: object
+    properties:
+      compId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of the salary component. This field will be ignored during salary component creation.
+      compName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the salary component.
+      description:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Description of the salary component.
+      salComponent:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Salary componenet.
+    required:
+      - compId
+      - compName
+  SalaryOptComponent:
+    type: object
+    properties:
+      optCompId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of the optional salary component. This field will be ignored during optional salary component creation.
+      optCompName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the salary component.
+      description:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Description of the salary component.
+      salOptComponent:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Salary componenet.
+      frequency:
+        type: integer
+        format: int(32)
+        description: Frequency of the component in months.
+      endDate:
+        type: string
+        format: date-time
+        description: The end date of this benefit in company policy.
+      creditDebitFlag:
+        type: string
+        format: varchar
+        maxLength: 1
+        description: This flag indicates whether the amount will be credited (C) to the employee's account or debited (D) from the employee's account.
+      empOptOutFlag:
+        type: string
+        format: varchar
+        maxLength: 1
+        description: This flag indicates whether the employee can opt out from the benefit (Y) or no (N).
+    required:
+      - optCompId
+      - optCompName
+      - frequency
+      - endDate
+      - creditDebitFlag
+      - empOptOutFlag
+  EmployeeSalary:
+    type: object
+    properties:
+      salaryComponent:
+        $ref: '#definitions/SalaryComponent'
+        description: Salary Component.
+      salaryValue:
+        type: number
+        format: double
+        description: The salary value of the employee for the given salary component.        
+    required:
+      - salaryComponent
+      - salaryValue
+  EmployeeOptionalBenefit:
+    type: object
+    properties:
+      optSalaryComponent:
+        $ref: '#/definitions/SalaryOptComponent'
+        description: Optional salary component.
+      startDate:
+        type: string
+        format: date-time
+        description: The start date of this benefit for the employee.
+      stopDate:
+        type: string
+        format: date-time
+        description: The stop date of this benefit for the employee.
+      nextDueDate:
+        type: string
+        format: date-time
+        description: The next due date of this benefit for the employee.
+      frequency:
+        type: integer
+        format: int(32)
+        description: Frequency of the benefit in months.
+      iterations:
+        type: integer
+        format: int(32)
+        description: Number of times the benefit will be given to the employee. Value -1 means infinite, Value 0 indicates the current benefit has been completed and will no longer be given to the employee. After every due date when the payroll runs, the iterations will be reduced by one.
+      benefitValue:
+        type: number
+        format: double
+        description: The benefit value for the employee.        
+    required:
+      - optSalaryComponent
+      - startDate
+      - benefitValue
+  EmployeeBasicInfo:
+    type: object
+    properties:
+      empId:        
+        type: integer
+        format: int(32)
+        description: Unique identifier of the employee. This field will be ignored during employee creation.
+      title:
+        type: string
+        format: varchar
+        maxLength: 5
+        description: Title of the employee.
+      empFirstName:
+        type: string
+        format: varchar
+        maxLength: 60
+        description: First name of the employee.
+      empMiddleName:
+        type: string
+        format: varchar
+        maxLength: 30
+        description: Middle name of the employee.
+      empLastName:
+        type: string
+        format: varchar
+        maxLength: 60
+        description: Last name of the employee.
+      sex:
+        type: string
+        format: varchar
+        maxLength: 10
+        description: Sex of the employee.
+      empType:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: Permanent or Contract employee.
+      maritalStatus:
+        type: string
+        format: varchar
+        maxLength: 10
+        description: Marital status of the employee.
+      doj:
+        type: string
+        format: date-time
+        description: date of joining of the employee.
+      organization:
+        $ref: '#/definitions/Organization'
+        description: The organization the employee belongs to.
+      unit:
+        $ref: '#/definitions/Unit'
+        description: The unit the employee belongs to.
+      department:
+        $ref: '#/definitions/Department'
+        description: The department the employee belongs to.
+      nationality: 
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Nationality of the employee.
+      identityDocType:
+        $ref: '#/definitions/DocType'
+        description: The identity document type.
+      identityNumber: 
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The identification document number of the employee.      
+      dob:
+        type: string
+        format: date-time
+        description: Date of birth of the employee.
+      fatherName:
+        type: string
+        format: varchar
+        maxLength: 120
+        description: Father's name of the employee.
+      emailId:
+        type: string
+        format: varchar
+        maxLength: 30
+        description: Email address of the employee.
+      contactNo:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: The contact number of the employee.
+      entryBy:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: The username that entered the record.
+      entryDate:
+        type: string
+        format: date-time
+        description: Entry date and time.
+      hrFlag:
+        type: boolean
+        description: Indicates if the employee is a HR.
+      supervisorFlag:
+        type: boolean
+        description: Indicates if the employee is a supervisor.
+    required:
+      - empId
+      - title
+      - empFirstName
+      - sex
+      - empType
+      - maritalStatus
+      - doj
+      - organization
+      - unit
+      - department
+      - nationality
+      - identityDocType
+      - identityNumber
+      - contactNo  
+  Employee:
+    type: object
+    properties:
+      employeeBasicDetails:
+        $ref: '#/definitions/EmployeeBasicInfo'
+        description: The employee basic information.
+      employeeOptionalBenefit:
+        $ref: '#/definitions/EmployeeOptionalBenefit'
+        description: The employee optional benefit.
+      employeeSalary:
+        $ref: '#/definitions/EmployeeSalary'
+        description: The employee salary.
+      employeeHierarchy:
+        $ref: '#/definitions/EmployeeHierarchy'
+        description: The employee hierarchy.
+      employeeAddlDetails:
+        $ref: '#/definitions/EmployeeAddlDetails'
+        description: The employee additional details.
+      employeeAddress:
+        $ref: '#/definitions/EmployeeAddress'
+        description: The employee address.
+      employeeProfile:
+        $ref: '#/definitions/EmployeeProfile'
+        description: The employee profile.
+  LoginDetails:
+    type: object
+    properties:
+      username:        
+        type: string
+        format: varchar
+        maxLength: 20
+        description: Login user name which is same as the employee id.
+      password:
+        type: string
+        format: varchar
+        description: The secret password of the employee.
+      token:
+        type: string
+        format: varchar
+        description: The refresh token to be used for renewing the access token. This field should be used only when the client has a valid access token. When this field is used, the username and password need not be sent because the authentication will happen using the refresh token.
+  Token:
+    type: object
+    properties:
+      accessToken:        
+        type: string
+        format: varchar
+        description: The access token to be passed in the Authorization header in all the API calls.
+      refreshToken:
+        type: string
+        format: varchar
+        description: The refresh token to be used to renew the expired access token.
+      userName:
+        type: string
+        format: varchar
+        maxLength: 20
+        description: The username used for login.
+      userDisplayName:
+        type: string
+        format: varchar
+        description: The actual name of the user as stored in the LDAP server.
+    required:
+      - accessToken
+      - refreshToken
+      - userName
+      - userDisplayName
+  Permission:
+    type: object
+    properties:
+      permission:        
+        type: string
+        format: varchar
+        maxLength: 30
+        description: The permission name.
+      resource:
+        type: string
+        format: varchar
+        maxLength: 60
+        description: The resource name of the permission.
+    

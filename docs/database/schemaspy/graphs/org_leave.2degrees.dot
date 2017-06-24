@@ -15,7 +15,7 @@ digraph "twoDegreesRelationshipsGraph" {
     arrowsize="0.8"
   ];
   "employee":"employee.heading":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
-  "job_role_master":"job_role_master.heading":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
+  "job_role_master":"job_role_master.heading":w -> "organisation_master":"ORG_ID":e [arrowtail=crowtee arrowhead=none];
   "org_leave":"ORG_ID":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
   "organisation_master":"ORG_TYPE_ID":w -> "organisation_type_master":"organisation_type_master.heading":e [arrowtail=crowodot arrowhead=none];
   "unit_master":"unit_master.heading":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
@@ -23,7 +23,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">9 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -32,7 +32,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="job_role_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">job_role_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="job_role_master.html#graph"
     tooltip="job_role_master"

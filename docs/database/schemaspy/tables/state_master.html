@@ -89,6 +89,11 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
     </td>
     <td class='constraint'>address_ibfk_3</td>
    </tr>
+   <tr valign='top'>
+    <td class='relatedTable' title="district_master.STATE_ID refs state_master.STATE_ID via district_master_ibfk_1"><a href='district_master.html'>district_master</a><span class='relatedKey'>.STATE_ID</span>
+    </td>
+    <td class='constraint'>district_master_ibfk_1</td>
+   </tr>
   </table>
 </td>
  <td> </td>
@@ -105,8 +110,27 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td> </td>
  <td class='comment'></td>
 </tr>
+<tr>
+ <td class='indexedColumn' title='Indexed'>COUNTRY_ID</td>
+ <td class='detail'>int</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="state_master.COUNTRY_ID refs country_master.COUNTRY_ID via state_master_ibfk_1"><a href='country_master.html'>country_master</a><span class='relatedKey'>.COUNTRY_ID</span>
+    </td>
+    <td class='constraint'>state_master_ibfk_1</td>
+   </tr>
+  </table>
+ </td>
+ <td class='comment'></td>
+</tr>
 </table>
-<p/>Table contained 0 rows at Thu Jun 22 19:01 IST 2017
+<p/>Table contained 0 rows at Sat Jun 24 13:09 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -126,6 +150,12 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>PRIMARY</td>
  </tr>
+ <tr>
+  <td class='indexedColumn'>COUNTRY_ID</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>COUNTRY_ID</td>
+ </tr>
 </table>
 </div>
 <table width='100%' border='0'><tr><td class='container'>
@@ -135,15 +165,17 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/state_master.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="265,5,403,304"/>
-<area shape="rect" id="node2" href="state_master.html#" title="state_master" alt="" coords="5,171,217,283"/>
+<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="468,5,605,304"/>
+<area shape="rect" id="node2" href="state_master.html#" title="state_master" alt="" coords="204,272,416,408"/>
+<area shape="rect" id="node4" href="country_master.html#graph" title="country_master" alt="" coords="5,323,156,429"/>
+<area shape="rect" id="node3" href="district_master.html#graph" title="district_master" alt="" coords="464,328,609,459"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="265,5,403,304"/>
-<area shape="rect" id="node2" href="country_master.html#graph" title="country_master" alt="" coords="45,319,177,377"/>
-<area shape="rect" id="node3" href="district_master.html#graph" title="district_master" alt="" coords="48,100,175,159"/>
-<area shape="rect" id="node4" href="employee.html#graph" title="employee" alt="" coords="45,17,178,76"/>
-<area shape="rect" id="node5" href="state_master.html#" title="state_master" alt="" coords="5,183,217,295"/>
+<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="468,5,605,304"/>
+<area shape="rect" id="node2" href="employee.html#graph" title="employee" alt="" coords="239,5,381,64"/>
+<area shape="rect" id="node3" href="state_master.html#" title="state_master" alt="" coords="204,272,416,408"/>
+<area shape="rect" id="node5" href="country_master.html#graph" title="country_master" alt="" coords="5,323,156,429"/>
+<area shape="rect" id="node4" href="district_master.html#graph" title="district_master" alt="" coords="464,328,609,459"/>
 </map>
 </td></tr></table>
 </div>

@@ -101,6 +101,7 @@
       <table name="country_master" numRows="0" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="COUNTRY_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="COUNTRY_ID" foreignKey="address_ibfk_4" implied="false" onDeleteCascade="false" table="address"/>
+            <child column="COUNTRY_ID" foreignKey="state_master_ibfk_1" implied="false" onDeleteCascade="false" table="state_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="COUNTRY_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
          <primaryKey column="COUNTRY_ID" sequenceNumberInPK="1"/>
@@ -143,9 +144,15 @@
             <child column="DISTRICT_ID" foreignKey="address_ibfk_2" implied="false" onDeleteCascade="false" table="address"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="DISTRICT_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="STATE_ID" nullable="true" remarks="" size="10" type="INT">
+            <parent column="STATE_ID" foreignKey="district_master_ibfk_1" implied="false" onDeleteCascade="false" table="state_master"/>
+         </column>
          <primaryKey column="DISTRICT_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="DISTRICT_ID"/>
+         </index>
+         <index name="STATE_ID" unique="false">
+            <column ascending="true" name="STATE_ID"/>
          </index>
       </table>
       <table name="doc_type_master" numRows="0" remarks="" type="TABLE">
@@ -154,6 +161,7 @@
             <child column="DOC_TYPE_ID" foreignKey="employee_docs_ibfk_2" implied="false" onDeleteCascade="false" table="employee_docs"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="DOC_TYPE_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="IDENTITY_DOC" nullable="true" remarks="" size="1" type="VARCHAR"/>
          <primaryKey column="DOC_TYPE_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="DOC_TYPE_ID"/>
@@ -166,6 +174,7 @@
             <child column="EMP_ID" foreignKey="employee_additional_details_ibfk_1" implied="false" onDeleteCascade="false" table="employee_additional_details"/>
             <child column="EMP_ID" foreignKey="employee_docs_ibfk_1" implied="false" onDeleteCascade="false" table="employee_docs"/>
             <child column="EMP_ID" foreignKey="employee_hierarchy_status_ibfk_1" implied="false" onDeleteCascade="false" table="employee_hierarchy_status"/>
+            <child column="HR_ID" foreignKey="employee_hierarchy_status_ibfk_3" implied="false" onDeleteCascade="false" table="employee_hierarchy_status"/>
             <child column="SUPERVISOR_ID" foreignKey="employee_hierarchy_status_ibfk_2" implied="false" onDeleteCascade="false" table="employee_hierarchy_status"/>
             <child column="EMP_ID" foreignKey="employee_optional_benefits_ibfk_2" implied="false" onDeleteCascade="false" table="employee_optional_benefits"/>
             <child column="EMP_ID" foreignKey="employee_profile_ibfk_1" implied="false" onDeleteCascade="false" table="employee_profile"/>
@@ -199,8 +208,8 @@
          <column autoUpdated="false" digits="0" id="18" name="CONTACTNO" nullable="true" remarks="" size="15" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="19" name="ENTRY_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="20" name="ENTRY_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="21" name="HR_FLAG" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="22" name="SUPERVISOR_FLAG" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="21" name="HR_FLAG" nullable="true" remarks="" size="1" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="22" name="SUPERVISOR_FLAG" nullable="true" remarks="" size="1" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="23" name="EMPLOYEE_IMAGE" nullable="true" remarks="" size="2147483647" type="LONGBLOB"/>
          <primaryKey column="EMP_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
@@ -262,6 +271,9 @@
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="EMP_ID"/>
          </index>
+         <index name="EMP_ADD_DET_IDX" unique="false">
+            <column ascending="true" name="EMP_ID"/>
+         </index>
       </table>
       <table name="employee_docs" numRows="0" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="EMP_ID" nullable="false" remarks="" size="20" type="VARCHAR">
@@ -295,15 +307,17 @@
          <column autoUpdated="false" digits="0" id="1" name="SUPERVISOR_ID" nullable="true" remarks="" size="20" type="VARCHAR">
             <parent column="EMP_ID" foreignKey="employee_hierarchy_status_ibfk_2" implied="false" onDeleteCascade="false" table="employee"/>
          </column>
-         <column autoUpdated="false" digits="0" id="2" name="HR_ID" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="3" name="STATUS" nullable="true" remarks="" size="4" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="HR_ID" nullable="true" remarks="" size="20" type="VARCHAR">
+            <parent column="EMP_ID" foreignKey="employee_hierarchy_status_ibfk_3" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="STATUS" nullable="true" remarks="" size="20" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="4" name="CL" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="5" name="PL" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="6" name="PATERNITY_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="7" name="SICK_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="8" name="MATERNITY_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="9" name="SPECIAL_LEAVE" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="10" name="PROVISION_PERIOD_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="10" name="PROBATION_PERIOD_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
          <column autoUpdated="false" digits="0" id="11" name="NOTICE_PERIOD_LAST_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
          <column autoUpdated="false" digits="0" id="12" name="LAST_MOD_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
          <primaryKey column="EMP_ID" sequenceNumberInPK="1"/>
@@ -387,27 +401,36 @@
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="EMP_ID"/>
          </index>
-      </table>
-      <table name="employee_optional_benefits" numRows="0" remarks="" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="EMP_ID" nullable="true" remarks="" size="20" type="VARCHAR">
-            <parent column="EMP_ID" foreignKey="employee_optional_benefits_ibfk_2" implied="false" onDeleteCascade="false" table="employee"/>
-         </column>
-         <column autoUpdated="false" digits="0" id="1" name="OPT_COMP_ID" nullable="true" remarks="" size="10" type="INT">
-            <parent column="OPT_COMP_ID" foreignKey="employee_optional_benefits_ibfk_1" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
-         </column>
-         <column autoUpdated="false" digits="0" id="2" name="SAL_OPT_FLAG" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="3" name="SAL_OPT_VALUE" nullable="true" remarks="" size="22" type="DOUBLE"/>
-         <column autoUpdated="false" digits="0" id="4" name="SAL_OPT_START_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="5" name="SAL_OPT_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="6" name="REMARKS" nullable="true" remarks="" size="100" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="7" name="ENTRY_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="8" name="ENTRY_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="9" name="FREQUENCY" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="10" name="NO_OF_ITERATION" nullable="true" remarks="" size="10" type="INT"/>
-         <index name="EMP_OPT_BEN_IDX_1" unique="false">
+         <index name="EMP_HIST_IDX" unique="false">
             <column ascending="true" name="EMP_ID"/>
          </index>
-         <index name="EMP_OPT_BEN_IDX_2" unique="false">
+      </table>
+      <table name="employee_optional_benefits" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="BENEFIT_ID" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="EMP_ID" nullable="true" remarks="" size="20" type="VARCHAR">
+            <parent column="EMP_ID" foreignKey="employee_optional_benefits_ibfk_2" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="OPT_COMP_ID" nullable="true" remarks="" size="10" type="INT">
+            <parent column="OPT_COMP_ID" foreignKey="employee_optional_benefits_ibfk_1" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="SAL_OPT_FLAG" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="4" name="SAL_OPT_VALUE" nullable="true" remarks="" size="22" type="DOUBLE"/>
+         <column autoUpdated="false" digits="0" id="5" name="SAL_OPT_START_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="6" name="SAL_OPT_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="7" name="NEXT_DUE_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="8" name="REMARKS" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="ENTRY_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="ENTRY_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="11" name="FREQUENCY" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="12" name="NO_OF_ITERATION" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="BENEFIT_ID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="BENEFIT_ID"/>
+         </index>
+         <index name="EMP_ID" unique="false">
+            <column ascending="true" name="EMP_ID"/>
+         </index>
+         <index name="OPT_COMP_ID" unique="false">
             <column ascending="true" name="OPT_COMP_ID"/>
          </index>
       </table>
@@ -472,8 +495,6 @@
             <child column="GRADE_ID" foreignKey="job_role_master_ibfk_2" implied="false" onDeleteCascade="false" table="job_role_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="GRADE" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="2" name="PROBATION_NOTICE_PERIOD" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="3" name="NOTICE_PERIOD" nullable="true" remarks="" size="10" type="INT"/>
          <primaryKey column="GRADE_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="GRADE_ID"/>
@@ -481,7 +502,7 @@
       </table>
       <table name="job_role_designation" numRows="0" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="JOB_ROLE_ID" nullable="false" remarks="" size="10" type="INT">
-            <parent column="JOB_ROLE_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="job_role_master"/>
+            <parent column="JOB_ROLE_ID" foreignKey="job_role_designation_ibfk_2" implied="false" onDeleteCascade="false" table="job_role_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="DESIGNATION_ID" nullable="false" remarks="" size="10" type="INT">
             <parent column="DESIGNATION_ID" foreignKey="job_role_designation_ibfk_1" implied="false" onDeleteCascade="false" table="designation_master"/>
@@ -499,15 +520,17 @@
       <table name="job_role_master" numRows="0" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="JOB_ROLE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="JOB_ROLE_ID" foreignKey="appraisal_rating_ibfk_1" implied="false" onDeleteCascade="false" table="appraisal_rating"/>
-            <child column="JOB_ROLE_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="job_role_designation"/>
-            <child column="JOB_ROLE_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="salary_master"/>
+            <child column="JOB_ROLE_ID" foreignKey="job_role_designation_ibfk_2" implied="false" onDeleteCascade="false" table="job_role_designation"/>
+            <child column="JOB_ROLE_ID" foreignKey="salary_master_ibfk_1" implied="false" onDeleteCascade="false" table="salary_master"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="ORG_ID" nullable="true" remarks="" size="10" type="INT">
+         <column autoUpdated="false" digits="0" id="1" name="ORG_ID" nullable="false" remarks="" size="10" type="INT">
             <parent column="ORG_ID" foreignKey="job_role_master_ibfk_1" implied="false" onDeleteCascade="false" table="organisation_master"/>
          </column>
-         <column autoUpdated="false" digits="0" id="2" name="GRADE_ID" nullable="true" remarks="" size="10" type="INT">
+         <column autoUpdated="false" digits="0" id="2" name="GRADE_ID" nullable="false" remarks="" size="10" type="INT">
             <parent column="GRADE_ID" foreignKey="job_role_master_ibfk_2" implied="false" onDeleteCascade="false" table="grade_master"/>
          </column>
+         <column autoUpdated="false" digits="0" id="3" name="PROBATION_NOTICE_PERIOD" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="4" name="NOTICE_PERIOD" nullable="true" remarks="" size="10" type="INT"/>
          <primaryKey column="JOB_ROLE_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="JOB_ROLE_ID"/>
@@ -560,7 +583,7 @@
             <child column="ORG_TYPE_ID" foreignKey="organisation_master_ibfk_1" implied="false" onDeleteCascade="false" table="organisation_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="ORG_TYPE_NAME" nullable="true" remarks="" size="100" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="2" name="DESCRIPTION" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="DESCRIPTION" nullable="true" remarks="" size="200" type="VARCHAR"/>
          <primaryKey column="ORG_TYPE_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="ORG_TYPE_ID"/>
@@ -622,10 +645,10 @@
       <table name="salary_master" numRows="0" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="SALARY_ID" nullable="false" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="1" name="DESCRIPTION" nullable="true" remarks="" size="100" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="2" name="JOB_ROLE_ID" nullable="true" remarks="" size="10" type="INT">
-            <parent column="JOB_ROLE_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="job_role_master"/>
+         <column autoUpdated="false" digits="0" id="2" name="JOB_ROLE_ID" nullable="false" remarks="" size="10" type="INT">
+            <parent column="JOB_ROLE_ID" foreignKey="salary_master_ibfk_1" implied="false" onDeleteCascade="false" table="job_role_master"/>
          </column>
-         <column autoUpdated="false" digits="0" id="3" name="SAL_COMP_ID" nullable="true" remarks="" size="10" type="INT">
+         <column autoUpdated="false" digits="0" id="3" name="SAL_COMP_ID" nullable="false" remarks="" size="10" type="INT">
             <parent column="COMP_ID" foreignKey="SAL_COMP_FK" implied="false" onDeleteCascade="false" table="salary_component_master"/>
             <parent column="OPT_COMP_ID" foreignKey="SAL_OPT_COMP_FK" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
          </column>
@@ -650,13 +673,13 @@
             <child column="SAL_COMP_ID" foreignKey="SAL_OPT_COMP_FK" implied="false" onDeleteCascade="false" table="salary_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="OPT_COMPONENT_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="2" name="DESCRIPTION" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="DESCRIPTION" nullable="true" remarks="" size="100" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="3" name="SAL_OPT_COMPONENT" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="4" name="OPT_TYPE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="4" name="RESTRICTION_WINDOW" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="5" name="FREQUENCY" nullable="true" remarks="" size="10" type="INT"/>
          <column autoUpdated="false" digits="0" id="6" name="END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="7" name="CREDIT_DEBIT_FLAG" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="8" name="EMP_OPT_OUT_FLAG" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="7" name="CREDIT_DEBIT_FLAG" nullable="true" remarks="" size="1" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="EMP_OPT_OUT_FLAG" nullable="true" remarks="" size="1" type="VARCHAR"/>
          <primaryKey column="OPT_COMP_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="OPT_COMP_ID"/>
@@ -665,11 +688,18 @@
       <table name="state_master" numRows="0" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="STATE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="STATE_ID" foreignKey="address_ibfk_3" implied="false" onDeleteCascade="false" table="address"/>
+            <child column="STATE_ID" foreignKey="district_master_ibfk_1" implied="false" onDeleteCascade="false" table="district_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="STATE_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="COUNTRY_ID" nullable="true" remarks="" size="10" type="INT">
+            <parent column="COUNTRY_ID" foreignKey="state_master_ibfk_1" implied="false" onDeleteCascade="false" table="country_master"/>
+         </column>
          <primaryKey column="STATE_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="STATE_ID"/>
+         </index>
+         <index name="COUNTRY_ID" unique="false">
+            <column ascending="true" name="COUNTRY_ID"/>
          </index>
       </table>
       <table name="unit_master" numRows="0" remarks="" type="TABLE">
