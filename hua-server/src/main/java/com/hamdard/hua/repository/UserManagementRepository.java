@@ -1,9 +1,13 @@
 package com.hamdard.hua.repository;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.naming.directory.Attribute;
 import javax.naming.directory.BasicAttribute;
 import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
+import javax.naming.directory.ModificationItem;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,22 +31,43 @@ public class UserManagementRepository {
 
     @Autowired
     private LdapContextSource                   contextSource;
-    
+
     @Value("${ldap.base}")
     private String                              baseDn;
 
+    //    @Autowired
+    //    private AuthenticationRepository            authenticationRepository;
 
-    public void changePassword(String userName, PasswordChangeDetails newPassDetails) throws Exception {
+
+    public Map<String,String> changePassword(String userName, PasswordChangeDetails newPassDetails) {
+        Map<String, String> retMap                = new HashMap<>();
         try{
-            DirContext dirContext               = contextSource.getContext(
-                    "cn=" + userName + ",ou=users," + "XX", 
-                    new String(newPassDetails.getCurrentPassword()));
-            if(dirContext == null)
-                throw new Exception("Invalid password provided!");
-            Attribute  password                = new BasicAttribute("userPassword"     , newPassDetails.getNewPassword());
+            if(newPassDetails.getConfirmedPassword().indexOf(userName) >0 )
+                throw new Exception("Password should not contain the username within it");
+            DirContext dirContext                   = null;
+            try{
+                 dirContext                         = contextSource.getContext(
+                        "cn=" + userName + ",ou=users," + baseDn, newPassDetails.getCurrentPassword());
+            }catch(Exception ex){
+                retMap.put("STATUS","ERROR");
+                retMap.put("MESSAGE","Provided password does not match with present one");
+                return retMap;
+            }
+            ModificationItem[] modifiables      = new ModificationItem[1];
+            Attribute  password                 = new BasicAttribute(
+                    "userpassword"     , newPassDetails.getNewPassword());
+            modifiables[0] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, password);
+
+            dirContext.modifyAttributes("cn=" + userName + ",ou=users", modifiables);
+            retMap.put("STATUS","SUCCESS");
+            retMap.put("MESSAGE","Password modified successfully");
         }catch(Exception ex){
-            
+            logger.error(ex.getMessage());
+            retMap.put("STATUS","ERROR");
+            retMap.put("MESSAGE",ex.getMessage());
         }
+        System.out.println("MAP :" + retMap);
+        return retMap;
     }
 
     public void createUser(User newUser) throws Exception {

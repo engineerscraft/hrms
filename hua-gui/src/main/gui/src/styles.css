@@ -726,3 +726,16 @@ select * {
   width:100%;
   padding-right: 50px;
 }
+
+/*Field level error*/
+
+.error {
+border: 1px solid;
+border-color: #D8000C;
+color: #D8000C;
+border-radius: 4px;
+margin: 10px 0px;
+padding:8px 6px 8px 10px;
+background-repeat: no-repeat;
+background-position: 10px center;
+}

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import { UserService } from './user.service';
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -48,6 +48,7 @@ import { EmployeeCreationComponent } from './employee-creation/employee-creation
     DepartmentService,
     DesignationService,
     HttpService,
+    UserService,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]
