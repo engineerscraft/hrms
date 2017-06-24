@@ -147,6 +147,7 @@ export class SideBarComponent implements OnInit {
       err => {
         this.responseMessage          = 'There was an error while performing the request';
         this.status                   = false;
+        this.processingInProgess = false;
       },
       () => {
         if(response){
@@ -156,6 +157,7 @@ export class SideBarComponent implements OnInit {
             this.status               = true;
           this.responseMessage        = response.MESSAGE;
         }
+        this.processingInProgess = false;
       });
 
     this.statusMessage = 'active';
@@ -167,7 +169,7 @@ export class SideBarComponent implements OnInit {
             }
           }
         }, this.status? 3000: 5000);
-        this.processingInProgess = false;
+        
   }
 
    getStatus() {

@@ -127,7 +127,7 @@
         <div class="group">
           <input class="inputMaterial input-size-small" formControlName="confirmedPassword" type="password" required>
           <label class="text-input-label">Confirm Password</label>
-          <label *ngIf="isFieldValueMissing('confirmedPassword')" class="error-text-input-label">Please enter your new password.</label>
+          <label *ngIf="isFieldValueMissing('confirmedPassword')" class="error-text-input-label">Please confirm your new password.</label>
           <label *ngIf="isConfirmedPasswordNotMatching()" class="error-text-input-label">The confirmed password is not matching.</label>
           <span class="highlight"></span>
           <span class="input-size-small" [ngClass]="getErrorClass('confirmedPassword')"></span>
