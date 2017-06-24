@@ -9,13 +9,17 @@ GET /resources/v1/country
 ....
 
 
+==== Description
+Returns list of all countries.
+
+
 ==== Parameters
 
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |===
 
 
@@ -24,12 +28,12 @@ __required__|Access token|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The list of countries is retrieved successfully. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_countrymodel,CountryModel>>
-|**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No country is found.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -51,15 +55,19 @@ GET /resources/v1/department
 ....
 
 
+==== Description
+Returns list of departments within a given unit.
+
+
 ==== Parameters
 
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |**Query**|**unitId** +
-__required__|to filter out the result based upon unit ID|string
+__required__|The id of the unit whose departments are to be retrieved.|string
 |===
 
 
@@ -71,9 +79,9 @@ __required__|to filter out the result based upon unit ID|string
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_departmentmodel,DepartmentModel>>
-|**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No department is found for the given unit id.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -95,15 +103,19 @@ GET /resources/v1/designation
 ....
 
 
+==== Description
+Returns list of designations in a given job role.
+
+
 ==== Parameters
 
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |**Query**|**jobRoleId** +
-__required__|to filter out the result based on job role|integer
+__required__|The id of the job role for which the designations are to be returned.|integer
 |===
 
 
@@ -112,12 +124,12 @@ __required__|to filter out the result based on job role|integer
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The designations are successfully returned. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_designationmodel,DesignationModel>>
-|**403**|User does not have permission to execute this command|No Content
+|**403**|User does not have permission to execute this command.|No Content
 |**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -139,15 +151,19 @@ GET /resources/v1/district
 ....
 
 
+==== Description
+Returns list of districts in a given state.
+
+
 ==== Parameters
 
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |**Query**|**stateId** +
-__required__|to filter out the result based upon state ID|string
+__required__|The id of the state whose districts are to be retrieved.|string
 |===
 
 
@@ -160,8 +176,8 @@ __required__|to filter out the result based upon state ID|string
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_districtmodel,DistrictModel>>
 |**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**404**|No district is found for the given state.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -184,7 +200,7 @@ GET /resources/v1/doctype
 
 
 ==== Description
-Get the list of document types
+Gets the list of document types. These document types will be mainly used to store various documents of the employee like passport, birth cirtificate, graduation certificate etc.
 
 
 ==== Parameters
@@ -193,7 +209,7 @@ Get the list of document types
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |===
 
 
@@ -202,12 +218,12 @@ __required__|Access token|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The list of document types is successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctypemodel,DocTypeModel>>
-|**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No document type is found.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -230,7 +246,7 @@ GET /resources/v1/doctype/identitydoctypes
 
 
 ==== Description
-Get the list of identity document types
+Gets the list of identity document types. Out of all document types, some are that of identity documents like passport for example. Such document type is useful to identify an employee. And the number of such a document will be stored in the employee basic information for quick identification.
 
 
 ==== Parameters
@@ -239,7 +255,7 @@ Get the list of identity document types
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |===
 
 
@@ -248,12 +264,12 @@ __required__|Access token|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The identity document types are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctypemodel,DocTypeModel>>
-|**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No identy document type is found.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -268,15 +284,15 @@ __required__|Access token|string
 * meta
 
 
-[[_getemployeeautocomplete]]
-=== Returns Autocomplete List for a Given Employee Attribute
+[[_createemployee]]
+=== Creates a new employee.
 ....
-GET /resources/v1/employee/
+POST /resources/v1/employee
 ....
 
 
 ==== Description
-This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees
+Creates a new employee.
 
 
 ==== Parameters
@@ -285,15 +301,7 @@ This API will be mainly used to provide autocomplete experience to users as they
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
-|**Query**|**attributeName** +
-__required__|Name of the attribute which could be firstName, middleName, lastName or emailAddress|string
-|**Query**|**attributeValuePrefix** +
-__required__|firstName, middleName, lastName or emailAddress starts with this value|string
-|**Query**|**numberOfItems** +
-__required__|The number of items to be returned|integer
-|**Query**|**restricted** +
-__required__|The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organization|boolean
+__required__|Access token to be sent for authentication and authorization.|string
 |===
 
 
@@ -302,14 +310,168 @@ __required__|The search will be restricted to the hierarchy of the user only if 
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|No Content
-|**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**201**|The employee is sucessfully created. +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|string
+|**403**|User does not have permission to execute this command.|No Content
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_getemployeeautocomplete]]
+=== Returns Autocomplete List for a Given Employee Attribute
+....
+GET /resources/v1/employee/
+....
+
+
+==== Description
+This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**attributeName** +
+__required__|Name of the attribute which could be firstName, middleName, lastName or emailAddress.|string
+|**Query**|**attributeValuePrefix** +
+__required__|FirstName, middleName, lastName or emailAddress starts with this value.|string
+|**Query**|**numberOfItems** +
+__required__|The number of items matching the value to be returned.|integer
+|**Query**|**restricted** +
+__required__|The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organizations.|boolean
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The matching values are retrieved successfully.|< string > array
+|**403**|User does not have permission to execute this command.|No Content
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
 |===
 
 
 ==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_getcompleteemployeedetails]]
+=== Gets the Complete Details of an Employee
+....
+GET /resources/v1/employee/{id}
+....
+
+
+==== Description
+Returns the complete details of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be returned.|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK +
+**Headers** :  +
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=100"`|<<_employeemodel,EmployeeModel>>
+|**403**|User does not have permission to execute this command|No Content
+|**404**|No employee with the given id is found.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_updateadditionaldetails]]
+=== Updates the Additional Details of an Employee
+....
+PUT /resources/v1/employee/{id}/additionaldetails
+....
+
+
+==== Description
+Updates the additional details of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee additional data.|<<_employeeaddldetailsmodel,EmployeeAddlDetailsModel>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The data is successfully updated.|No Content
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Consumes
 
 * `application/xml`
 * `application/json`
@@ -328,7 +490,7 @@ PUT /resources/v1/employee/{id}/address
 
 
 ==== Description
-Update Employee Address details.
+Updates the employee address details.
 
 
 ==== Parameters
@@ -337,9 +499,9 @@ Update Employee Address details.
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |**Path**|**id** +
-__required__|Employee ID|string
+__required__|Id of the employee whose address will be updated.|string
 |**Body**|**reqBody** +
 __optional__|Employee Address parameters in JSON Body|<<_employeeaddressmodel,EmployeeAddressModel>>
 |===
@@ -350,10 +512,10 @@ __optional__|Employee Address parameters in JSON Body|<<_employeeaddressmodel,Em
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|No Content
-|**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**200**|The address of the given employee is successfully updated.|No Content
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|The employee with the given id is not found.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -368,11 +530,15 @@ __optional__|Employee Address parameters in JSON Body|<<_employeeaddressmodel,Em
 * employee
 
 
-[[_getjobrolesoforg]]
-=== Returns List of Job Roles in a Given Organization
+[[_updatebasicdetails]]
+=== Updates the Basic Details of an Employee
 ....
-GET /resources/v1/jobrole
+PUT /resources/v1/employee/{id}/basic
 ....
+
+
+==== Description
+Updates the basic details of a given employee.
 
 
 ==== Parameters
@@ -381,9 +547,249 @@ GET /resources/v1/jobrole
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee basic data.|<<_employeebasicmodel,EmployeeBasicModel>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_updatehierarchystatus]]
+=== Updates the Hierarchy Status of an Employee
+....
+PUT /resources/v1/employee/{id}/hierarchystatus
+....
+
+
+==== Description
+Updates the hierarchy status of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|New employee hierarchy status data.|<<_employeehierarchymodel,EmployeeHierarchyModel>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The data is successfully updated.|No Content
+|**403**|User does not have permission to execute this command|No Content
+|**404**|No employee with the given id is found.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_updateoptionalbenefits]]
+=== Updates the Optional Benefits of an Employee
+....
+PUT /resources/v1/employee/{id}/optionalbenefits
+....
+
+
+==== Description
+Updates the optional benefits of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee optional benefit data.|<<_employeeoptionalbenefitmodel,EmployeeOptionalBenefitModel>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The data is successfully updated.|No Content
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_updateprofile]]
+=== Updates the Profile of an Employee.
+....
+PUT /resources/v1/employee/{id}/profile
+....
+
+
+==== Description
+Updates the profile of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee profile data.|<<_employeeprofilemodel,EmployeeProfileModel>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The data is successfully updated.|No Content
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_updatesalarydetails]]
+=== Updates the Salary of an Employee
+....
+PUT /resources/v1/employee/{id}/salary
+....
+
+
+==== Description
+Updates the salary of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be updated.|integer
+|**Body**|**reqBody** +
+__optional__|Employee salary data.|<<_employeesalarymodel,EmployeeSalaryModel>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_getjobrolesoforg]]
+=== Returns List of Job Roles in a Given Organization
+....
+GET /resources/v1/jobrole
+....
+
+
+==== Description
+Returns list of job roles in a given organization.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
 |**Query**|**orgId** +
-__required__|to filter out the result based on organization|integer
+__required__|The id of the organization whose job roles are to be returned.|integer
 |===
 
 
@@ -395,9 +801,101 @@ __required__|to filter out the result based on organization|integer
 |**200**|OK +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_jobrolemodel,JobRoleModel>>
-|**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No job role is found for the given organization.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* jobrole
+
+
+[[_getjobroleoptbenefits]]
+=== Gets the Optional Benefits of a Given Job Role
+....
+GET /resources/v1/jobrole/{id}/optbenefit
+....
+
+
+==== Description
+Gets the optional benefits of a given job role.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The job role id for which the data will be retrieved.|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_optionalsalarymodel,OptionalSalaryModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No optional benefit is found with the given job role id.|<<_errormodel,ErrorModel>>
 |**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* jobrole
+
+
+[[_getjobrolesalary]]
+=== Gets the Salary of a Given Job Role
+....
+GET /resources/v1/jobrole/{id}/salary
+....
+
+
+==== Description
+Gets the salary of a given job role.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The job role id for which the data will be retrieved.|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_definitions_salarymodel,#definitions/SalaryModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No salary component is found with the given job role id.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -420,7 +918,7 @@ GET /resources/v1/organization
 
 
 ==== Description
-OrganizationType will be a child object under each Organization object
+Returns a complete list of organizations defined in the system.
 
 
 ==== Parameters
@@ -429,7 +927,7 @@ OrganizationType will be a child object under each Organization object
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |===
 
 
@@ -438,12 +936,12 @@ __required__|Access token|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The list of organizations are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_organizationmodel,OrganizationModel>>
-|**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No organization is found.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -466,7 +964,7 @@ GET /resources/v1/state
 
 
 ==== Description
-Get the list of states for a given country.
+Gets the list of states for a given country. This data will be required while saving the address of the employee.
 
 
 ==== Parameters
@@ -475,9 +973,9 @@ Get the list of states for a given country.
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |**Query**|**countryId** +
-__required__|Country for which the list of states will be retrieved|string
+__required__|Country for which the list of states will be retrieved.|string
 |===
 
 
@@ -486,12 +984,12 @@ __required__|Country for which the list of states will be retrieved|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Successful operation +
+|**200**|The list of states are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_statemodel,StateModel>>
-|**403**|User does not have permission to execute this command|No Content
-|**404**|No data found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No state found for the given country.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 
@@ -519,9 +1017,9 @@ GET /resources/v1/unit
 |===
 |Type|Name|Description|Schema
 |**Header**|**Authorization: Bearer ** +
-__required__|Access token|string
+__required__|Access token to be sent for authentication and authorization.|string
 |**Query**|**organizationId** +
-__required__|The organizationId to be used as filter|string
+__required__|The id of the organization whose units will be retrieved.|string
 |===
 
 
@@ -530,12 +1028,12 @@ __required__|The organizationId to be used as filter|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK +
+|**200**|The units are successfully retrieved. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_unitmodel,UnitModel>>
-|**403**|User does not have permission to execute this command|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No unit is found for the given organization.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
 |===
 
 

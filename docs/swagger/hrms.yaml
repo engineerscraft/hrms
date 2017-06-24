@@ -7,23 +7,23 @@ host: 'localhost:8080'
 basePath: /resources
 tags:
   - name: meta
-    description: Meta/Master Data Access
+    description: Meta/Master Data Access.
   - name: employee
-    description: Employee related resources
+    description: Employee related resources.
   - name: organization
-    description: Everything about your organization
+    description: Everything about your organization.
   - name: unit
-    description: Everything about the unit
+    description: Everything about the unit.
   - name: department
-    description: It's all about departments
+    description: It's all about departments.
   - name: country
-    description: Everything about the country
+    description: Everything about the country.
   - name: district
-    description: Everything about the district
+    description: Everything about the district.
   - name: designation
-    description: Everything about the designation
+    description: Everything about the designation.
   - name: jobrole
-    description: Everything about the job role
+    description: Everything about the job role.
 schemes:
   - http
 paths:
@@ -32,7 +32,7 @@ paths:
       tags:
         - meta
       summary: Gets List of States for a Given Country
-      description: Get the list of states for a given country. 
+      description: Gets the list of states for a given country. This data will be required while saving the address of the employee.
       operationId: getStates
       produces:
         - application/xml
@@ -40,17 +40,17 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
         - name: countryId
           in: query
-          description: Country for which the list of states will be retrieved
+          description: Country for which the list of states will be retrieved.
           required: true
           type: string
       responses:
         '200':
-          description: Successful operation
+          description: The list of states are successfully retrieved.
           schema:
             $ref: '#/definitions/StateModel'
           headers:
@@ -59,13 +59,13 @@ paths:
               type: string
               default: private, no-store, max-age=300
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
-          description: No data found
+          description: No state found for the given country.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/doctype:
@@ -73,7 +73,7 @@ paths:
       tags:
         - meta
       summary: Gets List of Document Types
-      description: Get the list of document types
+      description: Gets the list of document types. These document types will be mainly used to store various documents of the employee like passport, birth cirtificate, graduation certificate etc.
       operationId: getDocTypes
       produces:
         - application/xml
@@ -81,12 +81,12 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
       responses:
         '200':
-          description: OK
+          description: The list of document types is successfully retrieved.
           schema:
             $ref: '#/definitions/DocTypeModel'
           headers:
@@ -95,13 +95,13 @@ paths:
               type: string
               default: private, no-store, max-age=300
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
-          description: Not Found
+          description: No document type is found.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/doctype/identitydoctypes:
@@ -109,7 +109,7 @@ paths:
       tags:
         - meta
       summary: Gets List of Identity Document Types
-      description: Get the list of identity document types
+      description: Gets the list of identity document types. Out of all document types, some are that of identity documents like passport for example. Such document type is useful to identify an employee. And the number of such a document will be stored in the employee basic information for quick identification.
       operationId: getIdentityDocTypes
       produces:
         - application/xml
@@ -117,12 +117,12 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
       responses:
         '200':
-          description: OK
+          description: The identity document types are successfully retrieved.
           schema:
             $ref: '#/definitions/DocTypeModel'
           headers:
@@ -131,13 +131,13 @@ paths:
               type: string
               default: private, no-store, max-age=300
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
-          description: Not Found
+          description: No identy document type is found.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/employee/{id}/address:
@@ -145,7 +145,7 @@ paths:
       tags:
         - employee
       summary: Updates Employee Address Details
-      description: Update Employee Address details.
+      description: Updates the employee address details.
       operationId: updateEmpAddress
       consumes:
         - application/json
@@ -153,13 +153,13 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
         - name: id
           in: path
           type: string
-          description: Employee ID
+          description: Id of the employee whose address will be updated.
           required: true
         - name: reqBody
           in: body
@@ -168,15 +168,15 @@ paths:
             $ref: '#/definitions/EmployeeAddressModel'
       responses:
         '200':
-          description: OK
+          description: The address of the given employee is successfully updated.
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
-          description: Not Found
+          description: The employee with the given id is not found.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/employee/:
@@ -184,7 +184,7 @@ paths:
       tags:
         - employee
       summary: Returns Autocomplete List for a Given Employee Attribute
-      description: This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees
+      description: This API will be mainly used to provide autocomplete experience to users as they type in text fields for searching employees.
       operationId: getEmployeeAutocomplete
       produces:
         - application/xml
@@ -192,41 +192,38 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
         - name: attributeName
           in: query
           type: string
-          description: Name of the attribute which could be firstName, middleName, lastName or emailAddress
+          description: Name of the attribute which could be firstName, middleName, lastName or emailAddress.
           required: true
         - name: attributeValuePrefix
           in: query
           type: string
-          description: firstName, middleName, lastName or emailAddress starts with this value
+          description: FirstName, middleName, lastName or emailAddress starts with this value.
           required: true
         - name: numberOfItems
           in: query
           type: integer
-          description: The number of items to be returned
+          description: The number of items matching the value to be returned.
           required: true
         - name: restricted
           in: query
           type: boolean
-          description: The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organization
+          description: The search will be restricted to the hierarchy of the user only if the flag is true. Otherwise, the search will be done across the organizations.
           required: true
       responses:
         '200':
-          description: OK
-          type: array
-          items:
-            type: string
-        '403':
-          description: User does not have permission to execute this command
-        '404':
-          description: Not Found
+          description: The matching values are retrieved successfully.
           schema:
-            $ref: '#/definitions/ErrorModel'
+            type: array
+            items:
+              type: string
+        '403':
+          description: User does not have permission to execute this command.
         '500':
           description: Internal Server Error
           schema:
@@ -236,7 +233,7 @@ paths:
       tags:
         - organization
       summary: Returns List of Organizations
-      description: OrganizationType will be a child object under each Organization object
+      description: Returns a complete list of organizations defined in the system.
       operationId: getOrganizations
       produces:
         - application/xml
@@ -244,12 +241,12 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
       responses:
         '200':
-          description: OK
+          description: The list of organizations are successfully retrieved.
           schema:
             $ref: '#/definitions/OrganizationModel'
           headers:
@@ -258,13 +255,13 @@ paths:
               type: string
               default: private, no-store, max-age=300
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
-          description: Not Found
+          description: No organization is found.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/unit:
@@ -279,17 +276,17 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
         - name: organizationId
           in: query
-          description: The organizationId to be used as filter
+          description: The id of the organization whose units will be retrieved.
           required: true
           type: string
       responses:
         '200':
-          description: OK
+          description: The units are successfully retrieved.
           schema:
             $ref: '#/definitions/UnitModel'
           headers:
@@ -298,13 +295,13 @@ paths:
               type: string
               default: private, no-store, max-age=300
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
-          description: Not Found
+          description: No unit is found for the given organization.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/department:
@@ -312,6 +309,7 @@ paths:
       tags:
         - department
       summary: Returns List of Departments in a Given Unit
+      description: Returns list of departments within a given unit.
       operationId: getDepartments
       produces:
         - application/xml
@@ -319,12 +317,12 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
         - name: unitId
           in: query
-          description: to filter out the result based upon unit ID
+          description: The id of the unit whose departments are to be retrieved.
           required: true
           type: string
       responses:
@@ -338,13 +336,13 @@ paths:
               type: string
               default: private, no-store, max-age=300
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
-          description: Not Found
+          description: No department is found for the given unit id.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/country:
@@ -352,6 +350,7 @@ paths:
       tags:
         - country
       summary: Returns List of Countries
+      description: Returns list of all countries.
       operationId: getCountries
       produces:
         - application/xml
@@ -359,12 +358,12 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
       responses:
         '200':
-          description: OK
+          description: The list of countries is retrieved successfully.
           schema:
             $ref: '#/definitions/CountryModel'
           headers:
@@ -373,13 +372,13 @@ paths:
               type: string
               default: private, no-store, max-age=300
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
-          description: Not Found
+          description: No country is found.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/district:
@@ -387,6 +386,7 @@ paths:
       tags:
         - district
       summary: Returns List of Districts
+      description: Returns list of districts in a given state.
       operationId: getDistricts
       produces:
         - application/xml
@@ -394,12 +394,12 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
         - name: stateId
           in: query
-          description: to filter out the result based upon state ID
+          description: The id of the state whose districts are to be retrieved.
           required: true
           type: string
       responses:
@@ -415,11 +415,11 @@ paths:
         '403':
           description: User does not have permission to execute this command
         '404':
-          description: Not Found
+          description: No district is found for the given state.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/jobrole:
@@ -427,6 +427,7 @@ paths:
       tags:
         - jobrole
       summary: Returns List of Job Roles in a Given Organization
+      description: Returns list of job roles in a given organization.
       operationId: getJobRolesOfOrg
       produces:
         - application/xml
@@ -434,12 +435,12 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
         - name: orgId
           in: query
-          description: to filter out the result based on organization
+          description: The id of the organization whose job roles are to be returned.
           required: true
           type: integer
       responses:
@@ -453,13 +454,13 @@ paths:
               type: string
               default: private, no-store, max-age=300
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
-          description: Not Found
+          description: No job role is found for the given organization.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
-          description: Internal Server Error
+          description: Internal Server Error.
           schema:
             $ref: '#/definitions/ErrorModel'
   /v1/designation:
@@ -467,6 +468,7 @@ paths:
       tags:
         - designation
       summary: Returns List of Designations in a Given Job Role.
+      description: Returns list of designations in a given job role.
       operationId: getDesignationsOfJobRole
       produces:
         - application/xml
@@ -474,17 +476,17 @@ paths:
       parameters:
         - name: "Authorization: Bearer "
           in: header
-          description: Access token
+          description: Access token to be sent for authentication and authorization.
           required: true
           type: string
         - name: jobRoleId
           in: query
-          description: to filter out the result based on job role
+          description: The id of the job role for which the designations are to be returned.
           required: true
           type: integer
       responses:
         '200':
-          description: OK
+          description: The designations are successfully returned.
           schema:
             $ref: '#/definitions/DesignationModel'
           headers:
@@ -493,9 +495,393 @@ paths:
               type: string
               default: private, no-store, max-age=300
         '403':
-          description: User does not have permission to execute this command
+          description: User does not have permission to execute this command.
         '404':
           description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/employee:
+    post:
+      tags:
+        - employee
+      summary: Creates a new employee.
+      description: Creates a new employee.
+      operationId: createEmployee
+      consumes:
+        - application/xml
+        - application/json
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+      responses:
+        '201':
+          description: The employee is sucessfully created.
+          schema:
+            type: string
+            description: Newly created employee id.
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=300
+        '403':
+          description: User does not have permission to execute this command.
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/employee/{id}:
+    get:
+      tags:
+        - employee
+      summary: Gets the Complete Details of an Employee
+      description: Returns the complete details of a given employee.
+      operationId: getCompleteEmployeeDetails
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be returned.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EmployeeModel'
+            description: The details of the given employee id.
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: private, no-store, max-age=100
+        '403':
+          description: User does not have permission to execute this command
+        '404':
+          description: No employee with the given id is found.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/employee/{id}/hierarchystatus:
+    put:
+      tags:
+        - employee
+      summary: Updates the Hierarchy Status of an Employee
+      description: Updates the hierarchy status of a given employee.
+      operationId: updateHierarchyStatus
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: New employee hierarchy status data.
+          schema:
+            $ref: '#/definitions/EmployeeHierarchyModel'
+      responses:
+        '200':
+          description: The data is successfully updated.
+        '403':
+          description: User does not have permission to execute this command
+        '404':
+          description: No employee with the given id is found.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/employee/{id}/profile:
+    put:
+      tags:
+        - employee
+      summary: Updates the Profile of an Employee.
+      description: Updates the profile of a given employee.
+      operationId: updateProfile
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee profile data.
+          schema:
+            $ref: '#/definitions/EmployeeProfileModel'
+      responses:
+        '200':
+          description: The data is successfully updated.
+        '403':
+          description: User does not have permission to execute this command.
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/employee/{id}/basic:
+    put:
+      tags:
+        - employee
+      summary: Updates the Basic Details of an Employee
+      description: Updates the basic details of a given employee.
+      operationId: updateBasicDetails
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee basic data.
+          schema:
+            $ref: '#/definitions/EmployeeBasicModel'
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: User does not have permission to execute this command.
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/employee/{id}/additionaldetails:
+    put:
+      tags:
+        - employee
+      summary: Updates the Additional Details of an Employee
+      description: Updates the additional details of a given employee.
+      operationId: updateAdditionalDetails
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee additional data.
+          schema:
+            $ref: '#/definitions/EmployeeAddlDetailsModel'
+      responses:
+        '200':
+          description: The data is successfully updated.
+        '403':
+          description: User does not have permission to execute this command.
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/employee/{id}/salary:
+    put:
+      tags:
+        - employee
+      summary: Updates the Salary of an Employee
+      description: Updates the salary of a given employee.
+      operationId: updateSalaryDetails
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee salary data.
+          schema:
+            $ref: '#/definitions/EmployeeSalaryModel'
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: User does not have permission to execute this command.
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/employee/{id}/optionalbenefits:
+    put:
+      tags:
+        - employee
+      summary: Updates the Optional Benefits of an Employee
+      description: Updates the optional benefits of a given employee.
+      operationId: updateOptionalBenefits
+      consumes:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The employee id for which the data will be updated.
+          required: true
+          type: integer
+        - name: reqBody
+          in: body
+          description: Employee optional benefit data.
+          schema:
+            $ref: '#/definitions/EmployeeOptionalBenefitModel'
+      responses:
+        '200':
+          description: The data is successfully updated.
+        '403':
+          description: User does not have permission to execute this command.
+        '404':
+          description: No employee is found with the given employee id.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/jobrole/{id}/salary:
+    get:
+      tags:
+        - jobrole
+      summary: Gets the Salary of a Given Job Role
+      description: Gets the salary of a given job role.
+      operationId: getJobRoleSalary
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The job role id for which the data will be retrieved.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#definitions/SalaryModel'
+        '403':
+          description: User does not have permission to execute this command.
+        '404':
+          description: No salary component is found with the given job role id.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /v1/jobrole/{id}/optbenefit:
+    get:
+      tags:
+        - jobrole
+      summary: Gets the Optional Benefits of a Given Job Role
+      description: Gets the optional benefits of a given job role.
+      operationId: getJobRoleOptBenefits
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: "Authorization: Bearer "
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: The job role id for which the data will be retrieved.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OptionalSalaryModel'
+        '403':
+          description: User does not have permission to execute this command.
+        '404':
+          description: No optional benefit is found with the given job role id.
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
@@ -517,7 +903,7 @@ definitions:
       countryId:
         type: integer
         format: int(32)
-        description: To uniquly identify a country. This field will be ignored during country creation.
+        description: Unique identifier of a country.
       countryName:
         type: string
         format: varchar
@@ -532,7 +918,7 @@ definitions:
       stateId:
         type: integer
         format: int(32)
-        description: To uniquly identify a state. This field will be ignored during state creation.
+        description: Unique identifier of a state.
       stateName:
         type: string
         format: varchar
@@ -541,12 +927,12 @@ definitions:
       countryId:
         type: integer
         format: int(32)
-        description: To uniquly identify a country.
+        description: Unique identifier of a state.
       countryName:
         type: string
         format: varchar
         maxLength: 32
-        description: Name of the country. This field will be ignored during state creation.
+        description: Name of the country.
     required: 
       - stateId
       - stateName
@@ -558,7 +944,7 @@ definitions:
       districtId:
         type: integer
         format: int(32)
-        description: To uniquly identify a district. This field will be ignored during district creation.
+        description: Unique identifier of a district.
       districtName:
         type: string
         format: varchar
@@ -567,12 +953,12 @@ definitions:
       stateId:
         type: integer
         format: int(32)
-        description: To uniquly identify a state. 
+        description: Unique identifier of a state.
       stateName:
         type: string
         format: varchar
         maxLength: 32
-        description: Name of the state. This field will be ignored during district creation.
+        description: Name of the state.
     required: 
       - districtId
       - districtName
@@ -584,7 +970,7 @@ definitions:
       docTypeId:
         type: integer
         format: int(32)
-        description: To uniquly identify the type of document viz. passport, birth certificate etc. This field will be ignored during doc type creation.
+        description: Unique identifier of a document type viz. passport, birth certificate etc. This field will be ignored during doc type creation.
       docTypeName:
         type: string
         format: varchar
@@ -1134,7 +1520,7 @@ definitions:
       - optSalaryComponent
       - startDate
       - benefitValue
-  EmployeeModel:
+  EmployeeBasicModel:
     type: object
     properties:
       empId:        
@@ -1236,6 +1622,27 @@ definitions:
       supervisorFlag:
         type: boolean
         description: Indicates if the employee is a supervisor.
+    required:
+      - empId
+      - title
+      - empFirstName
+      - sex
+      - empType
+      - maritalStatus
+      - doj
+      - organization
+      - unit
+      - department
+      - nationality
+      - identityDocType
+      - identityNumber
+      - contactNo  
+  EmployeeModel:
+    type: object
+    properties:
+      employeeBasicDetails:
+        $ref: '#/definitions/EmployeeBasicModel'
+        description: The employee basic model.
       employeeOptionalBenefit:
         $ref: '#/definitions/EmployeeOptionalBenefitModel'
         description: The employee optional benefit.
@@ -1254,4 +1661,3 @@ definitions:
       employeeProfile:
         $ref: '#/definitions/EmployeeProfileModel'
         description: The employee profile.
-        

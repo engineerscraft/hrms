@@ -20,15 +20,15 @@ __Schemes__ : HTTP
 
 === Tags
 
-* country : Everything about the country
-* department : It's all about departments
-* designation : Everything about the designation
-* district : Everything about the district
-* employee : Employee related resources
-* jobrole : Everything about the job role
-* meta : Meta/Master Data Access
-* organization : Everything about your organization
-* unit : Everything about the unit
+* country : Everything about the country.
+* department : It's all about departments.
+* designation : Everything about the designation.
+* district : Everything about the district.
+* employee : Employee related resources.
+* jobrole : Everything about the job role.
+* meta : Meta/Master Data Access.
+* organization : Everything about your organization.
+* unit : Everything about the unit.
 
 
 

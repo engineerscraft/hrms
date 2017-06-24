@@ -9,7 +9,7 @@
 |===
 |Name|Description|Schema
 |**countryId** +
-__required__|To uniquly identify a country. This field will be ignored during country creation.|integer (int(32))
+__required__|Unique identifier of a country.|integer (int(32))
 |**countryName** +
 __required__|Name of the country. +
 **Maximal length** : `32`|string (varchar)
@@ -61,14 +61,14 @@ __required__|Name of the designation +
 |===
 |Name|Description|Schema
 |**districtId** +
-__required__|To uniquly identify a district. This field will be ignored during district creation.|integer (int(32))
+__required__|Unique identifier of a district.|integer (int(32))
 |**districtName** +
 __required__|Name of the district. +
 **Maximal length** : `32`|string (varchar)
 |**stateId** +
-__required__|To uniquly identify a state.|integer (int(32))
+__required__|Unique identifier of a state.|integer (int(32))
 |**stateName** +
-__required__|Name of the state. This field will be ignored during district creation. +
+__required__|Name of the state. +
 **Maximal length** : `32`|string (varchar)
 |===
 
@@ -80,7 +80,7 @@ __required__|Name of the state. This field will be ignored during district creat
 |===
 |Name|Description|Schema
 |**docTypeId** +
-__required__|To uniquly identify the type of document viz. passport, birth certificate etc. This field will be ignored during doc type creation.|integer (int(32))
+__required__|Unique identifier of a document type viz. passport, birth certificate etc. This field will be ignored during doc type creation.|integer (int(32))
 |**docTypeName** +
 __required__|The name of the document type. +
 **Maximal length** : `32`|string (varchar)
@@ -170,6 +170,74 @@ __required__|The name of the street. +
 |===
 
 
+[[_employeebasicmodel]]
+=== EmployeeBasicModel
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**contactNo** +
+__required__|The contact number of the employee. +
+**Maximal length** : `15`|string (varchar)
+|**department** +
+__required__|The department the employee belongs to.|<<_departmentmodel,DepartmentModel>>
+|**dob** +
+__optional__|Date of birth of the employee.|string (date-time)
+|**doj** +
+__required__|date of joining of the employee.|string (date-time)
+|**emailId** +
+__optional__|Email address of the employee. +
+**Maximal length** : `30`|string (varchar)
+|**empFirstName** +
+__required__|First name of the employee. +
+**Maximal length** : `60`|string (varchar)
+|**empId** +
+__required__|Unique identifier of the employee. This field will be ignored during employee creation.|integer (int(32))
+|**empLastName** +
+__optional__|Last name of the employee. +
+**Maximal length** : `60`|string (varchar)
+|**empMiddleName** +
+__optional__|Middle name of the employee. +
+**Maximal length** : `30`|string (varchar)
+|**empType** +
+__required__|Permanent or Contract employee. +
+**Maximal length** : `15`|string (varchar)
+|**entryBy** +
+__optional__|The username that entered the record. +
+**Maximal length** : `32`|string (varchar)
+|**entryDate** +
+__optional__|Entry date and time.|string (date-time)
+|**fatherName** +
+__optional__|Father's name of the employee. +
+**Maximal length** : `120`|string (varchar)
+|**hrFlag** +
+__optional__|Indicates if the employee is a HR.|boolean
+|**identityDocType** +
+__required__|The identity document type.|<<_doctypemodel,DocTypeModel>>
+|**identityNumber** +
+__required__|The identification document number of the employee. +
+**Maximal length** : `32`|string (varchar)
+|**maritalStatus** +
+__required__|Marital status of the employee. +
+**Maximal length** : `10`|string (varchar)
+|**nationality** +
+__required__|Nationality of the employee. +
+**Maximal length** : `32`|string (varchar)
+|**organization** +
+__required__|The organization the employee belongs to.|<<_organizationmodel,OrganizationModel>>
+|**sex** +
+__required__|Sex of the employee. +
+**Maximal length** : `10`|string (varchar)
+|**supervisorFlag** +
+__optional__|Indicates if the employee is a supervisor.|boolean
+|**title** +
+__required__|Title of the employee. +
+**Maximal length** : `5`|string (varchar)
+|**unit** +
+__required__|The unit the employee belongs to.|<<_unitmodel,UnitModel>>
+|===
+
+
 [[_employeehierarchymodel]]
 === EmployeeHierarchyModel
 
@@ -208,36 +276,12 @@ __required__|The employee id of the supervisor. +
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**contactNo** +
-__optional__|The contact number of the employee. +
-**Maximal length** : `15`|string (varchar)
-|**department** +
-__optional__|The department the employee belongs to.|<<_departmentmodel,DepartmentModel>>
-|**dob** +
-__optional__|Date of birth of the employee.|string (date-time)
-|**doj** +
-__optional__|date of joining of the employee.|string (date-time)
-|**emailId** +
-__optional__|Email address of the employee. +
-**Maximal length** : `30`|string (varchar)
-|**empFirstName** +
-__optional__|First name of the employee. +
-**Maximal length** : `60`|string (varchar)
-|**empId** +
-__optional__|Unique identifier of the employee. This field will be ignored during employee creation.|integer (int(32))
-|**empLastName** +
-__optional__|Last name of the employee. +
-**Maximal length** : `60`|string (varchar)
-|**empMiddleName** +
-__optional__|Middle name of the employee. +
-**Maximal length** : `30`|string (varchar)
-|**empType** +
-__optional__|Permanent or Contract employee. +
-**Maximal length** : `15`|string (varchar)
 |**employeeAddlDetails** +
 __optional__|The employee additional details.|<<_employeeaddldetailsmodel,EmployeeAddlDetailsModel>>
 |**employeeAddress** +
 __optional__|The employee address.|<<_employeeaddressmodel,EmployeeAddressModel>>
+|**employeeBasicDetails** +
+__optional__|The employee basic model.|<<_employeebasicmodel,EmployeeBasicModel>>
 |**employeeHierarchy** +
 __optional__|The employee hierarchy.|<<_employeehierarchymodel,EmployeeHierarchyModel>>
 |**employeeOptionalBenefit** +
@@ -246,39 +290,6 @@ __optional__|The employee optional benefit.|<<_employeeoptionalbenefitmodel,Empl
 __optional__|The employee profile.|<<_employeeprofilemodel,EmployeeProfileModel>>
 |**employeeSalary** +
 __optional__|The employee salary.|<<_employeesalarymodel,EmployeeSalaryModel>>
-|**entryBy** +
-__optional__|The username that entered the record. +
-**Maximal length** : `32`|string (varchar)
-|**entryDate** +
-__optional__|Entry date and time.|string (date-time)
-|**fatherName** +
-__optional__|Father's name of the employee. +
-**Maximal length** : `120`|string (varchar)
-|**hrFlag** +
-__optional__|Indicates if the employee is a HR.|boolean
-|**identityDocType** +
-__optional__|The identity document type.|<<_doctypemodel,DocTypeModel>>
-|**identityNumber** +
-__optional__|The identification document number of the employee. +
-**Maximal length** : `32`|string (varchar)
-|**maritalStatus** +
-__optional__|Marital status of the employee. +
-**Maximal length** : `10`|string (varchar)
-|**nationality** +
-__optional__|Nationality of the employee. +
-**Maximal length** : `32`|string (varchar)
-|**organization** +
-__optional__|The organization the employee belongs to.|<<_organizationmodel,OrganizationModel>>
-|**sex** +
-__optional__|Sex of the employee. +
-**Maximal length** : `10`|string (varchar)
-|**supervisorFlag** +
-__optional__|Indicates if the employee is a supervisor.|boolean
-|**title** +
-__optional__|Title of the employee. +
-**Maximal length** : `5`|string (varchar)
-|**unit** +
-__optional__|The unit the employee belongs to.|<<_unitmodel,UnitModel>>
 |===
 
 
@@ -503,12 +514,12 @@ __optional__|Salary componenet. +
 |===
 |Name|Description|Schema
 |**countryId** +
-__required__|To uniquly identify a country.|integer (int(32))
+__required__|Unique identifier of a state.|integer (int(32))
 |**countryName** +
-__required__|Name of the country. This field will be ignored during state creation. +
+__required__|Name of the country. +
 **Maximal length** : `32`|string (varchar)
 |**stateId** +
-__required__|To uniquly identify a state. This field will be ignored during state creation.|integer (int(32))
+__required__|Unique identifier of a state.|integer (int(32))
 |**stateName** +
 __required__|Name of the state. +
 **Maximal length** : `32`|string (varchar)
