@@ -2,8 +2,8 @@
 [[_definitions]]
 == Definitions
 
-[[_countrymodel]]
-=== CountryModel
+[[_country]]
+=== Country
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -16,8 +16,8 @@ __required__|Name of the country. +
 |===
 
 
-[[_departmentmodel]]
-=== DepartmentModel
+[[_department]]
+=== Department
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -40,8 +40,8 @@ __required__|Name of the unit that the department belongs to. The field will be 
 |===
 
 
-[[_designationmodel]]
-=== DesignationModel
+[[_designation]]
+=== Designation
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -54,8 +54,8 @@ __required__|Name of the designation +
 |===
 
 
-[[_districtmodel]]
-=== DistrictModel
+[[_district]]
+=== District
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -73,8 +73,8 @@ __required__|Name of the state. +
 |===
 
 
-[[_doctypemodel]]
-=== DocTypeModel
+[[_doctype]]
+=== DocType
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -89,8 +89,31 @@ __required__|If the document if a identity document, the value will be true, oth
 |===
 
 
-[[_employeeaddldetailsmodel]]
-=== EmployeeAddlDetailsModel
+[[_employee]]
+=== Employee
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**employeeAddlDetails** +
+__optional__|The employee additional details.|<<_employeeaddldetails,EmployeeAddlDetails>>
+|**employeeAddress** +
+__optional__|The employee address.|<<_employeeaddress,EmployeeAddress>>
+|**employeeBasicDetails** +
+__optional__|The employee basic information.|<<_employeebasicinfo,EmployeeBasicInfo>>
+|**employeeHierarchy** +
+__optional__|The employee hierarchy.|<<_employeehierarchy,EmployeeHierarchy>>
+|**employeeOptionalBenefit** +
+__optional__|The employee optional benefit.|<<_employeeoptionalbenefit,EmployeeOptionalBenefit>>
+|**employeeProfile** +
+__optional__|The employee profile.|<<_employeeprofile,EmployeeProfile>>
+|**employeeSalary** +
+__optional__|The employee salary.|<<_employeesalary,EmployeeSalary>>
+|===
+
+
+[[_employeeaddldetails]]
+=== EmployeeAddlDetails
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -128,8 +151,8 @@ __optional__|The number of siblings of the employee.|integer (int(32))
 |===
 
 
-[[_employeeaddressmodel]]
-=== EmployeeAddressModel
+[[_employeeaddress]]
+=== EmployeeAddress
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -170,8 +193,8 @@ __required__|The name of the street. +
 |===
 
 
-[[_employeebasicmodel]]
-=== EmployeeBasicModel
+[[_employeebasicinfo]]
+=== EmployeeBasicInfo
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -180,7 +203,7 @@ __required__|The name of the street. +
 __required__|The contact number of the employee. +
 **Maximal length** : `15`|string (varchar)
 |**department** +
-__required__|The department the employee belongs to.|<<_departmentmodel,DepartmentModel>>
+__required__|The department the employee belongs to.|<<_department,Department>>
 |**dob** +
 __optional__|Date of birth of the employee.|string (date-time)
 |**doj** +
@@ -213,7 +236,7 @@ __optional__|Father's name of the employee. +
 |**hrFlag** +
 __optional__|Indicates if the employee is a HR.|boolean
 |**identityDocType** +
-__required__|The identity document type.|<<_doctypemodel,DocTypeModel>>
+__required__|The identity document type.|<<_doctype,DocType>>
 |**identityNumber** +
 __required__|The identification document number of the employee. +
 **Maximal length** : `32`|string (varchar)
@@ -224,7 +247,7 @@ __required__|Marital status of the employee. +
 __required__|Nationality of the employee. +
 **Maximal length** : `32`|string (varchar)
 |**organization** +
-__required__|The organization the employee belongs to.|<<_organizationmodel,OrganizationModel>>
+__required__|The organization the employee belongs to.|<<_organization,Organization>>
 |**sex** +
 __required__|Sex of the employee. +
 **Maximal length** : `10`|string (varchar)
@@ -234,12 +257,12 @@ __optional__|Indicates if the employee is a supervisor.|boolean
 __required__|Title of the employee. +
 **Maximal length** : `5`|string (varchar)
 |**unit** +
-__required__|The unit the employee belongs to.|<<_unitmodel,UnitModel>>
+__required__|The unit the employee belongs to.|<<_unit,Unit>>
 |===
 
 
-[[_employeehierarchymodel]]
-=== EmployeeHierarchyModel
+[[_employeehierarchy]]
+=== EmployeeHierarchy
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -270,31 +293,8 @@ __required__|The employee id of the supervisor. +
 |===
 
 
-[[_employeemodel]]
-=== EmployeeModel
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**employeeAddlDetails** +
-__optional__|The employee additional details.|<<_employeeaddldetailsmodel,EmployeeAddlDetailsModel>>
-|**employeeAddress** +
-__optional__|The employee address.|<<_employeeaddressmodel,EmployeeAddressModel>>
-|**employeeBasicDetails** +
-__optional__|The employee basic model.|<<_employeebasicmodel,EmployeeBasicModel>>
-|**employeeHierarchy** +
-__optional__|The employee hierarchy.|<<_employeehierarchymodel,EmployeeHierarchyModel>>
-|**employeeOptionalBenefit** +
-__optional__|The employee optional benefit.|<<_employeeoptionalbenefitmodel,EmployeeOptionalBenefitModel>>
-|**employeeProfile** +
-__optional__|The employee profile.|<<_employeeprofilemodel,EmployeeProfileModel>>
-|**employeeSalary** +
-__optional__|The employee salary.|<<_employeesalarymodel,EmployeeSalaryModel>>
-|===
-
-
-[[_employeeoptionalbenefitmodel]]
-=== EmployeeOptionalBenefitModel
+[[_employeeoptionalbenefit]]
+=== EmployeeOptionalBenefit
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -308,7 +308,7 @@ __optional__|Number of times the benefit will be given to the employee. Value -1
 |**nextDueDate** +
 __optional__|The next due date of this benefit for the employee.|string (date-time)
 |**optSalaryComponent** +
-__required__|Optional salary component.|<<_salaryoptcomponentmodel,SalaryOptComponentModel>>
+__required__|Optional salary component.|<<_salaryoptcomponent,SalaryOptComponent>>
 |**startDate** +
 __required__|The start date of this benefit for the employee.|string (date-time)
 |**stopDate** +
@@ -316,8 +316,8 @@ __optional__|The stop date of this benefit for the employee.|string (date-time)
 |===
 
 
-[[_employeeprofilemodel]]
-=== EmployeeProfileModel
+[[_employeeprofile]]
+=== EmployeeProfile
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -334,21 +334,21 @@ __optional__|The highest qualification of the employee. +
 |===
 
 
-[[_employeesalarymodel]]
-=== EmployeeSalaryModel
+[[_employeesalary]]
+=== EmployeeSalary
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**salaryComponent** +
-__required__|Salary Component.|<<_definitions_salarycomponentmodel,#definitions/SalaryComponentModel>>
+__required__|Salary Component.|<<_definitions_salarycomponent,#definitions/SalaryComponent>>
 |**salaryValue** +
 __required__|The salary value of the employee for the given salary component.|number (double)
 |===
 
 
-[[_errormodel]]
-=== ErrorModel
+[[_error]]
+=== Error
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -358,8 +358,8 @@ __required__|Detailed Error Message.|string
 |===
 
 
-[[_grademodel]]
-=== GradeModel
+[[_grade]]
+=== Grade
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -372,8 +372,8 @@ __required__|Name of the grade +
 |===
 
 
-[[_jobrolemodel]]
-=== JobRoleModel
+[[_jobrole]]
+=== JobRole
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -381,18 +381,34 @@ __required__|Name of the grade +
 |**NoticePeriod** +
 __required__|Notice period if the employee returns after the probation period.|integer (int(32))
 |**grade** +
-__required__|Name of the grade model|<<_definitions_grademodel,#definitions/GradeModel>>
+__required__|Name of the grade|<<_definitions_grade,#definitions/Grade>>
 |**jobRoleId** +
 __required__|To uniquly identify the job role within the organization. This field will be ignored durin the job role creation.|integer (int(32))
 |**organization** +
-__required__|Name of the organization model|<<_definitions_organizationmodel,#definitions/OrganizationModel>>
+__required__|Name of the organization|<<_definitions_organization,#definitions/Organization>>
 |**probationNoticePeriod** +
 __required__|Notice period if the employee resigns during the probation period.|integer (int(32))
 |===
 
 
-[[_optionalsalarymodel]]
-=== OptionalSalaryModel
+[[_logindetails]]
+=== LoginDetails
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**password** +
+__optional__|The secret password of the employee.|string (varchar)
+|**token** +
+__optional__|The refresh token to be used for renewing the access token. This field should be used only when the client has a valid access token. When this field is used, the username and password need not be sent because the authentication will happen using the refresh token.|string (varchar)
+|**username** +
+__optional__|Login user name which is same as the employee id. +
+**Maximal length** : `20`|string (varchar)
+|===
+
+
+[[_optionalsalary]]
+=== OptionalSalary
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -400,14 +416,14 @@ __required__|Notice period if the employee resigns during the probation period.|
 |**maxAllowedLimit** +
 __required__|The maximum allowable limit.|number (double)
 |**optSalaryComponent** +
-__required__|The Salary component.|<<_definitions_salaryoptcomponentmodel,#definitions/SalaryOptComponentModel>>
+__required__|The Salary component.|<<_definitions_salaryoptcomponent,#definitions/SalaryOptComponent>>
 |**salaryValue** +
 __required__|The default value of the salary Component for the paricular job role id.|number (double)
 |===
 
 
-[[_organizationmodel]]
-=== OrganizationModel
+[[_organization]]
+=== Organization
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -421,12 +437,12 @@ __required__|unique identifier of the organization. This field will be ignored d
 __required__|Name of the organization. +
 **Maximal length** : `100`|string (varchar)
 |**orgType** +
-__required__|The organization type.|<<_organizationtypemodel,OrganizationTypeModel>>
+__required__|The organization type.|<<_organizationtype,OrganizationType>>
 |===
 
 
-[[_organizationtypemodel]]
-=== OrganizationTypeModel
+[[_organizationtype]]
+=== OrganizationType
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -442,8 +458,38 @@ __required__|The name of the organization type. +
 |===
 
 
-[[_salarycomponentmodel]]
-=== SalaryComponentModel
+[[_permission]]
+=== Permission
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**permission** +
+__optional__|The permission name. +
+**Maximal length** : `30`|string (varchar)
+|**resource** +
+__optional__|The resource name of the permission. +
+**Maximal length** : `60`|string (varchar)
+|===
+
+
+[[_salary]]
+=== Salary
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**maxAllowedLimit** +
+__required__|The maximum allowable limit.|number (double)
+|**salaryComponent** +
+__required__|The Salary component.|<<_salarycomponent,SalaryComponent>>
+|**salaryValue** +
+__required__|The default value of the salary Component for the paricular job role id.|number (double)
+|===
+
+
+[[_salarycomponent]]
+=== SalaryComponent
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -462,23 +508,8 @@ __optional__|Salary componenet. +
 |===
 
 
-[[_salarymodel]]
-=== SalaryModel
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**maxAllowedLimit** +
-__required__|The maximum allowable limit.|number (double)
-|**salaryComponent** +
-__required__|The Salary component.|<<_salarycomponentmodel,SalaryComponentModel>>
-|**salaryValue** +
-__required__|The default value of the salary Component for the paricular job role id.|number (double)
-|===
-
-
-[[_salaryoptcomponentmodel]]
-=== SalaryOptComponentModel
+[[_salaryoptcomponent]]
+=== SalaryOptComponent
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -507,8 +538,8 @@ __optional__|Salary componenet. +
 |===
 
 
-[[_statemodel]]
-=== StateModel
+[[_state]]
+=== State
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -526,8 +557,26 @@ __required__|Name of the state. +
 |===
 
 
-[[_unitmodel]]
-=== UnitModel
+[[_token]]
+=== Token
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**accessToken** +
+__required__|The access token to be passed in the Authorization header in all the API calls.|string (varchar)
+|**refreshToken** +
+__required__|The refresh token to be used to renew the expired access token.|string (varchar)
+|**userDisplayName** +
+__required__|The actual name of the user as stored in the LDAP server.|string (varchar)
+|**userName** +
+__required__|The username used for login. +
+**Maximal length** : `20`|string (varchar)
+|===
+
+
+[[_unit]]
+=== Unit
 
 [options="header", cols=".^3,.^11,.^4"]
 |===

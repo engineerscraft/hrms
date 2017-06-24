@@ -53,6 +53,7 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_optional_benefits.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_optional_benefits</TD></TR>
+      <TR><TD PORT="BENEFIT_ID" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">BENEFIT_ID</TD><TD PORT="BENEFIT_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="EMP_ID" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">EMP_ID</TD><TD PORT="EMP_ID.type" ALIGN="LEFT">varchar[20]</TD></TR>
       <TR><TD PORT="OPT_COMP_ID" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">OPT_COMP_ID</TD><TD PORT="OPT_COMP_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="SAL_OPT_FLAG" COLSPAN="2" ALIGN="LEFT">SAL_OPT_FLAG</TD><TD PORT="SAL_OPT_FLAG.type" ALIGN="LEFT">int[10]</TD></TR>

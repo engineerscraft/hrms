@@ -2,6 +2,55 @@
 [[_paths]]
 == Paths
 
+[[_authenticateuser]]
+=== Authenticates the User and Renews the Access Token
+....
+GET /resources/v1/authentication
+....
+
+
+==== Description
+Authenticates the user based on the supplied user name and password. It can also renew the access tokken using a refresh token.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**loginDetails** +
+__optional__|The login credentials of the user.|<<_logindetails,LoginDetails>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Authentication is successful|<<_token,Token>>
+|**401**|The supplied refresh token is not valid or the authentication fails.|No Content
+|**500**|Internal Server Error|<<_error,Error>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* security
+
+
 [[_getcountries]]
 === Returns List of Countries
 ....
@@ -30,10 +79,11 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |HTTP Code|Description|Schema
 |**200**|The list of countries is retrieved successfully. +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_countrymodel,CountryModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_country,Country>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No country is found.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No country is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -45,7 +95,7 @@ __required__|Access token to be sent for authentication and authorization.|strin
 
 ==== Tags
 
-* country
+* meta
 
 
 [[_getdepartments]]
@@ -78,10 +128,11 @@ __required__|The id of the unit whose departments are to be retrieved.|string
 |HTTP Code|Description|Schema
 |**200**|OK +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_departmentmodel,DepartmentModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_department,Department>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No department is found for the given unit id.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No department is found for the given unit id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -126,10 +177,11 @@ __required__|The id of the job role for which the designations are to be returne
 |HTTP Code|Description|Schema
 |**200**|The designations are successfully returned. +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_designationmodel,DesignationModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_designation,Designation>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|Not Found|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|Not Found|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -174,10 +226,11 @@ __required__|The id of the state whose districts are to be retrieved.|string
 |HTTP Code|Description|Schema
 |**200**|OK +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_districtmodel,DistrictModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_district,District>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command|No Content
-|**404**|No district is found for the given state.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No district is found for the given state.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -189,7 +242,7 @@ __required__|The id of the state whose districts are to be retrieved.|string
 
 ==== Tags
 
-* district
+* meta
 
 
 [[_getdoctypes]]
@@ -220,10 +273,11 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |HTTP Code|Description|Schema
 |**200**|The list of document types is successfully retrieved. +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctypemodel,DocTypeModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctype,DocType>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No document type is found.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No document type is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -266,10 +320,11 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |HTTP Code|Description|Schema
 |**200**|The identity document types are successfully retrieved. +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctypemodel,DocTypeModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_doctype,DocType>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No identy document type is found.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No identy document type is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -313,8 +368,9 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**201**|The employee is sucessfully created. +
 **Headers** :  +
 `Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|string
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -370,8 +426,9 @@ __required__|The search will be restricted to the hierarchy of the user only if 
 |===
 |HTTP Code|Description|Schema
 |**200**|The matching values are retrieved successfully.|< string > array
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**500**|Internal Server Error|<<_error,Error>>
 |===
 
 
@@ -416,10 +473,11 @@ __required__|The employee id for which the data will be returned.|integer
 |HTTP Code|Description|Schema
 |**200**|OK +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=100"`|<<_employeemodel,EmployeeModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=100"`|<<_employee,Employee>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command|No Content
-|**404**|No employee with the given id is found.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No employee with the given id is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -455,7 +513,7 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**Path**|**id** +
 __required__|The employee id for which the data will be updated.|integer
 |**Body**|**reqBody** +
-__optional__|Employee additional data.|<<_employeeaddldetailsmodel,EmployeeAddlDetailsModel>>
+__optional__|Employee additional data.|<<_employeeaddldetails,EmployeeAddlDetails>>
 |===
 
 
@@ -465,9 +523,10 @@ __optional__|Employee additional data.|<<_employeeaddldetailsmodel,EmployeeAddlD
 |===
 |HTTP Code|Description|Schema
 |**200**|The data is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -503,7 +562,7 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**Path**|**id** +
 __required__|Id of the employee whose address will be updated.|string
 |**Body**|**reqBody** +
-__optional__|Employee Address parameters in JSON Body|<<_employeeaddressmodel,EmployeeAddressModel>>
+__optional__|Employee Address parameters in JSON Body|<<_employeeaddress,EmployeeAddress>>
 |===
 
 
@@ -513,9 +572,10 @@ __optional__|Employee Address parameters in JSON Body|<<_employeeaddressmodel,Em
 |===
 |HTTP Code|Description|Schema
 |**200**|The address of the given employee is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|The employee with the given id is not found.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|The employee with the given id is not found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -533,7 +593,7 @@ __optional__|Employee Address parameters in JSON Body|<<_employeeaddressmodel,Em
 [[_updatebasicdetails]]
 === Updates the Basic Details of an Employee
 ....
-PUT /resources/v1/employee/{id}/basic
+PUT /resources/v1/employee/{id}/basicinfo
 ....
 
 
@@ -551,7 +611,7 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**Path**|**id** +
 __required__|The employee id for which the data will be updated.|integer
 |**Body**|**reqBody** +
-__optional__|Employee basic data.|<<_employeebasicmodel,EmployeeBasicModel>>
+__optional__|Employee basic data.|<<_employeebasicinfo,EmployeeBasicInfo>>
 |===
 
 
@@ -561,9 +621,10 @@ __optional__|Employee basic data.|<<_employeebasicmodel,EmployeeBasicModel>>
 |===
 |HTTP Code|Description|Schema
 |**200**|OK|No Content
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error|<<_error,Error>>
 |===
 
 
@@ -599,7 +660,7 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**Path**|**id** +
 __required__|The employee id for which the data will be updated.|integer
 |**Body**|**reqBody** +
-__optional__|New employee hierarchy status data.|<<_employeehierarchymodel,EmployeeHierarchyModel>>
+__optional__|New employee hierarchy status data.|<<_employeehierarchy,EmployeeHierarchy>>
 |===
 
 
@@ -609,9 +670,59 @@ __optional__|New employee hierarchy status data.|<<_employeehierarchymodel,Emplo
 |===
 |HTTP Code|Description|Schema
 |**200**|The data is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command|No Content
-|**404**|No employee with the given id is found.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No employee with the given id is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_addoptionalbenefits]]
+=== Adds an Optional Benefit to an Employee
+....
+POST /resources/v1/employee/{id}/optionalbenefits
+....
+
+
+==== Description
+Adds an optional benefit to a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the optional benefit will be created.|integer
+|**Body**|**reqBody** +
+__optional__|Employee optional benefit data.|<<_employeeoptionalbenefit,EmployeeOptionalBenefit>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**201**|The optional benefit created successfully.|No Content
+|**401**|The access token expired or the access token is invalid.|No Content
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -627,14 +738,14 @@ __optional__|New employee hierarchy status data.|<<_employeehierarchymodel,Emplo
 
 
 [[_updateoptionalbenefits]]
-=== Updates the Optional Benefits of an Employee
+=== Updates an Optional Benefit to an Employee
 ....
-PUT /resources/v1/employee/{id}/optionalbenefits
+PUT /resources/v1/employee/{id}/optionalbenefits/{oid}
 ....
 
 
 ==== Description
-Updates the optional benefits of a given employee.
+Updates an optional benefit to a given employee.
 
 
 ==== Parameters
@@ -646,8 +757,10 @@ Updates the optional benefits of a given employee.
 __required__|Access token to be sent for authentication and authorization.|string
 |**Path**|**id** +
 __required__|The employee id for which the data will be updated.|integer
+|**Path**|**oid** +
+__required__|The optional benefit id for which the data will be updated.|integer
 |**Body**|**reqBody** +
-__optional__|Employee optional benefit data.|<<_employeeoptionalbenefitmodel,EmployeeOptionalBenefitModel>>
+__optional__|Employee optional benefit data.|<<_employeeoptionalbenefit,EmployeeOptionalBenefit>>
 |===
 
 
@@ -656,10 +769,11 @@ __optional__|Employee optional benefit data.|<<_employeeoptionalbenefitmodel,Emp
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|The data is successfully updated.|No Content
+|**201**|The optional benefit created successfully.|No Content
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -695,7 +809,7 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**Path**|**id** +
 __required__|The employee id for which the data will be updated.|integer
 |**Body**|**reqBody** +
-__optional__|Employee profile data.|<<_employeeprofilemodel,EmployeeProfileModel>>
+__optional__|Employee profile data.|<<_employeeprofile,EmployeeProfile>>
 |===
 
 
@@ -705,9 +819,10 @@ __optional__|Employee profile data.|<<_employeeprofilemodel,EmployeeProfileModel
 |===
 |HTTP Code|Description|Schema
 |**200**|The data is successfully updated.|No Content
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -743,7 +858,7 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |**Path**|**id** +
 __required__|The employee id for which the data will be updated.|integer
 |**Body**|**reqBody** +
-__optional__|Employee salary data.|<<_employeesalarymodel,EmployeeSalaryModel>>
+__optional__|Employee salary data.|<<_employeesalary,EmployeeSalary>>
 |===
 
 
@@ -753,9 +868,10 @@ __optional__|Employee salary data.|<<_employeesalarymodel,EmployeeSalaryModel>>
 |===
 |HTTP Code|Description|Schema
 |**200**|OK|No Content
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No employee is found with the given employee id.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No employee is found with the given employee id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -800,10 +916,11 @@ __required__|The id of the organization whose job roles are to be returned.|inte
 |HTTP Code|Description|Schema
 |**200**|OK +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_jobrolemodel,JobRoleModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_jobrole,JobRole>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No job role is found for the given organization.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No job role is found for the given organization.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -846,10 +963,11 @@ __required__|The job role id for which the data will be retrieved.|integer
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_optionalsalarymodel,OptionalSalaryModel>>
+|**200**|OK|<<_optionalsalary,OptionalSalary>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No optional benefit is found with the given job role id.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error|<<_errormodel,ErrorModel>>
+|**404**|No optional benefit is found with the given job role id.|<<_error,Error>>
+|**500**|Internal Server Error|<<_error,Error>>
 |===
 
 
@@ -892,10 +1010,11 @@ __required__|The job role id for which the data will be retrieved.|integer
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_definitions_salarymodel,#definitions/SalaryModel>>
+|**200**|OK|<<_definitions_salary,#definitions/Salary>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No salary component is found with the given job role id.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No salary component is found with the given job role id.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -938,10 +1057,11 @@ __required__|Access token to be sent for authentication and authorization.|strin
 |HTTP Code|Description|Schema
 |**200**|The list of organizations are successfully retrieved. +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_organizationmodel,OrganizationModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_organization,Organization>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No organization is found.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No organization is found.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -954,6 +1074,53 @@ __required__|Access token to be sent for authentication and authorization.|strin
 ==== Tags
 
 * organization
+
+
+[[_getpermissions]]
+=== Retrieves the Permissions of the Logged In User
+....
+GET /resources/v1/permission
+....
+
+
+==== Description
+Retrieves the permissions of the logged in user at the GUI level or at the API level.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Query**|**permissionLevel** +
+__required__|The permission level which can be either "view" (i.e. GUI related permissions) or "api" (i.e. REST API related permissions).|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_permission,Permission>>
+|**401**|The access token expired or the access token is invalid.|No Content
+|**403**|User does not have permission to execute this command.|No Content
+|**404**|No permission found for the logged in user.|<<_error,Error>>
+|**500**|Internal Server Error|<<_error,Error>>
+|===
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* security
 
 
 [[_getstates]]
@@ -986,10 +1153,11 @@ __required__|Country for which the list of states will be retrieved.|string
 |HTTP Code|Description|Schema
 |**200**|The list of states are successfully retrieved. +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_statemodel,StateModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_state,State>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No state found for the given country.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No state found for the given country.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 
@@ -1030,10 +1198,11 @@ __required__|The id of the organization whose units will be retrieved.|string
 |HTTP Code|Description|Schema
 |**200**|The units are successfully retrieved. +
 **Headers** :  +
-`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_unitmodel,UnitModel>>
+`Cache-Control` (string) : Caching. **Default** : `"private, no-store, max-age=300"`|<<_unit,Unit>>
+|**401**|The access token expired or the access token is invalid.|No Content
 |**403**|User does not have permission to execute this command.|No Content
-|**404**|No unit is found for the given organization.|<<_errormodel,ErrorModel>>
-|**500**|Internal Server Error.|<<_errormodel,ErrorModel>>
+|**404**|No unit is found for the given organization.|<<_error,Error>>
+|**500**|Internal Server Error.|<<_error,Error>>
 |===
 
 

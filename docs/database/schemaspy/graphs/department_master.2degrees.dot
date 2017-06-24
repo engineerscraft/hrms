@@ -19,6 +19,7 @@ digraph "twoDegreesRelationshipsGraph" {
   "department_master":"UNIT_ID":w -> "unit_master":"UNIT_ID":e [arrowtail=crowodot arrowhead=none];
   "employee":"DEPARTMENT_ID":w -> "department_master":"DEPARTMENT_ID.type":e [arrowtail=crowodot arrowhead=none];
   "employee":"employee.heading":w -> "doc_type_master":"doc_type_master.heading":e [arrowtail=crowodot arrowhead=none];
+  "employee":"employee.heading":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_additional_details":"employee_additional_details.heading":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
   "employee_docs":"employee_docs.heading":w -> "employee":"employee.heading":e [arrowtail=crowtee arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
@@ -27,7 +28,6 @@ digraph "twoDegreesRelationshipsGraph" {
   "employee_optional_benefits":"employee_optional_benefits.heading":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_profile":"employee_profile.heading":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
   "employee_salary":"employee_salary.heading":w -> "employee":"employee.heading":e [arrowtail=crowtee arrowhead=none];
-  "unit_master":"unit_master.heading":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none];
   "address" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">

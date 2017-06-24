@@ -406,26 +406,31 @@
          </index>
       </table>
       <table name="employee_optional_benefits" numRows="0" remarks="" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="EMP_ID" nullable="true" remarks="" size="20" type="VARCHAR">
+         <column autoUpdated="false" digits="0" id="0" name="BENEFIT_ID" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="EMP_ID" nullable="true" remarks="" size="20" type="VARCHAR">
             <parent column="EMP_ID" foreignKey="employee_optional_benefits_ibfk_2" implied="false" onDeleteCascade="false" table="employee"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="OPT_COMP_ID" nullable="true" remarks="" size="10" type="INT">
+         <column autoUpdated="false" digits="0" id="2" name="OPT_COMP_ID" nullable="true" remarks="" size="10" type="INT">
             <parent column="OPT_COMP_ID" foreignKey="employee_optional_benefits_ibfk_1" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
          </column>
-         <column autoUpdated="false" digits="0" id="2" name="SAL_OPT_FLAG" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="3" name="SAL_OPT_VALUE" nullable="true" remarks="" size="22" type="DOUBLE"/>
-         <column autoUpdated="false" digits="0" id="4" name="SAL_OPT_START_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="5" name="SAL_OPT_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="6" name="NEXT_DUE_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="7" name="REMARKS" nullable="true" remarks="" size="100" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="8" name="ENTRY_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="9" name="ENTRY_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
-         <column autoUpdated="false" digits="0" id="10" name="FREQUENCY" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="11" name="NO_OF_ITERATION" nullable="true" remarks="" size="10" type="INT"/>
-         <index name="EMP_OPT_BEN_IDX_1" unique="false">
+         <column autoUpdated="false" digits="0" id="3" name="SAL_OPT_FLAG" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="4" name="SAL_OPT_VALUE" nullable="true" remarks="" size="22" type="DOUBLE"/>
+         <column autoUpdated="false" digits="0" id="5" name="SAL_OPT_START_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="6" name="SAL_OPT_END_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="7" name="NEXT_DUE_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="8" name="REMARKS" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="ENTRY_BY" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="ENTRY_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="11" name="FREQUENCY" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="12" name="NO_OF_ITERATION" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="BENEFIT_ID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="BENEFIT_ID"/>
+         </index>
+         <index name="EMP_ID" unique="false">
             <column ascending="true" name="EMP_ID"/>
          </index>
-         <index name="EMP_OPT_BEN_IDX_2" unique="false">
+         <index name="OPT_COMP_ID" unique="false">
             <column ascending="true" name="OPT_COMP_ID"/>
          </index>
       </table>
