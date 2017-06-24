@@ -5,7 +5,7 @@
 4. JXplorer (LDAP Client)
 5. Apache Maven
 6. NPM
-7. Angular CLI (Refer to https://cli.angular.io for installation steps and other commands)
+7. Angular CLI (Refer to https://cli.angular.io for installation steps and other commands) - Install the version 1.0.0 only using the command `npm install -g angular-cli@1.0.0`
 8. Eclipse (For Java development)
 9. Visual Studio Code (For Angular development)
 10. Git (https://git-scm.com/download/)
