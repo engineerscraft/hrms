@@ -177,7 +177,7 @@ export class SideBarComponent implements OnInit {
   }
 
   getErrorClass(formControlName) {
-    if(this.formGroup.controls[formControlName].hasError('required') && this.formGroup.controls[formControlName].touched) 
+    if(this.formGroup.controls[formControlName].invalid && this.formGroup.controls[formControlName].touched) 
       return ["error-bar"];
     else
       return ["bar"];
