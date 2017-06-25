@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.EmployeeOld;
 import com.hamdard.hua.rowmapper.EmployeeRowMapper;
 
 @Component
@@ -39,10 +39,10 @@ public class EmployeeRepository {
     @Value("${sql.employee.get.byId}")
     private String employeeGetByIdSql;
 
-    public List<Employee> getAllEmployees(){
+    public List<EmployeeOld> getAllEmployees(){
     	try {
             logger.info(sqlMarker, employeeListSql);
-            List<Employee> employees = (List<Employee>) jdbcTemplate.query(employeeListSql, new EmployeeRowMapper());
+            List<EmployeeOld> employees = (List<EmployeeOld>) jdbcTemplate.query(employeeListSql, new EmployeeRowMapper());
             logger.debug("Retrieved employees: {}", () -> employees);
             return employees;
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public class EmployeeRepository {
         }
     }
     
-    public Employee createEmployee(Employee e){
+    public EmployeeOld createEmployee(EmployeeOld e){
     	logger.info(sqlMarker, employeeCreateSql);
     	Long employeeId = jdbcTemplate.queryForObject(employeeIdSql, new Object[] {}, Long.class);
 		//ID,FIRST_NAME,MIDDLE_NAME,LAST_NAME,EMAIL_ADDRESS,
@@ -69,7 +69,7 @@ public class EmployeeRepository {
     	return values;
     }
     
-    public List<Employee> searchByColumnMap(Map<String, Object> columnMap){
+    public List<EmployeeOld> searchByColumnMap(Map<String, Object> columnMap){
     	logger.info(sqlMarker, columnMap);
     	String sql="SELECT * FROM EMPLOYEE WHERE ";
     	int i=0;
@@ -86,11 +86,11 @@ public class EmployeeRepository {
     	logger.info(sqlMarker, sql);
     	return jdbcTemplate.query(sql,input,new EmployeeRowMapper());
     }
-    public Employee getEmployeeById(Long id){
+    public EmployeeOld getEmployeeById(Long id){
     	try {
     		Object[] args={id};
             logger.info(sqlMarker, employeeGetByIdSql);
-            Employee employee = (Employee) jdbcTemplate.queryForObject(employeeGetByIdSql,args, new EmployeeRowMapper());
+            EmployeeOld employee = (EmployeeOld) jdbcTemplate.queryForObject(employeeGetByIdSql,args, new EmployeeRowMapper());
             logger.debug("Retrieved accounts: {}", () -> employee);
             return employee;
         } catch (Exception e) {

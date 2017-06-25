@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.EmployeeOld;
 import com.hamdard.hua.repository.EmployeeRepository;
 
 @Component
@@ -39,21 +39,21 @@ public class EmployeeResource {
     @GET
     @Path("/list")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<Employee> getEmployees() {
+	public List<EmployeeOld> getEmployees() {
         return employeeRepository.getAllEmployees();
     }
     
     @GET
     @Path("/{id}")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Employee getEmployee(@PathParam("id") Long id) {
+	public EmployeeOld getEmployee(@PathParam("id") Long id) {
         return employeeRepository.getEmployeeById(id);
     }
     
     @POST
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Employee createEmployee(Employee employee) {
+	public EmployeeOld createEmployee(EmployeeOld employee) {
         return employeeRepository.createEmployee(employee);
     }
     
@@ -67,7 +67,7 @@ public class EmployeeResource {
     @GET
     @Path("/search")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<Employee> searchEmployee(@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName,
+	public List<EmployeeOld> searchEmployee(@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName,
 			@QueryParam("lastName") String lastName, @QueryParam("designationId") Long designationId,
 			@QueryParam("departmentId") Long departmentId, @QueryParam("collegeId") Long collegeId,
 			@QueryParam("employeeId") Long employeeId, @QueryParam("emailAddress") String emailAddress,
@@ -108,7 +108,7 @@ public class EmployeeResource {
     		map.put("COLLEGE_ID", collegeId);
     	}
     	if(map.size()==0){
-    		return new ArrayList<Employee>();
+    		return new ArrayList<EmployeeOld>();
     	}
     	return employeeRepository.searchByColumnMap(map);
     }

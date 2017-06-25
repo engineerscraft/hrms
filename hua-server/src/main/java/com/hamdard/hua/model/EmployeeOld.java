@@ -2,7 +2,7 @@ package com.hamdard.hua.model;
 
 import java.util.Date;
 
-public class Employee {
+public class EmployeeOld {
 
 	private Long id;
 	private String firstName;
