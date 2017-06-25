@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.hamdard.hua.model.Permission;
 import com.hamdard.hua.privileges.Privilege;
 import com.hamdard.hua.repository.AuthenticationRepository;
 import com.hamdard.hua.security.Secured;
@@ -57,7 +58,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 
             String username = requestContext.getSecurityContext().getUserPrincipal().getName();
 
-            List<String> permissions = null;
+            List<Permission> permissions = null;
 
             if (methodPriv.equals(methodPriv.DEFAULT) && classPriv.equals(methodPriv.DEFAULT)) {
                 // do nothing and allow the call to happen

@@ -5,7 +5,7 @@
 <div class="login">
     <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
     <div [@heroState]="getLoginStatus()" class="alert alert-danger">Invalid username or password</div>
-    <h1 class="herotext">HUMDARD UNIVERSITY ACCOUNTING CENTRE</h1>
+    <h1 class="herotext">HUMDARD UNIVERSITY MANAGEMENT CENTRE</h1>
     <form [formGroup]="formGroup" (ngSubmit)="onClick()" method="post" class="loginform">
         <fieldset [disabled]="isProcessingInProgress()">
             <div class="loginrow">

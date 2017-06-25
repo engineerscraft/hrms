@@ -40,9 +40,11 @@ public class ChangePasswordEndpoint {
     		authenticationRepository.changePassword(pwdDetails, securityContext.getUserPrincipal().getName());
     	}
     	catch(AuthenticationException e) {
+    		logger.error("Invalid username and password", e);
     		return Response.status(401).entity(new ErrorBody("Invalid username and password")).build();
     	}
     	catch(Exception e) {
+    		logger.error(e.getMessage(), e);
     		return Response.status(500).entity(new ErrorBody(e.getMessage())).build();
     	}
     	return Response.status(200).build();

@@ -51,10 +51,13 @@ public class AuthenticationEndpoint {
 			}
 			return Response.status(200).entity(token).build();
 		} catch (AuthenticationException e) {
+			logger.error("Invalid username and password", e);
 			return Response.status(401).entity(new ErrorBody("Invalid username and password")).build();
 		} catch (ExpiredJwtException e) {
+			logger.error("Refresh token expired", e);
 			return Response.status(401).entity(new ErrorBody("Refresh token expired")).build();
 		} catch(Exception e) {
+			logger.error(e.getMessage(), e);
 			return Response.status(500).entity(new ErrorBody(e.getMessage())).build();
 		}
 
