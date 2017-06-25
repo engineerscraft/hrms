@@ -11,6 +11,6 @@ export class UserService {
   constructor(private httpService: HttpService, private http: Http) { }
 
   changePassword(body: object) {
-    return this.httpService.callHttpPost("/resources/changepassword", body);
+    return this.httpService.callHttpPost("/resources/v1/changepassword", body);
   }
 }

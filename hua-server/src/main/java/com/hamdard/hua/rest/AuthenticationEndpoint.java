@@ -10,7 +10,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.AuthenticationException;
-import org.springframework.stereotype.Component;
 
 import com.hamdard.hua.model.Message;
 import com.hamdard.hua.model.LoginDetails;
@@ -21,8 +20,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 
-@Component
-@Path("/authentication")
+@Path("/v1/authentication")
 public class AuthenticationEndpoint {
 
 	private static final Logger logger = LogManager.getLogger(AuthenticationEndpoint.class);

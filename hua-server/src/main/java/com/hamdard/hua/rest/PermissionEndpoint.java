@@ -14,15 +14,13 @@ import javax.ws.rs.core.SecurityContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.hamdard.hua.model.Message;
 import com.hamdard.hua.model.Permission;
 import com.hamdard.hua.repository.AuthenticationRepository;
 import com.hamdard.hua.security.Secured;
 
-@Component
-@Path("/permission")
+@Path("/v1/permission")
 public class PermissionEndpoint {
 
 	private static final Logger logger = LogManager.getLogger(AuthenticationRepository.class);
