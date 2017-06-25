@@ -1,6 +1,6 @@
 # Software Requirements
 1. MySQL
-2. HeidiSQL (MySQL Client)
+2. MySQL Workbench (https://downloads.mysql.com/archives/workbench/) - Download zip version 
 3. Apache DS
 4. JXplorer (LDAP Client)
 5. Apache Maven
@@ -34,7 +34,7 @@
 13. We will create one new branch for every release. So even after multiple releases we will have all the codes of all individual releases
 14. For any production hot-fixes, we will create a separate hot-fix branch, fix the bug, test it and merge it wil the master branch and the appropriate release branch
 
-# Git best pratices
+# Git Best Practices
 1. Make a point to commit all your changes before you plan to pull.
 2. Commit often, and regularly do a pull / push! This will save us from complicated merge operations. 
 3. And like any version control system, please write clear commit messages. 
@@ -54,18 +54,18 @@
     `GRANT ALL PRIVILEGES ON HUA.* TO HUAAPPUSER@'localhost';`
 4. Create an environment variable HRMS_ROOT. Create a folder called log in the folder pointed to by HRMS_ROOT. All logs will be generated here.
 
-# Running the servers
+# Running the Servers
 1. Open the command terminal, go to the folder huac\trunk\hua-gui\src\main\gui and run the command `npm start`
 2. Open another terminal, go to the folder huac\trunk\hua-server and run the command `mvn spring-boot:run`
 3. Open a web browser and go to the URL http://localhost:4200 and login using the credentials TEST03/TEST03
 
-# Generate REST API documentation
+# Generate REST API Documentation
 1. Go to location hua-server
 2. Run the command `mvn -P doc install`
 3. The document will ge generated at docs\api
 4. The document will be available at http://techsnippet.online/hrms/api/
 
-# Generate DB structure documentation
+# Generate DB Structure Documentation
 1. Go to location hua-server
 2. Run the command `mvn -P doc site`
 3. The document will ge generated at docs\database\schemaspy
