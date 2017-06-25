@@ -288,9 +288,9 @@ public class Employee {
         private String nomineeName1;
         private String nomineeName2;
         private String nomineeName3;
-        private float  nomineeShare1;
-        private float  nomineeShare2;
-        private float  nomineeShare3;
+        private double nomineeShare1;
+        private double nomineeShare2;
+        private double nomineeShare3;
         private Date   preMedicalCheckUpDate;
         private int    siblingNo;
         public int getDependentNo() {
@@ -335,21 +335,6 @@ public class Employee {
         public void setNomineeName3(String nomineeName3) {
             this.nomineeName3 = nomineeName3;
         }
-        public float getNomineeShare1() {
-            return this.nomineeShare1;
-        }
-        public void setNomineeShare1(float nomineeShare1) {
-            this.nomineeShare1 = nomineeShare1;
-        }
-        public float getNomineeShare2() {
-            return this.nomineeShare2;
-        }
-        public void setNomineeShare2(float nomineeShare2) {
-            this.nomineeShare2 = nomineeShare2;
-        }
-        public float getNomineeShare3() {
-            return this.nomineeShare3;
-        }
         public void setNomineeShare3(float nomineeShare3) {
             this.nomineeShare3 = nomineeShare3;
         }
@@ -364,6 +349,24 @@ public class Employee {
         }
         public void setSiblingNo(int siblingNo) {
             this.siblingNo = siblingNo;
+        }
+        public double getNomineeShare1() {
+            return this.nomineeShare1;
+        }
+        public void setNomineeShare1(double nomineeShare1) {
+            this.nomineeShare1 = nomineeShare1;
+        }
+        public double getNomineeShare2() {
+            return this.nomineeShare2;
+        }
+        public void setNomineeShare2(double nomineeShare2) {
+            this.nomineeShare2 = nomineeShare2;
+        }
+        public double getNomineeShare3() {
+            return this.nomineeShare3;
+        }
+        public void setNomineeShare3(double nomineeShare3) {
+            this.nomineeShare3 = nomineeShare3;
         }
     }
     
