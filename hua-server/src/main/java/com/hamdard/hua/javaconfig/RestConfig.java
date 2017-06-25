@@ -10,6 +10,7 @@ import com.hamdard.hua.rest.AccountResource;
 import com.hamdard.hua.rest.AuthenticationEndpoint;
 import com.hamdard.hua.rest.ChangePasswordEndpoint;
 import com.hamdard.hua.rest.CollegeResource;
+import com.hamdard.hua.rest.CountryResource;
 import com.hamdard.hua.rest.DepartmentResource;
 import com.hamdard.hua.rest.DesignationResource;
 import com.hamdard.hua.rest.EmployeeResource;
@@ -31,6 +32,7 @@ public class RestConfig extends ResourceConfig {
         		DepartmentResource.class,
         		DesignationResource.class,
         		UserManagementEndpoint.class,
-        		ChangePasswordEndpoint.class);
+        		ChangePasswordEndpoint.class,
+        		CountryResource.class);
     }
 }
