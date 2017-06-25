@@ -277,6 +277,7 @@ input {
   border: none;
   border-bottom: 1px solid #dfdfdf;
   outline:none;
+  background-color: white;
 }
 
 .text-input-label {
@@ -301,20 +302,26 @@ input {
   transition: 0.2s ease all;
 }
 
+.inputMaterial:disabled ~ .text-input-label		{
+  top: -12px;
+  font-size: 14px;
+  color: #4CA1AF;
+}
+
 /* active state */
-.inputMaterial:focus ~ .text-input-label, .inputMaterial:focus:disabled ~ .text-input-label		{
+.inputMaterial:focus ~ .text-input-label		{
   top: -12px;
   font-size: 14px;
   color: #4CA1AF;
 }
 
-.inputMaterial:valid ~ .text-input-label, .inputMaterial:valid:disabled ~ .text-input-label {
+.inputMaterial:valid ~ .text-input-label {
   top: -12px;
   font-size: 14px;
   color: #4CA1AF;
 }
 
-.inputMaterial:read-only ~ .text-input-label, .inputMaterial:read-only:disabled ~ .text-input-label {
+.inputMaterial:read-only ~ .text-input-label {
   top: -12px;
   font-size: 14px;
   color: #4CA1AF;
