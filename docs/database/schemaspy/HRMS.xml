@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <database name="HRMS" type="MySQL - 5.7.18-log">
    <tables>
-      <table name="access_token" numRows="0" remarks="" type="TABLE">
+      <table name="access_token" numRows="25" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="ACCESS_ID" nullable="true" remarks="" size="19" type="BIGINT"/>
          <column autoUpdated="false" digits="0" id="1" name="INSERT_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
          <column autoUpdated="false" digits="0" id="2" name="USER_NAME" nullable="true" remarks="" size="30" type="VARCHAR"/>
@@ -98,18 +98,18 @@
             <column ascending="true" name="JOB_ROLE_ID"/>
          </index>
       </table>
-      <table name="country_master" numRows="0" remarks="" type="TABLE">
+      <table name="country_master" numRows="246" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="COUNTRY_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="COUNTRY_ID" foreignKey="address_ibfk_4" implied="false" onDeleteCascade="false" table="address"/>
             <child column="COUNTRY_ID" foreignKey="state_master_ibfk_1" implied="false" onDeleteCascade="false" table="state_master"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="COUNTRY_NAME" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="1" name="COUNTRY_NAME" nullable="true" remarks="" size="50" type="VARCHAR"/>
          <primaryKey column="COUNTRY_ID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="COUNTRY_ID"/>
          </index>
       </table>
-      <table name="department_master" numRows="0" remarks="" type="TABLE">
+      <table name="department_master" numRows="11" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="DEPARTMENT_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="DEPARTMENT_ID" foreignKey="employee_ibfk_1" implied="false" onDeleteCascade="false" table="employee"/>
             <child column="DEPARTMENT_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_history"/>
@@ -128,7 +128,7 @@
             <column ascending="true" name="UNIT_ID"/>
          </index>
       </table>
-      <table name="designation_master" numRows="0" remarks="" type="TABLE">
+      <table name="designation_master" numRows="11" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="DESIGNATION_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="DESIGNATION_ID" foreignKey="appraisal_rating_ibfk_2" implied="false" onDeleteCascade="false" table="appraisal_rating"/>
             <child column="DESIGNATION_ID" foreignKey="job_role_designation_ibfk_1" implied="false" onDeleteCascade="false" table="job_role_designation"/>
@@ -139,7 +139,7 @@
             <column ascending="true" name="DESIGNATION_ID"/>
          </index>
       </table>
-      <table name="district_master" numRows="0" remarks="" type="TABLE">
+      <table name="district_master" numRows="48314" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="DISTRICT_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="DISTRICT_ID" foreignKey="address_ibfk_2" implied="false" onDeleteCascade="false" table="address"/>
          </column>
@@ -155,7 +155,7 @@
             <column ascending="true" name="STATE_ID"/>
          </index>
       </table>
-      <table name="doc_type_master" numRows="0" remarks="" type="TABLE">
+      <table name="doc_type_master" numRows="5" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="DOC_TYPE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="IDENTITY_DOC_TYPE_ID" foreignKey="employee_ibfk_4" implied="false" onDeleteCascade="false" table="employee"/>
             <child column="DOC_TYPE_ID" foreignKey="employee_docs_ibfk_2" implied="false" onDeleteCascade="false" table="employee_docs"/>
@@ -237,9 +237,9 @@
          <column autoUpdated="false" digits="0" id="3" name="NOMINEE_NAME1" nullable="true" remarks="" size="120" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="4" name="NOMINEE_NAME2" nullable="true" remarks="" size="120" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="5" name="NOMINEE_NAME3" nullable="true" remarks="" size="120" type="VARCHAR"/>
-         <column autoUpdated="false" digits="0" id="6" name="NOMINEE1_SHARE" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="7" name="NOMINEE2_SHARE" nullable="true" remarks="" size="10" type="INT"/>
-         <column autoUpdated="false" digits="0" id="8" name="NOMINEE3_SHARE" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="2" id="6" name="NOMINEE1_SHARE" nullable="true" remarks="" size="2" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="7" name="NOMINEE2_SHARE" nullable="true" remarks="" size="2" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="8" name="NOMINEE3_SHARE" nullable="true" remarks="" size="2" type="DECIMAL"/>
          <column autoUpdated="false" digits="0" id="9" name="EMERGENCY_CONTACT_NAME" nullable="true" remarks="" size="30" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="10" name="EMERGENCY_CONTACTNO" nullable="true" remarks="" size="15" type="VARCHAR"/>
          <column autoUpdated="false" digits="0" id="11" name="PRE_MEDICAL_CHKUP_DATE" nullable="true" remarks="" size="19" type="DATETIME"/>
@@ -490,7 +490,7 @@
             <column ascending="true" name="EMP_ID"/>
          </index>
       </table>
-      <table name="grade_master" numRows="0" remarks="" type="TABLE">
+      <table name="grade_master" numRows="10" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="GRADE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="GRADE_ID" foreignKey="job_role_master_ibfk_2" implied="false" onDeleteCascade="false" table="job_role_master"/>
          </column>
@@ -500,7 +500,7 @@
             <column ascending="true" name="GRADE_ID"/>
          </index>
       </table>
-      <table name="job_role_designation" numRows="0" remarks="" type="TABLE">
+      <table name="job_role_designation" numRows="13" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="JOB_ROLE_ID" nullable="false" remarks="" size="10" type="INT">
             <parent column="JOB_ROLE_ID" foreignKey="job_role_designation_ibfk_2" implied="false" onDeleteCascade="false" table="job_role_master"/>
          </column>
@@ -517,7 +517,7 @@
             <column ascending="true" name="DESIGNATION_ID"/>
          </index>
       </table>
-      <table name="job_role_master" numRows="0" remarks="" type="TABLE">
+      <table name="job_role_master" numRows="10" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="JOB_ROLE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="JOB_ROLE_ID" foreignKey="appraisal_rating_ibfk_1" implied="false" onDeleteCascade="false" table="appraisal_rating"/>
             <child column="JOB_ROLE_ID" foreignKey="job_role_designation_ibfk_2" implied="false" onDeleteCascade="false" table="job_role_designation"/>
@@ -557,7 +557,7 @@
             <column ascending="true" name="ORG_ID"/>
          </index>
       </table>
-      <table name="organisation_master" numRows="0" remarks="" type="TABLE">
+      <table name="organisation_master" numRows="1" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="ORG_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="ORG_ID" foreignKey="employee_ibfk_2" implied="false" onDeleteCascade="false" table="employee"/>
             <child column="ORG_ID" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_history"/>
@@ -578,7 +578,7 @@
             <column ascending="true" name="ORG_TYPE_ID"/>
          </index>
       </table>
-      <table name="organisation_type_master" numRows="0" remarks="" type="TABLE">
+      <table name="organisation_type_master" numRows="1" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="ORG_TYPE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="ORG_TYPE_ID" foreignKey="organisation_master_ibfk_1" implied="false" onDeleteCascade="false" table="organisation_master"/>
          </column>
@@ -589,7 +589,7 @@
             <column ascending="true" name="ORG_TYPE_ID"/>
          </index>
       </table>
-      <table name="permission_master" numRows="0" remarks="" type="TABLE">
+      <table name="permission_master" numRows="2" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="PERMISSION_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="PERMISSION_ID" foreignKey="role_permission_ibfk_2" implied="false" onDeleteCascade="false" table="role_permission"/>
          </column>
@@ -601,7 +601,7 @@
             <column ascending="true" name="PERMISSION_ID"/>
          </index>
       </table>
-      <table name="role_master" numRows="0" remarks="" type="TABLE">
+      <table name="role_master" numRows="2" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="ROLE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="ROLE_ID" foreignKey="role_permission_ibfk_1" implied="false" onDeleteCascade="false" table="role_permission"/>
          </column>
@@ -612,7 +612,7 @@
             <column ascending="true" name="ROLE_ID"/>
          </index>
       </table>
-      <table name="role_permission" numRows="0" remarks="" type="TABLE">
+      <table name="role_permission" numRows="3" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="ROLE_ID" nullable="false" remarks="" size="10" type="INT">
             <parent column="ROLE_ID" foreignKey="role_permission_ibfk_1" implied="false" onDeleteCascade="false" table="role_master"/>
          </column>
@@ -649,8 +649,8 @@
             <parent column="JOB_ROLE_ID" foreignKey="salary_master_ibfk_1" implied="false" onDeleteCascade="false" table="job_role_master"/>
          </column>
          <column autoUpdated="false" digits="0" id="3" name="SAL_COMP_ID" nullable="false" remarks="" size="10" type="INT">
-            <parent column="COMP_ID" foreignKey="SAL_COMP_FK" implied="false" onDeleteCascade="false" table="salary_component_master"/>
             <parent column="OPT_COMP_ID" foreignKey="SAL_OPT_COMP_FK" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
+            <parent column="COMP_ID" foreignKey="SAL_COMP_FK" implied="false" onDeleteCascade="false" table="salary_component_master"/>
          </column>
          <column autoUpdated="false" digits="2" id="4" name="SAL_VALUE" nullable="true" remarks="" size="32" type="DECIMAL"/>
          <column autoUpdated="false" digits="2" id="5" name="MAX_ALLOW_LIMIT" nullable="true" remarks="" size="32" type="DECIMAL"/>
@@ -685,7 +685,7 @@
             <column ascending="true" name="OPT_COMP_ID"/>
          </index>
       </table>
-      <table name="state_master" numRows="0" remarks="" type="TABLE">
+      <table name="state_master" numRows="4120" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="STATE_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="STATE_ID" foreignKey="address_ibfk_3" implied="false" onDeleteCascade="false" table="address"/>
             <child column="STATE_ID" foreignKey="district_master_ibfk_1" implied="false" onDeleteCascade="false" table="district_master"/>
@@ -702,7 +702,7 @@
             <column ascending="true" name="COUNTRY_ID"/>
          </index>
       </table>
-      <table name="unit_master" numRows="0" remarks="" type="TABLE">
+      <table name="unit_master" numRows="1" remarks="" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="UNIT_ID" nullable="false" remarks="" size="10" type="INT">
             <child column="UNIT_ID" foreignKey="department_master_ibfk_1" implied="false" onDeleteCascade="false" table="department_master"/>
             <child column="UNIT_ID" foreignKey="employee_ibfk_3" implied="false" onDeleteCascade="false" table="employee"/>

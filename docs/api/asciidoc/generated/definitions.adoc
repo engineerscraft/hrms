@@ -139,11 +139,11 @@ __optional__|The name of the second nominee. +
 __optional__|The name of the third nominee. +
 **Maximal length** : `120`|string (varchar)
 |**nomineeShare1** +
-__optional__|The share of the first nominee.|integer (int(32))
+__optional__|The share of the first nominee.|number (double)
 |**nomineeShare2** +
-__optional__|The share of the second nominee.|integer (int(32))
+__optional__|The share of the second nominee.|number (double)
 |**nomineeShare3** +
-__optional__|The share of the third nominee.|integer (int(32))
+__optional__|The share of the third nominee.|number (double)
 |**preMedicalCheckUpDate** +
 __optional__|The contact number of the emergency contact.|string (date-time)
 |**siblingNo** +
@@ -347,17 +347,6 @@ __required__|The salary value of the employee for the given salary component.|nu
 |===
 
 
-[[_error]]
-=== Error
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**errorMessage** +
-__required__|Detailed Error Message.|string
-|===
-
-
 [[_grade]]
 === Grade
 
@@ -404,6 +393,17 @@ __optional__|The refresh token to be used for renewing the access token. This fi
 |**username** +
 __optional__|Login user name which is same as the employee id. +
 **Maximal length** : `20`|string (varchar)
+|===
+
+
+[[_message]]
+=== Message
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**message** +
+__required__|Detailed Message.|string
 |===
 
 
@@ -455,6 +455,21 @@ __required__|unique identifier of the organization type. This field will be igno
 |**orgTypeName** +
 __required__|The name of the organization type. +
 **Maximal length** : `100`|string (varchar)
+|===
+
+
+[[_passwordchangedetails]]
+=== PasswordChangeDetails
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**confirmedPassword** +
+__optional__|The confirmed password of the user.|string (varchar)
+|**currentPassword** +
+__optional__|The current password of the user.|string (varchar)
+|**newPassword** +
+__optional__|The new password of the user.|string (varchar)
 |===
 
 

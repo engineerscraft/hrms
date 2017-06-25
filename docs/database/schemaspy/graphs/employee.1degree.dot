@@ -71,7 +71,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="UNIT_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">UNIT_ID</TD></TR>
       <TR><TD PORT="ADDRESS" COLSPAN="3" ALIGN="LEFT">ADDRESS</TD></TR>
       <TR><TD PORT="PARENT_DEPARTMENT_ID" COLSPAN="3" ALIGN="LEFT">PARENT_DEPARTMENT_ID</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">11 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="department_master.html#graph"
     tooltip="department_master"
@@ -83,7 +83,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="DOC_TYPE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DOC_TYPE_ID</TD></TR>
       <TR><TD PORT="DOC_TYPE_NAME" COLSPAN="3" ALIGN="LEFT">DOC_TYPE_NAME</TD></TR>
       <TR><TD PORT="IDENTITY_DOC" COLSPAN="3" ALIGN="LEFT">IDENTITY_DOC</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="doc_type_master.html#graph"
     tooltip="doc_type_master"
@@ -238,7 +238,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="ORG_NAME" COLSPAN="3" ALIGN="LEFT">ORG_NAME</TD></TR>
       <TR><TD PORT="ORG_TYPE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_TYPE_ID</TD></TR>
       <TR><TD PORT="ADDRESS" COLSPAN="3" ALIGN="LEFT">ADDRESS</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="organisation_master.html#graph"
     tooltip="organisation_master"
@@ -253,7 +253,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="EMP_ID_PREFIX" COLSPAN="3" ALIGN="LEFT">EMP_ID_PREFIX</TD></TR>
       <TR><TD PORT="EMP_ID_SEQ_NAME" COLSPAN="3" ALIGN="LEFT">EMP_ID_SEQ_NAME</TD></TR>
       <TR><TD PORT="ADDRESS" COLSPAN="3" ALIGN="LEFT">ADDRESS</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="unit_master.html#graph"
     tooltip="unit_master"
