@@ -17,6 +17,7 @@ import com.hamdard.hua.rest.DistrictResource;
 import com.hamdard.hua.rest.EmployeeResource;
 import com.hamdard.hua.rest.HealthCheckEndpoint;
 import com.hamdard.hua.rest.PermissionEndpoint;
+import com.hamdard.hua.rest.StateResource;
 import com.hamdard.hua.rest.UnitResource;
 import com.hamdard.hua.rest.UserManagementEndpoint;
 
@@ -37,6 +38,7 @@ public class RestConfig extends ResourceConfig {
         		ChangePasswordEndpoint.class,
         		CountryResource.class,
         		UnitResource.class,
-        		DistrictResource.class);
+        		DistrictResource.class,
+        		StateResource.class);
     }
 }

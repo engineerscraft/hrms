@@ -11,5 +11,6 @@ public enum Privilege {
     COUNTRY_ALL_READ_CMD,
     UNIT_ALL_READ_CMD,
     DISTRICT_ALL_READ_CMD,
-    DEFAULT
+    STATE_ALL_READ_CMD,
+    DEFAULT 
 }

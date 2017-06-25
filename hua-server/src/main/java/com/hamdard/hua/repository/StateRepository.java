@@ -16,31 +16,30 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.District;
-import com.hamdard.hua.rowmapper.DistrictRowMapper;
+import com.hamdard.hua.model.State;
+import com.hamdard.hua.rowmapper.StateRowMapper;
 /**
  * @author Biswajit
  *
  */
 @Component
-public class DistrictRepository {
-	
-	private static final Logger logger = LogManager.getLogger(DistrictRepository.class);
+public class StateRepository {
+	private static final Logger logger = LogManager.getLogger(StateRepository.class);
     private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
-
+    
     @Autowired
     private JdbcTemplate jdbcTemplate;
     
-    @Value("${sql.district.get.byStateId}")
-    private String districtGetByStateIdSql;
+    @Value("${sql.state.get.byCountryId}")
+    private String stateGetByCountryIdSql;
     
-    public List<District> getDistrictsByStateId(int districtId){
+    public List<State> getStateByCountryId(int countryId){
     	try{
-    		Object[] args={districtId};
-    		logger.info(sqlMarker, districtGetByStateIdSql);
-    		List<District> districts=(List<District>)jdbcTemplate.query(districtGetByStateIdSql, args, new DistrictRowMapper());
-    		logger.debug("Retrieved districts: {}", () -> districts);
-    		return districts;
+    		Object[] args={countryId};
+    		logger.info(sqlMarker,stateGetByCountryIdSql);
+    		List<State> states=(List<State>)jdbcTemplate.query(stateGetByCountryIdSql, args, new StateRowMapper());
+    		logger.debug("Retrieved states: {}", () -> states);
+    		return states;
     	}
     	catch(Exception e){
     		logger.error("No parameter found", e);
