@@ -72,6 +72,9 @@ public class AuthenticationRepository {
 
 	@Value("${sql.getAuthorization}")
 	private String authorizationDetectionSql;
+	
+	@Value("${sql.viewPermission}")
+	private String viewPermissionSql;
 
 	@Autowired
 	private LdapContextSource contextSource;
@@ -152,7 +155,7 @@ public class AuthenticationRepository {
 		logger.debug("User roles {}", () -> userRoles);
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("roleList", userRoles);
-		paramMap.put("filter", "view".equals(filter) ? "V" : "A");
+		paramMap.put("filter", filter);
 		logger.info(sqlMarker, namedParameterJdbcTemplate);
 		logger.info(sqlMarker, "Params {}, {}", () -> paramMap.get("roleList"), () -> paramMap.get("filter"));
 		List<Permission> permissions = namedParameterJdbcTemplate.query(authorizationDetectionSql, paramMap, new PermissionRowMapper());
@@ -160,6 +163,20 @@ public class AuthenticationRepository {
 		return permissions;
 	}
 
+	public List<Permission> retriveViewPermissions(String username) {
+		List<String> userRoles = ldapTemplate.search("ou=roleusers",
+				"uniqueMember=cn=" + username + ",ou=users," + baseDn,
+				(AttributesMapper<String>) attrs -> (String) attrs.get("cn").get());
+		logger.debug("User roles {}", () -> userRoles);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("roleList", userRoles);
+		logger.info(sqlMarker, namedParameterJdbcTemplate);
+		logger.info(sqlMarker, "Params {}", () -> paramMap.get("roleList"));
+		List<Permission> permissions = namedParameterJdbcTemplate.query(viewPermissionSql, paramMap, new PermissionRowMapper());
+		logger.debug("Module name {}", () -> permissions);
+		return permissions;
+	}
+	
 	private String digestSHA(final String password) {
 		String base64;
 		try {
