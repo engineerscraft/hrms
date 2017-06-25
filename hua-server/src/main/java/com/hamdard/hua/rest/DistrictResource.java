@@ -33,9 +33,9 @@ public class DistrictResource {
 	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	//@Secured(Privilege.DISTRICT_ALL_READ_CMD)
-	public District getDistrict(@QueryParam("stateId") int stateId){
+	public List<District> getDistrict(@QueryParam("stateId") int stateId){
 		
-			return districtRepository.getDistrictById(stateId);
+			return districtRepository.getDistrictsByStateId(stateId);
 		
 	}
 

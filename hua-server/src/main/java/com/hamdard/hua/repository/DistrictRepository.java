@@ -34,13 +34,13 @@ public class DistrictRepository {
     @Value("${sql.district.get.byStateId}")
     private String districtGetByStateIdSql;
     
-    public District getDistrictById(int districtId){
+    public List<District> getDistrictsByStateId(int districtId){
     	try{
     		Object[] args={districtId};
     		logger.info(sqlMarker, districtGetByStateIdSql);
-    		District district=(District)jdbcTemplate.queryForObject(districtGetByStateIdSql, args, new DistrictRowMapper());
-    		logger.debug("Retrieved district: {}", () -> district);
-    		return district;
+    		List<District> districts=(List<District>)jdbcTemplate.query(districtGetByStateIdSql, args, new DistrictRowMapper());
+    		logger.debug("Retrieved district: {}", () -> districts);
+    		return districts;
     	}
     	catch(Exception e){
     		logger.error("No parameter found", e);
