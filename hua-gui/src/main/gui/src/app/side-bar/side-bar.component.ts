@@ -137,7 +137,7 @@ export class SideBarComponent implements OnInit {
         this.showChangePassword = false;
       },
       err => {
-        this.changePasswordMessage = err.json()["errorMessage"];
+        this.changePasswordMessage = err.json()["message"];
         this.processingInProgess = false;
         this.showChangePassword = false;
       });

@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.ErrorBody;
+import com.hamdard.hua.model.Message;
 import com.hamdard.hua.model.PasswordChangeDetails;
 import com.hamdard.hua.repository.AuthenticationRepository;
 import com.hamdard.hua.security.Secured;
@@ -41,11 +41,11 @@ public class ChangePasswordEndpoint {
     	}
     	catch(AuthenticationException e) {
     		logger.error("Invalid username and password", e);
-    		return Response.status(401).entity(new ErrorBody("Invalid username and password")).build();
+    		return Response.status(401).entity(new Message("Invalid username and password")).build();
     	}
     	catch(Exception e) {
     		logger.error(e.getMessage(), e);
-    		return Response.status(500).entity(new ErrorBody(e.getMessage())).build();
+    		return Response.status(500).entity(new Message(e.getMessage())).build();
     	}
     	return Response.status(200).build();
     }
