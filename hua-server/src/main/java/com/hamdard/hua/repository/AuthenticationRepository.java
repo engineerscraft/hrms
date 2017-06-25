@@ -22,13 +22,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.ldap.core.AttributesMapper;
 import org.springframework.ldap.core.DirContextOperations;
 import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
 import org.springframework.stereotype.Component;
 
 import com.hamdard.hua.model.PasswordChangeDetails;
+import com.hamdard.hua.model.Permission;
 import com.hamdard.hua.model.Token;
+import com.hamdard.hua.rowmapper.PermissionRowMapper;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -90,8 +93,7 @@ public class AuthenticationRepository {
 	public void changePassword(PasswordChangeDetails pwdDetails, String username) throws NamingException {
 		authenticate(username, pwdDetails.getCurrentPassword());
 		DirContextOperations context = ldapTemplate.lookupContext("cn=" + username + ",ou=users");
-		context.setAttributeValue("userPassword",
-				digestSHA(pwdDetails.getNewPassword()));
+		context.setAttributeValue("userPassword", digestSHA(pwdDetails.getNewPassword()));
 		ldapTemplate.modifyAttributes(context);
 	}
 
@@ -101,64 +103,61 @@ public class AuthenticationRepository {
 
 	public Token issueToken(String username, String userDisplayName, Long id) {
 
-			Calendar now = Calendar.getInstance();
-			long nowInMillis = now.getTimeInMillis();
-			String accessToken = null;
-			String refreshToken = null;
-			Date accessTokenExpiryDate = new Date(
-					nowInMillis + (Integer.parseInt(this.accessTokenValidityPeriod) * ONE_MINUTE_IN_MILLIS));
-			Date refreshTokenExpiryDate = new Date(
-					nowInMillis + (Integer.parseInt(this.refreshTokenValidityPeriod) * ONE_MINUTE_IN_MILLIS));
+		Calendar now = Calendar.getInstance();
+		long nowInMillis = now.getTimeInMillis();
+		String accessToken = null;
+		String refreshToken = null;
+		Date accessTokenExpiryDate = new Date(
+				nowInMillis + (Integer.parseInt(this.accessTokenValidityPeriod) * ONE_MINUTE_IN_MILLIS));
+		Date refreshTokenExpiryDate = new Date(
+				nowInMillis + (Integer.parseInt(this.refreshTokenValidityPeriod) * ONE_MINUTE_IN_MILLIS));
 
-			if (id == 0) {
-				Long accessId = jdbcTemplate.queryForObject(accessIdFetchingSql, new Object[] {}, Long.class);
-				logger.info(sqlMarker, newTokenSavingSql);
-				logger.info(sqlMarker, "Params {}, {}, {}", () -> accessId, () -> username,
-						() -> accessTokenExpiryDate);
-				jdbcTemplate.update(newTokenSavingSql, new Object[] { accessId, username, accessTokenExpiryDate });
-				Map<String, Object> claims = new HashMap();
-				claims.put("DISPLAY_NAME", userDisplayName);
-				claims.put("TOKEN_ID", accessId.toString());
-				accessToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(accessTokenExpiryDate)
-						.signWith(SignatureAlgorithm.HS256, signingKey).compact();
-				refreshToken = Jwts.builder().setClaims(claims).setSubject(username)
-						.setExpiration(refreshTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
-			} else {
-				logger.info(sqlMarker, existingTokenUpdateSql);
-				logger.info(sqlMarker, "Params {}, {}, {}", () -> accessTokenExpiryDate, () -> id, () -> username);
-				int rowsUpdated = jdbcTemplate.update(existingTokenUpdateSql,
-						new Object[] { accessTokenExpiryDate, id, username });
-				if (rowsUpdated == 0) {
-					throw new NotAuthorizedException("Bearer");
-				}
-				Map<String, Object> claims = new HashMap();
-				claims.put("DISPLAY_NAME", userDisplayName);
-				claims.put("TOKEN_ID", id.toString());
-				accessToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(accessTokenExpiryDate)
-						.signWith(SignatureAlgorithm.HS256, signingKey).compact();
-				refreshToken = Jwts.builder().setClaims(claims).setSubject(username)
-						.setExpiration(refreshTokenExpiryDate).signWith(SignatureAlgorithm.HS256, signingKey).compact();
+		if (id == 0) {
+			Long accessId = jdbcTemplate.queryForObject(accessIdFetchingSql, new Object[] {}, Long.class);
+			logger.info(sqlMarker, newTokenSavingSql);
+			logger.info(sqlMarker, "Params {}, {}, {}", () -> accessId, () -> username, () -> accessTokenExpiryDate);
+			jdbcTemplate.update(newTokenSavingSql, new Object[] { accessId, username, accessTokenExpiryDate });
+			Map<String, Object> claims = new HashMap();
+			claims.put("DISPLAY_NAME", userDisplayName);
+			claims.put("TOKEN_ID", accessId.toString());
+			accessToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(accessTokenExpiryDate)
+					.signWith(SignatureAlgorithm.HS256, signingKey).compact();
+			refreshToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(refreshTokenExpiryDate)
+					.signWith(SignatureAlgorithm.HS256, signingKey).compact();
+		} else {
+			logger.info(sqlMarker, existingTokenUpdateSql);
+			logger.info(sqlMarker, "Params {}, {}, {}", () -> accessTokenExpiryDate, () -> id, () -> username);
+			int rowsUpdated = jdbcTemplate.update(existingTokenUpdateSql,
+					new Object[] { accessTokenExpiryDate, id, username });
+			if (rowsUpdated == 0) {
+				throw new NotAuthorizedException("Bearer");
 			}
+			Map<String, Object> claims = new HashMap();
+			claims.put("DISPLAY_NAME", userDisplayName);
+			claims.put("TOKEN_ID", id.toString());
+			accessToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(accessTokenExpiryDate)
+					.signWith(SignatureAlgorithm.HS256, signingKey).compact();
+			refreshToken = Jwts.builder().setClaims(claims).setSubject(username).setExpiration(refreshTokenExpiryDate)
+					.signWith(SignatureAlgorithm.HS256, signingKey).compact();
+		}
 
-			return new Token(accessToken, refreshToken, username, userDisplayName);
+		return new Token(accessToken, refreshToken, username, userDisplayName);
 	}
 
-	public List<String> retrivePermissions(String username, String filter) {
-		return new ArrayList<String>();
-		/*
-		 * try { List<String> userRoles = ldapTemplate.search("ou=groups",
-		 * "uniqueMember=uid=" + username + ",ou=people," + baseDn,
-		 * (AttributesMapper<String>) attrs -> (String) attrs.get("cn").get());
-		 * logger.debug("User roles {}", () -> userRoles); Map<String, Object>
-		 * paramMap = new HashMap<String, Object>(); paramMap.put("roleList",
-		 * userRoles); paramMap.put("moduleName", filter); List<String>
-		 * moduleNames =
-		 * namedParameterJdbcTemplate.queryForList(authorizationDetectionSql,
-		 * paramMap, String.class); logger.debug("Module name {}", () ->
-		 * moduleNames); return moduleNames; } catch (Exception e) {
-		 * logger.error("Permissions could not be retrieved", e); throw new
-		 * ResourceNotFound("Permissions could not be retrieved"); }
-		 */
+	public List<Permission> retrivePermissions(String username, String filter) {
+
+		List<String> userRoles = ldapTemplate.search("ou=roleusers",
+				"uniqueMember=cn=" + username + ",ou=users," + baseDn,
+				(AttributesMapper<String>) attrs -> (String) attrs.get("cn").get());
+		logger.debug("User roles {}", () -> userRoles);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("roleList", userRoles);
+		paramMap.put("filter", "view".equals(filter) ? "V" : "A");
+		logger.info(sqlMarker, namedParameterJdbcTemplate);
+		logger.info(sqlMarker, "Params {}, {}", () -> paramMap.get("roleList"), () -> paramMap.get("filter"));
+		List<Permission> permissions = namedParameterJdbcTemplate.query(authorizationDetectionSql, paramMap, new PermissionRowMapper());
+		logger.debug("Module name {}", () -> permissions);
+		return permissions;
 	}
 
 	private String digestSHA(final String password) {

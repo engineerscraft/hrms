@@ -31,7 +31,13 @@ export class AuthenticatorService {
       .flatMap(res => {
         let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
         let options = new RequestOptions({ headers: headers });
-        return this.http.get("/resources/permission/view", options);
+        return this.http.get("/resources/permission?permissionLevel=view", options)
+        .map(res => {
+          for (var i = 0; i < res.json().length; i++) {
+            localStorage.setItem(res.json()[i].permissionName, "true");
+          }
+          return res;
+        });
       });
   }
 

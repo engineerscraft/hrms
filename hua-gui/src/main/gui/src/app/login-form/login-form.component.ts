@@ -46,12 +46,8 @@ export class LoginFormComponent implements OnInit {
   onClick() {
     this.processingInProgess = true;
     this.authenticator.authenticate(this.formGroup.value)
-      .map(res => res.json())
       .subscribe(
       res => {
-        for (var i = 0; i < res.length; i++) {
-          localStorage.setItem(res[i], "true");
-        }
       },
       err => {
         localStorage.clear();
