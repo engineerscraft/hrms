@@ -1352,16 +1352,16 @@ definitions:
         maxLength: 120
         description: The name of the third nominee.
       nomineeShare1:
-        type: integer
-        format: int(32)
+        type: number
+        format: double
         description: The share of the first nominee.
       nomineeShare2:
-        type: integer
-        format: int(32)
+        type: number
+        format: double
         description: The share of the second nominee.
       nomineeShare3:
-        type: integer
-        format: int(32)
+        type: number
+        format: double
         description: The share of the third nominee.
       emergencyContactName:
         type: string
