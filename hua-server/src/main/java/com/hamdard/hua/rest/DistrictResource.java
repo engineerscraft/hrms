@@ -1,6 +1,5 @@
 /**
- * This API will handle all kind
- *	of requests associated with Country
+ * 
  */
 package com.hamdard.hua.rest;
 
@@ -9,15 +8,15 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.Country;
+import com.hamdard.hua.model.District;
 import com.hamdard.hua.privileges.Privilege;
-import com.hamdard.hua.repository.CountryRepository;
+import com.hamdard.hua.repository.DistrictRepository;
 import com.hamdard.hua.security.Secured;
 
 /**
@@ -25,16 +24,19 @@ import com.hamdard.hua.security.Secured;
  *
  */
 @Component
-@Path("v1/country")
-public class CountryResource {
-	@Autowired CountryRepository countryRepository;
+@Path("v1/district")
+public class DistrictResource {
+	
+	@Autowired DistrictRepository districtRepository;
 	
 	@GET
 	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	//@Secured(Privilege.COUNTRY_ALL_READ_CMD)
-	public List<Country> getAllCountries(){
-		return countryRepository.getAllCountries();
+	//@Secured(Privilege.DISTRICT_ALL_READ_CMD)
+	public District getDistrict(@QueryParam("stateId") int stateId){
+		
+			return districtRepository.getDistrictById(stateId);
+		
 	}
 
 }
