@@ -50,7 +50,9 @@ paths:
         '200':
           description: The list of states are successfully retrieved.
           schema:
-            $ref: '#/definitions/State'
+            type: array
+            items: 
+              $ref: '#/definitions/State'
           headers:
             Cache-Control:
               description: Caching
@@ -59,19 +61,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No state found for the given country.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/doctype:
     get:
       tags:
@@ -92,7 +94,9 @@ paths:
         '200':
           description: The list of document types is successfully retrieved.
           schema:
-            $ref: '#/definitions/DocType'
+            type: array
+            items: 
+              $ref: '#/definitions/DocType'
           headers:
             Cache-Control:
               description: Caching
@@ -101,19 +105,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No document type is found.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/doctype/identitydoctypes:
     get:
       tags:
@@ -134,7 +138,9 @@ paths:
         '200':
           description: The identity document types are successfully retrieved.
           schema:
-            $ref: '#/definitions/DocType'
+            type: array
+            items: 
+              $ref: '#/definitions/DocType'
           headers:
             Cache-Control:
               description: Caching
@@ -143,19 +149,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No identy document type is found.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/{id}/address:
     put:
       tags:
@@ -166,6 +172,9 @@ paths:
       consumes:
         - application/json
         - application/xml
+      produces:
+        - application/xml
+        - application/json
       parameters:
         - name: "Authorization: Bearer "
           in: header
@@ -188,19 +197,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: The employee with the given id is not found.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/:
     get:
       tags:
@@ -247,15 +256,15 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/Error'  
+            $ref: '#/definitions/Message'  
   /v1/organization:
     get:
       tags:
@@ -276,7 +285,9 @@ paths:
         '200':
           description: The list of organizations are successfully retrieved.
           schema:
-            $ref: '#/definitions/Organization'
+            type: array
+            items: 
+              $ref: '#/definitions/Organization'
           headers:
             Cache-Control:
               description: Caching
@@ -285,19 +296,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No organization is found.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/unit:
     get:
       tags:
@@ -322,7 +333,9 @@ paths:
         '200':
           description: The units are successfully retrieved.
           schema:
-            $ref: '#/definitions/Unit'
+            type: array
+            items: 
+              $ref: '#/definitions/Unit'
           headers:
             Cache-Control:
               description: Caching
@@ -331,19 +344,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No unit is found for the given organization.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/department:
     get:
       tags:
@@ -369,7 +382,9 @@ paths:
         '200':
           description: The departments are successfully retrieved.
           schema:
-            $ref: '#/definitions/Department'
+            type: array
+            items: 
+              $ref: '#/definitions/Department'
           headers:
             Cache-Control:
               description: Caching
@@ -378,19 +393,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No department is found for the given unit id.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/country:
     get:
       tags:
@@ -411,7 +426,9 @@ paths:
         '200':
           description: The list of countries is retrieved successfully.
           schema:
-            $ref: '#/definitions/Country'
+            type: array
+            items: 
+              $ref: '#/definitions/Country'
           headers:
             Cache-Control:
               description: Caching
@@ -420,19 +437,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No country is found.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/district:
     get:
       tags:
@@ -458,7 +475,9 @@ paths:
         '200':
           description: The districts are successfully retrieved.
           schema:
-            $ref: '#/definitions/District'
+            type: array
+            items: 
+              $ref: '#/definitions/District'
           headers:
             Cache-Control:
               description: Caching
@@ -467,19 +486,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No district is found for the given state.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/jobrole:
     get:
       tags:
@@ -505,7 +524,9 @@ paths:
         '200':
           description: The job roles are successfully retrieved.
           schema:
-            $ref: '#/definitions/JobRole'
+            type: array
+            items: 
+              $ref: '#/definitions/JobRole'
           headers:
             Cache-Control:
               description: Caching
@@ -514,19 +535,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No job role is found for the given organization.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/designation:
     get:
       tags:
@@ -552,7 +573,9 @@ paths:
         '200':
           description: The designations are successfully returned.
           schema:
-            $ref: '#/definitions/Designation'
+            type: array
+            items: 
+              $ref: '#/definitions/Designation'
           headers:
             Cache-Control:
               description: Caching
@@ -561,19 +584,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee:
     post:
       tags:
@@ -607,15 +630,15 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/{id}:
     get:
       tags:
@@ -651,19 +674,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No employee with the given id is found.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/{id}/hierarchystatus:
     put:
       tags:
@@ -672,6 +695,9 @@ paths:
       description: Updates the hierarchy status of a given employee.
       operationId: updateHierarchyStatus
       consumes:
+        - application/xml
+        - application/json
+      produces:
         - application/xml
         - application/json
       parameters:
@@ -696,19 +722,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No employee with the given id is found.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/{id}/profile:
     put:
       tags:
@@ -717,6 +743,9 @@ paths:
       description: Updates the profile of a given employee.
       operationId: updateProfile
       consumes:
+        - application/xml
+        - application/json
+      produces:
         - application/xml
         - application/json
       parameters:
@@ -741,19 +770,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No employee is found with the given employee id.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/{id}/basicinfo:
     put:
       tags:
@@ -762,6 +791,9 @@ paths:
       description: Updates the basic details of a given employee.
       operationId: updateBasicDetails
       consumes:
+        - application/xml
+        - application/json
+      produces:
         - application/xml
         - application/json
       parameters:
@@ -786,19 +818,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No employee is found with the given employee id.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/{id}/additionaldetails:
     put:
       tags:
@@ -807,6 +839,9 @@ paths:
       description: Updates the additional details of a given employee.
       operationId: updateAdditionalDetails
       consumes:
+        - application/xml
+        - application/json
+      produces:
         - application/xml
         - application/json
       parameters:
@@ -831,19 +866,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No employee is found with the given employee id.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/{id}/salary:
     put:
       tags:
@@ -852,6 +887,9 @@ paths:
       description: Updates the salary of a given employee.
       operationId: updateSalaryDetails
       consumes:
+        - application/xml
+        - application/json
+      produces:
         - application/xml
         - application/json
       parameters:
@@ -876,19 +914,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No employee is found with the given employee id.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/{id}/optionalbenefits:
     post:
       tags:
@@ -897,6 +935,9 @@ paths:
       description: Adds an optional benefit to a given employee.
       operationId: addOptionalBenefits
       consumes:
+        - application/xml
+        - application/json
+      produces:
         - application/xml
         - application/json
       parameters:
@@ -921,19 +962,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No employee is found with the given employee id.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/employee/{id}/optionalbenefits/{oid}:
     put:
       tags:
@@ -942,6 +983,9 @@ paths:
       description: Updates an optional benefit to a given employee.
       operationId: updateOptionalBenefits
       consumes:
+        - application/xml
+        - application/json
+      produces:
         - application/xml
         - application/json
       parameters:
@@ -971,19 +1015,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No employee is found with the given employee id.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/jobrole/{id}/salary:
     get:
       tags:
@@ -1013,19 +1057,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No salary component is found with the given job role id.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/jobrole/{id}/optbenefit:
     get:
       tags:
@@ -1055,19 +1099,19 @@ paths:
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No optional benefit is found with the given job role id.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/authentication:
     get:
       tags:
@@ -1095,11 +1139,11 @@ paths:
         '401':
           description: The supplied refresh token is not valid or the authentication fails.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
   /v1/permission:
     get:
       tags:
@@ -1125,32 +1169,62 @@ paths:
         '200':
           description: The permissions of a given user are successfully retrieved.
           schema:
-            $ref: '#/definitions/Permission'
+            type: array
+            items: 
+              $ref: '#/definitions/Permission'
         '401':
           description: The access token expired or the access token is invalid.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '403':
           description: User does not have permission to execute this command.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '404':
           description: No permission found for the logged in user.
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Message'
+  /v1/changepassword:
+    get:
+      tags:
+        - security
+      summary: Allows the User to Change Password
+      description: Allows the user to change the password by authenticating himself/herself.
+      operationId: changePassword
+      consumes:
+        - application/xml
+        - application/json
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: passwordChangeDetails
+          in: body
+          description: The password change details of the user.
+          schema:
+            $ref: '#/definitions/PasswordChangeDetails'
+      responses:
+        '200':
+          description: Password is successfully changed.
+        '401':
+          description: Invalid username and password.
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Message'    
 definitions:
-  Error:
+  Message:
     type: object
     properties:
-      errorMessage:
+      message:
         type: string
-        description: Detailed Error Message.
+        description: Detailed Message.
     required: 
-      - errorMessage
+      - message
   Country:
     type: object
     properties:
@@ -1352,16 +1426,16 @@ definitions:
         maxLength: 120
         description: The name of the third nominee.
       nomineeShare1:
-        type: integer
-        format: int(32)
+        type: number
+        format: double
         description: The share of the first nominee.
       nomineeShare2:
-        type: integer
-        format: int(32)
+        type: number
+        format: double
         description: The share of the second nominee.
       nomineeShare3:
-        type: integer
-        format: int(32)
+        type: number
+        format: double
         description: The share of the third nominee.
       emergencyContactName:
         type: string
@@ -1969,4 +2043,19 @@ definitions:
         format: varchar
         maxLength: 60
         description: The resource name of the permission.
-    
+  PasswordChangeDetails:
+    type: object
+    properties:
+      currentPassword:
+        type: string
+        format: varchar
+        description: The current password of the user.
+      newPassword:
+        type: string
+        format: varchar
+        description: The new password of the user.
+      confirmedPassword:
+        type: string
+        format: varchar
+        description: The confirmed password of the user.
+        

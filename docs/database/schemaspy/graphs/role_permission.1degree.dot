@@ -24,7 +24,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="PERMISSION_NAME" COLSPAN="3" ALIGN="LEFT">PERMISSION_NAME</TD></TR>
       <TR><TD PORT="PERMISSION_TYPE" COLSPAN="3" ALIGN="LEFT">PERMISSION_TYPE</TD></TR>
       <TR><TD PORT="RESOURCE_NAME" COLSPAN="3" ALIGN="LEFT">RESOURCE_NAME</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="permission_master.html#graph"
     tooltip="permission_master"
@@ -36,7 +36,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="ROLE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">ROLE_ID</TD></TR>
       <TR><TD PORT="ROLE_NAME" COLSPAN="3" ALIGN="LEFT">ROLE_NAME</TD></TR>
       <TR><TD PORT="ROLE_DESCRIPTION" COLSPAN="3" ALIGN="LEFT">ROLE_DESCRIPTION</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="role_master.html#graph"
     tooltip="role_master"
@@ -47,7 +47,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="role_permission.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_permission</TD></TR>
       <TR><TD PORT="ROLE_ID" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">ROLE_ID</TD><TD PORT="ROLE_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="PERMISSION_ID" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">PERMISSION_ID</TD><TD PORT="PERMISSION_ID.type" ALIGN="LEFT">int[10]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 &gt;</TD></TR>
     </TABLE>>
     URL="role_permission.html#"
     tooltip="role_permission"

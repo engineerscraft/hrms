@@ -23,7 +23,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="DOC_TYPE_ID" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">DOC_TYPE_ID</TD><TD PORT="DOC_TYPE_ID.type" ALIGN="LEFT">int[10]</TD></TR>
       <TR><TD PORT="DOC_TYPE_NAME" COLSPAN="2" ALIGN="LEFT">DOC_TYPE_NAME</TD><TD PORT="DOC_TYPE_NAME.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD PORT="IDENTITY_DOC" COLSPAN="2" ALIGN="LEFT">IDENTITY_DOC</TD><TD PORT="IDENTITY_DOC.type" ALIGN="LEFT">varchar[1]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="doc_type_master.html#"
     tooltip="doc_type_master"
