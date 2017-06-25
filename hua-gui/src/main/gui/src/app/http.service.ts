@@ -19,7 +19,7 @@ export class HttpService {
     var me = this;
     return this.http.get(url, options)
       .catch(initialError => {
-        if (initialError && initialError.status === 401) {
+        if (initialError && initialError.status === 401 && initialError.json()["errorMessage"]==="Token expired") {
           // token might be expired, try to refresh token
           var tokenObject = new Object();
           tokenObject["token"] = localStorage.getItem("refreshToken");
@@ -47,7 +47,7 @@ export class HttpService {
     var me = this;
     return this.http.put(url, body, options)
       .catch(initialError => {
-        if (initialError && initialError.status === 401) {
+        if (initialError && initialError.status === 401 && initialError.json()["errorMessage"]==="Token expired") {
           // token might be expired, try to refresh token
           var tokenObject = new Object();
           tokenObject["token"] = localStorage.getItem("refreshToken");
@@ -75,7 +75,7 @@ callHttpDelete(url: string) {
     var me = this;
     return this.http.delete(url, options)
       .catch(initialError => {
-        if (initialError && initialError.status === 401) {
+        if (initialError && initialError.status === 401 && initialError.json()["errorMessage"]==="Token expired") {
           // token might be expired, try to refresh token
           var tokenObject = new Object();
           tokenObject["token"] = localStorage.getItem("refreshToken");
@@ -102,7 +102,7 @@ callHttpPost(url: string, body: object) {
     var me = this;
     return this.http.post(url, body, options)
       .catch(initialError => {
-        if (initialError && initialError.status === 401) {
+        if (initialError && initialError.status === 401 && initialError.json()["errorMessage"]==="Token expired") {
           // token might be expired, try to refresh token
           var tokenObject = new Object();
           tokenObject["token"] = localStorage.getItem("refreshToken");

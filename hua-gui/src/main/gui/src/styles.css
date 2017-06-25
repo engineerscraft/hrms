@@ -270,7 +270,7 @@ input {
   margin-right: 0.8rem;
 }
 
-.inputMaterial {
+.inputMaterial, .inputMaterial:disabled {
   font-size: 18px;
   padding: 10px 0px 10px 0px;
   display: block;
@@ -302,19 +302,19 @@ input {
 }
 
 /* active state */
-.inputMaterial:focus ~ .text-input-label		{
+.inputMaterial:focus ~ .text-input-label, .inputMaterial:focus:disabled ~ .text-input-label		{
   top: -12px;
   font-size: 14px;
   color: #4CA1AF;
 }
 
-.inputMaterial:valid ~ .text-input-label {
+.inputMaterial:valid ~ .text-input-label, .inputMaterial:valid:disabled ~ .text-input-label {
   top: -12px;
   font-size: 14px;
   color: #4CA1AF;
 }
 
-.inputMaterial:read-only ~ .text-input-label {
+.inputMaterial:read-only ~ .text-input-label, .inputMaterial:read-only:disabled ~ .text-input-label {
   top: -12px;
   font-size: 14px;
   color: #4CA1AF;
@@ -506,10 +506,11 @@ app-spinner {
     transition: background-color 0.3s;
 	  pointer-events: auto;
     margin: 40px 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .btn:hover {
-    background-color: rgba(76, 161, 175, 0.8);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.12);
 }
 
 /*Combo*/

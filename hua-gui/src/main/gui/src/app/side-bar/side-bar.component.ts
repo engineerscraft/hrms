@@ -4,6 +4,7 @@ import { AuthenticatorService } from '../authenticator.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidator } from '../validators/custom-validators';
 import { UserService } from '../user.service';
+import 'rxjs/add/observable/throw';
 
 @Component({
   selector: 'app-side-bar',
@@ -11,8 +12,6 @@ import { UserService } from '../user.service';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
-
-  private statusMessage = 'inactive';
 
   private formGroup: FormGroup;
 
@@ -22,8 +21,7 @@ export class SideBarComponent implements OnInit {
 
   private showChangePassword = false;
 
-  private responseMessage       = '';
-  private status : boolean      = true;
+  private changePasswordMessage = '';
 
   constructor(private router: Router, private authenticatorService: AuthenticatorService, private formBuilder: FormBuilder,
   private userService: UserService) { }
@@ -94,11 +92,8 @@ export class SideBarComponent implements OnInit {
   }
 
   onClickChangePassword() {
-    this.responseMessage          = '';
-    this.status                   = true;
     this.open                     = false;
     this.showChangePassword       = true;
-    this.statusMessage            = 'inactive';
     this.createFormGroup();
   }
 
@@ -133,47 +128,23 @@ export class SideBarComponent implements OnInit {
   }
 
   onChangePassword() {
-    this.responseMessage          = '';
-    this.status                   = true;
-    this.statusMessage            = 'inactive';
     this.processingInProgess      = true;
-    var response: any ;
     this.userService.changePassword(this.formGroup.value)
       .subscribe(
       res => {
-        console.log(res);
-        response                      = res;
+        this.processingInProgess = false;
+        this.changePasswordMessage = "Password changed successfully";
+        this.showChangePassword = false;
       },
       err => {
-        this.responseMessage          = 'There was an error while performing the request';
-        this.status                   = false;
+        this.changePasswordMessage = err.json()["errorMessage"];
         this.processingInProgess = false;
-      },
-      () => {
-        if(response){
-          if( response.STATUS === 'ERROR')
-            this.status               = false;
-          else
-            this.status               = true;
-          this.responseMessage        = response.MESSAGE;
-        }
-        this.processingInProgess = false;
+        this.showChangePassword = false;
       });
-
-    this.statusMessage = 'active';
-        setTimeout(() => {
-          if (this.statusMessage === 'active') {
-            this.statusMessage = 'inactive';
-            if(this.status){
-              this.showChangePassword = false;
-            }
-          }
-        }, this.status? 3000: 5000);
-        
   }
 
-   getStatus() {
-    return this.statusMessage;
+  OnClickOk() {
+    this.changePasswordMessage ='';
   }
 
   getErrorClass(formControlName) {

@@ -139,3 +139,15 @@
     </form>
   </div>
 </div>
+
+<div class="modal-small" *ngIf="changePasswordMessage!==''">
+  <div class="modal-header">
+    <h1>Message</h1>
+  </div>
+  <div class="modal-body">
+    <div class="group center">
+      <p>{{changePasswordMessage}}</p>
+      <button type="button" class="btn ripple" (click)="OnClickOk()">Ok</button>
+    </div>
+  </div>
+</div>
