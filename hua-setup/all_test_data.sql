@@ -1,8 +1,8 @@
-INSERT INTO ORGANISATION_MASTER VALUES
-(1, 'Hamdard University', 1, 'Bangladesh');
-
 INSERT INTO ORGANISATION_TYPE_MASTER VALUES
 (1, 'University', 'University');
+
+INSERT INTO ORGANISATION_MASTER VALUES
+(1, 'Hamdard University', 1, 'Bangladesh');
 
 INSERT INTO UNIT_MASTER VALUES
 (1, 'Hamdard University', 1, 'HUB', 'HUB_EMP_SEQ', 'Bangladesh');
