@@ -14,6 +14,7 @@ import org.apache.logging.log4j.MarkerManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import com.hamdard.hua.model.Country;
 import com.hamdard.hua.model.Department;
@@ -24,6 +25,7 @@ import com.hamdard.hua.rowmapper.DepartmentRowMapper;
  * @author Biswajit
  *
  */
+@Component
 public class CountryRepository {
 	
 
