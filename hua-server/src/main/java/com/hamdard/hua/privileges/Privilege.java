@@ -9,5 +9,6 @@ public enum Privilege {
     DEPARTMENT_ALL_READ_CMD,
     DESIGNATION_ALL_READ_CMD,
     COUNTRY_ALL_READ_CMD,
+    UNIT_ALL_READ_CMD,
     DEFAULT
 }
