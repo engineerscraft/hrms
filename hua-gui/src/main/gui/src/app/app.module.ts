@@ -20,6 +20,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { EmployeeManagementComponent } from './employee-management/employee-management.component';
 import { EmployeeCreationComponent } from './employee-creation/employee-creation.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EmployeeCreationComponent } from './employee-creation/employee-creation
     SpinnerComponent,
     AccountManagementComponent,
     EmployeeManagementComponent,
-    EmployeeCreationComponent
+    EmployeeCreationComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

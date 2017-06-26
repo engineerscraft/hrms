@@ -4,6 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {AccountManagementComponent} from './account-management/account-management.component';
 import {EmployeeManagementComponent} from './employee-management/employee-management.component';
 import {EmployeeCreationComponent} from './employee-creation/employee-creation.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 export const routing = RouterModule.forRoot([
     { path: '', component: LoginFormComponent},
@@ -11,4 +12,6 @@ export const routing = RouterModule.forRoot([
     { path: 'accountManagement', component: AccountManagementComponent},
     { path: 'employeeManagement', component: EmployeeManagementComponent},
     { path: 'employeeCreation', component: EmployeeCreationComponent},
+    { path: '404', component: NotFoundComponent},
+    { path: '**', redirectTo: '/404'}
 ]);
