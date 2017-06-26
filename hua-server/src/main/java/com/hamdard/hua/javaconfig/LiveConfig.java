@@ -24,7 +24,7 @@ public class LiveConfig {
     private Environment env;
 
     
-    @Bean
+    /*@Bean
     @Primary
     public DataSource dataSource() {
         return DataSourceBuilder
@@ -34,7 +34,7 @@ public class LiveConfig {
             .url(env.getRequiredProperty("jdbc.url"))
             .driverClassName(env.getRequiredProperty("jdbc.dataSourceClassName"))
             .build();
-    }
+    }*/
     
     @Bean
     public LdapContextSource contextSource() {

@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.hamdard.hua.model.Message;
 import com.hamdard.hua.model.Permission;
 import com.hamdard.hua.privileges.Privilege;
 import com.hamdard.hua.repository.AuthenticationRepository;
@@ -70,14 +71,14 @@ public class AuthorizationFilter implements ContainerRequestFilter {
                     permissions = authenticationRepository.retrivePermissions(username, methodPriv.toString());
                 }
 
-                /*if (permissions == null || permissions.size() == 0) {
-                    throw new javax.ws.rs.ForbiddenException();
-                }*/
+                if (permissions == null || permissions.size() == 0) {
+                	requestContext.abortWith(Response.status(Response.Status.FORBIDDEN).entity(new Message("The user does not have permission to execute this command")).build());
+                }
             }
-
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             logger.error("Exception", e);
-            requestContext.abortWith(Response.status(Response.Status.FORBIDDEN).build());
+            requestContext.abortWith(Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build());
         }
     }
 

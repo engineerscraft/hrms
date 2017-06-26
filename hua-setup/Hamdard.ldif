@@ -23,3 +23,19 @@ cn: TEST02
 sn: TEST02
 userPassword:: e1NIQX1uZERKdWNNYnl5a3hWdEkyQzgyRUFlalN1WTQ9
 
+dn: ou=roleusers,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: roleusers
+
+dn: cn=READ,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: READ
+uniqueMember: cn=TEST03,ou=users,dc=example,dc=com
+
+dn: cn=ADMIN,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: ADMIN
+uniqueMember: cn=TEST03,ou=users,dc=example,dc=com

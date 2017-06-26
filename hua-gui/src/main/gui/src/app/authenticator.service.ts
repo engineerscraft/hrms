@@ -21,7 +21,7 @@ export class AuthenticatorService {
     let headers = new Headers({ "Content-Type": "application/json" });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("/resources/authentication", JSON.stringify(loginDetails), options)
+    return this.http.post("/resources/v1/authentication", JSON.stringify(loginDetails), options)
       .map(res => {
         localStorage.setItem("accessToken", res.json().accessToken);
         localStorage.setItem("refreshToken", res.json().refreshToken);
@@ -31,7 +31,7 @@ export class AuthenticatorService {
       .flatMap(res => {
         let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
         let options = new RequestOptions({ headers: headers });
-        return this.http.get("/resources/permission?permissionLevel=view", options)
+        return this.http.get("/resources/v1/permission?permissionLevel=view", options)
         .map(res => {
           for (var i = 0; i < res.json().length; i++) {
             localStorage.setItem(res.json()[i].permissionName, "true");

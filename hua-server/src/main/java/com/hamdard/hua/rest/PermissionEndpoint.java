@@ -14,15 +14,13 @@ import javax.ws.rs.core.SecurityContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.ErrorBody;
+import com.hamdard.hua.model.Message;
 import com.hamdard.hua.model.Permission;
 import com.hamdard.hua.repository.AuthenticationRepository;
 import com.hamdard.hua.security.Secured;
 
-@Component
-@Path("/permission")
+@Path("/v1/permission")
 public class PermissionEndpoint {
 
 	private static final Logger logger = LogManager.getLogger(AuthenticationRepository.class);
@@ -39,15 +37,15 @@ public class PermissionEndpoint {
 	public Response getPermissions(@QueryParam("permissionLevel") String permissionLevel) {
 		try {
 			List<Permission> permissions = authenticationRepository
-					.retrivePermissions(securityContext.getUserPrincipal().getName(), permissionLevel);
+					.retriveViewPermissions(securityContext.getUserPrincipal().getName());
 			if (permissions.size() == 0) {
 				logger.debug("No permission given to the user: {}", () -> securityContext.getUserPrincipal().getName());
-				return Response.status(404).entity(new ErrorBody("No permission given to the user")).build();
+				return Response.status(404).entity(new Message("No permission given to the user")).build();
 			} else
 				return Response.status(200).entity(permissions).build();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			return Response.status(500).entity(new ErrorBody(e.getMessage())).build();
+			return Response.status(500).entity(new Message(e.getMessage())).build();
 		}
 	}
 }

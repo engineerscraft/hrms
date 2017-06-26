@@ -16,40 +16,36 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.Country;
-import com.hamdard.hua.model.Department;
-import com.hamdard.hua.rowmapper.CountryRowMapper;
-import com.hamdard.hua.rowmapper.DepartmentRowMapper;
+import com.hamdard.hua.model.Unit;
+import com.hamdard.hua.rowmapper.UnitRowMapper;
 
 /**
- * @author Biswajit
+ * @author Somdeb
  *
  */
 @Component
-public class CountryRepository {
+public class UnitRepository {
 	
-
-	
-	private static final Logger logger = LogManager.getLogger(CountryRepository.class);
+	private static final Logger logger = LogManager.getLogger(UnitRepository.class);
     private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Value("${sql.country.list}")
-    private String countryListSql;
+    @Value("${sql.unit.list}")
+    private String unitListSql;
 
-	public List<Country> getAllCountries() {
+	public List<Unit> getUnits(int orgId) {
 		try {
-            logger.info(sqlMarker, countryListSql);
-            List<Country> countries = (List<Country>) jdbcTemplate.query(countryListSql, new CountryRowMapper());
-            logger.debug("Retrieved countries: {}", () -> countries);
-            return countries;
+			Object[] args={orgId};
+			logger.info(sqlMarker, unitListSql);
+            List<Unit> units = (List<Unit>) jdbcTemplate.query(unitListSql, args, new UnitRowMapper());
+            logger.debug("Retrieved units: {}", () -> units);
+            return units;
         } catch (Exception e) {
             logger.error("No parameter found", e);
             throw new InternalServerErrorException();
         }
 	}
-
 
 }

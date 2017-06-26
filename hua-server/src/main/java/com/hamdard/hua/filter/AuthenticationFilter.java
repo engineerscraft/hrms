@@ -16,7 +16,7 @@ import javax.ws.rs.ext.Provider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.ErrorBody;
+import com.hamdard.hua.model.Message;
 import com.hamdard.hua.repository.AuthenticationRepository;
 import com.hamdard.hua.security.Secured;
 
@@ -81,9 +81,9 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 				}
 			});
 		} catch (ExpiredJwtException e) {
-			requestContext.abortWith(Response.status(401).entity(new ErrorBody("Token expired")).build());
+			requestContext.abortWith(Response.status(401).entity(new Message("Token expired")).build());
 		} catch(Exception e) {
-			requestContext.abortWith(Response.status(500).entity(new ErrorBody(e.getMessage())).build());
+			requestContext.abortWith(Response.status(500).entity(new Message(e.getMessage())).build());
 		}
 
 	}
