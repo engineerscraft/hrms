@@ -24,7 +24,7 @@ import com.hamdard.hua.security.Secured;
  * @author Biswajit
  *
  */
-@Component
+
 @Path("v1/country")
 public class CountryResource {
 	@Autowired CountryRepository countryRepository;
