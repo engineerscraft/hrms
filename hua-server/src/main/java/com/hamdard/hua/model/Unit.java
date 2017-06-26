@@ -1,5 +1,7 @@
 package com.hamdard.hua.model;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author Somdeb
  *
@@ -7,6 +9,7 @@ package com.hamdard.hua.model;
 public class Unit {
 	private int unitId;
 	private String unitName;
+	@NotNull(message = "Organization ID cannot be empty")
 	private int orgId;
 	private String empIdPrefix;
 	private String empIdSeqName;

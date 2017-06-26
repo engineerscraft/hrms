@@ -18,8 +18,8 @@ INSERT INTO DEPARTMENT_MASTER VALUES
 (8, 'Dept. of English', 1, 'Bangladesh', NULL),
 (9, 'Dept. of Economics', 1, 'Bangladesh', NULL),
 (10, 'Dept. of Unani Medicine', 1, 'Bangladesh', NULL),
-(11, 'Dept. of Ayurvedic Medicine', 1, 'Bangladesh', NULL);
-(12, 'Dept. Security', 1, 'Bangladesh', NULL);
+(11, 'Dept. of Ayurvedic Medicine', 1, 'Bangladesh', NULL),
+(12, 'Dept. Security', 1, 'Bangladesh', NULL),
 (13, 'Dept. Human Resources', 1, 'Bangladesh', NULL);
 
 INSERT INTO doc_type_master values

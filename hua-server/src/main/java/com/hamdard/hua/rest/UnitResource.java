@@ -5,6 +5,7 @@ package com.hamdard.hua.rest;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.hamdard.hua.model.Unit;
 import com.hamdard.hua.privileges.Privilege;
 import com.hamdard.hua.repository.UnitRepository;
@@ -33,7 +33,7 @@ public class UnitResource {
 	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Secured(Privilege.UNIT_ALL_READ_CMD)
-	public List<Unit> getUnits(@QueryParam("organizationId") int orgId){
+	public List<Unit> getUnits(@NotNull @QueryParam("organizationId") int orgId){
 		return unitRepository.getUnits(orgId);
 	}
 
