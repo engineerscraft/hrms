@@ -17,7 +17,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import com.hamdard.hua.model.District;
 import com.hamdard.hua.model.Message;
 import com.hamdard.hua.privileges.Privilege;
@@ -33,14 +32,14 @@ import com.hamdard.hua.security.Secured;
 public class DistrictResource {
 
     private static final Logger logger = LogManager.getLogger(DistrictResource.class);
-    
+
     @Autowired
     DistrictRepository districtRepository;
 
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    // @Secured(Privilege.DISTRICT_ALL_READ_CMD)
+    @Secured(Privilege.DISTRICT_ALL_READ_CMD)
     public Response getDistrict(@QueryParam("stateId") @Min(1) int stateId) {
         List<District> districts;
         try {

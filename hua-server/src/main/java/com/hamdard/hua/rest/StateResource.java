@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 import com.hamdard.hua.model.Message;
 import com.hamdard.hua.model.State;
 import com.hamdard.hua.repository.StateRepository;
+import com.hamdard.hua.privileges.Privilege;
+import com.hamdard.hua.security.Secured;
 
 /**
  * @author Biswajit
@@ -35,7 +37,7 @@ public class StateResource {
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    // @Secured(Privilege.STATE_ALL_READ_CMD)
+    @Secured(Privilege.STATE_ALL_READ_CMD)
     public Response getState(@QueryParam("countryId") @Min(1) int countryId) throws Exception {
         List<State> states;
         try {
