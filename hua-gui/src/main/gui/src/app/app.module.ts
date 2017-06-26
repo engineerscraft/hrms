@@ -21,6 +21,7 @@ import { AccountManagementComponent } from './account-management/account-managem
 import { EmployeeManagementComponent } from './employee-management/employee-management.component';
 import { EmployeeCreationComponent } from './employee-creation/employee-creation.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AccountManagementComponent,
     EmployeeManagementComponent,
     EmployeeCreationComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ForbiddenAccessComponent
   ],
   imports: [
     BrowserModule,

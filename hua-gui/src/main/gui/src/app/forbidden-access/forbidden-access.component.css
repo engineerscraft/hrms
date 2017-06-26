@@ -1,0 +1,31 @@
+.heroimage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("/assets/img/forbidden-min.jpg") no-repeat center center fixed;
+    background-size: cover;
+    overflow: auto;
+    filter: blur(5px) brightness(0.7);
+}
+
+.herotext {
+    position: absolute;
+    top: 5rem;
+    left: 5rem;
+    color: #fff;
+    font-family: ElMessiri-Regular;
+    font-size: 3rem;
+    text-align: center;
+    padding: 6rem 8rem 2rem 8rem;
+}
+
+.heroparagraphs {
+    position: absolute;
+    top: 10rem;
+    left: 5rem;
+    color: #fff;
+    font-family: ElMessiri-Regular;
+    font-size: 1rem;
+    text-align: left;
+    padding: 6rem 8rem 2rem 8rem;
+}
