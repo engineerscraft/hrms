@@ -7,11 +7,12 @@ package com.hamdard.hua.model;
 public class Unit {
     private int unitId;
     private String unitName;
-    private int orgId;
     private String empIdPrefix;
     private String empIdSeqName;
     private String address;
-
+    private int orgId;
+    private String orgName;
+    
     /**
      * @return the unitId
      */
@@ -40,20 +41,6 @@ public class Unit {
      */
     public void setUnitName(String unitName) {
         this.unitName = unitName;
-    }
-
-    /**
-     * @return the orgId
-     */
-    public int getOrgId() {
-        return orgId;
-    }
-
-    /**
-     * @param orgId the orgId to set
-     */
-    public void setOrgId(int orgId) {
-        this.orgId = orgId;
     }
 
     /**
@@ -97,9 +84,38 @@ public class Unit {
     public void setAddress(String address) {
         this.address = address;
     }
+    
+    /**
+     * @return the orgId
+     */
+    public int getOrgId() {
+        return orgId;
+    }
+
+    /**
+     * @param orgId the orgId to set
+     */
+    public void setOrgId(int orgId) {
+        this.orgId = orgId;
+    }
+
+    /**
+     * @return the orgName
+     */
+    public String getOrgName() {
+        return orgName;
+    }
+
+    /**
+     * @param orgName the orgName to set
+     */
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
+
 
     @Override
     public String toString() {
-        return "Unit [unitId=" + unitId + ", unitName=" + unitName + ", orgId=" + orgId + ", empIdPrefix=" + empIdPrefix + ", empIdSeqName=" + empIdSeqName + ", address=" + address + "]";
+        return "Unit [unitId=" + unitId + ", unitName=" + unitName + ", empIdPrefix=" + empIdPrefix + ", empIdSeqName=" + empIdSeqName + ", address=" + address + ", orgId=" + orgId + ", orgName=" + orgName + "]";
     }
 }

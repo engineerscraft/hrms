@@ -30,7 +30,7 @@ import com.hamdard.hua.security.Secured;
 @Path("v1/unit")
 public class UnitResource {
 
-    private static final Logger logger = LogManager.getLogger(StateResource.class);
+    private static final Logger logger = LogManager.getLogger(UnitResource.class);
 
     @Autowired
     UnitRepository unitRepository;
