@@ -52711,3 +52711,38 @@ INSERT INTO DISTRICT_MASTER (DISTRICT_ID, DISTRICT_NAME, STATE_ID) VALUES
 (48313, 'Ravenswood', 3976),
 (48314, 'Summersville', 3976);
 
+INSERT INTO permission_master 
+(PERMISSION_ID, PERMISSION_NAME, RESOURCE_NAME, PERMISSION_TYPE)
+VALUES
+(1, 'READ_ALL_COUNTRIES', 'GET /country', 'A'),
+(2, 'READ_DEPTS_OF_A_UNIT', 'GET /department', 'A'),
+(3, 'READ_DSGNS_OF_A_JOB_ROLE', 'GET /designation', 'A'),
+(4, 'READ_DSTRS_OF_A_STATE', 'GET /district', 'A'),
+(5, 'READ_ALL_DOC_TYPES', 'GET /doctype', 'A'),
+(6, 'READ_ID_DOC_TYPES', 'GET /doctype/identity', 'A'),
+(7, 'CREATE_AN_EMP', 'POST /employee', 'A'),
+(8, 'READ_EMP_ATTR_AUTOCOMP', 'GET /employee?attributeName=?,attributeValuePrefix=?,numberOfItems=?,restricted=?', 'A'),
+(9, 'READ_ALL_DTLS_OF_AN_EMP', '/employee/{id}', 'A'),
+(10, 'MODIFY_ADDL_DTLS_OF_AN_EMP', 'PUT /employee/{id}/additionaldetails', 'A'),
+(11, 'MODIFY_ADDR_DTLS_OF_AN_EMP', 'PUT /employee/{id}/address', 'A'),
+(12, 'MODIFY_BASIC_DTLS_OF_AN_EMP', 'PUT /employee/{id}/basicinfo', 'A'),
+(13, 'MODIFY_HIRCHY_STAT_OF_AN_EMP', 'PUT /employee/{id}/hierarchystatus', 'A'),
+(14, 'CREATE_OPT_BENEFIT_OF_AN_EMP', 'POST /employee/{id}/optionalbenefits', 'A'),
+(15, 'MODIFY_OPT_BENEFIT_OF_AN_EMP', 'PUT /employee/{id}/optionalbenefits/{oid}', 'A'),
+(16, 'MODIFY_PROFILE_OF_AN_EMP', 'PUT /employee/{id}/profile', 'A'),
+(17, 'MODIFY_SAL_OF_AN_EMP', '/employee/{id}/salary', 'A'),
+(18, 'MODIFY_SAL_OF_AN_EMP', 'PUT /employee/{id}/salary', 'A'),
+(19, 'READ_JOB_ROLES_OF_AN_ORG', 'GET /jobrole?orgId=?', 'A'),
+(20, 'GET_OPT_BENEFITS_OF_A_JOB_ROLE', 'GET /jobrole/{id}/optbenefit', 'A'),
+(21, 'GET_SAL_OF_A_JOB_ROLE' ,'GET /jobrole/{id}/salary', 'A'),
+(22, 'GET_ALL_ORGS' ,'GET /organization', 'A'),
+(23, 'GET_PERMISSIONS_OF_A_LEVEL', 'GET /permission?permissionLevel=?', 'A'),
+(24, 'GET_STATES_OF_A_COUNTRY', 'GET /state/countryId=?', 'A'),
+(25, 'GET_UNITS_OF_AN_ORG', 'GET /units/organizationId=?', 'A'),
+(26, 'SearchEmployee', '/employeesearch', 'V'),
+(27, 'ViewEmployee', '/employeeview', 'V');
+
+
+INSERT INTO ROLE_PERMISSION 
+SELECT (SELECT ROLE_ID FROM ROLE_MASTER WHERE ROLE_NAME='ADMIN'), PERMISSION_ID FROM
+PERMISSION_MASTER;
