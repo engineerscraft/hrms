@@ -6,14 +6,15 @@ import {EmployeeManagementComponent} from './employee-management/employee-manage
 import {EmployeeCreationComponent} from './employee-creation/employee-creation.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {ForbiddenAccessComponent} from './forbidden-access/forbidden-access.component';
+import {AuthguardService} from './authguard.service';
 
 export const routing = RouterModule.forRoot([
     { path: '', component: LoginFormComponent},
-    { path: 'home', component: HomeComponent},
-    { path: 'accountManagement', component: AccountManagementComponent},
-    { path: 'employeeManagement', component: EmployeeManagementComponent},
-    { path: 'employeeCreation', component: EmployeeCreationComponent},
-    { path: 'forbidden', component: ForbiddenAccessComponent},
-    { path: '404', component: NotFoundComponent},
-    { path: '**', redirectTo: '/404'}
+    { path: 'home', component: HomeComponent, canActivate: [AuthguardService] },
+    { path: 'accountManagement', component: AccountManagementComponent, canActivate: [AuthguardService] },
+    { path: 'employeeManagement', component: EmployeeManagementComponent, canActivate: [AuthguardService] },
+    { path: 'employeeCreation', component: EmployeeCreationComponent, canActivate: [AuthguardService] },
+    { path: 'forbidden', component: ForbiddenAccessComponent, canActivate: [AuthguardService] },
+    { path: '404', component: NotFoundComponent, canActivate: [AuthguardService] },
+    { path: '**', redirectTo: '/404', canActivate: [AuthguardService] }
 ]);

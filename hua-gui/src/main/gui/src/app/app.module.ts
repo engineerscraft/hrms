@@ -13,6 +13,7 @@ import { EmployeeService } from './employee.service';
 import { DepartmentService } from './department.service';
 import { DesignationService } from './designation.service';
 import { HttpService } from './http.service';
+import { AuthguardService } from './authguard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
@@ -53,6 +54,7 @@ import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.co
     DesignationService,
     HttpService,
     UserService,
+    AuthguardService,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]
