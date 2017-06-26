@@ -33,7 +33,7 @@ public class OrganizationResource {
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Secured(Privilege.ORGANIZATION_ALL_READ_CMD)
+    @Secured(Privilege.GET_ALL_ORGS)
     public Response getOrgs() {
         List<Organization> orgs;
         try {

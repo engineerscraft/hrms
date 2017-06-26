@@ -38,7 +38,7 @@ public class DepartmentResource {
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Secured(Privilege.DEPARTMENT_ALL_READ_CMD)
+    @Secured(Privilege.READ_DEPTS_OF_A_UNIT)
     public Response getDepartments(@QueryParam("unitId") @Min(1) int unitId) {
         List<Department> departments;
         try {

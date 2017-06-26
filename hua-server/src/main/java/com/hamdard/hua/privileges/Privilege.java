@@ -13,5 +13,8 @@ public enum Privilege {
     COUNTRY_ALL_READ_CMD,
     DISTRICT_ALL_READ_CMD,
     STATE_ALL_READ_CMD,
+    GET_ALL_ORGS,
+    GET_UNITS_OF_AN_ORG,
+    READ_DEPTS_OF_A_UNIT,
     DEFAULT 
 }
