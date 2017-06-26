@@ -23,7 +23,7 @@ import com.hamdard.hua.security.Secured;
  * @author Biswajit
  *
  */
-@Component
+
 @Path("v1/district")
 public class DistrictResource {
 	

@@ -34,17 +34,14 @@ public class StateRepository {
     private String stateGetByCountryIdSql;
     
     public List<State> getStateByCountryId(int countryId){
-    	try{
+    	
     		Object[] args={countryId};
     		logger.info(sqlMarker,stateGetByCountryIdSql);
+    		logger.info(sqlMarker, "Params {}", () -> countryId);
     		List<State> states=(List<State>)jdbcTemplate.query(stateGetByCountryIdSql, args, new StateRowMapper());
     		logger.debug("Retrieved states: {}", () -> states);
     		return states;
-    	}
-    	catch(Exception e){
-    		logger.error("No parameter found", e);
-            throw new InternalServerErrorException();
-    	}
+    	
     }
 
 }
