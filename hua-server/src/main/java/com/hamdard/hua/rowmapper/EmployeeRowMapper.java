@@ -5,12 +5,12 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.EmployeeOld;
 
-public class EmployeeRowMapper implements RowMapper<Employee>{
+public class EmployeeRowMapper implements RowMapper<EmployeeOld>{
 
-	 public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
-	        Employee employee = new Employee();
+	 public EmployeeOld mapRow(ResultSet rs, int rowNum) throws SQLException {
+	        EmployeeOld employee = new EmployeeOld();
 	        employee.setId(rs.getLong("ID"));
 	        employee.setEmailAddress(rs.getString("EMAIL_ADDRESS"));
 	        employee.setFirstName(rs.getString("FIRST_NAME"));

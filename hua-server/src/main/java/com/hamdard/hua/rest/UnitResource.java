@@ -30,7 +30,7 @@ import com.hamdard.hua.security.Secured;
 @Path("v1/unit")
 public class UnitResource {
 
-    private static final Logger logger = LogManager.getLogger(StateResource.class);
+    private static final Logger logger = LogManager.getLogger(UnitResource.class);
 
     @Autowired
     UnitRepository unitRepository;
@@ -38,7 +38,7 @@ public class UnitResource {
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Secured(Privilege.UNIT_ALL_READ_CMD)
+    @Secured(Privilege.GET_UNITS_OF_AN_ORG)
     public Response getUnits(@QueryParam("organizationId") @Min(1) int orgId) {
         List<Unit> units;
         try {

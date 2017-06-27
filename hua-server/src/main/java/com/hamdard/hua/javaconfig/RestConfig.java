@@ -1,9 +1,7 @@
 package com.hamdard.hua.javaconfig;
 
 import javax.ws.rs.ApplicationPath;
-
 import org.glassfish.jersey.server.ResourceConfig;
-
 import com.hamdard.hua.filter.AuthenticationFilter;
 import com.hamdard.hua.filter.AuthorizationFilter;
 import com.hamdard.hua.rest.AccountResource;
@@ -14,8 +12,10 @@ import com.hamdard.hua.rest.CountryResource;
 import com.hamdard.hua.rest.DepartmentResource;
 import com.hamdard.hua.rest.DesignationResource;
 import com.hamdard.hua.rest.DistrictResource;
+import com.hamdard.hua.rest.EmployeeEndpoint;
 import com.hamdard.hua.rest.EmployeeResource;
 import com.hamdard.hua.rest.HealthCheckEndpoint;
+import com.hamdard.hua.rest.OrganizationResource;
 import com.hamdard.hua.rest.PermissionEndpoint;
 import com.hamdard.hua.rest.StateResource;
 import com.hamdard.hua.rest.UnitResource;
@@ -32,13 +32,15 @@ public class RestConfig extends ResourceConfig {
         		HealthCheckEndpoint.class, 
         		PermissionEndpoint.class,
         		EmployeeResource.class,
-        		DepartmentResource.class,
         		DesignationResource.class,
         		UserManagementEndpoint.class,
         		ChangePasswordEndpoint.class,
-        		CountryResource.class,
+        		OrganizationResource.class,
         		UnitResource.class,
+        		DepartmentResource.class,
+                CountryResource.class,
         		DistrictResource.class,
-        		StateResource.class);
+        		StateResource.class,
+        		EmployeeEndpoint.class);
     }
 }
