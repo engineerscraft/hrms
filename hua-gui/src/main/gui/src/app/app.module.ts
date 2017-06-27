@@ -19,10 +19,10 @@ import { HomeComponent } from './home/home.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
-import { EmployeeManagementComponent } from './employee-management/employee-management.component';
 import { EmployeeCreationComponent } from './employee-creation/employee-creation.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.component';
+import { EmployeeHierarchySearchComponent } from './employee-hierarchy-search/employee-hierarchy-search.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +32,10 @@ import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.co
     SideBarComponent,
     SpinnerComponent,
     AccountManagementComponent,
-    EmployeeManagementComponent,
     EmployeeCreationComponent,
     NotFoundComponent,
-    ForbiddenAccessComponent
+    ForbiddenAccessComponent,
+    EmployeeHierarchySearchComponent
   ],
   imports: [
     BrowserModule,
