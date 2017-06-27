@@ -51,7 +51,7 @@ export class AuthenticatorService {
   }
 
   logout() {
-    localStorage.clear;
+    localStorage.clear();
   }
 
   setAuthenticationStatus(authenticationFlag: boolean) {

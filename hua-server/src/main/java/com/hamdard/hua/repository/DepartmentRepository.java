@@ -1,8 +1,9 @@
+/**
+ * 
+ */
 package com.hamdard.hua.repository;
 
 import java.util.List;
-
-import javax.ws.rs.InternalServerErrorException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,10 +17,14 @@ import org.springframework.stereotype.Component;
 import com.hamdard.hua.model.Department;
 import com.hamdard.hua.rowmapper.DepartmentRowMapper;
 
+/**
+ * @author Somdeb
+ *
+ */
 @Component
 public class DepartmentRepository {
-	
-	private static final Logger logger = LogManager.getLogger(DepartmentRepository.class);
+
+    private static final Logger logger = LogManager.getLogger(DepartmentRepository.class);
     private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
 
     @Autowired
@@ -28,15 +33,15 @@ public class DepartmentRepository {
     @Value("${sql.department.list}")
     private String departmentListSql;
 
-	public List<Department> getAllDepartments() {
-		try {
-            logger.info(sqlMarker, departmentListSql);
-            List<Department> departments = (List<Department>) jdbcTemplate.query(departmentListSql, new DepartmentRowMapper());
-            logger.debug("Retrieved departments: {}", () -> departments);
-            return departments;
-        } catch (Exception e) {
-            logger.error("No parameter found", e);
-            throw new InternalServerErrorException();
-        }
-	}
+    public List<Department> getDepartmentsByUnitId(int unitId) {
+
+        Object[] args = { unitId };
+        logger.info(sqlMarker, departmentListSql);
+        logger.info(sqlMarker, "Params {}", () -> unitId);
+        List<Department> departments = (List<Department>) jdbcTemplate.query(departmentListSql, args, new DepartmentRowMapper());
+        logger.debug("Retrieved departments: {}", () -> departments.toString());
+        return departments;
+
+    }
+
 }

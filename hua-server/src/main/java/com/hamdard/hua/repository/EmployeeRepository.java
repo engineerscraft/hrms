@@ -362,7 +362,7 @@ public class EmployeeRepository {
      * @throws Exception
      */
     private String generateEmployeeId(Unit unit) throws Exception {
-        List<Unit> listOfUnits          = unitRepo.getUnits(unit.getOrgId());
+        List<Unit> listOfUnits          = unitRepo.getUnitsByOrganizationId(unit.getOrgId());
         if(listOfUnits == null || listOfUnits.size() != 1)
             throw new Exception("The Unit provided as an iput does not match to an unique value in the DB!");
 

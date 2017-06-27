@@ -27,10 +27,8 @@ import com.hamdard.hua.rowmapper.DepartmentRowMapper;
  */
 @Component
 public class CountryRepository {
-	
 
-	
-	private static final Logger logger = LogManager.getLogger(CountryRepository.class);
+    private static final Logger logger = LogManager.getLogger(CountryRepository.class);
     private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
 
     @Autowired
@@ -39,17 +37,13 @@ public class CountryRepository {
     @Value("${sql.country.list}")
     private String countryListSql;
 
-	public List<Country> getAllCountries() {
-		try {
-            logger.info(sqlMarker, countryListSql);
-            List<Country> countries = (List<Country>) jdbcTemplate.query(countryListSql, new CountryRowMapper());
-            logger.debug("Retrieved countries: {}", () -> countries);
-            return countries;
-        } catch (Exception e) {
-            logger.error("No parameter found", e);
-            throw new InternalServerErrorException();
-        }
-	}
+    public List<Country> getAllCountries() {
 
+        logger.info(sqlMarker, countryListSql);
+        List<Country> countries = (List<Country>) jdbcTemplate.query(countryListSql, new CountryRowMapper());
+        logger.debug("Retrieved countries: {}", () -> countries);
+        return countries;
+
+    }
 
 }

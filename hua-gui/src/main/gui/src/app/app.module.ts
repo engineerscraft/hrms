@@ -13,6 +13,7 @@ import { EmployeeService } from './employee.service';
 import { DepartmentService } from './department.service';
 import { DesignationService } from './designation.service';
 import { HttpService } from './http.service';
+import { AuthguardService } from './authguard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
@@ -20,6 +21,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { EmployeeManagementComponent } from './employee-management/employee-management.component';
 import { EmployeeCreationComponent } from './employee-creation/employee-creation.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { EmployeeCreationComponent } from './employee-creation/employee-creation
     SpinnerComponent,
     AccountManagementComponent,
     EmployeeManagementComponent,
-    EmployeeCreationComponent
+    EmployeeCreationComponent,
+    NotFoundComponent,
+    ForbiddenAccessComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,7 @@ import { EmployeeCreationComponent } from './employee-creation/employee-creation
     DesignationService,
     HttpService,
     UserService,
+    AuthguardService,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]

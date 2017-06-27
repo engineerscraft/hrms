@@ -42,8 +42,8 @@ digraph "twoDegreesRelationshipsGraph" {
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="country_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">country_master</TD></TR>
       <TR><TD PORT="COUNTRY_ID" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">COUNTRY_ID</TD><TD PORT="COUNTRY_ID.type" ALIGN="LEFT">int[10]</TD></TR>
-      <TR><TD PORT="COUNTRY_NAME" COLSPAN="2" ALIGN="LEFT">COUNTRY_NAME</TD><TD PORT="COUNTRY_NAME.type" ALIGN="LEFT">varchar[32]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD PORT="COUNTRY_NAME" COLSPAN="2" ALIGN="LEFT">COUNTRY_NAME</TD><TD PORT="COUNTRY_NAME.type" ALIGN="LEFT">varchar[50]</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">246 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="country_master.html#"
     tooltip="country_master"
@@ -52,7 +52,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="district_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">district_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">48,314 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="district_master.html#graph"
     tooltip="district_master"
@@ -73,7 +73,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="STATE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">STATE_ID</TD></TR>
       <TR><TD PORT="STATE_NAME" COLSPAN="3" ALIGN="LEFT">STATE_NAME</TD></TR>
       <TR><TD PORT="COUNTRY_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">COUNTRY_ID</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4,120 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="state_master.html#graph"
     tooltip="state_master"

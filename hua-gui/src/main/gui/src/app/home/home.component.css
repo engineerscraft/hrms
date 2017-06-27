@@ -9,7 +9,7 @@
 .zainlogo {
     border-radius: 25px;
     cursor: pointer;
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -10%);

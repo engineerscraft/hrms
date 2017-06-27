@@ -58,5 +58,12 @@ public class Unit {
     public void setUnitName(String unitName) {
         this.unitName = unitName;
     }
+        
+    @Override
+    public String toString() {
+        return "Unit [unitId=" + unitId + ", unitName=" + unitName + ", empIdPrefix=" + empIdPrefix + ", empIdSeqName=" + empIdSeqName + ", address=" + address + ", orgId=" + orgId + ", orgName=" + orgName + "]";
+    }
+
+    
 }
 

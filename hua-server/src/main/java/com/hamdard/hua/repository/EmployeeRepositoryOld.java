@@ -19,9 +19,9 @@ import com.hamdard.hua.model.EmployeeOld;
 import com.hamdard.hua.rowmapper.EmployeeRowMapper;
 
 @Component
-public class EmployeeRepository {
+public class EmployeeRepositoryOld {
 
-    private static final Logger logger = LogManager.getLogger(EmployeeRepository.class);
+    private static final Logger logger = LogManager.getLogger(EmployeeRepositoryOld.class);
     private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
 
     @Autowired
