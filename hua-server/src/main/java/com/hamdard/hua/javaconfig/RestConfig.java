@@ -13,6 +13,7 @@ import com.hamdard.hua.rest.CollegeResource;
 import com.hamdard.hua.rest.CountryResource;
 import com.hamdard.hua.rest.DepartmentResource;
 import com.hamdard.hua.rest.DesignationResource;
+import com.hamdard.hua.rest.EmployeeEndpoint;
 import com.hamdard.hua.rest.EmployeeResource;
 import com.hamdard.hua.rest.HealthCheckEndpoint;
 import com.hamdard.hua.rest.PermissionEndpoint;
@@ -23,18 +24,19 @@ import com.hamdard.hua.rest.UserManagementEndpoint;
 public class RestConfig extends ResourceConfig {
     public RestConfig() {
         registerClasses(AccountResource.class, 
-        		AuthenticationEndpoint.class,
-        		CollegeResource.class,
-        		AuthenticationFilter.class, 
-        		AuthorizationFilter.class, 
-        		HealthCheckEndpoint.class, 
-        		PermissionEndpoint.class,
-        		EmployeeResource.class,
-        		DepartmentResource.class,
-        		DesignationResource.class,
-        		UserManagementEndpoint.class,
-        		ChangePasswordEndpoint.class,
-        		CountryResource.class,
-        		UnitResource.class);
+                AuthenticationEndpoint.class, 
+                CollegeResource.class,
+                AuthenticationFilter.class, 
+                AuthorizationFilter.class, 
+                HealthCheckEndpoint.class,
+                PermissionEndpoint.class, 
+                EmployeeResource.class, 
+                DepartmentResource.class, 
+                DesignationResource.class,
+                UserManagementEndpoint.class, 
+                ChangePasswordEndpoint.class, 
+                CountryResource.class, 
+                UnitResource.class,
+                EmployeeEndpoint.class);
     }
 }

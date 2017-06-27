@@ -1,6 +1,7 @@
 package com.hamdard.hua.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Jyotirmoy Banerjee
@@ -9,17 +10,17 @@ import java.util.Date;
 
 public class Employee {
     
-    private EmployeeAddlDetails     employeeAddlDetails;
-    private EmployeeAddress         employeeAddress;
-    private EmployeeBasicInfo       employeeBasicDetails;
-    private EmployeeHierarchy       employeeHierarchy;
-    private EmployeeOptionalBenefit employeeOptionalBenefit;
-    private EmployeeProfile         employeeProfile;
-    private EmployeeSalary          employeeSalary;
+    private EmployeeAddlDetails           employeeAddlDetails;
+    private List<EmployeeAddress>         employeeAddress;
+    private EmployeeBasicInfo             employeeBasicInfo;
+    private EmployeeHierarchy             employeeHierarchy;
+    private List<EmployeeOptionalBenefit> employeeOptionalBenefit;
+    private EmployeeProfile               employeeProfile;
+    private List<EmployeeSalary>          employeeSalary;
     
     
     
-    public class EmployeeSalary {
+    public static class EmployeeSalary {
         private SalaryComponent salaryComponent;
         private double          salaryValue;
         
@@ -34,6 +35,11 @@ public class Employee {
         }
         public void setSalaryValue(double salaryValue) {
             this.salaryValue = salaryValue;
+        }
+        @Override
+        public String toString() {
+            return "EmployeeSalary [salaryComponent=" + this.salaryComponent + ", salaryValue=" + this.salaryValue
+                    + "]";
         }
         
         
@@ -62,10 +68,15 @@ public class Employee {
         public void setQualification(String qualification) {
             this.qualification = qualification;
         }
+        @Override
+        public String toString() {
+            return "EmployeeProfile [comments=" + this.comments + ", description=" + this.description
+                    + ", qualification=" + this.qualification + "]";
+        }
         
     }
     
-    public class EmployeeOptionalBenefit {
+    public static class EmployeeOptionalBenefit {
         private double             benefitValue;
         private int                frequency;
         private int                iterations;
@@ -116,6 +127,12 @@ public class Employee {
         public void setStopDate(Date stopDate) {
             this.stopDate = stopDate;
         }
+        @Override
+        public String toString() {
+            return "EmployeeOptionalBenefit [benefitValue=" + this.benefitValue + ", frequency=" + this.frequency
+                    + ", iterations=" + this.iterations + ", nextDueDate=" + this.nextDueDate + ", optSalaryComponent="
+                    + this.optSalaryComponent + ", startDate=" + this.startDate + ", stopDate=" + this.stopDate + "]";
+        }
         
     }
     
@@ -130,6 +147,7 @@ public class Employee {
         private int    specialLeave;
         private String status;
         private String supervisorId;
+        private int    sickLeave;
         public int getCl() {
             return this.cl;
         }
@@ -190,9 +208,23 @@ public class Employee {
         public void setSupervisorId(String supervisorId) {
             this.supervisorId = supervisorId;
         }
+        @Override
+        public String toString() {
+            return "EmployeeHierarchy [cl=" + this.cl + ", hrId=" + this.hrId + ", maternityLeave="
+                    + this.maternityLeave + ", noticePeriodEndDate=" + this.noticePeriodEndDate + ", paternityLeave="
+                    + this.paternityLeave + ", pl=" + this.pl + ", probationPeriodEndDate="
+                    + this.probationPeriodEndDate + ", specialLeave=" + this.specialLeave + ", status=" + this.status
+                    + ", supervisorId=" + this.supervisorId + "]";
+        }
+        public int getSickLeave() {
+            return this.sickLeave;
+        }
+        public void setSickLeave(int sickLeave) {
+            this.sickLeave = sickLeave;
+        }
     }
     
-    public class EmployeeAddress {
+    public static class EmployeeAddress {
         private String area;
         private int    countryId;
         private String countryName;
@@ -205,6 +237,7 @@ public class Employee {
         private int    stateId;
         private String stateName;
         private String streetName;
+        private String addressType;
         
         public String getArea() {
             return this.area;
@@ -278,6 +311,20 @@ public class Employee {
         public void setStreetName(String streetName) {
             this.streetName = streetName;
         }
+        @Override
+        public String toString() {
+            return "EmployeeAddress [area=" + this.area + ", countryId=" + this.countryId + ", countryName="
+                    + this.countryName + ", description=" + this.description + ", districtId=" + this.districtId
+                    + ", districtName=" + this.districtName + ", houseNo=" + this.houseNo + ", pinno=" + this.pinno
+                    + ", region=" + this.region + ", stateId=" + this.stateId + ", stateName=" + this.stateName
+                    + ", streetName=" + this.streetName + "]";
+        }
+        public String getAddressType() {
+            return this.addressType;
+        }
+        public void setAddressType(String addressType) {
+            this.addressType = addressType;
+        }
     }
     
     public class EmployeeAddlDetails {
@@ -335,9 +382,6 @@ public class Employee {
         public void setNomineeName3(String nomineeName3) {
             this.nomineeName3 = nomineeName3;
         }
-        public void setNomineeShare3(float nomineeShare3) {
-            this.nomineeShare3 = nomineeShare3;
-        }
         public Date getPreMedicalCheckUpDate() {
             return this.preMedicalCheckUpDate;
         }
@@ -367,6 +411,16 @@ public class Employee {
         }
         public void setNomineeShare3(double nomineeShare3) {
             this.nomineeShare3 = nomineeShare3;
+        }
+        @Override
+        public String toString() {
+            return "EmployeeAddlDetails [dependentNo=" + this.dependentNo + ", emergencyContactName="
+                    + this.emergencyContactName + ", emergencyContactNo=" + this.emergencyContactNo
+                    + ", medicalReportComment=" + this.medicalReportComment + ", nomineeName1=" + this.nomineeName1
+                    + ", nomineeName2=" + this.nomineeName2 + ", nomineeName3=" + this.nomineeName3 + ", nomineeShare1="
+                    + this.nomineeShare1 + ", nomineeShare2=" + this.nomineeShare2 + ", nomineeShare3="
+                    + this.nomineeShare3 + ", preMedicalCheckUpDate=" + this.preMedicalCheckUpDate + ", siblingNo="
+                    + this.siblingNo + "]";
         }
     }
     
@@ -546,20 +600,12 @@ public class Employee {
         this.employeeAddlDetails = employeeAddlDetails;
     }
 
-    public EmployeeAddress getEmployeeAddress() {
-        return this.employeeAddress;
+    public EmployeeBasicInfo getEmployeeBasicInfo() {
+        return this.employeeBasicInfo;
     }
 
-    public void setEmployeeAddress(EmployeeAddress employeeAddress) {
-        this.employeeAddress = employeeAddress;
-    }
-
-    public EmployeeBasicInfo getEmployeeBasicDetails() {
-        return this.employeeBasicDetails;
-    }
-
-    public void setEmployeeBasicDetails(EmployeeBasicInfo employeeBasicDetails) {
-        this.employeeBasicDetails = employeeBasicDetails;
+    public void setEmployeeBasicInfo(EmployeeBasicInfo employeeBasicInfo) {
+        this.employeeBasicInfo = employeeBasicInfo;
     }
 
     public EmployeeHierarchy getEmployeeHierarchy() {
@@ -570,14 +616,6 @@ public class Employee {
         this.employeeHierarchy = employeeHierarchy;
     }
 
-    public EmployeeOptionalBenefit getEmployeeOptionalBenefit() {
-        return this.employeeOptionalBenefit;
-    }
-
-    public void setEmployeeOptionalBenefit(EmployeeOptionalBenefit employeeOptionalBenefit) {
-        this.employeeOptionalBenefit = employeeOptionalBenefit;
-    }
-
     public EmployeeProfile getEmployeeProfile() {
         return this.employeeProfile;
     }
@@ -585,13 +623,38 @@ public class Employee {
     public void setEmployeeProfile(EmployeeProfile employeeProfile) {
         this.employeeProfile = employeeProfile;
     }
+    
+    public List<EmployeeAddress> getEmployeeAddress() {
+        return this.employeeAddress;
+    }
 
-    public EmployeeSalary getEmployeeSalary() {
+    public void setEmployeeAddress(List<EmployeeAddress> employeeAddress) {
+        this.employeeAddress = employeeAddress;
+    }
+    
+    public List<EmployeeOptionalBenefit> getEmployeeOptionalBenefit() {
+        return this.employeeOptionalBenefit;
+    }
+
+    public void setEmployeeOptionalBenefit(List<EmployeeOptionalBenefit> employeeOptionalBenefit) {
+        this.employeeOptionalBenefit = employeeOptionalBenefit;
+    }
+
+    public List<EmployeeSalary> getEmployeeSalary() {
         return this.employeeSalary;
     }
 
-    public void setEmployeeSalary(EmployeeSalary employeeSalary) {
+    public void setEmployeeSalary(List<EmployeeSalary> employeeSalary) {
         this.employeeSalary = employeeSalary;
     }
+
+    @Override
+    public String toString() {
+        return "Employee [employeeAddlDetails=" + this.employeeAddlDetails + ", employeeAddress=" + this.employeeAddress
+                + ", employeeBasicDetails=" + this.employeeBasicInfo + ", employeeHierarchy="
+                + this.employeeHierarchy + ", employeeOptionalBenefit=" + this.employeeOptionalBenefit
+                + ", employeeProfile=" + this.employeeProfile + ", employeeSalary=" + this.employeeSalary + "]";
+    }
+
 }
 

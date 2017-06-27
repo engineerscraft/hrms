@@ -17,13 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.hamdard.hua.model.EmployeeOld;
-import com.hamdard.hua.repository.EmployeeRepository;
+import com.hamdard.hua.repository.EmployeeRepositoryOld;
 
 @Component
 @Path("/employee")
 public class EmployeeResource {
 
-	@Autowired private EmployeeRepository employeeRepository;
+	@Autowired private EmployeeRepositoryOld employeeRepository;
 	
     @GET
     @Path("/test")
