@@ -11,6 +11,8 @@ import { AccountService } from './account.service';
 import { CollegeService } from './college.service';
 import { EmployeeService } from './employee.service';
 import { DepartmentService } from './department.service';
+import { OrganizationService } from './organization.service';
+import { UnitService } from './unit.service';
 import { DesignationService } from './designation.service';
 import { HttpService } from './http.service';
 import { AuthguardService } from './authguard.service';
@@ -55,6 +57,8 @@ import { EmployeeHierarchySearchComponent } from './employee-hierarchy-search/em
     HttpService,
     UserService,
     AuthguardService,
+    OrganizationService,
+    UnitService,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]

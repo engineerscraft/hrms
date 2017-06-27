@@ -81,9 +81,9 @@
             <div class="group combo-group">
               <label class="text-input-label">Organization</label>
               <div class="select select-fancy select-fancy-image span_4_of_4">
-                <select class="span_4_of_4" formControlName="organizationId">
+                <select class="span_4_of_4" #organizationId formControlName="organizationId" (change)="onOrgChange(organizationId.value)">
                   <option value=""></option>
-                  <option *ngFor="let organization of organizations" value="{{organization.organizationId}}">{{organization.organizationName}}</option>
+                  <option *ngFor="let organization of organizations" value="{{organization.orgId}}">{{organization.orgName}}</option>
                 </select>
               </div>
             </div>
@@ -92,7 +92,7 @@
             <div class="group combo-group">
               <label class="text-input-label">Unit</label>
               <div class="select select-fancy select-fancy-image span_4_of_4">
-                <select class="span_4_of_4" formControlName="unitId">
+                <select class="span_4_of_4" #unitId formControlName="unitId" (change)="onUnitChange(unitId.value)">
                   <option value=""></option>
                   <option *ngFor="let unit of units" value="{{unit.unitId}}">{{unit.unitName}}</option>
                 </select>
@@ -166,7 +166,7 @@
               <datalist id="supervisorEmailId">
                 <option *ngFor="let supervisorEmailIdSuggestion of supervisorEmailIdSuggestions" value="{{supervisorEmailIdSuggestion}}">
               </datalist>
-              <label class="text-input-label">First Name</label>
+              <label class="text-input-label">Supervisor Email</label>
               <span class="highlight"></span>
               <span class="bar span_4_of_4"></span>
             </div>
@@ -177,7 +177,7 @@
               <datalist id="hrEmailId">
                 <option *ngFor="let hrEmailIdSuggestion of hrEmailIdSuggestions" value="{{hrEmailIdSuggestion}}">
               </datalist>
-              <label class="text-input-label">Middle Name</label>
+              <label class="text-input-label">HR Email</label>
               <span class="highlight"></span>
               <span class="bar span_4_of_4"></span>
             </div>

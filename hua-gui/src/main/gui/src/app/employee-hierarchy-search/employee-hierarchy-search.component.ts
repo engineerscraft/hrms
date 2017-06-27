@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CollegeService } from '../college.service';
 import { DepartmentService } from '../department.service';
-import { DesignationService } from '../designation.service';
+import { OrganizationService } from '../organization.service';
+import { UnitService } from '../unit.service';
 import { EmployeeService } from '../employee.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,8 +19,11 @@ import 'rxjs/add/operator/debounceTime.js';
 export class EmployeeHierarchySearchComponent implements OnInit {
 
   private formGroupSearch: FormGroup;
+  private organizations;
+  private units;
+  private departments;
 
-  constructor(private formBuilder: FormBuilder, private collegeService: CollegeService, private departmentService: DepartmentService, private designationService: DesignationService, private employeeService: EmployeeService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private organizationService: OrganizationService, private unitService: UnitService, private departmentService: DepartmentService, private router: Router) { }
 
   ngOnInit() {
     this.formGroupSearch = this.formBuilder.group({
@@ -45,6 +48,30 @@ export class EmployeeHierarchySearchComponent implements OnInit {
       identityDoc: ['', []],
       identityDocNumber: ['', []]
     });
+
+    this.organizationService.getOrganizations()
+      .subscribe(
+        data => {
+          this.organizations = data;
+        }
+      );
   }
 
+   onOrgChange(orgId) {
+    this.unitService.getUnits(orgId)
+      .subscribe(
+        data => {
+          this.units = data;
+        }
+      ); 
+   }
+
+   onUnitChange(unitId) {
+    this.departmentService.getDepartments(unitId)
+      .subscribe(
+        data => {
+          this.departments = data;
+        }
+      ); 
+   }
 }
