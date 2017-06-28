@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.DocumentType;
+import com.hamdard.hua.model.DocType;
 import com.hamdard.hua.rowmapper.DocumentTypeRowMapper;
 
 @Component
@@ -27,10 +27,21 @@ public class DocumentTypeRepository {
 	@Value("${sql.documenttype.list}")
 	private String docTypeListSql;
 
-	public List<DocumentType> getAllDocumentType() {
+	@Value("${sql.identitydocumenttype.list}")
+	private String identityDocTypeListSql;
+
+	public List<DocType> getAllDocumentTypes() {
 		logger.info(sqlMarker, docTypeListSql);
-		List<DocumentType> docTypeList = (List<DocumentType>) jdbcTemplate
+		List<DocType> docTypeList = (List<DocType>) jdbcTemplate
 				.query(docTypeListSql, new DocumentTypeRowMapper());
+		logger.debug("Retrieved DocumentTypes: {}", () -> docTypeList);
+		return docTypeList;
+	}
+
+	public List<DocType> getAllIdentityDocumentTypes() {
+		logger.info(sqlMarker, identityDocTypeListSql);
+		List<DocType> docTypeList = (List<DocType>) jdbcTemplate
+				.query(identityDocTypeListSql, new DocumentTypeRowMapper());
 		logger.debug("Retrieved DocumentTypes: {}", () -> docTypeList);
 		return docTypeList;
 	}

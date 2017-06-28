@@ -5,12 +5,12 @@ import { HttpService } from './http.service';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 @Injectable()
-export class DesignationService {
+export class JobRoleService {
 
   constructor(private httpService: HttpService, private http: Http) { }
 
-  getDesignationsByJobRoleId(jobRoleId) {
-    return this.httpService.callHttpGet("/resources/v1/designation?jobRoleId="+jobRoleId)
+  getJobRolesByOrgId(orgId) {
+    return this.httpService.callHttpGet("/resources/v1/jobrole?orgId="+orgId)
       .map(res => res.json());
   }
 }

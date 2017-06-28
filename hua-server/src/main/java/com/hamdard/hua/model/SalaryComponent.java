@@ -1,10 +1,12 @@
 package com.hamdard.hua.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * /api/#_salarycomponent
  * 
  */
-
+@XmlRootElement
 public class SalaryComponent {
     
     private int    compId;

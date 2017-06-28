@@ -5,8 +5,6 @@ package com.hamdard.hua.repository;
 
 import java.util.List;
 
-import javax.ws.rs.InternalServerErrorException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
@@ -17,9 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.hamdard.hua.model.Country;
-import com.hamdard.hua.model.Department;
 import com.hamdard.hua.rowmapper.CountryRowMapper;
-import com.hamdard.hua.rowmapper.DepartmentRowMapper;
 
 /**
  * @author Biswajit

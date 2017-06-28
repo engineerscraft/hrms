@@ -50,7 +50,7 @@ public class DistrictResource {
             } else
                 return Response.status(200).entity(districts).build();
         } catch (Exception ex) {
-            logger.error(ex.getMessage());
+            logger.error("The districts could not be retrieved", ex);
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
 

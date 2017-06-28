@@ -2,11 +2,13 @@ package com.hamdard.hua.model;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * /api/#_salaryoptcomponent
  * 
  */
-
+@XmlRootElement
 public class SalaryOptComponent {
     private String creditDebitFlag;
     private String description;

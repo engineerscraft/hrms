@@ -49,7 +49,7 @@ public class OrganizationResource {
         }
         /* Any other kind of exception */
         catch (Exception ex) {
-            logger.error(ex.getMessage());
+            logger.error("The organizations could not be retrieved", ex);
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }

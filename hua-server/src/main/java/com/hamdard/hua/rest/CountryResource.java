@@ -51,7 +51,7 @@ public class CountryResource {
             else
                 return Response.status(200).entity(countries).build();
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("The countries could not be retrieved", e);
             return Response.status(500).entity(new Message(e.getMessage())).build();
         }
     }

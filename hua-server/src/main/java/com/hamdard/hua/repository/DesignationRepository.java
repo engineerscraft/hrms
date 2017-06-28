@@ -23,14 +23,16 @@ public class DesignationRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	@Value("${sql.designation.list}")
+	@Value("${sql.designation.list.byJobRoleId}")
 	private String designationListSql;
 
-	public List<Designation> getAllDesignations() {
-		logger.info(sqlMarker, designationListSql);
+	public List<Designation> getDesignationsByJobRoleId(int jobRoleId) {
+        Object[] args = { jobRoleId };
+        logger.info(sqlMarker, designationListSql);
+        logger.info(sqlMarker, "Params {}", () -> jobRoleId);
 		List<Designation> designations = (List<Designation>) jdbcTemplate
-				.query(designationListSql, new DesignationRowMapper());
+				.query(designationListSql, args, new DesignationRowMapper());
 		logger.debug("Retrieved designations: {}", () -> designations);
-		return designations;
+		return designations;		
 	}
 }

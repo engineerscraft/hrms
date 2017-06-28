@@ -116,9 +116,9 @@
             <div class="group combo-group">
               <label class="text-input-label">Grade</label>
               <div class="select select-fancy select-fancy-image span_4_of_4">
-                <select class="span_4_of_4" formControlName="gradeId">
+                <select class="span_4_of_4" formControlName="jobRoleId" #jobRoleId (change)="onGradeChange(jobRoleId.value)">
                   <option value=""></option>
-                  <option *ngFor="let grade of grades" value="{{grade.gradeId}}">{{grade.gradeName}}</option>
+                  <option *ngFor="let jobRole of jobRoles" value="{{jobRole.jobRoleId}}">{{jobRole.grade.gradeName}}</option>
                 </select>
               </div>
             </div>

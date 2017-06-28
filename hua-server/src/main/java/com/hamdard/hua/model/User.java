@@ -1,11 +1,14 @@
 package com.hamdard.hua.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * @author Jyotirmoy Banrejee
  * Model object containing user information. 
  * Mainly used while creating an user from the GUI
  */
 
+@XmlRootElement
 public class User {
 	String                         userName;
 	String                         fullName;

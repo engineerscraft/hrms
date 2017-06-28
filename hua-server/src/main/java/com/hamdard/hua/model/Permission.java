@@ -1,5 +1,8 @@
 package com.hamdard.hua.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Permission {
 	private int permissionId;
 	private String permissionName;

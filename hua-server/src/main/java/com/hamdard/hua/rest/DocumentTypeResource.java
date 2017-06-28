@@ -14,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hamdard.hua.model.DocumentType;
+import com.hamdard.hua.model.DocType;
 import com.hamdard.hua.model.Message;
 import com.hamdard.hua.privileges.Privilege;
 import com.hamdard.hua.repository.DocumentTypeRepository;
@@ -37,9 +37,9 @@ public class DocumentTypeResource {
 	@GET
 	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Secured(Privilege.DOCTYPE_ALL_READ_CMD)
-	public Response getAllDocumentType() {
-		List<DocumentType> docTypeList;
+	@Secured(Privilege.READ_ALL_DOC_TYPES)
+	public Response getAllDocumentTypes() {
+		List<DocType> docTypeList;
 		CacheControl cc = new CacheControl();
 		cc.setMaxAge(300);
 		cc.setPrivate(true);
@@ -47,13 +47,12 @@ public class DocumentTypeResource {
 		ResponseBuilder builder = null;
 
 		try {
-			docTypeList = docTypeRepository.getAllDocumentType();
+			docTypeList = docTypeRepository.getAllDocumentTypes();
 
 			if (docTypeList.isEmpty()) {
 				logger.error("No DocumentType is found.");
 				builder = Response.status(404).entity(
 						new Message("No DocumentType is found."));
-				builder.cacheControl(cc);
 				return builder.build();
 			}
 			/* If data presents in DB */
@@ -64,7 +63,40 @@ public class DocumentTypeResource {
 			}
 		} catch (Exception e) {
 			builder = Response.status(500).entity(new Message(e.getMessage()));
-			builder.cacheControl(cc);
+			logger.error(e.getMessage());
+			return builder.build();
+		}
+	}
+
+	@GET
+	@Path("/identitydoctype")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Secured(Privilege.READ_ID_DOC_TYPES)
+	public Response getAllIdentityDocumentTypes() {
+		List<DocType> docTypeList;
+		CacheControl cc = new CacheControl();
+		cc.setMaxAge(300);
+		cc.setPrivate(true);
+		cc.setNoStore(true);
+		ResponseBuilder builder = null;
+
+		try {
+			docTypeList = docTypeRepository.getAllIdentityDocumentTypes();
+
+			if (docTypeList.isEmpty()) {
+				logger.error("No DocumentType is found.");
+				builder = Response.status(404).entity(
+						new Message("No DocumentType is found."));
+				return builder.build();
+			}
+			/* If data presents in DB */
+			else {
+				builder = Response.status(200).entity(docTypeList);
+				builder.cacheControl(cc);
+				return builder.build();
+			}
+		} catch (Exception e) {
+			builder = Response.status(500).entity(new Message(e.getMessage()));
 			logger.error(e.getMessage());
 			return builder.build();
 		}

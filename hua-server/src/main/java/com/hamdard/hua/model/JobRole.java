@@ -1,27 +1,14 @@
 package com.hamdard.hua.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class JobRole {
 	private int jobRoleId;
 	private int orgId;
-	private int gradeId;
+	private Grade grade;
 	private int probationNoticePeriod;
 	private int Noticeperiod;
-	
-	public JobRole(int jobRoleId, int orgId, int gradeId, int probationNoticePeriod, int noticeperiod) {
-		super();
-		this.jobRoleId = jobRoleId;
-		this.orgId = orgId;
-		this.gradeId = gradeId;
-		this.probationNoticePeriod = probationNoticePeriod;
-		Noticeperiod = noticeperiod;
-	}
-	
-	
-	public JobRole() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public int getJobRoleId() {
 		return jobRoleId;
 	}
@@ -34,11 +21,11 @@ public class JobRole {
 	public void setOrgId(int orgId) {
 		this.orgId = orgId;
 	}
-	public int getGradeId() {
-		return gradeId;
+	public Grade getGrade() {
+		return grade;
 	}
-	public void setGradeId(int gradeId) {
-		this.gradeId = gradeId;
+	public void setGrade(Grade grade) {
+		this.grade = grade;
 	}
 	public int getProbationNoticePeriod() {
 		return probationNoticePeriod;
@@ -54,11 +41,8 @@ public class JobRole {
 	}
 	@Override
 	public String toString() {
-		return "JobRole [jobRoleId=" + jobRoleId + ", orgId=" + orgId + ", gradeId=" + gradeId
-				+ ", probationNoticePeriod=" + probationNoticePeriod + ", Noticeperiod=" + Noticeperiod
-				+ ", getJobRoleId()=" + getJobRoleId() + ", getOrgId()=" + getOrgId() + ", getGradeId()=" + getGradeId()
-				+ ", getProbationNoticePeriod()=" + getProbationNoticePeriod() + ", getNoticeperiod()="
-				+ getNoticeperiod() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "JobRole [jobRoleId=" + jobRoleId + ", orgId=" + orgId + ", grade=" + grade + ", probationNoticePeriod="
+				+ probationNoticePeriod + ", Noticeperiod=" + Noticeperiod + "]";
 	}
+	
 }

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from '../department.service';
 import { OrganizationService } from '../organization.service';
 import { UnitService } from '../unit.service';
-import { EmployeeService } from '../employee.service';
+import { DocTypeService } from '../doc-type.service';
+import { JobRoleService } from '../job-role.service';
+import { DesignationService } from '../designation.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -22,8 +24,19 @@ export class EmployeeHierarchySearchComponent implements OnInit {
   private organizations;
   private units;
   private departments;
+  private identityDocTypes;
+  private jobRoles;
+  private designations;
+  private processingInProgress = false;
 
-  constructor(private formBuilder: FormBuilder, private organizationService: OrganizationService, private unitService: UnitService, private departmentService: DepartmentService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, 
+              private organizationService: OrganizationService, 
+              private unitService: UnitService, 
+              private departmentService: DepartmentService, 
+              private docTypeService: DocTypeService, 
+              private jobRoleService: JobRoleService, 
+              private designationService: DesignationService,
+              private router: Router) { }
 
   ngOnInit() {
     this.formGroupSearch = this.formBuilder.group({
@@ -39,7 +52,7 @@ export class EmployeeHierarchySearchComponent implements OnInit {
       empType: ['', []],
       organizationId: ['', []],
       unitId: ['', []],
-      gradeId: ['', []],
+      jobRoleId: ['', []],
       isSupervisor: ['', []],
       isHr: ['', []],
       supervisorEmailId: ['', []],
@@ -49,15 +62,46 @@ export class EmployeeHierarchySearchComponent implements OnInit {
       identityDocNumber: ['', []]
     });
 
-    this.organizationService.getOrganizations()
+    let organizationObservable = this.organizationService.getOrganizations();
+    let docTypeServiceObservable = this.docTypeService.getIdentityDocTypes();
+
+    this.processingInProgress = true;
+    Observable.forkJoin([organizationObservable, docTypeServiceObservable])
       .subscribe(
-        data => {
-          this.organizations = data;
-        }
+      data => {
+        this.organizations = data[0];
+        this.identityDocTypes = data[1];
+      },
+      (err: any) => {
+        this.processingInProgress = false;
+      },
+      () => {
+        this.processingInProgress = false;
+      }
       );
   }
 
+
    onOrgChange(orgId) {
+
+    let jobRoleObservable = this.jobRoleService.getJobRolesByOrgId(orgId);
+    let unitObservable = this.unitService.getUnits(orgId);
+
+    Observable.forkJoin([jobRoleObservable, unitObservable])
+      .subscribe(
+      data => {
+        this.jobRoles = data[0];
+        this.units = data[1];
+      },
+      (err: any) => {
+        
+      },
+      () => {
+        
+      }
+      );
+
+
     this.unitService.getUnits(orgId)
       .subscribe(
         data => {
@@ -73,5 +117,14 @@ export class EmployeeHierarchySearchComponent implements OnInit {
           this.departments = data;
         }
       ); 
+   }
+
+   onGradeChange(jobRoleId) {
+    this.designationService.getDesignationsByJobRoleId(jobRoleId)
+      .subscribe(
+        data=> {
+          this.designations = data;
+        }
+      )
    }
 }

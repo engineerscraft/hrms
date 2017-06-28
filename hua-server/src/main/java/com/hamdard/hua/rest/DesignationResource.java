@@ -2,9 +2,11 @@ package com.hamdard.hua.rest;
 
 import java.util.List;
 
+import javax.validation.constraints.Min;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -36,8 +38,8 @@ public class DesignationResource {
 	@GET
 	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Secured(Privilege.DESIGNATION_ALL_READ_CMD)
-	public Response getAllDesignation() {
+	@Secured(Privilege.READ_DSGNS_OF_A_JOB_ROLE)
+	public Response getAllDesignation(@QueryParam("jobRoleId") @Min(1) int jobRoleId) {
 		List<Designation> designation;
 		CacheControl cc = new CacheControl();
 		cc.setMaxAge(300);
@@ -46,7 +48,7 @@ public class DesignationResource {
 		ResponseBuilder builder = null;
 
 		try {
-			designation = designationRepository.getAllDesignations();
+			designation = designationRepository.getDesignationsByJobRoleId(jobRoleId);
 
 			if (designation.isEmpty()) {
 				logger.error("No Designation is found.");
@@ -63,8 +65,7 @@ public class DesignationResource {
 			}
 		} catch (Exception e) {
 			builder = Response.status(500).entity(new Message(e.getMessage()));
-			builder.cacheControl(cc);
-			logger.error(e.getMessage());
+			logger.error("The designations could not be retrieved", e);
 			return builder.build();
 		}
 	}

@@ -1,10 +1,13 @@
 package com.hamdard.hua.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Unit
  * /hrms/api/#_unit
  */
 
+@XmlRootElement
 public class Unit {
     
     private String address;

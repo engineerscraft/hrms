@@ -31,7 +31,7 @@ public class JobRoleResource {
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Secured(Privilege.DISTRICT_ALL_READ_CMD)
+    @Secured(Privilege.READ_JOB_ROLES_OF_AN_ORG)
     public Response getDistrict(@QueryParam("orgId") @Min(1) int orgId) {
         List<JobRole> jobRoles;
         try {
@@ -44,7 +44,7 @@ public class JobRoleResource {
             else
                 return Response.status(200).entity(jobRoles).build();
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("Job roles could not be retrieved", e);
             return Response.status(500).entity(new Message(e.getMessage())).build();
         }
     }

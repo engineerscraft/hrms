@@ -3,11 +3,13 @@ package com.hamdard.hua.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * @author Jyotirmoy Banerjee
  * /api/#_employee
  */
-
+@XmlRootElement
 public class Employee {
     
     private EmployeeAddlDetails           employeeAddlDetails;

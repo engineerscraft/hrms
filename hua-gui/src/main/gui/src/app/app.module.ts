@@ -13,6 +13,8 @@ import { EmployeeService } from './employee.service';
 import { DepartmentService } from './department.service';
 import { OrganizationService } from './organization.service';
 import { UnitService } from './unit.service';
+import { DocTypeService } from './doc-type.service';
+import { JobRoleService } from './job-role.service';
 import { DesignationService } from './designation.service';
 import { HttpService } from './http.service';
 import { AuthguardService } from './authguard.service';
@@ -59,6 +61,8 @@ import { EmployeeHierarchySearchComponent } from './employee-hierarchy-search/em
     AuthguardService,
     OrganizationService,
     UnitService,
+    DocTypeService,
+    JobRoleService,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]

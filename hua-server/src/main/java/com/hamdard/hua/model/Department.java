@@ -1,9 +1,12 @@
 package com.hamdard.hua.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * @author Somdeb
  *
  */
+@XmlRootElement
 public class Department {
     private int departmentId;
     private String departmentName;

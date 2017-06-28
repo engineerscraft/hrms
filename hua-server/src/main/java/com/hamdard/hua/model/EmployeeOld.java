@@ -2,6 +2,9 @@ package com.hamdard.hua.model;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class EmployeeOld {
 
 	private Long id;
