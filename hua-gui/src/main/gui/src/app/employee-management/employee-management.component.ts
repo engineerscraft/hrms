@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { CollegeService } from '../college.service';
 import { DepartmentService } from '../department.service';
 import { DesignationService } from '../designation.service';
@@ -305,3 +305,4 @@ export class EmployeeManagementComponent implements OnInit {
     }
   }
 }
+*/
