@@ -21,6 +21,7 @@ public class DistrictRowMapper implements RowMapper<District> {
 		district.setDistrictId(rs.getInt("DISTRICT_ID"));
 		district.setDistrictName(rs.getString("DISTRICT_NAME"));
 		district.setStateId(rs.getInt("STATE_ID"));
+		district.setStateName(rs.getString("STATE_NAME"));
 		return district;
 	}
 }
