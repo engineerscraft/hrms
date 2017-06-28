@@ -11,6 +11,8 @@ import { AccountService } from './account.service';
 import { CollegeService } from './college.service';
 import { EmployeeService } from './employee.service';
 import { DepartmentService } from './department.service';
+import { OrganizationService } from './organization.service';
+import { UnitService } from './unit.service';
 import { DesignationService } from './designation.service';
 import { HttpService } from './http.service';
 import { AuthguardService } from './authguard.service';
@@ -19,10 +21,10 @@ import { HomeComponent } from './home/home.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
-import { EmployeeManagementComponent } from './employee-management/employee-management.component';
 import { EmployeeCreationComponent } from './employee-creation/employee-creation.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.component';
+import { EmployeeHierarchySearchComponent } from './employee-hierarchy-search/employee-hierarchy-search.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +34,10 @@ import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.co
     SideBarComponent,
     SpinnerComponent,
     AccountManagementComponent,
-    EmployeeManagementComponent,
     EmployeeCreationComponent,
     NotFoundComponent,
-    ForbiddenAccessComponent
+    ForbiddenAccessComponent,
+    EmployeeHierarchySearchComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,8 @@ import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.co
     HttpService,
     UserService,
     AuthguardService,
+    OrganizationService,
+    UnitService,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]
