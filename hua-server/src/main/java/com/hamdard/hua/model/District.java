@@ -15,6 +15,7 @@ public class District {
 	private int districtId;
 	private String districtName;
 	private int stateId;
+	private String stateName;
 
 	/**
 	 * @return the districtId
@@ -61,4 +62,27 @@ public class District {
 		this.stateId = stateId;
 	}
 
+    /**
+     * @return the stateName
+     */
+    public String getStateName() {
+        return stateName;
+    }
+
+    /**
+     * @param stateName the stateName to set
+     */
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "District [districtId=" + districtId + ", districtName=" + districtName + ", stateId=" + stateId + ", stateName=" + stateName + "]";
+    }
+    
+    
 }

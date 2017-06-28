@@ -1,5 +1,6 @@
 package com.hamdard.hua.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -35,10 +36,13 @@ public class EmployeeRepository {
 
     /***************************************** AUTOWIRED COMPONENTS **************************************/
     @Autowired
-    private JdbcTemplate        jdbcTemplate;
+    private JdbcTemplate                jdbcTemplate;
 
     @Autowired
-    private UnitRepository      unitRepo;
+    private UnitRepository              unitRepo;
+    
+    @Autowired
+    private AuthenticationRepository    authRepo;
 
     /**************************************** AUTOWIRED PROPERTIES**************************************/
 
@@ -68,6 +72,9 @@ public class EmployeeRepository {
     
     @Value("${sql.employee.insert.employee.optional.benefit}")
     private String              employeeOptionalBenefitsInsert;
+    
+    @Value("${sql.employee.get.appraisal.id}")
+    private String              getAppraisalId;
 
     /*****************************************************************************************************/
     
@@ -75,12 +82,20 @@ public class EmployeeRepository {
     public void createEmployee(Employee newEmployee) throws Exception {
         String employeeId           = this.generateEmployeeId(newEmployee.getEmployeeBasicInfo().getUnit());
         
-        this.insertBasicInfo        (employeeId,        newEmployee.getEmployeeBasicInfo());
-        this.insertAdditionalInfo   (employeeId,        newEmployee.getEmployeeAddlDetails());
-        this.insertEmployeeAddress  (employeeId,        newEmployee.getEmployeeAddress());
-        this.insertEmployeeHierarchy(employeeId,        newEmployee.getEmployeeHierarchy());
-        this.insertEmployeeProfile  (employeeId,        newEmployee.getEmployeeProfile());
-        //TODO: take care of salary and optional components
+        String entryDate            = newEmployee.getEmployeeBasicInfo().getEntryDate();
+        String entryBy              = newEmployee.getEmployeeBasicInfo().getEntryBy();
+        
+        this.insertBasicInfo            (employeeId,        newEmployee.getEmployeeBasicInfo());
+        this.insertAdditionalInfo       (employeeId,        newEmployee.getEmployeeAddlDetails());
+        this.insertEmployeeAddress      (employeeId,        newEmployee.getEmployeeAddress());
+        this.insertEmployeeHierarchy    (employeeId,        newEmployee.getEmployeeHierarchy(), entryDate);
+        this.insertEmployeeProfile      (employeeId,        newEmployee.getEmployeeProfile());
+        this.insertEmpSalaryComponents  (employeeId,        entryBy, 
+                                                            newEmployee.getEmployeeSalary(), entryDate);
+        //TODO: take care of optional components
+        
+        //create LDAP user
+        authRepo.createUser(employeeId, newEmployee);
     }
     
     /**TODO: Confirm logic
@@ -90,24 +105,45 @@ public class EmployeeRepository {
      * @param salaryComponents
      * @throws Exception
      */
-    private void insertEmpSalaryComponents(String employeeId, String entryBy, List<EmployeeSalary> salaryComponents) throws Exception {
+    private void insertEmpSalaryComponents(String employeeId, String entryBy, List<EmployeeSalary> salaryComponents, 
+            String entryDate) throws Exception {
         if(salaryComponents != null)
             for(EmployeeSalary salary: salaryComponents){
+                long appraisalId        = this.getAppraisalId(entryDate);
                 logger.info(sqlMarker, employeeSalaryInsert);
-                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}",
-                        null,
+                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}",
+                        () -> appraisalId,
                         () -> employeeId,
                         () -> salary.getSalaryComponent().getCompId(),
                         () -> entryBy,
+                        () -> entryDate,
                         () -> salary.getSalaryValue());
                 jdbcTemplate.update(employeeSalaryInsert, new Object[] {
-                        null,
+                        appraisalId,
                         employeeId,
                         salary.getSalaryComponent().getCompId(),
                         entryBy,
+                        entryDate,
                         salary.getSalaryValue()
                 });
             }
+    }
+    
+    private long getAppraisalId(String  entryDate) throws Exception{
+        logger.info(sqlMarker, getAppraisalId);
+        logger.info(sqlMarker, "Params {}, {}",
+                entryDate,
+                entryDate);
+        Long appraisalId        = null;
+        try{
+            appraisalId         = jdbcTemplate.queryForObject(getAppraisalId, 
+                new Object []{entryDate, entryDate}, Long.class);
+        }catch(Exception ex){
+            logger.debug("Given entryDate {} does not correspond to any appraisal cycle",
+                    () -> entryDate);
+            throw new Exception("Given entryDate " + entryDate + " does not correspond to any appraisal cycle");
+        }
+        return appraisalId;
     }
     
     /** TODO: Confirm logic
@@ -178,7 +214,7 @@ public class EmployeeRepository {
      * @param hierarchy
      * @throws Exception
      */
-    private void insertEmployeeHierarchy(String employeeId, EmployeeHierarchy hierarchy) throws Exception {
+    private void insertEmployeeHierarchy(String employeeId, EmployeeHierarchy hierarchy, String entryDate) throws Exception {
         logger.info(sqlMarker, employeeHierarchyInsert);
         logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
                 () -> employeeId,
@@ -192,7 +228,8 @@ public class EmployeeRepository {
                 () -> hierarchy.getMaternityLeave(),
                 () -> hierarchy.getSpecialLeave(),
                 () -> hierarchy.getProbationPeriodEndDate(),
-                () -> hierarchy.getNoticePeriodEndDate());
+                () -> hierarchy.getNoticePeriodEndDate(),
+                () -> entryDate);
 
         jdbcTemplate.update(employeeHierarchyInsert, new Object[] {
                 employeeId,
@@ -206,7 +243,8 @@ public class EmployeeRepository {
                 hierarchy.getMaternityLeave(),
                 hierarchy.getSpecialLeave(),
                 hierarchy.getProbationPeriodEndDate(),
-                hierarchy.getNoticePeriodEndDate()
+                hierarchy.getNoticePeriodEndDate(),
+                entryDate
         });
     }
     

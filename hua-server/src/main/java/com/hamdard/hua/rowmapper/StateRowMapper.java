@@ -20,6 +20,7 @@ public class StateRowMapper implements RowMapper<State> {
 		state.setStateId(rs.getInt("STATE_ID"));
 		state.setStateName(rs.getString("STATE_NAME"));;
 		state.setCountryId(rs.getInt("COUNTRY_ID"));
+		state.setCountryName(rs.getString("COUNTRY_NAME"));
 		return state;
 	}
 }
