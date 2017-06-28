@@ -17,5 +17,6 @@ public enum Privilege {
     GET_UNITS_OF_AN_ORG,
     READ_DEPTS_OF_A_UNIT,
     CREATE_AN_EMP,
+    DOCTYPE_ALL_READ_CMD,
     DEFAULT
 }

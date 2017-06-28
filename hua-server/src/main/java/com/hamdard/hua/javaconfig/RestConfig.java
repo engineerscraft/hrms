@@ -1,7 +1,9 @@
 package com.hamdard.hua.javaconfig;
 
 import javax.ws.rs.ApplicationPath;
+
 import org.glassfish.jersey.server.ResourceConfig;
+
 import com.hamdard.hua.filter.AuthenticationFilter;
 import com.hamdard.hua.filter.AuthorizationFilter;
 import com.hamdard.hua.rest.AccountResource;
@@ -41,6 +43,7 @@ public class RestConfig extends ResourceConfig {
                 CountryResource.class,
         		DistrictResource.class,
         		StateResource.class,
-        		EmployeeEndpoint.class);
+        		EmployeeEndpoint.class
+        		);
     }
 }
