@@ -2,7 +2,6 @@ package com.hamdard.hua.repository;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.naming.NamingException;
+import javax.naming.directory.Attribute;
+import javax.naming.directory.BasicAttribute;
+import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
 import javax.ws.rs.NotAuthorizedException;
 
@@ -28,6 +30,8 @@ import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
 import org.springframework.stereotype.Component;
 
+import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.Employee.EmployeeBasicInfo;
 import com.hamdard.hua.model.PasswordChangeDetails;
 import com.hamdard.hua.model.Permission;
 import com.hamdard.hua.model.Token;
@@ -98,6 +102,81 @@ public class AuthenticationRepository {
 		DirContextOperations context = ldapTemplate.lookupContext("cn=" + username + ",ou=users");
 		context.setAttributeValue("userPassword", digestSHA(pwdDetails.getNewPassword()));
 		ldapTemplate.modifyAttributes(context);
+	}
+	
+	/**
+	 * Get the full name to be used in LDAP
+	 * @param basicInfo
+	 * @return
+	 */
+	private String getFullName(EmployeeBasicInfo basicInfo){
+	    String fullName    = String.format("%s %s %s", basicInfo.getEmpFirstName(),
+	            basicInfo.getEmpMiddleName() == null? "" : basicInfo.getEmpMiddleName(),
+	            basicInfo.getEmpLastName());
+	    return fullName;
+	}
+	
+	//TODO Once date format is finalized include date into password
+	/**
+	 * Get the default passwprd for a new employee
+	 * @param employeeId
+	 * @param employee
+	 * @return
+	 */
+	private String getEmpPassword(String employeeId, Employee employee) {
+	    return employeeId;
+	}
+	
+	
+	/**
+	 * Create new user in LDAP
+	 * @param employeeId
+	 * @param employee
+	 * @throws Exception
+	 */
+	public void createUser(String employeeId, Employee employee) throws Exception {
+        try {
+            Attribute  sn                      = new BasicAttribute("sn"               , this.getFullName(employee.getEmployeeBasicInfo()));
+            Attribute  password                = new BasicAttribute("userPassword"     , this.getEmpPassword(employeeId, employee));
+
+            Attribute oc                       = new BasicAttribute("objectClass");  
+            oc.add("top");  
+            oc.add("person");  
+            oc.add("organizationalPerson");  
+            oc.add("inetOrgPerson");
+
+            BasicAttributes personEntry        = new BasicAttributes();    
+            personEntry.put(sn);  
+            personEntry.put(password);
+
+            personEntry.put(oc);      
+            String relativeDn                  = String.format("cn=%s,ou=users",    employeeId);
+            
+            ldapTemplate.bind(relativeDn, null, personEntry);
+            
+            //add the required roles to the new entry
+            this.addRole("EMPLOYEE",            relativeDn);
+            if(employee.getEmployeeBasicInfo().isHrFlag())
+                this.addRole("HR",              relativeDn);
+            if(employee.getEmployeeBasicInfo().isSupervisorFlag())
+                this.addRole("SUPERVISOR",    relativeDn);
+            
+        } catch (Exception e) {
+            logger.error("User creation failed", e);
+            throw e;
+        }
+	}
+	
+	private void addRole(String role, String relativeDn) throws Exception {
+	    String rolePath                 = String.format("cn=%s,ou=roleusers", role);
+	    DirContextOperations dirContext = ldapTemplate.lookupContext(rolePath);
+	    dirContext.addAttributeValue("uniqueMember",relativeDn + baseDn);
+        try{
+            ldapTemplate.modifyAttributes(dirContext);
+        }catch(Exception ex){
+            logger.error(ex);
+            throw ex;
+        }
 	}
 
 	public Jws<Claims> validateToken(String token) {

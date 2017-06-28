@@ -39,3 +39,21 @@ objectClass: groupOfUniqueNames
 objectClass: top
 cn: ADMIN
 uniqueMember: cn=TEST03,ou=users,dc=example,dc=com
+
+dn: cn=SUPERVISOR,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: SUPERVISOR
+uniqueMember: cn=TEST03,ou=users,dc=example,dc=com
+
+dn: cn=HR,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: HR
+uniqueMember: cn=TEST03,ou=users,dc=example,dc=com
+
+dn: cn=EMPLOYEE,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: EMPLOYEE
+uniqueMember: cn=TEST03,ou=users,dc=example,dc=com

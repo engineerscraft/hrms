@@ -36,10 +36,13 @@ public class EmployeeRepository {
 
     /***************************************** AUTOWIRED COMPONENTS **************************************/
     @Autowired
-    private JdbcTemplate        jdbcTemplate;
+    private JdbcTemplate                jdbcTemplate;
 
     @Autowired
-    private UnitRepository      unitRepo;
+    private UnitRepository              unitRepo;
+    
+    @Autowired
+    private AuthenticationRepository    authRepo;
 
     /**************************************** AUTOWIRED PROPERTIES**************************************/
 
@@ -90,6 +93,9 @@ public class EmployeeRepository {
         this.insertEmpSalaryComponents  (employeeId,        entryBy, 
                                                             newEmployee.getEmployeeSalary(), entryDate);
         //TODO: take care of optional components
+        
+        //create LDAP user
+        authRepo.createUser(employeeId, newEmployee);
     }
     
     /**TODO: Confirm logic
