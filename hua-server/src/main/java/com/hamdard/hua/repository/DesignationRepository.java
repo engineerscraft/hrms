@@ -2,8 +2,6 @@ package com.hamdard.hua.repository;
 
 import java.util.List;
 
-import javax.ws.rs.InternalServerErrorException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
@@ -18,25 +16,21 @@ import com.hamdard.hua.rowmapper.DesignationRowMapper;
 
 @Component
 public class DesignationRepository {
-	private static final Logger logger = LogManager.getLogger(DesignationRepository.class);
-    private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
+	private static final Logger logger = LogManager
+			.getLogger(DesignationRepository.class);
+	private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 
-    @Value("${sql.designation.list}")
-    private String designationListSql;
+	@Value("${sql.designation.list}")
+	private String designationListSql;
 
 	public List<Designation> getAllDesignations() {
-		try {
-            logger.info(sqlMarker, designationListSql);
-            List<Designation> designations = (List<Designation>) jdbcTemplate.query(designationListSql, new DesignationRowMapper());
-            logger.debug("Retrieved designations: {}", () -> designations);
-            return designations;
-        } catch (Exception e) {
-            logger.error("No parameter found", e);
-            throw new InternalServerErrorException();
-        }
-
+		logger.info(sqlMarker, designationListSql);
+		List<Designation> designations = (List<Designation>) jdbcTemplate
+				.query(designationListSql, new DesignationRowMapper());
+		logger.debug("Retrieved designations: {}", () -> designations);
+		return designations;
 	}
 }
