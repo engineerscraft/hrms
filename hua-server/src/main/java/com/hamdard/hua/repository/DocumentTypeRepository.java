@@ -31,7 +31,7 @@ public class DocumentTypeRepository {
 		logger.info(sqlMarker, docTypeListSql);
 		List<DocumentType> docTypeList = (List<DocumentType>) jdbcTemplate
 				.query(docTypeListSql, new DocumentTypeRowMapper());
-		logger.debug("Retrieved accounts: {}", () -> docTypeList);
+		logger.debug("Retrieved DocumentTypes: {}", () -> docTypeList);
 		return docTypeList;
 	}
 }
