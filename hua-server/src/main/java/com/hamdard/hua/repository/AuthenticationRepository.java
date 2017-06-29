@@ -136,9 +136,11 @@ public class AuthenticationRepository {
 	 */
 	public void createUser(String employeeId, Employee employee) throws Exception {
         try {
-            Attribute  sn                      = new BasicAttribute("sn"               , this.getFullName(employee.getEmployeeBasicInfo()));
+            String fullName                    = this.getFullName(employee.getEmployeeBasicInfo());
+            Attribute  sn                      = new BasicAttribute("sn"               , fullName);
             Attribute  password                = new BasicAttribute("userPassword"     , this.getEmpPassword(employeeId, employee));
-
+            Attribute  displayName             = new BasicAttribute("displayName"      , fullName);
+            
             Attribute oc                       = new BasicAttribute("objectClass");  
             oc.add("top");  
             oc.add("person");  
@@ -148,6 +150,7 @@ public class AuthenticationRepository {
             BasicAttributes personEntry        = new BasicAttributes();    
             personEntry.put(sn);  
             personEntry.put(password);
+            personEntry.put(displayName);
 
             personEntry.put(oc);      
             String relativeDn                  = String.format("cn=%s,ou=users",    employeeId);
@@ -170,7 +173,7 @@ public class AuthenticationRepository {
 	private void addRole(String role, String relativeDn) throws Exception {
 	    String rolePath                 = String.format("cn=%s,ou=roleusers", role);
 	    DirContextOperations dirContext = ldapTemplate.lookupContext(rolePath);
-	    dirContext.addAttributeValue("uniqueMember",relativeDn + baseDn);
+	    dirContext.addAttributeValue("uniqueMember",relativeDn + "," + baseDn);
         try{
             ldapTemplate.modifyAttributes(dirContext);
         }catch(Exception ex){
