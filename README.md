@@ -27,6 +27,8 @@
 CREATE SCHEMA HRMS;
 CREATE USER "hrmsapp" WITH CREATEROLE PASSWORD 'hrmsapp';
 GRANT ALL ON SCHEMA HRMS TO "hrmsapp";
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA HRMS TO "hrmsapp";
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA HRMS TO "hrmsapp";
 ```
 8. Use your favourite client to execute the scripts: hua_setup/all_ddl.sql, hua_setup/all_baseline.sql and hua_setup/all_test_data.sql
 
