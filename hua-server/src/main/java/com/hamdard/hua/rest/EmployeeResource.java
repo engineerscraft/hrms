@@ -20,7 +20,7 @@ import com.hamdard.hua.model.EmployeeOld;
 import com.hamdard.hua.repository.EmployeeRepositoryOld;
 
 @Component
-@Path("/employee")
+@Path("/v1/employee")
 public class EmployeeResource {
 
 	@Autowired private EmployeeRepositoryOld employeeRepository;
