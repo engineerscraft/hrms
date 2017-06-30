@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration monitorinterval="300" status="info" strict="true">
 	<Properties>
-		<Property name="filePath">${env:BSCS_LOG}/SCX</Property>
-		<Property name="filename">${env:BSCS_LOG}/SCX/scx
+		<Property name="filePath">${env:HRMS_HOME}/log</Property>
+		<Property name="filename">${env:HRMS_HOME}/log/hrms
 		</Property>
 		<property name="logSize">10 MB</property>
 	</Properties>
@@ -11,7 +11,7 @@
 			<PatternLayout pattern="%m%n" />
 		</Console>
 		<RollingFile name="RollingFileRegular" fileName="${filename}.log"
-			filePattern="${filePath}/sample-%d{yyyy-dd-MM}-%i.log">
+			filePattern="${filePath}/hrms-%d{yyyy-dd-MM}-%i.log">
 			<Filters>
 				<MarkerFilter marker="SQL" onMatch="ACCEPT" onMismatch="NEUTRAL" />
 			</Filters>

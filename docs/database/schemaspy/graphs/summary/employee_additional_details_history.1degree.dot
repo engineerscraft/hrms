@@ -16,21 +16,21 @@ digraph "employee_additional_details_history" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_additional_details_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_additional_details_history</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="NO_OF_SIBLINGS" COLSPAN="3" ALIGN="LEFT">NO_OF_SIBLINGS</TD></TR>
-      <TR><TD PORT="NO_OF_DEPENDENT" COLSPAN="3" ALIGN="LEFT">NO_OF_DEPENDENT</TD></TR>
-      <TR><TD PORT="NOMINEE_NAME1" COLSPAN="3" ALIGN="LEFT">NOMINEE_NAME1</TD></TR>
-      <TR><TD PORT="NOMINEE_NAME2" COLSPAN="3" ALIGN="LEFT">NOMINEE_NAME2</TD></TR>
-      <TR><TD PORT="NOMINEE_NAME3" COLSPAN="3" ALIGN="LEFT">NOMINEE_NAME3</TD></TR>
-      <TR><TD PORT="NOMINEE1_SHARE" COLSPAN="3" ALIGN="LEFT">NOMINEE1_SHARE</TD></TR>
-      <TR><TD PORT="NOMINEE2_SHARE" COLSPAN="3" ALIGN="LEFT">NOMINEE2_SHARE</TD></TR>
-      <TR><TD PORT="NOMINEE3_SHARE" COLSPAN="3" ALIGN="LEFT">NOMINEE3_SHARE</TD></TR>
-      <TR><TD PORT="EMERGENCY_CONTACT_NAME" COLSPAN="3" ALIGN="LEFT">EMERGENCY_CONTACT_NAME</TD></TR>
-      <TR><TD PORT="EMERGENCY_CONTACTNO" COLSPAN="3" ALIGN="LEFT">EMERGENCY_CONTACTNO</TD></TR>
-      <TR><TD PORT="PRE_MEDICAL_CHKUP_DATE" COLSPAN="3" ALIGN="LEFT">PRE_MEDICAL_CHKUP_DATE</TD></TR>
-      <TR><TD PORT="MEDICAL_REPORT_COMMENT" COLSPAN="3" ALIGN="LEFT">MEDICAL_REPORT_COMMENT</TD></TR>
-      <TR><TD PORT="MOD_BY" COLSPAN="3" ALIGN="LEFT">MOD_BY</TD></TR>
-      <TR><TD PORT="LAST_MOD_DATE" COLSPAN="3" ALIGN="LEFT">LAST_MOD_DATE</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="no_of_siblings" COLSPAN="3" ALIGN="LEFT">no_of_siblings</TD></TR>
+      <TR><TD PORT="no_of_dependent" COLSPAN="3" ALIGN="LEFT">no_of_dependent</TD></TR>
+      <TR><TD PORT="nominee_name1" COLSPAN="3" ALIGN="LEFT">nominee_name1</TD></TR>
+      <TR><TD PORT="nominee_name2" COLSPAN="3" ALIGN="LEFT">nominee_name2</TD></TR>
+      <TR><TD PORT="nominee_name3" COLSPAN="3" ALIGN="LEFT">nominee_name3</TD></TR>
+      <TR><TD PORT="nominee1_share" COLSPAN="3" ALIGN="LEFT">nominee1_share</TD></TR>
+      <TR><TD PORT="nominee2_share" COLSPAN="3" ALIGN="LEFT">nominee2_share</TD></TR>
+      <TR><TD PORT="nominee3_share" COLSPAN="3" ALIGN="LEFT">nominee3_share</TD></TR>
+      <TR><TD PORT="emergency_contact_name" COLSPAN="3" ALIGN="LEFT">emergency_contact_name</TD></TR>
+      <TR><TD PORT="emergency_contactno" COLSPAN="3" ALIGN="LEFT">emergency_contactno</TD></TR>
+      <TR><TD PORT="pre_medical_chkup_date" COLSPAN="3" ALIGN="LEFT">pre_medical_chkup_date</TD></TR>
+      <TR><TD PORT="medical_report_comment" COLSPAN="3" ALIGN="LEFT">medical_report_comment</TD></TR>
+      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
+      <TR><TD PORT="last_mod_date" COLSPAN="3" ALIGN="LEFT">last_mod_date</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/employee_additional_details_history.html#"

@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="hrmsdb" schema="hrms" type="PostgreSQL - 9.6.3">
+   <tables>
+      <table name="access_token" numRows="3" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="access_id" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="1" name="insert_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="user_name" nullable="true" remarks="" size="30" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="expiry_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="4" name="refresh_count" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="last_refresh_date" nullable="true" remarks="" size="22" type="timestamp"/>
+      </table>
+      <table name="address" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="address_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="address_type" nullable="false" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="house_no" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="street_name" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="area" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="region" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="pin_no" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="7" name="district_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="district_id" foreignKey="address_district_id_fkey" implied="false" onDeleteCascade="false" table="district_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="8" name="state_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="state_id" foreignKey="address_state_id_fkey" implied="false" onDeleteCascade="false" table="state_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="9" name="country_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="country_id" foreignKey="address_country_id_fkey" implied="false" onDeleteCascade="false" table="country_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="10" name="description" nullable="true" remarks="" size="100" type="varchar"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="1"/>
+         <primaryKey column="address_type" sequenceNumberInPK="2"/>
+         <index name="address_pkey" unique="true">
+            <column ascending="true" name="emp_id"/>
+            <column ascending="true" name="address_type"/>
+         </index>
+      </table>
+      <table name="app_sequence" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="seq_name" nullable="false" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="seq_value" nullable="false" remarks="" size="10" type="int4"/>
+         <primaryKey column="seq_name" sequenceNumberInPK="1"/>
+         <index name="app_sequence_pkey" unique="true">
+            <column ascending="true" name="seq_name"/>
+         </index>
+      </table>
+      <table name="appraisal_cycle" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="appraisal_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="appraisal_id" foreignKey="appraisal_rating_appraisal_id_fkey" implied="false" onDeleteCascade="false" table="appraisal_rating"/>
+            <child column="appraisal_id" foreignKey="employee_salary_appraisal_id_fkey" implied="false" onDeleteCascade="false" table="employee_salary"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="cycle_name" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="start_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="end_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="4" name="sal_rev_start_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="5" name="sal_rev_end_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="effective_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="7" name="activation_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <primaryKey column="appraisal_id" sequenceNumberInPK="1"/>
+         <index name="appraisal_cycle_pkey" unique="true">
+            <column ascending="true" name="appraisal_id"/>
+         </index>
+      </table>
+      <table name="appraisal_rating" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="appraisal_rating_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="appraisal_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="appraisal_id" foreignKey="appraisal_rating_appraisal_id_fkey" implied="false" onDeleteCascade="false" table="appraisal_cycle"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="performance_indicator" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="performance_description" nullable="true" remarks="" size="2000" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="job_role_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="job_role_id" foreignKey="appraisal_rating_job_role_id_fkey" implied="false" onDeleteCascade="false" table="job_role_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="designation_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="designation_id" foreignKey="appraisal_rating_designation_id_fkey" implied="false" onDeleteCascade="false" table="designation_master"/>
+         </column>
+         <primaryKey column="appraisal_id" sequenceNumberInPK="1"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="2"/>
+         <index name="appraisal_rating_pkey" unique="true">
+            <column ascending="true" name="appraisal_id"/>
+            <column ascending="true" name="emp_id"/>
+         </index>
+      </table>
+      <table name="country_master" numRows="246" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="country_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="country_id" foreignKey="address_country_id_fkey" implied="false" onDeleteCascade="false" table="address"/>
+            <child column="country_id" foreignKey="state_master_country_id_fkey" implied="false" onDeleteCascade="false" table="state_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="country_name" nullable="true" remarks="" size="50" type="varchar"/>
+         <primaryKey column="country_id" sequenceNumberInPK="1"/>
+         <index name="country_master_pkey" unique="true">
+            <column ascending="true" name="country_id"/>
+         </index>
+      </table>
+      <table name="department_master" numRows="13" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="department_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="department_id" foreignKey="employee_department_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+            <child column="department_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_history"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="department_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="unit_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="unit_id" foreignKey="department_master_unit_id_fkey" implied="false" onDeleteCascade="false" table="unit_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="address" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="parent_department_id" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="department_id" sequenceNumberInPK="1"/>
+         <index name="department_master_pkey" unique="true">
+            <column ascending="true" name="department_id"/>
+         </index>
+      </table>
+      <table name="designation_master" numRows="11" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="designation_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="designation_id" foreignKey="appraisal_rating_designation_id_fkey" implied="false" onDeleteCascade="false" table="appraisal_rating"/>
+            <child column="designation_id" foreignKey="job_role_designation_designation_id_fkey" implied="false" onDeleteCascade="false" table="job_role_designation"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="designation" nullable="true" remarks="" size="32" type="varchar"/>
+         <primaryKey column="designation_id" sequenceNumberInPK="1"/>
+         <index name="designation_master_pkey" unique="true">
+            <column ascending="true" name="designation_id"/>
+         </index>
+      </table>
+      <table name="district_master" numRows="48314" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="district_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="district_id" foreignKey="address_district_id_fkey" implied="false" onDeleteCascade="false" table="address"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="district_name" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="state_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="state_id" foreignKey="district_master_state_id_fkey" implied="false" onDeleteCascade="false" table="state_master"/>
+         </column>
+         <primaryKey column="district_id" sequenceNumberInPK="1"/>
+         <index name="district_master_pkey" unique="true">
+            <column ascending="true" name="district_id"/>
+         </index>
+      </table>
+      <table name="doc_type_master" numRows="5" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="doc_type_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="identity_doc_type_id" foreignKey="employee_identity_doc_type_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+            <child column="doc_type_id" foreignKey="employee_docs_doc_type_id_fkey" implied="false" onDeleteCascade="false" table="employee_docs"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="doc_type_name" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="identity_doc" nullable="true" remarks="" size="1" type="varchar"/>
+         <primaryKey column="doc_type_id" sequenceNumberInPK="1"/>
+         <index name="doc_type_master_pkey" unique="true">
+            <column ascending="true" name="doc_type_id"/>
+         </index>
+      </table>
+      <table name="employee" numRows="100" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <child column="emp_id" foreignKey="address_emp_id_fkey" implied="false" onDeleteCascade="false" table="address"/>
+            <child column="emp_id" foreignKey="appraisal_rating_emp_id_fkey" implied="false" onDeleteCascade="false" table="appraisal_rating"/>
+            <child column="emp_id" foreignKey="employee_additional_details_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee_additional_details"/>
+            <child column="emp_id" foreignKey="employee_docs_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee_docs"/>
+            <child column="emp_id" foreignKey="employee_hierarchy_status_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee_hierarchy_status"/>
+            <child column="hr_id" foreignKey="employee_hierarchy_status_hr_id_fkey" implied="false" onDeleteCascade="false" table="employee_hierarchy_status"/>
+            <child column="supervisor_id" foreignKey="employee_hierarchy_status_supervisor_id_fkey" implied="false" onDeleteCascade="false" table="employee_hierarchy_status"/>
+            <child column="emp_id" foreignKey="employee_optional_benefits_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee_optional_benefits"/>
+            <child column="emp_id" foreignKey="employee_profile_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee_profile"/>
+            <child column="emp_id" foreignKey="employee_salary_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee_salary"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title" nullable="true" remarks="" size="5" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="employee_first_name" nullable="true" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="employee_middle_name" nullable="true" remarks="" size="30" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="employee_last_name" nullable="true" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="sex" nullable="true" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="emp_type" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="marital_status" nullable="true" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="date_of_joining" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="9" name="org_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="org_id" foreignKey="employee_org_id_fkey" implied="false" onDeleteCascade="false" table="organisation_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="10" name="unit_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="unit_id" foreignKey="employee_unit_id_fkey" implied="false" onDeleteCascade="false" table="unit_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="11" name="department_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="department_id" foreignKey="employee_department_id_fkey" implied="false" onDeleteCascade="false" table="department_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="12" name="nationality" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="13" name="identity_doc_type_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="doc_type_id" foreignKey="employee_identity_doc_type_id_fkey" implied="false" onDeleteCascade="false" table="doc_type_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="14" name="identity_number" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="15" name="date_of_birth" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="16" name="father_name" nullable="true" remarks="" size="120" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="17" name="email_id" nullable="true" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="18" name="contactno" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="19" name="entry_by" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="20" name="entry_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="21" name="hr_flag" nullable="true" remarks="" size="1" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="22" name="supervisor_flag" nullable="true" remarks="" size="1" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="23" name="employee_image" nullable="true" remarks="" size="2147483647" type="bytea"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="1"/>
+         <index name="employee_pkey" unique="true">
+            <column ascending="true" name="emp_id"/>
+         </index>
+      </table>
+      <table name="employee_additional_details" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="employee_additional_details_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="no_of_siblings" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="no_of_dependent" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="nominee_name1" nullable="true" remarks="" size="120" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="nominee_name2" nullable="true" remarks="" size="120" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="nominee_name3" nullable="true" remarks="" size="120" type="varchar"/>
+         <column autoUpdated="false" digits="17" id="6" name="nominee1_share" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="17" id="7" name="nominee2_share" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="17" id="8" name="nominee3_share" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="0" id="9" name="emergency_contact_name" nullable="true" remarks="" size="30" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="emergency_contactno" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="11" name="pre_medical_chkup_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="12" name="medical_report_comment" nullable="true" remarks="" size="32" type="varchar"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="1"/>
+         <index name="employee_additional_details_pkey" unique="true">
+            <column ascending="true" name="emp_id"/>
+         </index>
+      </table>
+      <table name="employee_additional_details_history" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_hierarchy_status"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="no_of_siblings" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="no_of_dependent" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="nominee_name1" nullable="true" remarks="" size="120" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="nominee_name2" nullable="true" remarks="" size="120" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="nominee_name3" nullable="true" remarks="" size="120" type="varchar"/>
+         <column autoUpdated="false" digits="17" id="6" name="nominee1_share" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="17" id="7" name="nominee2_share" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="17" id="8" name="nominee3_share" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="0" id="9" name="emergency_contact_name" nullable="true" remarks="" size="30" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="emergency_contactno" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="11" name="pre_medical_chkup_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="12" name="medical_report_comment" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="13" name="mod_by" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="14" name="last_mod_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="1"/>
+         <index name="employee_additional_details_history_pkey" unique="true">
+            <column ascending="true" name="emp_id"/>
+         </index>
+         <index name="emp_add_det_idx" unique="false">
+            <column ascending="true" name="emp_id"/>
+         </index>
+      </table>
+      <table name="employee_docs" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="employee_docs_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="doc_type_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="doc_type_id" foreignKey="employee_docs_doc_type_id_fkey" implied="false" onDeleteCascade="false" table="doc_type_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="remarks" nullable="true" remarks="" size="2000" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="upload_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="4" name="uploaded_by" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="document" nullable="true" remarks="" size="2147483647" type="bytea"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="1"/>
+         <primaryKey column="doc_type_id" sequenceNumberInPK="2"/>
+         <index name="employee_docs_pkey" unique="true">
+            <column ascending="true" name="emp_id"/>
+            <column ascending="true" name="doc_type_id"/>
+         </index>
+      </table>
+      <table name="employee_hierarchy_status" numRows="100" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <child column="emp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_additional_details_history"/>
+            <child column="emp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_hierarchy_status_history"/>
+            <child column="emp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_history"/>
+            <child column="emp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_profile_history"/>
+            <parent column="emp_id" foreignKey="employee_hierarchy_status_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="supervisor_id" nullable="true" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="employee_hierarchy_status_supervisor_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="hr_id" nullable="true" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="employee_hierarchy_status_hr_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="status" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="cl" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="pl" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="6" name="paternity_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="7" name="sick_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="8" name="maternity_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="9" name="special_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="10" name="probation_period_end_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="11" name="notice_period_last_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="12" name="last_mod_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="1"/>
+         <index name="employee_hierarchy_status_pkey" unique="true">
+            <column ascending="true" name="emp_id"/>
+         </index>
+         <index name="emp_hrchy_idx_1" unique="false">
+            <column ascending="true" name="hr_id"/>
+         </index>
+         <index name="emp_hrchy_idx_2" unique="false">
+            <column ascending="true" name="supervisor_id"/>
+         </index>
+      </table>
+      <table name="employee_hierarchy_status_history" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_hierarchy_status"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="supervisor_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="hr_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="status" nullable="true" remarks="" size="4" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="cl" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="pl" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="6" name="paternity_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="7" name="sick_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="8" name="maternity_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="9" name="special_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="10" name="probation_period_end_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="11" name="notice_period_last_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="12" name="last_mod_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="13" name="mod_by" nullable="true" remarks="" size="32" type="varchar"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="1"/>
+         <index name="employee_hierarchy_status_history_pkey" unique="true">
+            <column ascending="true" name="emp_id"/>
+         </index>
+         <index name="emp_hrchy_hist_idx_1" unique="false">
+            <column ascending="true" name="emp_id"/>
+         </index>
+         <index name="emp_hrchy_hist_idx_2" unique="false">
+            <column ascending="true" name="hr_id"/>
+         </index>
+         <index name="emp_hrchy_hist_idx_3" unique="false">
+            <column ascending="true" name="supervisor_id"/>
+         </index>
+      </table>
+      <table name="employee_history" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_hierarchy_status"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title" nullable="true" remarks="" size="5" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="employee_first_name" nullable="true" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="employee_middle_name" nullable="true" remarks="" size="30" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="employee_last_name" nullable="true" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="sex" nullable="true" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="emp_type" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="marital_status" nullable="true" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="date_of_joining" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="9" name="org_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="org_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="organisation_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="10" name="unit_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="unit_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="unit_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="11" name="department_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="department_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="department_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="12" name="nationality" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="13" name="identity_doc_type_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="14" name="identity_number" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="15" name="date_of_birth" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="16" name="father_name" nullable="true" remarks="" size="120" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="17" name="email_id" nullable="true" remarks="" size="30" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="18" name="contactno" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="19" name="entry_by" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="20" name="entry_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="21" name="hr_flag" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="22" name="supervisor_flag" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="23" name="employee_image" nullable="true" remarks="" size="2147483647" type="bytea"/>
+         <column autoUpdated="false" digits="0" id="24" name="mod_by" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="25" name="last_mod_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="1"/>
+         <index name="employee_history_pkey" unique="true">
+            <column ascending="true" name="emp_id"/>
+         </index>
+         <index name="emp_hist_idx" unique="false">
+            <column ascending="true" name="emp_id"/>
+         </index>
+      </table>
+      <table name="employee_optional_benefits" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="benefit_id" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="1" name="emp_id" nullable="true" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="employee_optional_benefits_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="opt_comp_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="opt_comp_id" foreignKey="employee_optional_benefits_opt_comp_id_fkey" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="sal_opt_flag" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="17" id="4" name="sal_opt_value" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="0" id="5" name="sal_opt_start_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="sal_opt_end_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="7" name="next_due_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="remarks" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="9" name="entry_by" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="entry_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="11" name="frequency" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="12" name="no_of_iteration" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="benefit_id" sequenceNumberInPK="1"/>
+         <index name="employee_optional_benefits_pkey" unique="true">
+            <column ascending="true" name="benefit_id"/>
+         </index>
+         <index name="emp_opt_ben_idx_1" unique="false">
+            <column ascending="true" name="emp_id"/>
+         </index>
+         <index name="emp_opt_ben_idx_2" unique="false">
+            <column ascending="true" name="opt_comp_id"/>
+         </index>
+      </table>
+      <table name="employee_profile" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="employee_profile_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="qualification" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="comments" nullable="true" remarks="" size="52" type="varchar"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="1"/>
+         <index name="employee_profile_pkey" unique="true">
+            <column ascending="true" name="emp_id"/>
+         </index>
+      </table>
+      <table name="employee_profile_history" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="emp_id" nullable="true" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_hierarchy_status"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="qualification" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="certificate_doc" nullable="true" remarks="" size="2147483647" type="bytea"/>
+         <column autoUpdated="false" digits="0" id="4" name="identification_doc" nullable="true" remarks="" size="2147483647" type="bytea"/>
+         <column autoUpdated="false" digits="0" id="5" name="employee_image" nullable="true" remarks="" size="2147483647" type="bytea"/>
+         <column autoUpdated="false" digits="0" id="6" name="comments" nullable="true" remarks="" size="52" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="mod_by" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="last_mod_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <index name="emp_prof_hist_idx" unique="false">
+            <column ascending="true" name="emp_id"/>
+         </index>
+      </table>
+      <table name="employee_salary" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="appraisal_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="appraisal_id" foreignKey="employee_salary_appraisal_id_fkey" implied="false" onDeleteCascade="false" table="appraisal_cycle"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="emp_id" nullable="false" remarks="" size="20" type="varchar">
+            <parent column="emp_id" foreignKey="employee_salary_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="comp_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="comp_id" foreignKey="employee_salary_comp_id_fkey" implied="false" onDeleteCascade="false" table="salary_component_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="entry_by" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="entry_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="2" id="5" name="sal_value" nullable="true" remarks="" size="32" type="numeric"/>
+         <primaryKey column="appraisal_id" sequenceNumberInPK="1"/>
+         <primaryKey column="emp_id" sequenceNumberInPK="2"/>
+         <primaryKey column="comp_id" sequenceNumberInPK="3"/>
+         <index name="employee_salary_pkey" unique="true">
+            <column ascending="true" name="appraisal_id"/>
+            <column ascending="true" name="emp_id"/>
+            <column ascending="true" name="comp_id"/>
+         </index>
+      </table>
+      <table name="grade_master" numRows="10" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="grade_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="grade_id" foreignKey="job_role_master_grade_id_fkey" implied="false" onDeleteCascade="false" table="job_role_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="grade" nullable="true" remarks="" size="32" type="varchar"/>
+         <primaryKey column="grade_id" sequenceNumberInPK="1"/>
+         <index name="grade_master_pkey" unique="true">
+            <column ascending="true" name="grade_id"/>
+         </index>
+      </table>
+      <table name="job_role_designation" numRows="13" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="job_role_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="job_role_id" foreignKey="job_role_designation_job_role_id_fkey" implied="false" onDeleteCascade="false" table="job_role_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="designation_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="designation_id" foreignKey="job_role_designation_designation_id_fkey" implied="false" onDeleteCascade="false" table="designation_master"/>
+         </column>
+         <primaryKey column="job_role_id" sequenceNumberInPK="1"/>
+         <primaryKey column="designation_id" sequenceNumberInPK="2"/>
+         <index name="job_role_designation_pkey" unique="true">
+            <column ascending="true" name="job_role_id"/>
+            <column ascending="true" name="designation_id"/>
+         </index>
+      </table>
+      <table name="job_role_master" numRows="10" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="job_role_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="job_role_id" foreignKey="appraisal_rating_job_role_id_fkey" implied="false" onDeleteCascade="false" table="appraisal_rating"/>
+            <child column="job_role_id" foreignKey="job_role_designation_job_role_id_fkey" implied="false" onDeleteCascade="false" table="job_role_designation"/>
+            <child column="job_role_id" foreignKey="salary_master_job_role_id_fkey" implied="false" onDeleteCascade="false" table="salary_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="org_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="org_id" foreignKey="job_role_master_org_id_fkey" implied="false" onDeleteCascade="false" table="organisation_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="grade_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="grade_id" foreignKey="job_role_master_grade_id_fkey" implied="false" onDeleteCascade="false" table="grade_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="probation_notice_period" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="notice_period" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="job_role_id" sequenceNumberInPK="1"/>
+         <index name="job_role_master_pkey" unique="true">
+            <column ascending="true" name="job_role_id"/>
+         </index>
+         <index name="job_role_master_org_id_grade_id_key" unique="true">
+            <column ascending="true" name="org_id"/>
+            <column ascending="true" name="grade_id"/>
+         </index>
+      </table>
+      <table name="org_leave" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="org_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="org_id" foreignKey="org_leave_org_id_fkey" implied="false" onDeleteCascade="false" table="organisation_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="probation_flag" nullable="true" remarks="" size="1" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="cl" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="pl" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="paternity_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="sick_leave" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="6" name="maternity_leave" nullable="true" remarks="" size="10" type="int4"/>
+      </table>
+      <table name="organisation_master" numRows="1" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="org_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="org_id" foreignKey="employee_org_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+            <child column="org_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_history"/>
+            <child column="org_id" foreignKey="job_role_master_org_id_fkey" implied="false" onDeleteCascade="false" table="job_role_master"/>
+            <child column="org_id" foreignKey="org_leave_org_id_fkey" implied="false" onDeleteCascade="false" table="org_leave"/>
+            <child column="org_id" foreignKey="unit_master_org_id_fkey" implied="false" onDeleteCascade="false" table="unit_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="org_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="org_type_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="org_type_id" foreignKey="organisation_master_org_type_id_fkey" implied="false" onDeleteCascade="false" table="organisation_type_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="address" nullable="true" remarks="" size="256" type="varchar"/>
+         <primaryKey column="org_id" sequenceNumberInPK="1"/>
+         <index name="organisation_master_pkey" unique="true">
+            <column ascending="true" name="org_id"/>
+         </index>
+      </table>
+      <table name="organisation_type_master" numRows="1" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="org_type_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="org_type_id" foreignKey="organisation_master_org_type_id_fkey" implied="false" onDeleteCascade="false" table="organisation_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="org_type_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description" nullable="true" remarks="" size="200" type="varchar"/>
+         <primaryKey column="org_type_id" sequenceNumberInPK="1"/>
+         <index name="organisation_type_master_pkey" unique="true">
+            <column ascending="true" name="org_type_id"/>
+         </index>
+      </table>
+      <table name="permission_master" numRows="27" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="permission_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="permission_id" foreignKey="role_permission_permission_id_fkey" implied="false" onDeleteCascade="false" table="role_permission"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="permission_name" nullable="true" remarks="" size="30" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="permission_type" nullable="true" remarks="" size="1" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="resource_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <primaryKey column="permission_id" sequenceNumberInPK="1"/>
+         <index name="permission_master_pkey" unique="true">
+            <column ascending="true" name="permission_id"/>
+         </index>
+      </table>
+      <table name="role_master" numRows="2" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="role_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="role_id" foreignKey="role_permission_role_id_fkey" implied="false" onDeleteCascade="false" table="role_permission"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="role_name" nullable="true" remarks="" size="30" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="role_description" nullable="true" remarks="" size="60" type="varchar"/>
+         <primaryKey column="role_id" sequenceNumberInPK="1"/>
+         <index name="role_master_pkey" unique="true">
+            <column ascending="true" name="role_id"/>
+         </index>
+      </table>
+      <table name="role_permission" numRows="27" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="role_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="role_id" foreignKey="role_permission_role_id_fkey" implied="false" onDeleteCascade="false" table="role_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="permission_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="permission_id" foreignKey="role_permission_permission_id_fkey" implied="false" onDeleteCascade="false" table="permission_master"/>
+         </column>
+         <primaryKey column="role_id" sequenceNumberInPK="1"/>
+         <primaryKey column="permission_id" sequenceNumberInPK="2"/>
+         <index name="role_permission_pkey" unique="true">
+            <column ascending="true" name="role_id"/>
+            <column ascending="true" name="permission_id"/>
+         </index>
+      </table>
+      <table name="salary_component_master" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="comp_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="comp_id" foreignKey="employee_salary_comp_id_fkey" implied="false" onDeleteCascade="false" table="employee_salary"/>
+            <child column="sal_comp_id" foreignKey="sal_comp_fk" implied="false" onDeleteCascade="false" table="salary_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="component_name" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="sal_component" nullable="true" remarks="" size="32" type="varchar"/>
+         <primaryKey column="comp_id" sequenceNumberInPK="1"/>
+         <index name="salary_component_master_pkey" unique="true">
+            <column ascending="true" name="comp_id"/>
+         </index>
+      </table>
+      <table name="salary_master" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="salary_id" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="job_role_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="job_role_id" foreignKey="salary_master_job_role_id_fkey" implied="false" onDeleteCascade="false" table="job_role_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="sal_comp_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="comp_id" foreignKey="sal_comp_fk" implied="false" onDeleteCascade="false" table="salary_component_master"/>
+            <parent column="opt_comp_id" foreignKey="sal_opt_comp_fk" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
+         </column>
+         <column autoUpdated="false" digits="2" id="4" name="sal_value" nullable="true" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="2" id="5" name="max_allow_limit" nullable="true" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="6" name="sal_opt_comp_flag" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="salary_id" sequenceNumberInPK="1"/>
+         <index name="salary_master_pkey" unique="true">
+            <column ascending="true" name="salary_id"/>
+         </index>
+         <index name="salary_master_job_role_id_sal_comp_id_key" unique="true">
+            <column ascending="true" name="job_role_id"/>
+            <column ascending="true" name="sal_comp_id"/>
+         </index>
+      </table>
+      <table name="salary_opt_component_master" numRows="0" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="opt_comp_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="opt_comp_id" foreignKey="employee_optional_benefits_opt_comp_id_fkey" implied="false" onDeleteCascade="false" table="employee_optional_benefits"/>
+            <child column="sal_comp_id" foreignKey="sal_opt_comp_fk" implied="false" onDeleteCascade="false" table="salary_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="opt_component_name" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="sal_opt_component" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="restriction_window" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="frequency" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="6" name="end_date" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="7" name="credit_debit_flag" nullable="true" remarks="" size="1" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="emp_opt_out_flag" nullable="true" remarks="" size="1" type="varchar"/>
+         <primaryKey column="opt_comp_id" sequenceNumberInPK="1"/>
+         <index name="salary_opt_component_master_pkey" unique="true">
+            <column ascending="true" name="opt_comp_id"/>
+         </index>
+      </table>
+      <table name="state_master" numRows="4120" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="state_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="state_id" foreignKey="address_state_id_fkey" implied="false" onDeleteCascade="false" table="address"/>
+            <child column="state_id" foreignKey="district_master_state_id_fkey" implied="false" onDeleteCascade="false" table="district_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="state_name" nullable="true" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="country_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="country_id" foreignKey="state_master_country_id_fkey" implied="false" onDeleteCascade="false" table="country_master"/>
+         </column>
+         <primaryKey column="state_id" sequenceNumberInPK="1"/>
+         <index name="state_master_pkey" unique="true">
+            <column ascending="true" name="state_id"/>
+         </index>
+      </table>
+      <table name="unit_master" numRows="1" remarks="" schema="hrms" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="unit_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="unit_id" foreignKey="department_master_unit_id_fkey" implied="false" onDeleteCascade="false" table="department_master"/>
+            <child column="unit_id" foreignKey="employee_unit_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
+            <child column="unit_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_history"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="unit_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="org_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="org_id" foreignKey="unit_master_org_id_fkey" implied="false" onDeleteCascade="false" table="organisation_master"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="emp_id_prefix" nullable="true" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="emp_id_seq_name" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="address" nullable="true" remarks="" size="256" type="varchar"/>
+         <primaryKey column="unit_id" sequenceNumberInPK="1"/>
+         <index name="unit_master_pkey" unique="true">
+            <column ascending="true" name="unit_id"/>
+         </index>
+      </table>
+   </tables>
+</database>

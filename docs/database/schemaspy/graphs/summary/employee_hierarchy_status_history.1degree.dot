@@ -16,20 +16,20 @@ digraph "employee_hierarchy_status_history" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_hierarchy_status_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status_history</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="SUPERVISOR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">SUPERVISOR_ID</TD></TR>
-      <TR><TD PORT="HR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">HR_ID</TD></TR>
-      <TR><TD PORT="STATUS" COLSPAN="3" ALIGN="LEFT">STATUS</TD></TR>
-      <TR><TD PORT="CL" COLSPAN="3" ALIGN="LEFT">CL</TD></TR>
-      <TR><TD PORT="PL" COLSPAN="3" ALIGN="LEFT">PL</TD></TR>
-      <TR><TD PORT="PATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">PATERNITY_LEAVE</TD></TR>
-      <TR><TD PORT="SICK_LEAVE" COLSPAN="3" ALIGN="LEFT">SICK_LEAVE</TD></TR>
-      <TR><TD PORT="MATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">MATERNITY_LEAVE</TD></TR>
-      <TR><TD PORT="SPECIAL_LEAVE" COLSPAN="3" ALIGN="LEFT">SPECIAL_LEAVE</TD></TR>
-      <TR><TD PORT="PROBATION_PERIOD_END_DATE" COLSPAN="3" ALIGN="LEFT">PROBATION_PERIOD_END_DATE</TD></TR>
-      <TR><TD PORT="NOTICE_PERIOD_LAST_DATE" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD_LAST_DATE</TD></TR>
-      <TR><TD PORT="LAST_MOD_DATE" COLSPAN="3" ALIGN="LEFT">LAST_MOD_DATE</TD></TR>
-      <TR><TD PORT="MOD_BY" COLSPAN="3" ALIGN="LEFT">MOD_BY</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="supervisor_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">supervisor_id</TD></TR>
+      <TR><TD PORT="hr_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">hr_id</TD></TR>
+      <TR><TD PORT="status" COLSPAN="3" ALIGN="LEFT">status</TD></TR>
+      <TR><TD PORT="cl" COLSPAN="3" ALIGN="LEFT">cl</TD></TR>
+      <TR><TD PORT="pl" COLSPAN="3" ALIGN="LEFT">pl</TD></TR>
+      <TR><TD PORT="paternity_leave" COLSPAN="3" ALIGN="LEFT">paternity_leave</TD></TR>
+      <TR><TD PORT="sick_leave" COLSPAN="3" ALIGN="LEFT">sick_leave</TD></TR>
+      <TR><TD PORT="maternity_leave" COLSPAN="3" ALIGN="LEFT">maternity_leave</TD></TR>
+      <TR><TD PORT="special_leave" COLSPAN="3" ALIGN="LEFT">special_leave</TD></TR>
+      <TR><TD PORT="probation_period_end_date" COLSPAN="3" ALIGN="LEFT">probation_period_end_date</TD></TR>
+      <TR><TD PORT="notice_period_last_date" COLSPAN="3" ALIGN="LEFT">notice_period_last_date</TD></TR>
+      <TR><TD PORT="last_mod_date" COLSPAN="3" ALIGN="LEFT">last_mod_date</TD></TR>
+      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/employee_hierarchy_status_history.html#"

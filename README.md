@@ -1,6 +1,6 @@
 # Software Requirements
-1. MySQL
-2. MySQL Workbench (https://downloads.mysql.com/archives/workbench/) - Download zip version 
+1. PostgreSQL (9.6.3) - https://www.enterprisedb.com/postgresql-963-binaries-win64?ls=Crossover&type=Crossover
+2. Pgadmin 4 (PostgreSQL Client - https://www.postgresql.org/ftp/pgadmin/pgadmin4/v1.5/windows/)
 3. Apache DS
 4. JXplorer (LDAP Client)
 5. Apache Maven
@@ -14,6 +14,25 @@
 # Code Checkout
 1. Go to a folder where you want to checkout the entire hrms folder
 2. Run the command `git clone https://github.com/saptarshibasu/hrms.git`
+
+# Database Setup
+1. Add the bin/ location of the extracted PostgreSQL folder in the environment PATH variable
+2. Open a command prompt and run the following command to initialize a new database: `initdb.exe <filesystem location of the database files>`
+3. Start the database by running the command: `pg_ctl -D <location given in step 2> -l <log file name along with path> start`
+4. At any point of time, the database can be stopped by using the command: `pg_ctl -D <location given in step 2> stop`
+5. Create a new database with the command: `createdb hrmsdb`
+6. login to the database with the command: `psql -d hrmsdb`. 
+7. Run the following set of SQL to setup the schema and user:
+```
+CREATE SCHEMA HRMS;
+CREATE USER "hrmsapp" WITH CREATEROLE PASSWORD 'hrmsapp';
+GRANT ALL ON SCHEMA HRMS TO "hrmsapp";
+```
+8. Use your favourite client to execute the scripts: hua_setup/all_ddl.sql, hua_setup/all_baseline.sql and hua_setup/all_test_data.sql
+
+# Environment Setup
+1. Create an environment variable HRMS_HOME and point a directory location where you want to store the log.
+2. Create a folder called log under the location.
 
 # Code Build
 1. Go inside the trunk folder and run the command `mvn clean install`. Note: For the first time, it will download a lot of stuff and hence it may take quite some time
@@ -40,7 +59,7 @@
 3. And like any version control system, please write clear commit messages. 
 4. There is a tool called 'gitk' (should be available by default), that presents a nice view of the changes done by various commits. 
 
-# Setting Up LDAP & DB
+# Setting Up LDAP
 1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer 
    Note: Login details of LDAP
    * Host: localhost
@@ -49,10 +68,6 @@
    * Password: secret
    * Protocol: LDAPv3
    * Level: User + Password
-2. Execute the SQL files: all-ddl.sql & all-permissions.sql at the location huac\trunk\hua_setup\ in MySQL
-3. If after hua DB import-setup, not able to login with HUAPPUSER, then execute below SQL using root login in MySQL.
-    `GRANT ALL PRIVILEGES ON HUA.* TO HUAAPPUSER@'localhost';`
-4. Create an environment variable HRMS_ROOT. Create a folder called log in the folder pointed to by HRMS_ROOT. All logs will be generated here.
 
 # Running the Servers
 1. Open the command terminal, go to the folder huac\trunk\hua-gui\src\main\gui and run the command `npm start`

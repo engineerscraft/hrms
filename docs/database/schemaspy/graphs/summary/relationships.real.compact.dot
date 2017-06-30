@@ -20,16 +20,17 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="address.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">address</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="HOUSE_NO" COLSPAN="3" ALIGN="LEFT">HOUSE_NO</TD></TR>
-      <TR><TD PORT="STREET_NAME" COLSPAN="3" ALIGN="LEFT">STREET_NAME</TD></TR>
-      <TR><TD PORT="AREA" COLSPAN="3" ALIGN="LEFT">AREA</TD></TR>
-      <TR><TD PORT="REGION" COLSPAN="3" ALIGN="LEFT">REGION</TD></TR>
-      <TR><TD PORT="PIN_NO" COLSPAN="3" ALIGN="LEFT">PIN_NO</TD></TR>
-      <TR><TD PORT="DISTRICT_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">DISTRICT_ID</TD></TR>
-      <TR><TD PORT="STATE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">STATE_ID</TD></TR>
-      <TR><TD PORT="COUNTRY_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">COUNTRY_ID</TD></TR>
-      <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="address_type" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">address_type</TD></TR>
+      <TR><TD PORT="house_no" COLSPAN="3" ALIGN="LEFT">house_no</TD></TR>
+      <TR><TD PORT="street_name" COLSPAN="3" ALIGN="LEFT">street_name</TD></TR>
+      <TR><TD PORT="area" COLSPAN="3" ALIGN="LEFT">area</TD></TR>
+      <TR><TD PORT="region" COLSPAN="3" ALIGN="LEFT">region</TD></TR>
+      <TR><TD PORT="pin_no" COLSPAN="3" ALIGN="LEFT">pin_no</TD></TR>
+      <TR><TD PORT="district_id" COLSPAN="3" ALIGN="LEFT">district_id</TD></TR>
+      <TR><TD PORT="state_id" COLSPAN="3" ALIGN="LEFT">state_id</TD></TR>
+      <TR><TD PORT="country_id" COLSPAN="3" ALIGN="LEFT">country_id</TD></TR>
+      <TR><TD PORT="description" COLSPAN="3" ALIGN="LEFT">description</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/address.html#"
@@ -39,14 +40,14 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="appraisal_cycle.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">appraisal_cycle</TD></TR>
-      <TR><TD PORT="APPRAISAL_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">APPRAISAL_ID</TD></TR>
-      <TR><TD PORT="CYCLE_NAME" COLSPAN="3" ALIGN="LEFT">CYCLE_NAME</TD></TR>
-      <TR><TD PORT="START_DATE" COLSPAN="3" ALIGN="LEFT">START_DATE</TD></TR>
-      <TR><TD PORT="END_DATE" COLSPAN="3" ALIGN="LEFT">END_DATE</TD></TR>
-      <TR><TD PORT="SAL_REV_START_DATE" COLSPAN="3" ALIGN="LEFT">SAL_REV_START_DATE</TD></TR>
-      <TR><TD PORT="SAL_REV_END_DATE" COLSPAN="3" ALIGN="LEFT">SAL_REV_END_DATE</TD></TR>
-      <TR><TD PORT="EFFECTIVE_DATE" COLSPAN="3" ALIGN="LEFT">EFFECTIVE_DATE</TD></TR>
-      <TR><TD PORT="ACTIVATION_DATE" COLSPAN="3" ALIGN="LEFT">ACTIVATION_DATE</TD></TR>
+      <TR><TD PORT="appraisal_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">appraisal_id</TD></TR>
+      <TR><TD PORT="cycle_name" COLSPAN="3" ALIGN="LEFT">cycle_name</TD></TR>
+      <TR><TD PORT="start_date" COLSPAN="3" ALIGN="LEFT">start_date</TD></TR>
+      <TR><TD PORT="end_date" COLSPAN="3" ALIGN="LEFT">end_date</TD></TR>
+      <TR><TD PORT="sal_rev_start_date" COLSPAN="3" ALIGN="LEFT">sal_rev_start_date</TD></TR>
+      <TR><TD PORT="sal_rev_end_date" COLSPAN="3" ALIGN="LEFT">sal_rev_end_date</TD></TR>
+      <TR><TD PORT="effective_date" COLSPAN="3" ALIGN="LEFT">effective_date</TD></TR>
+      <TR><TD PORT="activation_date" COLSPAN="3" ALIGN="LEFT">activation_date</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/appraisal_cycle.html#"
@@ -56,12 +57,12 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="appraisal_rating.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">appraisal_rating</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="APPRAISAL_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">APPRAISAL_ID</TD></TR>
-      <TR><TD PORT="PERFORMANCE_INDICATOR" COLSPAN="3" ALIGN="LEFT">PERFORMANCE_INDICATOR</TD></TR>
-      <TR><TD PORT="PERFORMANCE_DESCRIPTION" COLSPAN="3" ALIGN="LEFT">PERFORMANCE_DESCRIPTION</TD></TR>
-      <TR><TD PORT="JOB_ROLE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">JOB_ROLE_ID</TD></TR>
-      <TR><TD PORT="DESIGNATION_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">DESIGNATION_ID</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="appraisal_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">appraisal_id</TD></TR>
+      <TR><TD PORT="performance_indicator" COLSPAN="3" ALIGN="LEFT">performance_indicator</TD></TR>
+      <TR><TD PORT="performance_description" COLSPAN="3" ALIGN="LEFT">performance_description</TD></TR>
+      <TR><TD PORT="job_role_id" COLSPAN="3" ALIGN="LEFT">job_role_id</TD></TR>
+      <TR><TD PORT="designation_id" COLSPAN="3" ALIGN="LEFT">designation_id</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/appraisal_rating.html#"
@@ -71,8 +72,8 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="country_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">country_master</TD></TR>
-      <TR><TD PORT="COUNTRY_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">COUNTRY_ID</TD></TR>
-      <TR><TD PORT="COUNTRY_NAME" COLSPAN="3" ALIGN="LEFT">COUNTRY_NAME</TD></TR>
+      <TR><TD PORT="country_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">country_id</TD></TR>
+      <TR><TD PORT="country_name" COLSPAN="3" ALIGN="LEFT">country_name</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">246 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/country_master.html#"
@@ -82,12 +83,12 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="department_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">department_master</TD></TR>
-      <TR><TD PORT="DEPARTMENT_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DEPARTMENT_ID</TD></TR>
-      <TR><TD PORT="DEPARTMENT_NAME" COLSPAN="3" ALIGN="LEFT">DEPARTMENT_NAME</TD></TR>
-      <TR><TD PORT="UNIT_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">UNIT_ID</TD></TR>
-      <TR><TD PORT="ADDRESS" COLSPAN="3" ALIGN="LEFT">ADDRESS</TD></TR>
-      <TR><TD PORT="PARENT_DEPARTMENT_ID" COLSPAN="3" ALIGN="LEFT">PARENT_DEPARTMENT_ID</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">11 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD PORT="department_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">department_id</TD></TR>
+      <TR><TD PORT="department_name" COLSPAN="3" ALIGN="LEFT">department_name</TD></TR>
+      <TR><TD PORT="unit_id" COLSPAN="3" ALIGN="LEFT">unit_id</TD></TR>
+      <TR><TD PORT="address" COLSPAN="3" ALIGN="LEFT">address</TD></TR>
+      <TR><TD PORT="parent_department_id" COLSPAN="3" ALIGN="LEFT">parent_department_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/department_master.html#"
     tooltip="department_master"
@@ -96,8 +97,8 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="designation_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">designation_master</TD></TR>
-      <TR><TD PORT="DESIGNATION_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DESIGNATION_ID</TD></TR>
-      <TR><TD PORT="DESIGNATION" COLSPAN="3" ALIGN="LEFT">DESIGNATION</TD></TR>
+      <TR><TD PORT="designation_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">designation_id</TD></TR>
+      <TR><TD PORT="designation" COLSPAN="3" ALIGN="LEFT">designation</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">11 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/designation_master.html#"
@@ -107,9 +108,9 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="district_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">district_master</TD></TR>
-      <TR><TD PORT="DISTRICT_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DISTRICT_ID</TD></TR>
-      <TR><TD PORT="DISTRICT_NAME" COLSPAN="3" ALIGN="LEFT">DISTRICT_NAME</TD></TR>
-      <TR><TD PORT="STATE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">STATE_ID</TD></TR>
+      <TR><TD PORT="district_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">district_id</TD></TR>
+      <TR><TD PORT="district_name" COLSPAN="3" ALIGN="LEFT">district_name</TD></TR>
+      <TR><TD PORT="state_id" COLSPAN="3" ALIGN="LEFT">state_id</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">48,314 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/district_master.html#"
@@ -119,9 +120,9 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="doc_type_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">doc_type_master</TD></TR>
-      <TR><TD PORT="DOC_TYPE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DOC_TYPE_ID</TD></TR>
-      <TR><TD PORT="DOC_TYPE_NAME" COLSPAN="3" ALIGN="LEFT">DOC_TYPE_NAME</TD></TR>
-      <TR><TD PORT="IDENTITY_DOC" COLSPAN="3" ALIGN="LEFT">IDENTITY_DOC</TD></TR>
+      <TR><TD PORT="doc_type_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">doc_type_id</TD></TR>
+      <TR><TD PORT="doc_type_name" COLSPAN="3" ALIGN="LEFT">doc_type_name</TD></TR>
+      <TR><TD PORT="identity_doc" COLSPAN="3" ALIGN="LEFT">identity_doc</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/doc_type_master.html#"
@@ -131,31 +132,31 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="TITLE" COLSPAN="3" ALIGN="LEFT">TITLE</TD></TR>
-      <TR><TD PORT="EMPLOYEE_FIRST_NAME" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_FIRST_NAME</TD></TR>
-      <TR><TD PORT="EMPLOYEE_MIDDLE_NAME" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_MIDDLE_NAME</TD></TR>
-      <TR><TD PORT="EMPLOYEE_LAST_NAME" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_LAST_NAME</TD></TR>
-      <TR><TD PORT="SEX" COLSPAN="3" ALIGN="LEFT">SEX</TD></TR>
-      <TR><TD PORT="EMP_TYPE" COLSPAN="3" ALIGN="LEFT">EMP_TYPE</TD></TR>
-      <TR><TD PORT="MARITAL_STATUS" COLSPAN="3" ALIGN="LEFT">MARITAL_STATUS</TD></TR>
-      <TR><TD PORT="DATE_OF_JOINING" COLSPAN="3" ALIGN="LEFT">DATE_OF_JOINING</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_ID</TD></TR>
-      <TR><TD PORT="UNIT_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">UNIT_ID</TD></TR>
-      <TR><TD PORT="DEPARTMENT_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">DEPARTMENT_ID</TD></TR>
-      <TR><TD PORT="NATIONALITY" COLSPAN="3" ALIGN="LEFT">NATIONALITY</TD></TR>
-      <TR><TD PORT="IDENTITY_DOC_TYPE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">IDENTITY_DOC_TYPE_ID</TD></TR>
-      <TR><TD PORT="IDENTITY_NUMBER" COLSPAN="3" ALIGN="LEFT">IDENTITY_NUMBER</TD></TR>
-      <TR><TD PORT="DATE_OF_BIRTH" COLSPAN="3" ALIGN="LEFT">DATE_OF_BIRTH</TD></TR>
-      <TR><TD PORT="FATHER_NAME" COLSPAN="3" ALIGN="LEFT">FATHER_NAME</TD></TR>
-      <TR><TD PORT="EMAIL_ID" COLSPAN="3" ALIGN="LEFT">EMAIL_ID</TD></TR>
-      <TR><TD PORT="CONTACTNO" COLSPAN="3" ALIGN="LEFT">CONTACTNO</TD></TR>
-      <TR><TD PORT="ENTRY_BY" COLSPAN="3" ALIGN="LEFT">ENTRY_BY</TD></TR>
-      <TR><TD PORT="ENTRY_DATE" COLSPAN="3" ALIGN="LEFT">ENTRY_DATE</TD></TR>
-      <TR><TD PORT="HR_FLAG" COLSPAN="3" ALIGN="LEFT">HR_FLAG</TD></TR>
-      <TR><TD PORT="SUPERVISOR_FLAG" COLSPAN="3" ALIGN="LEFT">SUPERVISOR_FLAG</TD></TR>
-      <TR><TD PORT="EMPLOYEE_IMAGE" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_IMAGE</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
+      <TR><TD PORT="employee_first_name" COLSPAN="3" ALIGN="LEFT">employee_first_name</TD></TR>
+      <TR><TD PORT="employee_middle_name" COLSPAN="3" ALIGN="LEFT">employee_middle_name</TD></TR>
+      <TR><TD PORT="employee_last_name" COLSPAN="3" ALIGN="LEFT">employee_last_name</TD></TR>
+      <TR><TD PORT="sex" COLSPAN="3" ALIGN="LEFT">sex</TD></TR>
+      <TR><TD PORT="emp_type" COLSPAN="3" ALIGN="LEFT">emp_type</TD></TR>
+      <TR><TD PORT="marital_status" COLSPAN="3" ALIGN="LEFT">marital_status</TD></TR>
+      <TR><TD PORT="date_of_joining" COLSPAN="3" ALIGN="LEFT">date_of_joining</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="unit_id" COLSPAN="3" ALIGN="LEFT">unit_id</TD></TR>
+      <TR><TD PORT="department_id" COLSPAN="3" ALIGN="LEFT">department_id</TD></TR>
+      <TR><TD PORT="nationality" COLSPAN="3" ALIGN="LEFT">nationality</TD></TR>
+      <TR><TD PORT="identity_doc_type_id" COLSPAN="3" ALIGN="LEFT">identity_doc_type_id</TD></TR>
+      <TR><TD PORT="identity_number" COLSPAN="3" ALIGN="LEFT">identity_number</TD></TR>
+      <TR><TD PORT="date_of_birth" COLSPAN="3" ALIGN="LEFT">date_of_birth</TD></TR>
+      <TR><TD PORT="father_name" COLSPAN="3" ALIGN="LEFT">father_name</TD></TR>
+      <TR><TD PORT="email_id" COLSPAN="3" ALIGN="LEFT">email_id</TD></TR>
+      <TR><TD PORT="contactno" COLSPAN="3" ALIGN="LEFT">contactno</TD></TR>
+      <TR><TD PORT="entry_by" COLSPAN="3" ALIGN="LEFT">entry_by</TD></TR>
+      <TR><TD PORT="entry_date" COLSPAN="3" ALIGN="LEFT">entry_date</TD></TR>
+      <TR><TD PORT="hr_flag" COLSPAN="3" ALIGN="LEFT">hr_flag</TD></TR>
+      <TR><TD PORT="supervisor_flag" COLSPAN="3" ALIGN="LEFT">supervisor_flag</TD></TR>
+      <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="tables/employee.html#"
     tooltip="employee"
@@ -164,19 +165,19 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_additional_details.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_additional_details</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="NO_OF_SIBLINGS" COLSPAN="3" ALIGN="LEFT">NO_OF_SIBLINGS</TD></TR>
-      <TR><TD PORT="NO_OF_DEPENDENT" COLSPAN="3" ALIGN="LEFT">NO_OF_DEPENDENT</TD></TR>
-      <TR><TD PORT="NOMINEE_NAME1" COLSPAN="3" ALIGN="LEFT">NOMINEE_NAME1</TD></TR>
-      <TR><TD PORT="NOMINEE_NAME2" COLSPAN="3" ALIGN="LEFT">NOMINEE_NAME2</TD></TR>
-      <TR><TD PORT="NOMINEE_NAME3" COLSPAN="3" ALIGN="LEFT">NOMINEE_NAME3</TD></TR>
-      <TR><TD PORT="NOMINEE1_SHARE" COLSPAN="3" ALIGN="LEFT">NOMINEE1_SHARE</TD></TR>
-      <TR><TD PORT="NOMINEE2_SHARE" COLSPAN="3" ALIGN="LEFT">NOMINEE2_SHARE</TD></TR>
-      <TR><TD PORT="NOMINEE3_SHARE" COLSPAN="3" ALIGN="LEFT">NOMINEE3_SHARE</TD></TR>
-      <TR><TD PORT="EMERGENCY_CONTACT_NAME" COLSPAN="3" ALIGN="LEFT">EMERGENCY_CONTACT_NAME</TD></TR>
-      <TR><TD PORT="EMERGENCY_CONTACTNO" COLSPAN="3" ALIGN="LEFT">EMERGENCY_CONTACTNO</TD></TR>
-      <TR><TD PORT="PRE_MEDICAL_CHKUP_DATE" COLSPAN="3" ALIGN="LEFT">PRE_MEDICAL_CHKUP_DATE</TD></TR>
-      <TR><TD PORT="MEDICAL_REPORT_COMMENT" COLSPAN="3" ALIGN="LEFT">MEDICAL_REPORT_COMMENT</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="no_of_siblings" COLSPAN="3" ALIGN="LEFT">no_of_siblings</TD></TR>
+      <TR><TD PORT="no_of_dependent" COLSPAN="3" ALIGN="LEFT">no_of_dependent</TD></TR>
+      <TR><TD PORT="nominee_name1" COLSPAN="3" ALIGN="LEFT">nominee_name1</TD></TR>
+      <TR><TD PORT="nominee_name2" COLSPAN="3" ALIGN="LEFT">nominee_name2</TD></TR>
+      <TR><TD PORT="nominee_name3" COLSPAN="3" ALIGN="LEFT">nominee_name3</TD></TR>
+      <TR><TD PORT="nominee1_share" COLSPAN="3" ALIGN="LEFT">nominee1_share</TD></TR>
+      <TR><TD PORT="nominee2_share" COLSPAN="3" ALIGN="LEFT">nominee2_share</TD></TR>
+      <TR><TD PORT="nominee3_share" COLSPAN="3" ALIGN="LEFT">nominee3_share</TD></TR>
+      <TR><TD PORT="emergency_contact_name" COLSPAN="3" ALIGN="LEFT">emergency_contact_name</TD></TR>
+      <TR><TD PORT="emergency_contactno" COLSPAN="3" ALIGN="LEFT">emergency_contactno</TD></TR>
+      <TR><TD PORT="pre_medical_chkup_date" COLSPAN="3" ALIGN="LEFT">pre_medical_chkup_date</TD></TR>
+      <TR><TD PORT="medical_report_comment" COLSPAN="3" ALIGN="LEFT">medical_report_comment</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/employee_additional_details.html#"
@@ -186,12 +187,12 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_docs.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_docs</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="DOC_TYPE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DOC_TYPE_ID</TD></TR>
-      <TR><TD PORT="REMARKS" COLSPAN="3" ALIGN="LEFT">REMARKS</TD></TR>
-      <TR><TD PORT="UPLOAD_DATE" COLSPAN="3" ALIGN="LEFT">UPLOAD_DATE</TD></TR>
-      <TR><TD PORT="UPLOADED_BY" COLSPAN="3" ALIGN="LEFT">UPLOADED_BY</TD></TR>
-      <TR><TD PORT="DOCUMENT" COLSPAN="3" ALIGN="LEFT">DOCUMENT</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="doc_type_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">doc_type_id</TD></TR>
+      <TR><TD PORT="remarks" COLSPAN="3" ALIGN="LEFT">remarks</TD></TR>
+      <TR><TD PORT="upload_date" COLSPAN="3" ALIGN="LEFT">upload_date</TD></TR>
+      <TR><TD PORT="uploaded_by" COLSPAN="3" ALIGN="LEFT">uploaded_by</TD></TR>
+      <TR><TD PORT="document" COLSPAN="3" ALIGN="LEFT">document</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/employee_docs.html#"
@@ -201,20 +202,20 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_hierarchy_status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="SUPERVISOR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">SUPERVISOR_ID</TD></TR>
-      <TR><TD PORT="HR_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">HR_ID</TD></TR>
-      <TR><TD PORT="STATUS" COLSPAN="3" ALIGN="LEFT">STATUS</TD></TR>
-      <TR><TD PORT="CL" COLSPAN="3" ALIGN="LEFT">CL</TD></TR>
-      <TR><TD PORT="PL" COLSPAN="3" ALIGN="LEFT">PL</TD></TR>
-      <TR><TD PORT="PATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">PATERNITY_LEAVE</TD></TR>
-      <TR><TD PORT="SICK_LEAVE" COLSPAN="3" ALIGN="LEFT">SICK_LEAVE</TD></TR>
-      <TR><TD PORT="MATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">MATERNITY_LEAVE</TD></TR>
-      <TR><TD PORT="SPECIAL_LEAVE" COLSPAN="3" ALIGN="LEFT">SPECIAL_LEAVE</TD></TR>
-      <TR><TD PORT="PROBATION_PERIOD_END_DATE" COLSPAN="3" ALIGN="LEFT">PROBATION_PERIOD_END_DATE</TD></TR>
-      <TR><TD PORT="NOTICE_PERIOD_LAST_DATE" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD_LAST_DATE</TD></TR>
-      <TR><TD PORT="LAST_MOD_DATE" COLSPAN="3" ALIGN="LEFT">LAST_MOD_DATE</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="supervisor_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">supervisor_id</TD></TR>
+      <TR><TD PORT="hr_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">hr_id</TD></TR>
+      <TR><TD PORT="status" COLSPAN="3" ALIGN="LEFT">status</TD></TR>
+      <TR><TD PORT="cl" COLSPAN="3" ALIGN="LEFT">cl</TD></TR>
+      <TR><TD PORT="pl" COLSPAN="3" ALIGN="LEFT">pl</TD></TR>
+      <TR><TD PORT="paternity_leave" COLSPAN="3" ALIGN="LEFT">paternity_leave</TD></TR>
+      <TR><TD PORT="sick_leave" COLSPAN="3" ALIGN="LEFT">sick_leave</TD></TR>
+      <TR><TD PORT="maternity_leave" COLSPAN="3" ALIGN="LEFT">maternity_leave</TD></TR>
+      <TR><TD PORT="special_leave" COLSPAN="3" ALIGN="LEFT">special_leave</TD></TR>
+      <TR><TD PORT="probation_period_end_date" COLSPAN="3" ALIGN="LEFT">probation_period_end_date</TD></TR>
+      <TR><TD PORT="notice_period_last_date" COLSPAN="3" ALIGN="LEFT">notice_period_last_date</TD></TR>
+      <TR><TD PORT="last_mod_date" COLSPAN="3" ALIGN="LEFT">last_mod_date</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/employee_hierarchy_status.html#"
     tooltip="employee_hierarchy_status"
@@ -223,19 +224,19 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_optional_benefits.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_optional_benefits</TD></TR>
-      <TR><TD PORT="BENEFIT_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">BENEFIT_ID</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="OPT_COMP_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">OPT_COMP_ID</TD></TR>
-      <TR><TD PORT="SAL_OPT_FLAG" COLSPAN="3" ALIGN="LEFT">SAL_OPT_FLAG</TD></TR>
-      <TR><TD PORT="SAL_OPT_VALUE" COLSPAN="3" ALIGN="LEFT">SAL_OPT_VALUE</TD></TR>
-      <TR><TD PORT="SAL_OPT_START_DATE" COLSPAN="3" ALIGN="LEFT">SAL_OPT_START_DATE</TD></TR>
-      <TR><TD PORT="SAL_OPT_END_DATE" COLSPAN="3" ALIGN="LEFT">SAL_OPT_END_DATE</TD></TR>
-      <TR><TD PORT="NEXT_DUE_DATE" COLSPAN="3" ALIGN="LEFT">NEXT_DUE_DATE</TD></TR>
-      <TR><TD PORT="REMARKS" COLSPAN="3" ALIGN="LEFT">REMARKS</TD></TR>
-      <TR><TD PORT="ENTRY_BY" COLSPAN="3" ALIGN="LEFT">ENTRY_BY</TD></TR>
-      <TR><TD PORT="ENTRY_DATE" COLSPAN="3" ALIGN="LEFT">ENTRY_DATE</TD></TR>
-      <TR><TD PORT="FREQUENCY" COLSPAN="3" ALIGN="LEFT">FREQUENCY</TD></TR>
-      <TR><TD PORT="NO_OF_ITERATION" COLSPAN="3" ALIGN="LEFT">NO_OF_ITERATION</TD></TR>
+      <TR><TD PORT="benefit_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">benefit_id</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="opt_comp_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">opt_comp_id</TD></TR>
+      <TR><TD PORT="sal_opt_flag" COLSPAN="3" ALIGN="LEFT">sal_opt_flag</TD></TR>
+      <TR><TD PORT="sal_opt_value" COLSPAN="3" ALIGN="LEFT">sal_opt_value</TD></TR>
+      <TR><TD PORT="sal_opt_start_date" COLSPAN="3" ALIGN="LEFT">sal_opt_start_date</TD></TR>
+      <TR><TD PORT="sal_opt_end_date" COLSPAN="3" ALIGN="LEFT">sal_opt_end_date</TD></TR>
+      <TR><TD PORT="next_due_date" COLSPAN="3" ALIGN="LEFT">next_due_date</TD></TR>
+      <TR><TD PORT="remarks" COLSPAN="3" ALIGN="LEFT">remarks</TD></TR>
+      <TR><TD PORT="entry_by" COLSPAN="3" ALIGN="LEFT">entry_by</TD></TR>
+      <TR><TD PORT="entry_date" COLSPAN="3" ALIGN="LEFT">entry_date</TD></TR>
+      <TR><TD PORT="frequency" COLSPAN="3" ALIGN="LEFT">frequency</TD></TR>
+      <TR><TD PORT="no_of_iteration" COLSPAN="3" ALIGN="LEFT">no_of_iteration</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/employee_optional_benefits.html#"
@@ -245,10 +246,10 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_profile.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_profile</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="QUALIFICATION" COLSPAN="3" ALIGN="LEFT">QUALIFICATION</TD></TR>
-      <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
-      <TR><TD PORT="COMMENTS" COLSPAN="3" ALIGN="LEFT">COMMENTS</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="qualification" COLSPAN="3" ALIGN="LEFT">qualification</TD></TR>
+      <TR><TD PORT="description" COLSPAN="3" ALIGN="LEFT">description</TD></TR>
+      <TR><TD PORT="comments" COLSPAN="3" ALIGN="LEFT">comments</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/employee_profile.html#"
@@ -258,12 +259,12 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_salary.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_salary</TD></TR>
-      <TR><TD PORT="APPRAISAL_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">APPRAISAL_ID</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="COMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">COMP_ID</TD></TR>
-      <TR><TD PORT="ENTRY_BY" COLSPAN="3" ALIGN="LEFT">ENTRY_BY</TD></TR>
-      <TR><TD PORT="ENTRY_DATE" COLSPAN="3" ALIGN="LEFT">ENTRY_DATE</TD></TR>
-      <TR><TD PORT="SAL_VALUE" COLSPAN="3" ALIGN="LEFT">SAL_VALUE</TD></TR>
+      <TR><TD PORT="appraisal_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">appraisal_id</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="comp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">comp_id</TD></TR>
+      <TR><TD PORT="entry_by" COLSPAN="3" ALIGN="LEFT">entry_by</TD></TR>
+      <TR><TD PORT="entry_date" COLSPAN="3" ALIGN="LEFT">entry_date</TD></TR>
+      <TR><TD PORT="sal_value" COLSPAN="3" ALIGN="LEFT">sal_value</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/employee_salary.html#"
@@ -273,8 +274,8 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="grade_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">grade_master</TD></TR>
-      <TR><TD PORT="GRADE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">GRADE_ID</TD></TR>
-      <TR><TD PORT="GRADE" COLSPAN="3" ALIGN="LEFT">GRADE</TD></TR>
+      <TR><TD PORT="grade_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">grade_id</TD></TR>
+      <TR><TD PORT="grade" COLSPAN="3" ALIGN="LEFT">grade</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/grade_master.html#"
@@ -284,8 +285,8 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="job_role_designation.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">job_role_designation</TD></TR>
-      <TR><TD PORT="JOB_ROLE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">JOB_ROLE_ID</TD></TR>
-      <TR><TD PORT="DESIGNATION_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DESIGNATION_ID</TD></TR>
+      <TR><TD PORT="job_role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">job_role_id</TD></TR>
+      <TR><TD PORT="designation_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">designation_id</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/job_role_designation.html#"
@@ -295,11 +296,11 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="job_role_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">job_role_master</TD></TR>
-      <TR><TD PORT="JOB_ROLE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">JOB_ROLE_ID</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_ID</TD></TR>
-      <TR><TD PORT="GRADE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">GRADE_ID</TD></TR>
-      <TR><TD PORT="PROBATION_NOTICE_PERIOD" COLSPAN="3" ALIGN="LEFT">PROBATION_NOTICE_PERIOD</TD></TR>
-      <TR><TD PORT="NOTICE_PERIOD" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD</TD></TR>
+      <TR><TD PORT="job_role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">job_role_id</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="grade_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">grade_id</TD></TR>
+      <TR><TD PORT="probation_notice_period" COLSPAN="3" ALIGN="LEFT">probation_notice_period</TD></TR>
+      <TR><TD PORT="notice_period" COLSPAN="3" ALIGN="LEFT">notice_period</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="tables/job_role_master.html#"
@@ -309,13 +310,13 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="org_leave.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">org_leave</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_ID</TD></TR>
-      <TR><TD PORT="PROBATION_FLAG" COLSPAN="3" ALIGN="LEFT">PROBATION_FLAG</TD></TR>
-      <TR><TD PORT="CL" COLSPAN="3" ALIGN="LEFT">CL</TD></TR>
-      <TR><TD PORT="PL" COLSPAN="3" ALIGN="LEFT">PL</TD></TR>
-      <TR><TD PORT="PATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">PATERNITY_LEAVE</TD></TR>
-      <TR><TD PORT="SICK_LEAVE" COLSPAN="3" ALIGN="LEFT">SICK_LEAVE</TD></TR>
-      <TR><TD PORT="MATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">MATERNITY_LEAVE</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="probation_flag" COLSPAN="3" ALIGN="LEFT">probation_flag</TD></TR>
+      <TR><TD PORT="cl" COLSPAN="3" ALIGN="LEFT">cl</TD></TR>
+      <TR><TD PORT="pl" COLSPAN="3" ALIGN="LEFT">pl</TD></TR>
+      <TR><TD PORT="paternity_leave" COLSPAN="3" ALIGN="LEFT">paternity_leave</TD></TR>
+      <TR><TD PORT="sick_leave" COLSPAN="3" ALIGN="LEFT">sick_leave</TD></TR>
+      <TR><TD PORT="maternity_leave" COLSPAN="3" ALIGN="LEFT">maternity_leave</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/org_leave.html#"
@@ -325,10 +326,10 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="organisation_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">organisation_master</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">ORG_ID</TD></TR>
-      <TR><TD PORT="ORG_NAME" COLSPAN="3" ALIGN="LEFT">ORG_NAME</TD></TR>
-      <TR><TD PORT="ORG_TYPE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_TYPE_ID</TD></TR>
-      <TR><TD PORT="ADDRESS" COLSPAN="3" ALIGN="LEFT">ADDRESS</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="org_name" COLSPAN="3" ALIGN="LEFT">org_name</TD></TR>
+      <TR><TD PORT="org_type_id" COLSPAN="3" ALIGN="LEFT">org_type_id</TD></TR>
+      <TR><TD PORT="address" COLSPAN="3" ALIGN="LEFT">address</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="tables/organisation_master.html#"
@@ -338,9 +339,9 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="organisation_type_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">organisation_type_master</TD></TR>
-      <TR><TD PORT="ORG_TYPE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">ORG_TYPE_ID</TD></TR>
-      <TR><TD PORT="ORG_TYPE_NAME" COLSPAN="3" ALIGN="LEFT">ORG_TYPE_NAME</TD></TR>
-      <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
+      <TR><TD PORT="org_type_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">org_type_id</TD></TR>
+      <TR><TD PORT="org_type_name" COLSPAN="3" ALIGN="LEFT">org_type_name</TD></TR>
+      <TR><TD PORT="description" COLSPAN="3" ALIGN="LEFT">description</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/organisation_type_master.html#"
@@ -350,11 +351,11 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="permission_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">permission_master</TD></TR>
-      <TR><TD PORT="PERMISSION_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">PERMISSION_ID</TD></TR>
-      <TR><TD PORT="PERMISSION_NAME" COLSPAN="3" ALIGN="LEFT">PERMISSION_NAME</TD></TR>
-      <TR><TD PORT="PERMISSION_TYPE" COLSPAN="3" ALIGN="LEFT">PERMISSION_TYPE</TD></TR>
-      <TR><TD PORT="RESOURCE_NAME" COLSPAN="3" ALIGN="LEFT">RESOURCE_NAME</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD PORT="permission_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">permission_id</TD></TR>
+      <TR><TD PORT="permission_name" COLSPAN="3" ALIGN="LEFT">permission_name</TD></TR>
+      <TR><TD PORT="permission_type" COLSPAN="3" ALIGN="LEFT">permission_type</TD></TR>
+      <TR><TD PORT="resource_name" COLSPAN="3" ALIGN="LEFT">resource_name</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">27 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/permission_master.html#"
     tooltip="permission_master"
@@ -363,9 +364,9 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="role_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_master</TD></TR>
-      <TR><TD PORT="ROLE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">ROLE_ID</TD></TR>
-      <TR><TD PORT="ROLE_NAME" COLSPAN="3" ALIGN="LEFT">ROLE_NAME</TD></TR>
-      <TR><TD PORT="ROLE_DESCRIPTION" COLSPAN="3" ALIGN="LEFT">ROLE_DESCRIPTION</TD></TR>
+      <TR><TD PORT="role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD></TR>
+      <TR><TD PORT="role_name" COLSPAN="3" ALIGN="LEFT">role_name</TD></TR>
+      <TR><TD PORT="role_description" COLSPAN="3" ALIGN="LEFT">role_description</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/role_master.html#"
@@ -375,9 +376,9 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="role_permission.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_permission</TD></TR>
-      <TR><TD PORT="ROLE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">ROLE_ID</TD></TR>
-      <TR><TD PORT="PERMISSION_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">PERMISSION_ID</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD PORT="role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD></TR>
+      <TR><TD PORT="permission_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">permission_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">27 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/role_permission.html#"
     tooltip="role_permission"
@@ -386,10 +387,10 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="salary_component_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">salary_component_master</TD></TR>
-      <TR><TD PORT="COMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">COMP_ID</TD></TR>
-      <TR><TD PORT="COMPONENT_NAME" COLSPAN="3" ALIGN="LEFT">COMPONENT_NAME</TD></TR>
-      <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
-      <TR><TD PORT="SAL_COMPONENT" COLSPAN="3" ALIGN="LEFT">SAL_COMPONENT</TD></TR>
+      <TR><TD PORT="comp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">comp_id</TD></TR>
+      <TR><TD PORT="component_name" COLSPAN="3" ALIGN="LEFT">component_name</TD></TR>
+      <TR><TD PORT="description" COLSPAN="3" ALIGN="LEFT">description</TD></TR>
+      <TR><TD PORT="sal_component" COLSPAN="3" ALIGN="LEFT">sal_component</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/salary_component_master.html#"
@@ -399,13 +400,13 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="salary_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">salary_master</TD></TR>
-      <TR><TD PORT="SALARY_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">SALARY_ID</TD></TR>
-      <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
-      <TR><TD PORT="JOB_ROLE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">JOB_ROLE_ID</TD></TR>
-      <TR><TD PORT="SAL_COMP_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">SAL_COMP_ID</TD></TR>
-      <TR><TD PORT="SAL_VALUE" COLSPAN="3" ALIGN="LEFT">SAL_VALUE</TD></TR>
-      <TR><TD PORT="MAX_ALLOW_LIMIT" COLSPAN="3" ALIGN="LEFT">MAX_ALLOW_LIMIT</TD></TR>
-      <TR><TD PORT="SAL_OPT_COMP_FLAG" COLSPAN="3" ALIGN="LEFT">SAL_OPT_COMP_FLAG</TD></TR>
+      <TR><TD PORT="salary_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">salary_id</TD></TR>
+      <TR><TD PORT="description" COLSPAN="3" ALIGN="LEFT">description</TD></TR>
+      <TR><TD PORT="job_role_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">job_role_id</TD></TR>
+      <TR><TD PORT="sal_comp_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">sal_comp_id</TD></TR>
+      <TR><TD PORT="sal_value" COLSPAN="3" ALIGN="LEFT">sal_value</TD></TR>
+      <TR><TD PORT="max_allow_limit" COLSPAN="3" ALIGN="LEFT">max_allow_limit</TD></TR>
+      <TR><TD PORT="sal_opt_comp_flag" COLSPAN="3" ALIGN="LEFT">sal_opt_comp_flag</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/salary_master.html#"
@@ -415,15 +416,15 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="salary_opt_component_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">salary_opt_component_master</TD></TR>
-      <TR><TD PORT="OPT_COMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">OPT_COMP_ID</TD></TR>
-      <TR><TD PORT="OPT_COMPONENT_NAME" COLSPAN="3" ALIGN="LEFT">OPT_COMPONENT_NAME</TD></TR>
-      <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
-      <TR><TD PORT="SAL_OPT_COMPONENT" COLSPAN="3" ALIGN="LEFT">SAL_OPT_COMPONENT</TD></TR>
-      <TR><TD PORT="RESTRICTION_WINDOW" COLSPAN="3" ALIGN="LEFT">RESTRICTION_WINDOW</TD></TR>
-      <TR><TD PORT="FREQUENCY" COLSPAN="3" ALIGN="LEFT">FREQUENCY</TD></TR>
-      <TR><TD PORT="END_DATE" COLSPAN="3" ALIGN="LEFT">END_DATE</TD></TR>
-      <TR><TD PORT="CREDIT_DEBIT_FLAG" COLSPAN="3" ALIGN="LEFT">CREDIT_DEBIT_FLAG</TD></TR>
-      <TR><TD PORT="EMP_OPT_OUT_FLAG" COLSPAN="3" ALIGN="LEFT">EMP_OPT_OUT_FLAG</TD></TR>
+      <TR><TD PORT="opt_comp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opt_comp_id</TD></TR>
+      <TR><TD PORT="opt_component_name" COLSPAN="3" ALIGN="LEFT">opt_component_name</TD></TR>
+      <TR><TD PORT="description" COLSPAN="3" ALIGN="LEFT">description</TD></TR>
+      <TR><TD PORT="sal_opt_component" COLSPAN="3" ALIGN="LEFT">sal_opt_component</TD></TR>
+      <TR><TD PORT="restriction_window" COLSPAN="3" ALIGN="LEFT">restriction_window</TD></TR>
+      <TR><TD PORT="frequency" COLSPAN="3" ALIGN="LEFT">frequency</TD></TR>
+      <TR><TD PORT="end_date" COLSPAN="3" ALIGN="LEFT">end_date</TD></TR>
+      <TR><TD PORT="credit_debit_flag" COLSPAN="3" ALIGN="LEFT">credit_debit_flag</TD></TR>
+      <TR><TD PORT="emp_opt_out_flag" COLSPAN="3" ALIGN="LEFT">emp_opt_out_flag</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/salary_opt_component_master.html#"
@@ -433,9 +434,9 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="state_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">state_master</TD></TR>
-      <TR><TD PORT="STATE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">STATE_ID</TD></TR>
-      <TR><TD PORT="STATE_NAME" COLSPAN="3" ALIGN="LEFT">STATE_NAME</TD></TR>
-      <TR><TD PORT="COUNTRY_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">COUNTRY_ID</TD></TR>
+      <TR><TD PORT="state_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">state_id</TD></TR>
+      <TR><TD PORT="state_name" COLSPAN="3" ALIGN="LEFT">state_name</TD></TR>
+      <TR><TD PORT="country_id" COLSPAN="3" ALIGN="LEFT">country_id</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4,120 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/state_master.html#"
@@ -445,54 +446,54 @@ digraph "compactRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="unit_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">unit_master</TD></TR>
-      <TR><TD PORT="UNIT_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">UNIT_ID</TD></TR>
-      <TR><TD PORT="UNIT_NAME" COLSPAN="3" ALIGN="LEFT">UNIT_NAME</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_ID</TD></TR>
-      <TR><TD PORT="EMP_ID_PREFIX" COLSPAN="3" ALIGN="LEFT">EMP_ID_PREFIX</TD></TR>
-      <TR><TD PORT="EMP_ID_SEQ_NAME" COLSPAN="3" ALIGN="LEFT">EMP_ID_SEQ_NAME</TD></TR>
-      <TR><TD PORT="ADDRESS" COLSPAN="3" ALIGN="LEFT">ADDRESS</TD></TR>
+      <TR><TD PORT="unit_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">unit_id</TD></TR>
+      <TR><TD PORT="unit_name" COLSPAN="3" ALIGN="LEFT">unit_name</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="emp_id_prefix" COLSPAN="3" ALIGN="LEFT">emp_id_prefix</TD></TR>
+      <TR><TD PORT="emp_id_seq_name" COLSPAN="3" ALIGN="LEFT">emp_id_seq_name</TD></TR>
+      <TR><TD PORT="address" COLSPAN="3" ALIGN="LEFT">address</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/unit_master.html#"
     tooltip="unit_master"
   ];
-  "address":"COUNTRY_ID":w -> "country_master":"COUNTRY_ID":e [arrowtail=crowodot arrowhead=none];
-  "address":"DISTRICT_ID":w -> "district_master":"DISTRICT_ID":e [arrowtail=crowodot arrowhead=none];
-  "address":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=tee arrowhead=none];
-  "address":"STATE_ID":w -> "state_master":"STATE_ID":e [arrowtail=crowodot arrowhead=none];
-  "appraisal_rating":"APPRAISAL_ID":w -> "appraisal_cycle":"APPRAISAL_ID":e [arrowtail=crowtee arrowhead=none];
-  "appraisal_rating":"DESIGNATION_ID":w -> "designation_master":"DESIGNATION_ID":e [arrowtail=crowodot arrowhead=none];
-  "appraisal_rating":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=crowtee arrowhead=none];
-  "appraisal_rating":"JOB_ROLE_ID":w -> "job_role_master":"JOB_ROLE_ID":e [arrowtail=crowodot arrowhead=none];
-  "department_master":"UNIT_ID":w -> "unit_master":"UNIT_ID":e [arrowtail=crowodot arrowhead=none];
-  "district_master":"STATE_ID":w -> "state_master":"STATE_ID":e [arrowtail=crowodot arrowhead=none];
-  "employee":"DEPARTMENT_ID":w -> "department_master":"DEPARTMENT_ID":e [arrowtail=crowodot arrowhead=none];
-  "employee":"IDENTITY_DOC_TYPE_ID":w -> "doc_type_master":"DOC_TYPE_ID":e [arrowtail=crowodot arrowhead=none];
-  "employee":"ORG_ID":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
-  "employee":"UNIT_ID":w -> "unit_master":"UNIT_ID":e [arrowtail=crowodot arrowhead=none];
-  "employee_additional_details":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=tee arrowhead=none];
-  "employee_docs":"DOC_TYPE_ID":w -> "doc_type_master":"DOC_TYPE_ID":e [arrowtail=crowtee arrowhead=none];
-  "employee_docs":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=crowtee arrowhead=none];
-  "employee_hierarchy_status":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=tee arrowhead=none];
-  "employee_hierarchy_status":"HR_ID":w -> "employee":"EMP_ID":e [arrowtail=crowodot arrowhead=none];
-  "employee_hierarchy_status":"SUPERVISOR_ID":w -> "employee":"EMP_ID":e [arrowtail=crowodot arrowhead=none];
-  "employee_optional_benefits":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=crowodot arrowhead=none];
-  "employee_optional_benefits":"OPT_COMP_ID":w -> "salary_opt_component_master":"OPT_COMP_ID":e [arrowtail=crowodot arrowhead=none];
-  "employee_profile":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=tee arrowhead=none];
-  "employee_salary":"APPRAISAL_ID":w -> "appraisal_cycle":"APPRAISAL_ID":e [arrowtail=crowtee arrowhead=none];
-  "employee_salary":"COMP_ID":w -> "salary_component_master":"COMP_ID":e [arrowtail=crowtee arrowhead=none];
-  "employee_salary":"EMP_ID":w -> "employee":"EMP_ID":e [arrowtail=crowtee arrowhead=none];
-  "job_role_designation":"DESIGNATION_ID":w -> "designation_master":"DESIGNATION_ID":e [arrowtail=crowtee arrowhead=none];
-  "job_role_designation":"JOB_ROLE_ID":w -> "job_role_master":"JOB_ROLE_ID":e [arrowtail=crowtee arrowhead=none];
-  "job_role_master":"GRADE_ID":w -> "grade_master":"GRADE_ID":e [arrowtail=crowtee arrowhead=none];
-  "job_role_master":"ORG_ID":w -> "organisation_master":"ORG_ID":e [arrowtail=crowtee arrowhead=none];
-  "org_leave":"ORG_ID":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
-  "organisation_master":"ORG_TYPE_ID":w -> "organisation_type_master":"ORG_TYPE_ID":e [arrowtail=crowodot arrowhead=none];
-  "role_permission":"PERMISSION_ID":w -> "permission_master":"PERMISSION_ID":e [arrowtail=crowtee arrowhead=none];
-  "role_permission":"ROLE_ID":w -> "role_master":"ROLE_ID":e [arrowtail=crowtee arrowhead=none];
-  "salary_master":"JOB_ROLE_ID":w -> "job_role_master":"JOB_ROLE_ID":e [arrowtail=crowtee arrowhead=none];
-  "salary_master":"SAL_COMP_ID":w -> "salary_component_master":"COMP_ID":e [arrowtail=crowtee arrowhead=none];
-  "salary_master":"SAL_COMP_ID":w -> "salary_opt_component_master":"OPT_COMP_ID":e [arrowtail=crowtee arrowhead=none];
-  "state_master":"COUNTRY_ID":w -> "country_master":"COUNTRY_ID":e [arrowtail=crowodot arrowhead=none];
-  "unit_master":"ORG_ID":w -> "organisation_master":"ORG_ID":e [arrowtail=crowodot arrowhead=none];
+  "address":"country_id":w -> "country_master":"country_id":e [arrowtail=crowodot arrowhead=none];
+  "address":"district_id":w -> "district_master":"district_id":e [arrowtail=crowodot arrowhead=none];
+  "address":"emp_id":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
+  "address":"state_id":w -> "state_master":"state_id":e [arrowtail=crowodot arrowhead=none];
+  "appraisal_rating":"appraisal_id":w -> "appraisal_cycle":"appraisal_id":e [arrowtail=crowtee arrowhead=none];
+  "appraisal_rating":"designation_id":w -> "designation_master":"designation_id":e [arrowtail=crowodot arrowhead=none];
+  "appraisal_rating":"emp_id":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
+  "appraisal_rating":"job_role_id":w -> "job_role_master":"job_role_id":e [arrowtail=crowodot arrowhead=none];
+  "department_master":"unit_id":w -> "unit_master":"unit_id":e [arrowtail=crowodot arrowhead=none];
+  "district_master":"state_id":w -> "state_master":"state_id":e [arrowtail=crowodot arrowhead=none];
+  "employee":"department_id":w -> "department_master":"department_id":e [arrowtail=crowodot arrowhead=none];
+  "employee":"identity_doc_type_id":w -> "doc_type_master":"doc_type_id":e [arrowtail=crowodot arrowhead=none];
+  "employee":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowodot arrowhead=none];
+  "employee":"unit_id":w -> "unit_master":"unit_id":e [arrowtail=crowodot arrowhead=none];
+  "employee_additional_details":"emp_id":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
+  "employee_docs":"doc_type_id":w -> "doc_type_master":"doc_type_id":e [arrowtail=crowtee arrowhead=none];
+  "employee_docs":"emp_id":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
+  "employee_hierarchy_status":"emp_id":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
+  "employee_hierarchy_status":"hr_id":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
+  "employee_hierarchy_status":"supervisor_id":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
+  "employee_optional_benefits":"emp_id":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
+  "employee_optional_benefits":"opt_comp_id":w -> "salary_opt_component_master":"opt_comp_id":e [arrowtail=crowodot arrowhead=none];
+  "employee_profile":"emp_id":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
+  "employee_salary":"appraisal_id":w -> "appraisal_cycle":"appraisal_id":e [arrowtail=crowtee arrowhead=none];
+  "employee_salary":"comp_id":w -> "salary_component_master":"comp_id":e [arrowtail=crowtee arrowhead=none];
+  "employee_salary":"emp_id":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
+  "job_role_designation":"designation_id":w -> "designation_master":"designation_id":e [arrowtail=crowtee arrowhead=none];
+  "job_role_designation":"job_role_id":w -> "job_role_master":"job_role_id":e [arrowtail=crowtee arrowhead=none];
+  "job_role_master":"grade_id":w -> "grade_master":"grade_id":e [arrowtail=crowtee arrowhead=none];
+  "job_role_master":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowtee arrowhead=none];
+  "org_leave":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowodot arrowhead=none];
+  "organisation_master":"org_type_id":w -> "organisation_type_master":"org_type_id":e [arrowtail=crowodot arrowhead=none];
+  "role_permission":"permission_id":w -> "permission_master":"permission_id":e [arrowtail=crowtee arrowhead=none];
+  "role_permission":"role_id":w -> "role_master":"role_id":e [arrowtail=crowtee arrowhead=none];
+  "salary_master":"job_role_id":w -> "job_role_master":"job_role_id":e [arrowtail=crowtee arrowhead=none];
+  "salary_master":"sal_comp_id":w -> "salary_component_master":"comp_id":e [arrowtail=crowtee arrowhead=none];
+  "salary_master":"sal_comp_id":w -> "salary_opt_component_master":"opt_comp_id":e [arrowtail=crowtee arrowhead=none];
+  "state_master":"country_id":w -> "country_master":"country_id":e [arrowtail=crowodot arrowhead=none];
+  "unit_master":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowodot arrowhead=none];
 }

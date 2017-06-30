@@ -14,18 +14,18 @@ digraph "oneDegreeRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "appraisal_rating":"DESIGNATION_ID":w -> "designation_master":"DESIGNATION_ID.type":e [arrowtail=crowodot arrowhead=none];
-  "job_role_designation":"DESIGNATION_ID":w -> "designation_master":"DESIGNATION_ID.type":e [arrowtail=crowtee arrowhead=none];
+  "appraisal_rating":"designation_id":w -> "designation_master":"designation_id.type":e [arrowtail=crowodot arrowhead=none];
+  "job_role_designation":"designation_id":w -> "designation_master":"designation_id.type":e [arrowtail=crowtee arrowhead=none];
   "appraisal_rating" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="appraisal_rating.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">appraisal_rating</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="APPRAISAL_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">APPRAISAL_ID</TD></TR>
-      <TR><TD PORT="PERFORMANCE_INDICATOR" COLSPAN="3" ALIGN="LEFT">PERFORMANCE_INDICATOR</TD></TR>
-      <TR><TD PORT="PERFORMANCE_DESCRIPTION" COLSPAN="3" ALIGN="LEFT">PERFORMANCE_DESCRIPTION</TD></TR>
-      <TR><TD PORT="JOB_ROLE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">JOB_ROLE_ID</TD></TR>
-      <TR><TD PORT="DESIGNATION_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">DESIGNATION_ID</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="appraisal_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">appraisal_id</TD></TR>
+      <TR><TD PORT="performance_indicator" COLSPAN="3" ALIGN="LEFT">performance_indicator</TD></TR>
+      <TR><TD PORT="performance_description" COLSPAN="3" ALIGN="LEFT">performance_description</TD></TR>
+      <TR><TD PORT="job_role_id" COLSPAN="3" ALIGN="LEFT">job_role_id</TD></TR>
+      <TR><TD PORT="designation_id" COLSPAN="3" ALIGN="LEFT">designation_id</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="appraisal_rating.html#graph"
@@ -35,8 +35,8 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="designation_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">designation_master</TD></TR>
-      <TR><TD PORT="DESIGNATION_ID" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">DESIGNATION_ID</TD><TD PORT="DESIGNATION_ID.type" ALIGN="LEFT">int[10]</TD></TR>
-      <TR><TD PORT="DESIGNATION" COLSPAN="2" ALIGN="LEFT">DESIGNATION</TD><TD PORT="DESIGNATION.type" ALIGN="LEFT">varchar[32]</TD></TR>
+      <TR><TD PORT="designation_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">designation_id</TD><TD PORT="designation_id.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="designation" COLSPAN="2" ALIGN="LEFT">designation</TD><TD PORT="designation.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">11 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="designation_master.html#"
@@ -46,8 +46,8 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="job_role_designation.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">job_role_designation</TD></TR>
-      <TR><TD PORT="JOB_ROLE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">JOB_ROLE_ID</TD></TR>
-      <TR><TD PORT="DESIGNATION_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">DESIGNATION_ID</TD></TR>
+      <TR><TD PORT="job_role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">job_role_id</TD></TR>
+      <TR><TD PORT="designation_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">designation_id</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="job_role_designation.html#graph"

@@ -14,40 +14,40 @@ digraph "oneDegreeRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "employee":"ORG_ID":w -> "organisation_master":"ORG_ID.type":e [arrowtail=crowodot arrowhead=none];
-  "job_role_master":"ORG_ID":w -> "organisation_master":"ORG_ID.type":e [arrowtail=crowtee arrowhead=none];
-  "org_leave":"ORG_ID":w -> "organisation_master":"ORG_ID.type":e [arrowtail=crowodot arrowhead=none];
-  "organisation_master":"ORG_TYPE_ID":w -> "organisation_type_master":"ORG_TYPE_ID":e [arrowtail=crowodot arrowhead=none];
-  "unit_master":"ORG_ID":w -> "organisation_master":"ORG_ID.type":e [arrowtail=crowodot arrowhead=none];
+  "employee":"org_id":w -> "organisation_master":"org_id.type":e [arrowtail=crowodot arrowhead=none];
+  "job_role_master":"org_id":w -> "organisation_master":"org_id.type":e [arrowtail=crowtee arrowhead=none];
+  "org_leave":"org_id":w -> "organisation_master":"org_id.type":e [arrowtail=crowodot arrowhead=none];
+  "organisation_master":"org_type_id":w -> "organisation_type_master":"org_type_id":e [arrowtail=crowodot arrowhead=none];
+  "unit_master":"org_id":w -> "organisation_master":"org_id.type":e [arrowtail=crowodot arrowhead=none];
   "employee" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee</TD></TR>
-      <TR><TD PORT="EMP_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">EMP_ID</TD></TR>
-      <TR><TD PORT="TITLE" COLSPAN="3" ALIGN="LEFT">TITLE</TD></TR>
-      <TR><TD PORT="EMPLOYEE_FIRST_NAME" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_FIRST_NAME</TD></TR>
-      <TR><TD PORT="EMPLOYEE_MIDDLE_NAME" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_MIDDLE_NAME</TD></TR>
-      <TR><TD PORT="EMPLOYEE_LAST_NAME" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_LAST_NAME</TD></TR>
-      <TR><TD PORT="SEX" COLSPAN="3" ALIGN="LEFT">SEX</TD></TR>
-      <TR><TD PORT="EMP_TYPE" COLSPAN="3" ALIGN="LEFT">EMP_TYPE</TD></TR>
-      <TR><TD PORT="MARITAL_STATUS" COLSPAN="3" ALIGN="LEFT">MARITAL_STATUS</TD></TR>
-      <TR><TD PORT="DATE_OF_JOINING" COLSPAN="3" ALIGN="LEFT">DATE_OF_JOINING</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_ID</TD></TR>
-      <TR><TD PORT="UNIT_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">UNIT_ID</TD></TR>
-      <TR><TD PORT="DEPARTMENT_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">DEPARTMENT_ID</TD></TR>
-      <TR><TD PORT="NATIONALITY" COLSPAN="3" ALIGN="LEFT">NATIONALITY</TD></TR>
-      <TR><TD PORT="IDENTITY_DOC_TYPE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">IDENTITY_DOC_TYPE_ID</TD></TR>
-      <TR><TD PORT="IDENTITY_NUMBER" COLSPAN="3" ALIGN="LEFT">IDENTITY_NUMBER</TD></TR>
-      <TR><TD PORT="DATE_OF_BIRTH" COLSPAN="3" ALIGN="LEFT">DATE_OF_BIRTH</TD></TR>
-      <TR><TD PORT="FATHER_NAME" COLSPAN="3" ALIGN="LEFT">FATHER_NAME</TD></TR>
-      <TR><TD PORT="EMAIL_ID" COLSPAN="3" ALIGN="LEFT">EMAIL_ID</TD></TR>
-      <TR><TD PORT="CONTACTNO" COLSPAN="3" ALIGN="LEFT">CONTACTNO</TD></TR>
-      <TR><TD PORT="ENTRY_BY" COLSPAN="3" ALIGN="LEFT">ENTRY_BY</TD></TR>
-      <TR><TD PORT="ENTRY_DATE" COLSPAN="3" ALIGN="LEFT">ENTRY_DATE</TD></TR>
-      <TR><TD PORT="HR_FLAG" COLSPAN="3" ALIGN="LEFT">HR_FLAG</TD></TR>
-      <TR><TD PORT="SUPERVISOR_FLAG" COLSPAN="3" ALIGN="LEFT">SUPERVISOR_FLAG</TD></TR>
-      <TR><TD PORT="EMPLOYEE_IMAGE" COLSPAN="3" ALIGN="LEFT">EMPLOYEE_IMAGE</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
+      <TR><TD PORT="employee_first_name" COLSPAN="3" ALIGN="LEFT">employee_first_name</TD></TR>
+      <TR><TD PORT="employee_middle_name" COLSPAN="3" ALIGN="LEFT">employee_middle_name</TD></TR>
+      <TR><TD PORT="employee_last_name" COLSPAN="3" ALIGN="LEFT">employee_last_name</TD></TR>
+      <TR><TD PORT="sex" COLSPAN="3" ALIGN="LEFT">sex</TD></TR>
+      <TR><TD PORT="emp_type" COLSPAN="3" ALIGN="LEFT">emp_type</TD></TR>
+      <TR><TD PORT="marital_status" COLSPAN="3" ALIGN="LEFT">marital_status</TD></TR>
+      <TR><TD PORT="date_of_joining" COLSPAN="3" ALIGN="LEFT">date_of_joining</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="unit_id" COLSPAN="3" ALIGN="LEFT">unit_id</TD></TR>
+      <TR><TD PORT="department_id" COLSPAN="3" ALIGN="LEFT">department_id</TD></TR>
+      <TR><TD PORT="nationality" COLSPAN="3" ALIGN="LEFT">nationality</TD></TR>
+      <TR><TD PORT="identity_doc_type_id" COLSPAN="3" ALIGN="LEFT">identity_doc_type_id</TD></TR>
+      <TR><TD PORT="identity_number" COLSPAN="3" ALIGN="LEFT">identity_number</TD></TR>
+      <TR><TD PORT="date_of_birth" COLSPAN="3" ALIGN="LEFT">date_of_birth</TD></TR>
+      <TR><TD PORT="father_name" COLSPAN="3" ALIGN="LEFT">father_name</TD></TR>
+      <TR><TD PORT="email_id" COLSPAN="3" ALIGN="LEFT">email_id</TD></TR>
+      <TR><TD PORT="contactno" COLSPAN="3" ALIGN="LEFT">contactno</TD></TR>
+      <TR><TD PORT="entry_by" COLSPAN="3" ALIGN="LEFT">entry_by</TD></TR>
+      <TR><TD PORT="entry_date" COLSPAN="3" ALIGN="LEFT">entry_date</TD></TR>
+      <TR><TD PORT="hr_flag" COLSPAN="3" ALIGN="LEFT">hr_flag</TD></TR>
+      <TR><TD PORT="supervisor_flag" COLSPAN="3" ALIGN="LEFT">supervisor_flag</TD></TR>
+      <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -56,11 +56,11 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="job_role_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">job_role_master</TD></TR>
-      <TR><TD PORT="JOB_ROLE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">JOB_ROLE_ID</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_ID</TD></TR>
-      <TR><TD PORT="GRADE_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">GRADE_ID</TD></TR>
-      <TR><TD PORT="PROBATION_NOTICE_PERIOD" COLSPAN="3" ALIGN="LEFT">PROBATION_NOTICE_PERIOD</TD></TR>
-      <TR><TD PORT="NOTICE_PERIOD" COLSPAN="3" ALIGN="LEFT">NOTICE_PERIOD</TD></TR>
+      <TR><TD PORT="job_role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">job_role_id</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="grade_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">grade_id</TD></TR>
+      <TR><TD PORT="probation_notice_period" COLSPAN="3" ALIGN="LEFT">probation_notice_period</TD></TR>
+      <TR><TD PORT="notice_period" COLSPAN="3" ALIGN="LEFT">notice_period</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="job_role_master.html#graph"
@@ -70,13 +70,13 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="org_leave.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">org_leave</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_ID</TD></TR>
-      <TR><TD PORT="PROBATION_FLAG" COLSPAN="3" ALIGN="LEFT">PROBATION_FLAG</TD></TR>
-      <TR><TD PORT="CL" COLSPAN="3" ALIGN="LEFT">CL</TD></TR>
-      <TR><TD PORT="PL" COLSPAN="3" ALIGN="LEFT">PL</TD></TR>
-      <TR><TD PORT="PATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">PATERNITY_LEAVE</TD></TR>
-      <TR><TD PORT="SICK_LEAVE" COLSPAN="3" ALIGN="LEFT">SICK_LEAVE</TD></TR>
-      <TR><TD PORT="MATERNITY_LEAVE" COLSPAN="3" ALIGN="LEFT">MATERNITY_LEAVE</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="probation_flag" COLSPAN="3" ALIGN="LEFT">probation_flag</TD></TR>
+      <TR><TD PORT="cl" COLSPAN="3" ALIGN="LEFT">cl</TD></TR>
+      <TR><TD PORT="pl" COLSPAN="3" ALIGN="LEFT">pl</TD></TR>
+      <TR><TD PORT="paternity_leave" COLSPAN="3" ALIGN="LEFT">paternity_leave</TD></TR>
+      <TR><TD PORT="sick_leave" COLSPAN="3" ALIGN="LEFT">sick_leave</TD></TR>
+      <TR><TD PORT="maternity_leave" COLSPAN="3" ALIGN="LEFT">maternity_leave</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="org_leave.html#graph"
@@ -86,10 +86,10 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="organisation_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">organisation_master</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">ORG_ID</TD><TD PORT="ORG_ID.type" ALIGN="LEFT">int[10]</TD></TR>
-      <TR><TD PORT="ORG_NAME" COLSPAN="2" ALIGN="LEFT">ORG_NAME</TD><TD PORT="ORG_NAME.type" ALIGN="LEFT">varchar[100]</TD></TR>
-      <TR><TD PORT="ORG_TYPE_ID" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_TYPE_ID</TD><TD PORT="ORG_TYPE_ID.type" ALIGN="LEFT">int[10]</TD></TR>
-      <TR><TD PORT="ADDRESS" COLSPAN="2" ALIGN="LEFT">ADDRESS</TD><TD PORT="ADDRESS.type" ALIGN="LEFT">varchar[256]</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">org_id</TD><TD PORT="org_id.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="org_name" COLSPAN="2" ALIGN="LEFT">org_name</TD><TD PORT="org_name.type" ALIGN="LEFT">varchar[100]</TD></TR>
+      <TR><TD PORT="org_type_id" COLSPAN="2" ALIGN="LEFT">org_type_id</TD><TD PORT="org_type_id.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="address" COLSPAN="2" ALIGN="LEFT">address</TD><TD PORT="address.type" ALIGN="LEFT">varchar[256]</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="organisation_master.html#"
@@ -99,9 +99,9 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="organisation_type_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">organisation_type_master</TD></TR>
-      <TR><TD PORT="ORG_TYPE_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">ORG_TYPE_ID</TD></TR>
-      <TR><TD PORT="ORG_TYPE_NAME" COLSPAN="3" ALIGN="LEFT">ORG_TYPE_NAME</TD></TR>
-      <TR><TD PORT="DESCRIPTION" COLSPAN="3" ALIGN="LEFT">DESCRIPTION</TD></TR>
+      <TR><TD PORT="org_type_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">org_type_id</TD></TR>
+      <TR><TD PORT="org_type_name" COLSPAN="3" ALIGN="LEFT">org_type_name</TD></TR>
+      <TR><TD PORT="description" COLSPAN="3" ALIGN="LEFT">description</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="organisation_type_master.html#graph"
@@ -111,12 +111,12 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="unit_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">unit_master</TD></TR>
-      <TR><TD PORT="UNIT_ID" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">UNIT_ID</TD></TR>
-      <TR><TD PORT="UNIT_NAME" COLSPAN="3" ALIGN="LEFT">UNIT_NAME</TD></TR>
-      <TR><TD PORT="ORG_ID" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">ORG_ID</TD></TR>
-      <TR><TD PORT="EMP_ID_PREFIX" COLSPAN="3" ALIGN="LEFT">EMP_ID_PREFIX</TD></TR>
-      <TR><TD PORT="EMP_ID_SEQ_NAME" COLSPAN="3" ALIGN="LEFT">EMP_ID_SEQ_NAME</TD></TR>
-      <TR><TD PORT="ADDRESS" COLSPAN="3" ALIGN="LEFT">ADDRESS</TD></TR>
+      <TR><TD PORT="unit_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">unit_id</TD></TR>
+      <TR><TD PORT="unit_name" COLSPAN="3" ALIGN="LEFT">unit_name</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="emp_id_prefix" COLSPAN="3" ALIGN="LEFT">emp_id_prefix</TD></TR>
+      <TR><TD PORT="emp_id_seq_name" COLSPAN="3" ALIGN="LEFT">emp_id_seq_name</TD></TR>
+      <TR><TD PORT="address" COLSPAN="3" ALIGN="LEFT">address</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="unit_master.html#graph"
