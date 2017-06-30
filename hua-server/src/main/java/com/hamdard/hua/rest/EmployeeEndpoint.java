@@ -1,9 +1,11 @@
 package com.hamdard.hua.rest;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -35,7 +37,7 @@ public class EmployeeEndpoint {
     @Secured(Privilege.CREATE_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response crate(Employee newEmployee){
+    public Response create(Employee newEmployee){
         try{
             employeeRepository.createEmployee( newEmployee );
             return Response.status(200).build();
@@ -44,6 +46,27 @@ public class EmployeeEndpoint {
             return Response.status(500).entity(new Message(e.getMessage())).build();
         }
     }
+    
+    @GET
+    @Path("/")
+    @Secured(Privilege.CREATE_AN_EMP)
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response hierarchySearch(@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName,
+			@QueryParam("lastName") String lastName, @QueryParam("empId") String empId,
+			@QueryParam("empType") String empType, @QueryParam("emailId") String emailId,
+			@QueryParam("orgId") int orgId, @QueryParam("unitId") int unitId,
+			@QueryParam("departmentId") int departmentId, @QueryParam("designationId") int dsignationId,
+			@QueryParam("departmentId") String supervisorFlag, @QueryParam("hrFlag") String hrFlag,
+			@QueryParam("supervisorEmailId") String supervisorEmailId, @QueryParam("hrEmailId") String hrEmailId,
+			@QueryParam("sex") String sex, @QueryParam("maritalStatus") String maritalStatus,
+			@QueryParam("identityDocId") String identityDocId, @QueryParam("identityDocNo") String identityDocNo
+			){
+    	
+    	
+    	return null;
+ 
+    }
+    
 }
 
 
