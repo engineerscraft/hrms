@@ -32,7 +32,7 @@ import com.hamdard.hua.security.Secured;
  * Employee related service's endpoint!
  */
 
-@Path("/v1/employee")
+@Path("/v1/employee/management")
 public class EmployeeResource {
 
     private static final Logger logger = LogManager.getLogger(EmployeeResource.class);
