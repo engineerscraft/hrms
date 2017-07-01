@@ -658,7 +658,7 @@ select * {
 
 .search-btn-fixed {
   position: fixed;
-    top: 7rem;
+    top: calc(90px +1rem);
     right: 1rem;
 }
 
