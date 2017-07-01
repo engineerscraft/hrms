@@ -436,8 +436,8 @@ public class Employee {
     public class EmployeeBasicInfo {
         private String     contactNo;
         private Department department;
-        private String     dob;
-        private String     doj;
+        private Date       dob;
+        private Date       doj;
         private String     emailId;
         private String     empFirstName;
         private String     empId;
@@ -445,7 +445,7 @@ public class Employee {
         private String     empMiddleName;
         private String     empType;
         private String     entryBy;
-        private String     entryDate;
+        private Date       entryDate;
         private String     fatherName;
         private boolean    hrFlag;
         private DocType    identityDocType;
@@ -469,18 +469,6 @@ public class Employee {
         }
         public void setDepartment(Department department) {
             this.department = department;
-        }
-        public String getDob() {
-            return this.dob;
-        }
-        public void setDob(String dob) {
-            this.dob = dob;
-        }
-        public String getDoj() {
-            return this.doj;
-        }
-        public void setDoj(String doj) {
-            this.doj = doj;
         }
         public String getEmailId() {
             return this.emailId;
@@ -523,12 +511,6 @@ public class Employee {
         }
         public void setEntryBy(String entryBy) {
             this.entryBy = entryBy;
-        }
-        public String getEntryDate() {
-            return this.entryDate;
-        }
-        public void setEntryDate(String entryDate) {
-            this.entryDate = entryDate;
         }
         public String getFatherName() {
             return this.fatherName;
@@ -595,6 +577,24 @@ public class Employee {
         }
         public void setUnit(Unit unit) {
             this.unit = unit;
+        }
+        public Date getDob() {
+            return this.dob;
+        }
+        public void setDob(Date dob) {
+            this.dob = dob;
+        }
+        public Date getDoj() {
+            return this.doj;
+        }
+        public void setDoj(Date doj) {
+            this.doj = doj;
+        }
+        public Date getEntryDate() {
+            return this.entryDate;
+        }
+        public void setEntryDate(Date entryDate) {
+            this.entryDate = entryDate;
         }
         
         

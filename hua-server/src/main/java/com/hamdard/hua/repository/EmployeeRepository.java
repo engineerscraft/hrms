@@ -49,6 +49,9 @@ public class EmployeeRepository {
     @Value("${sql.employee.nextId}")
     private String              obtainEmployeeIdFrmSeq;
     
+    @Value("${sql.employee.setId}")
+    private String              updateSeqValue;
+    
     @Value("${employeeIdNumericLength}")
     private String              employeeIdNumericLength;
     
@@ -93,7 +96,7 @@ public class EmployeeRepository {
     public void createEmployee(Employee newEmployee) throws Exception {
         String employeeId           = this.generateEmployeeId(newEmployee.getEmployeeBasicInfo().getUnit());
         
-        String entryDate            = newEmployee.getEmployeeBasicInfo().getEntryDate();
+        Date entryDate              = newEmployee.getEmployeeBasicInfo().getEntryDate();
         String entryBy              = newEmployee.getEmployeeBasicInfo().getEntryBy();
         
         this.insertBasicInfo            (employeeId,        newEmployee.getEmployeeBasicInfo());
@@ -117,7 +120,7 @@ public class EmployeeRepository {
      * @throws Exception
      */
     private void insertEmpSalaryComponents(String employeeId, String entryBy, List<EmployeeSalary> salaryComponents, 
-            String entryDate) throws Exception {
+            Date entryDate) throws Exception {
         if(salaryComponents != null)
             for(EmployeeSalary salary: salaryComponents){
                 long appraisalId        = this.getAppraisalId(entryDate);
@@ -140,7 +143,7 @@ public class EmployeeRepository {
             }
     }
     
-    private long getAppraisalId(String  entryDate) throws Exception{
+    private long getAppraisalId(Date  entryDate) throws Exception{
         logger.info(sqlMarker, getAppraisalId);
         logger.info(sqlMarker, "Params {}, {}",
                 entryDate,
@@ -185,7 +188,7 @@ public class EmployeeRepository {
      * @param hierarchy
      * @throws Exception
      */
-    private void insertEmployeeHierarchy(String employeeId, EmployeeHierarchy hierarchy, String entryDate) throws Exception {
+    private void insertEmployeeHierarchy(String employeeId, EmployeeHierarchy hierarchy, Date entryDate) throws Exception {
         logger.info(sqlMarker, employeeHierarchyInsert);
         logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
                 () -> employeeId,
@@ -249,7 +252,7 @@ public class EmployeeRepository {
                         address.getStreetName(),
                         address.getArea(),
                         address.getRegion(),
-                        address.getPinno(),
+                        Integer.valueOf(address.getPinno()),
                         address.getDistrictId(),
                         address.getStateId(),
                         address.getCountryId(),
@@ -334,8 +337,8 @@ public class EmployeeRepository {
                 () -> basicInfo.getContactNo(),
                 () -> basicInfo.getEntryBy(),
                 () -> basicInfo.getEntryDate(),
-                () -> basicInfo.isHrFlag(),
-                () -> basicInfo.isSupervisorFlag());
+                () -> basicInfo.isHrFlag() ? "Y":"N",
+                () -> basicInfo.isSupervisorFlag() ? "Y":"N");
         
         jdbcTemplate.update(employeeBasicInfoInsert, new Object[] {
                 employeeId, 
@@ -359,8 +362,8 @@ public class EmployeeRepository {
                 basicInfo.getContactNo(),
                 basicInfo.getEntryBy(),
                 basicInfo.getEntryDate(),
-                basicInfo.isHrFlag(),
-                basicInfo.isSupervisorFlag()
+                basicInfo.isHrFlag() ? "Y":"N",
+                basicInfo.isSupervisorFlag() ? "Y":"N"
                 });
     }
     
@@ -379,11 +382,17 @@ public class EmployeeRepository {
         String seqName                  = listOfUnits.get(0).getEmpIdSeqName();
         
         logger.info(sqlMarker, obtainEmployeeIdFrmSeq);
-        logger.info(sqlMarker, "Params {}", () -> obtainEmployeeIdFrmSeq);
+        logger.info(sqlMarker, "Params {}", () -> seqName);
         
         Long empIdObtainedNo            = jdbcTemplate.queryForObject(obtainEmployeeIdFrmSeq, 
                                                 new Object[] {seqName}, Long.class);
-        String paddedEmpNo              = StringUtils.leftPad(String.valueOf(empIdObtainedNo), 
+        Long newEmpNo                   = empIdObtainedNo + 1;
+        
+        logger.info(sqlMarker, updateSeqValue);
+        logger.info(sqlMarker, "Params {} {}", () -> newEmpNo, () -> seqName);
+        jdbcTemplate.update(updateSeqValue, new Object[] {newEmpNo, seqName});
+        
+        String paddedEmpNo              = StringUtils.leftPad(String.valueOf(newEmpNo), 
                                                 Integer.valueOf(employeeIdNumericLength), '0');
         String completeEmpNo            = prefix + paddedEmpNo;
         logger.debug("Employee number generated: {}", () -> completeEmpNo);
