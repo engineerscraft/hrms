@@ -336,7 +336,7 @@ public class Employee {
         }
     }
     
-    public class EmployeeAddlDetails {
+    public static class EmployeeAddlDetails {
         private int    dependentNo;
         private String emergencyContactName;
         private String emergencyContactNo;
