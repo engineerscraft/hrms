@@ -18,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
 import com.hamdard.hua.model.Message;
@@ -81,6 +82,36 @@ public class EmployeeResource {
             return Response.status(200).build();
         }catch(Exception ex) {
             logger.error("The employee profile could not be updated", ex);
+            return Response.status(500).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @POST
+    @Path("/{id}/optionalbenefits")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response insertEmployeeOptionalBenefits(@PathParam("id") String employeeId, List<EmployeeOptionalBenefit> insEmployeeOptBenefits) {
+        try {
+            String entryBy = securityContext.getUserPrincipal().getName();
+            employeeRepository.insertEmpOptionalBenefits(employeeId, entryBy, insEmployeeOptBenefits);
+            return Response.status(200).build();
+        }catch(Exception ex) {
+            logger.error("The employee optional benefits could not be updated", ex);
+            return Response.status(500).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @PUT
+    @Path("/{id}/optionalbenefits/{oid}")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response insertEmployeeOptionalBenefits(@PathParam("id") String employeeId, @PathParam("oid") int optCompId, EmployeeOptionalBenefit updEmployeeOptBenefit) {
+        try {
+            String entryBy = securityContext.getUserPrincipal().getName();
+            employeeRepository.updateEmpOptionalBenefits(employeeId, optCompId, entryBy, updEmployeeOptBenefit);
+            return Response.status(200).build();
+        }catch(Exception ex) {
+            logger.error("The employee optional benefits could not be updated", ex);
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }
