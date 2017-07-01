@@ -100,7 +100,7 @@ input, button {
 
 .display-table {
    display: table;
-   width: calc(100% - 92px);
+   width: 100%;
    table-layout: fixed;
 }
 
@@ -502,22 +502,36 @@ app-spinner {
 .btn {
     text-align: center;
     display: inline-block;
-    border-radius: 20px;
-    padding: 10px 20px;
+    border-radius: 5px;
+    padding: 12px 40px;
     text-decoration: none;
     color: #fff;
     border: none;
     margin-top: 3px;
     font-size: 18px;
-    background-color: #4CA1AF;
+    background-color: rgba(76, 161, 175, 0.8);
     transition: background-color 0.3s;
 	  pointer-events: auto;
-    margin: 40px 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    margin: 40px 0;
+    cursor: pointer;
+    transition: all .3s;
 }
 
-.btn:hover {
-    box-shadow: 0 5px 10px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.12);
+.btn::before {
+  content: '';
+  background-color: rgba(76, 161, 175, 1);
+  width: 0%;
+  height: 300%;
+  right: 0;
+  top: 0;
+  position: absolute;
+  color: #fff;
+  z-index: -1;
+  transition: all .8s;
+}
+
+.btn:hover::before {
+  width: 200%;
 }
 
 /*Combo*/
@@ -624,8 +638,8 @@ select * {
 }
 
 
-.back-btn{
-    background: url("/assets/img/ic_replay_white_24px.svg") no-repeat 13px center;
+.search-btn{
+    background: url("/assets/img/ic_search_white_24px.svg") no-repeat 13px center;
     width:50px;
     height: 50px;
     border-radius:100%;
@@ -640,11 +654,11 @@ select * {
     text-decoration: none;
     z-index: 100;
 }
-.back-btn > .material-icons{font-size:20px;}
+.search-btn > .material-icons{font-size:20px;}
 
-.back-btn-fixed {
+.search-btn-fixed {
   position: fixed;
-    top: 7rem;
+    top: calc(90px +1rem);
     right: 1rem;
 }
 
@@ -779,3 +793,45 @@ padding:8px 6px 8px 10px;
 background-repeat: no-repeat;
 background-position: 10px center;
 }
+
+
+/********Accordion ************/
+
+.toggle {
+  max-width: calc(100% - 90px);
+}
+.toggle-label {
+  font-size: 16px;
+  background: #4CA1AF;
+  padding: 1em;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto 1em;
+  border-radius: 4px;
+  color: #fff;
+}
+.toggle-label:after {
+  color: #fff;
+  content: "+";
+  float: right;
+  font-weight: bold;
+}
+.toggle-content {
+  color: #b0b3c2;
+  font-size: 16px;
+  margin-bottom: 1.5em;
+}
+.toggle-input {
+  display: none;
+}
+.toggle-input:not(checked) ~ .toggle-content {
+  display: none;
+}
+.toggle-input:checked ~ .toggle-content {
+  display: block;
+}
+.toggle-input:checked ~ .toggle-label:after {
+  content: "-";
+}
+
+/*******Accordion ends here*********/
