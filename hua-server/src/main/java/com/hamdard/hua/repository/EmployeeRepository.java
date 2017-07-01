@@ -31,7 +31,7 @@ import com.hamdard.hua.model.Unit;
 
 @Component
 public class EmployeeRepository {
-    private static final Logger logger    = LogManager.getLogger(EmployeeRepositoryOld.class);
+    private static final Logger logger    = LogManager.getLogger(EmployeeRepository.class);
     private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
 
     /***************************************** AUTOWIRED COMPONENTS **************************************/
@@ -75,6 +75,14 @@ public class EmployeeRepository {
     
     @Value("${sql.employee.get.appraisal.id}")
     private String              getAppraisalId;
+    
+    /******************* Update Operations *******************/
+    
+    @Value("${sql.employee.update.employee.salary}")
+    private String              employeeSalaryUpdate;
+    
+    @Value("${sql.employee.update.profile}")
+    private String              employeeProfileUpdate;
 
     /*****************************************************************************************************/
     
@@ -417,6 +425,57 @@ public class EmployeeRepository {
         String completeEmpNo            = prefix + paddedEmpNo;
         logger.debug("Employee number generated: {}", () -> completeEmpNo);
         return completeEmpNo;
+    }
+    
+    /**
+     * Update Employee Salary
+     * @param employeeId
+     * @param entryBy
+     * @param salaryComponents
+     * @param entryDate
+     * @throws Exception
+     */
+    
+    public void updateEmpSalaryComponents(String employeeId, String entryBy,
+            List<EmployeeSalary> salaryComponents) throws Exception {
+        if(salaryComponents != null)
+            for(EmployeeSalary salary: salaryComponents){
+                logger.info(sqlMarker, employeeSalaryUpdate);
+                logger.info(sqlMarker, "Params {}, {}, {}, {}",
+                        () -> salary.getSalaryValue(),
+                        () -> entryBy,
+                        () -> employeeId,
+                        () -> salary.getSalaryComponent().getCompId());
+                jdbcTemplate.update(employeeSalaryUpdate, new Object[] {
+                        salary.getSalaryValue(),
+                        entryBy,
+                        employeeId,
+                        salary.getSalaryComponent().getCompId()
+                });
+            }
+    }
+    
+    /**
+     * Update Employee Profile
+     * @param employeeId
+     * @param profile
+     * @throws Exception
+     */
+    
+    public void updateEmployeeProfile(String employeeId, EmployeeProfile profile) throws Exception {
+        logger.info(sqlMarker, employeeProfileUpdate);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}",
+                () -> profile.getQualification(),
+                () -> profile.getDescription(),
+                () -> profile.getComments(),
+                () -> employeeId);
+
+        jdbcTemplate.update(employeeProfileInsert, new Object[] {
+                profile.getQualification(),
+                profile.getDescription(),
+                profile.getComments(),
+                employeeId
+        });
     }
 }
 

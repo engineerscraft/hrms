@@ -47,7 +47,7 @@ public class Employee {
         
     }
     
-    public class EmployeeProfile {
+    public static class EmployeeProfile {
         private String comments;
         private String description;
         private String qualification;
