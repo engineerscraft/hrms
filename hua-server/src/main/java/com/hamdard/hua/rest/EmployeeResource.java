@@ -119,12 +119,13 @@ public class EmployeeResource {
 
     @PUT
     @Path("/{id}/additionaldetails")
+    @Secured(Privilege.UPDATE_EMP_ADDL_DETLS_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddlDetails employeeAddlDetails) {
         try {
-            //String modifiedBy = securityContext.getUserPrincipal().getName();
-            String modifiedBy = "biswajit";
+            String modifiedBy = securityContext.getUserPrincipal().getName();
+            //String modifiedBy = "dummy name";
             
             employeeRepository.updatedEmployeeAddlDetails(employeeId, modifiedBy, employeeAddlDetails);
             return Response.status(200).build();
