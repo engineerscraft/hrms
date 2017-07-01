@@ -6,6 +6,7 @@ import { UnitService } from '../unit.service';
 import { DocTypeService } from '../doc-type.service';
 import { Observable } from 'rxjs/Observable';
 import { CountryService } from '../country.service';
+import { EmployeeService } from '../employee.service'; 
 
 @Component({
   selector: 'app-employee-creation',
@@ -21,16 +22,7 @@ export class EmployeeCreationComponent implements OnInit {
   private identityDocTypes;
   private processingInProgress = false;
   private countries;
-
-//address related CSS manipulators////
-  private accordionPermanent: string = 'accordion';
-  private accordionPresent: string = 'accordion';
-  private panelPermanent: string = 'panel';
-  private panelPresent: string = 'panel';
-  private showPermAddress: boolean = false;
-  private showCurrAddress: boolean = false;
-//////////////////////////////////////
-
+  private message: string = '';
 
 
   constructor(private formBuilder: FormBuilder,
@@ -38,7 +30,8 @@ export class EmployeeCreationComponent implements OnInit {
               private unitService: UnitService, 
               private departmentService: DepartmentService, 
               private docTypeService: DocTypeService,
-              private countryService: CountryService) { }
+              private countryService: CountryService,
+              private employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.employeeInfo = this.formBuilder.group({
@@ -74,6 +67,10 @@ export class EmployeeCreationComponent implements OnInit {
        })
     });
     this.initiateLists();
+  }
+
+  OnClickOk() {
+    this.message ='';
   }
 
   private canCreate() {
@@ -178,44 +175,20 @@ export class EmployeeCreationComponent implements OnInit {
   }
 
   create() {
-    var json = JSON.stringify(this.employeeInfo.value);
-    console.log(json);
+    var json = JSON.stringify(this.employeeInfo.controls.employeeBasicInfo.value);
+    var obj = {'employeeBasicInfo':this.employeeInfo.controls.employeeBasicInfo.value};
+    console.log(JSON.stringify(obj));
+    this.processingInProgress = true;
+    this.employeeService.create(obj)
+     .subscribe(
+      res => {
+        this.processingInProgress = false;
+        this.message = res.json()['message'];
+      },
+      err => {
+        this.message = err.json()["message"];
+        this.processingInProgress = false;
+      });
   }
-
-
-/**
- * To enable disable permanent and present address options
- * @param addType 
- */
-  toggleAddress(addType: string){
-    if(addType === 'permanent'){
-      if(this.showPermAddress){
-        this.showPermAddress = false;
-        this.accordionPermanent = 'accordion';
-        this.panelPermanent = 'panel';
-      }else{
-        this.showPermAddress = true;
-        this.accordionPermanent = 'accordion active';
-        this.panelPermanent = 'panelActive';
-        this.panelPresent='panel';
-        this.showCurrAddress = false;
-        this.accordionPresent = 'accordion';
-      }
-    }else if(addType === 'present'){
-      if(this.showCurrAddress){
-        this.showCurrAddress = false;
-        this.accordionPresent = 'accordion';
-        this.panelPresent='panel';
-      }else{
-        this.showCurrAddress = true;
-        this.accordionPresent = 'accordion active';
-        this.panelPermanent = 'panel';
-        this.panelPresent='panelActive';
-        this.showPermAddress = false;
-        this.accordionPermanent = 'accordion';
-      }
-      return null;
-    }
-
-  }
+  
 }

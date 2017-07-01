@@ -49,8 +49,8 @@ public class EmployeeResource {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response crate(Employee newEmployee){
         try{
-            employeeRepository.createEmployee( newEmployee );
-            return Response.status(200).build();
+            String message  = employeeRepository.createEmployee( newEmployee );
+            return Response.status(200).entity(new Message(message)).build();
         }catch(Exception e) {
             logger.error(e.getMessage(), e);
             return Response.status(500).entity(new Message(e.getMessage())).build();

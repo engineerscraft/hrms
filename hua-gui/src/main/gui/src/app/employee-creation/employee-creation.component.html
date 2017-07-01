@@ -13,7 +13,7 @@
           <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
           <label for="tab1" class="tab-header span_1_of_6 cell">Personal Details</label>
 
-          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" checked/>
+          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2"/>
           <label for="tab2" class="tab-header span_1_of_6 cell">Address Details</label>
 
           <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
@@ -466,4 +466,16 @@
     </div>
   </div>
 
+</div>
+
+<div class="modal-small" *ngIf="message!==''">
+  <div class="modal-header">
+    <h1>Message</h1>
+  </div>
+  <div class="modal-body">
+    <div class="group center">
+      <p>{{message}}</p>
+      <button type="button" class="btn ripple" (click)="OnClickOk()">Ok</button>
+    </div>
+  </div>
 </div>

@@ -93,23 +93,25 @@ public class EmployeeRepository {
     /*****************************************************************************************************/
     
     @Transactional
-    public void createEmployee(Employee newEmployee) throws Exception {
-        String employeeId           = this.generateEmployeeId(newEmployee.getEmployeeBasicInfo().getUnit());
+    public String createEmployee(Employee newEmployee) throws Exception {
+        String employeeId           = this.generateEmployeeId(newEmployee.getEmployeeBasicInfo().getOrganization(),
+                newEmployee.getEmployeeBasicInfo().getUnit());
         
         Date entryDate              = newEmployee.getEmployeeBasicInfo().getEntryDate();
         String entryBy              = newEmployee.getEmployeeBasicInfo().getEntryBy();
         
         this.insertBasicInfo            (employeeId,        newEmployee.getEmployeeBasicInfo());
-        this.insertAdditionalInfo       (employeeId,        newEmployee.getEmployeeAddlDetails());
-        this.insertEmployeeAddress      (employeeId,        newEmployee.getEmployeeAddress());
-        this.insertEmployeeHierarchy    (employeeId,        newEmployee.getEmployeeHierarchy(), entryDate);
-        this.insertEmployeeProfile      (employeeId,        newEmployee.getEmployeeProfile());
-        this.insertEmpSalaryComponents  (employeeId,        entryBy, 
-                                                            newEmployee.getEmployeeSalary(), entryDate);
+//        this.insertAdditionalInfo       (employeeId,        newEmployee.getEmployeeAddlDetails());
+//        this.insertEmployeeAddress      (employeeId,        newEmployee.getEmployeeAddress());
+//        this.insertEmployeeHierarchy    (employeeId,        newEmployee.getEmployeeHierarchy(), entryDate);
+//        this.insertEmployeeProfile      (employeeId,        newEmployee.getEmployeeProfile());
+//        this.insertEmpSalaryComponents  (employeeId,        entryBy, 
+//                                                            newEmployee.getEmployeeSalary(), entryDate);
         //TODO: take care of optional components
         
         //create LDAP user
         authRepo.createUser(employeeId, newEmployee);
+        return String.format("Employee created with ID: %s", employeeId);
     }
     
     /**TODO: Confirm logic
@@ -325,7 +327,7 @@ public class EmployeeRepository {
                 () -> basicInfo.getEmpType(),
                 () -> basicInfo.getMaritalStatus(),
                 () -> basicInfo.getDoj(),
-                () -> basicInfo.getUnit() != null? basicInfo.getUnit().getOrgId(): null,
+                () -> basicInfo.getOrganization(),
                 () -> basicInfo.getUnit() != null? basicInfo.getUnit().getUnitId(): null,
                 () -> basicInfo.getDepartment() != null? basicInfo.getDepartment().getDepartmentId(): null,
                 () -> basicInfo.getNationality(),
@@ -350,7 +352,7 @@ public class EmployeeRepository {
                 basicInfo.getEmpType(),
                 basicInfo.getMaritalStatus(),
                 basicInfo.getDoj(),
-                basicInfo.getUnit() != null? basicInfo.getUnit().getOrgId(): null,
+                Integer.parseInt(basicInfo.getOrganization()),
                 basicInfo.getUnit() != null? basicInfo.getUnit().getUnitId(): null,
                 basicInfo.getDepartment() != null? basicInfo.getDepartment().getDepartmentId(): null,
                 basicInfo.getNationality(),
@@ -373,13 +375,20 @@ public class EmployeeRepository {
      * @return the complete employee number generated for the given unit
      * @throws Exception
      */
-    private String generateEmployeeId(Unit unit) throws Exception {
-        List<Unit> listOfUnits          = unitRepo.getUnitsByOrganizationId(unit.getOrgId());
-        if(listOfUnits == null || listOfUnits.size() != 1)
+    private String generateEmployeeId(String orgn, Unit unit) throws Exception {
+        List<Unit> allUnits             = unitRepo.getUnitsByOrganizationId(Integer.valueOf(orgn));
+        Unit matchedUnit                = null;
+        for(Unit iUnit : allUnits){
+            if(iUnit.getUnitId() == unit.getUnitId()){
+                matchedUnit             = iUnit;
+                break;
+            }
+        }
+        if(matchedUnit == null)
             throw new Exception("The Unit provided as an iput does not match to an unique value in the DB!");
 
-        String prefix                   = listOfUnits.get(0).getEmpIdPrefix();
-        String seqName                  = listOfUnits.get(0).getEmpIdSeqName();
+        String prefix                   = matchedUnit.getEmpIdPrefix();
+        String seqName                  = matchedUnit.getEmpIdSeqName();
         
         logger.info(sqlMarker, obtainEmployeeIdFrmSeq);
         logger.info(sqlMarker, "Params {}", () -> seqName);
