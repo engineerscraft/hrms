@@ -31,7 +31,7 @@ import com.hamdard.hua.model.Unit;
 
 @Component
 public class EmployeeRepository {
-    private static final Logger logger    = LogManager.getLogger(EmployeeRepositoryOld.class);
+    private static final Logger logger    = LogManager.getLogger(EmployeeRepository.class);
     private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
 
     /***************************************** AUTOWIRED COMPONENTS **************************************/
@@ -75,6 +75,17 @@ public class EmployeeRepository {
     
     @Value("${sql.employee.get.appraisal.id}")
     private String              getAppraisalId;
+    
+    /******************* Update Operations *******************/
+    
+    @Value("${sql.employee.update.employee.salary}")
+    private String              employeeSalaryUpdate;
+    
+    @Value("${sql.employee.update.profile}")
+    private String              employeeProfileUpdate;
+    
+    @Value("${sql.employee.update.employee.optional.benefit}")
+    private String              employeeOptionalBenefitsUpdate;
 
     /*****************************************************************************************************/
     
@@ -144,46 +155,6 @@ public class EmployeeRepository {
             throw new Exception("Given entryDate " + entryDate + " does not correspond to any appraisal cycle");
         }
         return appraisalId;
-    }
-    
-    /** TODO: Confirm logic
-     * Insert into optional salary components table
-     * @param employeeId
-     * @param optBenefits
-     * @throws Exception
-     */
-    private void insertEmpOptionalBenefits(String employeeId, String entryBy, List<EmployeeOptionalBenefit> optBenefits) throws Exception {
-        if(optBenefits != null)
-            for(EmployeeOptionalBenefit optBenefit : optBenefits) {
-                logger.info(sqlMarker, employeeOptionalBenefitsInsert);
-                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}",
-                        () -> null,
-                        () -> employeeId,
-                        () -> optBenefit.getOptSalaryComponent().getOptCompId(),
-                        () -> optBenefit.getOptSalaryComponent().getSalOptComponent(),
-                        () -> optBenefit.getBenefitValue(),
-                        () -> optBenefit.getStartDate(),
-                        () -> optBenefit.getStopDate(),
-                        () -> optBenefit.getNextDueDate(),
-                        () -> null,
-                        () -> entryBy,
-                        () -> optBenefit.getFrequency(),
-                        () -> optBenefit.getIterations());
-                jdbcTemplate.update(employeeOptionalBenefitsInsert, new Object[] {
-                        null,
-                        employeeId,
-                        optBenefit.getOptSalaryComponent().getOptCompId(),
-                        optBenefit.getOptSalaryComponent().getSalOptComponent(),
-                        optBenefit.getBenefitValue(),
-                        optBenefit.getStartDate(),
-                        optBenefit.getStopDate(),
-                        optBenefit.getNextDueDate(),
-                        null,
-                        entryBy,
-                        optBenefit.getFrequency(),
-                        optBenefit.getIterations()
-                });
-            }
     }
     
     /**
@@ -417,6 +388,136 @@ public class EmployeeRepository {
         String completeEmpNo            = prefix + paddedEmpNo;
         logger.debug("Employee number generated: {}", () -> completeEmpNo);
         return completeEmpNo;
+    }
+    
+    /**
+     * Update Employee Salary
+     * @param employeeId
+     * @param entryBy
+     * @param salaryComponents
+     * @param entryDate
+     * @throws Exception
+     */
+    
+    public void updateEmpSalaryComponents(String employeeId, String entryBy,
+            List<EmployeeSalary> salaryComponents) throws Exception {
+        if(salaryComponents != null)
+            for(EmployeeSalary salary: salaryComponents){
+                logger.info(sqlMarker, employeeSalaryUpdate);
+                logger.info(sqlMarker, "Params {}, {}, {}, {}",
+                        () -> salary.getSalaryValue(),
+                        () -> entryBy,
+                        () -> employeeId,
+                        () -> salary.getSalaryComponent().getCompId());
+                jdbcTemplate.update(employeeSalaryUpdate, new Object[] {
+                        salary.getSalaryValue(),
+                        entryBy,
+                        employeeId,
+                        salary.getSalaryComponent().getCompId()
+                });
+            }
+    }
+    
+    /**
+     * Update Employee Profile
+     * @param employeeId
+     * @param profile
+     * @throws Exception
+     */
+    
+    public void updateEmployeeProfile(String employeeId, EmployeeProfile profile) throws Exception {
+        logger.info(sqlMarker, employeeProfileUpdate);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}",
+                () -> profile.getQualification(),
+                () -> profile.getDescription(),
+                () -> profile.getComments(),
+                () -> employeeId);
+
+        jdbcTemplate.update(employeeProfileInsert, new Object[] {
+                profile.getQualification(),
+                profile.getDescription(),
+                profile.getComments(),
+                employeeId
+        });
+    }
+    
+    /** TODO: Confirm logic
+     * Insert into optional salary components table
+     * @param employeeId
+     * @param optBenefits
+     * @throws Exception
+     */
+    public void insertEmpOptionalBenefits(String employeeId, String entryBy, List<EmployeeOptionalBenefit> optBenefits) throws Exception {
+        if(optBenefits != null)
+            for(EmployeeOptionalBenefit optBenefit : optBenefits) {
+                logger.info(sqlMarker, employeeOptionalBenefitsUpdate);
+                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+                        () -> null,
+                        () -> employeeId,
+                        () -> optBenefit.getOptSalaryComponent().getOptCompId(),
+                        () -> optBenefit.getOptSalaryComponent().getSalOptComponent(),
+                        () -> optBenefit.getBenefitValue(),
+                        () -> optBenefit.getStartDate(),
+                        () -> optBenefit.getStopDate(),
+                        () -> optBenefit.getNextDueDate(),
+                        () -> optBenefit.getRemarks(),
+                        () -> entryBy,
+                        () -> optBenefit.getFrequency(),
+                        () -> optBenefit.getIterations());
+                jdbcTemplate.update(employeeOptionalBenefitsInsert, new Object[] {
+                        null,
+                        employeeId,
+                        optBenefit.getOptSalaryComponent().getOptCompId(),
+                        optBenefit.getOptSalaryComponent().getSalOptComponent(),
+                        optBenefit.getBenefitValue(),
+                        optBenefit.getStartDate(),
+                        optBenefit.getStopDate(),
+                        optBenefit.getNextDueDate(),
+                        optBenefit.getRemarks(),
+                        entryBy,
+                        optBenefit.getFrequency(),
+                        optBenefit.getIterations()
+                });
+            }
+    }
+    
+    /** TODO: Confirm logic
+     * Update employee optional salary components table
+     * @param employeeId
+     * @param optBenefits
+     * @throws Exception
+     */
+    public void updateEmpOptionalBenefits(String employeeId, int optCompId, String entryBy, EmployeeOptionalBenefit optBenefit) throws Exception {
+        if(optBenefit != null) {
+                logger.info(sqlMarker, employeeOptionalBenefitsUpdate);
+                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+                        () -> optBenefit.getOptSalaryComponent().getOptCompId(),
+                        () -> optBenefit.getOptSalaryComponent().getSalOptComponent(),
+                        () -> optBenefit.getBenefitValue(),
+                        () -> optBenefit.getStartDate(),
+                        () -> optBenefit.getStopDate(),
+                        () -> optBenefit.getNextDueDate(),
+                        () -> optBenefit.getRemarks(),
+                        () -> entryBy,
+                        () -> optBenefit.getFrequency(),
+                        () -> optBenefit.getIterations(),
+                        () -> optCompId,
+                        () -> employeeId);
+                jdbcTemplate.update(employeeOptionalBenefitsInsert, new Object[] {
+                        optBenefit.getOptSalaryComponent().getOptCompId(),
+                        optBenefit.getOptSalaryComponent().getSalOptComponent(),
+                        optBenefit.getBenefitValue(),
+                        optBenefit.getStartDate(),
+                        optBenefit.getStopDate(),
+                        optBenefit.getNextDueDate(),
+                        optBenefit.getRemarks(),
+                        entryBy,
+                        optBenefit.getFrequency(),
+                        optBenefit.getIterations(),
+                        optCompId,
+                        employeeId
+                });
+            }
     }
 }
 

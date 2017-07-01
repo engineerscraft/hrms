@@ -1,117 +1,120 @@
 package com.hamdard.hua.rest;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import com.hamdard.hua.model.EmployeeOld;
-import com.hamdard.hua.repository.EmployeeRepositoryOld;
+import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
+import com.hamdard.hua.model.Employee.EmployeeProfile;
+import com.hamdard.hua.model.Employee.EmployeeSalary;
+import com.hamdard.hua.model.Message;
+import com.hamdard.hua.privileges.Privilege;
+import com.hamdard.hua.repository.EmployeeRepository;
+import com.hamdard.hua.security.Secured;
 
-@Component
-@Path("/employee")
+/**
+ * @author Jyotirmoy Banerjee
+ * Employee related service's endpoint!
+ */
+
+@Path("/v1/employee")
 public class EmployeeResource {
+    
+    private static final Logger logger = LogManager.getLogger(EmployeeResource.class);
 
-	@Autowired private EmployeeRepositoryOld employeeRepository;
-	
-    @GET
-    @Path("/test")
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<String> test() {
-    	List<String> strArr=new ArrayList<String>();
-    	strArr.add("1");
-    	strArr.add("2");
-        return strArr;
-    }
+    @Autowired
+    private EmployeeRepository  employeeRepository;
     
-    
-    @GET
-    @Path("/list")
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<EmployeeOld> getEmployees() {
-        return employeeRepository.getAllEmployees();
-    }
-    
-    @GET
-    @Path("/{id}")
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public EmployeeOld getEmployee(@PathParam("id") Long id) {
-        return employeeRepository.getEmployeeById(id);
-    }
+    @Context
+    SecurityContext securityContext;
     
     @POST
     @Path("/")
+    @Secured(Privilege.CREATE_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public EmployeeOld createEmployee(EmployeeOld employee) {
-        return employeeRepository.createEmployee(employee);
+    public Response crate(Employee newEmployee){
+        try{
+            employeeRepository.createEmployee( newEmployee );
+            return Response.status(200).build();
+        }catch(Exception e) {
+            logger.error(e.getMessage(), e);
+            return Response.status(500).entity(new Message(e.getMessage())).build();
+        }
     }
     
-    @GET
-    @Path("/")
+    @PUT
+    @Path("/{id}/salary")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<String> getEmployeeAutocomplete(@QueryParam("name") String name, @QueryParam("value") String value) {
-    	return employeeRepository.getValues(name,value);
+    public Response updateEmployeeSalary(@PathParam("id") String employeeId, List<EmployeeSalary> updEmployeeSalary) {
+        try {
+            String entryBy = securityContext.getUserPrincipal().getName();
+            employeeRepository.updateEmpSalaryComponents(employeeId, entryBy, updEmployeeSalary);
+            return Response.status(200).build();
+        }catch(Exception ex) {
+            logger.error("The employee salary could not be updated", ex);
+            return Response.status(500).entity(new Message(ex.getMessage())).build();
+        }
     }
-
-    @GET
-    @Path("/search")
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<EmployeeOld> searchEmployee(@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName,
-			@QueryParam("lastName") String lastName, @QueryParam("designationId") Long designationId,
-			@QueryParam("departmentId") Long departmentId, @QueryParam("collegeId") Long collegeId,
-			@QueryParam("employeeId") Long employeeId, @QueryParam("emailAddress") String emailAddress,
-			@QueryParam("contactNumber") String contactNumber) {
-    	Map<String, Object> map=new HashMap<String, Object>();
-    	
-    	if(firstName!=null &&firstName.trim().length()>0){
-    		map.put("FIRST_NAME", firstName.trim());
-    	}
-    	
-    	if(middleName!=null &&middleName.trim().length()>0){
-    		map.put("MIDDLE_NAME", middleName.trim());
-    	}
-    	if(lastName!=null &&lastName.trim().length()>0){
-    		map.put("LAST_NAME", lastName.trim());
-    	}
-    	
-    	if(emailAddress!=null &&emailAddress.trim().length()>0){
-    		map.put("EMAIL_ADDRESS", emailAddress.trim());
-    	}
-
-    	if(contactNumber!=null &&contactNumber.trim().length()>0){
-    		map.put("CONTACT_NUMBER", contactNumber.trim());
-    	}
-
-    	if(designationId !=null && designationId !=0l){
-    		map.put("DESIGNATION_ID", designationId);
-    	}
-    	
-    	if(departmentId !=null && departmentId !=0l){
-    		map.put("DEPARTMENT_ID", departmentId);
-    	}
-
-    	if(employeeId !=null && employeeId !=0l){
-    		map.put("ID", employeeId);
-    	}
-    	if(collegeId !=null && collegeId !=0l){
-    		map.put("COLLEGE_ID", collegeId);
-    	}
-    	if(map.size()==0){
-    		return new ArrayList<EmployeeOld>();
-    	}
-    	return employeeRepository.searchByColumnMap(map);
-    }
-
     
+    @PUT
+    @Path("/{id}/profile")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updateEmployeeProfile(@PathParam("id") String employeeId, EmployeeProfile updEmployeeProfile) {
+        try {
+            employeeRepository.updateEmployeeProfile(employeeId, updEmployeeProfile);
+            return Response.status(200).build();
+        }catch(Exception ex) {
+            logger.error("The employee profile could not be updated", ex);
+            return Response.status(500).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @POST
+    @Path("/{id}/optionalbenefits")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response insertEmployeeOptionalBenefits(@PathParam("id") String employeeId, List<EmployeeOptionalBenefit> insEmployeeOptBenefits) {
+        try {
+            String entryBy = securityContext.getUserPrincipal().getName();
+            employeeRepository.insertEmpOptionalBenefits(employeeId, entryBy, insEmployeeOptBenefits);
+            return Response.status(200).build();
+        }catch(Exception ex) {
+            logger.error("The employee optional benefits could not be updated", ex);
+            return Response.status(500).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @PUT
+    @Path("/{id}/optionalbenefits/{oid}")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response insertEmployeeOptionalBenefits(@PathParam("id") String employeeId, @PathParam("oid") int optCompId, EmployeeOptionalBenefit updEmployeeOptBenefit) {
+        try {
+            String entryBy = securityContext.getUserPrincipal().getName();
+            employeeRepository.updateEmpOptionalBenefits(employeeId, optCompId, entryBy, updEmployeeOptBenefit);
+            return Response.status(200).build();
+        }catch(Exception ex) {
+            logger.error("The employee optional benefits could not be updated", ex);
+            return Response.status(500).entity(new Message(ex.getMessage())).build();
+        }
+    }
 }
+
+

@@ -47,7 +47,7 @@ public class Employee {
         
     }
     
-    public class EmployeeProfile {
+    public static class EmployeeProfile {
         private String comments;
         private String description;
         private String qualification;
@@ -86,6 +86,7 @@ public class Employee {
         private SalaryOptComponent optSalaryComponent;
         private Date               startDate;
         private Date               stopDate;
+        private String             remarks;
         
         public double getBenefitValue() {
             return this.benefitValue;
@@ -128,6 +129,12 @@ public class Employee {
         }
         public void setStopDate(Date stopDate) {
             this.stopDate = stopDate;
+        }
+        public String getRemarks() {
+            return remarks;
+        }
+        public void setRemarks(String remarks) {
+            this.remarks = remarks;
         }
         @Override
         public String toString() {
