@@ -450,7 +450,7 @@ public class EmployeeRepository {
     public void insertEmpOptionalBenefits(String employeeId, String entryBy, List<EmployeeOptionalBenefit> optBenefits) throws Exception {
         if(optBenefits != null)
             for(EmployeeOptionalBenefit optBenefit : optBenefits) {
-                logger.info(sqlMarker, employeeOptionalBenefitsInsert);
+                logger.info(sqlMarker, employeeOptionalBenefitsUpdate);
                 logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
                         () -> null,
                         () -> employeeId,
