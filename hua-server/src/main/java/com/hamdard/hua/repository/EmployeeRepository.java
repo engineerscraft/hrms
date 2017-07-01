@@ -1,6 +1,6 @@
 package com.hamdard.hua.repository;
 
-import java.util.Date;
+
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -76,6 +76,9 @@ public class EmployeeRepository {
     @Value("${sql.employee.get.appraisal.id}")
     private String              getAppraisalId;
     
+    @Value("${sql.employee.insert.employee.additional.details_history}")
+    private String              employeeAdditionalDetailsHistoryInsert;
+    
     /******************* Update Operations *******************/
     
     @Value("${sql.employee.update.employee.salary}")
@@ -85,7 +88,10 @@ public class EmployeeRepository {
     private String              employeeProfileUpdate;
     
     @Value("${sql.employee.update.employee.optional.benefit}")
-    private String              employeeOptionalBenefitsUpdate;
+    private String              employeeOptionalBenefitsUpdate;    
+    
+    @Value("${sql.employee.update.employee.additional.details.by.EmpId}")
+    private String              employeeAdditionalDetailsUpdatebyEmpId; 
 
     /*****************************************************************************************************/
     
@@ -518,6 +524,90 @@ public class EmployeeRepository {
                         employeeId
                 });
             }
+    }
+
+    /** TODO: Confirm logic
+     * Update employee_additional_details table
+     * @param employeeId
+     * @param employeeAddlDetails
+     * @throws Exception
+     */
+    public void updatedEmployeeAddlDetails(String employeeId, String modifiedBy, EmployeeAddlDetails employeeAddlDetails) throws Exception {
+        
+        logger.info(sqlMarker, employeeAdditionalDetailsUpdatebyEmpId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+                () -> employeeAddlDetails.getSiblingNo(),
+                () -> employeeAddlDetails.getDependentNo(),
+                () -> employeeAddlDetails.getNomineeName1(),
+                () -> employeeAddlDetails.getNomineeName2(),
+                () -> employeeAddlDetails.getNomineeName3(),
+                () -> employeeAddlDetails.getNomineeShare1(),
+                () -> employeeAddlDetails.getNomineeShare2(),
+                () -> employeeAddlDetails.getNomineeShare3(),
+                () -> employeeAddlDetails.getEmergencyContactName(),
+                () -> employeeAddlDetails.getEmergencyContactNo(),
+                () -> employeeAddlDetails.getPreMedicalCheckUpDate(),
+                () -> employeeAddlDetails.getMedicalReportComment(),
+                () -> employeeId
+                );
+        int numberOfRowsUpdated=jdbcTemplate.update(employeeAdditionalDetailsUpdatebyEmpId, new Object[] {
+                employeeAddlDetails.getSiblingNo(),
+                employeeAddlDetails.getDependentNo(),
+                employeeAddlDetails.getNomineeName1(),
+                employeeAddlDetails.getNomineeName2(),
+                employeeAddlDetails.getNomineeName3(),
+                employeeAddlDetails.getNomineeShare1(),
+                employeeAddlDetails.getNomineeShare2(),
+                employeeAddlDetails.getNomineeShare3(),
+                employeeAddlDetails.getEmergencyContactName(),
+                employeeAddlDetails.getEmergencyContactNo(),
+                employeeAddlDetails.getPreMedicalCheckUpDate(),
+                employeeAddlDetails.getMedicalReportComment(),
+                employeeId
+        });
+        
+        /* Make entry in employee_additional_details_history 
+         * iff there is successful update  in table 
+         * employee_additional_details
+         * */
+        if(numberOfRowsUpdated>0){
+            logger.info(sqlMarker, employeeAdditionalDetailsHistoryInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+                    () -> employeeId,
+                    () -> employeeAddlDetails.getSiblingNo(),
+                    () -> employeeAddlDetails.getDependentNo(),
+                    () -> employeeAddlDetails.getNomineeName1(),
+                    () -> employeeAddlDetails.getNomineeName2(),
+                    () -> employeeAddlDetails.getNomineeName3(),
+                    () -> employeeAddlDetails.getNomineeShare1(),
+                    () -> employeeAddlDetails.getNomineeShare2(),
+                    () -> employeeAddlDetails.getNomineeShare3(),
+                    () -> employeeAddlDetails.getEmergencyContactName(),
+                    () -> employeeAddlDetails.getEmergencyContactNo(),
+                    () -> employeeAddlDetails.getPreMedicalCheckUpDate(),
+                    () -> employeeAddlDetails.getMedicalReportComment(),
+                    () -> modifiedBy
+                    );
+            
+            jdbcTemplate.update(employeeAdditionalDetailsHistoryInsert, new Object[] {
+                    employeeId,
+                    employeeAddlDetails.getSiblingNo(),
+                    employeeAddlDetails.getDependentNo(),
+                    employeeAddlDetails.getNomineeName1(),
+                    employeeAddlDetails.getNomineeName2(),
+                    employeeAddlDetails.getNomineeName3(),
+                    employeeAddlDetails.getNomineeShare1(),
+                    employeeAddlDetails.getNomineeShare2(),
+                    employeeAddlDetails.getNomineeShare3(),
+                    employeeAddlDetails.getEmergencyContactName(),
+                    employeeAddlDetails.getEmergencyContactNo(),
+                    employeeAddlDetails.getPreMedicalCheckUpDate(),
+                    employeeAddlDetails.getMedicalReportComment(),
+                    modifiedBy
+            });
+            
+        }
+        
     }
 }
 

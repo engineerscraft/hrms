@@ -18,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.Employee.EmployeeAddlDetails;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
@@ -33,30 +34,30 @@ import com.hamdard.hua.security.Secured;
 
 @Path("/v1/employee")
 public class EmployeeResource {
-    
+
     private static final Logger logger = LogManager.getLogger(EmployeeResource.class);
 
     @Autowired
-    private EmployeeRepository  employeeRepository;
-    
+    private EmployeeRepository employeeRepository;
+
     @Context
     SecurityContext securityContext;
-    
+
     @POST
     @Path("/")
     @Secured(Privilege.CREATE_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response crate(Employee newEmployee){
-        try{
-            employeeRepository.createEmployee( newEmployee );
+    public Response crate(Employee newEmployee) {
+        try {
+            employeeRepository.createEmployee(newEmployee);
             return Response.status(200).build();
-        }catch(Exception e) {
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return Response.status(500).entity(new Message(e.getMessage())).build();
         }
     }
-    
+
     @PUT
     @Path("/{id}/salary")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -66,12 +67,12 @@ public class EmployeeResource {
             String entryBy = securityContext.getUserPrincipal().getName();
             employeeRepository.updateEmpSalaryComponents(employeeId, entryBy, updEmployeeSalary);
             return Response.status(200).build();
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             logger.error("The employee salary could not be updated", ex);
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }
-    
+
     @PUT
     @Path("/{id}/profile")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -80,12 +81,12 @@ public class EmployeeResource {
         try {
             employeeRepository.updateEmployeeProfile(employeeId, updEmployeeProfile);
             return Response.status(200).build();
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             logger.error("The employee profile could not be updated", ex);
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }
-    
+
     @POST
     @Path("/{id}/optionalbenefits")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -95,12 +96,12 @@ public class EmployeeResource {
             String entryBy = securityContext.getUserPrincipal().getName();
             employeeRepository.insertEmpOptionalBenefits(employeeId, entryBy, insEmployeeOptBenefits);
             return Response.status(200).build();
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             logger.error("The employee optional benefits could not be updated", ex);
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }
-    
+
     @PUT
     @Path("/{id}/optionalbenefits/{oid}")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -110,11 +111,27 @@ public class EmployeeResource {
             String entryBy = securityContext.getUserPrincipal().getName();
             employeeRepository.updateEmpOptionalBenefits(employeeId, optCompId, entryBy, updEmployeeOptBenefit);
             return Response.status(200).build();
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             logger.error("The employee optional benefits could not be updated", ex);
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }
+
+    @PUT
+    @Path("/{id}/additionaldetails")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddlDetails employeeAddlDetails) {
+        try {
+            //String modifiedBy = securityContext.getUserPrincipal().getName();
+            String modifiedBy = "biswajit";
+            
+            employeeRepository.updatedEmployeeAddlDetails(employeeId, modifiedBy, employeeAddlDetails);
+            return Response.status(200).build();
+        } catch (Exception ex) {
+            logger.error("The employee additional details could not be updated", ex);
+            return Response.status(500).entity(new Message(ex.getMessage())).build();
+        }
+    }
+
 }
-
-
