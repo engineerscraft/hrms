@@ -62,7 +62,7 @@ GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA HRMS TO "hrmsapp";
 4. There is a tool called 'gitk' (should be available by default), that presents a nice view of the changes done by various commits. 
 
 # Setting Up LDAP
-1. Import the LDIF file huac\trunk\hua_setup\Hamdard.ldif into the LDAP server using the JXplorer 
+1. Import the LDIF file huac\trunk\hua_setup\hrms.ldif into the LDAP server using the JXplorer 
    Note: Login details of LDAP
    * Host: localhost
    * Port: 10389
@@ -74,7 +74,7 @@ GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA HRMS TO "hrmsapp";
 # Running the Servers
 1. Open the command terminal, go to the folder huac\trunk\hua-gui\src\main\gui and run the command `npm start`
 2. Open another terminal, go to the folder huac\trunk\hua-server and run the command `mvn spring-boot:run`
-3. Open a web browser and go to the URL http://localhost:4200 and login using the credentials TEST03/TEST03
+3. Open a web browser and go to the URL http://localhost:4200 and login using the credentials TEST/TEST
 
 # Generate REST API Documentation
 1. Go to location hua-server
