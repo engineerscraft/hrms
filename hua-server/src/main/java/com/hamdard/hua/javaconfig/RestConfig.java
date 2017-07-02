@@ -27,24 +27,23 @@ import com.hamdard.hua.rest.UserManagementEndpoint;
 public class RestConfig extends ResourceConfig {
     public RestConfig() {
         registerClasses(
-        		AuthenticationEndpoint.class,
-        		AuthenticationFilter.class, 
-        		AuthorizationFilter.class, 
-        		HealthCheckEndpoint.class, 
-        		PermissionEndpoint.class,
-        		EmployeeResourceOld.class,
-        		DesignationResource.class,
-        		UserManagementEndpoint.class,
-        		ChangePasswordEndpoint.class,
-        		OrganizationResource.class,
-        		UnitResource.class,
-        		DepartmentResource.class,
-                CountryResource.class,
-        		DistrictResource.class,
-        		StateResource.class,
-        		EmployeeResource.class,
-        		DocumentTypeResource.class,
-        		JobRoleResource.class
-        		);
+                AuthenticationEndpoint.class, 
+                AuthenticationFilter.class, 
+                AuthorizationFilter.class, 
+                HealthCheckEndpoint.class, 
+                PermissionEndpoint.class, 
+                EmployeeResourceOld.class, 
+                DesignationResource.class, 
+                UserManagementEndpoint.class,
+                ChangePasswordEndpoint.class, 
+                OrganizationResource.class, 
+                UnitResource.class, 
+                DepartmentResource.class, 
+                CountryResource.class, 
+                DistrictResource.class, 
+                StateResource.class, 
+                EmployeeResource.class, 
+                DocumentTypeResource.class,
+                JobRoleResource.class);
     }
 }

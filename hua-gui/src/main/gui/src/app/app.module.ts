@@ -28,6 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.component';
 import { EmployeeHierarchySearchComponent } from './employee-hierarchy-search/employee-hierarchy-search.component';
 import { CountryService } from './country.service';
+import { EmployeeHierarchySearchResultComponent } from './employee-hierarchy-search-result/employee-hierarchy-search-result.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CountryService } from './country.service';
     EmployeeCreationComponent,
     NotFoundComponent,
     ForbiddenAccessComponent,
-    EmployeeHierarchySearchComponent
+    EmployeeHierarchySearchComponent,
+    EmployeeHierarchySearchResultComponent
   ],
   imports: [
     BrowserModule,

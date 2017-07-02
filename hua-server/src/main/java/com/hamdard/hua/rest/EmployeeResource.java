@@ -50,11 +50,11 @@ public class EmployeeResource {
     @Secured(Privilege.CREATE_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response crate(Employee newEmployee){
-        try{
-            String message  = employeeRepository.createEmployee( newEmployee );
+    public Response crate(Employee newEmployee) {
+        try {
+            String message = employeeRepository.createEmployee(newEmployee);
             return Response.status(200).entity(new Message(message)).build();
-        }catch(Exception e) {
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return Response.status(500).entity(new Message(e.getMessage())).build();
         }
@@ -119,24 +119,26 @@ public class EmployeeResource {
         }
     }
 
-    
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public List<Employee> searchEmployee(
-    		@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName,
-    		@QueryParam("lastName") String lastName, @QueryParam("employeeId") String employeeId, 
-    		@QueryParam("empType") String employmentType, @QueryParam("emailId") String emailId,
-    		@QueryParam("orgId") Integer orgId, @QueryParam("unitId") Integer unitId,
-    		@QueryParam("departmentId") Integer departmentId, @QueryParam("jobRoleId") Integer jobRoleId,
-    		@QueryParam("designationId") Integer designationId, @QueryParam("supervisorFlag") Boolean supervisorFlag,
-    		@QueryParam("hrFlag") Boolean hrFlag, @QueryParam("supervisorEmailAddress") String supervisorEmailAddress,
-    		@QueryParam("hrEmailAddress") String hrEmailAddress, @QueryParam("sex") String sex,
-    		@QueryParam("maritalStatus") String maritalStatus, @QueryParam("nationality") String nationality,
-    		@QueryParam("identityDocTypeId") Integer identityDocTypeId, @QueryParam("identityNumber") String identityNumber
-	) {
-		return null;
-	}
+    @Secured(Privilege.GET_EMP_SEARCH_IN_HIERARCHY)
+    public Response searchEmployee(@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName, @QueryParam("lastName") String lastName, @QueryParam("employeeId") String employeeId, @QueryParam("empType") String employmentType,
+            @QueryParam("emailId") String emailId, @QueryParam("orgId") Integer orgId, @QueryParam("unitId") Integer unitId, @QueryParam("departmentId") Integer departmentId, @QueryParam("jobRoleId") Integer jobRoleId,
+            @QueryParam("designationId") Integer designationId, @QueryParam("supervisorFlag") Boolean supervisorFlag, @QueryParam("hrFlag") Boolean hrFlag, @QueryParam("supervisorEmailId") String supervisorEmailId, @QueryParam("hrEmailId") String hrEmailId,
+            @QueryParam("sex") String sex, @QueryParam("maritalStatus") String maritalStatus, @QueryParam("identityDocTypeId") Integer identityDocTypeId, @QueryParam("identityNumber") String identityNumber) {
+        try {
+            if (!employeeRepository.isPrivilegedForHierarchySearch(securityContext.getUserPrincipal().getName()))
+                return Response.status(401).entity(new Message("The user has no privilege to view the personal information of the employees")).build();
+
+            List<Employee.EmployeeSearchResult> employeeSearchResult = employeeRepository.searchHierarchyEmployee(firstName, middleName, lastName, employeeId, employmentType, emailId, orgId, unitId, departmentId, jobRoleId, designationId, supervisorFlag,
+                    hrFlag, supervisorEmailId, hrEmailId, sex, identityDocTypeId, identityNumber, securityContext.getUserPrincipal().getName());
+            return Response.status(200).entity(employeeSearchResult).build();
+        } catch (Exception e) {
+            logger.error("The hierarchy search could not be done", e);
+            return Response.status(500).entity(new Message(e.getMessage())).build();
+        }
+    }
 
     @PUT
     @Path("/{id}/additionaldetails")
@@ -146,8 +148,8 @@ public class EmployeeResource {
     public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddlDetails employeeAddlDetails) {
         try {
             String modifiedBy = securityContext.getUserPrincipal().getName();
-            //String modifiedBy = "dummy name";
-            
+            // String modifiedBy = "dummy name";
+
             employeeRepository.updatedEmployeeAddlDetails(employeeId, modifiedBy, employeeAddlDetails);
             return Response.status(200).build();
         } catch (Exception ex) {
@@ -155,5 +157,4 @@ public class EmployeeResource {
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }
-
 }

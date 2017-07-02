@@ -599,8 +599,58 @@ public class Employee {
         
         
     }
-
     
+    public static class EmployeeSearchResult {
+        
+        private String empId;
+        private String name;
+        private String emailId; 
+        private String departmentName;
+        private String designation;
+        private String contactNo;
+        
+        public String getEmpId() {
+            return empId;
+        }
+        public void setEmpId(String empId) {
+            this.empId = empId;
+        }
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        public String getEmailId() {
+            return emailId;
+        }
+        public void setEmailId(String emailId) {
+            this.emailId = emailId;
+        }
+        public String getDepartmentName() {
+            return departmentName;
+        }
+        public void setDepartmentName(String departmentName) {
+            this.departmentName = departmentName;
+        }
+        public String getDesignation() {
+            return designation;
+        }
+        public void setDesignation(String designation) {
+            this.designation = designation;
+        }
+        public String getContactNo() {
+            return contactNo;
+        }
+        public void setContactNo(String contactNo) {
+            this.contactNo = contactNo;
+        }
+        @Override
+        public String toString() {
+            return "EmployeeSearchResult [empId=" + empId + ", name=" + name + ", emailId=" + emailId + ", departmentName=" + departmentName + ", designation=" + designation + ", contactNo=" + contactNo + "]";
+        }
+    }
+
     public EmployeeAddlDetails getEmployeeAddlDetails() {
         return this.employeeAddlDetails;
     }
