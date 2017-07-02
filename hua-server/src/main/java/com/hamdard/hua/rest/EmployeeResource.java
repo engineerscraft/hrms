@@ -3,11 +3,13 @@ package com.hamdard.hua.rest;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -118,11 +120,48 @@ public class EmployeeResource {
         }
     }
 
+    
+    @GET
+    @Path("/")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public List<Employee> searchEmployee(
+    		@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName,
+    		@QueryParam("lastName") String lastName, @QueryParam("employeeId") String employeeId, 
+    		@QueryParam("empType") String employmentType, @QueryParam("emailId") String emailId,
+    		@QueryParam("orgId") Integer orgId, @QueryParam("unitId") Integer unitId,
+    		@QueryParam("departmentId") Integer departmentId, @QueryParam("jobRoleId") Integer jobRoleId,
+    		@QueryParam("designationId") Integer designationId, @QueryParam("supervisorFlag") Boolean supervisorFlag,
+    		@QueryParam("hrFlag") Boolean hrFlag, @QueryParam("supervisorEmailAddress") String supervisorEmailAddress,
+    		@QueryParam("hrEmailAddress") String hrEmailAddress, @QueryParam("sex") String sex,
+    		@QueryParam("maritalStatus") String maritalStatus, @QueryParam("nationality") String nationality,
+    		@QueryParam("identityDocTypeId") Integer identityDocTypeId, @QueryParam("identityNumber") String identityNumber
+	) {
+		return null;
+	}
+
+    @PUT
+    @Path("/{id}/additionaldetails")
+    @Secured(Privilege.UPDATE_EMP_ADDL_DETLS_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddlDetails employeeAddlDetails) {
+        try {
+            String modifiedBy = securityContext.getUserPrincipal().getName();
+            //String modifiedBy = "dummy name";
+            
+            employeeRepository.updatedEmployeeAddlDetails(employeeId, modifiedBy, employeeAddlDetails);
+            return Response.status(200).build();
+        } catch (Exception ex) {
+            logger.error("The employee additional details could not be updated", ex);
+            return Response.status(500).entity(new Message(ex.getMessage())).build();
+        }
+    }
+
     /* Needs to rework on this 
      * Update Query have to be dynamic
      * EmployeeAddress.pinno has to be changed to int from String
      */
-    @PUT
+   @PUT
     @Path("/{id}/address")
     //@Secured(Privilege.UPDATE_EMP_ADDRESS_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -139,8 +178,5 @@ public class EmployeeResource {
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }
-    
-    
-    
 
 }
