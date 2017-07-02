@@ -27,6 +27,7 @@ import { EmployeeCreationComponent } from './employee-creation/employee-creation
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.component';
 import { EmployeeHierarchySearchComponent } from './employee-hierarchy-search/employee-hierarchy-search.component';
+import { CountryService } from './country.service';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { EmployeeHierarchySearchComponent } from './employee-hierarchy-search/em
     UnitService,
     DocTypeService,
     JobRoleService,
+    CountryService,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]

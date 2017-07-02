@@ -19,6 +19,10 @@ export class EmployeeService {
       .map(res => res.json());
   }
 
+  create(employee: any) {
+    return this.httpService.callHttpPost("/resources/v1/employee",employee);
+  }
+
   search(employee: FormGroup) {
     return this.httpService.callHttpGet("/resources/employee/search?firstName="+employee.get("firstName").value
             +"&middleName="+employee.get("middleName").value

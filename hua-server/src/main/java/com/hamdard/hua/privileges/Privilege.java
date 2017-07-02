@@ -21,5 +21,6 @@ public enum Privilege {
     READ_ID_DOC_TYPES,
     READ_JOB_ROLES_OF_AN_ORG,
     READ_DSGNS_OF_A_JOB_ROLE,
+    UPDATE_EMP_ADDL_DETLS_OF_AN_EMP,
     DEFAULT
 }
