@@ -96,6 +96,9 @@ public class EmployeeRepository {
     
     @Value("${sql.employee.update.employee.additional.details.by.EmpId}")
     private String              employeeAdditionalDetailsUpdatebyEmpId; 
+       
+    @Value("${sql.employee.update.address.by.EmpId}")
+    private String              employeeAddressUpdatebyEmpId;
 
     /*****************************************************************************************************/
     
@@ -628,6 +631,37 @@ public class EmployeeRepository {
         }
         
     }
+
+	public void updatedEmployeeAddress(String employeeId, EmployeeAddress employeeAddress) throws Exception{
+		logger.info(sqlMarker, employeeAddressUpdatebyEmpId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+                () -> employeeAddress.getHouseNo(),
+                () -> employeeAddress.getStreetName(),
+                () -> employeeAddress.getArea(),
+                () -> employeeAddress.getRegion(),
+                () -> employeeAddress.getPinno(),
+                () -> employeeAddress.getDistrictId(),
+                () -> employeeAddress.getStateId(),
+                () -> employeeAddress.getCountryId(),
+                () -> employeeAddress.getDescription(),
+                () -> employeeId
+                );
+        jdbcTemplate.update(employeeAddressUpdatebyEmpId, new Object[] {
+        		employeeAddress.getHouseNo(),
+        		employeeAddress.getStreetName(),
+        		employeeAddress.getArea(),
+        		employeeAddress.getRegion(),
+        		employeeAddress.getPinno(),
+        		employeeAddress.getDistrictId(),
+        		employeeAddress.getStateId(),
+        		employeeAddress.getCountryId(),
+        		employeeAddress.getDescription(),
+        		employeeId
+        });
+        
+
+		
+	}
 }
 
 

@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hamdard.hua.model.Employee;
 import com.hamdard.hua.model.Employee.EmployeeAddlDetails;
+import com.hamdard.hua.model.Employee.EmployeeAddress;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
@@ -117,22 +118,29 @@ public class EmployeeResource {
         }
     }
 
+    /* Needs to rework on this 
+     * Update Query have to be dynamic
+     * EmployeeAddress.pinno has to be changed to int from String
+     */
     @PUT
-    @Path("/{id}/additionaldetails")
-    @Secured(Privilege.UPDATE_EMP_ADDL_DETLS_OF_AN_EMP)
+    @Path("/{id}/address")
+    //@Secured(Privilege.UPDATE_EMP_ADDRESS_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddlDetails employeeAddlDetails) {
+    public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddress employeeAddress) {
         try {
-            String modifiedBy = securityContext.getUserPrincipal().getName();
-            //String modifiedBy = "dummy name";
+            //String modifiedBy = securityContext.getUserPrincipal().getName();
             
-            employeeRepository.updatedEmployeeAddlDetails(employeeId, modifiedBy, employeeAddlDetails);
+            employeeRepository.updatedEmployeeAddress(employeeId, employeeAddress);
+            logger.info("Employee address details updated in successfully: {}", () -> employeeAddress);
             return Response.status(200).build();
         } catch (Exception ex) {
             logger.error("The employee additional details could not be updated", ex);
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }
+    
+    
+    
 
 }
