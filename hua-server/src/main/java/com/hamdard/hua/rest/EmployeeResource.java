@@ -3,11 +3,13 @@ package com.hamdard.hua.rest;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -18,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.EmployeeOld;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
@@ -115,6 +118,24 @@ public class EmployeeResource {
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }
+    
+    @GET
+    @Path("/")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public List<EmployeeOld> searchEmployee(
+    		@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName,
+    		@QueryParam("lastName") String lastName, @QueryParam("employeeId") String employeeId, 
+    		@QueryParam("empType") String employmentType, @QueryParam("emailId") String emailId,
+    		@QueryParam("orgId") Integer orgId, @QueryParam("unitId") Integer unitId,
+    		@QueryParam("departmentId") Integer departmentId, @QueryParam("jobRoleId") Integer jobRoleId,
+    		@QueryParam("designationId") Integer designationId, @QueryParam("supervisorFlag") Boolean supervisorFlag,
+    		@QueryParam("hrFlag") Boolean hrFlag, @QueryParam("supervisorEmailAddress") String supervisorEmailAddress,
+    		@QueryParam("hrEmailAddress") String hrEmailAddress, @QueryParam("sex") String sex,
+    		@QueryParam("maritalStatus") String maritalStatus, @QueryParam("nationality") String nationality,
+    		@QueryParam("identityDocTypeId") Integer identityDocTypeId, @QueryParam("identityNumber") String identityNumber
+	) {
+		return null;
+	}
 }
 
 
