@@ -105,6 +105,9 @@ public class EmployeeRepository {
 
     @Value("${sql.employee.update.employee.additional.details.by.EmpId}")
     private String employeeAdditionalDetailsUpdatebyEmpId;
+       
+    @Value("${sql.employee.update.address.by.EmpId}")
+    private String              employeeAddressUpdatebyEmpId;
 
     @Value("${sql.employee.search.determine.privilege}")
     private String empSearchPrevilegeDetermineSql;
@@ -391,6 +394,37 @@ public class EmployeeRepository {
         }
 
     }
+
+    public void updatedEmployeeAddress(String employeeId, EmployeeAddress employeeAddress) throws Exception{
+		logger.info(sqlMarker, employeeAddressUpdatebyEmpId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+                () -> employeeAddress.getHouseNo(),
+                () -> employeeAddress.getStreetName(),
+                () -> employeeAddress.getArea(),
+                () -> employeeAddress.getRegion(),
+                () -> employeeAddress.getPinno(),
+                () -> employeeAddress.getDistrictId(),
+                () -> employeeAddress.getStateId(),
+                () -> employeeAddress.getCountryId(),
+                () -> employeeAddress.getDescription(),
+                () -> employeeId
+                );
+        jdbcTemplate.update(employeeAddressUpdatebyEmpId, new Object[] {
+        		employeeAddress.getHouseNo(),
+        		employeeAddress.getStreetName(),
+        		employeeAddress.getArea(),
+        		employeeAddress.getRegion(),
+        		employeeAddress.getPinno(),
+        		employeeAddress.getDistrictId(),
+        		employeeAddress.getStateId(),
+        		employeeAddress.getCountryId(),
+        		employeeAddress.getDescription(),
+        		employeeId
+        });
+        
+
+		
+	}
 
     public List<Employee.EmployeeSearchResult> searchHierarchyEmployee(String firstName, String middleName, String lastName, String employeeId, String employmentType,
             String emailId, Integer orgId, Integer unitId, Integer departmentId, Integer jobRoleId,
