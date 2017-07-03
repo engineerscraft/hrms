@@ -1,7 +1,11 @@
 package com.hamdard.hua.repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +15,8 @@ import org.apache.logging.log4j.MarkerManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +29,7 @@ import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
 import com.hamdard.hua.model.Unit;
+import com.hamdard.hua.rowmapper.EmployeeSearchResultRowMapper;
 
 /**
  * @author Jyotirmoy Banerjee
@@ -31,84 +38,106 @@ import com.hamdard.hua.model.Unit;
 
 @Component
 public class EmployeeRepository {
-    private static final Logger logger    = LogManager.getLogger(EmployeeRepository.class);
+    private static final Logger logger = LogManager.getLogger(EmployeeRepository.class);
     private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
 
     /***************************************** AUTOWIRED COMPONENTS **************************************/
     @Autowired
-    private JdbcTemplate                jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private UnitRepository              unitRepo;
-    
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
     @Autowired
-    private AuthenticationRepository    authRepo;
+    private UnitRepository unitRepo;
+
+    @Autowired
+    private AuthenticationRepository authRepo;
 
     /**************************************** AUTOWIRED PROPERTIES**************************************/
 
     @Value("${sql.employee.nextId}")
-    private String              obtainEmployeeIdFrmSeq;
-    
+    private String obtainEmployeeIdFrmSeq;
+
+    @Value("${sql.employee.setId}")
+    private String updateSeqValue;
+
     @Value("${employeeIdNumericLength}")
-    private String              employeeIdNumericLength;
-    
+    private String employeeIdNumericLength;
+
     @Value("${sql.employee.insert.basicInfo}")
-    private String              employeeBasicInfoInsert;
-    
+    private String employeeBasicInfoInsert;
+
     @Value("${sql.employee.insert.addnDetails}")
-    private String              employeeAdditionalDtlInsert;
-    
+    private String employeeAdditionalDtlInsert;
+
     @Value("${sql.employee.insert.address}")
-    private String              employeeAddressInsert;
-    
+    private String employeeAddressInsert;
+
     @Value("${sql.employee.insert.hierarchy}")
-    private String              employeeHierarchyInsert;
-    
+    private String employeeHierarchyInsert;
+
     @Value("${sql.employee.insert.profile}")
-    private String              employeeProfileInsert;
-    
+    private String employeeProfileInsert;
+
     @Value("${sql.employee.insert.employee.salary}")
-    private String              employeeSalaryInsert;
-    
+    private String employeeSalaryInsert;
+
     @Value("${sql.employee.insert.employee.optional.benefit}")
-    private String              employeeOptionalBenefitsInsert;
-    
+    private String employeeOptionalBenefitsInsert;
+
     @Value("${sql.employee.get.appraisal.id}")
-    private String              getAppraisalId;
-    
+    private String getAppraisalId;
+
+    @Value("${sql.employee.insert.employee.additional.details_history}")
+    private String employeeAdditionalDetailsHistoryInsert;
+
     /******************* Update Operations *******************/
-    
+
     @Value("${sql.employee.update.employee.salary}")
-    private String              employeeSalaryUpdate;
-    
+    private String employeeSalaryUpdate;
+
     @Value("${sql.employee.update.profile}")
-    private String              employeeProfileUpdate;
-    
+    private String employeeProfileUpdate;
+
     @Value("${sql.employee.update.employee.optional.benefit}")
-    private String              employeeOptionalBenefitsUpdate;
+    private String employeeOptionalBenefitsUpdate;
+
+    @Value("${sql.employee.update.employee.additional.details.by.EmpId}")
+    private String employeeAdditionalDetailsUpdatebyEmpId;
+       
+    @Value("${sql.employee.update.address.by.EmpId}")
+    private String              employeeAddressUpdatebyEmpId;
+
+    @Value("${sql.employee.search.determine.privilege}")
+    private String empSearchPrevilegeDetermineSql;
+    
+    @Value("${sql.employee.search.hierarchy}")
+    private String employeeHierarchySearchSql;
 
     /*****************************************************************************************************/
-    
+
     @Transactional
-    public void createEmployee(Employee newEmployee) throws Exception {
-        String employeeId           = this.generateEmployeeId(newEmployee.getEmployeeBasicInfo().getUnit());
-        
-        String entryDate            = newEmployee.getEmployeeBasicInfo().getEntryDate();
-        String entryBy              = newEmployee.getEmployeeBasicInfo().getEntryBy();
-        
-        this.insertBasicInfo            (employeeId,        newEmployee.getEmployeeBasicInfo());
-        this.insertAdditionalInfo       (employeeId,        newEmployee.getEmployeeAddlDetails());
-        this.insertEmployeeAddress      (employeeId,        newEmployee.getEmployeeAddress());
-        this.insertEmployeeHierarchy    (employeeId,        newEmployee.getEmployeeHierarchy(), entryDate);
-        this.insertEmployeeProfile      (employeeId,        newEmployee.getEmployeeProfile());
-        this.insertEmpSalaryComponents  (employeeId,        entryBy, 
-                                                            newEmployee.getEmployeeSalary(), entryDate);
-        //TODO: take care of optional components
-        
-        //create LDAP user
+    public String createEmployee(Employee newEmployee) throws Exception {
+        String employeeId = this.generateEmployeeId(newEmployee.getEmployeeBasicInfo().getOrganization(), newEmployee.getEmployeeBasicInfo().getUnit());
+
+        Date entryDate = newEmployee.getEmployeeBasicInfo().getEntryDate();
+        String entryBy = newEmployee.getEmployeeBasicInfo().getEntryBy();
+
+        this.insertBasicInfo(employeeId, newEmployee.getEmployeeBasicInfo());
+        // this.insertAdditionalInfo (employeeId, newEmployee.getEmployeeAddlDetails());
+        // this.insertEmployeeAddress (employeeId, newEmployee.getEmployeeAddress());
+        // this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
+        // this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
+        // this.insertEmpSalaryComponents (employeeId, entryBy,
+        // newEmployee.getEmployeeSalary(), entryDate);
+        // TODO: take care of optional components
+
+        // create LDAP user
         authRepo.createUser(employeeId, newEmployee);
+        return String.format("Employee created with ID: %s", employeeId);
     }
-    
+
     /**TODO: Confirm logic
      * Insert the salary components
      * @param employeeId
@@ -116,47 +145,29 @@ public class EmployeeRepository {
      * @param salaryComponents
      * @throws Exception
      */
-    private void insertEmpSalaryComponents(String employeeId, String entryBy, List<EmployeeSalary> salaryComponents, 
-            String entryDate) throws Exception {
-        if(salaryComponents != null)
-            for(EmployeeSalary salary: salaryComponents){
-                long appraisalId        = this.getAppraisalId(entryDate);
+    private void insertEmpSalaryComponents(String employeeId, String entryBy, List<EmployeeSalary> salaryComponents, Date entryDate) throws Exception {
+        if (salaryComponents != null)
+            for (EmployeeSalary salary : salaryComponents) {
+                long appraisalId = this.getAppraisalId(entryDate);
                 logger.info(sqlMarker, employeeSalaryInsert);
-                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}",
-                        () -> appraisalId,
-                        () -> employeeId,
-                        () -> salary.getSalaryComponent().getCompId(),
-                        () -> entryBy,
-                        () -> entryDate,
-                        () -> salary.getSalaryValue());
-                jdbcTemplate.update(employeeSalaryInsert, new Object[] {
-                        appraisalId,
-                        employeeId,
-                        salary.getSalaryComponent().getCompId(),
-                        entryBy,
-                        entryDate,
-                        salary.getSalaryValue()
-                });
+                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}", () -> appraisalId, () -> employeeId, () -> salary.getSalaryComponent().getCompId(), () -> entryBy, () -> entryDate, () -> salary.getSalaryValue());
+                jdbcTemplate.update(employeeSalaryInsert, new Object[] { appraisalId, employeeId, salary.getSalaryComponent().getCompId(), entryBy, entryDate, salary.getSalaryValue() });
             }
     }
-    
-    private long getAppraisalId(String  entryDate) throws Exception{
+
+    private long getAppraisalId(Date entryDate) throws Exception {
         logger.info(sqlMarker, getAppraisalId);
-        logger.info(sqlMarker, "Params {}, {}",
-                entryDate,
-                entryDate);
-        Long appraisalId        = null;
-        try{
-            appraisalId         = jdbcTemplate.queryForObject(getAppraisalId, 
-                new Object []{entryDate, entryDate}, Long.class);
-        }catch(Exception ex){
-            logger.debug("Given entryDate {} does not correspond to any appraisal cycle",
-                    () -> entryDate);
+        logger.info(sqlMarker, "Params {}, {}", entryDate, entryDate);
+        Long appraisalId = null;
+        try {
+            appraisalId = jdbcTemplate.queryForObject(getAppraisalId, new Object[] { entryDate, entryDate }, Long.class);
+        } catch (Exception ex) {
+            logger.debug("Given entryDate {} does not correspond to any appraisal cycle", () -> entryDate);
             throw new Exception("Given entryDate " + entryDate + " does not correspond to any appraisal cycle");
         }
         return appraisalId;
     }
-    
+
     /**
      * Insert employee profile
      * @param employeeId
@@ -165,60 +176,27 @@ public class EmployeeRepository {
      */
     private void insertEmployeeProfile(String employeeId, EmployeeProfile profile) throws Exception {
         logger.info(sqlMarker, employeeProfileInsert);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}",
-                () -> employeeId,
-                () -> profile.getQualification(),
-                () -> profile.getDescription(),
-                () -> profile.getComments());
+        logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> employeeId, () -> profile.getQualification(), () -> profile.getDescription(), () -> profile.getComments());
 
-        jdbcTemplate.update(employeeProfileInsert, new Object[] {
-                employeeId,
-                profile.getQualification(),
-                profile.getDescription(),
-                profile.getComments()
-        });
+        jdbcTemplate.update(employeeProfileInsert, new Object[] { employeeId, profile.getQualification(), profile.getDescription(), profile.getComments() });
     }
-    
+
     /**
      * Insert employee hierarchy
      * @param employeeId
      * @param hierarchy
      * @throws Exception
      */
-    private void insertEmployeeHierarchy(String employeeId, EmployeeHierarchy hierarchy, String entryDate) throws Exception {
+    private void insertEmployeeHierarchy(String employeeId, EmployeeHierarchy hierarchy, Date entryDate) throws Exception {
         logger.info(sqlMarker, employeeHierarchyInsert);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
-                () -> employeeId,
-                () -> hierarchy.getSupervisorId(),
-                () -> hierarchy.getHrId(),
-                () -> hierarchy.getStatus(),
-                () -> hierarchy.getCl(),
-                () -> hierarchy.getPl(),
-                () -> hierarchy.getPaternityLeave(),
-                () -> hierarchy.getSickLeave(),
-                () -> hierarchy.getMaternityLeave(),
-                () -> hierarchy.getSpecialLeave(),
-                () -> hierarchy.getProbationPeriodEndDate(),
-                () -> hierarchy.getNoticePeriodEndDate(),
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeId, () -> hierarchy.getSupervisorId(), () -> hierarchy.getHrId(), () -> hierarchy.getStatus(), () -> hierarchy.getCl(), () -> hierarchy.getPl(),
+                () -> hierarchy.getPaternityLeave(), () -> hierarchy.getSickLeave(), () -> hierarchy.getMaternityLeave(), () -> hierarchy.getSpecialLeave(), () -> hierarchy.getProbationPeriodEndDate(), () -> hierarchy.getNoticePeriodEndDate(),
                 () -> entryDate);
 
-        jdbcTemplate.update(employeeHierarchyInsert, new Object[] {
-                employeeId,
-                hierarchy.getSupervisorId(),
-                hierarchy.getHrId(),
-                hierarchy.getStatus(),
-                hierarchy.getCl(),
-                hierarchy.getPl(),
-                hierarchy.getPaternityLeave(),
-                hierarchy.getSickLeave(),
-                hierarchy.getMaternityLeave(),
-                hierarchy.getSpecialLeave(),
-                hierarchy.getProbationPeriodEndDate(),
-                hierarchy.getNoticePeriodEndDate(),
-                entryDate
-        });
+        jdbcTemplate.update(employeeHierarchyInsert, new Object[] { employeeId, hierarchy.getSupervisorId(), hierarchy.getHrId(), hierarchy.getStatus(), hierarchy.getCl(), hierarchy.getPl(), hierarchy.getPaternityLeave(), hierarchy.getSickLeave(),
+                hierarchy.getMaternityLeave(), hierarchy.getSpecialLeave(), hierarchy.getProbationPeriodEndDate(), hierarchy.getNoticePeriodEndDate(), entryDate });
     }
-    
+
     /**
      * Insert employee address
      * @param employeeId
@@ -226,39 +204,17 @@ public class EmployeeRepository {
      * @throws Exception
      */
     private void insertEmployeeAddress(String employeeId, List<EmployeeAddress> addressList) throws Exception {
-        if(addressList != null)
-            for(EmployeeAddress address : addressList){
+        if (addressList != null)
+            for (EmployeeAddress address : addressList) {
                 logger.info(sqlMarker, employeeAddressInsert);
-                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
-                        () -> employeeId,
-                        () -> address.getAddressType(),
-                        () -> address.getHouseNo(),
-                        () -> address.getStreetName(),
-                        () -> address.getArea(),
-                        () -> address.getRegion(),
-                        () -> address.getPinno(),
-                        () -> address.getDistrictId(),
-                        () -> address.getStateId(),
-                        () -> address.getCountryId(),
-                        () -> address.getDescription());
+                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeId, () -> address.getAddressType(), () -> address.getHouseNo(), () -> address.getStreetName(), () -> address.getArea(), () -> address.getRegion(),
+                        () -> address.getPinno(), () -> address.getDistrictId(), () -> address.getStateId(), () -> address.getCountryId(), () -> address.getDescription());
 
-                jdbcTemplate.update(employeeAddressInsert, new Object[] {
-                        employeeId,
-                        address.getAddressType(),
-                        address.getHouseNo(),
-                        address.getStreetName(),
-                        address.getArea(),
-                        address.getRegion(),
-                        address.getPinno(),
-                        address.getDistrictId(),
-                        address.getStateId(),
-                        address.getCountryId(),
-                        address.getDescription()
-                });
+                jdbcTemplate.update(employeeAddressInsert, new Object[] { employeeId, address.getAddressType(), address.getHouseNo(), address.getStreetName(), address.getArea(), address.getRegion(), Integer.valueOf(address.getPinno()), address.getDistrictId(),
+                        address.getStateId(), address.getCountryId(), address.getDescription() });
             }
     }
-    
-    
+
     /**
      * Insert into EMPLOYEE_ADDITIONAL_DETAILS
      * @param empNo
@@ -267,40 +223,16 @@ public class EmployeeRepository {
      */
     private void insertAdditionalInfo(String employeeId, EmployeeAddlDetails additonalDetails) throws Exception {
         logger.info(sqlMarker, employeeAdditionalDtlInsert);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, "
-                + "{}, {}, {}, {}, {}, "
-                + "{}, {}, {}",
-                () -> employeeId,
-                () -> additonalDetails.getSiblingNo(),
-                () -> additonalDetails.getDependentNo(),
-                () -> additonalDetails.getNomineeName1(),
-                () -> additonalDetails.getNomineeName2(),
-                () -> additonalDetails.getNomineeName3(),
-                () -> additonalDetails.getNomineeShare1(),
-                () -> additonalDetails.getNomineeShare2(),
-                () -> additonalDetails.getNomineeShare3(),
-                () -> additonalDetails.getEmergencyContactName(),
-                () -> additonalDetails.getEmergencyContactNo(),
-                () -> additonalDetails.getPreMedicalCheckUpDate(),
-                () -> additonalDetails.getMedicalReportComment());
-        
-        jdbcTemplate.update(employeeAdditionalDtlInsert, new Object[] {
-                employeeId, 
-                additonalDetails.getSiblingNo(),
-                additonalDetails.getDependentNo(),
-                additonalDetails.getNomineeName1(),
-                additonalDetails.getNomineeName2(),
-                additonalDetails.getNomineeName3(),
-                additonalDetails.getNomineeShare1(),
-                additonalDetails.getNomineeShare2(),
-                additonalDetails.getNomineeShare3(),
-                additonalDetails.getEmergencyContactName(),
-                additonalDetails.getEmergencyContactNo(),
-                additonalDetails.getPreMedicalCheckUpDate(),
-                additonalDetails.getMedicalReportComment()
-                });
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, " + "{}, {}, {}, {}, {}, " + "{}, {}, {}", () -> employeeId, () -> additonalDetails.getSiblingNo(), () -> additonalDetails.getDependentNo(), () -> additonalDetails.getNomineeName1(),
+                () -> additonalDetails.getNomineeName2(), () -> additonalDetails.getNomineeName3(), () -> additonalDetails.getNomineeShare1(), () -> additonalDetails.getNomineeShare2(), () -> additonalDetails.getNomineeShare3(),
+                () -> additonalDetails.getEmergencyContactName(), () -> additonalDetails.getEmergencyContactNo(), () -> additonalDetails.getPreMedicalCheckUpDate(), () -> additonalDetails.getMedicalReportComment());
+
+        jdbcTemplate.update(employeeAdditionalDtlInsert,
+                new Object[] { employeeId, additonalDetails.getSiblingNo(), additonalDetails.getDependentNo(), additonalDetails.getNomineeName1(), additonalDetails.getNomineeName2(), additonalDetails.getNomineeName3(), additonalDetails.getNomineeShare1(),
+                        additonalDetails.getNomineeShare2(), additonalDetails.getNomineeShare3(), additonalDetails.getEmergencyContactName(), additonalDetails.getEmergencyContactNo(), additonalDetails.getPreMedicalCheckUpDate(),
+                        additonalDetails.getMedicalReportComment() });
     }
-    
+
     /**
      * Insertion into the EMPLOYEE
      * @param empNo
@@ -308,88 +240,58 @@ public class EmployeeRepository {
      * @throws Exception
      */
     private void insertBasicInfo(String employeeId, EmployeeBasicInfo basicInfo) throws Exception {
-        
+
         logger.info(sqlMarker, employeeBasicInfoInsert);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, "
-                + "{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, "
-                + "{}, {}, {}",
-                () -> employeeId,
-                () -> basicInfo.getTitle(),
-                () -> basicInfo.getEmpFirstName(),
-                () -> basicInfo.getEmpMiddleName(),
-                () -> basicInfo.getEmpLastName(),
-                () -> basicInfo.getSex(),
-                () -> basicInfo.getEmpType(),
-                () -> basicInfo.getMaritalStatus(),
-                () -> basicInfo.getDoj(),
-                () -> basicInfo.getUnit() != null? basicInfo.getUnit().getOrgId(): null,
-                () -> basicInfo.getUnit() != null? basicInfo.getUnit().getUnitId(): null,
-                () -> basicInfo.getDepartment() != null? basicInfo.getDepartment().getDepartmentId(): null,
-                () -> basicInfo.getNationality(),
-                () -> basicInfo.getIdentityDocType() != null? basicInfo.getIdentityDocType().getDocTypeId() : null,
-                () -> basicInfo.getIdentityNumber(),
-                () -> basicInfo.getDob(),
-                () -> basicInfo.getFatherName(),
-                () -> basicInfo.getEmailId(),
-                () -> basicInfo.getContactNo(),
-                () -> basicInfo.getEntryBy(),
-                () -> basicInfo.getEntryDate(),
-                () -> basicInfo.isHrFlag(),
-                () -> basicInfo.isSupervisorFlag());
-        
-        jdbcTemplate.update(employeeBasicInfoInsert, new Object[] {
-                employeeId, 
-                basicInfo.getTitle(),
-                basicInfo.getEmpFirstName(),
-                basicInfo.getEmpMiddleName(),
-                basicInfo.getEmpLastName(),
-                basicInfo.getSex(),
-                basicInfo.getEmpType(),
-                basicInfo.getMaritalStatus(),
-                basicInfo.getDoj(),
-                basicInfo.getUnit() != null? basicInfo.getUnit().getOrgId(): null,
-                basicInfo.getUnit() != null? basicInfo.getUnit().getUnitId(): null,
-                basicInfo.getDepartment() != null? basicInfo.getDepartment().getDepartmentId(): null,
-                basicInfo.getNationality(),
-                basicInfo.getIdentityDocType() != null? basicInfo.getIdentityDocType().getDocTypeId() : null,
-                basicInfo.getIdentityNumber(),
-                basicInfo.getDob(),
-                basicInfo.getFatherName(),
-                basicInfo.getEmailId(),
-                basicInfo.getContactNo(),
-                basicInfo.getEntryBy(),
-                basicInfo.getEntryDate(),
-                basicInfo.isHrFlag(),
-                basicInfo.isSupervisorFlag()
-                });
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, " + "{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, " + "{}, {}, {}", () -> employeeId, () -> basicInfo.getTitle(), () -> basicInfo.getEmpFirstName(), () -> basicInfo.getEmpMiddleName(),
+                () -> basicInfo.getEmpLastName(), () -> basicInfo.getSex(), () -> basicInfo.getEmpType(), () -> basicInfo.getMaritalStatus(), () -> basicInfo.getDoj(), () -> basicInfo.getOrganization(),
+                () -> basicInfo.getUnit() != null ? basicInfo.getUnit().getUnitId() : null, () -> basicInfo.getDepartment() != null ? basicInfo.getDepartment().getDepartmentId() : null, () -> basicInfo.getNationality(),
+                () -> basicInfo.getIdentityDocType() != null ? basicInfo.getIdentityDocType().getDocTypeId() : null, () -> basicInfo.getIdentityNumber(), () -> basicInfo.getDob(), () -> basicInfo.getFatherName(), () -> basicInfo.getEmailId(),
+                () -> basicInfo.getContactNo(), () -> basicInfo.getEntryBy(), () -> basicInfo.getEntryDate(), () -> basicInfo.isHrFlag() ? "Y" : "N", () -> basicInfo.isSupervisorFlag() ? "Y" : "N");
+
+        jdbcTemplate.update(employeeBasicInfoInsert,
+                new Object[] { employeeId, basicInfo.getTitle(), basicInfo.getEmpFirstName(), basicInfo.getEmpMiddleName(), basicInfo.getEmpLastName(), basicInfo.getSex(), basicInfo.getEmpType(), basicInfo.getMaritalStatus(), basicInfo.getDoj(),
+                        Integer.parseInt(basicInfo.getOrganization()), basicInfo.getUnit() != null ? basicInfo.getUnit().getUnitId() : null, basicInfo.getDepartment() != null ? basicInfo.getDepartment().getDepartmentId() : null, basicInfo.getNationality(),
+                        basicInfo.getIdentityDocType() != null ? basicInfo.getIdentityDocType().getDocTypeId() : null, basicInfo.getIdentityNumber(), basicInfo.getDob(), basicInfo.getFatherName(), basicInfo.getEmailId(), basicInfo.getContactNo(),
+                        basicInfo.getEntryBy(), basicInfo.getEntryDate(), basicInfo.isHrFlag() ? "Y" : "N", basicInfo.isSupervisorFlag() ? "Y" : "N" });
     }
-    
+
     /**
      * Generates an employee number for the insert operation
      * @param unit
      * @return the complete employee number generated for the given unit
      * @throws Exception
      */
-    private String generateEmployeeId(Unit unit) throws Exception {
-        List<Unit> listOfUnits          = unitRepo.getUnitsByOrganizationId(unit.getOrgId());
-        if(listOfUnits == null || listOfUnits.size() != 1)
+    private String generateEmployeeId(String orgn, Unit unit) throws Exception {
+        List<Unit> allUnits = unitRepo.getUnitsByOrganizationId(Integer.valueOf(orgn));
+        Unit matchedUnit = null;
+        for (Unit iUnit : allUnits) {
+            if (iUnit.getUnitId() == unit.getUnitId()) {
+                matchedUnit = iUnit;
+                break;
+            }
+        }
+        if (matchedUnit == null)
             throw new Exception("The Unit provided as an iput does not match to an unique value in the DB!");
 
-        String prefix                   = listOfUnits.get(0).getEmpIdPrefix();
-        String seqName                  = listOfUnits.get(0).getEmpIdSeqName();
-        
+        String prefix = matchedUnit.getEmpIdPrefix();
+        String seqName = matchedUnit.getEmpIdSeqName();
+
         logger.info(sqlMarker, obtainEmployeeIdFrmSeq);
-        logger.info(sqlMarker, "Params {}", () -> obtainEmployeeIdFrmSeq);
-        
-        Long empIdObtainedNo            = jdbcTemplate.queryForObject(obtainEmployeeIdFrmSeq, 
-                                                new Object[] {seqName}, Long.class);
-        String paddedEmpNo              = StringUtils.leftPad(String.valueOf(empIdObtainedNo), 
-                                                Integer.valueOf(employeeIdNumericLength), '0');
-        String completeEmpNo            = prefix + paddedEmpNo;
+        logger.info(sqlMarker, "Params {}", () -> seqName);
+
+        Long empIdObtainedNo = jdbcTemplate.queryForObject(obtainEmployeeIdFrmSeq, new Object[] { seqName }, Long.class);
+        Long newEmpNo = empIdObtainedNo + 1;
+
+        logger.info(sqlMarker, updateSeqValue);
+        logger.info(sqlMarker, "Params {} {}", () -> newEmpNo, () -> seqName);
+        jdbcTemplate.update(updateSeqValue, new Object[] { newEmpNo, seqName });
+
+        String paddedEmpNo = StringUtils.leftPad(String.valueOf(newEmpNo), Integer.valueOf(employeeIdNumericLength), '0');
+        String completeEmpNo = prefix + paddedEmpNo;
         logger.debug("Employee number generated: {}", () -> completeEmpNo);
         return completeEmpNo;
     }
-    
+
     /**
      * Update Employee Salary
      * @param employeeId
@@ -398,49 +300,30 @@ public class EmployeeRepository {
      * @param entryDate
      * @throws Exception
      */
-    
-    public void updateEmpSalaryComponents(String employeeId, String entryBy,
-            List<EmployeeSalary> salaryComponents) throws Exception {
-        if(salaryComponents != null)
-            for(EmployeeSalary salary: salaryComponents){
+
+    public void updateEmpSalaryComponents(String employeeId, String entryBy, List<EmployeeSalary> salaryComponents) throws Exception {
+        if (salaryComponents != null)
+            for (EmployeeSalary salary : salaryComponents) {
                 logger.info(sqlMarker, employeeSalaryUpdate);
-                logger.info(sqlMarker, "Params {}, {}, {}, {}",
-                        () -> salary.getSalaryValue(),
-                        () -> entryBy,
-                        () -> employeeId,
-                        () -> salary.getSalaryComponent().getCompId());
-                jdbcTemplate.update(employeeSalaryUpdate, new Object[] {
-                        salary.getSalaryValue(),
-                        entryBy,
-                        employeeId,
-                        salary.getSalaryComponent().getCompId()
-                });
+                logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> salary.getSalaryValue(), () -> entryBy, () -> employeeId, () -> salary.getSalaryComponent().getCompId());
+                jdbcTemplate.update(employeeSalaryUpdate, new Object[] { salary.getSalaryValue(), entryBy, employeeId, salary.getSalaryComponent().getCompId() });
             }
     }
-    
+
     /**
      * Update Employee Profile
      * @param employeeId
      * @param profile
      * @throws Exception
      */
-    
+
     public void updateEmployeeProfile(String employeeId, EmployeeProfile profile) throws Exception {
         logger.info(sqlMarker, employeeProfileUpdate);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}",
-                () -> profile.getQualification(),
-                () -> profile.getDescription(),
-                () -> profile.getComments(),
-                () -> employeeId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> profile.getQualification(), () -> profile.getDescription(), () -> profile.getComments(), () -> employeeId);
 
-        jdbcTemplate.update(employeeProfileInsert, new Object[] {
-                profile.getQualification(),
-                profile.getDescription(),
-                profile.getComments(),
-                employeeId
-        });
+        jdbcTemplate.update(employeeProfileInsert, new Object[] { profile.getQualification(), profile.getDescription(), profile.getComments(), employeeId });
     }
-    
+
     /** TODO: Confirm logic
      * Insert into optional salary components table
      * @param employeeId
@@ -448,39 +331,17 @@ public class EmployeeRepository {
      * @throws Exception
      */
     public void insertEmpOptionalBenefits(String employeeId, String entryBy, List<EmployeeOptionalBenefit> optBenefits) throws Exception {
-        if(optBenefits != null)
-            for(EmployeeOptionalBenefit optBenefit : optBenefits) {
+        if (optBenefits != null)
+            for (EmployeeOptionalBenefit optBenefit : optBenefits) {
                 logger.info(sqlMarker, employeeOptionalBenefitsUpdate);
-                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
-                        () -> null,
-                        () -> employeeId,
-                        () -> optBenefit.getOptSalaryComponent().getOptCompId(),
-                        () -> optBenefit.getOptSalaryComponent().getSalOptComponent(),
-                        () -> optBenefit.getBenefitValue(),
-                        () -> optBenefit.getStartDate(),
-                        () -> optBenefit.getStopDate(),
-                        () -> optBenefit.getNextDueDate(),
-                        () -> optBenefit.getRemarks(),
-                        () -> entryBy,
-                        () -> optBenefit.getFrequency(),
+                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> null, () -> employeeId, () -> optBenefit.getOptSalaryComponent().getOptCompId(), () -> optBenefit.getOptSalaryComponent().getSalOptComponent(),
+                        () -> optBenefit.getBenefitValue(), () -> optBenefit.getStartDate(), () -> optBenefit.getStopDate(), () -> optBenefit.getNextDueDate(), () -> optBenefit.getRemarks(), () -> entryBy, () -> optBenefit.getFrequency(),
                         () -> optBenefit.getIterations());
-                jdbcTemplate.update(employeeOptionalBenefitsInsert, new Object[] {
-                        null,
-                        employeeId,
-                        optBenefit.getOptSalaryComponent().getOptCompId(),
-                        optBenefit.getOptSalaryComponent().getSalOptComponent(),
-                        optBenefit.getBenefitValue(),
-                        optBenefit.getStartDate(),
-                        optBenefit.getStopDate(),
-                        optBenefit.getNextDueDate(),
-                        optBenefit.getRemarks(),
-                        entryBy,
-                        optBenefit.getFrequency(),
-                        optBenefit.getIterations()
-                });
+                jdbcTemplate.update(employeeOptionalBenefitsInsert, new Object[] { null, employeeId, optBenefit.getOptSalaryComponent().getOptCompId(), optBenefit.getOptSalaryComponent().getSalOptComponent(), optBenefit.getBenefitValue(),
+                        optBenefit.getStartDate(), optBenefit.getStopDate(), optBenefit.getNextDueDate(), optBenefit.getRemarks(), entryBy, optBenefit.getFrequency(), optBenefit.getIterations() });
             }
     }
-    
+
     /** TODO: Confirm logic
      * Update employee optional salary components table
      * @param employeeId
@@ -488,37 +349,151 @@ public class EmployeeRepository {
      * @throws Exception
      */
     public void updateEmpOptionalBenefits(String employeeId, int optCompId, String entryBy, EmployeeOptionalBenefit optBenefit) throws Exception {
-        if(optBenefit != null) {
-                logger.info(sqlMarker, employeeOptionalBenefitsUpdate);
-                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
-                        () -> optBenefit.getOptSalaryComponent().getOptCompId(),
-                        () -> optBenefit.getOptSalaryComponent().getSalOptComponent(),
-                        () -> optBenefit.getBenefitValue(),
-                        () -> optBenefit.getStartDate(),
-                        () -> optBenefit.getStopDate(),
-                        () -> optBenefit.getNextDueDate(),
-                        () -> optBenefit.getRemarks(),
-                        () -> entryBy,
-                        () -> optBenefit.getFrequency(),
-                        () -> optBenefit.getIterations(),
-                        () -> optCompId,
-                        () -> employeeId);
-                jdbcTemplate.update(employeeOptionalBenefitsInsert, new Object[] {
-                        optBenefit.getOptSalaryComponent().getOptCompId(),
-                        optBenefit.getOptSalaryComponent().getSalOptComponent(),
-                        optBenefit.getBenefitValue(),
-                        optBenefit.getStartDate(),
-                        optBenefit.getStopDate(),
-                        optBenefit.getNextDueDate(),
-                        optBenefit.getRemarks(),
-                        entryBy,
-                        optBenefit.getFrequency(),
-                        optBenefit.getIterations(),
-                        optCompId,
-                        employeeId
-                });
+        if (optBenefit != null) {
+            logger.info(sqlMarker, employeeOptionalBenefitsUpdate);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> optBenefit.getOptSalaryComponent().getOptCompId(), () -> optBenefit.getOptSalaryComponent().getSalOptComponent(), () -> optBenefit.getBenefitValue(),
+                    () -> optBenefit.getStartDate(), () -> optBenefit.getStopDate(), () -> optBenefit.getNextDueDate(), () -> optBenefit.getRemarks(), () -> entryBy, () -> optBenefit.getFrequency(), () -> optBenefit.getIterations(), () -> optCompId,
+                    () -> employeeId);
+            jdbcTemplate.update(employeeOptionalBenefitsInsert, new Object[] { optBenefit.getOptSalaryComponent().getOptCompId(), optBenefit.getOptSalaryComponent().getSalOptComponent(), optBenefit.getBenefitValue(), optBenefit.getStartDate(),
+                    optBenefit.getStopDate(), optBenefit.getNextDueDate(), optBenefit.getRemarks(), entryBy, optBenefit.getFrequency(), optBenefit.getIterations(), optCompId, employeeId });
+        }
+    }
+
+    /** TODO: Confirm logic
+     * Update employee_additional_details table
+     * @param employeeId
+     * @param employeeAddlDetails
+     * @throws Exception
+     */
+    public void updatedEmployeeAddlDetails(String employeeId, String modifiedBy, EmployeeAddlDetails employeeAddlDetails) throws Exception {
+
+        logger.info(sqlMarker, employeeAdditionalDetailsUpdatebyEmpId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeAddlDetails.getSiblingNo(), () -> employeeAddlDetails.getDependentNo(), () -> employeeAddlDetails.getNomineeName1(),
+                () -> employeeAddlDetails.getNomineeName2(), () -> employeeAddlDetails.getNomineeName3(), () -> employeeAddlDetails.getNomineeShare1(), () -> employeeAddlDetails.getNomineeShare2(), () -> employeeAddlDetails.getNomineeShare3(),
+                () -> employeeAddlDetails.getEmergencyContactName(), () -> employeeAddlDetails.getEmergencyContactNo(), () -> employeeAddlDetails.getPreMedicalCheckUpDate(), () -> employeeAddlDetails.getMedicalReportComment(), () -> employeeId);
+        int numberOfRowsUpdated = jdbcTemplate.update(employeeAdditionalDetailsUpdatebyEmpId,
+                new Object[] { employeeAddlDetails.getSiblingNo(), employeeAddlDetails.getDependentNo(), employeeAddlDetails.getNomineeName1(), employeeAddlDetails.getNomineeName2(), employeeAddlDetails.getNomineeName3(),
+                        employeeAddlDetails.getNomineeShare1(), employeeAddlDetails.getNomineeShare2(), employeeAddlDetails.getNomineeShare3(), employeeAddlDetails.getEmergencyContactName(), employeeAddlDetails.getEmergencyContactNo(),
+                        employeeAddlDetails.getPreMedicalCheckUpDate(), employeeAddlDetails.getMedicalReportComment(), employeeId });
+
+        /* Make entry in employee_additional_details_history 
+         * iff there is successful update  in table 
+         * employee_additional_details
+         * */
+        if (numberOfRowsUpdated > 0) {
+            logger.info(sqlMarker, employeeAdditionalDetailsHistoryInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeId, () -> employeeAddlDetails.getSiblingNo(), () -> employeeAddlDetails.getDependentNo(), () -> employeeAddlDetails.getNomineeName1(),
+                    () -> employeeAddlDetails.getNomineeName2(), () -> employeeAddlDetails.getNomineeName3(), () -> employeeAddlDetails.getNomineeShare1(), () -> employeeAddlDetails.getNomineeShare2(), () -> employeeAddlDetails.getNomineeShare3(),
+                    () -> employeeAddlDetails.getEmergencyContactName(), () -> employeeAddlDetails.getEmergencyContactNo(), () -> employeeAddlDetails.getPreMedicalCheckUpDate(), () -> employeeAddlDetails.getMedicalReportComment(), () -> modifiedBy);
+
+            jdbcTemplate.update(employeeAdditionalDetailsHistoryInsert,
+                    new Object[] { employeeId, employeeAddlDetails.getSiblingNo(), employeeAddlDetails.getDependentNo(), employeeAddlDetails.getNomineeName1(), employeeAddlDetails.getNomineeName2(), employeeAddlDetails.getNomineeName3(),
+                            employeeAddlDetails.getNomineeShare1(), employeeAddlDetails.getNomineeShare2(), employeeAddlDetails.getNomineeShare3(), employeeAddlDetails.getEmergencyContactName(), employeeAddlDetails.getEmergencyContactNo(),
+                            employeeAddlDetails.getPreMedicalCheckUpDate(), employeeAddlDetails.getMedicalReportComment(), modifiedBy });
+
+        }
+
+    }
+
+    public void updatedEmployeeAddress(String employeeId, EmployeeAddress employeeAddress) throws Exception{
+		logger.info(sqlMarker, employeeAddressUpdatebyEmpId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+                () -> employeeAddress.getHouseNo(),
+                () -> employeeAddress.getStreetName(),
+                () -> employeeAddress.getArea(),
+                () -> employeeAddress.getRegion(),
+                () -> employeeAddress.getPinno(),
+                () -> employeeAddress.getDistrictId(),
+                () -> employeeAddress.getStateId(),
+                () -> employeeAddress.getCountryId(),
+                () -> employeeAddress.getDescription(),
+                () -> employeeId
+                );
+        jdbcTemplate.update(employeeAddressUpdatebyEmpId, new Object[] {
+        		employeeAddress.getHouseNo(),
+        		employeeAddress.getStreetName(),
+        		employeeAddress.getArea(),
+        		employeeAddress.getRegion(),
+        		employeeAddress.getPinno(),
+        		employeeAddress.getDistrictId(),
+        		employeeAddress.getStateId(),
+        		employeeAddress.getCountryId(),
+        		employeeAddress.getDescription(),
+        		employeeId
+        });
+        
+
+		
+	}
+
+    public List<Employee.EmployeeSearchResult> searchHierarchyEmployee(String firstName, String middleName, String lastName, String employeeId, String employmentType,
+            String emailId, Integer orgId, Integer unitId, Integer departmentId, Integer jobRoleId,
+            Integer designationId, Boolean supervisorFlag, Boolean hrFlag, String supervisorEmailId, String hrEmailId,
+            String sex, Integer identityDocTypeId, String identityNumber, String username) {
+        
+        List<String> roles = authRepo.retrieveRoles(username);
+        
+        StringBuilder sqlCondition = new StringBuilder();
+        
+        if(firstName!=null && !firstName.trim().isEmpty()) {
+            sqlCondition.append(" AND EMPL.EMPLOYEE_FIRST_NAME = '").append(firstName.trim()).append("'");
+        }
+        if(middleName!=null && !middleName.trim().isEmpty()) {
+            sqlCondition.append(" AND EMPL.EMPLOYEE_MIDDLE_NAME = '").append(middleName.trim()).append("'");
+        }
+        if(lastName!=null && !lastName.trim().isEmpty()) {
+            sqlCondition.append(" AND EMPL.EMPLOYEE_LAST_NAME = '").append(lastName.trim()).append("'");
+        }
+        if(employeeId!=null && !employeeId.trim().isEmpty()) {
+            sqlCondition.append(" AND EMPL.EMP_ID = '").append(employeeId.trim()).append("'");
+        }
+        if(orgId!=null) {
+            sqlCondition.append(" AND EMPL.ORG_ID = ").append(orgId.toString());
+        }
+        if(unitId!=null) {
+            sqlCondition.append(" AND EMPL.UNIT_ID = ").append(unitId.toString());
+        }
+        if(departmentId!=null) {
+            sqlCondition.append(" AND EMPL.DEPARTMENT_ID = ").append(departmentId.toString());
+        }
+        if(designationId!=null) {
+            sqlCondition.append(" AND AR.DESIGNATION_ID = ").append(designationId.toString());
+        }
+        if(emailId!=null && !emailId.trim().isEmpty()) {
+            sqlCondition.append(" AND EMPL.EMAIL_ID = '").append(emailId.trim()).append("'");
+        }
+        if(supervisorEmailId!=null && !supervisorEmailId.trim().isEmpty()) {
+            sqlCondition.append(" AND SUP.EMAIL_ID = '").append(supervisorEmailId.trim()).append("'");
+        }
+        if(hrEmailId!=null && !hrEmailId.trim().isEmpty()) {
+            sqlCondition.append(" AND HR.EMAIL_ID = '").append(hrEmailId.trim()).append("'");
+        }
+        if(sex!=null && !sex.trim().isEmpty()) {
+            sqlCondition.append(" AND EMPL.SEX = '").append(sex.trim()).append("'");
+        }
+        
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("roleList", roles);
+        paramMap.put("username", username);
+        
+        logger.info(sqlMarker, employeeHierarchySearchSql+sqlCondition.toString());
+        logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);        
+        return namedParameterJdbcTemplate.query(employeeHierarchySearchSql+sqlCondition.toString(), paramMap, new EmployeeSearchResultRowMapper());
+        
+    }
+
+    public boolean isPrivilegedForHierarchySearch(String username) {
+        List<String> roles = authRepo.retrieveRoles(username);
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("roleList", roles);
+        paramMap.put("username", username);
+        logger.info(sqlMarker, empSearchPrevilegeDetermineSql);
+        logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);        
+        List<Integer> objectList = namedParameterJdbcTemplate.query(empSearchPrevilegeDetermineSql, paramMap, new RowMapper<Integer>() {
+            public Integer mapRow(ResultSet rs, int rowum) throws SQLException {
+                return rs.getInt(1);
             }
+        });
+        return objectList.get(0) > 0 ? true : false;
     }
 }
-
-

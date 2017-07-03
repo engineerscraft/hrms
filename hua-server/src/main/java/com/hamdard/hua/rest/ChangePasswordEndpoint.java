@@ -25,7 +25,7 @@ public class ChangePasswordEndpoint {
 
     @Autowired
     private AuthenticationRepository authenticationRepository;
-    
+
     @Context
     SecurityContext securityContext;
 
@@ -34,17 +34,15 @@ public class ChangePasswordEndpoint {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Secured
     public Response changePassword(PasswordChangeDetails pwdDetails) {
-    	try {
-    		authenticationRepository.changePassword(pwdDetails, securityContext.getUserPrincipal().getName());
-    	}
-    	catch(AuthenticationException e) {
-    		logger.error("Invalid username and password", e);
-    		return Response.status(401).entity(new Message("Invalid username and password")).build();
-    	}
-    	catch(Exception e) {
-    		logger.error(e.getMessage(), e);
-    		return Response.status(500).entity(new Message(e.getMessage())).build();
-    	}
-    	return Response.status(200).build();
+        try {
+            authenticationRepository.changePassword(pwdDetails, securityContext.getUserPrincipal().getName());
+        } catch (AuthenticationException e) {
+            logger.error("Invalid username and password", e);
+            return Response.status(401).entity(new Message("Invalid username and password")).build();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return Response.status(500).entity(new Message(e.getMessage())).build();
+        }
+        return Response.status(200).build();
     }
 }

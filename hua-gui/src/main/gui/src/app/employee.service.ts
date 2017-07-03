@@ -19,16 +19,31 @@ export class EmployeeService {
       .map(res => res.json());
   }
 
-  search(employee: FormGroup) {
-    return this.httpService.callHttpGet("/resources/employee/search?firstName="+employee.get("firstName").value
-            +"&middleName="+employee.get("middleName").value
-            +"&lastName="+employee.get("lastName").value
-            +"&designationId="+employee.get("designation").value
-            +"&departmentId="+employee.get("department").value
-            +"&collegeId="+employee.get("college").value
-            +"&employeeId="+employee.get("employeeId").value
-            +"&emailAddress="+employee.get("emailId").value
-            +"&contactNumber="+employee.get("contactNo").value)
+  create(employee: any) {
+    return this.httpService.callHttpPost("/resources/v1/employee",employee);
+  }
+
+  search(employeeSearchCriteria) {
+    return this.httpService.callHttpGet("/resources/v1/employee/management"
+            +"?firstName="+(employeeSearchCriteria.firstName?employeeSearchCriteria.firstName:"")
+            +"&middleName="+(employeeSearchCriteria.middleName?employeeSearchCriteria.middleName:"")
+            +"&lastName="+(employeeSearchCriteria.lastName?employeeSearchCriteria.lastName:"")
+            +"&employeeId="+(employeeSearchCriteria.employeeId?employeeSearchCriteria.employeeId:"")
+            +"&employeeType="+(employeeSearchCriteria.employmentType?employeeSearchCriteria.employmentType:"")
+            +"&emailId="+(employeeSearchCriteria.emailId?employeeSearchCriteria.emailId:"")
+            +"&orgId="+(employeeSearchCriteria.orgId?employeeSearchCriteria.orgId:"")
+            +"&unitId="+(employeeSearchCriteria.unitId?employeeSearchCriteria.unitId:"")
+            +"&departmentId="+(employeeSearchCriteria.departmentId?employeeSearchCriteria.departmentId:"")
+            +"&jobRoleId="+(employeeSearchCriteria.jobRoleId?employeeSearchCriteria.jobRoleId:"")
+            +"&designationId="+(employeeSearchCriteria.designationId?employeeSearchCriteria.designationId:"")
+            +"&supervisorFlag="+(employeeSearchCriteria.supervisorFlag?employeeSearchCriteria.supervisorFlag:"")
+            +"&hrFlag="+(employeeSearchCriteria.hrFlag?employeeSearchCriteria.hrFlag:"")
+            +"&supervisorEmailId="+(employeeSearchCriteria.supervisorEmailId?employeeSearchCriteria.supervisorEmailId:"")
+            +"&hrEmailId="+(employeeSearchCriteria.hrEmailId?employeeSearchCriteria.hrEmailId:"")
+            +"&sex="+(employeeSearchCriteria.sex?employeeSearchCriteria.sex:"")
+            +"&maritalStatus="+(employeeSearchCriteria.maritalStatus?employeeSearchCriteria.maritalStatus:"")
+            +"&identityDocTypeId="+(employeeSearchCriteria.identityDocTypeId?employeeSearchCriteria.identityDocTypeId:"")
+            +"&identityNumber="+(employeeSearchCriteria.identityNumber?employeeSearchCriteria.identityNumber:""))
       .map(res => res.json());
   }
 

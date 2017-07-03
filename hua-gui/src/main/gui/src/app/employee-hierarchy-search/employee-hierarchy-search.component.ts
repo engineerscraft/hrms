@@ -45,12 +45,11 @@ export class EmployeeHierarchySearchComponent implements OnInit {
       lastName: ['', []],
       designationId: ['', []],
       departmentId: ['', []],
-      college: ['', []],
       employeeId: ['', []],
       emailId: ['', []],
       contactNo: ['', []],
       empType: ['', []],
-      organizationId: ['', []],
+      orgId: ['', []],
       unitId: ['', []],
       jobRoleId: ['', []],
       isSupervisor: ['', []],
@@ -58,8 +57,9 @@ export class EmployeeHierarchySearchComponent implements OnInit {
       supervisorEmailId: ['', []],
       hrEmailId: ['', []],
       sex: ['', []],
-      identityDoc: ['', []],
-      identityDocNumber: ['', []]
+      identityDocTypeId: ['', []],
+      identityDocNumber: ['', []],
+      nationality: ['', []]
     });
 
     let organizationObservable = this.organizationService.getOrganizations();
@@ -126,5 +126,27 @@ export class EmployeeHierarchySearchComponent implements OnInit {
           this.designations = data;
         }
       )
+   }
+
+   search() {
+     this.router.navigate(['employeeHierarchySearchResult'], { queryParams: 
+       { firstName: this.formGroupSearch.get("firstName").value, 
+         middleName: this.formGroupSearch.get("middleName").value, 
+         lastName: this.formGroupSearch.get("lastName").value, 
+         employeeId: this.formGroupSearch.get("employeeId").value, 
+         employmentType: this.formGroupSearch.get("empType").value,
+         emailId: this.formGroupSearch.get("emailId").value, 
+         orgId: this.formGroupSearch.get("orgId").value, 
+         unitId: this.formGroupSearch.get("unitId").value, 
+         departmentId: this.formGroupSearch.get("departmentId").value, 
+         jobRoleId: this.formGroupSearch.get("jobRoleId").value, 
+         designationId: this.formGroupSearch.get("designationId").value, 
+         supervisorFlag: this.formGroupSearch.get("isSupervisor").value, 
+         hrFlag: this.formGroupSearch.get("isHr").value, 
+         supervisorEmailId: this.formGroupSearch.get("supervisorEmailId").value, 
+         hrEmailId: this.formGroupSearch.get("hrEmailId").value, 
+         sex: this.formGroupSearch.get("sex").value,  
+         identityDocTypeId: this.formGroupSearch.get("identityDocTypeId").value,  
+         identityNumber: this.formGroupSearch.get("identityDocNumber").value } });
    }
 }

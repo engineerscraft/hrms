@@ -1,0 +1,85 @@
+version: 1
+dn: ou=users,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: users
+
+dn: cn=TEST,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: TEST
+displayName: Test User Name
+sn: TEST
+userPassword: TEST
+
+dn: cn=HUB1,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: HUB1
+displayName: Test User HUB1
+sn: HUB1
+userPassword: HUB1
+
+dn: cn=HUB2,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: HUB2
+displayName: Test User HUB2
+sn: HUB2
+userPassword: HUB2
+
+dn: cn=HUB42,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: HUB42
+displayName: Test User HUB42
+sn: HUB42
+userPassword: HUB42
+
+dn: cn=HUB10,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: HUB10
+displayName: Test User HUB10
+sn: HUB10
+userPassword: HUB10
+
+dn: ou=roleusers,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: roleusers
+
+dn: cn=ADMIN,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: ADMIN
+uniqueMember: cn=TEST,ou=users,dc=example,dc=com
+
+dn: cn=SUPERVISOR,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: SUPERVISOR
+uniqueMember: cn=HUB1,ou=users,dc=example,dc=com
+uniqueMember: cn=HUB42,ou=users,dc=example,dc=com
+
+dn: cn=HR,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: HR
+uniqueMember: cn=HUB10,ou=users,dc=example,dc=com
+
+dn: cn=EMPLOYEE,ou=roleusers,dc=example,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: EMPLOYEE
+uniqueMember: cn=HUB2,ou=users,dc=example,dc=com

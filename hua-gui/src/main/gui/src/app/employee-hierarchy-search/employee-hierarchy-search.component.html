@@ -11,7 +11,7 @@
       <a class="search-btn ripple search-btn-fixed" href="javascript:void(0)" (click)="employeeHierarchySearchForm.ngSubmit.emit()"></a>
     </div>
   </div>
-  <form [formGroup]="formGroupSearch" #employeeHierarchySearchForm (ngSubmit)="search()" method="get" class="loginform">
+  <form [formGroup]="formGroupSearch" #employeeHierarchySearchForm="ngForm" (ngSubmit)="search()" method="get" class="loginform">
     <fieldset [disabled]="processingInProgress">
       <div class="toggle">
         <!-- Checkbox toggle -->
@@ -19,7 +19,7 @@
         <label for="employeePersonalDetails" class="toggle-label">Employee Personal Details</label>
 
         <div role="toggle" class="toggle-content">
-          <div class="display-table">
+          <div class="display-table inner-component-width">
             <div class="row">
               <div class="cell span_1_of_3">
                 <div class="group">
@@ -73,7 +73,7 @@
                 <div class="group combo-group">
                   <label class="text-input-label">Identity Document</label>
                   <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="identityDoc">
+                    <select class="span_4_of_4" formControlName="identityDocTypeId">
                   <option value=""></option>
                   <option *ngFor="let identityDocType of identityDocTypes" value="{{identityDocType.docTypeId}}">{{identityDocType.docTypeName}}</option>
                 </select>
@@ -132,13 +132,13 @@
 
         <div role="toggle" class="toggle-content">
 
-          <div class="display-table">
+          <div class="display-table inner-component-width">
             <div class="row">
               <div class="cell span_1_of_3">
                 <div class="group combo-group">
                   <label class="text-input-label">Organization</label>
                   <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" #organizationId formControlName="organizationId" (change)="onOrgChange(organizationId.value)">
+                    <select class="span_4_of_4" #organizationId formControlName="orgId" (change)="onOrgChange(organizationId.value)">
                   <option value=""></option>
                   <option *ngFor="let organization of organizations" value="{{organization.orgId}}">{{organization.orgName}}</option>
                 </select>

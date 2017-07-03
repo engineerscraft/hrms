@@ -40,9 +40,12 @@ fieldset {
   clear: both;
 }
 
-@font-face {
-  font-family: "EricssonCapital";
-  src: url("/assets/font/ericssoncapitaltt-webfont.ttf");
+.outer-component-width {
+  width: calc(100% - 90px);
+}
+
+.inner-component-width {
+  width: 100%;
 }
 
 .loading {
@@ -93,14 +96,12 @@ input, button {
 
 .table {
   margin: 40px 10px;
-  width: calc(100% - 92px);
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   display: table;
 }
 
 .display-table {
    display: table;
-   width: 100%;
    table-layout: fixed;
 }
 
