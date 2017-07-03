@@ -70,7 +70,8 @@ GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA HRMS TO "hrmsapp";
    * Password: secret
    * Protocol: LDAPv3
    * Level: User + Password
-
+2. Users TEST/TEST, HUB1/HUB1, HUB2/HUB2, HUB10/HUB10, HUB42,HUB42 will be created. Here TEST is an ADMIN user and not an employee. HUB1 and HUB42 are SUPERVISOR, HUB10 is an HR, HUB2 is a normal EMPLOYEE.
+   
 # Running the Servers
 1. Open the command terminal, go to the folder huac\trunk\hua-gui\src\main\gui and run the command `npm start`
 2. Open another terminal, go to the folder huac\trunk\hua-server and run the command `mvn spring-boot:run`

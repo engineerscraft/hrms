@@ -126,7 +126,7 @@ public class EmployeeResource {
     @Secured(Privilege.GET_EMP_SEARCH_IN_HIERARCHY)
     public Response searchEmployee(@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName, @QueryParam("lastName") String lastName, @QueryParam("employeeId") String employeeId, @QueryParam("empType") String employmentType,
             @QueryParam("emailId") String emailId, @QueryParam("orgId") Integer orgId, @QueryParam("unitId") Integer unitId, @QueryParam("departmentId") Integer departmentId, @QueryParam("jobRoleId") Integer jobRoleId,
-            @QueryParam("designationId") Integer designationId, @QueryParam("supervisorFlag") Boolean supervisorFlag, @QueryParam("hrFlag") Boolean hrFlag, @QueryParam("supervisorEmailId") String supervisorEmailId, @QueryParam("hrEmailId") String hrEmailId,
+            @QueryParam("designationId") Integer designationId, @QueryParam("supervisorFlag") String supervisorFlag, @QueryParam("hrFlag") String hrFlag, @QueryParam("supervisorEmailId") String supervisorEmailId, @QueryParam("hrEmailId") String hrEmailId,
             @QueryParam("sex") String sex, @QueryParam("maritalStatus") String maritalStatus, @QueryParam("identityDocTypeId") Integer identityDocTypeId, @QueryParam("identityNumber") String identityNumber) {
         try {
             if (!employeeRepository.isPrivilegedForHierarchySearch(securityContext.getUserPrincipal().getName()))
@@ -137,6 +137,28 @@ public class EmployeeResource {
             return Response.status(200).entity(employeeSearchResult).build();
         } catch (Exception e) {
             logger.error("The hierarchy search could not be done", e);
+            return Response.status(500).entity(new Message(e.getMessage())).build();
+        }
+    }
+
+    @GET
+    @Path("/autocomplete")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Secured(Privilege.READ_EMP_ATTR_AUTOCOMP)
+    public Response autoCompleteEmployeeDetail(@QueryParam("attributeName") String attributeName, @QueryParam("attributeValuePrefix") String attributeValuePrefix, @QueryParam("numberOfItems") Integer numberOfItems) {
+        try {            
+            if(attributeName == null || attributeName.isEmpty() || !("empFirstName".equals(attributeName) || "empMiddleName".equals(attributeName) || "empLastName".equals(attributeName) || "supervisorEmailId".equals(attributeName) || "hrEmailId".equals(attributeName) || "empEmailId".equals(attributeName))) {
+                return Response.status(422).entity(new Message("Invalid input")).build();
+            }
+            
+            if (!employeeRepository.isPrivilegedForHierarchySearch(securityContext.getUserPrincipal().getName())) {
+                return Response.status(401).entity(new Message("The user has no privilege to view the personal information of the employees")).build();
+            }
+
+            List<Employee.EmployeeSearchResult> employeeAutoCompleteResult = employeeRepository.autoCompleteEmployee(attributeName, attributeValuePrefix, numberOfItems, securityContext.getUserPrincipal().getName());
+            return Response.status(200).entity(employeeAutoCompleteResult).build();
+        } catch (Exception e) {
+            logger.error("The autocomplete result could not be retrieved", e);
             return Response.status(500).entity(new Message(e.getMessage())).build();
         }
     }
@@ -163,15 +185,15 @@ public class EmployeeResource {
      * Update Query have to be dynamic
      * EmployeeAddress.pinno has to be changed to int from String
      */
-   @PUT
+    @PUT
     @Path("/{id}/address")
-    //@Secured(Privilege.UPDATE_EMP_ADDRESS_OF_AN_EMP)
+    // @Secured(Privilege.UPDATE_EMP_ADDRESS_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddress employeeAddress) {
         try {
-            //String modifiedBy = securityContext.getUserPrincipal().getName();
-            
+            // String modifiedBy = securityContext.getUserPrincipal().getName();
+
             employeeRepository.updatedEmployeeAddress(employeeId, employeeAddress);
             logger.info("Employee address details updated in successfully: {}", () -> employeeAddress);
             return Response.status(200).build();

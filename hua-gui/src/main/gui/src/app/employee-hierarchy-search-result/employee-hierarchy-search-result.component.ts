@@ -20,7 +20,7 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
         this.employeeSearchCriteria.firstName = params['firstName'];
         this.employeeSearchCriteria.middleName = params['middleName'];
         this.employeeSearchCriteria.lastName = params['lastName'];
@@ -133,7 +133,7 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
     this.employees = this.filteredResult.slice(this.pagination.lowerRange - 1, this.pagination.upperRange);
   }
 
-  back() {
-    
+  backToSearchCriteria() {
+    this.router.navigate(['employeeHierarchySearch']);
   }
 }

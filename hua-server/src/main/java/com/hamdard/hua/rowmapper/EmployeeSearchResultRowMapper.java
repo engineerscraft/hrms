@@ -17,6 +17,11 @@ public class EmployeeSearchResultRowMapper  implements RowMapper<Employee.Employ
         searchResult.setEmailId(rs.getString("EMAIL_ID"));
         searchResult.setDepartmentName(rs.getString("DEPARTMENT_NAME"));
         searchResult.setContactNo(rs.getString("CONTACTNO"));
+        searchResult.setFirstName(rs.getString("EMPLOYEE_FIRST_NAME"));
+        searchResult.setMiddleName(rs.getString("EMPLOYEE_MIDDLE_NAME"));
+        searchResult.setLastName(rs.getString("EMPLOYEE_LAST_NAME"));
+        searchResult.setSupervisorEmailId(rs.getString("SUPERVISOR_EMAIL_ID"));
+        searchResult.setHrEmailId(rs.getString("HR_EMAIL_ID"));
         StringBuilder name = new StringBuilder();
         if(rs.getString("EMPLOYEE_FIRST_NAME")!=null) {
             name.append(rs.getString("EMPLOYEE_FIRST_NAME"));

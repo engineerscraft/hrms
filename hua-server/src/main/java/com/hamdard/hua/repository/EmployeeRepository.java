@@ -115,6 +115,11 @@ public class EmployeeRepository {
     @Value("${sql.employee.search.hierarchy}")
     private String employeeHierarchySearchSql;
 
+    @Value("${hierarchy.search.limit}")
+    private int hierarchySearchLimit;
+
+    @Value("${autocomplete.limit}")
+    private int autoCompleteLimit;
     /*****************************************************************************************************/
 
     @Transactional
@@ -428,7 +433,7 @@ public class EmployeeRepository {
 
     public List<Employee.EmployeeSearchResult> searchHierarchyEmployee(String firstName, String middleName, String lastName, String employeeId, String employmentType,
             String emailId, Integer orgId, Integer unitId, Integer departmentId, Integer jobRoleId,
-            Integer designationId, Boolean supervisorFlag, Boolean hrFlag, String supervisorEmailId, String hrEmailId,
+            Integer designationId, String supervisorFlag, String hrFlag, String supervisorEmailId, String hrEmailId,
             String sex, Integer identityDocTypeId, String identityNumber, String username) {
         
         List<String> roles = authRepo.retrieveRoles(username);
@@ -436,13 +441,13 @@ public class EmployeeRepository {
         StringBuilder sqlCondition = new StringBuilder();
         
         if(firstName!=null && !firstName.trim().isEmpty()) {
-            sqlCondition.append(" AND EMPL.EMPLOYEE_FIRST_NAME = '").append(firstName.trim()).append("'");
+            sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_FIRST_NAME) = LOWER('").append(firstName.trim()).append("')");
         }
         if(middleName!=null && !middleName.trim().isEmpty()) {
-            sqlCondition.append(" AND EMPL.EMPLOYEE_MIDDLE_NAME = '").append(middleName.trim()).append("'");
+            sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_MIDDLE_NAME) = LOWER('").append(middleName.trim()).append("')");
         }
         if(lastName!=null && !lastName.trim().isEmpty()) {
-            sqlCondition.append(" AND EMPL.EMPLOYEE_LAST_NAME = '").append(lastName.trim()).append("'");
+            sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_LAST_NAME) = LOWER('").append(lastName.trim()).append("')");
         }
         if(employeeId!=null && !employeeId.trim().isEmpty()) {
             sqlCondition.append(" AND EMPL.EMP_ID = '").append(employeeId.trim()).append("'");
@@ -460,25 +465,83 @@ public class EmployeeRepository {
             sqlCondition.append(" AND AR.DESIGNATION_ID = ").append(designationId.toString());
         }
         if(emailId!=null && !emailId.trim().isEmpty()) {
-            sqlCondition.append(" AND EMPL.EMAIL_ID = '").append(emailId.trim()).append("'");
+            sqlCondition.append(" AND LOWER(EMPL.EMAIL_ID) = LOWER('").append(emailId.trim()).append("')");
         }
         if(supervisorEmailId!=null && !supervisorEmailId.trim().isEmpty()) {
-            sqlCondition.append(" AND SUP.EMAIL_ID = '").append(supervisorEmailId.trim()).append("'");
+            sqlCondition.append(" AND LOWER(SUP.EMAIL_ID) = LOWER('").append(supervisorEmailId.trim()).append("')");
         }
         if(hrEmailId!=null && !hrEmailId.trim().isEmpty()) {
-            sqlCondition.append(" AND HR.EMAIL_ID = '").append(hrEmailId.trim()).append("'");
+            sqlCondition.append(" AND LOWER(HR.EMAIL_ID) = LOWER('").append(hrEmailId.trim()).append("')");
         }
         if(sex!=null && !sex.trim().isEmpty()) {
             sqlCondition.append(" AND EMPL.SEX = '").append(sex.trim()).append("'");
         }
+        if(identityDocTypeId!=null) {
+            sqlCondition.append(" AND EMPL.IDENTITY_DOC_TYPE_ID = '").append(identityDocTypeId.toString());
+        }
+        if(identityNumber!=null && !identityNumber.trim().isEmpty()) {
+            sqlCondition.append(" AND LOWER(EMPL.IDENTITY_NUMBER) = LOWER('").append(identityNumber.trim()).append("')");
+        }
+        if(hrFlag!=null && !hrFlag.trim().isEmpty() && "YES".equals(hrFlag.trim())) {
+            sqlCondition.append(" AND EMPL.HR_FLAG = 'X'");
+        }
+        if(hrFlag!=null && !hrFlag.trim().isEmpty() && "NO".equals(hrFlag.trim())) {
+            sqlCondition.append(" AND EMPL.HR_FLAG IS NULL");
+        }
+        if(supervisorFlag!=null && !supervisorFlag.trim().isEmpty() && "YES".equals(supervisorFlag.trim())) {
+            sqlCondition.append(" AND EMPL.SUPERVISOR_FLAG = 'X'");
+        }
+        if(supervisorFlag!=null && !supervisorFlag.trim().isEmpty() && "NO".equals(supervisorFlag.trim())) {
+            sqlCondition.append(" AND EMPL.SUPERVISOR_FLAG IS NULL");
+        }
+        if(employmentType!=null && !employmentType.trim().isEmpty()) {
+            sqlCondition.append(" AND EMPL.EMP_TYPE = '").append(employmentType.trim()).append("'");
+        }
+        sqlCondition.append(" LIMIT "+hierarchySearchLimit);
         
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("roleList", roles);
         paramMap.put("username", username);
         
-        logger.info(sqlMarker, employeeHierarchySearchSql+sqlCondition.toString());
+        logger.info(sqlMarker, employeeHierarchySearchSql + sqlCondition.toString());
         logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);        
-        return namedParameterJdbcTemplate.query(employeeHierarchySearchSql+sqlCondition.toString(), paramMap, new EmployeeSearchResultRowMapper());
+        return namedParameterJdbcTemplate.query(employeeHierarchySearchSql+sqlCondition.toString(), paramMap, new EmployeeSearchResultRowMapper());   
+    }
+    
+    public List<Employee.EmployeeSearchResult> autoCompleteEmployee(String attributeName, String attributeValuePrefix, Integer numberOfItems, String username) {
+        List<String> roles = authRepo.retrieveRoles(username);
+        
+        StringBuilder sqlCondition = new StringBuilder();
+        if("empFirstName".equals(attributeName)) {
+            sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_FIRST_NAME) LIKE LOWER('").append(attributeValuePrefix).append("%')");
+        }
+        if("empMiddleName".equals(attributeName)) {
+            sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_MIDDLE_NAME) LIKE LOWER('").append(attributeValuePrefix).append("%')");
+        }
+        if("empLastName".equals(attributeName)) {
+            sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_LAST_NAME) LIKE LOWER('").append(attributeValuePrefix).append("%')");
+        }
+        if("empEmailId".equals(attributeName)) {
+            sqlCondition.append(" AND LOWER(EMPL.EMAIL_ID) LIKE LOWER('").append(attributeValuePrefix).append("%')");
+        }
+        if("supervisorEmailId".equals(attributeName)) {
+            sqlCondition.append(" AND LOWER(SUP.EMAIL_ID) LIKE LOWER('").append(attributeValuePrefix).append("%')");
+        }
+        if("hrEmailId".equals(attributeName)) {
+            sqlCondition.append(" AND LOWER(HR.EMAIL_ID) LIKE LOWER('").append(attributeValuePrefix).append("%')");
+        }
+            
+        sqlCondition.append(" LIMIT "+ ((numberOfItems == null) 
+                ? autoCompleteLimit
+                : numberOfItems));
+        
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("roleList", roles);
+        paramMap.put("username", username);
+        
+        logger.info(sqlMarker, employeeHierarchySearchSql + sqlCondition.toString());
+        logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);        
+        return namedParameterJdbcTemplate.query(employeeHierarchySearchSql + sqlCondition.toString(), paramMap, new EmployeeSearchResultRowMapper());   
         
     }
 

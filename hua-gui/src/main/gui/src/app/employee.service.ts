@@ -15,7 +15,7 @@ export class EmployeeService {
     if(value.trim().length === 0 || name.trim().length === 0) {
       return new EmptyObservable();
     }
-    return this.httpService.callHttpGet("/resources/employee?name="+name+"&value="+value)
+    return this.httpService.callHttpGet("/resources/v1/employee/management/autocomplete?attributeName="+name+"&attributeValuePrefix="+value)
       .map(res => res.json());
   }
 

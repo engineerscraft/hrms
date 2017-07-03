@@ -608,6 +608,11 @@ public class Employee {
         private String departmentName;
         private String designation;
         private String contactNo;
+        private String firstName;
+        private String middleName;
+        private String lastName;
+        private String supervisorEmailId;
+        private String hrEmailId;
         
         public String getEmpId() {
             return empId;
@@ -645,9 +650,40 @@ public class Employee {
         public void setContactNo(String contactNo) {
             this.contactNo = contactNo;
         }
+        public String getFirstName() {
+            return firstName;
+        }
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
+        public String getMiddleName() {
+            return middleName;
+        }
+        public void setMiddleName(String middleName) {
+            this.middleName = middleName;
+        }
+        public String getLastName() {
+            return lastName;
+        }
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
+        }
+        public String getSupervisorEmailId() {
+            return supervisorEmailId;
+        }
+        public void setSupervisorEmailId(String supervisorEmailId) {
+            this.supervisorEmailId = supervisorEmailId;
+        }
+        public String getHrEmailId() {
+            return hrEmailId;
+        }
+        public void setHrEmailId(String hrEmailId) {
+            this.hrEmailId = hrEmailId;
+        }
         @Override
         public String toString() {
-            return "EmployeeSearchResult [empId=" + empId + ", name=" + name + ", emailId=" + emailId + ", departmentName=" + departmentName + ", designation=" + designation + ", contactNo=" + contactNo + "]";
+            return "EmployeeSearchResult [empId=" + empId + ", name=" + name + ", emailId=" + emailId + ", departmentName=" + departmentName + ", designation=" + designation + ", contactNo=" + contactNo + ", firstName=" + firstName + ", middleName="
+                    + middleName + ", lastName=" + lastName + ", supervisorEmailId=" + supervisorEmailId + ", hrEmailId=" + hrEmailId + "]";
         }
     }
 
