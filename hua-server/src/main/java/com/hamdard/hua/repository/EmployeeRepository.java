@@ -131,7 +131,7 @@ public class EmployeeRepository {
 
         this.insertBasicInfo(employeeId, newEmployee.getEmployeeBasicInfo());
         // this.insertAdditionalInfo (employeeId, newEmployee.getEmployeeAddlDetails());
-        // this.insertEmployeeAddress (employeeId, newEmployee.getEmployeeAddress());
+        this.insertEmployeeAddress (employeeId, newEmployee.getEmployeeAddress());
         // this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
         // this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
         // this.insertEmpSalaryComponents (employeeId, entryBy,

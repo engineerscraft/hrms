@@ -29,6 +29,8 @@ import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.co
 import { EmployeeHierarchySearchComponent } from './employee-hierarchy-search/employee-hierarchy-search.component';
 import { CountryService } from './country.service';
 import { EmployeeHierarchySearchResultComponent } from './employee-hierarchy-search-result/employee-hierarchy-search-result.component';
+import { DistrictService } from './district.service';
+import { StateService } from './state.service';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { EmployeeHierarchySearchResultComponent } from './employee-hierarchy-sea
     DocTypeService,
     JobRoleService,
     CountryService,
+    StateService, 
+    DistrictService,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]

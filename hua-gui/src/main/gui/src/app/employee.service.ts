@@ -20,7 +20,7 @@ export class EmployeeService {
   }
 
   create(employee: any) {
-    return this.httpService.callHttpPost("/resources/v1/employee",employee);
+    return this.httpService.callHttpPost("/resources/v1/employee/management",employee);
   }
 
   search(employeeSearchCriteria) {

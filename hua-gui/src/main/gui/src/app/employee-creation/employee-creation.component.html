@@ -294,9 +294,9 @@
                             <div class="group combo-group">
                               <label class="text-input-label">Country</label>
                               <div class="select select-fancy select-fancy-image span_4_of_4">
-                                <select class="span_4_of_4" formControlName="countryName">
-                                <option value="PERMANENT">Permanent</option>
-                                <option value="CONTRACT">Contract</option>
+                                <select class="span_4_of_4" (change)="onCountryChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['countryId'].value, 'permanent')" formControlName="countryId">
+                                <option value=""></option>
+                                <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
                               </select>
                               </div>
                             </div>
@@ -306,9 +306,9 @@
                             <div class="group combo-group">
                               <label class="text-input-label">State</label>
                               <div class="select select-fancy select-fancy-image span_4_of_4">
-                                <select class="span_4_of_4" formControlName="stateName">
-                                <option value="PERMANENT">Permanent</option>
-                                <option value="CONTRACT">Contract</option>
+                                <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['stateId'].value, 'permanent')">
+                                <option value=""></option>
+                                <option *ngFor="let state of statesPermanent" value="{{state.stateId}}">{{state.stateName}}</option>
                               </select>
                               </div>
                             </div>
@@ -318,9 +318,9 @@
                             <div class="group combo-group">
                               <label class="text-input-label">District</label>
                               <div class="select select-fancy select-fancy-image span_4_of_4">
-                                <select class="span_4_of_4" formControlName="districtName">
-                                <option value="PERMANENT">Permanent</option>
-                                <option value="CONTRACT">Contract</option>
+                                <select class="span_4_of_4" formControlName="districtId">
+                                <option value=""></option>
+                                <option *ngFor="let distr of districtsPermanent" value="{{distr.districtId}}">{{distr.districtName}}</option>
                               </select>
                               </div>
                             </div>
@@ -396,9 +396,9 @@
                             <div class="group combo-group">
                               <label class="text-input-label">Country</label>
                               <div class="select select-fancy select-fancy-image span_4_of_4">
-                                <select class="span_4_of_4" formControlName="countryName">
-                                <option value="PERMANENT">Permanent</option>
-                                <option value="CONTRACT">Contract</option>
+                                <select class="span_4_of_4" (change)="onCountryChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['countryId'].value, 'present')" formControlName="countryId">
+                                <option value=""></option>
+                                <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
                               </select>
                               </div>
                             </div>
@@ -408,9 +408,9 @@
                             <div class="group combo-group">
                               <label class="text-input-label">State</label>
                               <div class="select select-fancy select-fancy-image span_4_of_4">
-                                <select class="span_4_of_4" formControlName="stateName">
-                                <option value="PERMANENT">Permanent</option>
-                                <option value="CONTRACT">Contract</option>
+                                <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['stateId'].value, 'present')">
+                                <option value=""></option>
+                                <option *ngFor="let state of statesPresent" value="{{state.stateId}}">{{state.stateName}}</option>
                               </select>
                               </div>
                             </div>
@@ -420,9 +420,9 @@
                             <div class="group combo-group">
                               <label class="text-input-label">District</label>
                               <div class="select select-fancy select-fancy-image span_4_of_4">
-                                <select class="span_4_of_4" formControlName="districtName">
-                                <option value="PERMANENT">Permanent</option>
-                                <option value="CONTRACT">Contract</option>
+                                <select class="span_4_of_4" formControlName="districtId">
+                                <option value=""></option>
+                                <option *ngFor="let distr of districtsPresent" value="{{distr.districtId}}">{{distr.districtName}}</option>
                               </select>
                               </div>
                             </div>
@@ -454,7 +454,7 @@
               </section>
               <div class="row">
                 <div class="cell span_4_of_4">
-                  <button type="submit" class="btn ripple" [disabled]="canCreate()">Create</button>
+                  <button type="submit" class="btn ripple" [disabled]="canCreate() && false">Create</button>
                 </div>
               </div>
 
