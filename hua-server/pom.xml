@@ -165,6 +165,9 @@
                         <goals>
                             <goal>repackage</goal>
                         </goals>
+						<configuration>
+						    <finalName>hrms</finalName>
+						</configuration>
                     </execution>
                 </executions>
             </plugin>
