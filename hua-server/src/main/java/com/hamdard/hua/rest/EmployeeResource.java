@@ -218,7 +218,7 @@ public class EmployeeResource {
             employeeRepository.updatedEmployeeHierarchyStatus(employeeId, modifiedBy, employeeHierarchy);
             return Response.status(200).build();
         } catch (Exception ex) {
-            logger.error("The employee additional details could not be updated", ex);
+            logger.error("The employee hierarchy status could not be updated", ex);
             return Response.status(500).entity(new Message(ex.getMessage())).build();
         }
     }

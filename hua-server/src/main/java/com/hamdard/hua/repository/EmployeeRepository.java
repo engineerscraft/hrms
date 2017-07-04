@@ -91,6 +91,9 @@ public class EmployeeRepository {
 
     @Value("${sql.employee.insert.employee.additional.details_history}")
     private String employeeAdditionalDetailsHistoryInsert;
+     
+    @Value("${sql.employee.insert.employee.hierarchy.status.history}")
+    private String empHierStatusHistoryInsert;
 
     /******************* Update Operations *******************/
 
@@ -107,7 +110,7 @@ public class EmployeeRepository {
     private String employeeAdditionalDetailsUpdatebyEmpId;
        
     @Value("${sql.employee.update.address.by.EmpId}")
-    private String              employeeAddressUpdatebyEmpId;
+    private String employeeAddressUpdatebyEmpId;
 
     @Value("${sql.employee.search.determine.privilege}")
     private String empSearchPrevilegeDetermineSql;
@@ -120,6 +123,10 @@ public class EmployeeRepository {
 
     @Value("${autocomplete.limit}")
     private int autoCompleteLimit;
+
+    @Value("${sql.employee.hier.status.by.EmpId}")
+    private String empHierStatusUpdateByEmpId;
+
     /*****************************************************************************************************/
 
     @Transactional
@@ -562,34 +569,74 @@ public class EmployeeRepository {
 
 	public void updatedEmployeeHierarchyStatus(String employeeId, String modifiedBy,
 			EmployeeHierarchy employeeHierarchy) throws Exception{
-
-		logger.info(sqlMarker, employeeAddressUpdatebyEmpId);
+		logger.info(sqlMarker, empHierStatusUpdateByEmpId);
         logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
-                () -> employeeAddress.getHouseNo(),
-                () -> employeeAddress.getStreetName(),
-                () -> employeeAddress.getArea(),
-                () -> employeeAddress.getRegion(),
-                () -> employeeAddress.getPinno(),
-                () -> employeeAddress.getDistrictId(),
-                () -> employeeAddress.getStateId(),
-                () -> employeeAddress.getCountryId(),
-                () -> employeeAddress.getDescription(),
+                () -> employeeHierarchy.getSupervisorId(),
+                () -> employeeHierarchy.getHrId(),
+                () -> employeeHierarchy.getStatus(),
+                () -> employeeHierarchy.getCl(),
+                () -> employeeHierarchy.getPl(),
+                () -> employeeHierarchy.getPaternityLeave(),
+                () -> employeeHierarchy.getSickLeave(),
+                () -> employeeHierarchy.getMaternityLeave(),
+                () -> employeeHierarchy.getSpecialLeave(),
+                () -> employeeHierarchy.getProbationPeriodEndDate(),
+                () -> employeeHierarchy.getNoticePeriodEndDate(),
                 () -> employeeId
                 );
-        jdbcTemplate.update(employeeAddressUpdatebyEmpId, new Object[] {
-        		employeeAddress.getHouseNo(),
-        		employeeAddress.getStreetName(),
-        		employeeAddress.getArea(),
-        		employeeAddress.getRegion(),
-        		employeeAddress.getPinno(),
-        		employeeAddress.getDistrictId(),
-        		employeeAddress.getStateId(),
-        		employeeAddress.getCountryId(),
-        		employeeAddress.getDescription(),
-        		employeeId
+        int numberOfRowsUpdated=jdbcTemplate.update(empHierStatusUpdateByEmpId, new Object[] {
+        		employeeHierarchy.getSupervisorId(),
+                employeeHierarchy.getHrId(),
+                employeeHierarchy.getStatus(),
+                employeeHierarchy.getCl(),
+                employeeHierarchy.getPl(),
+                employeeHierarchy.getPaternityLeave(),
+                employeeHierarchy.getSickLeave(),
+                employeeHierarchy.getMaternityLeave(),
+                employeeHierarchy.getSpecialLeave(),
+                employeeHierarchy.getProbationPeriodEndDate(),
+                employeeHierarchy.getNoticePeriodEndDate(),
+                employeeId
         });
         
-
+        /* Make entry in employee_hierarchy_status_history 
+         * iff there is successful update  in table 
+         * employee_hierarchy_status
+         * */
+        if (numberOfRowsUpdated > 0) {
+            logger.info(sqlMarker, empHierStatusHistoryInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+            		() -> employeeId,
+            		() -> employeeHierarchy.getSupervisorId(),
+                    () -> employeeHierarchy.getHrId(),
+                    () -> employeeHierarchy.getStatus(),
+                    () -> employeeHierarchy.getCl(),
+                    () -> employeeHierarchy.getPl(),
+                    () -> employeeHierarchy.getPaternityLeave(),
+                    () -> employeeHierarchy.getSickLeave(),
+                    () -> employeeHierarchy.getMaternityLeave(),
+                    () -> employeeHierarchy.getSpecialLeave(),
+                    () -> employeeHierarchy.getProbationPeriodEndDate(),
+                    () -> employeeHierarchy.getNoticePeriodEndDate(),
+                    () -> modifiedBy
+                    
+                    );
+            jdbcTemplate.update(empHierStatusHistoryInsert, new Object[] {
+            		employeeId,
+            		employeeHierarchy.getSupervisorId(),
+                    employeeHierarchy.getHrId(),
+                    employeeHierarchy.getStatus(),
+                    employeeHierarchy.getCl(),
+                    employeeHierarchy.getPl(),
+                    employeeHierarchy.getPaternityLeave(),
+                    employeeHierarchy.getSickLeave(),
+                    employeeHierarchy.getMaternityLeave(),
+                    employeeHierarchy.getSpecialLeave(),
+                    employeeHierarchy.getProbationPeriodEndDate(),
+                    employeeHierarchy.getNoticePeriodEndDate(),
+                    modifiedBy
+            });
+        }
 		
 	
 		
