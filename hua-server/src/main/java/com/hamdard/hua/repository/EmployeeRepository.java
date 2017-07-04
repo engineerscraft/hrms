@@ -559,4 +559,40 @@ public class EmployeeRepository {
         });
         return objectList.get(0) > 0 ? true : false;
     }
+
+	public void updatedEmployeeHierarchyStatus(String employeeId, String modifiedBy,
+			EmployeeHierarchy employeeHierarchy) throws Exception{
+
+		logger.info(sqlMarker, employeeAddressUpdatebyEmpId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+                () -> employeeAddress.getHouseNo(),
+                () -> employeeAddress.getStreetName(),
+                () -> employeeAddress.getArea(),
+                () -> employeeAddress.getRegion(),
+                () -> employeeAddress.getPinno(),
+                () -> employeeAddress.getDistrictId(),
+                () -> employeeAddress.getStateId(),
+                () -> employeeAddress.getCountryId(),
+                () -> employeeAddress.getDescription(),
+                () -> employeeId
+                );
+        jdbcTemplate.update(employeeAddressUpdatebyEmpId, new Object[] {
+        		employeeAddress.getHouseNo(),
+        		employeeAddress.getStreetName(),
+        		employeeAddress.getArea(),
+        		employeeAddress.getRegion(),
+        		employeeAddress.getPinno(),
+        		employeeAddress.getDistrictId(),
+        		employeeAddress.getStateId(),
+        		employeeAddress.getCountryId(),
+        		employeeAddress.getDescription(),
+        		employeeId
+        });
+        
+
+		
+	
+		
+		
+	}
 }
