@@ -34,7 +34,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
     private static final Logger logger = LogManager.getLogger(AuthorizationFilter.class);
 
     @Autowired
-    AuthenticationRepository authenticationRepository;
+    private AuthenticationRepository authenticationRepository;
 
     @Context
     private ResourceInfo resourceInfo;
@@ -72,11 +72,10 @@ public class AuthorizationFilter implements ContainerRequestFilter {
                 }
 
                 if (permissions == null || permissions.size() == 0) {
-                	requestContext.abortWith(Response.status(Response.Status.FORBIDDEN).entity(new Message("The user does not have permission to execute this command")).build());
+                    requestContext.abortWith(Response.status(Response.Status.FORBIDDEN).entity(new Message("The user does not have permission to execute this command")).build());
                 }
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("Exception", e);
             requestContext.abortWith(Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build());
         }

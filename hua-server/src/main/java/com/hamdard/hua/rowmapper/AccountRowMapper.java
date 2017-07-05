@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.hamdard.hua.enums.AccountType;
 import com.hamdard.hua.model.Account;
 
-public class AccountRowMapper implements RowMapper<Account>{
+public class AccountRowMapper implements RowMapper<Account> {
     public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
         Account account = new Account();
         account.setAccountCode(rs.getString("ACCOUNT_CODE"));

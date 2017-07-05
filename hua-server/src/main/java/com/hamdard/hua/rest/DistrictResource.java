@@ -34,7 +34,7 @@ public class DistrictResource {
     private static final Logger logger = LogManager.getLogger(DistrictResource.class);
 
     @Autowired
-    DistrictRepository districtRepository;
+    private DistrictRepository districtRepository;
 
     @GET
     @Path("/")
@@ -46,12 +46,12 @@ public class DistrictResource {
             districts = districtRepository.getDistrictsByStateId(stateId);
             if (districts.isEmpty()) {
                 logger.error("No district is found for the given state.: {}", () -> stateId);
-                return Response.status(404).entity(new Message("No district is found for the given state.")).build();
+                return Response.status(Response.Status.NOT_FOUND).entity(new Message("No district is found for the given state.")).build();
             } else
-                return Response.status(200).entity(districts).build();
+                return Response.status(Response.Status.OK).entity(districts).build();
         } catch (Exception ex) {
             logger.error("The districts could not be retrieved", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
 
     }

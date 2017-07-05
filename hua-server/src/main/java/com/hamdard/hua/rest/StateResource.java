@@ -32,7 +32,7 @@ public class StateResource {
     private static final Logger logger = LogManager.getLogger(StateResource.class);
 
     @Autowired
-    StateRepository stateRepository;
+    private StateRepository stateRepository;
 
     @GET
     @Path("/")
@@ -46,18 +46,18 @@ public class StateResource {
             /* If countryId doesn't return any values */
             if (states.isEmpty()) {
                 logger.error("No state is found for countryId: {}", () -> countryId);
-                return Response.status(404).entity(new Message("No state found for the given country.")).build();
+                return Response.status(Response.Status.NOT_FOUND).entity(new Message("No state found for the given country.")).build();
             }
 
             /* If countryId return associated values */
             else
-                return Response.status(200).entity(states).build();
+                return Response.status(Response.Status.OK).entity(states).build();
         }
 
         /* Any other kind of exception */
         catch (Exception ex) {
-        	logger.error("The states could not be retrieved", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            logger.error("The states could not be retrieved", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
 
     }

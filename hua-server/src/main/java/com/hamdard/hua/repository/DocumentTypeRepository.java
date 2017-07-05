@@ -17,32 +17,29 @@ import com.hamdard.hua.rowmapper.DocumentTypeRowMapper;
 @Component
 public class DocumentTypeRepository {
 
-	private static final Logger logger = LogManager
-			.getLogger(DocumentTypeRepository.class);
-	private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
+    private static final Logger logger = LogManager.getLogger(DocumentTypeRepository.class);
+    private static final Marker sqlMarker = MarkerManager.getMarker("SQL");
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-	@Value("${sql.documenttype.list}")
-	private String docTypeListSql;
+    @Value("${sql.documenttype.list}")
+    private String docTypeListSql;
 
-	@Value("${sql.identitydocumenttype.list}")
-	private String identityDocTypeListSql;
+    @Value("${sql.identitydocumenttype.list}")
+    private String identityDocTypeListSql;
 
-	public List<DocType> getAllDocumentTypes() {
-		logger.info(sqlMarker, docTypeListSql);
-		List<DocType> docTypeList = (List<DocType>) jdbcTemplate
-				.query(docTypeListSql, new DocumentTypeRowMapper());
-		logger.debug("Retrieved DocumentTypes: {}", () -> docTypeList);
-		return docTypeList;
-	}
+    public List<DocType> getAllDocumentTypes() {
+        logger.info(sqlMarker, docTypeListSql);
+        List<DocType> docTypeList = (List<DocType>) jdbcTemplate.query(docTypeListSql, new DocumentTypeRowMapper());
+        logger.debug("Retrieved DocumentTypes: {}", () -> docTypeList);
+        return docTypeList;
+    }
 
-	public List<DocType> getAllIdentityDocumentTypes() {
-		logger.info(sqlMarker, identityDocTypeListSql);
-		List<DocType> docTypeList = (List<DocType>) jdbcTemplate
-				.query(identityDocTypeListSql, new DocumentTypeRowMapper());
-		logger.debug("Retrieved DocumentTypes: {}", () -> docTypeList);
-		return docTypeList;
-	}
+    public List<DocType> getAllIdentityDocumentTypes() {
+        logger.info(sqlMarker, identityDocTypeListSql);
+        List<DocType> docTypeList = (List<DocType>) jdbcTemplate.query(identityDocTypeListSql, new DocumentTypeRowMapper());
+        logger.debug("Retrieved DocumentTypes: {}", () -> docTypeList);
+        return docTypeList;
+    }
 }

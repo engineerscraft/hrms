@@ -36,6 +36,10 @@
         <asciidoctorj.version>1.5.3</asciidoctorj.version>
         <jruby.version>9.1.6.0</jruby.version>
         <postgresql.version>42.1.1</postgresql.version>
+        <checkstyle.plugin.version>2.17</checkstyle.plugin.version>
+        <checkstyle.version>8.0</checkstyle.version>
+        <sevntu.checkstyle.plugin.version>1.24.1</sevntu.checkstyle.plugin.version>
+        <findbugs.version>3.0.4</findbugs.version>
 
         <swagger.input>${project.basedir}/../docs/swagger/hrms.yaml</swagger.input>
         <asciidoctor.input.directory>${project.basedir}/../docs/api/asciidoc</asciidoctor.input.directory>
@@ -165,6 +169,9 @@
                         <goals>
                             <goal>repackage</goal>
                         </goals>
+                        <configuration>
+                            <finalName>hrms</finalName>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -318,6 +325,69 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>analysis</id>
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>${checkstyle.plugin.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.puppycrawl.tools</groupId>
+                                <artifactId>checkstyle</artifactId>
+                                <version>${checkstyle.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>com.github.sevntu-checkstyle</groupId>
+                                <artifactId>sevntu-checkstyle-maven-plugin</artifactId>
+                                <version>${sevntu.checkstyle.plugin.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <!-- Specifying configuration here will take effect 
+                            on the execution of "mvn checkstyle:checkstyle", but will not take effect 
+                            on the execution of "mvn site" -->
+                        <configuration>
+                            <configLocation>${project.basedir}/src/main/resources/checkstyle.xml</configLocation>
+                            <failOnViolation>false</failOnViolation>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>findbugs-maven-plugin</artifactId>
+                        <version>${findbugs.version}</version>
+                        <configuration>
+                            <!-- Enables analysis which takes more memory 
+                                but finds more bugs. If you run out of memory, changes the value of the effort 
+                                element to 'Low'. -->
+                            <effort>Max</effort>
+                            <!-- Build doesn't fail if problems are found -->
+                            <failOnError>false</failOnError>
+                            <!-- Reports all bugs (other values are medium 
+                                and max) -->
+                            <threshold>Low</threshold>
+                            <!-- Produces XML report -->
+                            <htmlOutput>true</htmlOutput>
+                        </configuration>
+                        <executions>
+                            <!-- Ensures that FindBugs inspects source code 
+                                when project is compiled. -->
+                            <execution>
+                                <id>analyze-compile</id>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+
         <profile>
             <id>test</id>
             <build>
@@ -384,6 +454,7 @@
                             </execution>
                         </executions>
                     </plugin>
+
                 </plugins>
             </build>
         </profile>

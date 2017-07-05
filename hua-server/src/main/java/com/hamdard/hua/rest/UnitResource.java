@@ -33,7 +33,7 @@ public class UnitResource {
     private static final Logger logger = LogManager.getLogger(UnitResource.class);
 
     @Autowired
-    UnitRepository unitRepository;
+    private UnitRepository unitRepository;
 
     @GET
     @Path("/")
@@ -46,16 +46,16 @@ public class UnitResource {
             /* If passed orgId doesn't return any values */
             if (units.isEmpty()) {
                 logger.error("No units are found for orgId: {}", () -> orgId);
-                return Response.status(404).entity(new Message("No units found for the given organization")).build();
+                return Response.status(Response.Status.NOT_FOUND).entity(new Message("No units found for the given organization")).build();
             }
             /* If orgId return associated values */
             else
-                return Response.status(200).entity(units).build();
+                return Response.status(Response.Status.OK).entity(units).build();
         }
         /* Any other kind of exception */
         catch (Exception ex) {
-        	logger.error("The units could not be retrieved", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            logger.error("The units could not be retrieved", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 

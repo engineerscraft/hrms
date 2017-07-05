@@ -18,19 +18,6 @@ public class LiveConfig {
 
     @Autowired
     private Environment env;
-
-    
-    /*@Bean
-    @Primary
-    public DataSource dataSource() {
-        return DataSourceBuilder
-            .create()
-            .username(env.getRequiredProperty("jdbc.username"))
-            .password(env.getRequiredProperty("jdbc.password"))
-            .url(env.getRequiredProperty("jdbc.url"))
-            .driverClassName(env.getRequiredProperty("jdbc.dataSourceClassName"))
-            .build();
-    }*/
     
     @Bean
     public LdapContextSource contextSource() {

@@ -22,16 +22,12 @@ public class Department {
         return departmentId;
     }
 
-
-
     /**
      * @param departmentId the departmentId to set
      */
     public void setDepartmentId(int departmentId) {
         this.departmentId = departmentId;
     }
-
-
 
     /**
      * @return the departmentName
@@ -40,16 +36,12 @@ public class Department {
         return departmentName;
     }
 
-
-
     /**
      * @param departmentName the departmentName to set
      */
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
-
-
 
     /**
      * @return the parentDepartmentId
@@ -58,16 +50,12 @@ public class Department {
         return parentDepartmentId;
     }
 
-
-
     /**
      * @param parentDepartmentId the parentDepartmentId to set
      */
     public void setParentDepartmentId(int parentDepartmentId) {
         this.parentDepartmentId = parentDepartmentId;
     }
-
-
 
     /**
      * @return the address
@@ -76,16 +64,12 @@ public class Department {
         return address;
     }
 
-
-
     /**
      * @param address the address to set
      */
     public void setAddress(String address) {
         this.address = address;
     }
-
-
 
     /**
      * @return the unitId
@@ -94,16 +78,12 @@ public class Department {
         return unitId;
     }
 
-
-
     /**
      * @param unitId the unitId to set
      */
     public void setUnitId(int unitId) {
         this.unitId = unitId;
     }
-
-
 
     /**
      * @return the unitName
@@ -112,16 +92,12 @@ public class Department {
         return unitName;
     }
 
-
-
     /**
      * @param unitName the unitName to set
      */
     public void setUnitName(String unitName) {
         this.unitName = unitName;
     }
-
-
 
     @Override
     public String toString() {
