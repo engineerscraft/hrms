@@ -91,7 +91,7 @@ public class EmployeeRepository {
 
     @Value("${sql.employee.insert.employee.additional.details_history}")
     private String employeeAdditionalDetailsHistoryInsert;
-     
+
     @Value("${sql.employee.insert.employee.hierarchy.status.history}")
     private String empHierStatusHistoryInsert;
 
@@ -108,13 +108,13 @@ public class EmployeeRepository {
 
     @Value("${sql.employee.update.employee.additional.details.by.EmpId}")
     private String employeeAdditionalDetailsUpdatebyEmpId;
-       
+
     @Value("${sql.employee.update.address.by.EmpId}")
     private String employeeAddressUpdatebyEmpId;
 
     @Value("${sql.employee.search.determine.privilege}")
     private String empSearchPrevilegeDetermineSql;
-    
+
     @Value("${sql.employee.search.hierarchy}")
     private String employeeHierarchySearchSql;
 
@@ -138,7 +138,7 @@ public class EmployeeRepository {
 
         this.insertBasicInfo(employeeId, newEmployee.getEmployeeBasicInfo());
         // this.insertAdditionalInfo (employeeId, newEmployee.getEmployeeAddlDetails());
-        this.insertEmployeeAddress (employeeId, newEmployee.getEmployeeAddress());
+        this.insertEmployeeAddress(employeeId, newEmployee.getEmployeeAddress());
         // this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
         // this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
         // this.insertEmpSalaryComponents (employeeId, entryBy,
@@ -407,149 +407,123 @@ public class EmployeeRepository {
 
     }
 
-    public void updatedEmployeeAddress(String employeeId, EmployeeAddress employeeAddress) throws Exception{
-		logger.info(sqlMarker, employeeAddressUpdatebyEmpId);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
-                () -> employeeAddress.getHouseNo(),
-                () -> employeeAddress.getStreetName(),
-                () -> employeeAddress.getArea(),
-                () -> employeeAddress.getRegion(),
-                () -> employeeAddress.getPinno(),
-                () -> employeeAddress.getDistrictId(),
-                () -> employeeAddress.getStateId(),
-                () -> employeeAddress.getCountryId(),
-                () -> employeeAddress.getDescription(),
-                () -> employeeId
-                );
-        jdbcTemplate.update(employeeAddressUpdatebyEmpId, new Object[] {
-        		employeeAddress.getHouseNo(),
-        		employeeAddress.getStreetName(),
-        		employeeAddress.getArea(),
-        		employeeAddress.getRegion(),
-        		employeeAddress.getPinno(),
-        		employeeAddress.getDistrictId(),
-        		employeeAddress.getStateId(),
-        		employeeAddress.getCountryId(),
-        		employeeAddress.getDescription(),
-        		employeeId
-        });
-        
+    public void updatedEmployeeAddress(String employeeId, EmployeeAddress employeeAddress) throws Exception {
+        logger.info(sqlMarker, employeeAddressUpdatebyEmpId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeAddress.getHouseNo(), () -> employeeAddress.getStreetName(), () -> employeeAddress.getArea(), () -> employeeAddress.getRegion(), () -> employeeAddress.getPinno(),
+                () -> employeeAddress.getDistrictId(), () -> employeeAddress.getStateId(), () -> employeeAddress.getCountryId(), () -> employeeAddress.getDescription(), () -> employeeId);
+        jdbcTemplate.update(employeeAddressUpdatebyEmpId, new Object[] { employeeAddress.getHouseNo(), employeeAddress.getStreetName(), employeeAddress.getArea(), employeeAddress.getRegion(), employeeAddress.getPinno(), employeeAddress.getDistrictId(),
+                employeeAddress.getStateId(), employeeAddress.getCountryId(), employeeAddress.getDescription(), employeeId });
 
-		
-	}
+    }
 
-    public List<Employee.EmployeeSearchResult> searchHierarchyEmployee(String firstName, String middleName, String lastName, String employeeId, String employmentType,
-            String emailId, Integer orgId, Integer unitId, Integer departmentId, Integer jobRoleId,
-            Integer designationId, String supervisorFlag, String hrFlag, String supervisorEmailId, String hrEmailId,
-            String sex, Integer identityDocTypeId, String identityNumber, String username) {
-        
+    public List<Employee.EmployeeSearchResult> searchHierarchyEmployee(String firstName, String middleName, String lastName, String employeeId, String employmentType, String emailId, Integer orgId, Integer unitId, Integer departmentId, Integer jobRoleId,
+            Integer designationId, String supervisorFlag, String hrFlag, String supervisorEmailId, String hrEmailId, String sex, Integer identityDocTypeId, String identityNumber, String username) {
+
         List<String> roles = authRepo.retrieveRoles(username);
-        
+
         StringBuilder sqlCondition = new StringBuilder();
-        
-        if(firstName!=null && !firstName.trim().isEmpty()) {
+
+        if (firstName != null && !firstName.trim().isEmpty()) {
             sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_FIRST_NAME) = LOWER('").append(firstName.trim()).append("')");
         }
-        if(middleName!=null && !middleName.trim().isEmpty()) {
+        if (middleName != null && !middleName.trim().isEmpty()) {
             sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_MIDDLE_NAME) = LOWER('").append(middleName.trim()).append("')");
         }
-        if(lastName!=null && !lastName.trim().isEmpty()) {
+        if (lastName != null && !lastName.trim().isEmpty()) {
             sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_LAST_NAME) = LOWER('").append(lastName.trim()).append("')");
         }
-        if(employeeId!=null && !employeeId.trim().isEmpty()) {
+        if (employeeId != null && !employeeId.trim().isEmpty()) {
             sqlCondition.append(" AND EMPL.EMP_ID = '").append(employeeId.trim()).append("'");
         }
-        if(orgId!=null) {
+        if (orgId != null) {
             sqlCondition.append(" AND EMPL.ORG_ID = ").append(orgId.toString());
         }
-        if(unitId!=null) {
+        if (unitId != null) {
             sqlCondition.append(" AND EMPL.UNIT_ID = ").append(unitId.toString());
         }
-        if(departmentId!=null) {
+        if (departmentId != null) {
             sqlCondition.append(" AND EMPL.DEPARTMENT_ID = ").append(departmentId.toString());
         }
-        if(designationId!=null) {
+        if (designationId != null) {
             sqlCondition.append(" AND AR.DESIGNATION_ID = ").append(designationId.toString());
         }
-        if(emailId!=null && !emailId.trim().isEmpty()) {
+        if (emailId != null && !emailId.trim().isEmpty()) {
             sqlCondition.append(" AND LOWER(EMPL.EMAIL_ID) = LOWER('").append(emailId.trim()).append("')");
         }
-        if(supervisorEmailId!=null && !supervisorEmailId.trim().isEmpty()) {
+        if (supervisorEmailId != null && !supervisorEmailId.trim().isEmpty()) {
             sqlCondition.append(" AND LOWER(SUP.EMAIL_ID) = LOWER('").append(supervisorEmailId.trim()).append("')");
         }
-        if(hrEmailId!=null && !hrEmailId.trim().isEmpty()) {
+        if (hrEmailId != null && !hrEmailId.trim().isEmpty()) {
             sqlCondition.append(" AND LOWER(HR.EMAIL_ID) = LOWER('").append(hrEmailId.trim()).append("')");
         }
-        if(sex!=null && !sex.trim().isEmpty()) {
+        if (sex != null && !sex.trim().isEmpty()) {
             sqlCondition.append(" AND EMPL.SEX = '").append(sex.trim()).append("'");
         }
-        if(identityDocTypeId!=null) {
+        if (identityDocTypeId != null) {
             sqlCondition.append(" AND EMPL.IDENTITY_DOC_TYPE_ID = '").append(identityDocTypeId.toString());
         }
-        if(identityNumber!=null && !identityNumber.trim().isEmpty()) {
+        if (identityNumber != null && !identityNumber.trim().isEmpty()) {
             sqlCondition.append(" AND LOWER(EMPL.IDENTITY_NUMBER) = LOWER('").append(identityNumber.trim()).append("')");
         }
-        if(hrFlag!=null && !hrFlag.trim().isEmpty() && "YES".equals(hrFlag.trim())) {
+        if (hrFlag != null && !hrFlag.trim().isEmpty() && "YES".equals(hrFlag.trim())) {
             sqlCondition.append(" AND EMPL.HR_FLAG = 'X'");
         }
-        if(hrFlag!=null && !hrFlag.trim().isEmpty() && "NO".equals(hrFlag.trim())) {
+        if (hrFlag != null && !hrFlag.trim().isEmpty() && "NO".equals(hrFlag.trim())) {
             sqlCondition.append(" AND EMPL.HR_FLAG IS NULL");
         }
-        if(supervisorFlag!=null && !supervisorFlag.trim().isEmpty() && "YES".equals(supervisorFlag.trim())) {
+        if (supervisorFlag != null && !supervisorFlag.trim().isEmpty() && "YES".equals(supervisorFlag.trim())) {
             sqlCondition.append(" AND EMPL.SUPERVISOR_FLAG = 'X'");
         }
-        if(supervisorFlag!=null && !supervisorFlag.trim().isEmpty() && "NO".equals(supervisorFlag.trim())) {
+        if (supervisorFlag != null && !supervisorFlag.trim().isEmpty() && "NO".equals(supervisorFlag.trim())) {
             sqlCondition.append(" AND EMPL.SUPERVISOR_FLAG IS NULL");
         }
-        if(employmentType!=null && !employmentType.trim().isEmpty()) {
+        if (employmentType != null && !employmentType.trim().isEmpty()) {
             sqlCondition.append(" AND EMPL.EMP_TYPE = '").append(employmentType.trim()).append("'");
         }
-        sqlCondition.append(" LIMIT "+hierarchySearchLimit);
-        
+        sqlCondition.append(" LIMIT " + hierarchySearchLimit);
+
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("roleList", roles);
         paramMap.put("username", username);
-        
+
         logger.info(sqlMarker, employeeHierarchySearchSql + sqlCondition.toString());
-        logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);        
-        return namedParameterJdbcTemplate.query(employeeHierarchySearchSql+sqlCondition.toString(), paramMap, new EmployeeSearchResultRowMapper());   
+        logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);
+        return namedParameterJdbcTemplate.query(employeeHierarchySearchSql + sqlCondition.toString(), paramMap, new EmployeeSearchResultRowMapper());
     }
-    
+
     public List<Employee.EmployeeSearchResult> autoCompleteEmployee(String attributeName, String attributeValuePrefix, Integer numberOfItems, String username) {
         List<String> roles = authRepo.retrieveRoles(username);
-        
+
         StringBuilder sqlCondition = new StringBuilder();
-        if("empFirstName".equals(attributeName)) {
+        if ("empFirstName".equals(attributeName)) {
             sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_FIRST_NAME) LIKE LOWER('").append(attributeValuePrefix).append("%')");
         }
-        if("empMiddleName".equals(attributeName)) {
+        if ("empMiddleName".equals(attributeName)) {
             sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_MIDDLE_NAME) LIKE LOWER('").append(attributeValuePrefix).append("%')");
         }
-        if("empLastName".equals(attributeName)) {
+        if ("empLastName".equals(attributeName)) {
             sqlCondition.append(" AND LOWER(EMPL.EMPLOYEE_LAST_NAME) LIKE LOWER('").append(attributeValuePrefix).append("%')");
         }
-        if("empEmailId".equals(attributeName)) {
+        if ("empEmailId".equals(attributeName)) {
             sqlCondition.append(" AND LOWER(EMPL.EMAIL_ID) LIKE LOWER('").append(attributeValuePrefix).append("%')");
         }
-        if("supervisorEmailId".equals(attributeName)) {
+        if ("supervisorEmailId".equals(attributeName)) {
             sqlCondition.append(" AND LOWER(SUP.EMAIL_ID) LIKE LOWER('").append(attributeValuePrefix).append("%')");
         }
-        if("hrEmailId".equals(attributeName)) {
+        if ("hrEmailId".equals(attributeName)) {
             sqlCondition.append(" AND LOWER(HR.EMAIL_ID) LIKE LOWER('").append(attributeValuePrefix).append("%')");
         }
-            
-        sqlCondition.append(" LIMIT "+ ((numberOfItems == null) 
-                ? autoCompleteLimit
-                : numberOfItems));
-        
+
+        sqlCondition.append(" LIMIT " + ((numberOfItems == null) ? autoCompleteLimit : numberOfItems));
+
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("roleList", roles);
         paramMap.put("username", username);
-        
+
         logger.info(sqlMarker, employeeHierarchySearchSql + sqlCondition.toString());
-        logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);        
-        return namedParameterJdbcTemplate.query(employeeHierarchySearchSql + sqlCondition.toString(), paramMap, new EmployeeSearchResultRowMapper());   
-        
+        logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);
+        return namedParameterJdbcTemplate.query(employeeHierarchySearchSql + sqlCondition.toString(), paramMap, new EmployeeSearchResultRowMapper());
+
     }
 
     public boolean isPrivilegedForHierarchySearch(String username) {
@@ -558,7 +532,7 @@ public class EmployeeRepository {
         paramMap.put("roleList", roles);
         paramMap.put("username", username);
         logger.info(sqlMarker, empSearchPrevilegeDetermineSql);
-        logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);        
+        logger.info(sqlMarker, "Params {}, {}", () -> roles, () -> username);
         List<Integer> objectList = namedParameterJdbcTemplate.query(empSearchPrevilegeDetermineSql, paramMap, new RowMapper<Integer>() {
             public Integer mapRow(ResultSet rs, int rowum) throws SQLException {
                 return rs.getInt(1);
@@ -567,79 +541,30 @@ public class EmployeeRepository {
         return objectList.get(0) > 0 ? true : false;
     }
 
-	public void updatedEmployeeHierarchyStatus(String employeeId, String modifiedBy,
-			EmployeeHierarchy employeeHierarchy) throws Exception{
-		logger.info(sqlMarker, empHierStatusUpdateByEmpId);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
-                () -> employeeHierarchy.getSupervisorId(),
-                () -> employeeHierarchy.getHrId(),
-                () -> employeeHierarchy.getStatus(),
-                () -> employeeHierarchy.getCl(),
-                () -> employeeHierarchy.getPl(),
-                () -> employeeHierarchy.getPaternityLeave(),
-                () -> employeeHierarchy.getSickLeave(),
-                () -> employeeHierarchy.getMaternityLeave(),
-                () -> employeeHierarchy.getSpecialLeave(),
-                () -> employeeHierarchy.getProbationPeriodEndDate(),
-                () -> employeeHierarchy.getNoticePeriodEndDate(),
-                () -> employeeId
-                );
-        int numberOfRowsUpdated=jdbcTemplate.update(empHierStatusUpdateByEmpId, new Object[] {
-        		employeeHierarchy.getSupervisorId(),
-                employeeHierarchy.getHrId(),
-                employeeHierarchy.getStatus(),
-                employeeHierarchy.getCl(),
-                employeeHierarchy.getPl(),
-                employeeHierarchy.getPaternityLeave(),
-                employeeHierarchy.getSickLeave(),
-                employeeHierarchy.getMaternityLeave(),
-                employeeHierarchy.getSpecialLeave(),
-                employeeHierarchy.getProbationPeriodEndDate(),
-                employeeHierarchy.getNoticePeriodEndDate(),
-                employeeId
-        });
-        
+    public void updatedEmployeeHierarchyStatus(String employeeId, String modifiedBy, EmployeeHierarchy employeeHierarchy) throws Exception {
+        logger.info(sqlMarker, empHierStatusUpdateByEmpId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeHierarchy.getSupervisorId(), () -> employeeHierarchy.getHrId(), () -> employeeHierarchy.getStatus(), () -> employeeHierarchy.getCl(),
+                () -> employeeHierarchy.getPl(), () -> employeeHierarchy.getPaternityLeave(), () -> employeeHierarchy.getSickLeave(), () -> employeeHierarchy.getMaternityLeave(), () -> employeeHierarchy.getSpecialLeave(),
+                () -> employeeHierarchy.getProbationPeriodEndDate(), () -> employeeHierarchy.getNoticePeriodEndDate(), () -> employeeId);
+        int numberOfRowsUpdated = jdbcTemplate.update(empHierStatusUpdateByEmpId,
+                new Object[] { employeeHierarchy.getSupervisorId(), employeeHierarchy.getHrId(), employeeHierarchy.getStatus(), employeeHierarchy.getCl(), employeeHierarchy.getPl(), employeeHierarchy.getPaternityLeave(), employeeHierarchy.getSickLeave(),
+                        employeeHierarchy.getMaternityLeave(), employeeHierarchy.getSpecialLeave(), employeeHierarchy.getProbationPeriodEndDate(), employeeHierarchy.getNoticePeriodEndDate(), employeeId });
+
         /* Make entry in employee_hierarchy_status_history 
          * iff there is successful update  in table 
          * employee_hierarchy_status
          * */
         if (numberOfRowsUpdated > 0) {
             logger.info(sqlMarker, empHierStatusHistoryInsert);
-            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
-            		() -> employeeId,
-            		() -> employeeHierarchy.getSupervisorId(),
-                    () -> employeeHierarchy.getHrId(),
-                    () -> employeeHierarchy.getStatus(),
-                    () -> employeeHierarchy.getCl(),
-                    () -> employeeHierarchy.getPl(),
-                    () -> employeeHierarchy.getPaternityLeave(),
-                    () -> employeeHierarchy.getSickLeave(),
-                    () -> employeeHierarchy.getMaternityLeave(),
-                    () -> employeeHierarchy.getSpecialLeave(),
-                    () -> employeeHierarchy.getProbationPeriodEndDate(),
-                    () -> employeeHierarchy.getNoticePeriodEndDate(),
-                    () -> modifiedBy
-                    
-                    );
-            jdbcTemplate.update(empHierStatusHistoryInsert, new Object[] {
-            		employeeId,
-            		employeeHierarchy.getSupervisorId(),
-                    employeeHierarchy.getHrId(),
-                    employeeHierarchy.getStatus(),
-                    employeeHierarchy.getCl(),
-                    employeeHierarchy.getPl(),
-                    employeeHierarchy.getPaternityLeave(),
-                    employeeHierarchy.getSickLeave(),
-                    employeeHierarchy.getMaternityLeave(),
-                    employeeHierarchy.getSpecialLeave(),
-                    employeeHierarchy.getProbationPeriodEndDate(),
-                    employeeHierarchy.getNoticePeriodEndDate(),
-                    modifiedBy
-            });
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeId, () -> employeeHierarchy.getSupervisorId(), () -> employeeHierarchy.getHrId(), () -> employeeHierarchy.getStatus(),
+                    () -> employeeHierarchy.getCl(), () -> employeeHierarchy.getPl(), () -> employeeHierarchy.getPaternityLeave(), () -> employeeHierarchy.getSickLeave(), () -> employeeHierarchy.getMaternityLeave(), () -> employeeHierarchy.getSpecialLeave(),
+                    () -> employeeHierarchy.getProbationPeriodEndDate(), () -> employeeHierarchy.getNoticePeriodEndDate(), () -> modifiedBy
+
+            );
+            jdbcTemplate.update(empHierStatusHistoryInsert,
+                    new Object[] { employeeId, employeeHierarchy.getSupervisorId(), employeeHierarchy.getHrId(), employeeHierarchy.getStatus(), employeeHierarchy.getCl(), employeeHierarchy.getPl(), employeeHierarchy.getPaternityLeave(),
+                            employeeHierarchy.getSickLeave(), employeeHierarchy.getMaternityLeave(), employeeHierarchy.getSpecialLeave(), employeeHierarchy.getProbationPeriodEndDate(), employeeHierarchy.getNoticePeriodEndDate(), modifiedBy });
         }
-		
-	
-		
-		
-	}
+
+    }
 }

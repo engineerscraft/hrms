@@ -33,7 +33,7 @@ public class DepartmentResource {
     private static final Logger logger = LogManager.getLogger(DepartmentResource.class);
 
     @Autowired
-    DepartmentRepository departmentRepository;
+    private DepartmentRepository departmentRepository;
 
     @GET
     @Path("/")
@@ -46,16 +46,16 @@ public class DepartmentResource {
             /* If passed unitId doesn't return any values */
             if (departments.isEmpty()) {
                 logger.error("No departments are found for unitId: {}", () -> unitId);
-                return Response.status(404).entity(new Message("No departments found for the given unit")).build();
+                return Response.status(Response.Status.NOT_FOUND).entity(new Message("No departments found for the given unit")).build();
             }
             /* If orgId return associated values */
             else
-                return Response.status(200).entity(departments).build();
+                return Response.status(Response.Status.OK).entity(departments).build();
         }
         /* Any other kind of exception */
         catch (Exception ex) {
             logger.error("The departments dould not be retrieved", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 

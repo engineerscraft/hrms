@@ -23,95 +23,91 @@ import com.hamdard.hua.repository.EmployeeRepositoryOld;
 @Path("/employee")
 public class EmployeeResourceOld {
 
-	@Autowired private EmployeeRepositoryOld employeeRepository;
-	
+    @Autowired
+    private EmployeeRepositoryOld employeeRepository;
+
     @GET
     @Path("/test")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<String> test() {
-    	List<String> strArr=new ArrayList<String>();
-    	strArr.add("1");
-    	strArr.add("2");
+    public List<String> test() {
+        List<String> strArr = new ArrayList<String>();
+        strArr.add("1");
+        strArr.add("2");
         return strArr;
     }
-    
-    
+
     @GET
     @Path("/list")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<EmployeeOld> getEmployees() {
+    public List<EmployeeOld> getEmployees() {
         return employeeRepository.getAllEmployees();
     }
-    
+
     @GET
     @Path("/{id}")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public EmployeeOld getEmployee(@PathParam("id") Long id) {
+    public EmployeeOld getEmployee(@PathParam("id") Long id) {
         return employeeRepository.getEmployeeById(id);
     }
-    
+
     @POST
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public EmployeeOld createEmployee(EmployeeOld employee) {
+    public EmployeeOld createEmployee(EmployeeOld employee) {
         return employeeRepository.createEmployee(employee);
     }
-    
+
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<String> getEmployeeAutocomplete(@QueryParam("name") String name, @QueryParam("value") String value) {
-    	return employeeRepository.getValues(name,value);
+    public List<String> getEmployeeAutocomplete(@QueryParam("name") String name, @QueryParam("value") String value) {
+        return employeeRepository.getValues(name, value);
     }
 
     @GET
     @Path("/search")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<EmployeeOld> searchEmployee(@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName,
-			@QueryParam("lastName") String lastName, @QueryParam("designationId") Long designationId,
-			@QueryParam("departmentId") Long departmentId, @QueryParam("collegeId") Long collegeId,
-			@QueryParam("employeeId") Long employeeId, @QueryParam("emailAddress") String emailAddress,
-			@QueryParam("contactNumber") String contactNumber) {
-    	Map<String, Object> map=new HashMap<String, Object>();
-    	
-    	if(firstName!=null &&firstName.trim().length()>0){
-    		map.put("FIRST_NAME", firstName.trim());
-    	}
-    	
-    	if(middleName!=null &&middleName.trim().length()>0){
-    		map.put("MIDDLE_NAME", middleName.trim());
-    	}
-    	if(lastName!=null &&lastName.trim().length()>0){
-    		map.put("LAST_NAME", lastName.trim());
-    	}
-    	
-    	if(emailAddress!=null &&emailAddress.trim().length()>0){
-    		map.put("EMAIL_ADDRESS", emailAddress.trim());
-    	}
+    public List<EmployeeOld> searchEmployee(@QueryParam("firstName") String firstName, @QueryParam("middleName") String middleName, @QueryParam("lastName") String lastName, @QueryParam("designationId") Long designationId,
+            @QueryParam("departmentId") Long departmentId, @QueryParam("collegeId") Long collegeId, @QueryParam("employeeId") Long employeeId, @QueryParam("emailAddress") String emailAddress, @QueryParam("contactNumber") String contactNumber) {
+        Map<String, Object> map = new HashMap<String, Object>();
 
-    	if(contactNumber!=null &&contactNumber.trim().length()>0){
-    		map.put("CONTACT_NUMBER", contactNumber.trim());
-    	}
+        if (firstName != null && firstName.trim().length() > 0) {
+            map.put("FIRST_NAME", firstName.trim());
+        }
 
-    	if(designationId !=null && designationId !=0l){
-    		map.put("DESIGNATION_ID", designationId);
-    	}
-    	
-    	if(departmentId !=null && departmentId !=0l){
-    		map.put("DEPARTMENT_ID", departmentId);
-    	}
+        if (middleName != null && middleName.trim().length() > 0) {
+            map.put("MIDDLE_NAME", middleName.trim());
+        }
+        if (lastName != null && lastName.trim().length() > 0) {
+            map.put("LAST_NAME", lastName.trim());
+        }
 
-    	if(employeeId !=null && employeeId !=0l){
-    		map.put("ID", employeeId);
-    	}
-    	if(collegeId !=null && collegeId !=0l){
-    		map.put("COLLEGE_ID", collegeId);
-    	}
-    	if(map.size()==0){
-    		return new ArrayList<EmployeeOld>();
-    	}
-    	return employeeRepository.searchByColumnMap(map);
+        if (emailAddress != null && emailAddress.trim().length() > 0) {
+            map.put("EMAIL_ADDRESS", emailAddress.trim());
+        }
+
+        if (contactNumber != null && contactNumber.trim().length() > 0) {
+            map.put("CONTACT_NUMBER", contactNumber.trim());
+        }
+
+        if (designationId != null && designationId != 0l) {
+            map.put("DESIGNATION_ID", designationId);
+        }
+
+        if (departmentId != null && departmentId != 0l) {
+            map.put("DEPARTMENT_ID", departmentId);
+        }
+
+        if (employeeId != null && employeeId != 0l) {
+            map.put("ID", employeeId);
+        }
+        if (collegeId != null && collegeId != 0l) {
+            map.put("COLLEGE_ID", collegeId);
+        }
+        if (map.size() == 0) {
+            return new ArrayList<EmployeeOld>();
+        }
+        return employeeRepository.searchByColumnMap(map);
     }
 
-    
 }

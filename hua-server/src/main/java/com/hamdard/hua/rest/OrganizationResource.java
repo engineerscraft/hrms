@@ -28,7 +28,7 @@ public class OrganizationResource {
     private static final Logger logger = LogManager.getLogger(OrganizationResource.class);
 
     @Autowired
-    OrganizationRepository organizationRepository;
+    private OrganizationRepository organizationRepository;
 
     @GET
     @Path("/")
@@ -41,16 +41,16 @@ public class OrganizationResource {
             /* If it doesn't return any values */
             if (orgs.isEmpty()) {
                 logger.error("No organizations are found");
-                return Response.status(404).entity(new Message("No organizations found")).build();
+                return Response.status(Response.Status.NOT_FOUND).entity(new Message("No organizations found")).build();
             }
             /* If it return associated values */
             else
-                return Response.status(200).entity(orgs).build();
+                return Response.status(Response.Status.OK).entity(orgs).build();
         }
         /* Any other kind of exception */
         catch (Exception ex) {
             logger.error("The organizations could not be retrieved", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 
