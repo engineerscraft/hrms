@@ -10,9 +10,9 @@ public class Token {
     private String userDisplayName;
 
     public Token() {
-        
+
     }
-       
+
     public Token(String accessToken, String refreshToken, String userName, String userDisplayName) {
         super();
         this.accessToken = accessToken;

@@ -25,38 +25,36 @@ import com.hamdard.hua.repository.UserManagementRepository;
 @Component
 @Path("/userManagement")
 public class UserManagementEndpoint {
-    private static final Logger logger          = LogManager.getLogger(AuthenticationRepository.class);
-    
+    private static final Logger logger = LogManager.getLogger(AuthenticationRepository.class);
+
     @Autowired
-    private UserManagementRepository            userMgmtRepo;
-    
+    private UserManagementRepository userMgmtRepo;
+
     @Context
-    SecurityContext                             securityContext;
-    
-	@POST
+    private SecurityContext securityContext;
+
+    @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Path("/changePassword")
+    @Path("/changePassword")
     public void changePassword(PasswordChangeDetails pwdDetails) {
-        String userName                         = securityContext.getUserPrincipal().getName();
-        try{
+        String userName = securityContext.getUserPrincipal().getName();
+        try {
             userMgmtRepo.changePassword(userName, pwdDetails);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             logger.error("Errow while changing password:", ex);
         }
     }
-	
-	@POST
+
+    @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Path("/createUser")
-	public String createUser(User newUser) {
-	    try{
-	        userMgmtRepo.createUser(newUser);
-	    }catch(Exception ex){
-	        logger.error("Exception while creating user"   , ex);
-	        return "ERROR:"    + ex.getMessage();
-	    }
-	    return "SUCCESS";
-	}
+    @Path("/createUser")
+    public String createUser(User newUser) {
+        try {
+            userMgmtRepo.createUser(newUser);
+        } catch (Exception ex) {
+            logger.error("Exception while creating user", ex);
+            return "ERROR:" + ex.getMessage();
+        }
+        return "SUCCESS";
+    }
 }
-
-

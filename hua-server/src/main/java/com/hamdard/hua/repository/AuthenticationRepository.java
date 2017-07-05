@@ -87,7 +87,7 @@ public class AuthenticationRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
     private LdapTemplate ldapTemplate;

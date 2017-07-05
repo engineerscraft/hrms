@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.hamdard.hua.model.Employee;
 
-public class EmployeeSearchResultRowMapper  implements RowMapper<Employee.EmployeeSearchResult>{
+public class EmployeeSearchResultRowMapper implements RowMapper<Employee.EmployeeSearchResult> {
 
     @Override
     public Employee.EmployeeSearchResult mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -23,14 +23,14 @@ public class EmployeeSearchResultRowMapper  implements RowMapper<Employee.Employ
         searchResult.setSupervisorEmailId(rs.getString("SUPERVISOR_EMAIL_ID"));
         searchResult.setHrEmailId(rs.getString("HR_EMAIL_ID"));
         StringBuilder name = new StringBuilder();
-        if(rs.getString("EMPLOYEE_FIRST_NAME")!=null) {
+        if (rs.getString("EMPLOYEE_FIRST_NAME") != null) {
             name.append(rs.getString("EMPLOYEE_FIRST_NAME"));
         }
-        if(rs.getString("EMPLOYEE_MIDDLE_NAME")!=null) {
+        if (rs.getString("EMPLOYEE_MIDDLE_NAME") != null) {
             name.append(" ");
             name.append(rs.getString("EMPLOYEE_MIDDLE_NAME"));
         }
-        if(rs.getString("EMPLOYEE_LAST_NAME")!=null) {
+        if (rs.getString("EMPLOYEE_LAST_NAME") != null) {
             name.append(" ");
             name.append(rs.getString("EMPLOYEE_LAST_NAME"));
         }

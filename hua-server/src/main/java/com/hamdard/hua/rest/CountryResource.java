@@ -33,7 +33,7 @@ public class CountryResource {
     private static final Logger logger = LogManager.getLogger(CountryResource.class);
 
     @Autowired
-    CountryRepository countryRepository;
+    private CountryRepository countryRepository;
 
     @GET
     @Path("/")
@@ -45,14 +45,14 @@ public class CountryResource {
             countries = countryRepository.getAllCountries();
             if (countries.isEmpty()) {
                 logger.error("No country is found.");
-                return Response.status(404).entity(new Message("No country is found.")).build();
+                return Response.status(Response.Status.NOT_FOUND).entity(new Message("No country is found.")).build();
             }
             /* If data presents in DB */
             else
-                return Response.status(200).entity(countries).build();
+                return Response.status(Response.Status.OK).entity(countries).build();
         } catch (Exception e) {
             logger.error("The countries could not be retrieved", e);
-            return Response.status(500).entity(new Message(e.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
     }
 

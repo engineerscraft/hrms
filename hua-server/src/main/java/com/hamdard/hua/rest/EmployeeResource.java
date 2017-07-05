@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hamdard.hua.model.Employee;
 import com.hamdard.hua.model.Employee.EmployeeAddlDetails;
 import com.hamdard.hua.model.Employee.EmployeeAddress;
+import com.hamdard.hua.model.Employee.EmployeeHierarchy;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
@@ -44,7 +45,7 @@ public class EmployeeResource {
     private EmployeeRepository employeeRepository;
 
     @Context
-    SecurityContext securityContext;
+    private SecurityContext securityContext;
 
     @POST
     @Path("/")
@@ -54,10 +55,10 @@ public class EmployeeResource {
     public Response crate(Employee newEmployee) {
         try {
             String message = employeeRepository.createEmployee(newEmployee);
-            return Response.status(200).entity(new Message(message)).build();
+            return Response.status(Response.Status.OK).entity(new Message(message)).build();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return Response.status(500).entity(new Message(e.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
     }
 
@@ -69,10 +70,10 @@ public class EmployeeResource {
         try {
             String entryBy = securityContext.getUserPrincipal().getName();
             employeeRepository.updateEmpSalaryComponents(employeeId, entryBy, updEmployeeSalary);
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
             logger.error("The employee salary could not be updated", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 
@@ -83,10 +84,10 @@ public class EmployeeResource {
     public Response updateEmployeeProfile(@PathParam("id") String employeeId, EmployeeProfile updEmployeeProfile) {
         try {
             employeeRepository.updateEmployeeProfile(employeeId, updEmployeeProfile);
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
             logger.error("The employee profile could not be updated", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 
@@ -98,10 +99,10 @@ public class EmployeeResource {
         try {
             String entryBy = securityContext.getUserPrincipal().getName();
             employeeRepository.insertEmpOptionalBenefits(employeeId, entryBy, insEmployeeOptBenefits);
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
             logger.error("The employee optional benefits could not be updated", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 
@@ -113,10 +114,10 @@ public class EmployeeResource {
         try {
             String entryBy = securityContext.getUserPrincipal().getName();
             employeeRepository.updateEmpOptionalBenefits(employeeId, optCompId, entryBy, updEmployeeOptBenefit);
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
             logger.error("The employee optional benefits could not be updated", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 
@@ -130,14 +131,14 @@ public class EmployeeResource {
             @QueryParam("sex") String sex, @QueryParam("maritalStatus") String maritalStatus, @QueryParam("identityDocTypeId") Integer identityDocTypeId, @QueryParam("identityNumber") String identityNumber) {
         try {
             if (!employeeRepository.isPrivilegedForHierarchySearch(securityContext.getUserPrincipal().getName()))
-                return Response.status(401).entity(new Message("The user has no privilege to view the personal information of the employees")).build();
+                return Response.status(Response.Status.UNAUTHORIZED).entity(new Message("The user has no privilege to view the personal information of the employees")).build();
 
             List<Employee.EmployeeSearchResult> employeeSearchResult = employeeRepository.searchHierarchyEmployee(firstName, middleName, lastName, employeeId, employmentType, emailId, orgId, unitId, departmentId, jobRoleId, designationId, supervisorFlag,
                     hrFlag, supervisorEmailId, hrEmailId, sex, identityDocTypeId, identityNumber, securityContext.getUserPrincipal().getName());
-            return Response.status(200).entity(employeeSearchResult).build();
+            return Response.status(Response.Status.OK).entity(employeeSearchResult).build();
         } catch (Exception e) {
             logger.error("The hierarchy search could not be done", e);
-            return Response.status(500).entity(new Message(e.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
     }
 
@@ -148,18 +149,18 @@ public class EmployeeResource {
     public Response autoCompleteEmployeeDetail(@QueryParam("attributeName") String attributeName, @QueryParam("attributeValuePrefix") String attributeValuePrefix, @QueryParam("numberOfItems") Integer numberOfItems) {
         try {            
             if(attributeName == null || attributeName.isEmpty() || !("empFirstName".equals(attributeName) || "empMiddleName".equals(attributeName) || "empLastName".equals(attributeName) || "supervisorEmailId".equals(attributeName) || "hrEmailId".equals(attributeName) || "empEmailId".equals(attributeName))) {
-                return Response.status(422).entity(new Message("Invalid input")).build();
+                return Response.status(Response.Status.BAD_REQUEST).entity(new Message("Invalid input")).build();
             }
             
             if (!employeeRepository.isPrivilegedForHierarchySearch(securityContext.getUserPrincipal().getName())) {
-                return Response.status(401).entity(new Message("The user has no privilege to view the personal information of the employees")).build();
+                return Response.status(Response.Status.UNAUTHORIZED).entity(new Message("The user has no privilege to view the personal information of the employees")).build();
             }
 
             List<Employee.EmployeeSearchResult> employeeAutoCompleteResult = employeeRepository.autoCompleteEmployee(attributeName, attributeValuePrefix, numberOfItems, securityContext.getUserPrincipal().getName());
-            return Response.status(200).entity(employeeAutoCompleteResult).build();
+            return Response.status(Response.Status.OK).entity(employeeAutoCompleteResult).build();
         } catch (Exception e) {
             logger.error("The autocomplete result could not be retrieved", e);
-            return Response.status(500).entity(new Message(e.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
     }
 
@@ -174,32 +175,51 @@ public class EmployeeResource {
             // String modifiedBy = "dummy name";
 
             employeeRepository.updatedEmployeeAddlDetails(employeeId, modifiedBy, employeeAddlDetails);
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
             logger.error("The employee additional details could not be updated", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 
-    /* Needs to rework on this 
+    /* To Do:
+     * Needs to rework on this 
      * Update Query have to be dynamic
      * EmployeeAddress.pinno has to be changed to int from String
      */
     @PUT
     @Path("/{id}/address")
-    // @Secured(Privilege.UPDATE_EMP_ADDRESS_OF_AN_EMP)
+    @Secured(Privilege.UPDATE_EMP_ADDRESS_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddress employeeAddress) {
         try {
             // String modifiedBy = securityContext.getUserPrincipal().getName();
-
+        	
             employeeRepository.updatedEmployeeAddress(employeeId, employeeAddress);
             logger.info("Employee address details updated in successfully: {}", () -> employeeAddress);
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
             logger.error("The employee additional details could not be updated", ex);
-            return Response.status(500).entity(new Message(ex.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @PUT
+    @Path("/{id}/hierarchystatus")
+    //@Secured(Privilege.UPDATE_EMP_HIER_STAT_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updatedEmployeeHierarchyStatus(@PathParam("id") String employeeId, EmployeeHierarchy employeeHierarchy) {
+        try {
+            //String modifiedBy = securityContext.getUserPrincipal().getName();
+            String modifiedBy = "dummy name";
+
+            employeeRepository.updatedEmployeeHierarchyStatus(employeeId, modifiedBy, employeeHierarchy);
+            return Response.status(Response.Status.OK).build();
+        } catch (Exception ex) {
+            logger.error("The employee hierarchy status could not be updated", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 

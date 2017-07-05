@@ -30,43 +30,42 @@ import com.hamdard.hua.security.Secured;
 @Path("/v1/designation")
 public class DesignationResource {
 
-	Logger logger = LogManager.getLogger(DesignationResource.class);
+    private static final Logger logger = LogManager.getLogger(DesignationResource.class);
 
-	@Autowired
-	private DesignationRepository designationRepository;
+    @Autowired
+    private DesignationRepository designationRepository;
 
-	@GET
-	@Path("/")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Secured(Privilege.READ_DSGNS_OF_A_JOB_ROLE)
-	public Response getAllDesignation(@QueryParam("jobRoleId") @Min(1) int jobRoleId) {
-		List<Designation> designation;
-		CacheControl cc = new CacheControl();
-		cc.setMaxAge(300);
-		cc.setPrivate(true);
-		cc.setNoStore(true);
-		ResponseBuilder builder = null;
+    @GET
+    @Path("/")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Secured(Privilege.READ_DSGNS_OF_A_JOB_ROLE)
+    public Response getAllDesignation(@QueryParam("jobRoleId") @Min(1) int jobRoleId) {
+        List<Designation> designation;
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(300);
+        cc.setPrivate(true);
+        cc.setNoStore(true);
+        ResponseBuilder builder = null;
 
-		try {
-			designation = designationRepository.getDesignationsByJobRoleId(jobRoleId);
+        try {
+            designation = designationRepository.getDesignationsByJobRoleId(jobRoleId);
 
-			if (designation.isEmpty()) {
-				logger.error("No Designation is found.");
-				builder = Response.status(404).entity(
-						new Message("No Designation is found."));
-				builder.cacheControl(cc);
-				return builder.build();
-			}
-			/* If data presents in DB */
-			else {
-				builder = Response.status(200).entity(designation);
-				builder.cacheControl(cc);
-				return builder.build();
-			}
-		} catch (Exception e) {
-			builder = Response.status(500).entity(new Message(e.getMessage()));
-			logger.error("The designations could not be retrieved", e);
-			return builder.build();
-		}
-	}
+            if (designation.isEmpty()) {
+                logger.error("No Designation is found.");
+                builder = Response.status(Response.Status.NOT_FOUND).entity(new Message("No Designation is found."));
+                builder.cacheControl(cc);
+                return builder.build();
+            }
+            /* If data presents in DB */
+            else {
+                builder = Response.status(Response.Status.OK).entity(designation);
+                builder.cacheControl(cc);
+                return builder.build();
+            }
+        } catch (Exception e) {
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage()));
+            logger.error("The designations could not be retrieved", e);
+            return builder.build();
+        }
+    }
 }
