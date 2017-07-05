@@ -10,20 +10,24 @@
       <div>
 
         <div class="tab_container">
-          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
+          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" />
           <label for="tab1" class="tab-header span_1_of_6 cell">Personal Details</label>
 
-          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2"/>
-          <label for="tab2" class="tab-header span_1_of_6 cell">Address Details</label>
+          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" checked/>
+          <label for="tab2" class="tab-header span_1_of_6 cell">Additional Details</label>
 
           <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
-          <label for="tab4" class="tab-header span_1_of_6 cell">Employment Details</label>
+          <label for="tab3" class="tab-header span_1_of_6 cell">Address Details</label>
 
           <input id="tab4" class="tab-radio" type="radio" name="tabs" value="4" />
-          <label for="tab4" class="tab-header span_1_of_6 cell">Payroll Details</label>
+          <label for="tab4" class="tab-header span_1_of_6 cell">Employment Details</label>
 
-          <input id="tab5" class="tab-radio" type="radio" disabled name="tabs" value="5" />
-          <label for="tab5" class="tab-header span_1_of_6 cell">Document Details</label>
+          <input id="tab5" class="tab-radio" type="radio" name="tabs" value="5" />
+          <label for="tab5" class="tab-header span_1_of_6 cell">Payroll Details</label>
+
+          <input id="tab5" class="tab-radio" type="radio" disabled name="tabs" value="6" />
+          <label for="tab6" class="tab-header span_1_of_6 cell">Document Details</label>
+
           <form [formGroup]="employeeInfo" (ngSubmit)="create()" method="get" class="loginform">
             <fieldset [disabled]="processingInProgress">
               <section id="content1" class="tab-content">
@@ -43,7 +47,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="cell span_`_of_4">
+                    <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="empFirstName" maxlength="60">
                         <label class="text-input-label">First Name</label>
@@ -248,6 +252,116 @@
                 </div>
               </section>
               <section id="content2" class="tab-content">
+                <div class="display-table" formGroupName="employeeAddlDetails">
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="dependentNo">
+                        <label class="text-input-label">No of dependents</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emergencyContactName" maxlength="30">
+                        <label class="text-input-label">Emergency contact name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emergencyContactNo" maxlength="15">
+                        <label class="text-input-label">Emergency contact number</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="siblingNo">
+                        <label class="text-input-label">No of siblings</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="date" formControlName="preMedicalCheckUpDate">
+                        <label class="text-input-label">Pre-employment checkup date</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="textarea" formControlName="medicalReportComment" maxlength="32">
+                        <label class="text-input-label">Medical report comment</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName1">
+                        <label class="text-input-label">Nominee 1's name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName2">
+                        <label class="text-input-label">Nominee 2's name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName3">
+                        <label class="text-input-label">Nominee 3's name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare1">
+                        <label class="text-input-label">Nominee 1's percentage</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare2">
+                        <label class="text-input-label">Nominee 2's percentage</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare3">
+                        <label class="text-input-label">Nominee 3's percentage</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="content3" class="tab-content">
                 <div formGroupName="employeeAddress">
                   <div class="toggle">
                     <!-- Checkbox toggle -->
@@ -294,7 +408,8 @@
                             <div class="group combo-group">
                               <label class="text-input-label">Country</label>
                               <div class="select select-fancy select-fancy-image span_4_of_4">
-                                <select class="span_4_of_4" (change)="onCountryChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['countryId'].value, 'permanent')" formControlName="countryId">
+                                <select class="span_4_of_4" (change)="onCountryChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['countryId'].value, 'permanent')"
+                                  formControlName="countryId">
                                 <option value=""></option>
                                 <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
                               </select>
@@ -396,7 +511,8 @@
                             <div class="group combo-group">
                               <label class="text-input-label">Country</label>
                               <div class="select select-fancy select-fancy-image span_4_of_4">
-                                <select class="span_4_of_4" (change)="onCountryChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['countryId'].value, 'present')" formControlName="countryId">
+                                <select class="span_4_of_4" (change)="onCountryChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['countryId'].value, 'present')"
+                                  formControlName="countryId">
                                 <option value=""></option>
                                 <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
                               </select>
@@ -443,13 +559,13 @@
                 </div>
 
               </section>
-              <section id="content3" class="tab-content">
-                <!--content goes here-->
-              </section>
               <section id="content4" class="tab-content">
                 <!--content goes here-->
               </section>
               <section id="content5" class="tab-content">
+                <!--content goes here-->
+              </section>
+              <section id="content6" class="tab-content">
                 <!--content goes here-->
               </section>
               <div class="row">

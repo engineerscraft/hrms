@@ -130,7 +130,7 @@ public class EmployeeRepository {
         String entryBy = newEmployee.getEmployeeBasicInfo().getEntryBy();
 
         this.insertBasicInfo(employeeId, newEmployee.getEmployeeBasicInfo());
-        // this.insertAdditionalInfo (employeeId, newEmployee.getEmployeeAddlDetails());
+        this.insertAdditionalInfo (employeeId, newEmployee.getEmployeeAddlDetails());
         this.insertEmployeeAddress (employeeId, newEmployee.getEmployeeAddress());
         // this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
         // this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
