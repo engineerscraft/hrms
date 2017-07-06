@@ -89,7 +89,7 @@ public class EmployeeRepository {
     @Value("${sql.employee.get.appraisal.id}")
     private String getAppraisalId;
 
-    @Value("${sql.employee.insert.employee.additional.details_history}")
+    @Value("${sql.employee.insert.employee.additional.details.history}")
     private String employeeAdditionalDetailsHistoryInsert;
 
     @Value("${sql.employee.insert.employee.hierarchy.status.history}")
