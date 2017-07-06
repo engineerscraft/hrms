@@ -126,6 +126,13 @@ public class EmployeeRepository {
 
     @Value("${sql.employee.hier.status.by.EmpId}")
     private String empHierStatusUpdateByEmpId;
+    
+    @Value("${sql.employee.update.employee.by.EmpId}")
+    private String empBasicInfoUpdateByEmpId;
+    
+    
+    @Value("${sql.employee.insert.employee.history}")
+    private String empInsertEmployeeHistory;
 
     /*****************************************************************************************************/
 
@@ -564,6 +571,97 @@ public class EmployeeRepository {
             jdbcTemplate.update(empHierStatusHistoryInsert,
                     new Object[] { employeeId, employeeHierarchy.getSupervisorId(), employeeHierarchy.getHrId(), employeeHierarchy.getStatus(), employeeHierarchy.getCl(), employeeHierarchy.getPl(), employeeHierarchy.getPaternityLeave(),
                             employeeHierarchy.getSickLeave(), employeeHierarchy.getMaternityLeave(), employeeHierarchy.getSpecialLeave(), employeeHierarchy.getProbationPeriodEndDate(), employeeHierarchy.getNoticePeriodEndDate(), modifiedBy });
+        }
+
+    }
+    
+    
+    public void updatedEmployeeBasicInfo(String employeeId, String modifiedBy, EmployeeBasicInfo employeeBasicInfo) throws Exception {
+        logger.info(sqlMarker, empHierStatusUpdateByEmpId);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", 
+        		() -> employeeId,
+        		() -> employeeBasicInfo.getTitle(),
+        		() -> employeeBasicInfo.getEmpFirstName(),
+        		() -> employeeBasicInfo.getEmpMiddleName(),
+        		() -> employeeBasicInfo.getEmpLastName(),
+        		() -> employeeBasicInfo.getSex(),
+        		() -> employeeBasicInfo.getEmpType(),
+        		() -> employeeBasicInfo.getMaritalStatus(),
+        		() -> employeeBasicInfo.getDoj(),
+        		() -> employeeBasicInfo.getOrganization(),
+        		() -> employeeBasicInfo.getUnit(),
+        		() -> employeeBasicInfo.getDepartment(),
+        		() -> employeeBasicInfo.getNationality(),
+        		() -> employeeBasicInfo.getIdentityDocType(),
+        		() -> employeeBasicInfo.getIdentityNumber(),
+        		() -> employeeBasicInfo.getDob(),
+        		() -> employeeBasicInfo.getFatherName(),
+        		() -> employeeBasicInfo.getEmailId(),
+        		() -> employeeBasicInfo.getContactNo(),
+        		() -> employeeBasicInfo.getEntryBy(),
+        		() -> employeeBasicInfo.getEntryDate(),
+        		() -> employeeBasicInfo.isHrFlag(),
+        		() -> employeeBasicInfo.isSupervisorFlag(),
+        		() -> employeeId
+        			
+        		);
+		int numberOfRowsUpdated = jdbcTemplate.update(empHierStatusUpdateByEmpId, new Object[] { employeeId,
+				employeeBasicInfo.getTitle(), employeeBasicInfo.getEmpFirstName(), employeeBasicInfo.getEmpMiddleName(),
+				employeeBasicInfo.getEmpLastName(), employeeBasicInfo.getSex(), employeeBasicInfo.getEmpType(),
+				employeeBasicInfo.getMaritalStatus(), employeeBasicInfo.getDoj(), employeeBasicInfo.getOrganization(),
+				employeeBasicInfo.getUnit(), employeeBasicInfo.getDepartment(), employeeBasicInfo.getNationality(),
+				employeeBasicInfo.getIdentityDocType(), employeeBasicInfo.getIdentityNumber(),
+				employeeBasicInfo.getDob(), employeeBasicInfo.getFatherName(), employeeBasicInfo.getEmailId(),
+				employeeBasicInfo.getContactNo(), employeeBasicInfo.getEntryBy(), employeeBasicInfo.getEntryDate(),
+				employeeBasicInfo.isHrFlag(), employeeBasicInfo.isSupervisorFlag(), employeeId
+
+		});
+
+        /* Make entry in employee_history 
+         * iff there is successful update  in table 
+         * employee
+         * */
+        if (numberOfRowsUpdated > 0) {
+            logger.info(sqlMarker, empInsertEmployeeHistory);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", 
+            		() -> employeeId,
+            		() -> employeeBasicInfo.getTitle(),
+            		() -> employeeBasicInfo.getEmpFirstName(),
+            		() -> employeeBasicInfo.getEmpMiddleName(),
+            		() -> employeeBasicInfo.getEmpLastName(),
+            		() -> employeeBasicInfo.getSex(),
+            		() -> employeeBasicInfo.getEmpType(),
+            		() -> employeeBasicInfo.getMaritalStatus(),
+            		() -> employeeBasicInfo.getDoj(),
+            		() -> employeeBasicInfo.getOrganization(),
+            		() -> employeeBasicInfo.getUnit(),
+            		() -> employeeBasicInfo.getDepartment(),
+            		() -> employeeBasicInfo.getNationality(),
+            		() -> employeeBasicInfo.getIdentityDocType(),
+            		() -> employeeBasicInfo.getIdentityNumber(),
+            		() -> employeeBasicInfo.getDob(),
+            		() -> employeeBasicInfo.getFatherName(),
+            		() -> employeeBasicInfo.getEmailId(),
+            		() -> employeeBasicInfo.getContactNo(),
+            		() -> employeeBasicInfo.getEntryBy(),
+            		() -> employeeBasicInfo.getEntryDate(),
+            		() -> employeeBasicInfo.isHrFlag(),
+            		() -> employeeBasicInfo.isSupervisorFlag(),
+            		() -> modifiedBy
+
+            );
+            jdbcTemplate.update(empHierStatusHistoryInsert,
+                    new Object[] { employeeId,
+            				employeeBasicInfo.getTitle(), employeeBasicInfo.getEmpFirstName(), employeeBasicInfo.getEmpMiddleName(),
+            				employeeBasicInfo.getEmpLastName(), employeeBasicInfo.getSex(), employeeBasicInfo.getEmpType(),
+            				employeeBasicInfo.getMaritalStatus(), employeeBasicInfo.getDoj(), employeeBasicInfo.getOrganization(),
+            				employeeBasicInfo.getUnit(), employeeBasicInfo.getDepartment(), employeeBasicInfo.getNationality(),
+            				employeeBasicInfo.getIdentityDocType(), employeeBasicInfo.getIdentityNumber(),
+            				employeeBasicInfo.getDob(), employeeBasicInfo.getFatherName(), employeeBasicInfo.getEmailId(),
+            				employeeBasicInfo.getContactNo(), employeeBasicInfo.getEntryBy(), employeeBasicInfo.getEntryDate(),
+            				employeeBasicInfo.isHrFlag(), employeeBasicInfo.isSupervisorFlag(), modifiedBy
+
+            		});
         }
 
     }
