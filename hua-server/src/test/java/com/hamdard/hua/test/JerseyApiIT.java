@@ -1,4 +1,4 @@
-package com.ericsson.scx.main.test;
+package com.hamdard.hua.test;
 
 public class JerseyApiIT {
 
