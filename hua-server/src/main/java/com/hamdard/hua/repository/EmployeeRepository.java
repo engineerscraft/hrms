@@ -577,7 +577,7 @@ public class EmployeeRepository {
     
     
     public void updatedEmployeeBasicInfo(String employeeId, String modifiedBy, EmployeeBasicInfo employeeBasicInfo) throws Exception {
-        logger.info(sqlMarker, empHierStatusUpdateByEmpId);
+        logger.info(sqlMarker, empBasicInfoUpdateByEmpId);
         logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", 
         		() -> employeeId,
         		() -> employeeBasicInfo.getTitle(),
@@ -605,7 +605,7 @@ public class EmployeeRepository {
         		() -> employeeId
         			
         		);
-		int numberOfRowsUpdated = jdbcTemplate.update(empHierStatusUpdateByEmpId, new Object[] { employeeId,
+		int numberOfRowsUpdated = jdbcTemplate.update(empBasicInfoUpdateByEmpId, new Object[] { employeeId,
 				employeeBasicInfo.getTitle(), employeeBasicInfo.getEmpFirstName(), employeeBasicInfo.getEmpMiddleName(),
 				employeeBasicInfo.getEmpLastName(), employeeBasicInfo.getSex(), employeeBasicInfo.getEmpType(),
 				employeeBasicInfo.getMaritalStatus(), employeeBasicInfo.getDoj(), employeeBasicInfo.getOrganization(),
@@ -650,7 +650,7 @@ public class EmployeeRepository {
             		() -> modifiedBy
 
             );
-            jdbcTemplate.update(empHierStatusHistoryInsert,
+            jdbcTemplate.update(empInsertEmployeeHistory,
                     new Object[] { employeeId,
             				employeeBasicInfo.getTitle(), employeeBasicInfo.getEmpFirstName(), employeeBasicInfo.getEmpMiddleName(),
             				employeeBasicInfo.getEmpLastName(), employeeBasicInfo.getSex(), employeeBasicInfo.getEmpType(),

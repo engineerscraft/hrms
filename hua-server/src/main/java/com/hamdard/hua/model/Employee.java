@@ -165,7 +165,7 @@ public class Employee {
 
     }
 
-    public class EmployeeHierarchy {
+    public static class EmployeeHierarchy {
         private int cl; // the number of CLs of the employee
         private String hrId;
         private int maternityLeave;
@@ -517,7 +517,7 @@ public class Employee {
         }
     }
 
-    public class EmployeeBasicInfo {
+    public static class EmployeeBasicInfo {
         private String contactNo;
         private Department department;
         private Date dob;

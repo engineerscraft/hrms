@@ -226,7 +226,7 @@ public class EmployeeResource {
     
     @PUT
     @Path("/{id}/basicinfo")
-    @Secured(Privilege.UPDATE_EMP_BASIC_INFO_OF_AN_EMP)
+    //@Secured(Privilege.UPDATE_EMP_BASIC_INFO_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeBasicInfo(@PathParam("id") String employeeId, EmployeeBasicInfo employeeBasicInfo) {
@@ -237,7 +237,7 @@ public class EmployeeResource {
             employeeRepository.updatedEmployeeBasicInfo(employeeId, modifiedBy, employeeBasicInfo);
             return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
-            logger.error("The employee hierarchy status could not be updated", ex);
+            logger.error("The employee basic info could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
