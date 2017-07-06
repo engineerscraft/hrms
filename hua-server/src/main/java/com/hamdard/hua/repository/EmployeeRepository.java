@@ -89,7 +89,7 @@ public class EmployeeRepository {
     @Value("${sql.employee.get.appraisal.id}")
     private String getAppraisalId;
 
-    @Value("${sql.employee.insert.employee.additional.details.history}")
+    @Value("${sql.employee.insert.employee.additional.details_history}")
     private String employeeAdditionalDetailsHistoryInsert;
 
     @Value("${sql.employee.insert.employee.hierarchy.status.history}")
@@ -137,8 +137,8 @@ public class EmployeeRepository {
         String entryBy = newEmployee.getEmployeeBasicInfo().getEntryBy();
 
         this.insertBasicInfo(employeeId, newEmployee.getEmployeeBasicInfo());
-        // this.insertAdditionalInfo (employeeId, newEmployee.getEmployeeAddlDetails());
-        this.insertEmployeeAddress(employeeId, newEmployee.getEmployeeAddress());
+        this.insertAdditionalInfo (employeeId, newEmployee.getEmployeeAddlDetails());
+        this.insertEmployeeAddress (employeeId, newEmployee.getEmployeeAddress());
         // this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
         // this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
         // this.insertEmpSalaryComponents (employeeId, entryBy,

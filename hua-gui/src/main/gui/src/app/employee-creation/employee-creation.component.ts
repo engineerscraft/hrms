@@ -43,36 +43,12 @@ export class EmployeeCreationComponent implements OnInit {
 
   ngOnInit() {
     this.employeeInfo = this.formBuilder.group({
-      'employeeBasicInfo': this.formBuilder.group({
-        'title': ['', Validators.required],
-        'empFirstName': ['', Validators.required],
-        'empMiddleName': ['', Validators.required],
-        'empLastName': ['', Validators.required],
-        'fatherName': [''],
-        'dob': ['', Validators.required],
-        'emailId': [''],
-        'contactNo': ['', Validators.required],
-        'nationality': ['', Validators.required],
-        'doj': ['', Validators.required],
-        'organization': ['', Validators.required],
-        'department': this.formBuilder.group({
-          'departmentId': ['', Validators.required]
-        }),
-        'unit': this.formBuilder.group({
-          'unitId': ['', Validators.required]
-        }),
-        'empType': ['', Validators.required],
-        'sex': ['', Validators.required],
-        'maritalStatus': ['', Validators.required],
-        'identityDocType': this.formBuilder.group({
-          'docTypeId': ['', Validators.required]
-        }),
-        'identityNumber': ['', Validators.required]
-      }),
+      'employeeBasicInfo': this.initBasicInfoControls(),
       'employeeAddress': this.formBuilder.group({
         'permanent': this.initAddressGroup('permanent'),
         'present': this.initAddressGroup('present')
-      })
+      }),
+      'employeeAddlDetails': this.initAdditionalInfoControls()
     });
     this.initiateLists();
   }
@@ -83,6 +59,52 @@ export class EmployeeCreationComponent implements OnInit {
 
   private canCreate() {
     return !(this.employeeInfo.controls.employeeBasicInfo.valid);
+  }
+
+  private initAdditionalInfoControls() {
+    return this.formBuilder.group({
+      'dependentNo': [''],
+      'siblingNo': [''],
+      'emergencyContactName': [''],
+      'emergencyContactNo': [''],
+      'medicalReportComment': [''],
+      'preMedicalCheckUpDate': [''],
+      'nomineeName1': [''],
+      'nomineeShare1': [''],
+      'nomineeName2': [''],
+      'nomineeShare2': [''],
+      'nomineeName3': [''],
+      'nomineeShare3': ['']
+    });
+  }
+
+  private initBasicInfoControls() {
+    return this.formBuilder.group({
+      'title': ['', Validators.required],
+      'empFirstName': ['', Validators.required],
+      'empMiddleName': [''],
+      'empLastName': ['', Validators.required],
+      'fatherName': [''],
+      'dob': ['', Validators.required],
+      'emailId': [''],
+      'contactNo': ['', Validators.required],
+      'nationality': ['', Validators.required],
+      'doj': ['', Validators.required],
+      'organization': ['', Validators.required],
+      'department': this.formBuilder.group({
+        'departmentId': ['', Validators.required]
+      }),
+      'unit': this.formBuilder.group({
+        'unitId': ['', Validators.required]
+      }),
+      'empType': ['', Validators.required],
+      'sex': ['', Validators.required],
+      'maritalStatus': ['', Validators.required],
+      'identityDocType': this.formBuilder.group({
+        'docTypeId': ['', Validators.required]
+      }),
+      'identityNumber': ['', Validators.required]
+    });
   }
 
   private initiateLists() {
@@ -205,7 +227,7 @@ export class EmployeeCreationComponent implements OnInit {
     const pinno = this.employeeInfo.get('employeeAddress').get('permanent').get('pinno');
 
     this.districtsPresent = this.districtsPermanent;
-    this.statesPresent    = this.statesPermanent;
+    this.statesPresent = this.statesPermanent;
     //copy the values now
     this.employeeInfo.get('employeeAddress').get('present').get('houseNo').setValue(houseNo.value);
     this.employeeInfo.get('employeeAddress').get('present').get('streetName').setValue(streetName.value);
@@ -236,9 +258,12 @@ export class EmployeeCreationComponent implements OnInit {
 
   create() {
     var json = JSON.stringify(this.employeeInfo.controls.employeeBasicInfo.value);
-    var obj = { 'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value ,
-                'employeeAddress' : [this.employeeInfo.controls.employeeAddress.get('permanent').value,
-                                    this.employeeInfo.controls.employeeAddress.get('present').value]};
+    var obj = {
+      'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value,
+      'employeeAddress': [this.employeeInfo.controls.employeeAddress.get('permanent').value,
+      this.employeeInfo.controls.employeeAddress.get('present').value],
+      'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value
+    };
     console.log(JSON.stringify(obj));
     this.processingInProgress = true;
     this.employeeService.create(obj)

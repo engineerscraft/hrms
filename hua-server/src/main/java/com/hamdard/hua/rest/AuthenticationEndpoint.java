@@ -1,5 +1,6 @@
 package com.hamdard.hua.rest;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -11,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.AuthenticationException;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.hamdard.hua.model.Message;
 import com.hamdard.hua.model.LoginDetails;
@@ -32,7 +34,7 @@ public class AuthenticationEndpoint {
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response authenticateUser(LoginDetails loginDetails) {
+    public Response authenticateUser(@Valid @RequestBody LoginDetails loginDetails) {
         Token token = null;
         try {
             if (loginDetails.getUsername() != null) {
