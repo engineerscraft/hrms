@@ -26,9 +26,7 @@
 ```
 CREATE SCHEMA HRMS;
 CREATE USER "hrmsapp" WITH CREATEROLE PASSWORD 'hrmsapp';
-GRANT ALL ON SCHEMA HRMS TO "hrmsapp";
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA HRMS TO "hrmsapp";
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA HRMS TO "hrmsapp";
+CREATE USER "sysadm" WITH CREATEROLE SUPERUSER PASSWORD 'sysadm';
 ```
 8. Use your favourite client to execute the scripts: hua_setup/all_ddl.sql, hua_setup/all_baseline.sql and hua_setup/all_test_data.sql
 
@@ -88,3 +86,9 @@ GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA HRMS TO "hrmsapp";
 2. Run the command `mvn -P doc site`
 3. The document will ge generated at docs\database\schemaspy
 4. The document will be available at http://techsnippet.online/hrms/database/schemaspy/
+
+# Running Integration Tests for APIs
+1. Run the command `mvn -P test integration-test`
+
+# Running with SSH
+1. Run the command `java -jar -Dspring.profiles.active=prod hrms.jar`

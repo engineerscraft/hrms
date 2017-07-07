@@ -47,11 +47,9 @@
 
         <ldap-maven-plugin.version>1.3.2</ldap-maven-plugin.version>
         <sql-maven-plugin.version>1.5</sql-maven-plugin.version>
-        <spring-boot-maven-plugin.version>1.5.1.RELEASE</spring-boot-maven-plugin.version>
+        <spring-boot-maven-plugin.version>1.5.4.RELEASE</spring-boot-maven-plugin.version>
         <junit.version>4.12</junit.version>
         <httpclient.version>4.5.3</httpclient.version>
-        
-
     </properties>
     <pluginRepositories>
         <pluginRepository>
@@ -106,6 +104,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -131,12 +130,21 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-        </dependency>
+            </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>${commons-lang.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -144,7 +152,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot-maven-plugin.version}</version>
                 <configuration>
                     <executable>true</executable>
                 </configuration>
@@ -312,18 +319,6 @@
 
         <profile>
             <id>test</id>
-            <dependencies>
-                <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                    <version>${junit.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpclient</artifactId>
-                    <version>${httpclient.version}</version>
-                </dependency>
-            </dependencies>
             <build>
                 <plugins>
                     <plugin>
@@ -354,6 +349,15 @@
                         </configuration>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                    <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>sql-maven-plugin</artifactId>
                         <version>${sql-maven-plugin.version}</version>
@@ -371,8 +375,8 @@
                         <configuration>
                             <driver>org.postgresql.Driver</driver>
                             <url>jdbc:postgresql://localhost:5432/hrmstestdb</url>
-                            <username>hrmsadm</username>
-                            <password>hrmsadm</password>
+                            <username>sysadm</username>
+                            <password>sysadm</password>
                             <settingsKey>sensibleKey</settingsKey>
                             <onError>continue</onError>
                         </configuration>
@@ -387,7 +391,8 @@
                                 <configuration>
                                     <url>jdbc:postgresql://localhost:5432/hrmsdb</url>
                                     <autocommit>true</autocommit>
-                                    <sqlCommand>drop database if exists hrmstestdb</sqlCommand>
+                                    <sqlCommand>drop database if exists
+                                        hrmstestdb</sqlCommand>
                                     <onError>continue</onError>
                                 </configuration>
                             </execution>
@@ -401,7 +406,8 @@
                                     <url>jdbc:postgresql://localhost:5432/hrmsdb</url>
                                     <!-- no transaction -->
                                     <autocommit>true</autocommit>
-                                    <sqlCommand>create database hrmstestdb</sqlCommand>
+                                    <sqlCommand>create database
+                                        hrmstestdb</sqlCommand>
                                 </configuration>
                             </execution>
 
@@ -424,15 +430,15 @@
                                     <goal>execute</goal>
                                 </goals>
                                 <configuration>
-                                    
-                                    
-                                        <basedir>${basedir}</basedir>
-                                        <srcFiles>
-                                            <srcFile>../hua-setup/all_ddl.sql</srcFile>
-                                            <srcFile>../hua-setup/all_baseline.sql</srcFile>
-                                            <srcFile>../hua-setup/all_test_data.sql</srcFile>
-                                        </srcFiles>
-                                    
+
+
+                                    <basedir>${basedir}</basedir>
+                                    <srcFiles>
+                                        <srcFile>../hua-setup/all_ddl.sql</srcFile>
+                                        <srcFile>../hua-setup/all_baseline.sql</srcFile>
+                                        <srcFile>../hua-setup/all_test_data.sql</srcFile>
+                                    </srcFiles>
+
                                 </configuration>
                             </execution>
                         </executions>

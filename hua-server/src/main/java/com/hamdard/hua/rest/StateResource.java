@@ -37,7 +37,7 @@ public class StateResource {
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Secured(Privilege.STATE_ALL_READ_CMD)
+    @Secured(Privilege.GET_STATES_OF_A_COUNTRY)
     public Response getState(@QueryParam("countryId") @Min(1) int countryId) throws Exception {
         List<State> states;
         try {

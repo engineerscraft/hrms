@@ -234,7 +234,7 @@ public class AuthenticationRepository {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("roleList", userRoles);
         paramMap.put("filter", filter);
-        logger.info(sqlMarker, namedParameterJdbcTemplate);
+        logger.info(sqlMarker, authorizationDetectionSql);
         logger.info(sqlMarker, "Params {}, {}", () -> paramMap.get("roleList"), () -> paramMap.get("filter"));
         List<Permission> permissions = namedParameterJdbcTemplate.query(authorizationDetectionSql, paramMap, new PermissionRowMapper());
         logger.debug("Module name {}", () -> permissions);
