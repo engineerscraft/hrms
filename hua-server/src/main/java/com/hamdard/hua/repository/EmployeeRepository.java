@@ -126,6 +126,13 @@ public class EmployeeRepository {
 
     @Value("${sql.employee.hier.status.by.EmpId}")
     private String empHierStatusUpdateByEmpId;
+    
+    @Value("${sql.employee.update.employee.by.EmpId}")
+    private String empBasicInfoUpdateByEmpId;
+    
+    
+    @Value("${sql.employee.insert.employee.history}")
+    private String empInsertEmployeeHistory;
 
     /*****************************************************************************************************/
 
@@ -567,4 +574,95 @@ public class EmployeeRepository {
         }
 
     }
+    
+    
+	public void updatedEmployeeBasicInfo(String employeeId, String modifiedBy, EmployeeBasicInfo employeeBasicInfo)
+			throws Exception {
+		logger.info(sqlMarker, empBasicInfoUpdateByEmpId);
+		logger.info(sqlMarker,
+				"Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+				() -> employeeId, () -> employeeBasicInfo.getTitle(), () -> employeeBasicInfo.getEmpFirstName(),
+				() -> employeeBasicInfo.getEmpMiddleName(), () -> employeeBasicInfo.getEmpLastName(),
+				() -> employeeBasicInfo.getSex(), () -> employeeBasicInfo.getEmpType(),
+				() -> employeeBasicInfo.getMaritalStatus(), () -> employeeBasicInfo.getDoj(),
+				() -> Integer.parseInt(employeeBasicInfo.getOrganization()),
+				() -> employeeBasicInfo.getUnit() != null ? employeeBasicInfo.getUnit().getUnitId() : null,
+				() -> employeeBasicInfo.getDepartment() != null ? employeeBasicInfo.getDepartment().getDepartmentId()
+						: null,
+				() -> employeeBasicInfo.getNationality(),
+				() -> employeeBasicInfo.getIdentityDocType() != null
+						? employeeBasicInfo.getIdentityDocType().getDocTypeId() : null,
+				() -> employeeBasicInfo.getIdentityNumber(), () -> employeeBasicInfo.getDob(),
+				() -> employeeBasicInfo.getFatherName(), () -> employeeBasicInfo.getEmailId(),
+				() -> employeeBasicInfo.getContactNo(), () -> employeeBasicInfo.getEntryBy(),
+				() -> employeeBasicInfo.getEntryDate(), () -> employeeBasicInfo.isHrFlag() ? "Y" : "N",
+				() -> employeeBasicInfo.isSupervisorFlag() ? "Y" : "N", () -> employeeId
+
+		);
+		int numberOfRowsUpdated = jdbcTemplate.update(empBasicInfoUpdateByEmpId, new Object[] { employeeId,
+				employeeBasicInfo.getTitle(), employeeBasicInfo.getEmpFirstName(), employeeBasicInfo.getEmpMiddleName(),
+				employeeBasicInfo.getEmpLastName(), employeeBasicInfo.getSex(), employeeBasicInfo.getEmpType(),
+				employeeBasicInfo.getMaritalStatus(), employeeBasicInfo.getDoj(),
+				Integer.parseInt(employeeBasicInfo.getOrganization()),
+				employeeBasicInfo.getUnit() != null ? employeeBasicInfo.getUnit().getUnitId() : null,
+				employeeBasicInfo.getDepartment() != null ? employeeBasicInfo.getDepartment().getDepartmentId() : null,
+				employeeBasicInfo.getNationality(),
+				employeeBasicInfo.getIdentityDocType() != null ? employeeBasicInfo.getIdentityDocType().getDocTypeId()
+						: null,
+				employeeBasicInfo.getIdentityNumber(), employeeBasicInfo.getDob(), employeeBasicInfo.getFatherName(),
+				employeeBasicInfo.getEmailId(), employeeBasicInfo.getContactNo(), employeeBasicInfo.getEntryBy(),
+				employeeBasicInfo.getEntryDate(), employeeBasicInfo.isHrFlag() ? "Y" : "N",
+				employeeBasicInfo.isSupervisorFlag() ? "Y" : "N", employeeId
+
+		});
+
+		/*
+		 * Make entry in employee_history iff there is successful update in
+		 * table employee
+		 */
+		if (numberOfRowsUpdated > 0) {
+			logger.info(sqlMarker, empInsertEmployeeHistory);
+			logger.info(sqlMarker,
+					"Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+					() -> employeeId, () -> employeeBasicInfo.getTitle(), () -> employeeBasicInfo.getEmpFirstName(),
+					() -> employeeBasicInfo.getEmpMiddleName(), () -> employeeBasicInfo.getEmpLastName(),
+					() -> employeeBasicInfo.getSex(), () -> employeeBasicInfo.getEmpType(),
+					() -> employeeBasicInfo.getMaritalStatus(), () -> employeeBasicInfo.getDoj(),
+
+					() -> Integer.parseInt(employeeBasicInfo.getOrganization()),
+					() -> employeeBasicInfo.getUnit() != null ? employeeBasicInfo.getUnit().getUnitId() : null,
+					() -> employeeBasicInfo.getDepartment() != null
+							? employeeBasicInfo.getDepartment().getDepartmentId() : null,
+					() -> employeeBasicInfo.getNationality(),
+					() -> employeeBasicInfo.getIdentityDocType() != null
+							? employeeBasicInfo.getIdentityDocType().getDocTypeId() : null,
+					() -> employeeBasicInfo.getIdentityNumber(), () -> employeeBasicInfo.getDob(),
+					() -> employeeBasicInfo.getFatherName(), () -> employeeBasicInfo.getEmailId(),
+					() -> employeeBasicInfo.getContactNo(), () -> employeeBasicInfo.getEntryBy(),
+					() -> employeeBasicInfo.getEntryDate(), () -> employeeBasicInfo.isHrFlag() ? "Y" : "N",
+					() -> employeeBasicInfo.isSupervisorFlag() ? "Y" : "N", () -> modifiedBy
+
+			);
+			jdbcTemplate.update(empInsertEmployeeHistory,
+					new Object[] { employeeId, employeeBasicInfo.getTitle(), employeeBasicInfo.getEmpFirstName(),
+							employeeBasicInfo.getEmpMiddleName(), employeeBasicInfo.getEmpLastName(),
+							employeeBasicInfo.getSex(), employeeBasicInfo.getEmpType(),
+							employeeBasicInfo.getMaritalStatus(), employeeBasicInfo.getDoj(),
+							Integer.parseInt(employeeBasicInfo.getOrganization()),
+							employeeBasicInfo.getUnit() != null ? employeeBasicInfo.getUnit().getUnitId() : null,
+							employeeBasicInfo.getDepartment() != null
+									? employeeBasicInfo.getDepartment().getDepartmentId() : null,
+							employeeBasicInfo.getNationality(),
+							employeeBasicInfo.getIdentityDocType() != null
+									? employeeBasicInfo.getIdentityDocType().getDocTypeId() : null,
+							employeeBasicInfo.getIdentityNumber(), employeeBasicInfo.getDob(),
+							employeeBasicInfo.getFatherName(), employeeBasicInfo.getEmailId(),
+							employeeBasicInfo.getContactNo(), employeeBasicInfo.getEntryBy(),
+							employeeBasicInfo.getEntryDate(), employeeBasicInfo.isHrFlag() ? "Y" : "N",
+							employeeBasicInfo.isSupervisorFlag() ? "Y" : "N", modifiedBy
+
+					});
+		}
+
+	}
 }
