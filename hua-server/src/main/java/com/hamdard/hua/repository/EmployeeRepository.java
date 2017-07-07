@@ -576,93 +576,93 @@ public class EmployeeRepository {
     }
     
     
-    public void updatedEmployeeBasicInfo(String employeeId, String modifiedBy, EmployeeBasicInfo employeeBasicInfo) throws Exception {
-        logger.info(sqlMarker, empBasicInfoUpdateByEmpId);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", 
-        		() -> employeeId,
-        		() -> employeeBasicInfo.getTitle(),
-        		() -> employeeBasicInfo.getEmpFirstName(),
-        		() -> employeeBasicInfo.getEmpMiddleName(),
-        		() -> employeeBasicInfo.getEmpLastName(),
-        		() -> employeeBasicInfo.getSex(),
-        		() -> employeeBasicInfo.getEmpType(),
-        		() -> employeeBasicInfo.getMaritalStatus(),
-        		() -> employeeBasicInfo.getDoj(),
-        		() -> employeeBasicInfo.getOrganization(),
-        		() -> employeeBasicInfo.getUnit(),
-        		() -> employeeBasicInfo.getDepartment(),
-        		() -> employeeBasicInfo.getNationality(),
-        		() -> employeeBasicInfo.getIdentityDocType(),
-        		() -> employeeBasicInfo.getIdentityNumber(),
-        		() -> employeeBasicInfo.getDob(),
-        		() -> employeeBasicInfo.getFatherName(),
-        		() -> employeeBasicInfo.getEmailId(),
-        		() -> employeeBasicInfo.getContactNo(),
-        		() -> employeeBasicInfo.getEntryBy(),
-        		() -> employeeBasicInfo.getEntryDate(),
-        		() -> employeeBasicInfo.isHrFlag(),
-        		() -> employeeBasicInfo.isSupervisorFlag(),
-        		() -> employeeId
-        			
-        		);
+	public void updatedEmployeeBasicInfo(String employeeId, String modifiedBy, EmployeeBasicInfo employeeBasicInfo)
+			throws Exception {
+		logger.info(sqlMarker, empBasicInfoUpdateByEmpId);
+		logger.info(sqlMarker,
+				"Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+				() -> employeeId, () -> employeeBasicInfo.getTitle(), () -> employeeBasicInfo.getEmpFirstName(),
+				() -> employeeBasicInfo.getEmpMiddleName(), () -> employeeBasicInfo.getEmpLastName(),
+				() -> employeeBasicInfo.getSex(), () -> employeeBasicInfo.getEmpType(),
+				() -> employeeBasicInfo.getMaritalStatus(), () -> employeeBasicInfo.getDoj(),
+				() -> Integer.parseInt(employeeBasicInfo.getOrganization()),
+				() -> employeeBasicInfo.getUnit() != null ? employeeBasicInfo.getUnit().getUnitId() : null,
+				() -> employeeBasicInfo.getDepartment() != null ? employeeBasicInfo.getDepartment().getDepartmentId()
+						: null,
+				() -> employeeBasicInfo.getNationality(),
+				() -> employeeBasicInfo.getIdentityDocType() != null
+						? employeeBasicInfo.getIdentityDocType().getDocTypeId() : null,
+				() -> employeeBasicInfo.getIdentityNumber(), () -> employeeBasicInfo.getDob(),
+				() -> employeeBasicInfo.getFatherName(), () -> employeeBasicInfo.getEmailId(),
+				() -> employeeBasicInfo.getContactNo(), () -> employeeBasicInfo.getEntryBy(),
+				() -> employeeBasicInfo.getEntryDate(), () -> employeeBasicInfo.isHrFlag() ? "Y" : "N",
+				() -> employeeBasicInfo.isSupervisorFlag() ? "Y" : "N", () -> employeeId
+
+		);
 		int numberOfRowsUpdated = jdbcTemplate.update(empBasicInfoUpdateByEmpId, new Object[] { employeeId,
 				employeeBasicInfo.getTitle(), employeeBasicInfo.getEmpFirstName(), employeeBasicInfo.getEmpMiddleName(),
 				employeeBasicInfo.getEmpLastName(), employeeBasicInfo.getSex(), employeeBasicInfo.getEmpType(),
-				employeeBasicInfo.getMaritalStatus(), employeeBasicInfo.getDoj(), employeeBasicInfo.getOrganization(),
-				employeeBasicInfo.getUnit(), employeeBasicInfo.getDepartment(), employeeBasicInfo.getNationality(),
-				employeeBasicInfo.getIdentityDocType(), employeeBasicInfo.getIdentityNumber(),
-				employeeBasicInfo.getDob(), employeeBasicInfo.getFatherName(), employeeBasicInfo.getEmailId(),
-				employeeBasicInfo.getContactNo(), employeeBasicInfo.getEntryBy(), employeeBasicInfo.getEntryDate(),
-				employeeBasicInfo.isHrFlag(), employeeBasicInfo.isSupervisorFlag(), employeeId
+				employeeBasicInfo.getMaritalStatus(), employeeBasicInfo.getDoj(),
+				Integer.parseInt(employeeBasicInfo.getOrganization()),
+				employeeBasicInfo.getUnit() != null ? employeeBasicInfo.getUnit().getUnitId() : null,
+				employeeBasicInfo.getDepartment() != null ? employeeBasicInfo.getDepartment().getDepartmentId() : null,
+				employeeBasicInfo.getNationality(),
+				employeeBasicInfo.getIdentityDocType() != null ? employeeBasicInfo.getIdentityDocType().getDocTypeId()
+						: null,
+				employeeBasicInfo.getIdentityNumber(), employeeBasicInfo.getDob(), employeeBasicInfo.getFatherName(),
+				employeeBasicInfo.getEmailId(), employeeBasicInfo.getContactNo(), employeeBasicInfo.getEntryBy(),
+				employeeBasicInfo.getEntryDate(), employeeBasicInfo.isHrFlag() ? "Y" : "N",
+				employeeBasicInfo.isSupervisorFlag() ? "Y" : "N", employeeId
 
 		});
 
-        /* Make entry in employee_history 
-         * iff there is successful update  in table 
-         * employee
-         * */
-        if (numberOfRowsUpdated > 0) {
-            logger.info(sqlMarker, empInsertEmployeeHistory);
-            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", 
-            		() -> employeeId,
-            		() -> employeeBasicInfo.getTitle(),
-            		() -> employeeBasicInfo.getEmpFirstName(),
-            		() -> employeeBasicInfo.getEmpMiddleName(),
-            		() -> employeeBasicInfo.getEmpLastName(),
-            		() -> employeeBasicInfo.getSex(),
-            		() -> employeeBasicInfo.getEmpType(),
-            		() -> employeeBasicInfo.getMaritalStatus(),
-            		() -> employeeBasicInfo.getDoj(),
-            		() -> employeeBasicInfo.getOrganization(),
-            		() -> employeeBasicInfo.getUnit(),
-            		() -> employeeBasicInfo.getDepartment(),
-            		() -> employeeBasicInfo.getNationality(),
-            		() -> employeeBasicInfo.getIdentityDocType(),
-            		() -> employeeBasicInfo.getIdentityNumber(),
-            		() -> employeeBasicInfo.getDob(),
-            		() -> employeeBasicInfo.getFatherName(),
-            		() -> employeeBasicInfo.getEmailId(),
-            		() -> employeeBasicInfo.getContactNo(),
-            		() -> employeeBasicInfo.getEntryBy(),
-            		() -> employeeBasicInfo.getEntryDate(),
-            		() -> employeeBasicInfo.isHrFlag(),
-            		() -> employeeBasicInfo.isSupervisorFlag(),
-            		() -> modifiedBy
+		/*
+		 * Make entry in employee_history iff there is successful update in
+		 * table employee
+		 */
+		if (numberOfRowsUpdated > 0) {
+			logger.info(sqlMarker, empInsertEmployeeHistory);
+			logger.info(sqlMarker,
+					"Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+					() -> employeeId, () -> employeeBasicInfo.getTitle(), () -> employeeBasicInfo.getEmpFirstName(),
+					() -> employeeBasicInfo.getEmpMiddleName(), () -> employeeBasicInfo.getEmpLastName(),
+					() -> employeeBasicInfo.getSex(), () -> employeeBasicInfo.getEmpType(),
+					() -> employeeBasicInfo.getMaritalStatus(), () -> employeeBasicInfo.getDoj(),
 
-            );
-            jdbcTemplate.update(empInsertEmployeeHistory,
-                    new Object[] { employeeId,
-            				employeeBasicInfo.getTitle(), employeeBasicInfo.getEmpFirstName(), employeeBasicInfo.getEmpMiddleName(),
-            				employeeBasicInfo.getEmpLastName(), employeeBasicInfo.getSex(), employeeBasicInfo.getEmpType(),
-            				employeeBasicInfo.getMaritalStatus(), employeeBasicInfo.getDoj(), employeeBasicInfo.getOrganization(),
-            				employeeBasicInfo.getUnit(), employeeBasicInfo.getDepartment(), employeeBasicInfo.getNationality(),
-            				employeeBasicInfo.getIdentityDocType(), employeeBasicInfo.getIdentityNumber(),
-            				employeeBasicInfo.getDob(), employeeBasicInfo.getFatherName(), employeeBasicInfo.getEmailId(),
-            				employeeBasicInfo.getContactNo(), employeeBasicInfo.getEntryBy(), employeeBasicInfo.getEntryDate(),
-            				employeeBasicInfo.isHrFlag(), employeeBasicInfo.isSupervisorFlag(), modifiedBy
+					() -> Integer.parseInt(employeeBasicInfo.getOrganization()),
+					() -> employeeBasicInfo.getUnit() != null ? employeeBasicInfo.getUnit().getUnitId() : null,
+					() -> employeeBasicInfo.getDepartment() != null
+							? employeeBasicInfo.getDepartment().getDepartmentId() : null,
+					() -> employeeBasicInfo.getNationality(),
+					() -> employeeBasicInfo.getIdentityDocType() != null
+							? employeeBasicInfo.getIdentityDocType().getDocTypeId() : null,
+					() -> employeeBasicInfo.getIdentityNumber(), () -> employeeBasicInfo.getDob(),
+					() -> employeeBasicInfo.getFatherName(), () -> employeeBasicInfo.getEmailId(),
+					() -> employeeBasicInfo.getContactNo(), () -> employeeBasicInfo.getEntryBy(),
+					() -> employeeBasicInfo.getEntryDate(), () -> employeeBasicInfo.isHrFlag() ? "Y" : "N",
+					() -> employeeBasicInfo.isSupervisorFlag() ? "Y" : "N", () -> modifiedBy
 
-            		});
-        }
+			);
+			jdbcTemplate.update(empInsertEmployeeHistory,
+					new Object[] { employeeId, employeeBasicInfo.getTitle(), employeeBasicInfo.getEmpFirstName(),
+							employeeBasicInfo.getEmpMiddleName(), employeeBasicInfo.getEmpLastName(),
+							employeeBasicInfo.getSex(), employeeBasicInfo.getEmpType(),
+							employeeBasicInfo.getMaritalStatus(), employeeBasicInfo.getDoj(),
+							Integer.parseInt(employeeBasicInfo.getOrganization()),
+							employeeBasicInfo.getUnit() != null ? employeeBasicInfo.getUnit().getUnitId() : null,
+							employeeBasicInfo.getDepartment() != null
+									? employeeBasicInfo.getDepartment().getDepartmentId() : null,
+							employeeBasicInfo.getNationality(),
+							employeeBasicInfo.getIdentityDocType() != null
+									? employeeBasicInfo.getIdentityDocType().getDocTypeId() : null,
+							employeeBasicInfo.getIdentityNumber(), employeeBasicInfo.getDob(),
+							employeeBasicInfo.getFatherName(), employeeBasicInfo.getEmailId(),
+							employeeBasicInfo.getContactNo(), employeeBasicInfo.getEntryBy(),
+							employeeBasicInfo.getEntryDate(), employeeBasicInfo.isHrFlag() ? "Y" : "N",
+							employeeBasicInfo.isSupervisorFlag() ? "Y" : "N", modifiedBy
 
-    }
+					});
+		}
+
+	}
 }
