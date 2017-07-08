@@ -31,6 +31,7 @@ import { CountryService } from './country.service';
 import { EmployeeHierarchySearchResultComponent } from './employee-hierarchy-search-result/employee-hierarchy-search-result.component';
 import { DistrictService } from './district.service';
 import { StateService } from './state.service';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { StateService } from './state.service';
     NotFoundComponent,
     ForbiddenAccessComponent,
     EmployeeHierarchySearchComponent,
-    EmployeeHierarchySearchResultComponent
+    EmployeeHierarchySearchResultComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule,
