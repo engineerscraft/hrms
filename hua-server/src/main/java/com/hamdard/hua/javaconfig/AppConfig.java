@@ -54,5 +54,4 @@ public class AppConfig {
     public LdapTemplate ldapTemplate() {
         return new LdapTemplate(contextSource());
     }
-
 }
