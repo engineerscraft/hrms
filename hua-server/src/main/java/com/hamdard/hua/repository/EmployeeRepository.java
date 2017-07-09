@@ -141,6 +141,8 @@ public class EmployeeRepository {
         String employeeId = this.generateEmployeeId(newEmployee.getEmployeeBasicInfo().getOrganization(), newEmployee.getEmployeeBasicInfo().getUnit());
 
         Date entryDate = newEmployee.getEmployeeBasicInfo().getEntryDate();
+        if(entryDate == null)
+            entryDate = new Date();
         String entryBy = newEmployee.getEmployeeBasicInfo().getEntryBy();
 
         this.insertBasicInfo(employeeId, newEmployee.getEmployeeBasicInfo());
@@ -148,8 +150,7 @@ public class EmployeeRepository {
         this.insertEmployeeAddress (employeeId, newEmployee.getEmployeeAddress());
         // this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
         // this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
-        // this.insertEmpSalaryComponents (employeeId, entryBy,
-        // newEmployee.getEmployeeSalary(), entryDate);
+        this.insertEmpSalaryComponents (employeeId, entryBy, newEmployee.getEmployeeSalary(), entryDate);
         // TODO: take care of optional components
 
         // create LDAP user

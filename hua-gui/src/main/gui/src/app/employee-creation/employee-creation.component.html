@@ -618,8 +618,8 @@
                               <div class="table-cell">
                                 {{component.description}}
                               </div>
-                              <div class="table-cell">
-                                <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue" (change)="checkLimit(component.salValue, component.maxAllowLimit)"/>
+                              <div class="table-cell" [style.background-color]="checkLimit(component.salValue, component.maxAllowLimit)">
+                                <input type="text" style="border-radius: 2px" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue"/>
                               </div>
                               <div class="table-cell">
                                 {{component.maxAllowLimit | currency:'BDT':true}}
@@ -663,7 +663,7 @@
                                 {{component.description}}
                               </div>
                               <div class="table-cell">
-                                <input type="text"  [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue" />
+                                <input type="text" [style.background-color]="checkLimit(component.salValue, component.maxAllowLimit)" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue" />
                               </div>
                               <div class="table-cell">
                                 {{component.maxAllowLimit| currency:'BDT':true}}
