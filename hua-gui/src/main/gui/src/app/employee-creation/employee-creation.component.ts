@@ -137,7 +137,10 @@ export class EmployeeCreationComponent implements OnInit {
   }
 
   private checkLimit(value, maxValue) {
-    console.log(value + "     " + maxValue);
+    if(value > maxValue)
+      return "red";
+    else
+      return "";
   }
 
   private onJobRoleChange(jobRoleId){
@@ -303,25 +306,37 @@ export class EmployeeCreationComponent implements OnInit {
 
   create() {
     var json = JSON.stringify(this.employeeInfo.controls.employeeBasicInfo.value);
+
+    var salaryComponents: Array<any> = [];
+    for(let comp of this.salaryComponents){
+      if(comp['selected'] === true){
+        let obj = {
+          'salaryComponent': {'compId':comp['salCompId']},
+          'salaryValue' : comp['salValue']
+        }
+        salaryComponents.push(obj);
+      }
+    }
+
     var obj = {
       'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value,
       'employeeAddress': [this.employeeInfo.controls.employeeAddress.get('permanent').value,
       this.employeeInfo.controls.employeeAddress.get('present').value],
       'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
-      'employeeJobRoleDetails' : this.salaryComponents
+      'employeeSalary' : salaryComponents
     };
     console.log(JSON.stringify(obj));
-    // this.processingInProgress = true;
-    // this.employeeService.create(obj)
-    //   .subscribe(
-    //   res => {
-    //     this.processingInProgress = false;
-    //     this.message = res.json()['message'];
-    //   },
-    //   err => {
-    //     this.message = err.json()["message"];
-    //     this.processingInProgress = false;
-    //   });
+    this.processingInProgress = true;
+    this.employeeService.create(obj)
+      .subscribe(
+      res => {
+        this.processingInProgress = false;
+        this.message = res.json()['message'];
+      },
+      err => {
+        this.message = err.json()["message"];
+        this.processingInProgress = false;
+      });
   }
 
 }
