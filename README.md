@@ -90,5 +90,7 @@ CREATE USER "sysadm" WITH CREATEROLE SUPERUSER PASSWORD 'sysadm';
 # Running Integration Tests for APIs
 1. Run the command `mvn -P test integration-test`
 
-# Running with SSH
+# Running with SSL (HTTPS with self-signed certificate)
 1. Run the command `java -jar -Dspring.profiles.active=prod hrms.jar`
+2. Open https://localhost:8080 in Chrome and accept the security exception to continue (since self-signed certificate authenticity could not be verified).
+3. To use the self-signed certificate with other applications, such as, Postman, import the certificate (from hua-server/src/main/resources folder) as Trusted Root in OS Credential Store.
