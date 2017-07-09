@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.hamdard.hua.model.Department;
-import com.hamdard.hua.model.Unit;
 
 /**
  * @author isomdeb
