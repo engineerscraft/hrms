@@ -9,6 +9,7 @@ import { CountryService } from '../country.service';
 import { EmployeeService } from '../employee.service';
 import { DistrictService } from '../district.service';
 import { StateService } from '../state.service';
+import { JobRoleService } from '../job-role.service';
 
 @Component({
   selector: 'app-employee-creation',
@@ -28,6 +29,9 @@ export class EmployeeCreationComponent implements OnInit {
   private statesPresent;
   private districtsPermanent;
   private districtsPresent;
+  private jobRoles;
+  private salaryComponents;
+  private optionalBenefitComponents;
   private message: string = '';
 
 
@@ -39,7 +43,8 @@ export class EmployeeCreationComponent implements OnInit {
     private countryService: CountryService,
     private employeeService: EmployeeService,
     private districtService: DistrictService,
-    private stateService: StateService) { }
+    private stateService: StateService, 
+    private jobRoleService: JobRoleService) { }
 
   ngOnInit() {
     this.employeeInfo = this.formBuilder.group({
@@ -48,7 +53,10 @@ export class EmployeeCreationComponent implements OnInit {
         'permanent': this.initAddressGroup('permanent'),
         'present': this.initAddressGroup('present')
       }),
-      'employeeAddlDetails': this.initAdditionalInfoControls()
+      'employeeAddlDetails': this.initAdditionalInfoControls(),
+      'employeeJobRoleDetails' : this.formBuilder.group({
+        'jobRoleId': ['', Validators.required]
+      })
     });
     this.initiateLists();
   }
@@ -128,28 +136,65 @@ export class EmployeeCreationComponent implements OnInit {
       );
   }
 
+  private checkLimit(value, maxValue) {
+    console.log(value + "     " + maxValue);
+  }
+
+  private onJobRoleChange(jobRoleId){
+    console.log(jobRoleId);
+    let salaryObservable = this.jobRoleService.getSalaryByJobRoleId(jobRoleId);
+    let optionalCompObservable = this.jobRoleService.getOptionalBenefitsByJobRoleId(jobRoleId);
+    this.processingInProgress = true;
+    let dummySalComponents : any[];
+    
+    Observable.forkJoin([salaryObservable, optionalCompObservable])
+      .subscribe(
+      data => {
+        this.salaryComponents = data[0];
+        for(let comp of this.salaryComponents){
+          comp['selected'] = true;
+        }
+        this.optionalBenefitComponents = data[1];
+        for(let comp of this.optionalBenefitComponents){
+          comp['selected'] = false;
+        }
+      },
+      (err: any) => {
+        this.processingInProgress = false;
+      },
+      () => {
+        this.processingInProgress = false;
+      }
+      );
+      console.log(JSON.stringify(this.salaryComponents))
+  }
+
   onOrgChange(orgId) {
     console.log(orgId);
     if (orgId === "")
       return;
     this.processingInProgress = true;
     let unitObservable = this.unitService.getUnits(orgId);
+    let jobRoleObservable = this.jobRoleService.getJobRolesByOrgId(orgId);
 
-    this.unitService.getUnits(orgId)
+    this.processingInProgress = true;
+    Observable.forkJoin([unitObservable, jobRoleObservable])
       .subscribe(
       data => {
-        this.units = data;
+        this.units = data[0];
+        this.jobRoles = data[1];
+      },
+      (err: any) => {
         this.processingInProgress = false;
-      }, (error: any) => {
-        this.processingInProgress = false;
-      }, () => {
+      },
+      () => {
         this.processingInProgress = false;
       }
       );
   }
 
   onCountryChange(countryId, addressType: string) {
-    console.log(countryId + '~' + addressType);
+    // console.log(countryId + '~' + addressType);
     this.processingInProgress = true;
 
     this.stateService.getStates(countryId)
@@ -262,20 +307,21 @@ export class EmployeeCreationComponent implements OnInit {
       'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value,
       'employeeAddress': [this.employeeInfo.controls.employeeAddress.get('permanent').value,
       this.employeeInfo.controls.employeeAddress.get('present').value],
-      'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value
+      'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
+      'employeeJobRoleDetails' : this.salaryComponents
     };
     console.log(JSON.stringify(obj));
-    this.processingInProgress = true;
-    this.employeeService.create(obj)
-      .subscribe(
-      res => {
-        this.processingInProgress = false;
-        this.message = res.json()['message'];
-      },
-      err => {
-        this.message = err.json()["message"];
-        this.processingInProgress = false;
-      });
+    // this.processingInProgress = true;
+    // this.employeeService.create(obj)
+    //   .subscribe(
+    //   res => {
+    //     this.processingInProgress = false;
+    //     this.message = res.json()['message'];
+    //   },
+    //   err => {
+    //     this.message = err.json()["message"];
+    //     this.processingInProgress = false;
+    //   });
   }
 
 }

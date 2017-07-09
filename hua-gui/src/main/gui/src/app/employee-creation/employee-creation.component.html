@@ -10,23 +10,20 @@
       <div>
 
         <div class="tab_container">
-          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" />
+          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
           <label for="tab1" class="tab-header span_1_of_6 cell">Personal Details</label>
 
-          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" checked/>
+          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" />
           <label for="tab2" class="tab-header span_1_of_6 cell">Additional Details</label>
 
           <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
           <label for="tab3" class="tab-header span_1_of_6 cell">Address Details</label>
 
           <input id="tab4" class="tab-radio" type="radio" name="tabs" value="4" />
-          <label for="tab4" class="tab-header span_1_of_6 cell">Employment Details</label>
+          <label for="tab4" class="tab-header span_1_of_6 cell">Payroll Details</label>
 
           <input id="tab5" class="tab-radio" type="radio" name="tabs" value="5" />
-          <label for="tab5" class="tab-header span_1_of_6 cell">Payroll Details</label>
-
-          <input id="tab5" class="tab-radio" type="radio" disabled name="tabs" value="6" />
-          <label for="tab6" class="tab-header span_1_of_6 cell">Document Details</label>
+          <label for="tab5" class="tab-header span_1_of_6 cell">Others</label>
 
           <form [formGroup]="employeeInfo" (ngSubmit)="create()" method="get" class="loginform">
             <fieldset [disabled]="processingInProgress">
@@ -560,13 +557,131 @@
 
               </section>
               <section id="content4" class="tab-content">
-                <!--content goes here-->
+                <div class="display-table">
+                  <div class="row">
+                    <div class="cell span_4_of_4">
+                      <div style="color: red" *ngIf="employeeInfo.controls.employeeBasicInfo.controls['organization'].hasError('required')">Please choose Employee's Organization under 'Personal Details' tab</div>
+                    </div>
+                  </div>
+                  <div formGroupName="employeeJobRoleDetails" id="collectInputs" *ngIf="!employeeInfo.controls.employeeBasicInfo.controls['organization'].hasError('required')">
+
+                    <div class="row">
+                      <div class="cell span_2_of_4">
+                        <div class="group combo-group">
+                          <label class="text-input-label">Choose employee's grade</label>
+                          <div class="select select-fancy select-fancy-image span_4_of_4">
+                            <select class="span_4_of_4" (change)="onJobRoleChange(employeeInfo.controls.employeeJobRoleDetails.controls['jobRoleId'].value)"
+                              formControlName="jobRoleId">
+                          <option value=""></option>
+                          <option *ngFor="let jobRole of jobRoles" value="{{jobRole.jobRoleId}}">{{jobRole.grade.gradeName}}</option>
+                        </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cell span_1_of_4">
+                      </div>
+                      <div class="cell span_1_of_4">
+                      </div>
+                      <div class="cell span_1_of_4">
+                      </div>
+
+                    </div>
+                    <hr/>
+                    <div id="components" *ngIf="!employeeInfo.controls.employeeJobRoleDetails.controls['jobRoleId'].hasError('required')">
+                    <div class="toggle" style="padding-top: 20px;">
+                      <!-- Checkbox toggle -->
+                      <input type="checkbox" value="selected" id="salaryComponents" class="toggle-input">
+                      <label for="salaryComponents" class="toggle-label">Salary Components</label>
+
+                      <div role="toggle" class="toggle-content">
+
+                        <div class="display-table inner-component-width">
+                          <div class="table" #table>
+
+                            <div class="row" style="padding-top: 10px">
+                              <div class="cell span_3_of_6">
+                                Description
+                              </div>
+                              <div class="cell span_1_of_6">
+                                Value in BDT
+                              </div>
+                              <div class="cell span_1_of_6">
+                                Max limit
+                              </div>                            
+                              <div class="cell span_1_of_6">
+                                Applicable?
+                              </div>
+                            </div>
+
+
+                            <div class="row" *ngFor="let component of salaryComponents">
+                              <div class="table-cell">
+                                {{component.description}}
+                              </div>
+                              <div class="table-cell">
+                                <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue" (change)="checkLimit(component.salValue, component.maxAllowLimit)"/>
+                              </div>
+                              <div class="table-cell">
+                                {{component.maxAllowLimit | currency:'BDT':true}}
+                              </div>
+                              <div class="table-cell">
+                                <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.selected">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="toggle">
+                      <!-- Checkbox toggle -->
+                      <input type="checkbox" value="selected" id="optionalComponents" class="toggle-input">
+                      <label for="optionalComponents" class="toggle-label">Optional Components</label>
+
+                      <div role="toggle" class="toggle-content">
+
+                        <div class="display-table inner-component-width">
+                          <div class="table" #table>
+
+                            <div class="row" style="padding-top: 10px">
+                              <div class="cell span_3_of_6">
+                                Description
+                              </div>
+                              <div class="cell span_1_of_6">
+                                Value in BDT
+                              </div>
+                              <div class="cell span_1_of_6">
+                                Max limit
+                              </div>                            
+                              <div class="cell span_1_of_6">
+                                Applicable?
+                              </div>
+                            </div>
+
+
+                            <div class="row" *ngFor="let component of optionalBenefitComponents">
+                              <div class="table-cell">
+                                {{component.description}}
+                              </div>
+                              <div class="table-cell">
+                                <input type="text"  [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue" />
+                              </div>
+                              <div class="table-cell">
+                                {{component.maxAllowLimit| currency:'BDT':true}}
+                              </div>
+                              <div class="table-cell">
+                                <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.selected">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
               </section>
               <section id="content5" class="tab-content">
-                <!--content goes here-->
-              </section>
-              <section id="content6" class="tab-content">
-                <!--content goes here-->
+
               </section>
               <div class="row">
                 <div class="cell span_4_of_4">

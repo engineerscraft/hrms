@@ -13,4 +13,14 @@ export class JobRoleService {
     return this.httpService.callHttpGet("/resources/v1/jobrole?orgId="+orgId)
       .map(res => res.json());
   }
+
+  getSalaryByJobRoleId(jobRoleId) {
+    return this.httpService.callHttpGet("/resources/v1/jobrole/" + jobRoleId + "/salary")
+      .map(res => res.json());
+  }
+
+  getOptionalBenefitsByJobRoleId(jobRoleId) {
+    return this.httpService.callHttpGet("/resources/v1/jobrole/" + jobRoleId + "/optbenefit")
+      .map(res => res.json());
+  }
 }

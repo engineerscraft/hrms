@@ -3,3 +3,33 @@
    width: 100%;
    table-layout: fixed;
 }
+
+.table-cell {
+  padding: 6px 12px;
+  display: table-cell;
+  border-color: #fff;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  color: black;
+}  
+
+.row {
+  display: table-row;
+}
+
+.table .row {
+  background: #E3EEFF;
+}
+
+.table .row:nth-child(1) {
+  background-color: #4CA1AF;
+  color: #fff;
+}
+
+.table .row:hover {
+  background: #E3EEFF;  
+}
+
+.table .row:nth-child(1):hover {
+  background: #4CA1AF;
+}
