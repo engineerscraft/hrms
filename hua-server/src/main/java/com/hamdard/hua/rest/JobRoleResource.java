@@ -54,7 +54,7 @@ public class JobRoleResource {
     @GET
     @Path("/{id}/salary")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Secured(Privilege.READ_SALARY_OF_JOB_ROLE)
+    //@Secured(Privilege.READ_SALARY_OF_JOB_ROLE)
     public Response getSalaryByJobRoleId(@PathParam("id") long jobRoleId) {
         List<Salary> salartList;
         try {
@@ -75,7 +75,7 @@ public class JobRoleResource {
     @GET
     @Path("/{id}/optbenefit")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Secured(Privilege.READ_OPT_BENEFIT_OF_JOB_ROLE)
+    //@Secured(Privilege.READ_OPT_BENEFIT_OF_JOB_ROLE)
     public Response getOptionalBenefitsByJobRoleId(@PathParam("id") long jobRoleId) {
         List<Salary> salartList;
         try {
