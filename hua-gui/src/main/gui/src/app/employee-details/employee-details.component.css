@@ -7,7 +7,7 @@
     background: url("/assets/img/profilebg-min.jpg") no-repeat center bottom fixed;
     background-size: cover;
     overflow: auto;
-    filter: brightness(0.7);
+    filter: contrast(100%);
 }
 
 .profile-pic {
