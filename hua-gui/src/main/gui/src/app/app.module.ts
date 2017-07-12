@@ -32,6 +32,7 @@ import { EmployeeHierarchySearchResultComponent } from './employee-hierarchy-sea
 import { DistrictService } from './district.service';
 import { StateService } from './state.service';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     ForbiddenAccessComponent,
     EmployeeHierarchySearchComponent,
     EmployeeHierarchySearchResultComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    DatePickerComponent
   ],
   imports: [
     BrowserModule,

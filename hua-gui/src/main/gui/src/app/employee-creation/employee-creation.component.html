@@ -289,10 +289,11 @@
                   <div class="row">
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="date" formControlName="preMedicalCheckUpDate">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="preMedicalCheckUpDate" required>
                         <label class="text-input-label">Pre-employment checkup date</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
+                        <date-picker (outputEvents)="changeDate($event)"></date-picker>
                       </div>
                     </div>
                     <div class="cell span_1_of_4">

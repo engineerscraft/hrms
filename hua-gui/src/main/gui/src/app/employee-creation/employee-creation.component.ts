@@ -339,4 +339,10 @@ export class EmployeeCreationComponent implements OnInit {
       });
   }
 
+  changeDate(event) {
+    console.log(event);
+    if(event.type === 'dateChanged') {
+      this.employeeInfo.get('employeeAddlDetails').patchValue({preMedicalCheckUpDate: event.data.formatted});
+    }
+  }
 }
