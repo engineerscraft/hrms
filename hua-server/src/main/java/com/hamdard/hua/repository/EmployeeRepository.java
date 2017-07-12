@@ -94,6 +94,9 @@ public class EmployeeRepository {
 
     @Value("${sql.employee.insert.employee.hierarchy.status.history}")
     private String empHierStatusHistoryInsert;
+    
+    @Value("${sql.employee.insert.employee.profile.history}")
+    private String employeeProfileHistoryInsert;
 
     /******************* Update Operations *******************/
 
@@ -336,12 +339,28 @@ public class EmployeeRepository {
      * @param profile
      * @throws Exception
      */
-
-    public void updateEmployeeProfile(String employeeId, EmployeeProfile profile) throws Exception {
+    @Transactional
+    public String updateEmployeeProfile(String employeeId, String modifiedBy, EmployeeProfile profile) throws Exception {
         logger.info(sqlMarker, employeeProfileUpdate);
         logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> profile.getQualification(), () -> profile.getDescription(), () -> profile.getComments(), () -> employeeId);
 
-        jdbcTemplate.update(employeeProfileInsert, new Object[] { profile.getQualification(), profile.getDescription(), profile.getComments(), employeeId });
+        int numberOfRowsUpdated = jdbcTemplate.update(employeeProfileUpdate, new Object[] { profile.getQualification(), profile.getDescription(), profile.getComments(), employeeId });
+        
+        /* Make entry in employee_profile_history 
+         * if there is successful update in table 
+         * employee_profile
+         * */
+        if (numberOfRowsUpdated > 0) {
+            logger.info(sqlMarker, employeeProfileHistoryInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> employeeId, () -> profile.getQualification(), () -> profile.getDescription(), () -> profile.getComments(), () -> modifiedBy);
+            
+            jdbcTemplate.update(employeeProfileHistoryInsert,
+                    new Object[] { employeeId, profile.getQualification(), profile.getDescription(), profile.getComments(), modifiedBy });
+            return String.format("Successfully updated employee profile for Emp ID : %s", employeeId);
+        }
+        else {
+            return String.format("Unable to update employee profile for Emp ID : %s", employeeId);
+        }
     }
 
     /** TODO: Confirm logic
