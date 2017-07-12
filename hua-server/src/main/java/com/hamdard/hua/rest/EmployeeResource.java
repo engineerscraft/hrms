@@ -2,6 +2,8 @@ package com.hamdard.hua.rest;
 
 import java.util.List;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -67,7 +69,7 @@ public class EmployeeResource {
     @Path("/{id}/salary")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response updateEmployeeSalary(@PathParam("id") String employeeId, List<EmployeeSalary> updEmployeeSalary) {
+    public Response updateEmployeeSalary(@PathParam("id") @Size(min=1) String employeeId, List<EmployeeSalary> updEmployeeSalary) {
         try {
             String entryBy = securityContext.getUserPrincipal().getName();
             employeeRepository.updateEmpSalaryComponents(employeeId, entryBy, updEmployeeSalary);
@@ -82,10 +84,15 @@ public class EmployeeResource {
     @Path("/{id}/profile")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response updateEmployeeProfile(@PathParam("id") String employeeId, EmployeeProfile updEmployeeProfile) {
+    @Secured(Privilege.MODIFY_PROFILE_OF_AN_EMP)
+    public Response updateEmployeeProfile(@PathParam("id") @Size(min=1) String employeeId, EmployeeProfile updEmployeeProfile) {
         try {
-            employeeRepository.updateEmployeeProfile(employeeId, updEmployeeProfile);
-            return Response.status(Response.Status.OK).build();
+            String modifiedBy = securityContext.getUserPrincipal().getName();
+            String message = employeeRepository.updateEmployeeProfile(employeeId, modifiedBy, updEmployeeProfile);
+            if(message.startsWith("Success"))
+                return Response.status(Response.Status.OK).entity(new Message(message)).build();
+            else
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(message)).build();
         } catch (Exception ex) {
             logger.error("The employee profile could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
@@ -96,7 +103,7 @@ public class EmployeeResource {
     @Path("/{id}/optionalbenefits")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response insertEmployeeOptionalBenefits(@PathParam("id") String employeeId, List<EmployeeOptionalBenefit> insEmployeeOptBenefits) {
+    public Response insertEmployeeOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, List<EmployeeOptionalBenefit> insEmployeeOptBenefits) {
         try {
             String entryBy = securityContext.getUserPrincipal().getName();
             employeeRepository.insertEmpOptionalBenefits(employeeId, entryBy, insEmployeeOptBenefits);
@@ -111,7 +118,7 @@ public class EmployeeResource {
     @Path("/{id}/optionalbenefits/{oid}")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response insertEmployeeOptionalBenefits(@PathParam("id") String employeeId, @PathParam("oid") int optCompId, EmployeeOptionalBenefit updEmployeeOptBenefit) {
+    public Response insertEmployeeOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, @PathParam("oid") @Min(1) int optCompId, EmployeeOptionalBenefit updEmployeeOptBenefit) {
         try {
             String entryBy = securityContext.getUserPrincipal().getName();
             employeeRepository.updateEmpOptionalBenefits(employeeId, optCompId, entryBy, updEmployeeOptBenefit);

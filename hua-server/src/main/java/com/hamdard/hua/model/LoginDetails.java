@@ -1,13 +1,13 @@
 package com.hamdard.hua.model;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class LoginDetails {
-    @NotNull(message="Username could not be blank !!!")
+    @Size(min=1)
     private String username;
-    @NotNull
+    @Size(min=1)
     private String password;
     private String token;
 
