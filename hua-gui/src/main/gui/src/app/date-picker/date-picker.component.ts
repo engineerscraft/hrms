@@ -72,8 +72,8 @@ export class DatePickerOptions {
     this.minDate = obj && obj.minDate ? obj.minDate : null;
     this.maxDate = obj && obj.maxDate ? obj.maxDate : null;
     this.initialDate = obj && obj.initialDate ? obj.initialDate : null;
-    this.firstWeekdaySunday = obj && obj.firstWeekdaySunday ? obj.firstWeekdaySunday : false;
-    this.format = obj && obj.format ? obj.format : 'YYYY-MM-DD';
+    this.firstWeekdaySunday = obj && obj.firstWeekdaySunday ? obj.firstWeekdaySunday : true;
+    this.format = obj && obj.format ? obj.format : 'DD/MM/YYYY';
     this.selectYearText = obj && obj.selectYearText ? obj.selectYearText : 'Select Year';
     this.todayText = obj && obj.todayText ? obj.todayText : 'Today';
     this.clearText = obj && obj.clearText ? obj.clearText : 'Clear';
@@ -390,6 +390,7 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
   clear() {
     this.value = { day: null, month: null, year: null, momentObj: null, formatted: null };
     this.close();
+    this.outputEvents.emit({ type: 'clear', data: 'closed' });
   }
 
 }

@@ -344,5 +344,8 @@ export class EmployeeCreationComponent implements OnInit {
     if(event.type === 'dateChanged') {
       this.employeeInfo.get('employeeAddlDetails').patchValue({preMedicalCheckUpDate: event.data.formatted});
     }
+    if(event.type === 'clear') {
+      this.employeeInfo.get('employeeAddlDetails').patchValue({preMedicalCheckUpDate: ''});
+    }
   }
 }
