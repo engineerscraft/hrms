@@ -2,6 +2,7 @@ package com.hamdard.hua.javaconfig;
 
 import javax.ws.rs.ApplicationPath;
 
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import com.hamdard.hua.filter.AuthenticationFilter;
@@ -14,7 +15,6 @@ import com.hamdard.hua.rest.DesignationResource;
 import com.hamdard.hua.rest.DistrictResource;
 import com.hamdard.hua.rest.DocumentTypeResource;
 import com.hamdard.hua.rest.EmployeeResource;
-import com.hamdard.hua.rest.FileHandlerResource;
 import com.hamdard.hua.rest.HealthCheckEndpoint;
 import com.hamdard.hua.rest.JobRoleResource;
 import com.hamdard.hua.rest.OrganizationResource;
@@ -44,6 +44,6 @@ public class RestConfig extends ResourceConfig {
                 EmployeeResource.class, 
                 DocumentTypeResource.class,
                 JobRoleResource.class,
-                FileHandlerResource.class);
+                MultiPartFeature.class);
     }
 }

@@ -1,5 +1,6 @@
 package com.hamdard.hua.rest;
 
+import java.io.InputStream;
 import java.util.List;
 
 import javax.validation.constraints.Min;
@@ -17,8 +18,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hamdard.hua.model.Employee;
@@ -49,7 +53,7 @@ public class EmployeeResource {
 
     @Context
     private SecurityContext securityContext;
-
+    
     @POST
     @Path("/")
     @Secured(Privilege.CREATE_AN_EMP)
@@ -249,4 +253,19 @@ public class EmployeeResource {
         }
     }
 
+    @POST
+    @Path("{id}/image")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response uploadFile(@PathParam("id") @Size(min = 1) String employeeId, @FormDataParam("file") InputStream file, @FormDataParam("file") FormDataContentDisposition fileDisposition) {
+        // String employeeName = securityContext.getUserPrincipal().getName();
+        try {
+            byte[] employeeImage = IOUtils.toByteArray(file);
+            employeeRepository.insertEmployeeImage(employeeImage, employeeId);
+            return Response.status(200).build();
+        } catch (Exception ex) {
+            logger.error("The Employee_Image could not be updated.", ex);
+            return Response.status(500).entity(ex.getMessage()).build();
+        }
+    }
 }
