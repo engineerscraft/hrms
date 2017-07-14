@@ -14,6 +14,7 @@ import com.hamdard.hua.rest.DesignationResource;
 import com.hamdard.hua.rest.DistrictResource;
 import com.hamdard.hua.rest.DocumentTypeResource;
 import com.hamdard.hua.rest.EmployeeResource;
+import com.hamdard.hua.rest.FileHandlerResource;
 import com.hamdard.hua.rest.HealthCheckEndpoint;
 import com.hamdard.hua.rest.JobRoleResource;
 import com.hamdard.hua.rest.OrganizationResource;
@@ -42,6 +43,7 @@ public class RestConfig extends ResourceConfig {
                 StateResource.class, 
                 EmployeeResource.class, 
                 DocumentTypeResource.class,
-                JobRoleResource.class);
+                JobRoleResource.class,
+                FileHandlerResource.class);
     }
 }
