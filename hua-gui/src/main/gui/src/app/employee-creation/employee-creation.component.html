@@ -84,12 +84,13 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="date" formControlName="dob">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="dob" required>
                         <label class="text-input-label">Date of birth</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['dob'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['dob'].touched" class="error-text-input-label">Date of birth is required</div>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
+                        <date-picker (outputEvents)="changeDate($event, 'dob')"></date-picker>
                       </div>
                     </div>
                     <div class="cell span_1_of_4">
@@ -127,12 +128,13 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="date" formControlName="doj">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="doj" required>
                         <label class="text-input-label">Date of Joining</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['doj'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['doj'].touched" class="error-text-input-label">'Date of Joining' is required</div>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
+                        <date-picker (outputEvents)="changeDate($event, 'doj')"></date-picker>
                       </div>
                     </div>
                     <div class="cell span_1_of_4">
@@ -293,7 +295,7 @@
                         <label class="text-input-label">Pre-employment checkup date</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
-                        <date-picker (outputEvents)="changeDate($event)"></date-picker>
+                        <date-picker (outputEvents)="changeDate($event, 'preMedicalCheckUpDate')"></date-picker>
                       </div>
                     </div>
                     <div class="cell span_1_of_4">

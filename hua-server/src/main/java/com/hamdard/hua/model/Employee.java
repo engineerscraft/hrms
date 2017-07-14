@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.hamdard.hua.utils.DateAdapter;
 
 /**
  * @author Jyotirmoy Banerjee
@@ -87,9 +90,12 @@ public class Employee {
         private double benefitValue;
         private int frequency;
         private int iterations;
+        @XmlJavaTypeAdapter(DateAdapter.class)
         private Date nextDueDate;
         private SalaryOptComponent optSalaryComponent;
+        @XmlJavaTypeAdapter(DateAdapter.class)
         private Date startDate;
+        @XmlJavaTypeAdapter(DateAdapter.class)
         private Date stopDate;
         private String remarks;
 
@@ -169,9 +175,11 @@ public class Employee {
         private int cl; // the number of CLs of the employee
         private String hrId;
         private int maternityLeave;
+        @XmlJavaTypeAdapter(DateAdapter.class)
         private Date noticePeriodEndDate;
         private int paternityLeave;
         private int pl; // paid leaves for the employee
+        @XmlJavaTypeAdapter(DateAdapter.class)
         private Date probationPeriodEndDate;
         private int specialLeave;
         private String status;
@@ -410,6 +418,7 @@ public class Employee {
         private double nomineeShare1;
         private double nomineeShare2;
         private double nomineeShare3;
+        @XmlJavaTypeAdapter(DateAdapter.class)
         private Date preMedicalCheckUpDate;
         private int siblingNo;
 
@@ -520,7 +529,9 @@ public class Employee {
     public static class EmployeeBasicInfo {
         private String contactNo;
         private Department department;
+        @XmlJavaTypeAdapter(DateAdapter.class)
         private Date dob;
+        @XmlJavaTypeAdapter(DateAdapter.class)
         private Date doj;
         private String emailId;
         private String empFirstName;
@@ -529,6 +540,7 @@ public class Employee {
         private String empMiddleName;
         private String empType;
         private String entryBy;
+        @XmlJavaTypeAdapter(DateAdapter.class)
         private Date entryDate;
         private String fatherName;
         private boolean hrFlag;

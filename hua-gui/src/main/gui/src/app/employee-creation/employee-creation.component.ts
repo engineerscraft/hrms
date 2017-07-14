@@ -43,7 +43,7 @@ export class EmployeeCreationComponent implements OnInit {
     private countryService: CountryService,
     private employeeService: EmployeeService,
     private districtService: DistrictService,
-    private stateService: StateService, 
+    private stateService: StateService,
     private jobRoleService: JobRoleService) { }
 
   ngOnInit() {
@@ -54,7 +54,7 @@ export class EmployeeCreationComponent implements OnInit {
         'present': this.initAddressGroup('present')
       }),
       'employeeAddlDetails': this.initAdditionalInfoControls(),
-      'employeeJobRoleDetails' : this.formBuilder.group({
+      'employeeJobRoleDetails': this.formBuilder.group({
         'jobRoleId': ['', Validators.required]
       })
     });
@@ -137,28 +137,28 @@ export class EmployeeCreationComponent implements OnInit {
   }
 
   private checkLimit(value, maxValue) {
-    if(value > maxValue)
+    if (value > maxValue)
       return "red";
     else
       return "";
   }
 
-  private onJobRoleChange(jobRoleId){
+  private onJobRoleChange(jobRoleId) {
     console.log(jobRoleId);
     let salaryObservable = this.jobRoleService.getSalaryByJobRoleId(jobRoleId);
     let optionalCompObservable = this.jobRoleService.getOptionalBenefitsByJobRoleId(jobRoleId);
     this.processingInProgress = true;
-    let dummySalComponents : any[];
-    
+    let dummySalComponents: any[];
+
     Observable.forkJoin([salaryObservable, optionalCompObservable])
       .subscribe(
       data => {
         this.salaryComponents = data[0];
-        for(let comp of this.salaryComponents){
+        for (let comp of this.salaryComponents) {
           comp['selected'] = true;
         }
         this.optionalBenefitComponents = data[1];
-        for(let comp of this.optionalBenefitComponents){
+        for (let comp of this.optionalBenefitComponents) {
           comp['selected'] = false;
         }
       },
@@ -169,7 +169,7 @@ export class EmployeeCreationComponent implements OnInit {
         this.processingInProgress = false;
       }
       );
-      console.log(JSON.stringify(this.salaryComponents))
+    console.log(JSON.stringify(this.salaryComponents))
   }
 
   onOrgChange(orgId) {
@@ -308,11 +308,11 @@ export class EmployeeCreationComponent implements OnInit {
     var json = JSON.stringify(this.employeeInfo.controls.employeeBasicInfo.value);
 
     var salaryComponents: Array<any> = [];
-    for(let comp of this.salaryComponents){
-      if(comp['selected'] === true){
+    for (let comp of this.salaryComponents) {
+      if (comp['selected'] === true) {
         let obj = {
-          'salaryComponent': {'compId':comp['salCompId']},
-          'salaryValue' : comp['salValue']
+          'salaryComponent': { 'compId': comp['salCompId'] },
+          'salaryValue': comp['salValue']
         }
         salaryComponents.push(obj);
       }
@@ -323,7 +323,7 @@ export class EmployeeCreationComponent implements OnInit {
       'employeeAddress': [this.employeeInfo.controls.employeeAddress.get('permanent').value,
       this.employeeInfo.controls.employeeAddress.get('present').value],
       'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
-      'employeeSalary' : salaryComponents
+      'employeeSalary': salaryComponents
     };
     console.log(JSON.stringify(obj));
     this.processingInProgress = true;
@@ -339,13 +339,29 @@ export class EmployeeCreationComponent implements OnInit {
       });
   }
 
-  changeDate(event) {
-    console.log(event);
-    if(event.type === 'dateChanged') {
-      this.employeeInfo.get('employeeAddlDetails').patchValue({preMedicalCheckUpDate: event.data.formatted});
-    }
-    if(event.type === 'clear') {
-      this.employeeInfo.get('employeeAddlDetails').patchValue({preMedicalCheckUpDate: ''});
+  changeDate(event, labelName) {
+
+    if (labelName === 'preMedicalCheckUpDate') {
+      if (event.type === 'dateChanged') {
+        this.employeeInfo.get('employeeAddlDetails').patchValue({ preMedicalCheckUpDate: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.employeeInfo.get('employeeAddlDetails').patchValue({ preMedicalCheckUpDate: '' });
+      }
+    } else if (labelName === 'dob') {
+      if (event.type === 'dateChanged') {
+        this.employeeInfo.get('employeeBasicInfo').patchValue({ dob: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.employeeInfo.get('employeeBasicInfo').patchValue({ dob: '' });
+      }
+    } else if (labelName === 'doj') {
+      if (event.type === 'dateChanged') {
+        this.employeeInfo.get('employeeBasicInfo').patchValue({ doj: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.employeeInfo.get('employeeBasicInfo').patchValue({ doj: '' });
+      }
     }
   }
 }
