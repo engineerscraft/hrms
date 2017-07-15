@@ -35,7 +35,7 @@ CREATE USER "sysadm" WITH CREATEROLE SUPERUSER PASSWORD 'sysadm';
 2. Create a folder called log under the location.
 
 # Code Build
-1. Go inside the trunk folder and run the command `mvn clean install`. Note: For the first time, it will download a lot of stuff and hence it may take quite some time
+1. Go inside the `hrms` folder and run the command `mvn clean install`. Note: For the first time, it will download a lot of stuff and hence it may take quite some time
 
 # Code Commit
 1. After making the changes, go to the root hrms folder
@@ -60,7 +60,7 @@ CREATE USER "sysadm" WITH CREATEROLE SUPERUSER PASSWORD 'sysadm';
 4. There is a tool called 'gitk' (should be available by default), that presents a nice view of the changes done by various commits. 
 
 # Setting Up LDAP
-1. Import the LDIF file huac\trunk\hua_setup\hrms.ldif into the LDAP server using the JXplorer 
+1. Import the LDIF file hrms\hua_setup\hrms.ldif into the LDAP server using the JXplorer 
    Note: Login details of LDAP
    * Host: localhost
    * Port: 10389
@@ -68,24 +68,24 @@ CREATE USER "sysadm" WITH CREATEROLE SUPERUSER PASSWORD 'sysadm';
    * Password: secret
    * Protocol: LDAPv3
    * Level: User + Password
-2. Users TEST/TEST, HUB1/HUB1, HUB2/HUB2, HUB10/HUB10, HUB42,HUB42 will be created. Here TEST is an ADMIN user and not an employee. HUB1 and HUB42 are SUPERVISOR, HUB10 is an HR, HUB2 is a normal EMPLOYEE.
+2. Users TEST/TEST, HUB1/HUB1, HUB2/HUB2, HUB10/HUB10, HUB42/HUB42 will be created. Here TEST is an ADMIN user and not an employee. HUB1 and HUB42 are SUPERVISOR, HUB10 is an HR, HUB2 is a normal EMPLOYEE.
    
 # Running the Servers
-1. Open the command terminal, go to the folder huac\trunk\hua-gui\src\main\gui and run the command `npm start`
-2. Open another terminal, go to the folder huac\trunk\hua-server and run the command `mvn spring-boot:run`
+1. Open the command terminal, go to the folder hrms\hua-gui\src\main\gui and run the command `npm start`
+2. Open another terminal, go to the folder hrms\hua-server and run the command `mvn spring-boot:run`
 3. Open a web browser and go to the URL http://localhost:4200 and login using the credentials TEST/TEST
 
 # Generate REST API Documentation
 1. Go to location hua-server
 2. Run the command `mvn -P doc install`
 3. The document will ge generated at docs\api
-4. The document will be available at http://techsnippet.online/hrms/api/
+4. The document will be available at https://engineerscraft.github.io/hrms/api/
 
 # Generate DB Structure Documentation
 1. Go to location hua-server
 2. Run the command `mvn -P doc site`
 3. The document will ge generated at docs\database\schemaspy
-4. The document will be available at http://techsnippet.online/hrms/database/schemaspy/
+4. The document will be available at https://engineerscraft.github.io/hrms/database/schemaspy/
 
 # Running Integration Tests for APIs
 1. Run the command `mvn -P test integration-test`
