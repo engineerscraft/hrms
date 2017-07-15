@@ -16,5 +16,191 @@
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:330px;">
   </div>
-  <pre>{{employeeInfo | json}}</pre>
+  <!--pre>{{employeeInfo | json}}</pre-->
+  <div class="display-table">
+    <div class="row span_4_of_4">
+      <div>
+
+        <div class="tab_container">
+          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
+          <label for="tab1" class="tab-header span_1_of_6 cell">Personal Details</label>
+
+          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" />
+          <label for="tab2" class="tab-header span_1_of_6 cell">Additional Details</label>
+
+          <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
+          <label for="tab3" class="tab-header span_1_of_6 cell">Address Details</label>
+
+          <input id="tab4" class="tab-radio" type="radio" name="tabs" value="4" />
+          <label for="tab4" class="tab-header span_1_of_6 cell">Payroll Details</label>
+
+          <input id="tab5" class="tab-radio" type="radio" name="tabs" value="5" />
+          <label for="tab5" class="tab-header span_1_of_6 cell">Others</label>
+
+          <form method="" class="">
+            <fieldset [disabled]="processingInProgress">
+              <section id="content1" class="tab-content">
+                <div class="display-table">
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" maxlength="60" required value="{{employeeInfo?.title}}" readonly>
+                        <label class="text-input-label">Title</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" maxlength="60" required value="{{employeeInfo?.empFirstName}}" readonly>
+                        <label class="text-input-label">First Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" maxlength="30" required value="{{employeeInfo?.empMiddleName}}" readonly>
+                        <label class="text-input-label">Middle Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" maxlength="60" required value="{{employeeInfo?.empLastName}}" readonly>
+                        <label class="text-input-label">Last Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" maxlength="120" required value="{{employeeInfo?.fatherName}}" readonly>
+                        <label class="text-input-label">Father's Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" required value="{{employeeInfo?.dob}}" readonly>
+                        <label class="text-input-label">Date of birth</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" maxlength="30" required value="{{employeeInfo?.emailId}}" readonly>
+                        <label class="text-input-label">Email Id</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" maxlength="15" required value="{{employeeInfo?.contactNo}}" readonly>
+                        <label class="text-input-label">Contact No</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" maxlength="15" required value="{{employeeInfo?.nationality}}" readonly>
+                        <label class="text-input-label">Nationality</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" required value="{{employeeInfo?.doj}}" readonly>
+                        <label class="text-input-label">Date of Joining</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" required value="{{employeeInfo?.sex}}" readonly>
+                        <label class="text-input-label">Sex</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" required value="{{employeeInfo?.maritalStatus}}" readonly>
+                        <label class="text-input-label">Marital status</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" required value="{{employeeInfo?.organization}}" readonly>
+                        <label class="text-input-label">Organization</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" required value="{{employeeInfo?.unit}}" readonly>
+                        <label class="text-input-label">Unit</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" required value="{{employeeInfo?.department}}" readonly>
+                        <label class="text-input-label">Department</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" required value="{{employeeInfo?.empType}}" readonly>
+                        <label class="text-input-label">Employee Type</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" required value="{{employeeInfo?.identityDocType}}" readonly>
+                        <label class="text-input-label">Identity Doc Type</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" maxlength="32"  required value="{{employeeInfo?.identityNumber}}" readonly>
+                        <label class="text-input-label">Identity Number</label>
+                          <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
