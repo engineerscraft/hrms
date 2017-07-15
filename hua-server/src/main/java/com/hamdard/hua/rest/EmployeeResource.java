@@ -1,5 +1,6 @@
 package com.hamdard.hua.rest;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.SecurityContext;
 
 import org.apache.commons.io.IOUtils;
@@ -266,6 +268,36 @@ public class EmployeeResource {
         } catch (Exception ex) {
             logger.error("The Employee_Image could not be updated.", ex);
             return Response.status(500).entity(ex.getMessage()).build();
+        }
+    }
+    
+    @GET
+    @Path("{id}")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getEmployeeDetails(@PathParam("id") @Size(min=1) String employeeId) {
+        try {
+            Employee.EmployeeBasicInfo empInfo = employeeRepository.getEmployeeDetailsByEmpId(employeeId);
+            return Response.status(Response.Status.OK).entity(empInfo).build();
+        } catch (Exception ex) {
+            logger.error("The employee details could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @GET
+    @Path("{id}/image")
+    @Produces("image/jpg")
+    public Response getEmployeeImage(@PathParam("id") @Size(min = 1) String employeeId) {
+        try {
+            byte[] empImage = employeeRepository.getEmployeeImageByEmpId(employeeId);
+            ResponseBuilder response = Response.ok((Object) empImage);
+            response.header("Content-Disposition",
+                    "attachment; filename=employee_image.jpg");
+            return response.build();
+        } catch (Exception ex) {
+            logger.error("The employee image could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 }

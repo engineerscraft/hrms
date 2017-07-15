@@ -48,7 +48,7 @@ export class EmployeeService {
   }
 
   read(employeeId: String) {
-    return this.httpService.callHttpGet("/resources/employee/"+employeeId)
+    return this.httpService.callHttpGet("/resources/v1/employee/management/"+employeeId)
       .map(res => res.json());
   }
 }

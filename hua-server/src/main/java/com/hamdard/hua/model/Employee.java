@@ -738,6 +738,13 @@ public class Employee {
             this.entryDate = entryDate;
         }
 
+        @Override
+        public String toString() {
+            return "EmployeeBasicInfo [contactNo=" + contactNo + ", department=" + department + ", dob=" + dob + ", doj=" + doj + ", emailId=" + emailId + ", empFirstName=" + empFirstName + ", empId=" + empId + ", empLastName=" + empLastName
+                    + ", empMiddleName=" + empMiddleName + ", empType=" + empType + ", entryBy=" + entryBy + ", entryDate=" + entryDate + ", fatherName=" + fatherName + ", hrFlag=" + hrFlag + ", identityDocType=" + identityDocType + ", identityNumber="
+                    + identityNumber + ", maritalStatus=" + maritalStatus + ", nationality=" + nationality + ", organization=" + organization + ", sex=" + sex + ", supervisorFlag=" + supervisorFlag + ", title=" + title + ", unit=" + unit + "]";
+        }
+
     }
 
     public static class EmployeeSearchResult {
