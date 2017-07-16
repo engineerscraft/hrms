@@ -6,7 +6,7 @@
     top: 0;
     transition: width 0.5s;
     width: 90px;
-    z-index: 6;
+    z-index: 30;
 }
 
 .sidebar:after {
@@ -23,7 +23,7 @@
   width: 0;
   opacity: 0;
   left: 90px;
-  z-index: 6;
+  z-index: 30;
   padding-bottom: 150px;
 }
 
