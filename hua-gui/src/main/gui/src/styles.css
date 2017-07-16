@@ -773,7 +773,9 @@ select * {
 #tab1:checked ~ form #content1,
 #tab2:checked ~ form #content2,
 #tab3:checked ~ form #content3,
-#tab4:checked ~ form #content4 {
+#tab4:checked ~ form #content4,
+#tab5:checked ~ form #content5,
+#tab6:checked ~ form #content6 {
   display: block;
 }
 
