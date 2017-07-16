@@ -95,25 +95,25 @@ CREATE USER "sysadm" WITH CREATEROLE SUPERUSER PASSWORD 'sysadm';
 2. Open https://localhost:8080 in Chrome and accept the security exception to continue (since self-signed certificate authenticity could not be verified).
 3. To use the self-signed certificate with other applications, such as, Postman, import the certificate (from hua-server/src/main/resources folder) as Trusted Root in OS Credential Store.
 
-#Running the server using script: start_hrms.bat
+# Running the server using script: start_hrms.bat
 1. Build the distribution packge using: 'mvn clean install'
 2. Inside hrms\hua-server\target directory hrms-distribution.zip and hrms-distribution.tar will be created.
 3. Ship hrms-distribution.zip to desired location.
 4. Extract hrms-distribution.zip which will give you directory structure as tabulated below:
 
-hrms
-   |--config
-		|--application-prod.properties
-		|--keystore.p12
-		|--log4j2.xml
-		
-   |--lib
-		|--hrms.jar
-		
-   |--log
-   
-   |--start_hrms.bat
-   |--start_hrms.sh  
+ 	hrms --> config --> Application-prod.properties
+ 
+ 	hrms --> config --> keystore.p12
+ 
+ 	hrms --> config --> log4j2.xml		
+ 
+ 	hrms --> lib --> hrms.jar		
+ 
+ 	hrms --> log  
+ 
+ 	hrms --> start_hrms.bat
+ 
+ 	hrms --> start_hrms.sh  
    
 5. Execute start_hrms.bat to start the application by passing argument (e.g prod). If no argument is passed, the default will be taken as prod.
    './start_hrms.bat prod'
