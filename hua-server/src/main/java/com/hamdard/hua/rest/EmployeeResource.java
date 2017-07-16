@@ -293,7 +293,7 @@ public class EmployeeResource {
             byte[] empImage = employeeRepository.getEmployeeImageByEmpId(employeeId);
             ResponseBuilder response = Response.ok((Object) empImage);
             response.header("Content-Disposition",
-                    "attachment; filename=employee_image.jpg");
+                    "inline; filename=employee_image.jpg");
             return response.build();
         } catch (Exception ex) {
             logger.error("The employee image could not be fetched", ex);
