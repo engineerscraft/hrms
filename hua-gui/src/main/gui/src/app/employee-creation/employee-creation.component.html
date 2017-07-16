@@ -240,7 +240,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="identityNumber" maxlength="32"  required>
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="identityNumber" maxlength="32" required>
                         <label class="text-input-label">Identity Number</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['identityNumber'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['identityNumber'].touched" class="error-text-input-label">Please provide corresponding identity docuemnt number</div>
@@ -463,7 +463,7 @@
 
                     <div role="toggle" class="toggle-content">
                       <div formGroupName="present" class="display-table">
-                        <div class="row"> 
+                        <div class="row">
                           <div class="cell span_1_of_4">
                             <div class="group">
                               <input type="checkbox" id="sameAsPermanent" class="default-checkbox span_4_of_4" (change)="copyFromPermanent()">
@@ -590,113 +590,196 @@
                     </div>
                     <hr/>
                     <div id="components" *ngIf="!employeeInfo.controls.employeeJobRoleDetails.controls['jobRoleId'].hasError('required')">
-                    <div class="toggle" style="padding-top: 20px;">
-                      <!-- Checkbox toggle -->
-                      <input type="checkbox" value="selected" id="salaryComponents" class="toggle-input">
-                      <label for="salaryComponents" class="toggle-label">Salary Components</label>
+                      <div class="toggle" style="padding-top: 20px;">
+                        <!-- Checkbox toggle -->
+                        <input type="checkbox" value="selected" id="salaryComponents" class="toggle-input">
+                        <label for="salaryComponents" class="toggle-label">Salary Components</label>
 
-                      <div role="toggle" class="toggle-content">
+                        <div role="toggle" class="toggle-content">
 
-                        <div class="display-table inner-component-width">
-                          <div class="table" #table>
+                          <div class="display-table inner-component-width">
+                            <div class="table" #table>
 
-                            <div class="row" style="padding-top: 10px">
-                              <div class="cell span_3_of_6">
-                                Description
+                              <div class="row" style="padding-top: 10px">
+                                <div class="cell span_3_of_6">
+                                  Description
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Value in BDT
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Max limit
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Applicable?
+                                </div>
                               </div>
-                              <div class="cell span_1_of_6">
-                                Value in BDT
-                              </div>
-                              <div class="cell span_1_of_6">
-                                Max limit
-                              </div>                            
-                              <div class="cell span_1_of_6">
-                                Applicable?
-                              </div>
-                            </div>
-
-
-                            <div class="row" *ngFor="let component of salaryComponents">
-                              <div class="table-cell">
-                                {{component.description}}
-                              </div>
-                              <div class="table-cell" [style.background-color]="checkLimit(component.salValue, component.maxAllowLimit)">
-                                <input type="text" style="border-radius: 2px" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue"/>
-                              </div>
-                              <div class="table-cell">
-                                {{component.maxAllowLimit | currency:'BDT':true}}
-                              </div>
-                              <div class="table-cell">
-                                <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.selected">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="toggle">
-                      <!-- Checkbox toggle -->
-                      <input type="checkbox" value="selected" id="optionalComponents" class="toggle-input">
-                      <label for="optionalComponents" class="toggle-label">Optional Components</label>
-
-                      <div role="toggle" class="toggle-content">
-
-                        <div class="display-table inner-component-width">
-                          <div class="table" #table>
-
-                            <div class="row" style="padding-top: 10px">
-                              <div class="cell span_3_of_6">
-                                Description
-                              </div>
-                              <div class="cell span_1_of_6">
-                                Value in BDT
-                              </div>
-                              <div class="cell span_1_of_6">
-                                Max limit
-                              </div>                            
-                              <div class="cell span_1_of_6">
-                                Applicable?
-                              </div>
-                            </div>
 
 
-                            <div class="row" *ngFor="let component of optionalBenefitComponents">
-                              <div class="table-cell">
-                                {{component.description}}
-                              </div>
-                              <div class="table-cell">
-                                <input type="text" [style.background-color]="checkLimit(component.salValue, component.maxAllowLimit)" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue" />
-                              </div>
-                              <div class="table-cell">
-                                {{component.maxAllowLimit| currency:'BDT':true}}
-                              </div>
-                              <div class="table-cell">
-                                <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.selected">
+                              <div class="row" *ngFor="let component of salaryComponents">
+                                <div class="table-cell">
+                                  {{component.description}}
+                                </div>
+                                <div class="table-cell" [style.background-color]="checkLimit(component.salValue, component.maxAllowLimit)">
+                                  <input type="text" style="border-radius: 2px" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue" />
+                                </div>
+                                <div class="table-cell">
+                                  {{component.maxAllowLimit | currency:'BDT':true}}
+                                </div>
+                                <div class="table-cell">
+                                  <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.selected">
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                      <div class="toggle">
+                        <!-- Checkbox toggle -->
+                        <input type="checkbox" value="selected" id="optionalComponents" class="toggle-input">
+                        <label for="optionalComponents" class="toggle-label">Optional Components</label>
+
+                        <div role="toggle" class="toggle-content">
+
+                          <div class="display-table inner-component-width">
+                            <div class="table" #table>
+
+                              <div class="row" style="padding-top: 10px">
+                                <div class="cell span_3_of_6">
+                                  Description
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Value in BDT
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Max limit
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Applicable?
+                                </div>
+                              </div>
+
+
+                              <div class="row" *ngFor="let component of optionalBenefitComponents">
+                                <div class="table-cell">
+                                  {{component.description}}
+                                </div>
+                                <div class="table-cell">
+                                  <input type="text" [style.background-color]="checkLimit(component.salValue, component.maxAllowLimit)" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="component.salValue" />
+                                </div>
+                                <div class="table-cell">
+                                  {{component.maxAllowLimit| currency:'BDT':true}}
+                                </div>
+                                <div class="table-cell">
+                                  <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.selected">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </section>
               <section id="content5" class="tab-content">
-                <div class="display-table" formGroupName="otherDetails">
+                <div class="display-table">
                   <div class="row">
                     <div class="cell span_1_of_4">
-                      <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="checkbox" formControlName="isHr" required>
-                        <label class="text-input-label">Is HR?</label>
+                      <div class="group" formGroupName="employeeBasicInfo">
+                        <input type="checkbox" id="isHr" class="default-checkbox span_4_of_4" formControlName="hrFlag">
+                        <label for="isHr">Is Employee an HR?</label>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group" formGroupName="employeeBasicInfo">
+                        <input type="checkbox" id="isManager" class="default-checkbox span_4_of_4" formControlName="supervisorFlag">
+                        <label for="isManager">Is Employee a Manager?</label>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group" formGroupName="otherDetails">
+                        <input #hrEmailId list="hrEmailId" class="inputMaterial span_4_of_4" type="text" formControlName="hrEmailId" required>
+                        <datalist id="hrEmailId">
+                          <option *ngFor="let hrEmailIdSuggestion of autoCompleteSuggestions.hrEmailIdSuggestions" value="{{hrEmailIdSuggestion.hrEmailId}}">
+                        </datalist>
+                        <label class="text-input-label">HR Email</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group" formGroupName="otherDetails">
+                        <input #supervisorEmailId list="supervisorEmailId" class="inputMaterial span_4_of_4" type="text" formControlName="supervisorEmailId"
+                          required>
+                        <datalist id="supervisorEmailId">
+                          <option *ngFor="let supervisorEmailIdSuggestion of autoCompleteSuggestions.supervisorEmailIdSuggestions" value="{{supervisorEmailIdSuggestion.supervisorEmailId}}">
+                        </datalist>
+                        <label class="text-input-label">Supervisor Email</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
                       </div>
                     </div>
                   </div>
+
+                  <div class="row"  formGroupName="otherDetails">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="cl" required>
+                        <label class="text-input-label">No of Casual Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="maternityLeave" required>
+                        <label class="text-input-label">No of Maternity Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="paternityLeave" required>
+                        <label class="text-input-label">No of Paternity Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="specialLeave" required>
+                        <label class="text-input-label">No Special Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" formGroupName="otherDetails">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="sickLeave" required>
+                        <label class="text-input-label">No of Sick Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="group">
+                      <input class="inputMaterial span_4_of_4" type="text" formControlName="probationPeriodEndDate" required>
+                      <label class="text-input-label">Probation End Date</label>
+                      <span class="highlight"></span>
+                      <span class="bar span_4_of_4"></span>
+                      <date-picker (outputEvents)="changeDate($event, 'probationPeriodEndDate')"></date-picker>
+                    </div>
+                  </div>
                 </div>
               </section>
-              
+
               <div class="row">
                 <div class="cell span_4_of_4">
                   <button type="submit" class="btn ripple" [disabled]="canCreate() && false">Create</button>

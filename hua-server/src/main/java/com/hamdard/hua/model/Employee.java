@@ -173,7 +173,8 @@ public class Employee {
 
     public static class EmployeeHierarchy {
         private int cl; // the number of CLs of the employee
-        private String hrId;
+        private int hrId;
+        private String hrEmailId;
         private int maternityLeave;
         @XmlJavaTypeAdapter(DateAdapter.class)
         private Date noticePeriodEndDate;
@@ -183,102 +184,89 @@ public class Employee {
         private Date probationPeriodEndDate;
         private int specialLeave;
         private String status;
-        private String supervisorId;
+        private String supervisorEmailId;
+        private int supervisorId;
         private int sickLeave;
-
         public int getCl() {
             return this.cl;
         }
-
         public void setCl(int cl) {
             this.cl = cl;
         }
-
-        public String getHrId() {
+        public int getHrId() {
             return this.hrId;
         }
-
-        public void setHrId(String hrId) {
+        public void setHrId(int hrId) {
             this.hrId = hrId;
         }
-
+        public String getHrEmailId() {
+            return this.hrEmailId;
+        }
+        public void setHrEmailId(String hrEmailId) {
+            this.hrEmailId = hrEmailId;
+        }
         public int getMaternityLeave() {
             return this.maternityLeave;
         }
-
         public void setMaternityLeave(int maternityLeave) {
             this.maternityLeave = maternityLeave;
         }
-
         public Date getNoticePeriodEndDate() {
             return this.noticePeriodEndDate;
         }
-
         public void setNoticePeriodEndDate(Date noticePeriodEndDate) {
             this.noticePeriodEndDate = noticePeriodEndDate;
         }
-
         public int getPaternityLeave() {
             return this.paternityLeave;
         }
-
         public void setPaternityLeave(int paternityLeave) {
             this.paternityLeave = paternityLeave;
         }
-
         public int getPl() {
             return this.pl;
         }
-
         public void setPl(int pl) {
             this.pl = pl;
         }
-
         public Date getProbationPeriodEndDate() {
             return this.probationPeriodEndDate;
         }
-
         public void setProbationPeriodEndDate(Date probationPeriodEndDate) {
             this.probationPeriodEndDate = probationPeriodEndDate;
         }
-
         public int getSpecialLeave() {
             return this.specialLeave;
         }
-
         public void setSpecialLeave(int specialLeave) {
             this.specialLeave = specialLeave;
         }
-
         public String getStatus() {
             return this.status;
         }
-
         public void setStatus(String status) {
             this.status = status;
         }
-
-        public String getSupervisorId() {
+        public String getSupervisorEmailId() {
+            return this.supervisorEmailId;
+        }
+        public void setSupervisorEmailId(String supervisorEmailId) {
+            this.supervisorEmailId = supervisorEmailId;
+        }
+        public int getSupervisorId() {
             return this.supervisorId;
         }
-
-        public void setSupervisorId(String supervisorId) {
+        public void setSupervisorId(int supervisorId) {
             this.supervisorId = supervisorId;
         }
-
-        @Override
-        public String toString() {
-            return "EmployeeHierarchy [cl=" + this.cl + ", hrId=" + this.hrId + ", maternityLeave=" + this.maternityLeave + ", noticePeriodEndDate=" + this.noticePeriodEndDate + ", paternityLeave=" + this.paternityLeave + ", pl=" + this.pl
-                    + ", probationPeriodEndDate=" + this.probationPeriodEndDate + ", specialLeave=" + this.specialLeave + ", status=" + this.status + ", supervisorId=" + this.supervisorId + "]";
-        }
-
         public int getSickLeave() {
             return this.sickLeave;
         }
-
         public void setSickLeave(int sickLeave) {
             this.sickLeave = sickLeave;
         }
+        
+        
     }
 
     public static class EmployeeAddress {

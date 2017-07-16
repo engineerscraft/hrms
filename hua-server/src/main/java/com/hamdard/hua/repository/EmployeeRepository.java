@@ -167,7 +167,7 @@ public class EmployeeRepository {
         this.insertBasicInfo(employeeId, newEmployee.getEmployeeBasicInfo());
         this.insertAdditionalInfo(employeeId, newEmployee.getEmployeeAddlDetails());
         this.insertEmployeeAddress(employeeId, newEmployee.getEmployeeAddress());
-        // this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
+        this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
         // this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
         this.insertEmpSalaryComponents(employeeId, entryBy, newEmployee.getEmployeeSalary(), entryDate);
         // TODO: take care of optional components
@@ -228,12 +228,14 @@ public class EmployeeRepository {
      */
     private void insertEmployeeHierarchy(String employeeId, EmployeeHierarchy hierarchy, Date entryDate) throws Exception {
         logger.info(sqlMarker, employeeHierarchyInsert);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeId, () -> hierarchy.getSupervisorId(), () -> hierarchy.getHrId(), () -> hierarchy.getStatus(), () -> hierarchy.getCl(), () -> hierarchy.getPl(),
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeId, () -> hierarchy.getSupervisorEmailId(), () -> hierarchy.getHrEmailId(), () -> hierarchy.getStatus(), () -> hierarchy.getCl(), () -> hierarchy.getPl(),
                 () -> hierarchy.getPaternityLeave(), () -> hierarchy.getSickLeave(), () -> hierarchy.getMaternityLeave(), () -> hierarchy.getSpecialLeave(), () -> hierarchy.getProbationPeriodEndDate(), () -> hierarchy.getNoticePeriodEndDate(),
                 () -> entryDate);
 
-        jdbcTemplate.update(employeeHierarchyInsert, new Object[] { employeeId, hierarchy.getSupervisorId(), hierarchy.getHrId(), hierarchy.getStatus(), hierarchy.getCl(), hierarchy.getPl(), hierarchy.getPaternityLeave(), hierarchy.getSickLeave(),
-                hierarchy.getMaternityLeave(), hierarchy.getSpecialLeave(), hierarchy.getProbationPeriodEndDate(), hierarchy.getNoticePeriodEndDate(), entryDate });
+        jdbcTemplate.update(employeeHierarchyInsert, new Object[] { employeeId, hierarchy.getSupervisorEmailId(), hierarchy.getHrEmailId(),
+                hierarchy.getStatus(), hierarchy.getCl(), hierarchy.getPl(), hierarchy.getPaternityLeave(), 
+                hierarchy.getSickLeave(), hierarchy.getMaternityLeave(), hierarchy.getSpecialLeave(), 
+                hierarchy.getProbationPeriodEndDate(), hierarchy.getNoticePeriodEndDate(), entryDate });
     }
 
     /**
