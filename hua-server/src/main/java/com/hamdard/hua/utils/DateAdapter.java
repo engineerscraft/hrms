@@ -26,7 +26,7 @@ public class DateAdapter extends XmlAdapter<String, Date> {
     @Override
     public Date unmarshal(String v) throws Exception {
         synchronized (dateFormat) {
-            if(v == null)
+            if(v == null || v.trim().length() == 0)
                 return null;
             return dateFormat.parse(v);
         }

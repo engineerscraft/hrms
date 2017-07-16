@@ -33,7 +33,10 @@ export class EmployeeCreationComponent implements OnInit {
   private salaryComponents;
   private optionalBenefitComponents;
   private message: string = '';
-
+  private autoCompleteSuggestions = {
+    supervisorEmailIdSuggestions: Array(), hrEmailIdSuggestions: Array()
+  };
+  private valueChanged = true;
 
   constructor(private formBuilder: FormBuilder,
     private organizationService: OrganizationService,
@@ -45,6 +48,8 @@ export class EmployeeCreationComponent implements OnInit {
     private districtService: DistrictService,
     private stateService: StateService,
     private jobRoleService: JobRoleService) { }
+
+    
 
   ngOnInit() {
     this.employeeInfo = this.formBuilder.group({
@@ -60,24 +65,74 @@ export class EmployeeCreationComponent implements OnInit {
       'otherDetails' : this.otherDetailsControls()
     });
     this.initiateLists();
+
+    this.employeeInfo.controls.otherDetails.get("hrEmailId").valueChanges.debounceTime(400)
+      .subscribe(
+      emailId => {
+        this.employeeService.autoComplete('hrEmailId', emailId)
+          .subscribe(
+          data => {
+            console.log(data);
+            this.autoCompleteSuggestions.hrEmailIdSuggestions = data;
+            this.valueChanged = false;
+          },
+          err => {
+
+          },
+          () => {
+            if(this.valueChanged === true) {
+              this.autoCompleteSuggestions.hrEmailIdSuggestions = null;
+            }
+            if(this.valueChanged === false) {
+              this.valueChanged = true;
+            }                       
+          }
+          )
+      }
+      );
+
+    this.employeeInfo.controls.otherDetails.get("supervisorEmailId").valueChanges.debounceTime(400)
+      .subscribe(
+      emailId => {
+        this.employeeService.autoComplete('supervisorEmailId', emailId)
+          .subscribe(
+          data => {
+            console.log(data);
+            this.autoCompleteSuggestions.supervisorEmailIdSuggestions = data;
+            this.valueChanged = false;
+          },
+          err => {
+
+          },
+          () => {
+            if(this.valueChanged === true) {
+              this.autoCompleteSuggestions.supervisorEmailIdSuggestions = null;
+            }
+            if(this.valueChanged === false) {
+              this.valueChanged = true;
+            }                                   
+          }
+          )
+      }
+      );
   }
 
+  
+
   private otherDetailsControls() {
-    return this.formBuilder.group({
-      'isHr': [''],
-      'isLineManager': [''],
-      'hrName': [''],
-      'managerName': ['']
+    return this.formBuilder.group({      
+      'hrEmailId': [''],
+      'supervisorEmailId': [''],
+      'cl': [''],
+      'maternityLeave': [],
+      'paternityLeave' : [],
+      'pl' : [],
+      'specialLeave' : [],
+      'sickLeave' : [],
+      'probationPeriodEndDate' : ['']
     });
   }
 
-  OnClickOk() {
-    this.message = '';
-  }
-
-  private canCreate() {
-    return !(this.employeeInfo.controls.employeeBasicInfo.valid);
-  }
 
   private initAdditionalInfoControls() {
     return this.formBuilder.group({
@@ -121,10 +176,41 @@ export class EmployeeCreationComponent implements OnInit {
       'identityDocType': this.formBuilder.group({
         'docTypeId': ['', Validators.required]
       }),
-      'identityNumber': ['', Validators.required]
+      'identityNumber': ['', Validators.required],
+      'hrFlag':[''],
+      'supervisorFlag':['']
     });
   }
 
+  /**
+   * Create form builder group for address
+   */
+  initAddressGroup(type: string) {
+    return this.formBuilder.group({
+      'houseNo': ['', Validators.required],
+      'streetName': ['', Validators.required],
+      'region': [''],
+      'area': [''],
+      'districtId': ['', Validators.required],
+      'stateId': ['', Validators.required],
+      'countryId': ['', Validators.required],
+      'pinno': ['', Validators.required],
+      'addressType': type
+    });
+  }
+
+  
+  OnClickOk() {
+    this.message = '';
+  }
+
+  private canCreate() {
+    return !(this.employeeInfo.controls.employeeBasicInfo.valid);
+  }
+
+/**
+ * Initialize all the static lists
+ */
   private initiateLists() {
     let organizationObservable = this.organizationService.getOrganizations();
     let docTypeServiceObservable = this.docTypeService.getIdentityDocTypes();
@@ -146,6 +232,11 @@ export class EmployeeCreationComponent implements OnInit {
       );
   }
 
+/**
+ * Used to compare a salary compoenet against the max value allowed
+ * @param value 
+ * @param maxValue 
+ */
   private checkLimit(value, maxValue) {
     if (value > maxValue)
       return "red";
@@ -153,6 +244,10 @@ export class EmployeeCreationComponent implements OnInit {
       return "";
   }
 
+/**
+ * Job role change handler, refresh the salary compoenents
+ * @param jobRoleId 
+ */
   private onJobRoleChange(jobRoleId) {
     console.log(jobRoleId);
     let salaryObservable = this.jobRoleService.getSalaryByJobRoleId(jobRoleId);
@@ -182,6 +277,10 @@ export class EmployeeCreationComponent implements OnInit {
     console.log(JSON.stringify(this.salaryComponents))
   }
 
+/**
+ * Organization change handler
+ * @param orgId 
+ */
   onOrgChange(orgId) {
     console.log(orgId);
     if (orgId === "")
@@ -206,8 +305,12 @@ export class EmployeeCreationComponent implements OnInit {
       );
   }
 
+/**
+ * Country change handler
+ * @param countryId 
+ * @param addressType 
+ */
   onCountryChange(countryId, addressType: string) {
-    // console.log(countryId + '~' + addressType);
     this.processingInProgress = true;
 
     this.stateService.getStates(countryId)
@@ -231,7 +334,11 @@ export class EmployeeCreationComponent implements OnInit {
 
   }
 
-
+/**
+ * State change handler (works for both present and permanent address)
+ * @param stateId 
+ * @param addressType 
+ */
   onStateChange(stateId, addressType: string) {
     console.log(stateId + '~' + addressType);
 
@@ -254,6 +361,10 @@ export class EmployeeCreationComponent implements OnInit {
 
   }
 
+/**
+ * Unit change handler
+ * @param unitId 
+ */
   onUnitChange(unitId) {
     console.log(unitId);
     if (unitId === "")
@@ -297,23 +408,10 @@ export class EmployeeCreationComponent implements OnInit {
     this.employeeInfo.get('employeeAddress').get('present').get('pinno').setValue(pinno.value);
   }
 
-  /**
-   * Create form builder group for address
-   */
-  initAddressGroup(type: string) {
-    return this.formBuilder.group({
-      'houseNo': ['', Validators.required],
-      'streetName': ['', Validators.required],
-      'region': [''],
-      'area': [''],
-      'districtId': ['', Validators.required],
-      'stateId': ['', Validators.required],
-      'countryId': ['', Validators.required],
-      'pinno': ['', Validators.required],
-      'addressType': type
-    });
-  }
 
+/**
+ * Crates the employee and shows the EMployee ID created
+ */
   create() {
     var json = JSON.stringify(this.employeeInfo.controls.employeeBasicInfo.value);
 
@@ -333,7 +431,8 @@ export class EmployeeCreationComponent implements OnInit {
       'employeeAddress': [this.employeeInfo.controls.employeeAddress.get('permanent').value,
       this.employeeInfo.controls.employeeAddress.get('present').value],
       'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
-      'employeeSalary': salaryComponents
+      'employeeSalary': salaryComponents,
+      'employeeHierarchy' : this.employeeInfo.controls.otherDetails.value
     };
     console.log(JSON.stringify(obj));
     this.processingInProgress = true;
@@ -349,6 +448,12 @@ export class EmployeeCreationComponent implements OnInit {
       });
   }
 
+/**
+ * 
+ * @param event Date change handler for Employee Creation
+ * the labelName guides which field is to be changed
+ * @param labelName 
+ */
   changeDate(event, labelName) {
 
     if (labelName === 'preMedicalCheckUpDate') {
@@ -371,6 +476,13 @@ export class EmployeeCreationComponent implements OnInit {
       }
       if (event.type === 'clear') {
         this.employeeInfo.get('employeeBasicInfo').patchValue({ doj: '' });
+      }
+    }else if (labelName === 'probationPeriodEndDate') {
+      if (event.type === 'dateChanged') {
+        this.employeeInfo.get('otherDetails').patchValue({ probationPeriodEndDate: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.employeeInfo.get('otherDetails').patchValue({ probationPeriodEndDate: '' });
       }
     }
   }
