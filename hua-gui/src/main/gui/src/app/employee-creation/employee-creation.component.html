@@ -23,7 +23,8 @@
           <label for="tab4" class="tab-header span_1_of_6 cell">Payroll Details</label>
 
           <input id="tab5" class="tab-radio" type="radio" name="tabs" value="5" />
-          <label for="tab5" class="tab-header span_1_of_6 cell">Others</label>
+          <label for="tab5" class="tab-header span_1_of_6 cell">Other Info</label>
+
 
           <form [formGroup]="employeeInfo" (ngSubmit)="create()" method="get" class="loginform">
             <fieldset [disabled]="processingInProgress">
@@ -682,8 +683,20 @@
                 </div>
               </section>
               <section id="content5" class="tab-content">
-                 <p>Hello</p>
+                <div class="display-table" formGroupName="otherDetails">
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="checkbox" formControlName="isHr" required>
+                        <label class="text-input-label">Is HR?</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </section>
+              
               <div class="row">
                 <div class="cell span_4_of_4">
                   <button type="submit" class="btn ripple" [disabled]="canCreate() && false">Create</button>

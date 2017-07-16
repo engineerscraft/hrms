@@ -56,9 +56,19 @@ export class EmployeeCreationComponent implements OnInit {
       'employeeAddlDetails': this.initAdditionalInfoControls(),
       'employeeJobRoleDetails': this.formBuilder.group({
         'jobRoleId': ['', Validators.required]
-      })
+      }),
+      'otherDetails' : this.otherDetailsControls()
     });
     this.initiateLists();
+  }
+
+  private otherDetailsControls() {
+    return this.formBuilder.group({
+      'isHr': [''],
+      'isLineManager': [''],
+      'hrName': [''],
+      'managerName': ['']
+    });
   }
 
   OnClickOk() {

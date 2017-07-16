@@ -1,5 +1,7 @@
 package com.hamdard.hua.repository;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -29,7 +31,11 @@ import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
 import com.hamdard.hua.model.Unit;
+import com.hamdard.hua.rowmapper.EmployeeDetailsRowMapper;
+import com.hamdard.hua.rowmapper.EmployeeImageFileMapper;
+import com.hamdard.hua.rowmapper.EmployeeRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeSearchResultRowMapper;
+import com.hamdard.hua.rowmapper.UnitRowMapper;
 
 /**
  * @author Jyotirmoy Banerjee
@@ -138,6 +144,14 @@ public class EmployeeRepository {
 
     @Value("${sql.update.employee.image.by.empId}")
     private String updateEmployeeImageByEmpId;
+    
+    /********************** GET Operations *************************/
+    
+    @Value("${sql.employee.get.byId}")
+    private String getEmployeeDetailsByEmpId;
+    
+    @Value("${sql.employee.get.image.byId}")
+    private String getEmployeeImageByEmpId;
 
     /*****************************************************************************************************/
 
@@ -651,6 +665,24 @@ public class EmployeeRepository {
         int rowsAffected = jdbcTemplate.update(updateEmployeeImageByEmpId, new Object[] { employeeImage, employeeId });
         return rowsAffected;
 
+    }
+    
+    public Employee.EmployeeBasicInfo getEmployeeDetailsByEmpId(String employeeId) throws Exception {
+        Object[] args = { employeeId };
+        logger.info(sqlMarker, getEmployeeDetailsByEmpId);
+        logger.info(sqlMarker, "Params {}", () -> employeeId);
+        
+        Employee.EmployeeBasicInfo employeeInfo = (Employee.EmployeeBasicInfo) jdbcTemplate.queryForObject(getEmployeeDetailsByEmpId, args, new EmployeeDetailsRowMapper());
+        logger.debug("Retrieved Employee Details: {}", () -> employeeInfo.toString());
+        return employeeInfo;
+    }
+    
+    public byte[] getEmployeeImageByEmpId(String employeeId) throws Exception {
+        Object[] args = { employeeId };
+        logger.info(sqlMarker, getEmployeeImageByEmpId);
+        logger.info(sqlMarker, "Params {}", () -> employeeId);
+        //File file = new File("/Users/isomdeb/Pictures/For-Employees.jpg");
+        return jdbcTemplate.queryForObject(getEmployeeImageByEmpId, args, new EmployeeImageFileMapper());
     }
 
 }
