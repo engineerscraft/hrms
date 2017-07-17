@@ -6,6 +6,7 @@ import {EmployeeHierarchySearchComponent} from './employee-hierarchy-search/empl
 import {EmployeeHierarchySearchResultComponent} from './employee-hierarchy-search-result/employee-hierarchy-search-result.component';
 import {EmployeeDetailsComponent} from './employee-details/employee-details.component';
 import {EmployeeCreationComponent} from './employee-creation/employee-creation.component';
+import {UserDetailsComponent} from './user-details/user-details.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {ForbiddenAccessComponent} from './forbidden-access/forbidden-access.component';
 import {AuthguardService} from './authguard.service';
@@ -18,6 +19,7 @@ export const routing = RouterModule.forRoot([
     { path: 'employeeHierarchySearchResult', component: EmployeeHierarchySearchResultComponent, canActivate: [AuthguardService] },
     { path: 'employeeDetails', component: EmployeeDetailsComponent, canActivate: [AuthguardService] },
     { path: 'employeeCreation', component: EmployeeCreationComponent, canActivate: [AuthguardService] },
+    { path: 'userDetails', component: UserDetailsComponent, canActivate: [AuthguardService] },
     { path: 'forbidden', component: ForbiddenAccessComponent, canActivate: [AuthguardService] },
     { path: '404', component: NotFoundComponent, canActivate: [AuthguardService] },
     { path: '**', redirectTo: '/404', canActivate: [AuthguardService] }

@@ -127,6 +127,12 @@ export class SideBarComponent implements OnInit {
     this.open = false;
   }
 
+  onClickUserDetails() {
+    window.scrollTo(0, 0);
+    this.router.navigate(['userDetails']);
+    this.open = false;
+  }
+
   onChangePassword() {
     this.processingInProgess      = true;
     this.userService.changePassword(this.formGroup.value)

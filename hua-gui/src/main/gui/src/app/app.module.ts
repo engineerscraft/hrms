@@ -33,6 +33,7 @@ import { DistrictService } from './district.service';
 import { StateService } from './state.service';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
     EmployeeHierarchySearchComponent,
     EmployeeHierarchySearchResultComponent,
     EmployeeDetailsComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
