@@ -104,16 +104,20 @@
   <div class="modal-body">
     <form [formGroup]="formGroup" (ngSubmit)="onChangePassword()" method="post" class="loginform">
       <fieldset [disabled]="isProcessingInProgress()">
+        <div class="display-table inner-component-width">
         <div class="row">
-        <div class="group ">
+          <div class="cell span_4_of4">
+        <div class="group">
           <input class="inputMaterial input-size-small" formControlName="currentPassword" type="password" required>
           <label class="text-input-label">Current Password</label>
           <label *ngIf="isFieldValueMissing('currentPassword')" class="error-text-input-label">Please enter your current password.</label>
           <span class="highlight"></span>
           <span class="input-size-small" [ngClass]="getErrorClass('currentPassword')"></span>
         </div>
+          </div>
         </div>
         <div class="row">
+          <div class="cell span_4_of4">
         <div class="group">
           <input class="inputMaterial input-size-small" formControlName="newPassword" type="password" required>
           <label class="text-input-label">New Password</label>
@@ -122,8 +126,10 @@
           <span class="highlight"></span>
           <span class="input-size-small" [ngClass]="getErrorClass('newPassword')"></span>
         </div>
+          </div>
         </div>
         <div class="row">
+          <div class="cell span_4_of4">
         <div class="group">
           <input class="inputMaterial input-size-small" formControlName="confirmedPassword" type="password" required>
           <label class="text-input-label">Confirm Password</label>
@@ -132,9 +138,17 @@
           <span class="highlight"></span>
           <span class="input-size-small" [ngClass]="getErrorClass('confirmedPassword')"></span>
         </div>
+          </div>
         </div>
+        <div class="row">
+          <div class="cell span_4_of4">
+        <div class="group">
         <button type="submit" class="btn ripple" [disabled]="formGroup.invalid">Change</button>
         <button type="button" class="btn ripple" (click)="onCancelChangePassword()">Cancel</button>
+        </div>
+          </div>
+        </div>
+        </div>
       </fieldset>
     </form>
   </div>

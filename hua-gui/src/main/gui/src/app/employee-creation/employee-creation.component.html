@@ -364,7 +364,7 @@
               </section>
               <section id="content3" class="tab-content">
                 <div formGroupName="employeeAddress">
-                  <div class="toggle" style="padding-top: 20px;">
+                  <div class="toggle">
                     <!-- Checkbox toggle -->
                     <input type="checkbox" value="selected" id="permanentAddress" class="toggle-input" required>
                     <label for="permanentAddress" class="toggle-label">Permanent Address</label>
@@ -590,7 +590,7 @@
                     </div>
                     <hr/>
                     <div id="components" *ngIf="!employeeInfo.controls.employeeJobRoleDetails.controls['jobRoleId'].hasError('required')">
-                      <div class="toggle" style="padding-top: 20px;">
+                      <div class="toggle">
                         <!-- Checkbox toggle -->
                         <input type="checkbox" value="selected" id="salaryComponents" class="toggle-input">
                         <label for="salaryComponents" class="toggle-label">Salary Components</label>
@@ -600,7 +600,7 @@
                           <div class="display-table inner-component-width">
                             <div class="table" #table>
 
-                              <div class="row" style="padding-top: 10px">
+                              <div class="row">
                                 <div class="cell span_3_of_6">
                                   Description
                                 </div>
@@ -644,7 +644,7 @@
                           <div class="display-table inner-component-width">
                             <div class="table" #table>
 
-                              <div class="row" style="padding-top: 10px">
+                              <div class="row">
                                 <div class="cell span_3_of_6">
                                   Description
                                 </div>
@@ -779,13 +779,9 @@
                   </div>
                 </div>
               </section>
-
               <div class="row">
-                <div class="cell span_4_of_4">
                   <button type="submit" class="btn ripple" [disabled]="canCreate() && false">Create</button>
-                </div>
               </div>
-
             </fieldset>
           </form>
 

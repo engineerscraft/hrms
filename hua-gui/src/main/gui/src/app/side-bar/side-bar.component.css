@@ -67,11 +67,11 @@
 
 .menu-header {
   color: white;
-  font-size: 28px;
+  font-size: 20px;
   text-align: left;
   color: #4CA1AF;
   border-bottom: solid 1px #4CA1AF;
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 .menu-subheader {
@@ -82,11 +82,12 @@
 }
 
 .menu-item {
+  font-family: 'lato', 'arial', sans-serif;
   position: relative;
   color: white;
-  padding: 8px 0;
+  padding: 4px 0;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   letter-spacing: 1px;
   word-spacing: 4px;
@@ -98,9 +99,10 @@
 }
 
 .menu-item:after {
+  padding-top: 2px;
   display:block;
   content: '';
-  border-bottom: solid 2px #fff;  
+  border-bottom: solid 1px #fff;  
   transform: scaleX(0);  
   transition: transform 250ms ease-in-out;
 }
