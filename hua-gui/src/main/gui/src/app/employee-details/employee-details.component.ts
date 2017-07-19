@@ -5,17 +5,14 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
-  styleUrls: ['./employee-details.component.css'],
-  providers: [EmployeeService]
+  styleUrls: ['./employee-details.component.css']
 })
 export class EmployeeDetailsComponent implements OnInit {
 
   private employeeInfo;
   private id;
-  private profileImage;
 
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute, private router: Router) {
-
   }
 
   ngOnInit() {
