@@ -10,13 +10,13 @@
   <p class="name-sub-header">Contact No: {{employeeInfo?.contactNo}}</p>
   <p class="name-sub-header">Email: {{employeeInfo?.emailId}}</p>
 </div>
-<!--img class="profile-pic" src="/assets/img/forbidden-min.jpg"/-->
-<img class="profile-pic" src="/resources/v1/employee/management/{{employeeId}}/image"/>
+
+<img *ngIf="!!employeeInfo && !!employeeInfo.employeeBasicInfo && !!employeeInfo.employeeBasicInfo.profileImage" class="profile-pic" [src]="employeeInfo.employeeBasicInfo.profileImage"/>
+<img class="profile-pic">
 <div class="body">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:330px;">
   </div>
-  <!--pre>{{employeeInfo | json}}</pre-->
   <div class="display-table">
     <div class="row span_4_of_4">
       <div>

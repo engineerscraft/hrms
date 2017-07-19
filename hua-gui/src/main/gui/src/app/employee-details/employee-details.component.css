@@ -1,13 +1,23 @@
 .profile-bg {
     width: 100%;
-    top:100px;
+    top:90px;
     position: relative;
     padding: 0;
     height: 350px;
     background: url("/assets/img/profilebg-min.jpg") no-repeat center bottom fixed;
     background-size: cover;
     overflow: auto;
-    filter: contrast(100%);
+}
+
+.profile-bg:before {
+    content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(to bottom right, #0F6177, #c0392b);
+	opacity: .6; 
 }
 
 .profile-pic {

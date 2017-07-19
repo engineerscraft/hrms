@@ -1,7 +1,5 @@
 package com.hamdard.hua.rest;
 
-import java.io.File;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.validation.constraints.Min;
@@ -17,15 +15,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.SecurityContext;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
-import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.hamdard.hua.model.Employee;
 import com.hamdard.hua.model.Employee.EmployeeAddlDetails;
@@ -257,13 +252,12 @@ public class EmployeeResource {
 
     @POST
     @Path("{id}/image")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response uploadFile(@PathParam("id") @Size(min = 1) String employeeId, @FormDataParam("file") InputStream file, @FormDataParam("file") FormDataContentDisposition fileDisposition) {
+    public Response uploadProfilePicture(@PathParam("id") @Size(min = 1) String employeeId, EmployeeBasicInfo img) {
         // String employeeName = securityContext.getUserPrincipal().getName();
         try {
-            byte[] employeeImage = IOUtils.toByteArray(file);
-            employeeRepository.insertEmployeeImage(employeeImage, employeeId);
+            employeeRepository.insertEmployeeImage(img.getProfileImage(), employeeId);
             return Response.status(200).build();
         } catch (Exception ex) {
             logger.error("The Employee_Image could not be updated.", ex);
@@ -277,26 +271,13 @@ public class EmployeeResource {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response getEmployeeDetails(@PathParam("id") @Size(min=1) String employeeId) {
         try {
-            Employee.EmployeeBasicInfo empInfo = employeeRepository.getEmployeeDetailsByEmpId(employeeId);
+            Employee empInfo = employeeRepository.getEmployeeDetailsByEmpId(employeeId);
             return Response.status(Response.Status.OK).entity(empInfo).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("The employee details not found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
         } catch (Exception ex) {
             logger.error("The employee details could not be fetched", ex);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
-        }
-    }
-    
-    @GET
-    @Path("{id}/image")
-    @Produces("image/jpg")
-    public Response getEmployeeImage(@PathParam("id") @Size(min = 1) String employeeId) {
-        try {
-            byte[] empImage = employeeRepository.getEmployeeImageByEmpId(employeeId);
-            ResponseBuilder response = Response.ok((Object) empImage);
-            response.header("Content-Disposition",
-                    "inline; filename=employee_image.jpg");
-            return response.build();
-        } catch (Exception ex) {
-            logger.error("The employee image could not be fetched", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }

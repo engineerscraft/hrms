@@ -11,51 +11,51 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
 
   private pagination = { pageSize: 20, lowerRange: 0, upperRange: 0, disableNext: false, disablePrevious: false, searchResultSetSize: 0 };
   private filter = { employeeId: String, employeeName: String, emailId: String, contactNumber: String, designation: String };
-  private employeeSearchCriteria = {firstName: String, middleName: String, lastName: String, employeeId: String, employmentType: String, emailId: String, orgId: String, unitId: String, departmentId: String, jobRoleId: String, designationId: String, supervisorFlag: String, hrFlag: String, supervisorEmailId: String, hrEmailId: String, sex: String, identityDocTypeId: String, identityNumber: String };
+  private employeeSearchCriteria = { firstName: String, middleName: String, lastName: String, employeeId: String, employmentType: String, emailId: String, orgId: String, unitId: String, departmentId: String, jobRoleId: String, designationId: String, supervisorFlag: String, hrFlag: String, supervisorEmailId: String, hrEmailId: String, sex: String, identityDocTypeId: String, identityNumber: String };
   private employees;
   private searchResult: Array<any>;
   private filteredResult: Array<any>;
 
-  
+
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-        this.employeeSearchCriteria.firstName = params['firstName'];
-        this.employeeSearchCriteria.middleName = params['middleName'];
-        this.employeeSearchCriteria.lastName = params['lastName'];
-        this.employeeSearchCriteria.employeeId = params['employeeId'];
-        this.employeeSearchCriteria.employmentType = params['employmentType'];
-        this.employeeSearchCriteria.emailId = params['emailId'];
-        this.employeeSearchCriteria.orgId = params['orgId'];
-        this.employeeSearchCriteria.unitId = params['unitId'];
-        this.employeeSearchCriteria.departmentId = params['departmentId'];
-        this.employeeSearchCriteria.jobRoleId = params['jobRoleId'];
-        this.employeeSearchCriteria.designationId = params['designationId'];
-        this.employeeSearchCriteria.supervisorFlag = params['supervisorFlag'];
-        this.employeeSearchCriteria.hrFlag = params['hrFlag'];
-        this.employeeSearchCriteria.supervisorEmailId = params['supervisorEmailId'];
-        this.employeeSearchCriteria.hrEmailId = params['hrEmailId'];
-        this.employeeSearchCriteria.sex = params['sex'];
-        this.employeeSearchCriteria.identityDocTypeId = params['identityDocTypeId'];
-        this.employeeSearchCriteria.identityNumber = params['identityNumber'];
-      });
+      this.employeeSearchCriteria.firstName = params['firstName'];
+      this.employeeSearchCriteria.middleName = params['middleName'];
+      this.employeeSearchCriteria.lastName = params['lastName'];
+      this.employeeSearchCriteria.employeeId = params['employeeId'];
+      this.employeeSearchCriteria.employmentType = params['employmentType'];
+      this.employeeSearchCriteria.emailId = params['emailId'];
+      this.employeeSearchCriteria.orgId = params['orgId'];
+      this.employeeSearchCriteria.unitId = params['unitId'];
+      this.employeeSearchCriteria.departmentId = params['departmentId'];
+      this.employeeSearchCriteria.jobRoleId = params['jobRoleId'];
+      this.employeeSearchCriteria.designationId = params['designationId'];
+      this.employeeSearchCriteria.supervisorFlag = params['supervisorFlag'];
+      this.employeeSearchCriteria.hrFlag = params['hrFlag'];
+      this.employeeSearchCriteria.supervisorEmailId = params['supervisorEmailId'];
+      this.employeeSearchCriteria.hrEmailId = params['hrEmailId'];
+      this.employeeSearchCriteria.sex = params['sex'];
+      this.employeeSearchCriteria.identityDocTypeId = params['identityDocTypeId'];
+      this.employeeSearchCriteria.identityNumber = params['identityNumber'];
+    });
     this.employeeService.search(this.employeeSearchCriteria)
-    .subscribe(
+      .subscribe(
       data => {
         this.searchResult = data;
         this.filteredResult = data;
         this.goToFirstPage(this.filteredResult);
       },
       (err: any) => {
-        if(err.status===401) {
+        if (err.status === 401) {
           this.router.navigate(['forbidden']);
         }
       },
       () => {
-        
+
       }
-    );
+      );
   }
 
   filterEmployee($event, fieldName) {
@@ -91,7 +91,7 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
   }
 
   goToFirstPage(filteredResult) {
-    this.pagination.lowerRange = filteredResult.length===0?0:1;
+    this.pagination.lowerRange = filteredResult.length === 0 ? 0 : 1;
     if (filteredResult.length >= this.pagination.pageSize) {
       this.employees = this.filteredResult.slice(0, this.pagination.pageSize);
       this.pagination.upperRange = this.pagination.lowerRange + this.pagination.pageSize - 1;
@@ -135,5 +135,15 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
 
   backToSearchCriteria() {
     this.router.navigate(['employeeHierarchySearch']);
+  }
+
+  getEmployeeDetails(employeeId) {
+    console.log(employeeId);
+    this.router.navigate(['employeeDetails'], {
+      queryParams:
+      {
+        id: employeeId
+      }
+    });
   }
 }

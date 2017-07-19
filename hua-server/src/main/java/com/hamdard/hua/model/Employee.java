@@ -173,7 +173,7 @@ public class Employee {
 
     public static class EmployeeHierarchy {
         private int cl; // the number of CLs of the employee
-        private int hrId;
+        private String hrId;
         private String hrEmailId;
         private int maternityLeave;
         @XmlJavaTypeAdapter(DateAdapter.class)
@@ -185,88 +185,113 @@ public class Employee {
         private int specialLeave;
         private String status;
         private String supervisorEmailId;
-        private int supervisorId;
+        private String supervisorId;
         private int sickLeave;
+
         public int getCl() {
             return this.cl;
         }
+
         public void setCl(int cl) {
             this.cl = cl;
         }
-        public int getHrId() {
+
+        public String getHrId() {
             return this.hrId;
         }
-        public void setHrId(int hrId) {
+
+        public void setHrId(String hrId) {
             this.hrId = hrId;
         }
+
         public String getHrEmailId() {
             return this.hrEmailId;
         }
+
         public void setHrEmailId(String hrEmailId) {
             this.hrEmailId = hrEmailId;
         }
+
         public int getMaternityLeave() {
             return this.maternityLeave;
         }
+
         public void setMaternityLeave(int maternityLeave) {
             this.maternityLeave = maternityLeave;
         }
+
         public Date getNoticePeriodEndDate() {
             return this.noticePeriodEndDate;
         }
+
         public void setNoticePeriodEndDate(Date noticePeriodEndDate) {
             this.noticePeriodEndDate = noticePeriodEndDate;
         }
+
         public int getPaternityLeave() {
             return this.paternityLeave;
         }
+
         public void setPaternityLeave(int paternityLeave) {
             this.paternityLeave = paternityLeave;
         }
+
         public int getPl() {
             return this.pl;
         }
+
         public void setPl(int pl) {
             this.pl = pl;
         }
+
         public Date getProbationPeriodEndDate() {
             return this.probationPeriodEndDate;
         }
+
         public void setProbationPeriodEndDate(Date probationPeriodEndDate) {
             this.probationPeriodEndDate = probationPeriodEndDate;
         }
+
         public int getSpecialLeave() {
             return this.specialLeave;
         }
+
         public void setSpecialLeave(int specialLeave) {
             this.specialLeave = specialLeave;
         }
+
         public String getStatus() {
             return this.status;
         }
+
         public void setStatus(String status) {
             this.status = status;
         }
+
         public String getSupervisorEmailId() {
             return this.supervisorEmailId;
         }
+
         public void setSupervisorEmailId(String supervisorEmailId) {
             this.supervisorEmailId = supervisorEmailId;
         }
-        public int getSupervisorId() {
+
+        public String getSupervisorId() {
             return this.supervisorId;
         }
-        public void setSupervisorId(int supervisorId) {
+
+        public void setSupervisorId(String supervisorId) {
             this.supervisorId = supervisorId;
         }
+
         public int getSickLeave() {
             return this.sickLeave;
         }
+
         public void setSickLeave(int sickLeave) {
             this.sickLeave = sickLeave;
         }
-        
-        
+
     }
 
     public static class EmployeeAddress {
@@ -541,6 +566,7 @@ public class Employee {
         private boolean supervisorFlag;
         private String title;
         private Unit unit;
+        private String profileImage;
 
         public String getContactNo() {
             return this.contactNo;
@@ -724,6 +750,14 @@ public class Employee {
 
         public void setEntryDate(Date entryDate) {
             this.entryDate = entryDate;
+        }
+
+        public String getProfileImage() {
+            return profileImage;
+        }
+
+        public void setProfileImage(String profileImage) {
+            this.profileImage = profileImage;
         }
 
         @Override

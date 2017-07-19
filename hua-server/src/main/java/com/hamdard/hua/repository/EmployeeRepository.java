@@ -1,7 +1,5 @@
 package com.hamdard.hua.repository;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -31,11 +29,9 @@ import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
 import com.hamdard.hua.model.Unit;
-import com.hamdard.hua.rowmapper.EmployeeDetailsRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeImageFileMapper;
 import com.hamdard.hua.rowmapper.EmployeeRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeSearchResultRowMapper;
-import com.hamdard.hua.rowmapper.UnitRowMapper;
 
 /**
  * @author Jyotirmoy Banerjee
@@ -660,7 +656,7 @@ public class EmployeeRepository {
 
     }
 
-    public int insertEmployeeImage(byte[] employeeImage, String employeeId) throws Exception {
+    public int insertEmployeeImage(String employeeImage, String employeeId) throws Exception {
 
         logger.info(sqlMarker, updateEmployeeImageByEmpId);
         logger.info(sqlMarker, "Params {}, {}", () -> employeeImage, () -> employeeId);
@@ -669,12 +665,12 @@ public class EmployeeRepository {
 
     }
     
-    public Employee.EmployeeBasicInfo getEmployeeDetailsByEmpId(String employeeId) throws Exception {
+    public Employee getEmployeeDetailsByEmpId(String employeeId) throws Exception {
         Object[] args = { employeeId };
         logger.info(sqlMarker, getEmployeeDetailsByEmpId);
         logger.info(sqlMarker, "Params {}", () -> employeeId);
         
-        Employee.EmployeeBasicInfo employeeInfo = (Employee.EmployeeBasicInfo) jdbcTemplate.queryForObject(getEmployeeDetailsByEmpId, args, new EmployeeDetailsRowMapper());
+        Employee employeeInfo = (Employee) jdbcTemplate.queryForObject(getEmployeeDetailsByEmpId, args, new EmployeeRowMapper());
         logger.debug("Retrieved Employee Details: {}", () -> employeeInfo.toString());
         return employeeInfo;
     }
