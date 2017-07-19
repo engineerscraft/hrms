@@ -118,6 +118,9 @@ input, button {
 .display-table {
    display: table;
    table-layout: fixed;
+   width:100%;
+   padding-right: 50px;
+
 }
 
 .row {
@@ -822,11 +825,6 @@ select * {
 .tab_container .tab-content p,
 .tab_container .tab-content h3 {
  animation: fadeInScale 0.7s ease-in-out;
-}
-
-.display-table .display-table {
-  width:100%;
-  padding-right: 50px;
 }
 
 /*Field level error*/
