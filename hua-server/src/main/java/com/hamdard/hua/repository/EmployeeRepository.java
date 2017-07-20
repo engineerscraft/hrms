@@ -164,7 +164,7 @@ public class EmployeeRepository {
         this.insertAdditionalInfo(employeeId, newEmployee.getEmployeeAddlDetails());
         this.insertEmployeeAddress(employeeId, newEmployee.getEmployeeAddress());
         this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
-        // this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
+        this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
         this.insertEmpSalaryComponents(employeeId, entryBy, newEmployee.getEmployeeSalary(), entryDate);
         // TODO: take care of optional components
 

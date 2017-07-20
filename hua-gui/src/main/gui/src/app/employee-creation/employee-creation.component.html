@@ -723,7 +723,7 @@
                     </div>
                   </div>
 
-                  <div class="row"  formGroupName="otherDetails">
+                  <div class="row" formGroupName="otherDetails">
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="cl" required>
@@ -760,8 +760,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row" formGroupName="otherDetails">
-                    <div class="cell span_1_of_4">
+                  <div class="row">
+                    <div class="cell span_1_of_4" formGroupName="otherDetails">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="sickLeave" required>
                         <label class="text-input-label">No of Sick Leaves</label>
@@ -769,18 +769,46 @@
                         <span class="bar span_4_of_4"></span>
                       </div>
                     </div>
-                    <div class="group">
+                    <div class="group" formGroupName="otherDetails">
                       <input class="inputMaterial span_4_of_4" type="text" formControlName="probationPeriodEndDate" required>
                       <label class="text-input-label">Probation End Date</label>
                       <span class="highlight"></span>
                       <span class="bar span_4_of_4"></span>
                       <date-picker (outputEvents)="changeDate($event, 'probationPeriodEndDate')"></date-picker>
                     </div>
+                    <div class="cell span_1_of_4" formGroupName="employeeProfile">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="qualification" required>
+                        <label class="text-input-label">Highest qualification</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="display-table">
+                <div class="row" formGroupName="employeeProfile">
+                    <div class="cell span_1_of_2">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="description" required>
+                        <label class="text-input-label">Description</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_2">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="comments" required>
+                        <label class="text-input-label">Comments</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
               <div class="row">
-                  <button type="submit" class="btn ripple" [disabled]="canCreate() && false">Create</button>
+                <button type="submit" class="btn ripple" [disabled]="canCreate() && false">Create</button>
               </div>
             </fieldset>
           </form>

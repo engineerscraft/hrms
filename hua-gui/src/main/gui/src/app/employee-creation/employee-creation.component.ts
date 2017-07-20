@@ -62,7 +62,12 @@ export class EmployeeCreationComponent implements OnInit {
       'employeeJobRoleDetails': this.formBuilder.group({
         'jobRoleId': ['', Validators.required]
       }),
-      'otherDetails' : this.otherDetailsControls()
+      'otherDetails' : this.otherDetailsControls(),
+      'employeeProfile' : this.formBuilder.group({
+        'qualification': [''],
+        'description': [''],
+        'comments': ['']
+      })
     });
     this.initiateLists();
 
@@ -432,7 +437,8 @@ export class EmployeeCreationComponent implements OnInit {
       this.employeeInfo.controls.employeeAddress.get('present').value],
       'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
       'employeeSalary': salaryComponents,
-      'employeeHierarchy' : this.employeeInfo.controls.otherDetails.value
+      'employeeHierarchy' : this.employeeInfo.controls.otherDetails.value,
+      'employeeProfile' : this.employeeInfo.controls.employeeProfile.value
     };
     console.log(JSON.stringify(obj));
     this.processingInProgress = true;
