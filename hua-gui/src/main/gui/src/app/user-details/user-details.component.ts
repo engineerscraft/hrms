@@ -15,7 +15,7 @@ export class UserDetailsComponent implements OnInit {
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    this.employeeService.read(this.employeeId)
+    this.employeeService.readDetails(this.employeeId)
     .subscribe(data => {
       this.employeeInfo = data;
       console.log("Employee Service Read Response : "+JSON.stringify(this.employeeInfo));
