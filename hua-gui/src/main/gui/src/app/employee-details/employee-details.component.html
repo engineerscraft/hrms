@@ -5,14 +5,15 @@
 <div class="profile-bg">
 </div>
 <div class="profile-header">
-  <p class="name-header">Test Employee (HUB1)</p>
-  <p class="name-sub-header">Assistant Professor</p>
-  <p class="name-sub-header">Contact No: 9836298362</p>
-  <p class="name-sub-header">Email: test.employee@hamdard.com</p>
+  <p *ngIf="!!employeeInfo" class="name-header">{{employeeInfo.employeeBasicInfo.empFirstName}} {{employeeInfo.employeeBasicInfo.empMiddleName}} {{employeeInfo.employeeBasicInfo.empLastName}} ({{employeeInfo.employeeBasicInfo.empId}})</p>
+  <p *ngIf="!!employeeInfo" class="name-sub-header">{{employeeInfo.appraisalRating.designation}}</p>
+  <p *ngIf="!!employeeInfo" class="name-sub-header">Contact No: {{employeeInfo.employeeBasicInfo.contactNo}}</p>
+  <p *ngIf="!!employeeInfo" class="name-sub-header">Email: {{employeeInfo.employeeBasicInfo.emailId}}</p>
 </div>
 <img *ngIf="!!employeeInfo && !!employeeInfo.employeeBasicInfo && !!employeeInfo.employeeBasicInfo.profileImage" class="profile-pic"
   [src]="employeeInfo.employeeBasicInfo.profileImage" />
-<img class="profile-pic">
+<input type="file" style="display:none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
+<img class="profile-pic" (click)="profileImageFile.click()">
 <div class="body">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:330px;">

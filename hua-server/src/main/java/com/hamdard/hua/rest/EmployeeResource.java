@@ -250,7 +250,7 @@ public class EmployeeResource {
         }
     }
 
-    @POST
+    @PUT
     @Path("{id}/image")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

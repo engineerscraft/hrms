@@ -47,8 +47,13 @@ export class EmployeeService {
       .map(res => res.json());
   }
 
-  read(employeeId: String) {
+  readDetails(employeeId: String) {
     return this.httpService.callHttpGet("/resources/v1/employee/management/"+employeeId)
       .map(res => res.json());
+  }
+
+  uploadProfileImage(employeeId: String, reqBody: any) {
+    return this.httpService.callHttpPut("/resources/v1/employee/management/"+employeeId+"/image", reqBody)
+      .map(res => res.json());    
   }
 }
