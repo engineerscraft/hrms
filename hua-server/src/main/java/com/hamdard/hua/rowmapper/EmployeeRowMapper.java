@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.hamdard.hua.model.Department;
 import com.hamdard.hua.model.DocType;
 import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.Employee.AppraisalRating;
 import com.hamdard.hua.model.Unit;
 
 public class EmployeeRowMapper implements RowMapper<Employee> {
@@ -113,6 +114,14 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
         currentAddress.setStreetName(rs.getString("C_STREET_NAME"));
 
         emp.getEmployeeAddress().add(currentAddress);
+        
+        emp.setAppraisalRating(new AppraisalRating());
+        emp.getAppraisalRating().setDesignation(rs.getString("DESIGNATION"));
+        emp.getAppraisalRating().setDesignationId(rs.getInt("DESIGNATION_ID"));
+        emp.getAppraisalRating().setGrade(rs.getString("GRADE"));
+        emp.getAppraisalRating().setGradeId(rs.getInt("GRADE_ID"));
+        emp.getAppraisalRating().setPerformanceIndicator(rs.getInt("PERFORMANCE_INDICATOR"));
+        emp.getAppraisalRating().setPerformanceDescripton(rs.getString("PERFORMANCE_DESCRIPTION"));
         return emp;
     }
 }

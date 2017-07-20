@@ -32,6 +32,10 @@
     border-style: solid;
 }
 
+.profile-pic {
+    cursor: pointer;
+}
+
 .name-header {
     color: #fff;
     font-family: ElMessiri-Regular;

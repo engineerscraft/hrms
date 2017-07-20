@@ -22,7 +22,57 @@ public class Employee {
     private List<EmployeeOptionalBenefit> employeeOptionalBenefit;
     private EmployeeProfile employeeProfile;
     private List<EmployeeSalary> employeeSalary;
+    private AppraisalRating appraisalRating;
 
+    public static class AppraisalRating {
+        private int gradeId;
+        private String grade;
+        private int designationId;
+        private String designation;
+        private int performanceIndicator;
+        private String performanceDescripton;
+        public int getGradeId() {
+            return gradeId;
+        }
+        public void setGradeId(int gradeId) {
+            this.gradeId = gradeId;
+        }
+        public String getGrade() {
+            return grade;
+        }
+        public void setGrade(String grade) {
+            this.grade = grade;
+        }
+        public int getDesignationId() {
+            return designationId;
+        }
+        public void setDesignationId(int designationId) {
+            this.designationId = designationId;
+        }
+        public String getDesignation() {
+            return designation;
+        }
+        public void setDesignation(String designation) {
+            this.designation = designation;
+        }
+        public int getPerformanceIndicator() {
+            return performanceIndicator;
+        }
+        public void setPerformanceIndicator(int performanceIndicator) {
+            this.performanceIndicator = performanceIndicator;
+        }
+        public String getPerformanceDescripton() {
+            return performanceDescripton;
+        }
+        public void setPerformanceDescripton(String performanceDescripton) {
+            this.performanceDescripton = performanceDescripton;
+        }
+        @Override
+        public String toString() {
+            return "AppraisalRating [gradeId=" + gradeId + ", grade=" + grade + ", designationId=" + designationId + ", designation=" + designation + ", performanceIndicator=" + performanceIndicator + ", performanceDescripton=" + performanceDescripton + "]";
+        }
+    }
+    
     public static class EmployeeSalary {
         private SalaryComponent salaryComponent;
         private double salaryValue;
@@ -876,6 +926,14 @@ public class Employee {
             return "EmployeeSearchResult [empId=" + empId + ", name=" + name + ", emailId=" + emailId + ", departmentName=" + departmentName + ", designation=" + designation + ", contactNo=" + contactNo + ", firstName=" + firstName + ", middleName="
                     + middleName + ", lastName=" + lastName + ", supervisorEmailId=" + supervisorEmailId + ", hrEmailId=" + hrEmailId + "]";
         }
+    }
+
+    public AppraisalRating getAppraisalRating() {
+        return appraisalRating;
+    }
+
+    public void setAppraisalRating(AppraisalRating appraisalRating) {
+        this.appraisalRating = appraisalRating;
     }
 
     public EmployeeAddlDetails getEmployeeAddlDetails() {
