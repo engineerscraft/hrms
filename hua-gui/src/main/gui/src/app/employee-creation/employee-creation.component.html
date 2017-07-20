@@ -309,54 +309,73 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="cell span_1_of_4">
-                      <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName1" required>
-                        <label class="text-input-label">Nominee 1's name</label>
-                        <span class="highlight"></span>
-                        <span class="bar span_4_of_4"></span>
-                      </div>
-                    </div>
-                    <div class="cell span_1_of_4">
-                      <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName2" required>
-                        <label class="text-input-label">Nominee 2's name</label>
-                        <span class="highlight"></span>
-                        <span class="bar span_4_of_4"></span>
-                      </div>
-                    </div>
-                    <div class="cell span_1_of_4">
-                      <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName3" required>
-                        <label class="text-input-label">Nominee 3's name</label>
-                        <span class="highlight"></span>
-                        <span class="bar span_4_of_4"></span>
-                      </div>
-                    </div>
+                    <div class="internalLabel">Nominee Details</div>
                   </div>
                   <div class="row">
-                    <div class="cell span_1_of_4">
-                      <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare1" required>
-                        <label class="text-input-label">Nominee 1's percentage</label>
-                        <span class="highlight"></span>
-                        <span class="bar span_4_of_4"></span>
+                    <div class="cell grouped">
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName1" required>
+                            <label class="text-input-label">Nominee 1's name</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare1" required>
+                            <label class="text-input-label">Nominee 1's percentage</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="cell span_1_of_4">
-                      <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare2" required>
-                        <label class="text-input-label">Nominee 2's percentage</label>
-                        <span class="highlight"></span>
-                        <span class="bar span_4_of_4"></span>
+                    <div class="cell grouped">
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName2" required>
+                            <label class="text-input-label">Nominee 2's name</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare2" required>
+                            <label class="text-input-label">Nominee 2's percentage</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="cell span_1_of_4">
-                      <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare3" required>
-                        <label class="text-input-label">Nominee 3's percentage</label>
-                        <span class="highlight"></span>
-                        <span class="bar span_4_of_4"></span>
+                    <div class="cell grouped">
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName3" required>
+                            <label class="text-input-label">Nominee 3's name</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare3" required>
+                            <label class="text-input-label">Nominee 3's percentage</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -466,7 +485,7 @@
                         <div class="row">
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input type="checkbox" id="sameAsPermanent" class="default-checkbox span_4_of_4" (change)="copyFromPermanent()">
+                              <input type="checkbox" id="sameAsPermanent" class="default-checkbox span_4_of_4" [ngModelOptions]="{standalone: true}" (change)="copyFromPermanent()" [(ngModel)]= "copyAddress">
                               <label for="sameAsPermanent">Same as permanent</label>
                             </div>
                           </div>
@@ -723,7 +742,7 @@
                     </div>
                   </div>
 
-                  <div class="row"  formGroupName="otherDetails">
+                  <div class="row" formGroupName="otherDetails">
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="cl" required>
@@ -760,8 +779,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row" formGroupName="otherDetails">
-                    <div class="cell span_1_of_4">
+                  <div class="row">
+                    <div class="cell span_1_of_4" formGroupName="otherDetails">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="sickLeave" required>
                         <label class="text-input-label">No of Sick Leaves</label>
@@ -769,18 +788,46 @@
                         <span class="bar span_4_of_4"></span>
                       </div>
                     </div>
-                    <div class="group">
+                    <div class="group" formGroupName="otherDetails">
                       <input class="inputMaterial span_4_of_4" type="text" formControlName="probationPeriodEndDate" required>
                       <label class="text-input-label">Probation End Date</label>
                       <span class="highlight"></span>
                       <span class="bar span_4_of_4"></span>
                       <date-picker (outputEvents)="changeDate($event, 'probationPeriodEndDate')"></date-picker>
                     </div>
+                    <div class="cell span_1_of_4" formGroupName="employeeProfile">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="qualification" required>
+                        <label class="text-input-label">Highest qualification</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="display-table">
+                  <div class="row" formGroupName="employeeProfile">
+                    <div class="cell span_1_of_2">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="description" required>
+                        <label class="text-input-label">Description</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_2">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="comments" required>
+                        <label class="text-input-label">Comments</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
               <div class="row">
-                  <button type="submit" class="btn ripple" [disabled]="canCreate() && false">Create</button>
+                <button type="submit" class="btn ripple" [disabled]="canCreate() && false">Create</button>
               </div>
             </fieldset>
           </form>

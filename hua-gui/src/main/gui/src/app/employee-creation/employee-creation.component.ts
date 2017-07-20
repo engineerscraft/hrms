@@ -33,6 +33,7 @@ export class EmployeeCreationComponent implements OnInit {
   private salaryComponents;
   private optionalBenefitComponents;
   private message: string = '';
+  private copyAddress: boolean;
   private autoCompleteSuggestions = {
     supervisorEmailIdSuggestions: Array(), hrEmailIdSuggestions: Array()
   };
@@ -62,7 +63,12 @@ export class EmployeeCreationComponent implements OnInit {
       'employeeJobRoleDetails': this.formBuilder.group({
         'jobRoleId': ['', Validators.required]
       }),
-      'otherDetails' : this.otherDetailsControls()
+      'otherDetails' : this.otherDetailsControls(),
+      'employeeProfile' : this.formBuilder.group({
+        'qualification': [''],
+        'description': [''],
+        'comments': ['']
+      })
     });
     this.initiateLists();
 
@@ -383,9 +389,12 @@ export class EmployeeCreationComponent implements OnInit {
 
   /**
    * Copy permanent address to present address
+   * Check the value of the copyAddress field and act accordingly
    */
   copyFromPermanent() {
-    console.log('attempt to copy');
+    
+    if(this.copyAddress === false)
+      return;
     const houseNo = this.employeeInfo.get('employeeAddress').get('permanent').get('houseNo');
     const streetName = this.employeeInfo.get('employeeAddress').get('permanent').get('streetName');
     const region = this.employeeInfo.get('employeeAddress').get('permanent').get('region');
@@ -432,7 +441,8 @@ export class EmployeeCreationComponent implements OnInit {
       this.employeeInfo.controls.employeeAddress.get('present').value],
       'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
       'employeeSalary': salaryComponents,
-      'employeeHierarchy' : this.employeeInfo.controls.otherDetails.value
+      'employeeHierarchy' : this.employeeInfo.controls.otherDetails.value,
+      'employeeProfile' : this.employeeInfo.controls.employeeProfile.value
     };
     console.log(JSON.stringify(obj));
     this.processingInProgress = true;
