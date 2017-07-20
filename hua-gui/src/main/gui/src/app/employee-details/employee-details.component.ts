@@ -13,6 +13,7 @@ export class EmployeeDetailsComponent implements OnInit {
   private employeeInfo;
   private id;
   private processingInProgress = false;
+  private error = false;
 
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
@@ -48,7 +49,6 @@ export class EmployeeDetailsComponent implements OnInit {
       me.processingInProgress = true;
       me.employeeService.uploadProfileImage(me.id, { "profileImage": fileContent })
         .finally(() => {
-          me.employeeInfo.employeeBasicInfo.profileImage = fileContent;
           me.processingInProgress = false;
         }
         )
@@ -61,6 +61,9 @@ export class EmployeeDetailsComponent implements OnInit {
           if (err.status === 404) {
             me.router.navigate(['404']);
           }
+        },
+        () => {
+          me.employeeInfo.employeeBasicInfo.profileImage = fileContent;
         });
     }
   }

@@ -258,7 +258,7 @@ public class EmployeeResource {
         // String employeeName = securityContext.getUserPrincipal().getName();
         try {
             employeeRepository.insertEmployeeImage(img.getProfileImage(), employeeId);
-            return Response.status(200).build();
+            return Response.status(200).entity(new Message("Profile image uploaded successfully")).build();
         } catch (Exception ex) {
             logger.error("The Employee_Image could not be updated.", ex);
             return Response.status(500).entity(ex.getMessage()).build();
