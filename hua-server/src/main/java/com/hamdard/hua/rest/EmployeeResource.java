@@ -281,4 +281,21 @@ public class EmployeeResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
+
+    @POST
+    @Path("{id}/document")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response addEmployeeDocument(@PathParam("id") @Size(min=1) String employeeId, Employee.EmployeeDocument empDoc) {
+        try {
+            Employee empInfo = employeeRepository.getEmployeeDetailsByEmpId(employeeId);
+            return Response.status(Response.Status.OK).entity(empInfo).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("The employee details not found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The employee details could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
 }

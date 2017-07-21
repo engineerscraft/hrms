@@ -20,6 +20,10 @@ label {
   font-size: 14px;
 }
 
+a {
+  color: #4CA1AF;
+}
+
 html {
   background-color: #fff;
   color: #555;
@@ -53,14 +57,6 @@ h3 {
 fieldset {
   border-style: none;
   clear: both;
-}
-
-.outer-component-width {
-  width: calc(100% - 90px);
-}
-
-.inner-component-width {
-  width: 100%;
 }
 
 .loading {
@@ -119,8 +115,7 @@ input, button {
    display: table;
    table-layout: fixed;
    width:100%;
-   padding-right: 50px;
-
+   /*padding-right: 50px;*/
 }
 
 .row {
@@ -150,6 +145,7 @@ input, button {
   border-color: #fff;
   border-width: 0 1px 1px 1px;
   border-style: solid;
+  word-wrap: break-word;
 }
 
 .page-header {
@@ -798,6 +794,18 @@ select * {
   padding-bottom: 2rem;
 }
 
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4,
+#tab5:checked ~ #content5,
+#tab6:checked ~ #content6 {
+  clear: both;
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
 .tab_container [id^="tab"]:checked + .tab-header {
   background: #fff;
   box-shadow: inset 0 3px #4CA1AF;
@@ -844,7 +852,7 @@ background-position: 10px center;
 /********Accordion ************/
 
 .toggle {
-  max-width: calc(100% - 90px);
+  max-width: calc(100%);
 }
 .toggle-label {
   font-size: 14px;
@@ -1065,3 +1073,20 @@ background-position: 10px center;
 }
 
 /**********Check box ends ***************/
+
+.text-label {
+  color: #4CA1AF;
+  font-size: 14px;
+}
+
+.text-value {
+  color: #3e3e3e;
+}
+
+.even-row {
+  background: #E3EEFF;
+}
+
+.width-with-right-margin {
+    width: calc(100% - 90px);
+}

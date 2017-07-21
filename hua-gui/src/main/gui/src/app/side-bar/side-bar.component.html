@@ -19,7 +19,6 @@
   <div class="sidebar-row">
     <div class="col span_4_of_4">
       <h1 class="username">{{getUserName()}}</h1>
-      <p class="change-password"><a (click)="onClickUserDetails()">My Details</a></p>
       <p class="change-password"><a (click)="onClickChangePassword()">Change Password</a></p>
     </div>
   </div>
@@ -69,6 +68,7 @@
   <div class="sidebar-row">
     <div class="col span_2_of_4">
       <ol>
+        <li><a class="menu-item" (click)="onClickUserDetails()">My Details</a></li>
         <li><a class="menu-item" (click)="onClickEmployeeHierarchySearch()">Employee Hierarchy Search</a></li>
       </ol>
     </div>
@@ -78,7 +78,7 @@
       </ol>
     </div>
   </div>
-  <div class="sidebar-row">
+  <!--<div class="sidebar-row">
     <div class="col span_4_of_4">
       <h2 class="menu-header">System Administration</h2>
     </div>
@@ -94,7 +94,7 @@
         <li><a class="menu-item">Role Management</a></li>
       </ol>
     </div>
-  </div>
+  </div>-->
 </div>
 
 <div class="modal-small" *ngIf="getShowChangePassword()">

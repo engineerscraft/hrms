@@ -23,7 +23,50 @@ public class Employee {
     private EmployeeProfile employeeProfile;
     private List<EmployeeSalary> employeeSalary;
     private AppraisalRating appraisalRating;
+    private List<EmployeeDocument> documentList;
 
+    public static class EmployeeDocument {
+        private int docId;
+        private String remarks;
+        private Date uploadDate;
+        private String uploadedBy;
+        private String document;
+        public int getDocId() {
+            return docId;
+        }
+        public void setDocId(int docId) {
+            this.docId = docId;
+        }
+        public String getRemarks() {
+            return remarks;
+        }
+        public void setRemarks(String remarks) {
+            this.remarks = remarks;
+        }
+        public Date getUploadDate() {
+            return uploadDate;
+        }
+        public void setUploadDate(Date uploadDate) {
+            this.uploadDate = uploadDate;
+        }
+        public String getUploadedBy() {
+            return uploadedBy;
+        }
+        public void setUploadedBy(String uploadedBy) {
+            this.uploadedBy = uploadedBy;
+        }
+        public String getDocument() {
+            return document;
+        }
+        public void setDocument(String document) {
+            this.document = document;
+        }
+        @Override
+        public String toString() {
+            return "EmployeeDocument [docId=" + docId + ", remarks=" + remarks + ", uploadDate=" + uploadDate + ", uploadedBy=" + uploadedBy + "]";
+        }
+    }
+    
     public static class AppraisalRating {
         private int gradeId;
         private String grade;
@@ -990,6 +1033,14 @@ public class Employee {
 
     public void setEmployeeSalary(List<EmployeeSalary> employeeSalary) {
         this.employeeSalary = employeeSalary;
+    }
+
+    public List<EmployeeDocument> getDocumentList() {
+        return documentList;
+    }
+
+    public void setDocumentList(List<EmployeeDocument> documentList) {
+        this.documentList = documentList;
     }
 
     @Override
