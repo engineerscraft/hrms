@@ -4,11 +4,13 @@ import 'rxjs/add/operator/mergeMap';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import { AuthenticatorService } from './authenticator.service';
+import 'rxjs/add/observable/of';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class HttpService {
 
-  constructor(private http: Http, private authenticatorService: AuthenticatorService) { }
+  constructor(private http: Http, private authenticatorService: AuthenticatorService, private router: Router) { }
 
   private token: { accessToken: string, refreshToken: string };
 
@@ -25,12 +27,19 @@ export class HttpService {
           tokenObject["token"] = localStorage.getItem("refreshToken");
           return me.authenticatorService.authenticate(tokenObject)
             .flatMap(res => {
-              if (res.status == 200) {
+
                 let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
                 let options = new RequestOptions({ headers: headers });
                 return me.http.get(url, options);
+            })
+            .catch(error => {
+              if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+                this.router.navigate(['']);
+                return Observable.throw(error);
               }
-              return Observable.throw(initialError);
+              else {
+                return Observable.throw(error);
+              }
             });
         }
         else {
@@ -53,12 +62,18 @@ export class HttpService {
           tokenObject["token"] = localStorage.getItem("refreshToken");
           return me.authenticatorService.authenticate(tokenObject)
             .flatMap(res => {
-              if (res.status == 200) {
                 let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
                 let options = new RequestOptions({ headers: headers });
                 return me.http.put(url, body, options);
+              })
+            .catch(error => {
+              if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+                this.router.navigate(['']);
+                return Observable.throw(error);
               }
-              return Observable.throw(initialError);
+              else {
+                return Observable.throw(error);
+              }
             });
         }
         else {
@@ -81,12 +96,18 @@ callHttpDelete(url: string) {
           tokenObject["token"] = localStorage.getItem("refreshToken");
           return me.authenticatorService.authenticate(tokenObject)
             .flatMap(res => {
-              if (res.status == 200) {
                 let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
                 let options = new RequestOptions({ headers: headers });
                 return me.http.delete(url, options);
+              })
+            .catch(error => {
+              if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+                this.router.navigate(['']);
+                return Observable.throw(error);
               }
-              return Observable.throw(initialError);
+              else {
+                return Observable.throw(error);
+              }
             });
         }
         else {
@@ -108,12 +129,18 @@ callHttpPost(url: string, body: object) {
           tokenObject["token"] = localStorage.getItem("refreshToken");
           return me.authenticatorService.authenticate(tokenObject)
             .flatMap(res => {
-              if (res.status == 200 || res.status == 201) {
                 let headers = new Headers({ "Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("accessToken") });
                 let options = new RequestOptions({ headers: headers });
                 return me.http.post(url, body, options);
+              })
+            .catch(error => {
+              if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+                this.router.navigate(['']);
+                return Observable.throw(error);
               }
-              return Observable.throw(initialError);
+              else {
+                return Observable.throw(error);
+              }
             });
         }
         else {

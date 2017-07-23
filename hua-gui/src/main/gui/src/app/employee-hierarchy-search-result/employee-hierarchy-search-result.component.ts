@@ -48,7 +48,7 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
         this.goToFirstPage(this.filteredResult);
       },
       (err: any) => {
-        if (err.status === 401) {
+        if (err.status === 401 && err.json()["message"]!=="Refresh token expired") {
           this.router.navigate(['forbidden']);
         }
       },
