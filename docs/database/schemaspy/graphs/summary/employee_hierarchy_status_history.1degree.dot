@@ -16,7 +16,8 @@ digraph "employee_hierarchy_status_history" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_hierarchy_status_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status_history</TD></TR>
-      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="emp_hrchy_stat_hist_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_hrchy_stat_hist_id</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">emp_id</TD></TR>
       <TR><TD PORT="supervisor_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">supervisor_id</TD></TR>
       <TR><TD PORT="hr_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">hr_id</TD></TR>
       <TR><TD PORT="status" COLSPAN="3" ALIGN="LEFT">status</TD></TR>

@@ -18,10 +18,11 @@ digraph "twoDegreesRelationshipsGraph" {
   "appraisal_rating":"appraisal_rating.heading":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
   "employee":"department_id":w -> "department_master":"department_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee":"identity_doc_type_id":w -> "doc_type_master":"doc_type_master.heading":e [arrowtail=crowodot arrowhead=none];
+  "employee":"nationality":w -> "country_master":"country_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee":"org_id":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee":"unit_id":w -> "unit_master":"unit_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_additional_details":"employee_additional_details.heading":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
-  "employee_docs":"employee_docs.heading":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
+  "employee_docs":"employee_docs.heading":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
@@ -52,7 +53,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="sal_rev_end_date" COLSPAN="3" ALIGN="LEFT">sal_rev_end_date</TD></TR>
       <TR><TD PORT="effective_date" COLSPAN="3" ALIGN="LEFT">effective_date</TD></TR>
       <TR><TD PORT="activation_date" COLSPAN="3" ALIGN="LEFT">activation_date</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="appraisal_cycle.html#graph"
     tooltip="appraisal_cycle"
@@ -61,16 +62,25 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="appraisal_rating.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">appraisal_rating</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">300 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="appraisal_rating.html#graph"
     tooltip="appraisal_rating"
+  ];
+  "country_master" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="country_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">country_master</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">246 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
+    </TABLE>>
+    URL="country_master.html#graph"
+    tooltip="country_master"
   ];
   "department_master" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="department_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">department_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="department_master.html#graph"
     tooltip="department_master"
@@ -112,7 +122,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="hr_flag" COLSPAN="3" ALIGN="LEFT">hr_flag</TD></TR>
       <TR><TD PORT="supervisor_flag" COLSPAN="3" ALIGN="LEFT">supervisor_flag</TD></TR>
       <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -203,7 +213,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="salary_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">salary_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="salary_master.html#graph"
     tooltip="salary_master"

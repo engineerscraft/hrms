@@ -114,7 +114,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 27 rows at Fri Jun 30 19:22 IST 2017
+<p/>Table contained 112 rows at Mon Jul 24 00:48 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -137,11 +137,21 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </table>
 </div>
 <table width='100%' border='0'><tr><td class='container'>
-<br/><form action='get'><b>Close relationships:</b></form>  <a name='graph'><img src='../graphs/role_permission.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
+<br/><form action='get'><b>Close relationships</b><span class='degrees' id='degrees'>
+&nbsp;within <input type='radio' name='degrees' id='oneDegree' onclick="if (!this.checked) selectGraph('../graphs/role_permission.2degrees.png', '#twoDegreesRelationshipsGraph');else selectGraph('../graphs/role_permission.1degree.png', '#oneDegreeRelationshipsGraph'); " checked>one
+  <input type='radio' name='degrees' id='twoDegrees' onclick="if (this.checked) selectGraph('../graphs/role_permission.2degrees.png', '#twoDegreesRelationshipsGraph');else selectGraph('../graphs/role_permission.1degree.png', '#oneDegreeRelationshipsGraph'); ">two degrees of separation
+</span><b>:</b></form>
+  <a name='graph'><img src='../graphs/role_permission.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
 <area shape="rect" id="node1" href="role_permission.html#" title="role_permission" alt="" coords="209,68,392,180"/>
 <area shape="rect" id="node2" href="permission_master.html#graph" title="permission_master" alt="" coords="5,160,161,315"/>
 <area shape="rect" id="node3" href="role_master.html#graph" title="role_master" alt="" coords="17,5,150,136"/>
+</map>
+<map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
+<area shape="rect" id="node1" href="role_department.html#graph" title="role_department" alt="" coords="233,29,369,88"/>
+<area shape="rect" id="node2" href="role_master.html#graph" title="role_master" alt="" coords="17,5,150,136"/>
+<area shape="rect" id="node3" href="role_permission.html#" title="role_permission" alt="" coords="209,123,392,235"/>
+<area shape="rect" id="node4" href="permission_master.html#graph" title="permission_master" alt="" coords="5,160,161,315"/>
 </map>
 </td></tr></table>
 </div>

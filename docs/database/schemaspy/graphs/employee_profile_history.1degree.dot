@@ -18,6 +18,7 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_profile_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_profile_history</TD></TR>
+      <TR><TD PORT="emp_profile_hist_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_profile_hist_id</TD><TD PORT="emp_profile_hist_id.type" ALIGN="LEFT">bigserial[19]</TD></TR>
       <TR><TD PORT="emp_id" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">emp_id</TD><TD PORT="emp_id.type" ALIGN="LEFT">varchar[20]</TD></TR>
       <TR><TD PORT="qualification" COLSPAN="2" ALIGN="LEFT">qualification</TD><TD PORT="qualification.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD PORT="description" COLSPAN="2" ALIGN="LEFT">description</TD><TD PORT="description.type" ALIGN="LEFT">varchar[256]</TD></TR>

@@ -15,6 +15,7 @@ digraph "oneDegreeRelationshipsGraph" {
     arrowsize="0.8"
   ];
   "address":"country_id":w -> "country_master":"country_id.type":e [arrowtail=crowodot arrowhead=none];
+  "employee":"nationality":w -> "country_master":"country_id.type":e [arrowtail=crowodot arrowhead=none];
   "state_master":"country_id":w -> "country_master":"country_id.type":e [arrowtail=crowodot arrowhead=none];
   "address" [
     label=<
@@ -42,10 +43,43 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="country_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">country_master</TD></TR>
       <TR><TD PORT="country_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">country_id</TD><TD PORT="country_id.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="country_name" COLSPAN="2" ALIGN="LEFT">country_name</TD><TD PORT="country_name.type" ALIGN="LEFT">varchar[50]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">246 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">246 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="country_master.html#"
     tooltip="country_master"
+  ];
+  "employee" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="employee.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
+      <TR><TD PORT="employee_first_name" COLSPAN="3" ALIGN="LEFT">employee_first_name</TD></TR>
+      <TR><TD PORT="employee_middle_name" COLSPAN="3" ALIGN="LEFT">employee_middle_name</TD></TR>
+      <TR><TD PORT="employee_last_name" COLSPAN="3" ALIGN="LEFT">employee_last_name</TD></TR>
+      <TR><TD PORT="sex" COLSPAN="3" ALIGN="LEFT">sex</TD></TR>
+      <TR><TD PORT="emp_type" COLSPAN="3" ALIGN="LEFT">emp_type</TD></TR>
+      <TR><TD PORT="marital_status" COLSPAN="3" ALIGN="LEFT">marital_status</TD></TR>
+      <TR><TD PORT="date_of_joining" COLSPAN="3" ALIGN="LEFT">date_of_joining</TD></TR>
+      <TR><TD PORT="org_id" COLSPAN="3" ALIGN="LEFT">org_id</TD></TR>
+      <TR><TD PORT="unit_id" COLSPAN="3" ALIGN="LEFT">unit_id</TD></TR>
+      <TR><TD PORT="department_id" COLSPAN="3" ALIGN="LEFT">department_id</TD></TR>
+      <TR><TD PORT="nationality" COLSPAN="3" ALIGN="LEFT">nationality</TD></TR>
+      <TR><TD PORT="identity_doc_type_id" COLSPAN="3" ALIGN="LEFT">identity_doc_type_id</TD></TR>
+      <TR><TD PORT="identity_number" COLSPAN="3" ALIGN="LEFT">identity_number</TD></TR>
+      <TR><TD PORT="date_of_birth" COLSPAN="3" ALIGN="LEFT">date_of_birth</TD></TR>
+      <TR><TD PORT="father_name" COLSPAN="3" ALIGN="LEFT">father_name</TD></TR>
+      <TR><TD PORT="email_id" COLSPAN="3" ALIGN="LEFT">email_id</TD></TR>
+      <TR><TD PORT="contactno" COLSPAN="3" ALIGN="LEFT">contactno</TD></TR>
+      <TR><TD PORT="entry_by" COLSPAN="3" ALIGN="LEFT">entry_by</TD></TR>
+      <TR><TD PORT="entry_date" COLSPAN="3" ALIGN="LEFT">entry_date</TD></TR>
+      <TR><TD PORT="hr_flag" COLSPAN="3" ALIGN="LEFT">hr_flag</TD></TR>
+      <TR><TD PORT="supervisor_flag" COLSPAN="3" ALIGN="LEFT">supervisor_flag</TD></TR>
+      <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+    </TABLE>>
+    URL="employee.html#graph"
+    tooltip="employee"
   ];
   "state_master" [
     label=<

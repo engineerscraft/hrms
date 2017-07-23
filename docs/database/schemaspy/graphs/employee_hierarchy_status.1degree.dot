@@ -45,7 +45,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="hr_flag" COLSPAN="3" ALIGN="LEFT">hr_flag</TD></TR>
       <TR><TD PORT="supervisor_flag" COLSPAN="3" ALIGN="LEFT">supervisor_flag</TD></TR>
       <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -56,7 +56,9 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="employee_hierarchy_status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status</TD></TR>
       <TR><TD PORT="emp_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD><TD PORT="emp_id.type" ALIGN="LEFT">varchar[20]</TD></TR>
       <TR><TD PORT="supervisor_id" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">supervisor_id</TD><TD PORT="supervisor_id.type" ALIGN="LEFT">varchar[20]</TD></TR>
+      <TR><TD PORT="supervisor_email_id" COLSPAN="2" ALIGN="LEFT">supervisor_email_id</TD><TD PORT="supervisor_email_id.type" ALIGN="LEFT">varchar[50]</TD></TR>
       <TR><TD PORT="hr_id" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">hr_id</TD><TD PORT="hr_id.type" ALIGN="LEFT">varchar[20]</TD></TR>
+      <TR><TD PORT="hr_email_id" COLSPAN="2" ALIGN="LEFT">hr_email_id</TD><TD PORT="hr_email_id.type" ALIGN="LEFT">varchar[50]</TD></TR>
       <TR><TD PORT="status" COLSPAN="2" ALIGN="LEFT">status</TD><TD PORT="status.type" ALIGN="LEFT">varchar[20]</TD></TR>
       <TR><TD PORT="cl" COLSPAN="2" ALIGN="LEFT">cl</TD><TD PORT="cl.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="pl" COLSPAN="2" ALIGN="LEFT">pl</TD><TD PORT="pl.type" ALIGN="LEFT">int4[10]</TD></TR>

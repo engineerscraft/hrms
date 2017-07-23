@@ -85,6 +85,11 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
+    <td class='relatedTable' title="role_department.role_id refs role_master.role_id via role_department_role_id_fkey"><a href='role_department.html'>role_department</a><span class='relatedKey'>.role_id</span>
+    </td>
+    <td class='constraint'>role_department_role_id_fkey</td>
+   </tr>
+   <tr valign='top'>
     <td class='relatedTable' title="role_permission.role_id refs role_master.role_id via role_permission_role_id_fkey"><a href='role_permission.html'>role_permission</a><span class='relatedKey'>.role_id</span>
     </td>
     <td class='constraint'>role_permission_role_id_fkey</td>
@@ -117,7 +122,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 2 rows at Fri Jun 30 19:22 IST 2017
+<p/>Table contained 4 rows at Mon Jul 24 00:48 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -146,13 +151,16 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/role_master.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="role_permission.html#graph" title="role_permission" alt="" coords="273,8,408,115"/>
-<area shape="rect" id="node2" href="role_master.html#" title="role_master" alt="" coords="5,5,225,141"/>
+<area shape="rect" id="node1" href="role_department.html#graph" title="role_department" alt="" coords="274,5,410,112"/>
+<area shape="rect" id="node2" href="role_master.html#" title="role_master" alt="" coords="5,80,225,216"/>
+<area shape="rect" id="node3" href="role_permission.html#graph" title="role_permission" alt="" coords="273,136,411,243"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="role_permission.html#graph" title="role_permission" alt="" coords="273,63,408,169"/>
-<area shape="rect" id="node2" href="permission_master.html#graph" title="permission_master" alt="" coords="37,165,193,224"/>
-<area shape="rect" id="node3" href="role_master.html#" title="role_master" alt="" coords="5,5,225,141"/>
+<area shape="rect" id="node1" href="role_department.html#graph" title="role_department" alt="" coords="274,24,410,131"/>
+<area shape="rect" id="node2" href="department_master.html#graph" title="department_master" alt="" coords="36,5,195,64"/>
+<area shape="rect" id="node3" href="role_master.html#" title="role_master" alt="" coords="5,88,225,224"/>
+<area shape="rect" id="node4" href="role_permission.html#graph" title="role_permission" alt="" coords="273,156,411,263"/>
+<area shape="rect" id="node5" href="permission_master.html#graph" title="permission_master" alt="" coords="37,248,193,307"/>
 </map>
 </td></tr></table>
 </div>

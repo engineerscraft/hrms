@@ -14,18 +14,18 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "employee_additional_details_history":"employee_additional_details_history.heading":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=tee arrowhead=none style=dashed];
+  "employee_additional_details_history":"employee_additional_details_history.heading":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_hierarchy_status":"emp_id":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"hr_id":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"supervisor_id":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
-  "employee_hierarchy_status_history":"employee_hierarchy_status_history.heading":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=tee arrowhead=none style=dashed];
-  "employee_history":"employee_history.heading":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=tee arrowhead=none style=dashed];
+  "employee_hierarchy_status_history":"employee_hierarchy_status_history.heading":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=crowodot arrowhead=none style=dashed];
+  "employee_history":"employee_history.heading":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_profile_history":"emp_id":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -45,7 +45,9 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="employee_hierarchy_status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status</TD></TR>
       <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
       <TR><TD PORT="supervisor_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">supervisor_id</TD></TR>
+      <TR><TD PORT="supervisor_email_id" COLSPAN="3" ALIGN="LEFT">supervisor_email_id</TD></TR>
       <TR><TD PORT="hr_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">hr_id</TD></TR>
+      <TR><TD PORT="hr_email_id" COLSPAN="3" ALIGN="LEFT">hr_email_id</TD></TR>
       <TR><TD PORT="status" COLSPAN="3" ALIGN="LEFT">status</TD></TR>
       <TR><TD PORT="cl" COLSPAN="3" ALIGN="LEFT">cl</TD></TR>
       <TR><TD PORT="pl" COLSPAN="3" ALIGN="LEFT">pl</TD></TR>
@@ -74,7 +76,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_history</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">7 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_history.html#graph"
     tooltip="employee_history"
@@ -83,6 +85,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_profile_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_profile_history</TD></TR>
+      <TR><TD PORT="emp_profile_hist_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_profile_hist_id</TD><TD PORT="emp_profile_hist_id.type" ALIGN="LEFT">bigserial[19]</TD></TR>
       <TR><TD PORT="emp_id" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">emp_id</TD><TD PORT="emp_id.type" ALIGN="LEFT">varchar[20]</TD></TR>
       <TR><TD PORT="qualification" COLSPAN="2" ALIGN="LEFT">qualification</TD><TD PORT="qualification.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD PORT="description" COLSPAN="2" ALIGN="LEFT">description</TD><TD PORT="description.type" ALIGN="LEFT">varchar[256]</TD></TR>

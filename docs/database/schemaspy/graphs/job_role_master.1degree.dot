@@ -29,7 +29,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="performance_description" COLSPAN="3" ALIGN="LEFT">performance_description</TD></TR>
       <TR><TD PORT="job_role_id" COLSPAN="3" ALIGN="LEFT">job_role_id</TD></TR>
       <TR><TD PORT="designation_id" COLSPAN="3" ALIGN="LEFT">designation_id</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">300 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="appraisal_rating.html#graph"
     tooltip="appraisal_rating"
@@ -94,7 +94,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="sal_value" COLSPAN="3" ALIGN="LEFT">sal_value</TD></TR>
       <TR><TD PORT="max_allow_limit" COLSPAN="3" ALIGN="LEFT">max_allow_limit</TD></TR>
       <TR><TD PORT="sal_opt_comp_flag" COLSPAN="3" ALIGN="LEFT">sal_opt_comp_flag</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="salary_master.html#graph"
     tooltip="salary_master"

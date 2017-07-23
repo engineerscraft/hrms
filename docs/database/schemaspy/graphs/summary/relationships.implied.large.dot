@@ -46,7 +46,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="sal_rev_end_date" COLSPAN="3" ALIGN="LEFT">sal_rev_end_date</TD></TR>
       <TR><TD PORT="effective_date" COLSPAN="3" ALIGN="LEFT">effective_date</TD></TR>
       <TR><TD PORT="activation_date" COLSPAN="3" ALIGN="LEFT">activation_date</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/appraisal_cycle.html#"
     tooltip="appraisal_cycle"
@@ -61,7 +61,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="performance_description" COLSPAN="3" ALIGN="LEFT">performance_description</TD></TR>
       <TR><TD PORT="job_role_id" COLSPAN="3" ALIGN="LEFT">job_role_id</TD></TR>
       <TR><TD PORT="designation_id" COLSPAN="3" ALIGN="LEFT">designation_id</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">300 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/appraisal_rating.html#"
     tooltip="appraisal_rating"
@@ -72,7 +72,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="country_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">country_master</TD></TR>
       <TR><TD PORT="country_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">country_id</TD></TR>
       <TR><TD PORT="country_name" COLSPAN="3" ALIGN="LEFT">country_name</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">246 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">246 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="tables/country_master.html#"
     tooltip="country_master"
@@ -86,7 +86,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="unit_id" COLSPAN="3" ALIGN="LEFT">unit_id</TD></TR>
       <TR><TD PORT="address" COLSPAN="3" ALIGN="LEFT">address</TD></TR>
       <TR><TD PORT="parent_department_id" COLSPAN="3" ALIGN="LEFT">parent_department_id</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/department_master.html#"
     tooltip="department_master"
@@ -154,7 +154,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="hr_flag" COLSPAN="3" ALIGN="LEFT">hr_flag</TD></TR>
       <TR><TD PORT="supervisor_flag" COLSPAN="3" ALIGN="LEFT">supervisor_flag</TD></TR>
       <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="tables/employee.html#"
     tooltip="employee"
@@ -185,7 +185,8 @@ digraph "largeImpliedRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_additional_details_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_additional_details_history</TD></TR>
-      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="emp_adl_dtl_hist_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_adl_dtl_hist_id</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">emp_id</TD></TR>
       <TR><TD PORT="no_of_siblings" COLSPAN="3" ALIGN="LEFT">no_of_siblings</TD></TR>
       <TR><TD PORT="no_of_dependent" COLSPAN="3" ALIGN="LEFT">no_of_dependent</TD></TR>
       <TR><TD PORT="nominee_name1" COLSPAN="3" ALIGN="LEFT">nominee_name1</TD></TR>
@@ -209,8 +210,9 @@ digraph "largeImpliedRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_docs.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_docs</TD></TR>
-      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
-      <TR><TD PORT="doc_type_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">doc_type_id</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="doc_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">doc_id</TD></TR>
+      <TR><TD PORT="doc_type_id" COLSPAN="3" ALIGN="LEFT">doc_type_id</TD></TR>
       <TR><TD PORT="remarks" COLSPAN="3" ALIGN="LEFT">remarks</TD></TR>
       <TR><TD PORT="upload_date" COLSPAN="3" ALIGN="LEFT">upload_date</TD></TR>
       <TR><TD PORT="uploaded_by" COLSPAN="3" ALIGN="LEFT">uploaded_by</TD></TR>
@@ -226,7 +228,9 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="employee_hierarchy_status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status</TD></TR>
       <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
       <TR><TD PORT="supervisor_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">supervisor_id</TD></TR>
+      <TR><TD PORT="supervisor_email_id" COLSPAN="3" ALIGN="LEFT">supervisor_email_id</TD></TR>
       <TR><TD PORT="hr_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">hr_id</TD></TR>
+      <TR><TD PORT="hr_email_id" COLSPAN="3" ALIGN="LEFT">hr_email_id</TD></TR>
       <TR><TD PORT="status" COLSPAN="3" ALIGN="LEFT">status</TD></TR>
       <TR><TD PORT="cl" COLSPAN="3" ALIGN="LEFT">cl</TD></TR>
       <TR><TD PORT="pl" COLSPAN="3" ALIGN="LEFT">pl</TD></TR>
@@ -246,7 +250,8 @@ digraph "largeImpliedRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_hierarchy_status_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status_history</TD></TR>
-      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="emp_hrchy_stat_hist_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_hrchy_stat_hist_id</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">emp_id</TD></TR>
       <TR><TD PORT="supervisor_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">supervisor_id</TD></TR>
       <TR><TD PORT="hr_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">hr_id</TD></TR>
       <TR><TD PORT="status" COLSPAN="3" ALIGN="LEFT">status</TD></TR>
@@ -269,7 +274,8 @@ digraph "largeImpliedRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_history</TD></TR>
-      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="emp_hist_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_hist_id</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">emp_id</TD></TR>
       <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
       <TR><TD PORT="employee_first_name" COLSPAN="3" ALIGN="LEFT">employee_first_name</TD></TR>
       <TR><TD PORT="employee_middle_name" COLSPAN="3" ALIGN="LEFT">employee_middle_name</TD></TR>
@@ -295,7 +301,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="last_mod_date" COLSPAN="3" ALIGN="LEFT">last_mod_date</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">7 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/employee_history.html#"
     tooltip="employee_history"
@@ -339,6 +345,7 @@ digraph "largeImpliedRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_profile_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_profile_history</TD></TR>
+      <TR><TD PORT="emp_profile_hist_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_profile_hist_id</TD></TR>
       <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">emp_id</TD></TR>
       <TR><TD PORT="qualification" COLSPAN="3" ALIGN="LEFT">qualification</TD></TR>
       <TR><TD PORT="description" COLSPAN="3" ALIGN="LEFT">description</TD></TR>
@@ -453,10 +460,21 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="permission_name" COLSPAN="3" ALIGN="LEFT">permission_name</TD></TR>
       <TR><TD PORT="permission_type" COLSPAN="3" ALIGN="LEFT">permission_type</TD></TR>
       <TR><TD PORT="resource_name" COLSPAN="3" ALIGN="LEFT">resource_name</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">27 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">28 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/permission_master.html#"
     tooltip="permission_master"
+  ];
+  "role_department" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="role_department.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_department</TD></TR>
+      <TR><TD PORT="department_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">department_id</TD></TR>
+      <TR><TD PORT="role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/role_department.html#"
+    tooltip="role_department"
   ];
   "role_master" [
     label=<
@@ -465,7 +483,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD></TR>
       <TR><TD PORT="role_name" COLSPAN="3" ALIGN="LEFT">role_name</TD></TR>
       <TR><TD PORT="role_description" COLSPAN="3" ALIGN="LEFT">role_description</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="tables/role_master.html#"
     tooltip="role_master"
@@ -476,7 +494,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="role_permission.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_permission</TD></TR>
       <TR><TD PORT="role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD></TR>
       <TR><TD PORT="permission_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">permission_id</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">27 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">112 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/role_permission.html#"
     tooltip="role_permission"
@@ -505,7 +523,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="sal_value" COLSPAN="3" ALIGN="LEFT">sal_value</TD></TR>
       <TR><TD PORT="max_allow_limit" COLSPAN="3" ALIGN="LEFT">max_allow_limit</TD></TR>
       <TR><TD PORT="sal_opt_comp_flag" COLSPAN="3" ALIGN="LEFT">sal_opt_comp_flag</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/salary_master.html#"
     tooltip="salary_master"
@@ -523,7 +541,7 @@ digraph "largeImpliedRelationshipsGraph" {
       <TR><TD PORT="end_date" COLSPAN="3" ALIGN="LEFT">end_date</TD></TR>
       <TR><TD PORT="credit_debit_flag" COLSPAN="3" ALIGN="LEFT">credit_debit_flag</TD></TR>
       <TR><TD PORT="emp_opt_out_flag" COLSPAN="3" ALIGN="LEFT">emp_opt_out_flag</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="tables/salary_opt_component_master.html#"
     tooltip="salary_opt_component_master"
@@ -567,18 +585,19 @@ digraph "largeImpliedRelationshipsGraph" {
   "district_master":"state_id":w -> "state_master":"state_id":e [arrowtail=crowodot arrowhead=none];
   "employee":"department_id":w -> "department_master":"department_id":e [arrowtail=crowodot arrowhead=none];
   "employee":"identity_doc_type_id":w -> "doc_type_master":"doc_type_id":e [arrowtail=crowodot arrowhead=none];
+  "employee":"nationality":w -> "country_master":"country_id":e [arrowtail=crowodot arrowhead=none];
   "employee":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowodot arrowhead=none];
   "employee":"unit_id":w -> "unit_master":"unit_id":e [arrowtail=crowodot arrowhead=none];
   "employee_additional_details":"emp_id":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
-  "employee_additional_details_history":"emp_id":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=tee arrowhead=none style=dashed];
-  "employee_docs":"doc_type_id":w -> "doc_type_master":"doc_type_id":e [arrowtail=crowtee arrowhead=none];
-  "employee_docs":"emp_id":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
+  "employee_additional_details_history":"emp_id":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=crowodot arrowhead=none style=dashed];
+  "employee_docs":"doc_type_id":w -> "doc_type_master":"doc_type_id":e [arrowtail=crowodot arrowhead=none];
+  "employee_docs":"emp_id":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"emp_id":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"hr_id":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"supervisor_id":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
-  "employee_hierarchy_status_history":"emp_id":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=tee arrowhead=none style=dashed];
+  "employee_hierarchy_status_history":"emp_id":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_history":"department_id":w -> "department_master":"department_id":e [arrowtail=crowodot arrowhead=none style=dashed];
-  "employee_history":"emp_id":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=tee arrowhead=none style=dashed];
+  "employee_history":"emp_id":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_history":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_history":"unit_id":w -> "unit_master":"unit_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_optional_benefits":"emp_id":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
@@ -594,11 +613,12 @@ digraph "largeImpliedRelationshipsGraph" {
   "job_role_master":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowtee arrowhead=none];
   "org_leave":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowodot arrowhead=none];
   "organisation_master":"org_type_id":w -> "organisation_type_master":"org_type_id":e [arrowtail=crowodot arrowhead=none];
+  "role_department":"department_id":w -> "department_master":"department_id":e [arrowtail=crowtee arrowhead=none];
+  "role_department":"role_id":w -> "role_master":"role_id":e [arrowtail=crowtee arrowhead=none];
   "role_permission":"permission_id":w -> "permission_master":"permission_id":e [arrowtail=crowtee arrowhead=none];
   "role_permission":"role_id":w -> "role_master":"role_id":e [arrowtail=crowtee arrowhead=none];
   "salary_master":"job_role_id":w -> "job_role_master":"job_role_id":e [arrowtail=crowtee arrowhead=none];
   "salary_master":"sal_comp_id":w -> "salary_component_master":"comp_id":e [arrowtail=crowtee arrowhead=none];
-  "salary_master":"sal_comp_id":w -> "salary_opt_component_master":"opt_comp_id":e [arrowtail=crowtee arrowhead=none];
   "state_master":"country_id":w -> "country_master":"country_id":e [arrowtail=crowodot arrowhead=none];
   "unit_master":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowodot arrowhead=none];
 }

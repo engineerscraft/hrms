@@ -18,10 +18,11 @@ digraph "oneDegreeRelationshipsGraph" {
   "appraisal_rating":"emp_id":w -> "employee":"emp_id.type":e [arrowtail=crowtee arrowhead=none];
   "employee":"department_id":w -> "department_master":"department_id":e [arrowtail=crowodot arrowhead=none];
   "employee":"identity_doc_type_id":w -> "doc_type_master":"doc_type_id":e [arrowtail=crowodot arrowhead=none];
+  "employee":"nationality":w -> "country_master":"country_id":e [arrowtail=crowodot arrowhead=none];
   "employee":"org_id":w -> "organisation_master":"org_id":e [arrowtail=crowodot arrowhead=none];
   "employee":"unit_id":w -> "unit_master":"unit_id":e [arrowtail=crowodot arrowhead=none];
   "employee_additional_details":"emp_id":w -> "employee":"emp_id.type":e [arrowtail=tee arrowhead=none];
-  "employee_docs":"emp_id":w -> "employee":"emp_id.type":e [arrowtail=crowtee arrowhead=none];
+  "employee_docs":"emp_id":w -> "employee":"emp_id.type":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"emp_id":w -> "employee":"emp_id.type":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"hr_id":w -> "employee":"emp_id.type":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"supervisor_id":w -> "employee":"emp_id.type":e [arrowtail=crowodot arrowhead=none];
@@ -58,10 +59,21 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="performance_description" COLSPAN="3" ALIGN="LEFT">performance_description</TD></TR>
       <TR><TD PORT="job_role_id" COLSPAN="3" ALIGN="LEFT">job_role_id</TD></TR>
       <TR><TD PORT="designation_id" COLSPAN="3" ALIGN="LEFT">designation_id</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">300 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="appraisal_rating.html#graph"
     tooltip="appraisal_rating"
+  ];
+  "country_master" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="country_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">country_master</TD></TR>
+      <TR><TD PORT="country_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">country_id</TD></TR>
+      <TR><TD PORT="country_name" COLSPAN="3" ALIGN="LEFT">country_name</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">246 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
+    </TABLE>>
+    URL="country_master.html#graph"
+    tooltip="country_master"
   ];
   "department_master" [
     label=<
@@ -72,7 +84,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="unit_id" COLSPAN="3" ALIGN="LEFT">unit_id</TD></TR>
       <TR><TD PORT="address" COLSPAN="3" ALIGN="LEFT">address</TD></TR>
       <TR><TD PORT="parent_department_id" COLSPAN="3" ALIGN="LEFT">parent_department_id</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="department_master.html#graph"
     tooltip="department_master"
@@ -105,7 +117,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="org_id" COLSPAN="2" ALIGN="LEFT">org_id</TD><TD PORT="org_id.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="unit_id" COLSPAN="2" ALIGN="LEFT">unit_id</TD><TD PORT="unit_id.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="department_id" COLSPAN="2" ALIGN="LEFT">department_id</TD><TD PORT="department_id.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD PORT="nationality" COLSPAN="2" ALIGN="LEFT">nationality</TD><TD PORT="nationality.type" ALIGN="LEFT">varchar[32]</TD></TR>
+      <TR><TD PORT="nationality" COLSPAN="2" ALIGN="LEFT">nationality</TD><TD PORT="nationality.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="identity_doc_type_id" COLSPAN="2" ALIGN="LEFT">identity_doc_type_id</TD><TD PORT="identity_doc_type_id.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="identity_number" COLSPAN="2" ALIGN="LEFT">identity_number</TD><TD PORT="identity_number.type" ALIGN="LEFT">varchar[32]</TD></TR>
       <TR><TD PORT="date_of_birth" COLSPAN="2" ALIGN="LEFT">date_of_birth</TD><TD PORT="date_of_birth.type" ALIGN="LEFT">timestamp[22]</TD></TR>
@@ -116,8 +128,8 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="entry_date" COLSPAN="2" ALIGN="LEFT">entry_date</TD><TD PORT="entry_date.type" ALIGN="LEFT">timestamp[22]</TD></TR>
       <TR><TD PORT="hr_flag" COLSPAN="2" ALIGN="LEFT">hr_flag</TD><TD PORT="hr_flag.type" ALIGN="LEFT">varchar[1]</TD></TR>
       <TR><TD PORT="supervisor_flag" COLSPAN="2" ALIGN="LEFT">supervisor_flag</TD><TD PORT="supervisor_flag.type" ALIGN="LEFT">varchar[1]</TD></TR>
-      <TR><TD PORT="employee_image" COLSPAN="2" ALIGN="LEFT">employee_image</TD><TD PORT="employee_image.type" ALIGN="LEFT">bytea[2147483647]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+      <TR><TD PORT="employee_image" COLSPAN="2" ALIGN="LEFT">employee_image</TD><TD PORT="employee_image.type" ALIGN="LEFT">text[2147483647]</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#"
     tooltip="employee"
@@ -148,8 +160,9 @@ digraph "oneDegreeRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_docs.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_docs</TD></TR>
-      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
-      <TR><TD PORT="doc_type_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">doc_type_id</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="doc_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">doc_id</TD></TR>
+      <TR><TD PORT="doc_type_id" COLSPAN="3" ALIGN="LEFT">doc_type_id</TD></TR>
       <TR><TD PORT="remarks" COLSPAN="3" ALIGN="LEFT">remarks</TD></TR>
       <TR><TD PORT="upload_date" COLSPAN="3" ALIGN="LEFT">upload_date</TD></TR>
       <TR><TD PORT="uploaded_by" COLSPAN="3" ALIGN="LEFT">uploaded_by</TD></TR>
@@ -165,7 +178,9 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="employee_hierarchy_status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_hierarchy_status</TD></TR>
       <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
       <TR><TD PORT="supervisor_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">supervisor_id</TD></TR>
+      <TR><TD PORT="supervisor_email_id" COLSPAN="3" ALIGN="LEFT">supervisor_email_id</TD></TR>
       <TR><TD PORT="hr_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">hr_id</TD></TR>
+      <TR><TD PORT="hr_email_id" COLSPAN="3" ALIGN="LEFT">hr_email_id</TD></TR>
       <TR><TD PORT="status" COLSPAN="3" ALIGN="LEFT">status</TD></TR>
       <TR><TD PORT="cl" COLSPAN="3" ALIGN="LEFT">cl</TD></TR>
       <TR><TD PORT="pl" COLSPAN="3" ALIGN="LEFT">pl</TD></TR>

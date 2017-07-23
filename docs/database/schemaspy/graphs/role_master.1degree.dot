@@ -14,7 +14,19 @@ digraph "oneDegreeRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
+  "role_department":"role_id":w -> "role_master":"role_id.type":e [arrowtail=crowtee arrowhead=none];
   "role_permission":"role_id":w -> "role_master":"role_id.type":e [arrowtail=crowtee arrowhead=none];
+  "role_department" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="role_department.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_department</TD></TR>
+      <TR><TD PORT="department_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">department_id</TD></TR>
+      <TR><TD PORT="role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="role_department.html#graph"
+    tooltip="role_department"
+  ];
   "role_master" [
     label=<
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -22,7 +34,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="role_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD><TD PORT="role_id.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="role_name" COLSPAN="2" ALIGN="LEFT">role_name</TD><TD PORT="role_name.type" ALIGN="LEFT">varchar[30]</TD></TR>
       <TR><TD PORT="role_description" COLSPAN="2" ALIGN="LEFT">role_description</TD><TD PORT="role_description.type" ALIGN="LEFT">varchar[60]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="role_master.html#"
     tooltip="role_master"
@@ -33,7 +45,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="role_permission.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_permission</TD></TR>
       <TR><TD PORT="role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD></TR>
       <TR><TD PORT="permission_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">permission_id</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">27 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">112 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="role_permission.html#graph"
     tooltip="role_permission"

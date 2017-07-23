@@ -19,8 +19,10 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   "department_master":"unit_id":w -> "unit_master":"unit_id":e [arrowtail=crowodot arrowhead=none];
   "employee":"department_id":w -> "department_master":"department_id.type":e [arrowtail=crowodot arrowhead=none];
   "employee":"employee.heading":w -> "doc_type_master":"doc_type_master.heading":e [arrowtail=crowodot arrowhead=none];
+  "employee":"employee.heading":w -> "country_master":"country_master.heading":e [arrowtail=crowodot arrowhead=none];
+  "employee":"employee.heading":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_additional_details":"employee_additional_details.heading":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
-  "employee_docs":"employee_docs.heading":w -> "employee":"employee.heading":e [arrowtail=crowtee arrowhead=none];
+  "employee_docs":"employee_docs.heading":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"employee_hierarchy_status.heading":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
@@ -28,7 +30,8 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   "employee_optional_benefits":"employee_optional_benefits.heading":w -> "employee":"employee.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_profile":"employee_profile.heading":w -> "employee":"employee.heading":e [arrowtail=tee arrowhead=none];
   "employee_salary":"employee_salary.heading":w -> "employee":"employee.heading":e [arrowtail=crowtee arrowhead=none];
-  "unit_master":"unit_master.heading":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none];
+  "role_department":"department_id":w -> "department_master":"department_id.type":e [arrowtail=crowtee arrowhead=none];
+  "role_department":"role_id":w -> "role_master":"role_master.heading":e [arrowtail=crowtee arrowhead=none];
   "address" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -42,10 +45,19 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="appraisal_rating.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">appraisal_rating</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">300 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="appraisal_rating.html#graph"
     tooltip="appraisal_rating"
+  ];
+  "country_master" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="country_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">country_master</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">246 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
+    </TABLE>>
+    URL="country_master.html#graph"
+    tooltip="country_master"
   ];
   "department_master" [
     label=<
@@ -56,7 +68,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="unit_id" COLSPAN="2" ALIGN="LEFT">unit_id</TD><TD PORT="unit_id.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="address" COLSPAN="2" ALIGN="LEFT">address</TD><TD PORT="address.type" ALIGN="LEFT">varchar[256]</TD></TR>
       <TR><TD PORT="parent_department_id" COLSPAN="2" ALIGN="LEFT">parent_department_id</TD><TD PORT="parent_department_id.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="department_master.html#"
     tooltip="department_master"
@@ -98,7 +110,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="hr_flag" COLSPAN="3" ALIGN="LEFT">hr_flag</TD></TR>
       <TR><TD PORT="supervisor_flag" COLSPAN="3" ALIGN="LEFT">supervisor_flag</TD></TR>
       <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -134,7 +146,8 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_history</TD></TR>
-      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_id</TD></TR>
+      <TR><TD PORT="emp_hist_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">emp_hist_id</TD></TR>
+      <TR><TD PORT="emp_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">emp_id</TD></TR>
       <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
       <TR><TD PORT="employee_first_name" COLSPAN="3" ALIGN="LEFT">employee_first_name</TD></TR>
       <TR><TD PORT="employee_middle_name" COLSPAN="3" ALIGN="LEFT">employee_middle_name</TD></TR>
@@ -160,7 +173,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="last_mod_date" COLSPAN="3" ALIGN="LEFT">last_mod_date</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">7 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_history.html#graph"
     tooltip="employee_history"
@@ -200,6 +213,26 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     </TABLE>>
     URL="organisation_master.html#graph"
     tooltip="organisation_master"
+  ];
+  "role_department" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="role_department.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_department</TD></TR>
+      <TR><TD PORT="department_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">department_id</TD></TR>
+      <TR><TD PORT="role_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="role_department.html#graph"
+    tooltip="role_department"
+  ];
+  "role_master" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="role_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_master</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+    </TABLE>>
+    URL="role_master.html#graph"
+    tooltip="role_master"
   ];
   "unit_master" [
     label=<

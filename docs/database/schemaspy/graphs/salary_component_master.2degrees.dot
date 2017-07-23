@@ -19,12 +19,11 @@ digraph "twoDegreesRelationshipsGraph" {
   "employee_salary":"emp_id":w -> "employee":"employee.heading":e [arrowtail=crowtee arrowhead=none];
   "salary_master":"job_role_id":w -> "job_role_master":"job_role_master.heading":e [arrowtail=crowtee arrowhead=none];
   "salary_master":"sal_comp_id":w -> "salary_component_master":"comp_id.type":e [arrowtail=crowtee arrowhead=none];
-  "salary_master":"sal_comp_id":w -> "salary_opt_component_master":"salary_opt_component_master.heading":e [arrowtail=crowtee arrowhead=none];
   "appraisal_cycle" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="appraisal_cycle.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">appraisal_cycle</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="appraisal_cycle.html#graph"
     tooltip="appraisal_cycle"
@@ -33,7 +32,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -86,18 +85,9 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="sal_value" COLSPAN="3" ALIGN="LEFT">sal_value</TD></TR>
       <TR><TD PORT="max_allow_limit" COLSPAN="3" ALIGN="LEFT">max_allow_limit</TD></TR>
       <TR><TD PORT="sal_opt_comp_flag" COLSPAN="3" ALIGN="LEFT">sal_opt_comp_flag</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="salary_master.html#graph"
     tooltip="salary_master"
-  ];
-  "salary_opt_component_master" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="salary_opt_component_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">salary_opt_component_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
-    </TABLE>>
-    URL="salary_opt_component_master.html#graph"
-    tooltip="salary_opt_component_master"
   ];
 }

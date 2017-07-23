@@ -22,7 +22,7 @@ digraph "access_token" {
       <TR><TD PORT="expiry_date" COLSPAN="3" ALIGN="LEFT">expiry_date</TD></TR>
       <TR><TD PORT="refresh_count" COLSPAN="3" ALIGN="LEFT">refresh_count</TD></TR>
       <TR><TD PORT="last_refresh_date" COLSPAN="3" ALIGN="LEFT">last_refresh_date</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">39 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/access_token.html#"
     tooltip="access_token"
