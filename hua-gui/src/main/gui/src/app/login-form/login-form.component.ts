@@ -1,7 +1,7 @@
 import { animate, Component, OnInit, state, style, transition, trigger } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticatorService } from '../authenticator.service';
+import { AuthenticatorService } from '../services/authenticator.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 

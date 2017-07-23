@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DepartmentService } from '../department.service';
-import { OrganizationService } from '../organization.service';
-import { UnitService } from '../unit.service';
-import { DocTypeService } from '../doc-type.service';
-import { JobRoleService } from '../job-role.service';
-import { DesignationService } from '../designation.service';
-import { EmployeeService } from '../employee.service';
+import { DepartmentService } from '../services/department.service';
+import { OrganizationService } from '../services/organization.service';
+import { UnitService } from '../services/unit.service';
+import { DocTypeService } from '../services/doc-type.service';
+import { JobRoleService } from '../services/job-role.service';
+import { DesignationService } from '../services/designation.service';
+import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
