@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DepartmentService } from '../department.service';
-import { OrganizationService } from '../organization.service';
-import { UnitService } from '../unit.service';
-import { DocTypeService } from '../doc-type.service';
+import { DepartmentService } from '../services/department.service';
+import { OrganizationService } from '../services/organization.service';
+import { UnitService } from '../services/unit.service';
+import { DocTypeService } from '../services/doc-type.service';
 import { Observable } from 'rxjs/Observable';
-import { CountryService } from '../country.service';
-import { EmployeeService } from '../employee.service';
-import { DistrictService } from '../district.service';
-import { StateService } from '../state.service';
-import { JobRoleService } from '../job-role.service';
+import { CountryService } from '../services/country.service';
+import { EmployeeService } from '../services/employee.service';
+import { DistrictService } from '../services/district.service';
+import { StateService } from '../services/state.service';
+import { JobRoleService } from '../services/job-role.service';
 
 @Component({
   selector: 'app-employee-creation',

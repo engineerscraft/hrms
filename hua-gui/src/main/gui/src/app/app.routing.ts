@@ -9,7 +9,7 @@ import {EmployeeCreationComponent} from './employee-creation/employee-creation.c
 import {UserDetailsComponent} from './user-details/user-details.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {ForbiddenAccessComponent} from './forbidden-access/forbidden-access.component';
-import {AuthguardService} from './authguard.service';
+import {AuthguardService} from './services/authguard.service';
 
 export const routing = RouterModule.forRoot([
     { path: '', component: LoginFormComponent},

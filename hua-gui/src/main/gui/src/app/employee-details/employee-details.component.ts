@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../employee.service';
+import { EmployeeService } from '../services/employee.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import 'rxjs/add/operator/finally';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DocTypeService } from '../doc-type.service';
+import { DocTypeService } from '../services/doc-type.service';
 import { Observable } from 'rxjs/Observable';
-import { CountryService } from '../country.service';
+import { CountryService } from '../services/country.service';
 
 @Component({
   selector: 'app-employee-details',

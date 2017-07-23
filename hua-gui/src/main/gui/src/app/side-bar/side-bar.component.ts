@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, animate, state, style, transition, trigger } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticatorService } from '../authenticator.service';
+import { AuthenticatorService } from '../services/authenticator.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidator } from '../validators/custom-validators';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 import 'rxjs/add/observable/throw';
 
 @Component({
