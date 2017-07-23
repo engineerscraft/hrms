@@ -74,7 +74,7 @@
     border-bottom: none; 
     background-color: #4CA1AF;
     text-decoration: none;
-    z-index: 600;
+    z-index: 24;
 }
 .edit-btn > .material-icons{font-size:20px;}
 
