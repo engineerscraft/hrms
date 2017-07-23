@@ -79,8 +79,10 @@ export class SideBarComponent implements OnInit {
   }
 
   logout() {
-    this.authenticatorService.logout();
-    this.router.navigate(['']);
+    if(confirm("Are you sure you want to Logout ?")) {
+      this.authenticatorService.logout();
+      this.router.navigate(['']);
+    }
   }
 
   isAuthorized(permission: string) {

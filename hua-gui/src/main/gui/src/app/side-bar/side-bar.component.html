@@ -1,16 +1,16 @@
 <div class="sidebar" [ngClass]="{'sidebar-open': getOpen() === true}">
-  <div class="menu-icon" (click)="changeClass()" [ngClass]="{'open': getOpen() === true}">
+  <div class="menu-icon" title="Menu" (click)="changeClass()" [ngClass]="{'open': getOpen() === true}">
     <span></span>
     <span></span>
     <span></span>
   </div>
-  <div class="home-icon" (click)="goHome()">
+  <div class="home-icon" title="Home" (click)="goHome()">
     <span class="span1">
       <span class="span2">
       </span>
     </span>
   </div>
-  <div class="logout-icon" (click)="logout()">
+  <div class="logout-icon" title="Logout" (click)="logout()">
     <span class="span3">
     </span>
   </div>

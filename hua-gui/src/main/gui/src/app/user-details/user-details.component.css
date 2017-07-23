@@ -1,13 +1,23 @@
 .profile-bg {
     width: 100%;
-    top:100px;
+    top:90px;
     position: relative;
     padding: 0;
     height: 350px;
     background: url("/assets/img/profilebg-min.jpg") no-repeat center bottom fixed;
     background-size: cover;
     overflow: auto;
-    filter: contrast(100%);
+}
+
+.profile-bg:before {
+    content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(to bottom right, #0F6177, #c0392b);
+	opacity: .6; 
 }
 
 .profile-pic {
@@ -20,6 +30,10 @@
     border-width: 5px;
     border-color: #fff;
     border-style: solid;
+}
+
+.profile-pic {
+    cursor: pointer;
 }
 
 .name-header {
@@ -44,4 +58,27 @@
     left: 270px;
     top: 80px;
     z-index: 5;    
+}
+
+.edit-btn {
+    background: url("../../assets/img/ic_create_white_24px.svg") no-repeat 13px center;
+    width:50px;
+    height: 50px;
+    border-radius:100%;
+    color:#fff;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #4CA1AF;
+    text-decoration: none;
+    z-index: 600;
+}
+.edit-btn > .material-icons{font-size:20px;}
+
+.edit-btn-fixed {
+    position: absolute;
+    right: 1rem;
 }
