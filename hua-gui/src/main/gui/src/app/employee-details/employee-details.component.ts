@@ -48,7 +48,7 @@ export class EmployeeDetailsComponent implements OnInit {
             this.countries = data[2];
           },
           (err: any) => {
-            if (err.status === 401) {
+            if (err.status === 401 && err.json()["message"]!=="Refresh token expired") {
               this.router.navigate(['forbidden']);
             }
             if (err.status === 404) {
@@ -103,7 +103,7 @@ export class EmployeeDetailsComponent implements OnInit {
         .subscribe(data => {
         },
         (err: any) => {
-          if (err.status === 401) {
+          if (err.status === 401 && err.json()["message"]!=="Refresh token expired") {
             me.router.navigate(['forbidden']);
           }
           if (err.status === 404) {
@@ -139,7 +139,7 @@ export class EmployeeDetailsComponent implements OnInit {
       .subscribe(data => {
       },
       (err: any) => {
-        if (err.status === 401) {
+        if (err.status === 401 && err.json()["message"]!=="Refresh token expired") {
           this.router.navigate(['forbidden']);
         }
         if (err.status === 404) {
