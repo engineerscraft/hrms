@@ -11,7 +11,7 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
 
   private pagination = { pageSize: 20, lowerRange: 0, upperRange: 0, disableNext: false, disablePrevious: false, searchResultSetSize: 0 };
   private filter = { employeeId: String, employeeName: String, emailId: String, contactNumber: String, designation: String };
-  private employeeSearchCriteria = { firstName: String, middleName: String, lastName: String, employeeId: String, employmentType: String, emailId: String, orgId: String, unitId: String, departmentId: String, jobRoleId: String, designationId: String, supervisorFlag: String, hrFlag: String, supervisorEmailId: String, hrEmailId: String, sex: String, identityDocTypeId: String, identityNumber: String };
+  private employeeSearchCriteria = { firstName: "", middleName: "", lastName: "", employeeId: "", employmentType: "", emailId: "", orgId: "", unitId: "", departmentId: "", jobRoleId: "", designationId: "", supervisorFlag: "", hrFlag: "", supervisorEmailId: "", hrEmailId: "", sex: "", identityDocTypeId: "", identityNumber: "" };
   private employees;
   private searchResult: Array<any>;
   private filteredResult: Array<any>;
@@ -20,6 +20,11 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private employeeService: EmployeeService) { }
 
   ngOnInit() {
+
+    this.searchResult = this.activatedRoute.snapshot.data['searchResult'];
+    this.filteredResult = this.activatedRoute.snapshot.data['searchResult'];
+    if(this.searchResult == undefined)
+    {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.employeeSearchCriteria.firstName = params['firstName'];
       this.employeeSearchCriteria.middleName = params['middleName'];
@@ -56,6 +61,10 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
 
       }
       );
+    }
+    else {
+      this.goToFirstPage(this.filteredResult);
+    }
   }
 
   filterEmployee($event, fieldName) {
@@ -137,13 +146,4 @@ export class EmployeeHierarchySearchResultComponent implements OnInit {
     this.router.navigate(['employeeHierarchySearch']);
   }
 
-  getEmployeeDetails(employeeId) {
-    console.log(employeeId);
-    this.router.navigate(['employeeDetails'], {
-      queryParams:
-      {
-        id: employeeId
-      }
-    });
-  }
 }

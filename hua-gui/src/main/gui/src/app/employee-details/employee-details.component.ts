@@ -31,58 +31,67 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.activatedRoute
-      .queryParams
-      .subscribe(params => {
-        this.id = params['id'];
-        this.processingInProgress = true;
-        let employeeBasicInfoObservable = this.employeeService.readDetails(this.id)
-          .finally(() => { this.processingInProgress = false; })
-          .subscribe(data => {
-            this.employeeInfo = data;
-          },
-          (err: any) => {
-            if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-              this.router.navigate(['forbidden']);
-            }
-            if (err.status === 404) {
-              this.router.navigate(['404']);
-            }
-          },
-          () => {
-            this.formGroupBasicInfo = this.formBuilder.group({
-              'title': [this.employeeInfo.employeeBasicInfo.title, Validators.required],
-              'empFirstName': [this.employeeInfo.employeeBasicInfo.empFirstName, Validators.required],
-              'empMiddleName': [this.employeeInfo.employeeBasicInfo.empMiddleName],
-              'empLastName': [this.employeeInfo.employeeBasicInfo.empLastName, Validators.required],
-              'fatherName': [this.employeeInfo.employeeBasicInfo.fatherName],
-              'dob': [this.employeeInfo.employeeBasicInfo.dob, Validators.required],
-              'emailId': [this.employeeInfo.employeeBasicInfo.emailId],
-              'contactNo': [this.employeeInfo.employeeBasicInfo.contactNo, Validators.required],
-              'nationality': [this.employeeInfo.employeeBasicInfo.nationality, Validators.required],
-              'doj': [this.employeeInfo.employeeBasicInfo.doj],
-              'organizationId': [this.employeeInfo.employeeBasicInfo.organizationId],
-              'department': this.formBuilder.group({
-                'departmentId': [this.employeeInfo.employeeBasicInfo.department.departmentId]
-              }),
-              'unit': this.formBuilder.group({
-                'unitId': [this.employeeInfo.employeeBasicInfo.unit.unitId]
-              }),
-              'empType': [this.employeeInfo.employeeBasicInfo.empType, Validators.required],
-              'sex': [this.employeeInfo.employeeBasicInfo.sex, Validators.required],
-              'maritalStatus': [this.employeeInfo.employeeBasicInfo.maritalStatus, Validators.required],
-              'identityDocType': this.formBuilder.group({
-                'docTypeId': [this.employeeInfo.employeeBasicInfo.identityDocType.docTypeId, Validators.required]
-              }),
-              'identityNumber': [this.employeeInfo.employeeBasicInfo.identityNumber, Validators.required],
-              'hrFlag': [this.employeeInfo.employeeBasicInfo.hrFlag],
-              'supervisorFlag': [this.employeeInfo.employeeBasicInfo.supervisorFlag]
+    this.employeeInfo = this.activatedRoute.snapshot.data['employeeInfo'];
+    if (this.employeeInfo === undefined) {
+      this.activatedRoute
+        .queryParams
+        .subscribe(params => {
+          this.id = params['id'];
+          this.processingInProgress = true;
+          let employeeBasicInfoObservable = this.employeeService.readDetails(this.id)
+            .finally(() => { this.processingInProgress = false; })
+            .subscribe(data => {
+              this.employeeInfo = data;
+            },
+            (err: any) => {
+              if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
+                this.router.navigate(['forbidden']);
+              }
+              if (err.status === 404) {
+                this.router.navigate(['404']);
+              }
+            },
+            () => {
+              this.formGroupInitializer();
             });
-          });
-      });
+        });
+    }
+    else {
+      this.formGroupInitializer();
+    }
   }
 
+  formGroupInitializer() {
+    this.formGroupBasicInfo = this.formBuilder.group({
+      'title': [this.employeeInfo.employeeBasicInfo.title, Validators.required],
+      'empFirstName': [this.employeeInfo.employeeBasicInfo.empFirstName, Validators.required],
+      'empMiddleName': [this.employeeInfo.employeeBasicInfo.empMiddleName],
+      'empLastName': [this.employeeInfo.employeeBasicInfo.empLastName, Validators.required],
+      'fatherName': [this.employeeInfo.employeeBasicInfo.fatherName],
+      'dob': [this.employeeInfo.employeeBasicInfo.dob, Validators.required],
+      'emailId': [this.employeeInfo.employeeBasicInfo.emailId],
+      'contactNo': [this.employeeInfo.employeeBasicInfo.contactNo, Validators.required],
+      'nationality': [this.employeeInfo.employeeBasicInfo.nationality, Validators.required],
+      'doj': [this.employeeInfo.employeeBasicInfo.doj],
+      'organizationId': [this.employeeInfo.employeeBasicInfo.organizationId],
+      'department': this.formBuilder.group({
+        'departmentId': [this.employeeInfo.employeeBasicInfo.department.departmentId]
+      }),
+      'unit': this.formBuilder.group({
+        'unitId': [this.employeeInfo.employeeBasicInfo.unit.unitId]
+      }),
+      'empType': [this.employeeInfo.employeeBasicInfo.empType, Validators.required],
+      'sex': [this.employeeInfo.employeeBasicInfo.sex, Validators.required],
+      'maritalStatus': [this.employeeInfo.employeeBasicInfo.maritalStatus, Validators.required],
+      'identityDocType': this.formBuilder.group({
+        'docTypeId': [this.employeeInfo.employeeBasicInfo.identityDocType.docTypeId, Validators.required]
+      }),
+      'identityNumber': [this.employeeInfo.employeeBasicInfo.identityNumber, Validators.required],
+      'hrFlag': [this.employeeInfo.employeeBasicInfo.hrFlag],
+      'supervisorFlag': [this.employeeInfo.employeeBasicInfo.supervisorFlag]
+    });
+
+  }
   profileImageUpload(event) {
     var reader = new FileReader();
     reader.readAsDataURL(event.srcElement.files[0]);
@@ -131,7 +140,7 @@ export class EmployeeDetailsComponent implements OnInit {
       () => {
         this.showEditBasicInfo = true;
       });
-    
+
   }
 
   getShowEditBasicInfo() {

@@ -79,7 +79,7 @@
 
     <div class="row outer-component-width" *ngFor="let employee of employees" (contextmenu)="onRightClick($event, employee.id)">
       <div class="cell">
-        <a href="javascript:void(0)" (click)="getEmployeeDetails(employee.empId)">{{employee.empId}}</a>
+        <a [routerLink]="['/employeeDetails', employee.empId]">{{employee.empId}}</a>
       </div>
       <div class="cell">
         {{employee.name}}

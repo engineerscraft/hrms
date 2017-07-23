@@ -34,6 +34,8 @@ import { StateService } from './services/state.service';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { EmployeeDetailsResolve } from './resolvers/employee-details.resolve';
+import { EmployeeHierarchySearchResultResolve } from './resolvers/employee-hierarchy-search-result.resolve';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     CountryService,
     StateService, 
     DistrictService,
+    EmployeeDetailsResolve,
+    EmployeeHierarchySearchResultResolve,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]

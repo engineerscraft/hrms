@@ -16,7 +16,7 @@ public class Routing {
         return path;
     }
     
-    @RequestMapping({ "", "/home", "/employeeHierarchySearch", "/employeeHierarchySearchResult", "/employeeCreation", "/forbidden", "/404" })
+    @RequestMapping({ "", "/home", "/employeeHierarchySearch", "/employeeHierarchySearchResult", "/employeeDetails/**", "/employeeCreation", "/forbidden", "/404" })
     public String gui() {
         return "forward:/index.html";
     }
