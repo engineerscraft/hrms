@@ -22,12 +22,12 @@ export class EmployeeDetailsComponent implements OnInit {
   private identityDocTypes;
   private countries;
 
-  constructor(private formBuilder: FormBuilder, 
-              private employeeService: EmployeeService, 
-              private activatedRoute: ActivatedRoute, 
-              private router: Router,
-              private docTypeService: DocTypeService,
-              private countryService: CountryService,) {
+  constructor(private formBuilder: FormBuilder,
+    private employeeService: EmployeeService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private docTypeService: DocTypeService,
+    private countryService: CountryService, ) {
   }
 
   ngOnInit() {
@@ -37,18 +37,13 @@ export class EmployeeDetailsComponent implements OnInit {
       .subscribe(params => {
         this.id = params['id'];
         this.processingInProgress = true;
-        let docTypeServiceObservable = this.docTypeService.getIdentityDocTypes();
-        let employeeBasicInfoObservable = this.employeeService.readDetails(this.id);
-        let countryServiceObservable = this.countryService.getCountries();
-        Observable.forkJoin([employeeBasicInfoObservable, docTypeServiceObservable, countryServiceObservable])
+        let employeeBasicInfoObservable = this.employeeService.readDetails(this.id)
           .finally(() => { this.processingInProgress = false; })
-          .subscribe( data => {
-            this.employeeInfo = data[0];
-            this.identityDocTypes = data[1];
-            this.countries = data[2];
+          .subscribe(data => {
+            this.employeeInfo = data;
           },
           (err: any) => {
-            if (err.status === 401 && err.json()["message"]!=="Refresh token expired") {
+            if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
               this.router.navigate(['forbidden']);
             }
             if (err.status === 404) {
@@ -103,7 +98,7 @@ export class EmployeeDetailsComponent implements OnInit {
         .subscribe(data => {
         },
         (err: any) => {
-          if (err.status === 401 && err.json()["message"]!=="Refresh token expired") {
+          if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
             me.router.navigate(['forbidden']);
           }
           if (err.status === 404) {
@@ -117,7 +112,26 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   editBasicInfo() {
-    this.showEditBasicInfo = true;
+    let docTypeServiceObservable = this.docTypeService.getIdentityDocTypes();
+    let countryServiceObservable = this.countryService.getCountries();
+    Observable.forkJoin([docTypeServiceObservable, countryServiceObservable])
+      .finally(() => { this.processingInProgress = false; })
+      .subscribe(data => {
+        this.identityDocTypes = data[0];
+        this.countries = data[1];
+      },
+      (err: any) => {
+        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
+          this.router.navigate(['forbidden']);
+        }
+        if (err.status === 404) {
+          this.router.navigate(['404']);
+        }
+      },
+      () => {
+        this.showEditBasicInfo = true;
+      });
+    
   }
 
   getShowEditBasicInfo() {
@@ -139,7 +153,7 @@ export class EmployeeDetailsComponent implements OnInit {
       .subscribe(data => {
       },
       (err: any) => {
-        if (err.status === 401 && err.json()["message"]!=="Refresh token expired") {
+        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
           this.router.navigate(['forbidden']);
         }
         if (err.status === 404) {
