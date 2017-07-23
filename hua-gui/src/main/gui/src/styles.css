@@ -481,7 +481,7 @@ app-spinner {
     background-color: #fefefe;
     margin: auto;
     border: 1px solid #888;
-    width: 30rem;
+    width: 56rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
     animation-duration: 0.4s;
@@ -513,7 +513,11 @@ app-spinner {
     color: white;
 }
 
-.modal-body {padding: 20px 40px;}
+.modal-body {
+  padding: 20px 40px;
+  max-height: calc(100vh - 15rem);
+  overflow-y: auto;
+}
 
 .btn {
     text-align: center;

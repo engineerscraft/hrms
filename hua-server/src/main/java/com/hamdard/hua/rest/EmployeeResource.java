@@ -243,7 +243,7 @@ public class EmployeeResource {
             String modifiedBy = "dummy name";
 
             employeeRepository.updatedEmployeeBasicInfo(employeeId, modifiedBy, employeeBasicInfo);
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(new Message("Employee basic info successfully updated")).build();
         } catch (Exception ex) {
             logger.error("The employee basic info could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();

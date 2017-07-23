@@ -38,7 +38,7 @@ public class CountryResource {
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Secured(Privilege.COUNTRY_ALL_READ_CMD)
+    @Secured(Privilege.READ_ALL_COUNTRIES)
     public Response getAllCountries() {
         List<Country> countries;
         try {

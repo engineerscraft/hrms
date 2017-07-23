@@ -653,13 +653,32 @@ public class Employee {
         private DocType identityDocType;
         private String identityNumber;
         private String maritalStatus;
-        private String nationality;
+        private int nationality;
         private String organization;
+        private int organizationId;
         private String sex;
         private boolean supervisorFlag;
         private String title;
         private Unit unit;
         private String profileImage;
+        private String countryName;
+        
+        
+        public String getCountryName() {
+            return countryName;
+        }
+
+        public void setCountryName(String countryName) {
+            this.countryName = countryName;
+        }
+
+        public int getOrganizationId() {
+            return organizationId;
+        }
+
+        public void setOrganizationId(int organizationId) {
+            this.organizationId = organizationId;
+        }
 
         public String getContactNo() {
             return this.contactNo;
@@ -773,11 +792,11 @@ public class Employee {
             this.maritalStatus = maritalStatus;
         }
 
-        public String getNationality() {
+        public int getNationality() {
             return this.nationality;
         }
 
-        public void setNationality(String nationality) {
+        public void setNationality(int nationality) {
             this.nationality = nationality;
         }
 

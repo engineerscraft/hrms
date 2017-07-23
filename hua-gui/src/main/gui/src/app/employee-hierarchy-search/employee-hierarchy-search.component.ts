@@ -103,10 +103,10 @@ export class EmployeeHierarchySearchComponent implements OnInit {
 
           },
           () => {
-            if(this.valueChanged === true) {
+            if (this.valueChanged === true) {
               this.autoCompleteSuggestions.firstNameSuggestions = null;
             }
-            if(this.valueChanged === false) {
+            if (this.valueChanged === false) {
               this.valueChanged = true;
             }
           }
@@ -127,12 +127,12 @@ export class EmployeeHierarchySearchComponent implements OnInit {
 
           },
           () => {
-             if(this.valueChanged === true) {
+            if (this.valueChanged === true) {
               this.autoCompleteSuggestions.middleNameSuggestions = null;
             }
-            if(this.valueChanged === false) {
+            if (this.valueChanged === false) {
               this.valueChanged = true;
-            }           
+            }
           }
           )
       }
@@ -151,12 +151,12 @@ export class EmployeeHierarchySearchComponent implements OnInit {
 
           },
           () => {
-             if(this.valueChanged === true) {
+            if (this.valueChanged === true) {
               this.autoCompleteSuggestions.lastNameSuggestions = null;
             }
-            if(this.valueChanged === false) {
+            if (this.valueChanged === false) {
               this.valueChanged = true;
-            }           
+            }
           }
           )
       }
@@ -175,12 +175,12 @@ export class EmployeeHierarchySearchComponent implements OnInit {
 
           },
           () => {
-            if(this.valueChanged === true) {
+            if (this.valueChanged === true) {
               this.autoCompleteSuggestions.emailIdSuggestions = null;
             }
-            if(this.valueChanged === false) {
+            if (this.valueChanged === false) {
               this.valueChanged = true;
-            }                       
+            }
           }
           )
       }
@@ -199,12 +199,12 @@ export class EmployeeHierarchySearchComponent implements OnInit {
 
           },
           () => {
-            if(this.valueChanged === true) {
+            if (this.valueChanged === true) {
               this.autoCompleteSuggestions.supervisorEmailIdSuggestions = null;
             }
-            if(this.valueChanged === false) {
+            if (this.valueChanged === false) {
               this.valueChanged = true;
-            }                       
+            }
           }
           )
       }
@@ -223,12 +223,12 @@ export class EmployeeHierarchySearchComponent implements OnInit {
 
           },
           () => {
-            if(this.valueChanged === true) {
+            if (this.valueChanged === true) {
               this.autoCompleteSuggestions.hrEmailIdSuggestions = null;
             }
-            if(this.valueChanged === false) {
+            if (this.valueChanged === false) {
               this.valueChanged = true;
-            }                                   
+            }
           }
           )
       }

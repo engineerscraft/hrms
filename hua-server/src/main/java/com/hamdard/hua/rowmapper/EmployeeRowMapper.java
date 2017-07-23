@@ -37,8 +37,10 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
         emp.getEmployeeBasicInfo().getIdentityDocType().setDocTypeName(rs.getString("DOC_TYPE_NAME"));
         emp.getEmployeeBasicInfo().setIdentityNumber(rs.getString("IDENTITY_NUMBER"));
         emp.getEmployeeBasicInfo().setMaritalStatus(rs.getString("MARITAL_STATUS"));
-        emp.getEmployeeBasicInfo().setNationality(rs.getString("NATIONALITY"));
+        emp.getEmployeeBasicInfo().setNationality(rs.getInt("NATIONALITY"));
+        emp.getEmployeeBasicInfo().setCountryName(rs.getString("COUNTRY_NAME"));
         emp.getEmployeeBasicInfo().setOrganization(rs.getString("ORG_NAME"));
+        emp.getEmployeeBasicInfo().setOrganizationId(rs.getInt("ORG_ID"));
         emp.getEmployeeBasicInfo().setProfileImage(rs.getString("EMPLOYEE_IMAGE"));
         emp.getEmployeeBasicInfo().setSex(rs.getString("SEX"));
         emp.getEmployeeBasicInfo().setSupervisorFlag("X".equals(rs.getString("SUPERVISOR_FLAG"))?true:false);
