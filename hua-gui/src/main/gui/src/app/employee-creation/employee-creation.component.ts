@@ -10,6 +10,7 @@ import { EmployeeService } from '../services/employee.service';
 import { DistrictService } from '../services/district.service';
 import { StateService } from '../services/state.service';
 import { JobRoleService } from '../services/job-role.service';
+import { CustomValidator } from '../validators/custom-validators';
 
 @Component({
   selector: 'app-employee-creation',
@@ -50,7 +51,7 @@ export class EmployeeCreationComponent implements OnInit {
     private stateService: StateService,
     private jobRoleService: JobRoleService) { }
 
-    
+
 
   ngOnInit() {
     this.employeeInfo = this.formBuilder.group({
@@ -63,8 +64,8 @@ export class EmployeeCreationComponent implements OnInit {
       'employeeJobRoleDetails': this.formBuilder.group({
         'jobRoleId': ['', Validators.required]
       }),
-      'otherDetails' : this.otherDetailsControls(),
-      'employeeProfile' : this.formBuilder.group({
+      'otherDetails': this.otherDetailsControls(),
+      'employeeProfile': this.formBuilder.group({
         'qualification': [''],
         'description': [''],
         'comments': ['']
@@ -86,12 +87,12 @@ export class EmployeeCreationComponent implements OnInit {
 
           },
           () => {
-            if(this.valueChanged === true) {
+            if (this.valueChanged === true) {
               this.autoCompleteSuggestions.hrEmailIdSuggestions = null;
             }
-            if(this.valueChanged === false) {
+            if (this.valueChanged === false) {
               this.valueChanged = true;
-            }                       
+            }
           }
           )
       }
@@ -111,31 +112,31 @@ export class EmployeeCreationComponent implements OnInit {
 
           },
           () => {
-            if(this.valueChanged === true) {
+            if (this.valueChanged === true) {
               this.autoCompleteSuggestions.supervisorEmailIdSuggestions = null;
             }
-            if(this.valueChanged === false) {
+            if (this.valueChanged === false) {
               this.valueChanged = true;
-            }                                   
+            }
           }
           )
       }
       );
   }
 
-  
+
 
   private otherDetailsControls() {
-    return this.formBuilder.group({      
+    return this.formBuilder.group({
       'hrEmailId': [''],
       'supervisorEmailId': [''],
       'cl': [''],
       'maternityLeave': [],
-      'paternityLeave' : [],
-      'pl' : [],
-      'specialLeave' : [],
-      'sickLeave' : [],
-      'probationPeriodEndDate' : ['']
+      'paternityLeave': [],
+      'pl': [],
+      'specialLeave': [],
+      'sickLeave': [],
+      'probationPeriodEndDate': ['']
     });
   }
 
@@ -164,8 +165,8 @@ export class EmployeeCreationComponent implements OnInit {
       'empMiddleName': [''],
       'empLastName': ['', Validators.required],
       'fatherName': [''],
-      'dob': ['', Validators.required],
-      'emailId': [''],
+      'dob': ['', Validators.compose([Validators.required, CustomValidator.properDate])],
+      'emailId': ['', Validators.compose([Validators.required, CustomValidator.validEmail])],
       'contactNo': ['', Validators.required],
       'nationality': ['', Validators.required],
       'doj': ['', Validators.required],
@@ -183,8 +184,8 @@ export class EmployeeCreationComponent implements OnInit {
         'docTypeId': ['', Validators.required]
       }),
       'identityNumber': ['', Validators.required],
-      'hrFlag':[''],
-      'supervisorFlag':['']
+      'hrFlag': [''],
+      'supervisorFlag': ['']
     });
   }
 
@@ -205,7 +206,7 @@ export class EmployeeCreationComponent implements OnInit {
     });
   }
 
-  
+
   OnClickOk() {
     this.message = '';
   }
@@ -214,9 +215,9 @@ export class EmployeeCreationComponent implements OnInit {
     return !(this.employeeInfo.controls.employeeBasicInfo.valid);
   }
 
-/**
- * Initialize all the static lists
- */
+  /**
+   * Initialize all the static lists
+   */
   private initiateLists() {
     let organizationObservable = this.organizationService.getOrganizations();
     let docTypeServiceObservable = this.docTypeService.getIdentityDocTypes();
@@ -238,11 +239,11 @@ export class EmployeeCreationComponent implements OnInit {
       );
   }
 
-/**
- * Used to compare a salary compoenet against the max value allowed
- * @param value 
- * @param maxValue 
- */
+  /**
+   * Used to compare a salary compoenet against the max value allowed
+   * @param value 
+   * @param maxValue 
+   */
   private checkLimit(value, maxValue) {
     if (value > maxValue)
       return "red";
@@ -250,10 +251,10 @@ export class EmployeeCreationComponent implements OnInit {
       return "";
   }
 
-/**
- * Job role change handler, refresh the salary compoenents
- * @param jobRoleId 
- */
+  /**
+   * Job role change handler, refresh the salary compoenents
+   * @param jobRoleId 
+   */
   private onJobRoleChange(jobRoleId) {
     console.log(jobRoleId);
     let salaryObservable = this.jobRoleService.getSalaryByJobRoleId(jobRoleId);
@@ -283,10 +284,10 @@ export class EmployeeCreationComponent implements OnInit {
     console.log(JSON.stringify(this.salaryComponents))
   }
 
-/**
- * Organization change handler
- * @param orgId 
- */
+  /**
+   * Organization change handler
+   * @param orgId 
+   */
   onOrgChange(orgId) {
     console.log(orgId);
     if (orgId === "")
@@ -311,11 +312,11 @@ export class EmployeeCreationComponent implements OnInit {
       );
   }
 
-/**
- * Country change handler
- * @param countryId 
- * @param addressType 
- */
+  /**
+   * Country change handler
+   * @param countryId 
+   * @param addressType 
+   */
   onCountryChange(countryId, addressType: string) {
     this.processingInProgress = true;
 
@@ -340,11 +341,11 @@ export class EmployeeCreationComponent implements OnInit {
 
   }
 
-/**
- * State change handler (works for both present and permanent address)
- * @param stateId 
- * @param addressType 
- */
+  /**
+   * State change handler (works for both present and permanent address)
+   * @param stateId 
+   * @param addressType 
+   */
   onStateChange(stateId, addressType: string) {
     console.log(stateId + '~' + addressType);
 
@@ -367,10 +368,10 @@ export class EmployeeCreationComponent implements OnInit {
 
   }
 
-/**
- * Unit change handler
- * @param unitId 
- */
+  /**
+   * Unit change handler
+   * @param unitId 
+   */
   onUnitChange(unitId) {
     console.log(unitId);
     if (unitId === "")
@@ -392,8 +393,8 @@ export class EmployeeCreationComponent implements OnInit {
    * Check the value of the copyAddress field and act accordingly
    */
   copyFromPermanent() {
-    
-    if(this.copyAddress === false)
+
+    if (this.copyAddress === false)
       return;
     const houseNo = this.employeeInfo.get('employeeAddress').get('permanent').get('houseNo');
     const streetName = this.employeeInfo.get('employeeAddress').get('permanent').get('streetName');
@@ -418,20 +419,22 @@ export class EmployeeCreationComponent implements OnInit {
   }
 
 
-/**
- * Crates the employee and shows the EMployee ID created
- */
+  /**
+   * Crates the employee and shows the EMployee ID created
+   */
   create() {
     var json = JSON.stringify(this.employeeInfo.controls.employeeBasicInfo.value);
 
     var salaryComponents: Array<any> = [];
-    for (let comp of this.salaryComponents) {
-      if (comp['selected'] === true) {
-        let obj = {
-          'salaryComponent': { 'compId': comp['salCompId'] },
-          'salaryValue': comp['salValue']
+    if (this.salaryComponents) {
+      for (let comp of this.salaryComponents) {
+        if (comp['selected'] === true) {
+          let obj = {
+            'salaryComponent': { 'compId': comp['salCompId'] },
+            'salaryValue': comp['salValue']
+          }
+          salaryComponents.push(obj);
         }
-        salaryComponents.push(obj);
       }
     }
 
@@ -441,8 +444,8 @@ export class EmployeeCreationComponent implements OnInit {
       this.employeeInfo.controls.employeeAddress.get('present').value],
       'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
       'employeeSalary': salaryComponents,
-      'employeeHierarchy' : this.employeeInfo.controls.otherDetails.value,
-      'employeeProfile' : this.employeeInfo.controls.employeeProfile.value
+      'employeeHierarchy': this.employeeInfo.controls.otherDetails.value,
+      'employeeProfile': this.employeeInfo.controls.employeeProfile.value
     };
     console.log(JSON.stringify(obj));
     this.processingInProgress = true;
@@ -458,12 +461,12 @@ export class EmployeeCreationComponent implements OnInit {
       });
   }
 
-/**
- * 
- * @param event Date change handler for Employee Creation
- * the labelName guides which field is to be changed
- * @param labelName 
- */
+  /**
+   * 
+   * @param event Date change handler for Employee Creation
+   * the labelName guides which field is to be changed
+   * @param labelName 
+   */
   changeDate(event, labelName) {
 
     if (labelName === 'preMedicalCheckUpDate') {
@@ -487,7 +490,7 @@ export class EmployeeCreationComponent implements OnInit {
       if (event.type === 'clear') {
         this.employeeInfo.get('employeeBasicInfo').patchValue({ doj: '' });
       }
-    }else if (labelName === 'probationPeriodEndDate') {
+    } else if (labelName === 'probationPeriodEndDate') {
       if (event.type === 'dateChanged') {
         this.employeeInfo.get('otherDetails').patchValue({ probationPeriodEndDate: event.data.formatted });
       }
