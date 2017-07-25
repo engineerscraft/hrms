@@ -61,7 +61,7 @@ a {
 .change-password {
   position: relative;
   color: white;
-  padding: 8px 0;
+  padding: 8px;
   font-size: 12px;
   cursor: pointer;
   letter-spacing: 1px;

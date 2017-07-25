@@ -102,11 +102,12 @@ input, button {
   left: 90px;
   position: absolute;
   top: 64px;
-  width: calc(100%-90px);
+  width: calc(100% - 90px);
   padding-top: 40px;
   padding-bottom: 100px;
   padding-left: 10px;
   z-index: -1;
+  min-height: 100%;
 }
 
 .wrapper {
@@ -534,6 +535,7 @@ app-spinner {
   padding: 20px 40px;
   max-height: calc(100vh - 15rem);
   overflow-y: auto;
+  background-color: #f3f3f4;
 }
 
 .btn {
