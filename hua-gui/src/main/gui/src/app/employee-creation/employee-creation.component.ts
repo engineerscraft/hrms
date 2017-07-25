@@ -167,9 +167,9 @@ export class EmployeeCreationComponent implements OnInit {
       'fatherName': [''],
       'dob': ['', Validators.compose([Validators.required, CustomValidator.properDate])],
       'emailId': ['', Validators.compose([Validators.required, CustomValidator.validEmail])],
-      'contactNo': ['', Validators.required],
+      'contactNo': ['', Validators.compose([Validators.required, CustomValidator.validPhone])],
       'nationality': ['', Validators.required],
-      'doj': ['', Validators.required],
+      'doj': ['', Validators.compose([Validators.required, CustomValidator.properDate])],
       'organization': ['', Validators.required],
       'department': this.formBuilder.group({
         'departmentId': ['', Validators.required]

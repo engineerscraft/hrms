@@ -108,8 +108,8 @@
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" maxlength="15" required>
                         <label class="text-input-label">Contact No</label>
-                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['contactNo'].hasError('required') && 
-                        employeeInfo.controls.employeeBasicInfo.controls['contactNo'].touched" class="error-text-input-label">Contact No. is required</div>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['contactNo'].invalid && 
+                        employeeInfo.controls.employeeBasicInfo.controls['contactNo'].touched" class="error-text-input-label">Please provide a valid Contact No.</div>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
                       </div>
@@ -133,8 +133,8 @@
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="doj" required>
                         <label class="text-input-label">Date of Joining</label>
-                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['doj'].hasError('required') && 
-                        employeeInfo.controls.employeeBasicInfo.controls['doj'].touched" class="error-text-input-label">'Date of Joining' is required</div>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['doj'].invalid && 
+                        employeeInfo.controls.employeeBasicInfo.controls['doj'].touched" class="error-text-input-label">Please provide a valid 'Date of Joining'</div>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
                         <date-picker (outputEvents)="changeDate($event, 'doj')"></date-picker>
