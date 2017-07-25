@@ -4,6 +4,7 @@ package com.hamdard.hua.test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -12,14 +13,20 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hamdard.hua.model.LoginDetails;
 import com.hamdard.hua.model.Token;
 import com.hamdard.hua.model.Unit;
+import com.hamdard.hua.repository.UnitRepository;
 
 public class UnitIT {
+	
+	private static final Logger logger = LogManager.getLogger(UnitIT.class);
 	
     public static final String AUTH_URL = "http://localhost:8081/resources/v1/authentication";
     
@@ -120,6 +127,8 @@ public class UnitIT {
         getUnitOfAnOrganization.setHeader("Accept", "application/json");
         getUnitOfAnOrganization.setHeader("Authorization", "Bearer " + accessToken.getAccessToken());
         final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getUnitOfAnOrganization);
+        logger.info("\nHttpResponse_getResonse: "+getResponse);
+        
         
         Unit expectedUnit=new Unit();
         expectedUnit.setAddress("Bangladesh");
@@ -129,8 +138,9 @@ public class UnitIT {
         expectedUnit.setOrgName("Hamdard University");
         expectedUnit.setUnitId(1);
         expectedUnit.setUnitName("Hamdard University");        
-        Unit retrievedUnit=mapper.readValue(getResponse.getEntity().getContent(), Unit.class);
-        assertEquals(expectedUnit, retrievedUnit);   
+        List <Unit> retrievedUnit=mapper.readValue(getResponse.getEntity().getContent(), new TypeReference <List<Unit>>(){});
+        Unit actual=retrievedUnit.iterator().next();
+        assertEquals(expectedUnit.getUnitId(), actual.getUnitId()); 
+       
     }
-
 }
