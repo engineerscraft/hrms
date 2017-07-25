@@ -409,8 +409,8 @@
 						<configuration>
 							<driver>org.postgresql.Driver</driver>
 							<url>jdbc:postgresql://localhost:5432/hrmstestdb</url>
-							<username>hrmsadm</username>
-							<password>hrmsadm</password>
+							<username>sysadm</username>
+							<password>sysadm</password>
 							<settingsKey>sensibleKey</settingsKey>
 							<onError>continue</onError>
 						</configuration>
