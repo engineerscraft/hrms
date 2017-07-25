@@ -5,9 +5,16 @@
   padding: 0;
 }
 
+body {
+    margin: 0;
+    width: auto;
+    height: 1500px;
+    background-color: #f3f3f4;
+}
+
 @font-face {
     font-family: lato;
-    src: url(assets/font/Lato-Regular.ttf);
+    src: url(assets/font/Roboto-Regular.ttf);
 }
 
 @font-face {
@@ -17,7 +24,8 @@
 
 label {
   color: #4CA1AF;
-  font-size: 14px;
+  font-size: 12px;
+  font-family: 'lato', 'arial', sans-serif;
 }
 
 a {
@@ -90,9 +98,9 @@ input, button {
 }
 
 .body {
-  left: 90px;
+  left: 72px;
   position: absolute;
-  top: 90px;
+  top: 64px;
   width: calc(100% - 90px);
   padding-top: 40px;
   padding-bottom: 100px;
@@ -106,20 +114,25 @@ input, button {
 }
 
 .table {
-  margin: 40px 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  margin: 10px 0;
   display: table;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .display-table {
    display: table;
    table-layout: fixed;
    width:100%;
+   background-color: #fff;
+   padding: 20px 20px;
+   border-radius: 4px;
+   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
    /*padding-right: 50px;*/
 }
 
 .row {
   display: table-row;
+  border-left: solid white 10px;
 }
 
 .table .row {
@@ -146,6 +159,8 @@ input, button {
   border-width: 0 1px 1px 1px;
   border-style: solid;
   word-wrap: break-word;
+  font-family: 'lato', 'arial', sans-serif;
+  font-size: 12px;
 }
 
 .page-header {
@@ -279,25 +294,25 @@ input {
 
 .group { 
   position: relative; 
-  margin-top: 30px;
-  margin-bottom: 10px; 
+  margin-top: 20px;
+  margin-bottom: 8px; 
   margin-left: 0.8rem;
   margin-right: 0.8rem;
 }
 
 .inputMaterial, .inputMaterial:disabled {
-  font-size: 14px;
-  padding: 10px 0px 10px 0px;
+  font-size: 16px;
+  padding: 8px 0px 8px 0px;
   display: block;
   border: none;
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 2px solid #dfdfdf;
   outline:none;
-  background-color: white;
+  background: transparent;
 }
 
 .text-input-label {
   color: #999; 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   position: absolute;
   pointer-events: none;
@@ -308,38 +323,38 @@ input {
 
 .error-text-input-label {
   color: #e74c3c; 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   position: absolute;
   pointer-events: none;
   left: 0px;
-  top: 50px;
+  top: 44px;
   transition: 0.2s ease all;
   font-family: 'lato', 'arial', sans-serif;
 }
 
 .inputMaterial:disabled ~ .text-input-label		{
   top: -12px;
-  font-size: 14px;
+  font-size: 12px;
   color: #4CA1AF;
 }
 
 /* active state */
 .inputMaterial:focus ~ .text-input-label		{
   top: -12px;
-  font-size: 14px;
+  font-size: 12px;
   color: #4CA1AF;
 }
 
 .inputMaterial:valid ~ .text-input-label {
   top: -12px;
-  font-size: 14px;
+  font-size: 12px;
   color: #4CA1AF;
 }
 
 .inputMaterial:read-only ~ .text-input-label {
   top: -12px;
-  font-size: 14px;
+  font-size: 12px;
   color: #4CA1AF;
 }
 
@@ -575,8 +590,7 @@ app-spinner {
 	border: 0;
 	outline: 0;
 	padding: 5px 0 5px 8px;
-	font-size: 12px;
-	height: 35px;
+	height: 30px;
 	user-select: none;
   font-size: 14px;
   color: #3e3e3e;
@@ -584,12 +598,12 @@ app-spinner {
 }
 
 select * {
-    color: #999; 
+  color: #999; 
   font-size: 14px;
 }
 
 .combo-group .text-input-label {
-  font-size: 14px;
+  font-size: 12px;
   font-family: 'lato', 'arial', sans-serif;
   font-weight: normal;
   position: absolute;
@@ -865,7 +879,7 @@ background-position: 10px center;
   padding: 1em 2em;
   cursor: pointer;
   display: block;
-  margin: 0 auto 1em;
+  margin: 0 auto 10px;
   border-radius: 4px;
   color: #fff;
 }
@@ -878,7 +892,7 @@ background-position: 10px center;
 .toggle-content {
   color: #b0b3c2;
   font-size: 16px;
-  margin-bottom: 1.5em;
+  margin-bottom: 10px;
 }
 .toggle-input {
   display: none;
@@ -1080,7 +1094,7 @@ background-position: 10px center;
 
 .text-label {
   color: #4CA1AF;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .text-value {
@@ -1092,5 +1106,5 @@ background-position: 10px center;
 }
 
 .width-with-right-margin {
-    width: calc(100% - 90px);
+    width: calc(100% - 70px)!important;
 }

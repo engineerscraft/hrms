@@ -7,15 +7,13 @@
 <div class="body">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div class="row">
-    <div class="group">
       <a class="search-btn ripple search-btn-fixed" href="javascript:void(0)" (click)="employeeHierarchySearchForm.ngSubmit.emit()"></a>
-    </div>
   </div>
   <form [formGroup]="formGroupSearch" #employeeHierarchySearchForm="ngForm" (ngSubmit)="search()" method="get" class="loginform width-with-right-margin">
     <fieldset [disabled]="processingInProgress">
       <div class="toggle">
         <!-- Checkbox toggle -->
-        <input type="checkbox" value="selected" id="employeePersonalDetails" class="toggle-input">
+        <input type="checkbox" value="selected" id="employeePersonalDetails" class="toggle-input" checked>
         <label for="employeePersonalDetails" class="toggle-label">Employee Personal Details</label>
 
         <div role="toggle" class="toggle-content">
@@ -127,7 +125,7 @@
       </div>
       <div class="toggle">
         <!-- Checkbox toggle -->
-        <input type="checkbox" value="selected" id="organizationalInformation" class="toggle-input">
+        <input type="checkbox" value="selected" id="organizationalInformation" class="toggle-input" checked>
         <label for="organizationalInformation" class="toggle-label">Organizational Information</label>
 
         <div role="toggle" class="toggle-content">

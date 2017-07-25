@@ -5,11 +5,11 @@
 <div class="body">
 
   <app-spinner *ngIf="processingInProgress"></app-spinner>
-  <div class="display-table">
+  <div class="display-table width-with-right-margin">
     <div class="row span_4_of_4">
       <div>
 
-        <div class="tab_container width-with-right-margin">
+        <div class="tab_container">
           <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
           <label for="tab1" class="tab-header span_1_of_6 cell">Personal Details</label>
 
@@ -91,7 +91,7 @@
                         employeeInfo.controls.employeeBasicInfo.controls['dob'].touched" class="error-text-input-label">Date of birth is required</div>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
-                        <date-picker (outputEvents)="changeDate($event, 'dob')"></date-picker>
+                        <date-picker (outputEvents)="changeDate($event, 'dob')" popup-placement="auto bottom"></date-picker>
                       </div>
                     </div>
                     <div class="cell span_1_of_4">
