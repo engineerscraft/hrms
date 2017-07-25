@@ -6,10 +6,10 @@
 }
 
 body {
-    margin: 0;
-    width: auto;
-    height: 1500px;
-    background-color: #f3f3f4;
+/*    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f4;*/
 }
 
 @font-face {
@@ -98,13 +98,15 @@ input, button {
 }
 
 .body {
-  left: 72px;
+  background-color: #f3f3f4;
+  left: 90px;
   position: absolute;
   top: 64px;
-  width: calc(100% - 90px);
+  width: calc(100%-90px);
   padding-top: 40px;
   padding-bottom: 100px;
-  padding-left: 30px;
+  padding-left: 10px;
+  z-index: -1;
 }
 
 .wrapper {
@@ -694,8 +696,8 @@ select * {
 
 .search-btn-fixed {
   position: fixed;
-    top: calc(90px +1rem);
-    right: 1rem;
+  top: calc(90px +1rem);
+  right: 10px;
 }
 
 .back-btn{
@@ -718,8 +720,8 @@ select * {
 
 .back-btn-fixed {
   position: fixed;
-    top: calc(90px +1rem);
-    right: 1rem;
+  top: calc(90px +1rem);
+  right: 10px;
 }
 
 .previous-btn {
