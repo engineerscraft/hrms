@@ -10,7 +10,7 @@
       </span>
     </span>
   </div>
-  <div class="logout-icon" title="Logout" (click)="logout()">
+  <div class="logout-icon" title="Logout" (click)="onClickLogout()">
     <span class="span3">
     </span>
   </div>
@@ -165,4 +165,22 @@
       <button type="button" class="btn ripple" (click)="OnClickOk()">Ok</button>
     </div>
   </div>
+</div>
+
+<div class="modal-backdrop" *ngIf="getShowLogoutMessage()">
+<div class="modal-small">
+  <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+  <div class="modal-header">
+    <h1>Alert</h1>
+  </div>
+  <div class="modal-body">
+    <div class="group center">
+      <h3>Are you sure you want to logout ?</h3>
+      <div style="height:30px;">
+      </div>
+      <button type="button" class="btn ripple" (click)="logout()">Yes</button>
+      <button type="button" class="btn ripple" (click)="onCancelLogout()">No</button>
+    </div>
+  </div>
+</div>
 </div>

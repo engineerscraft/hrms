@@ -179,7 +179,7 @@ a {
 }
 
 .home-icon {
-  top: 10rem;
+  top: 15rem;
   left: 22px;
   transform: scale(0.7) translateX(-50%);
   width: 60px;
@@ -243,7 +243,7 @@ a {
 
 
 .logout-icon {
-  top: 13rem;
+  top: 18rem;
   left: 25px;
   transform: scale(0.7) translateX(-50%);
   width: 60px;
@@ -277,5 +277,14 @@ a {
   position:absolute; 
 }
 
-
-
+.modal-backdrop {
+  /*display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 49; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
