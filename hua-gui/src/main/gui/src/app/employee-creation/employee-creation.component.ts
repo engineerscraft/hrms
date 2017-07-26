@@ -212,6 +212,8 @@ export class EmployeeCreationComponent implements OnInit {
   }
 
   private canCreate() {
+
+    this.employeeInfo.controls.employeeBasicInfo.get('empMiddleName').setErrors(null);
     return !(this.employeeInfo.controls.employeeBasicInfo.valid);
   }
 

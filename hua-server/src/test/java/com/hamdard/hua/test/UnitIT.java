@@ -14,8 +14,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -23,11 +21,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hamdard.hua.model.LoginDetails;
 import com.hamdard.hua.model.Token;
 import com.hamdard.hua.model.Unit;
-import com.hamdard.hua.repository.UnitRepository;
 
 public class UnitIT {
 	
-	private static final Logger logger = LogManager.getLogger(UnitIT.class);
 	
     public static final String AUTH_URL = "http://localhost:8081/resources/v1/authentication";
     
@@ -128,9 +124,7 @@ public class UnitIT {
         getUnitOfAnOrganization.setHeader("Accept", "application/json");
         getUnitOfAnOrganization.setHeader("Authorization", "Bearer " + accessToken.getAccessToken());
         final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getUnitOfAnOrganization);
-        logger.info("\nHttpResponse_getResonse: "+getResponse);
-        
-        
+       
         Unit expectedUnit=new Unit();
         expectedUnit.setAddress("Bangladesh");
         expectedUnit.setEmpIdPrefix("HUB");
@@ -140,7 +134,6 @@ public class UnitIT {
         expectedUnit.setUnitId(1);
         expectedUnit.setUnitName("Hamdard University");        
         List <Unit> retrievedUnitList=mapper.readValue(getResponse.getEntity().getContent(), new TypeReference <List<Unit>>(){});
-        //Unit actual=retrievedUnit.iterator().next();
         boolean testDone=false;
         for(Unit actual:retrievedUnitList){
         	if(actual.getUnitId()==expectedUnit.getUnitId()){
