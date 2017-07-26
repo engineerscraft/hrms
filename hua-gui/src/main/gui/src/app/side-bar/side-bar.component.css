@@ -9,7 +9,7 @@ a {
     position: fixed;
     top: 0;
     transition: width 0.5s;
-    width: 90px;
+    width: 70px;
     z-index: 30;
 }
 
@@ -18,7 +18,7 @@ a {
   border: 1px solid #fff;
   height: 100%;
   position:absolute;
-  left: 90px;
+  left: 70px;
 }
 
 .menu {
@@ -114,13 +114,13 @@ a {
 
 .menu-icon {
   top: 2rem;
-  left: 2.5rem;
   width: 60px;
   height: 45px;
   position: absolute;
-  transform: rotate(0deg) translateX(-50%);
   transition: .5s ease-in-out;
   cursor: pointer;
+  transform: rotate(0deg) scale(0.5) translateX(-50%);
+  left: 18px;
 }
 
 .menu-icon span {
@@ -180,11 +180,10 @@ a {
 
 .home-icon {
   top: 10rem;
-  left: 2.5rem;
-  transform: translateX(-50%);
+  left: 22px;
+  transform: scale(0.7) translateX(-50%);
   width: 60px;
   height: 45px;
-  margin: 20px 15px;
   position: absolute;
   padding: 0;
   cursor: pointer;
@@ -244,12 +243,11 @@ a {
 
 
 .logout-icon {
-  top: 14rem;
-  left: 2.5rem;
-  transform: translateX(-45%);
+  top: 13rem;
+  left: 25px;
+  transform: scale(0.7) translateX(-50%);
   width: 60px;
   height: 45px;
-  margin: 20px 15px;
   position: absolute;
   padding: 0;
   cursor: pointer;
