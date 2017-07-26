@@ -33,7 +33,7 @@
                   <div class="row">
                     <div class="cell span_1_of_4">
                       <div class="group combo-group">
-                        <label class="text-input-label">Title</label>
+                        <label class="text-input-label">Title*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['title'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['title'].touched" class="error-text-input-label">Please choose a title</div>
                         <div class="select select-fancy select-fancy-image span_4_of_4">
@@ -48,7 +48,7 @@
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="empFirstName" maxlength="60" required>
-                        <label class="text-input-label">First Name</label>
+                        <label class="text-input-label">First Name*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['empFirstName'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['empFirstName'].touched" class="error-text-input-label">First Name is required</div>
                         <span class="highlight"></span>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empMiddleName" maxlength="30" required>
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empMiddleName" maxlength="30" required="">
                         <label class="text-input-label">Middle Name</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -66,7 +66,7 @@
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="empLastName" maxlength="60" required>
-                        <label class="text-input-label">Last Name</label>
+                        <label class="text-input-label">Last Name*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['empLastName'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['empLastName'].touched" class="error-text-input-label">Last name is required</div>
                         <span class="highlight"></span>
@@ -78,7 +78,7 @@
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="fatherName" maxlength="120" required>
-                        <label class="text-input-label">Father's Name</label>
+                        <label class="text-input-label">Father's Name*</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
                       </div>
@@ -86,7 +86,7 @@
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="dob" required>
-                        <label class="text-input-label">Date of birth</label>
+                        <label class="text-input-label">Date of birth*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['dob'].touched && 
                         employeeInfo.controls.employeeBasicInfo.controls['dob'].invalid" class="error-text-input-label">Please provide a valid date of birth</div>
                         <span class="highlight"></span>
@@ -97,7 +97,7 @@
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="emailId" maxlength="30" required>
-                        <label class="text-input-label">Email Id</label>
+                        <label class="text-input-label">Email Id*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['emailId'].touched && 
                         employeeInfo.controls.employeeBasicInfo.controls['emailId'].invalid" class="error-text-input-label">Please provide a valid email</div>
                         <span class="highlight"></span>
@@ -107,7 +107,7 @@
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" maxlength="15" required>
-                        <label class="text-input-label">Contact No</label>
+                        <label class="text-input-label">Contact No*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['contactNo'].invalid && 
                         employeeInfo.controls.employeeBasicInfo.controls['contactNo'].touched" class="error-text-input-label">Please provide a valid Contact No.</div>
                         <span class="highlight"></span>
@@ -118,7 +118,7 @@
                   <div class="row">
                     <div class="cell span_1_of_4">
                       <div class="group combo-group">
-                        <label class="text-input-label">Nationality</label>
+                        <label class="text-input-label">Nationality*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['nationality'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['nationality'].touched" class="error-text-input-label">Nationality is required</div>
                         <div class="select select-fancy select-fancy-image span_4_of_4">
@@ -132,7 +132,7 @@
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="doj" required>
-                        <label class="text-input-label">Date of Joining</label>
+                        <label class="text-input-label">Date of Joining*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['doj'].invalid && 
                         employeeInfo.controls.employeeBasicInfo.controls['doj'].touched" class="error-text-input-label">Please provide a valid 'Date of Joining'</div>
                         <span class="highlight"></span>
@@ -142,7 +142,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group combo-group">
-                        <label class="text-input-label">Sex</label>
+                        <label class="text-input-label">Sex*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['sex'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['sex'].touched" class="error-text-input-label">Please mention Sex of employee </div>
                         <div class="select select-fancy select-fancy-image span_4_of_4">
@@ -156,7 +156,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group combo-group">
-                        <label class="text-input-label">Marital status</label>
+                        <label class="text-input-label">Marital status*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['maritalStatus'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['maritalStatus'].touched" class="error-text-input-label">Please mention 'Marital Status' of employee </div>
                         <div class="select select-fancy select-fancy-image span_4_of_4">
@@ -172,7 +172,7 @@
                   <div class="row">
                     <div class="cell span_1_of_4">
                       <div class="group combo-group">
-                        <label class="text-input-label">Organization</label>
+                        <label class="text-input-label">Organization*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['organization'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['organization'].touched" class="error-text-input-label">Please choose Employee's Organization</div>
                         <div class="select select-fancy select-fancy-image span_4_of_4">
@@ -186,7 +186,7 @@
                     </div>
                     <div class="cell span_1_of_4" formGroupName="unit">
                       <div class="group combo-group">
-                        <label class="text-input-label">Unit</label>
+                        <label class="text-input-label">Unit*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls.unit.controls['unitId'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls.unit.controls['unitId'].touched" class="error-text-input-label">Please choose Employee's Unit</div>
                         <div class="select select-fancy select-fancy-image span_4_of_4">
@@ -200,7 +200,7 @@
                     </div>
                     <div class="cell span_1_of_4" formGroupName="department">
                       <div class="group combo-group">
-                        <label class="text-input-label">Department</label>
+                        <label class="text-input-label">Department*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls.department.controls['departmentId'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls.department.controls['departmentId'].touched" class="error-text-input-label">Please choose Employee's Department</div>
                         <div class="select select-fancy select-fancy-image span_4_of_4">
@@ -213,7 +213,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group combo-group">
-                        <label class="text-input-label">Employee Type</label>
+                        <label class="text-input-label">Employee Type*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['empType'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['empType'].touched" class="error-text-input-label">Please choose 'Employee Type'</div>
                         <div class="select select-fancy select-fancy-image span_4_of_4">
@@ -228,7 +228,7 @@
                   <div class="row">
                     <div class="cell span_1_of_4" formGroupName="identityDocType">
                       <div class="group combo-group">
-                        <label class="text-input-label">Identity Doc Type</label>
+                        <label class="text-input-label">Identity Doc Type*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls.identityDocType.controls['docTypeId'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls.identityDocType.controls['docTypeId'].touched"
                           class="error-text-input-label">Please choose identity document type of employee</div>
@@ -243,7 +243,7 @@
                     <div class="cell span_1_of_4">
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="identityNumber" maxlength="32" required>
-                        <label class="text-input-label">Identity Number</label>
+                        <label class="text-input-label">Identity Number*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['identityNumber'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['identityNumber'].touched" class="error-text-input-label">Please provide corresponding identity docuemnt number</div>
                         <span class="highlight"></span>
@@ -830,7 +830,7 @@
                 </div>
               </section>
               <div class="row">
-                <button type="submit" class="btn ripple" [disabled]="canCreate() && false">Create</button>
+                <button type="submit" class="btn ripple" [disabled]="canCreate()">Create</button>
               </div>
             </fieldset>
           </form>
