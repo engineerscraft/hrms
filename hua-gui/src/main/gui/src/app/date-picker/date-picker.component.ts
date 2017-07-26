@@ -7,13 +7,8 @@ import {
   forwardRef,
   Input,
   Output,
-  EventEmitter,
-  ViewChildren,
-  QueryList,
-  ChangeDetectorRef
+  EventEmitter
 } from '@angular/core';
-import { Subject } from 'rxjs/Subject' ;
-import { BehaviorSubject } from 'rxjs/BehaviorSubject' ;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SlimScrollOptions } from 'ng2-slimscroll';
 import * as moment from 'moment';
@@ -132,7 +127,7 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
   private onTouchedCallback: () => void = () => { };
   private onChangeCallback: (_: any) => void = () => { };
 
-  constructor( @Inject(ElementRef) public el: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor( @Inject(ElementRef) public el: ElementRef) {
     this.opened = false;
     this.currentDate = Moment();
     this.options = this.options || {};
