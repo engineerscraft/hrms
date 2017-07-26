@@ -1,5 +1,6 @@
 import {
   Component,
+  ViewChild,
   ElementRef,
   Inject,
   OnInit,
@@ -7,7 +8,12 @@ import {
   Input,
   Output,
   EventEmitter,
+  ViewChildren,
+  QueryList,
+  ChangeDetectorRef
 } from '@angular/core';
+import { Subject } from 'rxjs/Subject' ;
+import { BehaviorSubject } from 'rxjs/BehaviorSubject' ;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SlimScrollOptions } from 'ng2-slimscroll';
 import * as moment from 'moment';
@@ -104,6 +110,7 @@ export const CALENDAR_VALUE_ACCESSOR: any = {
   providers: [CALENDAR_VALUE_ACCESSOR],
 })
 export class DatePickerComponent implements ControlValueAccessor, OnInit {
+  @ViewChild('datePickerContainer') datePickerContainer;
   @Input() options: DatePickerOptions;
   @Input() inputEvents: EventEmitter<{ type: string, data: string | DateModel }>;
   @Output() outputEvents: EventEmitter<{ type: string, data: string | DateModel }>;
@@ -120,10 +127,12 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
   minDate: moment.Moment | any;
   maxDate: moment.Moment | any;
 
+  top = 40;
+
   private onTouchedCallback: () => void = () => { };
   private onChangeCallback: (_: any) => void = () => { };
 
-  constructor( @Inject(ElementRef) public el: ElementRef) {
+  constructor( @Inject(ElementRef) public el: ElementRef, private cdr: ChangeDetectorRef) {
     this.opened = false;
     this.currentDate = Moment();
     this.options = this.options || {};
@@ -361,6 +370,14 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
   }
 
   toggle() {
+    if(!this.opened) {
+      let boundingRect = this.datePickerContainer.nativeElement.getBoundingClientRect();
+      if (window.innerHeight <= boundingRect.bottom + 400) {
+        this.top = window.innerHeight - 400;
+      } else {
+        this.top = boundingRect.top + 40;
+      }
+    }
     this.opened = !this.opened;
     if (this.opened) {
       this.onOpen();
