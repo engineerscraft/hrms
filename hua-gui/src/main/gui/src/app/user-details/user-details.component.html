@@ -12,16 +12,14 @@
   <p *ngIf="!!employeeInfo" class="name-sub-header">Contact No: {{employeeInfo.employeeBasicInfo.contactNo}}</p>
   <p *ngIf="!!employeeInfo" class="name-sub-header">Email: {{employeeInfo.employeeBasicInfo.emailId}}</p>
 </div>
-<!--img class="profile-pic" src="/assets/img/forbidden-min.jpg"/-->
-<img *ngIf="!!employeeInfo && !!employeeInfo.employeeBasicInfo && !!employeeInfo.employeeBasicInfo.profileImage" class="profile-pic"
-  [src]="employeeInfo.employeeBasicInfo.profileImage" />
+<img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
 <input type="file" style="display:none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
 <img class="profile-pic" (click)="profileImageFile.click()">
 <div class="body">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
-  <div style="height:330px;">
+  <div style="height:278px;">
   </div>
-  <div class="display-table">
+  <div class="display-table width-with-right-margin">
     <div class="row span_4_of_4">
       <div>
         <div class="tab_container width-with-right-margin">
@@ -51,7 +49,7 @@
                   <label class="text-label">Title</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.title}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.title}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4 even-row">
@@ -59,19 +57,19 @@
                   <label class="text-label">First Name</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.empFirstName}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.empFirstName}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Middle Name</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.empMiddleName}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.empMiddleName}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Last Name</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.empLastName}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.empLastName}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4">
@@ -79,7 +77,7 @@
                   <label class="text-label">Father's Name</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.fatherName}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.fatherName}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4 even-row">
@@ -87,19 +85,19 @@
                   <label class="text-label">Sex</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.sex}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.sex}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Marital Status</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.maritalStatus}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.maritalStatus}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Nationality</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.countryName}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.countryName}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4">
@@ -107,19 +105,19 @@
                   <label class="text-label">Date of Birth</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.dob}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.dob}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Contact Number</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.contactNo}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.contactNo}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Email</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.emailId}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.emailId}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4 even-row">
@@ -127,21 +125,21 @@
                   <label class="text-label">Employment Type</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.empType}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.empType}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Is Hr?</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <!--label class="text-value">{{employeeInfo.employeeBasicInfo.hrFlag}}</label-->
-                  <input type="checkbox" name="isHr" [checked]="employeeInfo.employeeBasicInfo.hrFlag" disabled />
+                  <!--label class="text-value">{{employeeInfo?.employeeBasicInfo.hrFlag}}</label-->
+                  <input type="checkbox" name="isHr" [checked]="employeeInfo?.employeeBasicInfo.hrFlag" disabled />
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Is Supervisor?</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <!--label class="text-value">{{employeeInfo.employeeBasicInfo.supervisorFlag}}</label-->
-                  <input type="checkbox" name="isSupervisor" [checked]="employeeInfo.employeeBasicInfo.supervisorFlag" disabled />
+                  <!--label class="text-value">{{employeeInfo?.employeeBasicInfo.supervisorFlag}}</label-->
+                  <input type="checkbox" name="isSupervisor" [checked]="employeeInfo?.employeeBasicInfo.supervisorFlag" disabled />
                 </div>
               </div>
               <div class="row span_4_of_4">
@@ -149,13 +147,13 @@
                   <label class="text-label">Identity Document</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.identityDocType.docTypeName}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.identityDocType.docTypeName}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Identity Document Id</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeBasicInfo.identityNumber}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.identityNumber}}</label>
                 </div>
               </div>
             </div>
@@ -167,13 +165,13 @@
                   <label class="text-label">Number of Dependents</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.dependentNo}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.dependentNo}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Number of Siblings</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.siblingNo}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.siblingNo}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4 even-row">
@@ -181,13 +179,13 @@
                   <label class="text-label">Emergency Contact Name</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.emergencyContactName}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.emergencyContactName}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Emergency Contact Number</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.emergencyContactNo}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.emergencyContactNo}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4">
@@ -195,13 +193,13 @@
                   <label class="text-label">Nominee 1 Name</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.nomineeName1}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeName1}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Nominee 1 share (%)</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.nomineeShare1}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeShare1}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4 even-row">
@@ -209,13 +207,13 @@
                   <label class="text-label">Nominee 2 Name</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.nomineeName2}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeName2}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Nominee 2 share (%)</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.nomineeShare2}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeShare2}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4">
@@ -223,13 +221,13 @@
                   <label class="text-label">Nominee 3 Name</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.nomineeName3}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeName3}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Nominee 3 share (%)</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.nomineeShare3}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeShare3}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4 even-row">
@@ -237,13 +235,13 @@
                   <label class="text-label">Pre Employment Medical Checkup Date</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.PreMedicalCheckUpDate}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.PreMedicalCheckUpDate}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Medical Report Comment</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeAddlDetails.medicalReportComment}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.medicalReportComment}}</label>
                 </div>
               </div>
             </div>
@@ -261,19 +259,19 @@
                       <label class="text-label">House Number</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[0].houseNo}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[0].houseNo}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">Street</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[0].streetName}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[0].streetName}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">Area</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[0].area}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[0].area}}</label>
                     </div>
                   </div>
                   <div class="row span_4_of_4 even-row">
@@ -281,19 +279,19 @@
                       <label class="text-label">PIN / Zip Code</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[0].pinno}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[0].pinno}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">Region</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[0].region}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[0].region}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">District</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[0].districtName}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[0].districtName}}</label>
                     </div>
                   </div>
                   <div class="row span_4_of_4">
@@ -301,13 +299,13 @@
                       <label class="text-label">State</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[0].stateName}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[0].stateName}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">Country</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[0].countryName}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[0].countryName}}</label>
                     </div>
                   </div>
                 </div>
@@ -323,19 +321,19 @@
                       <label class="text-label">House Number</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[1].houseNo}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[1].houseNo}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">Street</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[1].streetName}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[1].streetName}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">Is Supervisor?</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[1].area}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[1].area}}</label>
                     </div>
                   </div>
                   <div class="row span_4_of_4 even-row">
@@ -343,19 +341,19 @@
                       <label class="text-label">PIN / Zip Code</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[1].pinno}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[1].pinno}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">Region</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[1].region}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[1].region}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">District</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[1].districtName}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[1].districtName}}</label>
                     </div>
                   </div>
                   <div class="row span_4_of_4">
@@ -363,13 +361,13 @@
                       <label class="text-label">State</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[1].stateName}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[1].stateName}}</label>
                     </div>
                     <div class="cell span_1_of_6">
                       <label class="text-label">Country</label>
                     </div>
                     <div class="cell span_1_of_6">
-                      <label class="text-value">{{employeeInfo.employeeAddress[1].countryName}}</label>
+                      <label class="text-value">{{employeeInfo?.employeeAddress[1].countryName}}</label>
                     </div>
                   </div>
                 </div>
@@ -383,13 +381,13 @@
                   <label class="text-label">HR Email</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeHierarchy.hrEmailId}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.hrEmailId}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Supervisor Email</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeHierarchy.supervisorEmailId}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.supervisorEmailId}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4 even-row">
@@ -397,19 +395,19 @@
                   <label class="text-label">Number of Casual Leaves</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeHierarchy.cL}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.cL}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Number of Sick Leaves</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeHierarchy.specialLeave}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.specialLeave}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Number of Paternity Leaves</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeHierarchy.paternityLeave}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.paternityLeave}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4">
@@ -417,13 +415,13 @@
                   <label class="text-label">Maternity Leave</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeHierarchy.maternityLeave}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.maternityLeave}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Employment Status</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeHierarchy.status}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.status}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4 even-row">
@@ -431,13 +429,13 @@
                   <label class="text-label">Probation Period End Date</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeHierarchy.probationPeriodEndDate}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.probationPeriodEndDate}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Notice Period End Date</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo.employeeHierarchy.noticePeriodEndDate}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.noticePeriodEndDate}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label"></label>
@@ -451,5 +449,168 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="modal-medium" *ngIf="getShowEditBasicInfo()">
+  <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+  <div class="modal-header">
+    <h1>Edit My Details</h1>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroupBasicInfo" (ngSubmit)="onBasicInfoUpdate()" method="post" class="loginform">
+      <fieldset [disabled]="isProcessingInProgress()">
+        <div class="display-table inner-component-width">
+          <div class="row">
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input class="inputMaterial input-size-small" formControlName="title" required>
+                <label class="text-input-label">Title</label>
+              </div>
+            </div>
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input class="inputMaterial input-size-small" formControlName="empFirstName" required>
+                <label class="text-input-label">First Name</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input class="inputMaterial input-size-small" formControlName="empMiddleName">
+                <label class="text-input-label">Middle Name</label>
+              </div>
+            </div>
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input class="inputMaterial input-size-small" formControlName="empLastName" required>
+                <label class="text-input-label">Last Name</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input class="inputMaterial input-size-small" formControlName="fatherName" required>
+                <label class="text-input-label">Father's Name</label>
+              </div>
+            </div>
+            <div class="cell span_1_of_4">
+              <div class="group combo-group">
+                <label class="text-input-label">Sex</label>
+                <div class="select select-fancy select-fancy-image span_4_of_4">
+                  <select class="span_4_of_4" formControlName="sex">
+                          <option value="MALE">Male</option>
+                          <option value="FEMALE">Female</option>
+                          <option value="OTHER">Other</option>
+                        </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell span_2_of_4">
+              <div class="group combo-group">
+                <label class="text-input-label">Nationality</label>
+                <div class="select select-fancy select-fancy-image span_4_of_4">
+                  <select class="span_4_of_4" formControlName="nationality">
+                          <option value=""></option>
+                          <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
+                        </select>
+                </div>
+              </div>
+            </div>
+            <div class="cell span_2_of_4">
+              <div class="group combo-group">
+                <label class="text-input-label">Marital status</label>
+                <div class="select select-fancy select-fancy-image span_4_of_4">
+                  <select class="span_4_of_4" formControlName="maritalStatus">
+                          <option value="MARRIED">Married</option>
+                          <option value="SINGLE">Single</option>
+                          <option value="DIVORCED">Divorced</option>
+                        </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input class="inputMaterial input-size-small" formControlName="dob" required>
+                <label class="text-input-label">Date of Birth</label>
+              </div>
+            </div>
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input class="inputMaterial input-size-small" formControlName="contactNo" required>
+                <label class="text-input-label">ContactNumber</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input type="checkbox" id="isHr" class="default-checkbox span_4_of_4" formControlName="hrFlag">
+                <label for="isHr">Is Employee an HR?</label>
+              </div>
+            </div>
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input type="checkbox" id="isManager" class="default-checkbox span_4_of_4" formControlName="supervisorFlag">
+                <label for="isManager">Is Employee a Manager?</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell span_2_of_4" formGroupName="identityDocType">
+              <div class="group combo-group">
+                <label class="text-input-label">Identity Doc Type</label>
+                <div class="select select-fancy select-fancy-image span_4_of_4">
+                  <select class="span_4_of_4" formControlName="docTypeId">
+                          <option value=""></option>
+                          <option *ngFor="let docType of identityDocTypes" value="{{docType.docTypeId}}">{{docType.docTypeName}}</option>
+                        </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input class="inputMaterial input-size-small" formControlName="identityNumber" required>
+                <label class="text-input-label">Identity Number</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell span_2_of_4">
+              <div class="group combo-group">
+                <label class="text-input-label">Employee Type</label>
+                <div class="select select-fancy select-fancy-image span_4_of_4">
+                  <select class="span_4_of_4" formControlName="empType">
+                          <option value="PERMANENT">Permanent</option>
+                          <option value="CONTRACT">Contract</option>
+                        </select>
+                </div>
+              </div>
+            </div>
+            <div class="cell span_2_of_4">
+              <div class="group">
+                <input class="inputMaterial input-size-small" formControlName="emailId" required>
+                <label class="text-input-label">Email Id</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell span_4_of_4">
+              <div class="group">
+                <button type="submit" class="btn ripple">Submit</button>
+                <button type="button" class="btn ripple" (click)="onCancel()">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
   </div>
 </div>

@@ -25,4 +25,12 @@ export class CustomValidator {
         }
         return null;
     }
+
+    static validPhone(control: FormControl) {
+        var pattern = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;
+        if (!control.value.match(pattern)) {
+            return { "inValidPhone": true };
+        }
+        return null;
+    }
 }

@@ -127,7 +127,7 @@ input, button {
    table-layout: fixed;
    width:100%;
    background-color: #fff;
-   padding: 20px 20px;
+   padding: 5px 20px 35px 20px;
    border-radius: 4px;
    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
    /*padding-right: 50px;*/
@@ -581,6 +581,7 @@ app-spinner {
 	position: relative;
 	border-radius: 5px;
 	overflow: hidden;
+  height: 28px;
 	box-shadow: inset 0 -2px 5px rgba(255, 255, 255, 0.4);
   top: 15px;
 }
@@ -594,7 +595,7 @@ app-spinner {
 	border: 0;
 	outline: 0;
 	padding: 5px 0 5px 8px;
-	height: 30px;
+	height: 27px;
 	user-select: none;
   font-size: 14px;
   color: #3e3e3e;
