@@ -99,10 +99,10 @@ input, button {
 
 .body {
   background-color: #f3f3f4;
-  left: 90px;
+  left: 70px;
   position: absolute;
   top: 64px;
-  width: calc(100% - 90px);
+  width: calc(100% - 70px);
   padding-top: 40px;
   padding-bottom: 100px;
   padding-left: 10px;
@@ -168,7 +168,7 @@ input, button {
 
 .page-header {
   width: 100%;
-  left: 92px;
+  left: 72px;
   top: 0;
   color: #fff;
   background-color: #4CA1AF;
@@ -452,6 +452,10 @@ input {
   width: 35rem;
 }
 
+.change-password{
+  position: absolute;
+}
+
 app-spinner {
   position: absolute;
   top: 50%;
@@ -478,7 +482,7 @@ app-spinner {
 /* Modal Content */
 .modal-small {
     top: 50%;
-    left: calc(50% + 90px);
+    left: calc(50% + 70px);
     transform: translate(-60%, -40%);
     position: fixed;
     background-color: #fefefe;
@@ -493,7 +497,7 @@ app-spinner {
 
 .modal-medium {
     top: 50%;
-    left: calc(50% + 90px);
+    left: calc(50% + 70px);
     transform: translate(-60%, -40%);
     position: fixed;
     background-color: #fefefe;
@@ -532,7 +536,7 @@ app-spinner {
 }
 
 .modal-body {
-  padding: 20px 40px;
+  padding: 10px 10px;
   max-height: calc(100vh - 15rem);
   overflow-y: auto;
   background-color: #f3f3f4;
