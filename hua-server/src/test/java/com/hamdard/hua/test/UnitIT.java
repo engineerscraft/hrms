@@ -2,6 +2,7 @@
 package com.hamdard.hua.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.List;
@@ -138,9 +139,18 @@ public class UnitIT {
         expectedUnit.setOrgName("Hamdard University");
         expectedUnit.setUnitId(1);
         expectedUnit.setUnitName("Hamdard University");        
-        List <Unit> retrievedUnit=mapper.readValue(getResponse.getEntity().getContent(), new TypeReference <List<Unit>>(){});
-        Unit actual=retrievedUnit.iterator().next();
-        assertEquals(expectedUnit.getUnitId(), actual.getUnitId()); 
-       
+        List <Unit> retrievedUnitList=mapper.readValue(getResponse.getEntity().getContent(), new TypeReference <List<Unit>>(){});
+        //Unit actual=retrievedUnit.iterator().next();
+        boolean testDone=false;
+        for(Unit actual:retrievedUnitList){
+        	if(actual.getUnitId()==expectedUnit.getUnitId()){
+        		assertEquals(expectedUnit.toString(), actual.toString());
+        		testDone=true;
+        		break;
+        	}	
+        }
+        if(!testDone)
+        	assertTrue("No Unit found", false);
+ 
     }
 }
