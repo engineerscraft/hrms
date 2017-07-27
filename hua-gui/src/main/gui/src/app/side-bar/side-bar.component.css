@@ -36,7 +36,6 @@ a {
   width: 60rem;
   animation-fill-mode: forwards;
   animation-duration: 0.5s;
-  padding: 0;
   margin: 0;
 }
 
@@ -50,7 +49,7 @@ a {
   }
   100% {
     opacity: 1;
-    left: 1rem;
+    left: 3rem;
   }
 }
 
@@ -176,7 +175,7 @@ a {
 
 .sidebar-row {
     max-width: 40rem;
-    margin: 0 auto 0 10rem;
+    margin: 0 auto 0 8rem;
     width:100%;
 }
 
