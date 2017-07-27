@@ -37,6 +37,7 @@ public class PermissionEndpoint {
     public Response getPermissions(@QueryParam("permissionLevel") String permissionLevel) {
         try {
             List<Permission> permissions = authenticationRepository.retriveViewPermissions(securityContext.getUserPrincipal().getName());
+           
             if (permissions.size() == 0) {
                 logger.debug("No permission given to the user: {}", () -> securityContext.getUserPrincipal().getName());
                 return Response.status(Response.Status.NOT_FOUND).entity(new Message("No permission given to the user")).build();
