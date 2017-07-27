@@ -12,9 +12,12 @@
   <p *ngIf="!!employeeInfo" class="name-sub-header">Contact No: {{employeeInfo.employeeBasicInfo.contactNo}}</p>
   <p *ngIf="!!employeeInfo" class="name-sub-header">Email: {{employeeInfo.employeeBasicInfo.emailId}}</p>
 </div>
-<img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
-<input type="file" style="display:none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
-<img class="profile-pic" (click)="profileImageFile.click()">
+<div class="profile-pic-container">
+  <img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
+  <label for="file-upload" class="custom-file-upload"></label>
+  <input id="file-upload" type="file" style="display: none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
+  <img class="profile-pic" (click)="profileImageFile.click()">
+</div>
 <div class="body">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:278px;">

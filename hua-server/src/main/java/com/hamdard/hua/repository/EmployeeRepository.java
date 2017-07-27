@@ -161,11 +161,16 @@ public class EmployeeRepository {
         String entryBy = newEmployee.getEmployeeBasicInfo().getEntryBy();
 
         this.insertBasicInfo(employeeId, newEmployee.getEmployeeBasicInfo());
-        this.insertAdditionalInfo(employeeId, newEmployee.getEmployeeAddlDetails());
-        this.insertEmployeeAddress(employeeId, newEmployee.getEmployeeAddress());
-        this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
-        this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
-        this.insertEmpSalaryComponents(employeeId, entryBy, newEmployee.getEmployeeSalary(), entryDate);
+        if(newEmployee.getEmployeeAddlDetails() != null)
+            this.insertAdditionalInfo(employeeId, newEmployee.getEmployeeAddlDetails());
+        if(newEmployee.getEmployeeAddress() != null)
+            this.insertEmployeeAddress(employeeId, newEmployee.getEmployeeAddress());
+        if(newEmployee.getEmployeeHierarchy() != null)
+            this.insertEmployeeHierarchy (employeeId, newEmployee.getEmployeeHierarchy(), entryDate);
+        if(newEmployee.getEmployeeProfile() != null)
+            this.insertEmployeeProfile (employeeId, newEmployee.getEmployeeProfile());
+        if(newEmployee.getEmployeeSalary() != null)
+            this.insertEmpSalaryComponents(employeeId, entryBy, newEmployee.getEmployeeSalary(), entryDate);
         // TODO: take care of optional components
 
         // create LDAP user
@@ -259,7 +264,7 @@ public class EmployeeRepository {
                 logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeId, () -> address.getAddressType(), () -> address.getHouseNo(), () -> address.getStreetName(), () -> address.getArea(), () -> address.getRegion(),
                         () -> address.getPinno(), () -> address.getDistrictId(), () -> address.getStateId(), () -> address.getCountryId(), () -> address.getDescription());
 
-                jdbcTemplate.update(employeeAddressInsert, new Object[] { employeeId, address.getAddressType(), address.getHouseNo(), address.getStreetName(), address.getArea(), address.getRegion(), Integer.valueOf(address.getPinno()), address.getDistrictId(),
+                jdbcTemplate.update(employeeAddressInsert, new Object[] { employeeId, address.getAddressType(), address.getHouseNo(), address.getStreetName(), address.getArea(), address.getRegion(), address.getPinno(), address.getDistrictId(),
                         address.getStateId(), address.getCountryId(), address.getDescription() });
             }
     }
