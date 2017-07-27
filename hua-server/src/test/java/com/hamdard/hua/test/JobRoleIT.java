@@ -18,17 +18,32 @@ import org.junit.Test;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hamdard.hua.model.Grade;
+import com.hamdard.hua.model.JobRole;
 import com.hamdard.hua.model.LoginDetails;
 import com.hamdard.hua.model.Token;
 import com.hamdard.hua.model.Unit;
 
-public class UnitIT {
+/*ITs for below API 
+ * /{id}/salary
+ * /{id}/optbenefit
+ * 
+ * are yet to be developed as there is no data present in table:
+ * salary_component_master
+ * salary_master
+ */
+public class JobRoleIT {
 	
 	
     public static final String AUTH_URL = "http://localhost:8081/resources/v1/authentication";
     
-    public static final String SERVICE_URL = "http://localhost:8081/resources/v1/unit";
+    public static final String SERVICE_URL = "http://localhost:8081/resources/v1/jobrole";
     
+    /* *
+     * Test URI: resources/v1/jobrole?orgId=sampleOrgId
+     * Fetch list of JobRoles for a given orgId
+     * @result expected status code 200
+     */
     @Test
     public void givenValidOrganizationId_whenUnitInfoIsRetrieved_thenResponseCodeSuccess() throws IOException{
     	final HttpPost authRequest = new HttpPost(AUTH_URL);
@@ -43,19 +58,20 @@ public class UnitIT {
         assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
         
         Token accessToken = mapper.readValue(httpResponse.getEntity().getContent(), Token.class);
-       
-        final HttpGet getUnitOfAnOrganization = new HttpGet(SERVICE_URL+"?organizationId=1");
-        getUnitOfAnOrganization.setHeader("Accept", "application/json");
-        getUnitOfAnOrganization.setHeader("Authorization", "Bearer " + accessToken.getAccessToken());
-        final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getUnitOfAnOrganization);
-        
-        assertEquals(getResponse.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
- 
-        
+        final HttpGet getJobRoleListOfAnOrg = new HttpGet(SERVICE_URL+"?orgId=1");
+        getJobRoleListOfAnOrg.setHeader("Accept", "application/json");
+        getJobRoleListOfAnOrg.setHeader("Authorization", "Bearer " + accessToken.getAccessToken());
+        final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getJobRoleListOfAnOrg);      
+        assertEquals(getResponse.getStatusLine().getStatusCode(), HttpStatus.SC_OK);    
     }
-    
+  
+    /* *
+     * Test URI: resources/v1/jobrole?orgId=wrongOrgId
+     * List of JobRoles when wrong OrgId is given
+     * @result expected status code 404
+     */
     @Test
-    public void givenInvalidOrganizationId_whenUnitInfoIsRetrieved_then404IsReceived() throws IOException{
+    public void givenInvalidOrgId_whenJobRoleInfoIsRetrieved_then404IsReceived() throws IOException{
     	final HttpPost authRequest = new HttpPost(AUTH_URL);
         authRequest.setHeader("Accept", "application/json");
         LoginDetails loginDetails = new LoginDetails("TEST", "TEST");
@@ -68,17 +84,20 @@ public class UnitIT {
         assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
         
         Token accessToken = mapper.readValue(httpResponse.getEntity().getContent(), Token.class);
-       
-        final HttpGet getUnitOfAnOrganization = new HttpGet(SERVICE_URL+"?organizationId=99999");
-        getUnitOfAnOrganization.setHeader("Accept", "application/json");
-        getUnitOfAnOrganization.setHeader("Authorization", "Bearer " + accessToken.getAccessToken());
-        final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getUnitOfAnOrganization);
-        
+        final HttpGet getJobRoleListOfAnOrg = new HttpGet(SERVICE_URL+"?orgId=99999");
+        getJobRoleListOfAnOrg.setHeader("Accept", "application/json");
+        getJobRoleListOfAnOrg.setHeader("Authorization", "Bearer " + accessToken.getAccessToken());
+        final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getJobRoleListOfAnOrg);
         assertEquals(getResponse.getStatusLine().getStatusCode(), HttpStatus.SC_NOT_FOUND);
  
         
     }
     
+    /* *
+     * Test URI: resources/v1/jobrole?orgId=sampleOrgId
+     * check default response header as JSON
+     * @result expected response header as JSON
+     */
     @Test
     public void givenRequestWithNoAcceptHeader_whenRequestIsExecuted_thenDefaultResponseContentTypeIsJson() throws IOException{
     	final HttpPost authRequest = new HttpPost(AUTH_URL);
@@ -94,19 +113,23 @@ public class UnitIT {
         
         Token accessToken = mapper.readValue(httpResponse.getEntity().getContent(), Token.class);
        
-        final HttpGet getUnitOfAnOrganization = new HttpGet(SERVICE_URL+"?organizationId=1");
-        //getUnitOfAnOrganization.setHeader("Accept", "application/json");
+        final HttpGet getJobRoleListOfAnOrg = new HttpGet(SERVICE_URL+"?orgId=1");
         String jsonMimeType = "application/json";
-        getUnitOfAnOrganization.setHeader("Authorization", "Bearer " + accessToken.getAccessToken());
-        final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getUnitOfAnOrganization);
+        getJobRoleListOfAnOrg.setHeader("Authorization", "Bearer " + accessToken.getAccessToken());
+        final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getJobRoleListOfAnOrg);
         String mimeType = ContentType.getOrDefault(getResponse.getEntity()).getMimeType();
         assertEquals(jsonMimeType, mimeType);
  
         
     }
     
+    /* *
+     * Test URI: resources/v1/jobrole?orgId=sampleOrgId
+     * List of JobRoles when correct OrgId is given
+     * @result expected correct <JobRole>
+     */    
     @Test
-    public void givenValidOrganizationId_whenUnitInfoIsRetrieved_thenRetrievedResourceIsCorrect() throws IOException{
+    public void givenValidOrganizationId_whenJobRoleListIsRetrieved_thenRetrievedResourceIsCorrect() throws IOException{
     	final HttpPost authRequest = new HttpPost(AUTH_URL);
         authRequest.setHeader("Accept", "application/json");
         LoginDetails loginDetails = new LoginDetails("TEST", "TEST");
@@ -120,30 +143,32 @@ public class UnitIT {
         
         Token accessToken = mapper.readValue(httpResponse.getEntity().getContent(), Token.class);
        
-        final HttpGet getUnitOfAnOrganization = new HttpGet(SERVICE_URL+"?organizationId=1");
+        final HttpGet getUnitOfAnOrganization = new HttpGet(SERVICE_URL+"?orgId=1");
         getUnitOfAnOrganization.setHeader("Accept", "application/json");
         getUnitOfAnOrganization.setHeader("Authorization", "Bearer " + accessToken.getAccessToken());
-        final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getUnitOfAnOrganization);
-       
-        Unit expectedUnit=new Unit();
-        expectedUnit.setAddress("Bangladesh");
-        expectedUnit.setEmpIdPrefix("HUB");
-        expectedUnit.setEmpIdSeqName("HUB_EMP_SEQ");
-        expectedUnit.setOrgId(1);
-        expectedUnit.setOrgName("Hamdard University");
-        expectedUnit.setUnitId(1);
-        expectedUnit.setUnitName("Hamdard University");        
-        List <Unit> retrievedUnitList=mapper.readValue(getResponse.getEntity().getContent(), new TypeReference <List<Unit>>(){});
+        final HttpResponse getResponse = HttpClientBuilder.create().build().execute(getUnitOfAnOrganization);      
+        
+        Grade grade=new Grade();
+        grade.setGradeId(1);
+        grade.setGradeName("T1");
+        JobRole expectedJobRole=new JobRole();
+        expectedJobRole.setJobRoleId(1);
+        expectedJobRole.setOrgId(1);
+        expectedJobRole.setGrade(grade);
+        expectedJobRole.setNoticeperiod(3);
+        expectedJobRole.setProbationNoticePeriod(1);
+        
+        List <JobRole> retrievedJobRoleList=mapper.readValue(getResponse.getEntity().getContent(), new TypeReference <List<JobRole>>(){});
         boolean testDone=false;
-        for(Unit actual:retrievedUnitList){
-        	if(actual.getUnitId()==expectedUnit.getUnitId()){
-        		assertEquals(expectedUnit.toString(), actual.toString());
+        for(JobRole actual:retrievedJobRoleList){
+        	if(actual.getJobRoleId()==expectedJobRole.getJobRoleId()){
+        		assertEquals(expectedJobRole.toString(), actual.toString());
         		testDone=true;
         		break;
         	}	
         }
         if(!testDone)
-        	assertTrue("No Unit found", false);
+        	assertTrue("No JobRole found", false);
  
     }
 }

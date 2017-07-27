@@ -36,6 +36,7 @@ a {
   width: 60rem;
   animation-fill-mode: forwards;
   animation-duration: 0.5s;
+  margin: 0;
 }
 
 @keyframes show-menu-animation {
@@ -169,17 +170,17 @@ a {
 }
 
 .sidebar-open {
-    width: 70rem;
+    width: 60rem;
 }
 
 .sidebar-row {
-    max-width: 50rem;
-    margin: 0 auto 0 10rem;
+    max-width: 40rem;
+    margin: 0 auto 0 8rem;
     width:100%;
 }
 
 .home-icon {
-  top: 10rem;
+  top: 15rem;
   left: 22px;
   transform: scale(0.7) translateX(-50%);
   width: 60px;
@@ -243,7 +244,7 @@ a {
 
 
 .logout-icon {
-  top: 13rem;
+  top: 18rem;
   left: 25px;
   transform: scale(0.7) translateX(-50%);
   width: 60px;
@@ -276,6 +277,3 @@ a {
   border-radius:100%; 
   position:absolute; 
 }
-
-
-

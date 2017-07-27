@@ -1,0 +1,855 @@
+<app-side-bar></app-side-bar>
+<div class="page-header">
+  <h1>Employee Creation</h1>
+</div>
+<div class="body">
+
+  <app-spinner *ngIf="processingInProgress"></app-spinner>
+  <div class="display-table width-with-right-margin">
+    <div class="row span_4_of_4">
+      <div>
+
+        <div class="tab_container">
+          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
+          <label for="tab1" class="tab-header span_1_of_6 cell">Personal Details</label>
+
+          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" />
+          <label for="tab2" class="tab-header span_1_of_6 cell">Additional Details</label>
+
+          <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
+          <label for="tab3" class="tab-header span_1_of_6 cell">Address Details</label>
+
+          <input id="tab4" class="tab-radio" type="radio" name="tabs" value="4" />
+          <label for="tab4" class="tab-header span_1_of_6 cell">Payroll Details</label>
+
+          <input id="tab5" class="tab-radio" type="radio" name="tabs" value="5" />
+          <label for="tab5" class="tab-header span_1_of_6 cell">Other Info</label>
+
+
+          <form [formGroup]="employeeInfo" (ngSubmit)="create()" method="get" class="loginform">
+            <fieldset [disabled]="processingInProgress">
+              <section id="content1" class="tab-content">
+                <div formGroupName="employeeBasicInfo" class="display-table">
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group combo-group">
+                        <label class="text-input-label">Title*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['title'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls['title'].touched" class="error-text-input-label">Please choose a title</div>
+                        <div class="select select-fancy select-fancy-image span_4_of_4">
+                          <select class="span_4_of_4" formControlName="title">
+                          <option value="Mr.">Mr</option>
+                          <option value="Miss.">Miss</option>
+                          <option value="Mrs.">Mrs</option>
+                        </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empFirstName" maxlength="60" required>
+                        <label class="text-input-label">First Name*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['empFirstName'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls['empFirstName'].touched" class="error-text-input-label">First Name is required</div>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empMiddleName" maxlength="30" required="">
+                        <label class="text-input-label">Middle Name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empLastName" maxlength="60" required>
+                        <label class="text-input-label">Last Name*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['empLastName'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls['empLastName'].touched" class="error-text-input-label">Last name is required</div>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="fatherName" maxlength="120" required>
+                        <label class="text-input-label">Father's Name*</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="dob" required>
+                        <label class="text-input-label">Date of birth*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['dob'].touched && 
+                        employeeInfo.controls.employeeBasicInfo.controls['dob'].invalid" class="error-text-input-label">Please provide a valid date of birth</div>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                        <date-picker (outputEvents)="changeDate($event, 'dob')" popup-placement="auto bottom"></date-picker>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emailId" maxlength="30" required>
+                        <label class="text-input-label">Email Id*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['emailId'].touched && 
+                        employeeInfo.controls.employeeBasicInfo.controls['emailId'].invalid" class="error-text-input-label">Please provide a valid email</div>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" maxlength="15" required>
+                        <label class="text-input-label">Contact No*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['contactNo'].invalid && 
+                        employeeInfo.controls.employeeBasicInfo.controls['contactNo'].touched" class="error-text-input-label">Please provide a valid Contact No.</div>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group combo-group">
+                        <label class="text-input-label">Nationality*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['nationality'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls['nationality'].touched" class="error-text-input-label">Nationality is required</div>
+                        <div class="select select-fancy select-fancy-image span_4_of_4">
+                          <select class="span_4_of_4" formControlName="nationality">
+                          <option value=""></option>
+                          <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
+                        </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="doj" required>
+                        <label class="text-input-label">Date of Joining*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['doj'].invalid && 
+                        employeeInfo.controls.employeeBasicInfo.controls['doj'].touched" class="error-text-input-label">Please provide a valid 'Date of Joining'</div>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                        <date-picker (outputEvents)="changeDate($event, 'doj')"></date-picker>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group combo-group">
+                        <label class="text-input-label">Sex*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['sex'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls['sex'].touched" class="error-text-input-label">Please mention Sex of employee </div>
+                        <div class="select select-fancy select-fancy-image span_4_of_4">
+                          <select class="span_4_of_4" formControlName="sex">
+                          <option value="MALE">Male</option>
+                          <option value="FEMALE">Female</option>
+                          <option value="OTHER">Other</option>
+                        </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group combo-group">
+                        <label class="text-input-label">Marital status*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['maritalStatus'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls['maritalStatus'].touched" class="error-text-input-label">Please mention 'Marital Status' of employee </div>
+                        <div class="select select-fancy select-fancy-image span_4_of_4">
+                          <select class="span_4_of_4" formControlName="maritalStatus">
+                          <option value="MARRIED">Married</option>
+                          <option value="SINGLE">Single</option>
+                          <option value="DIVORCED">Divorced</option>
+                        </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group combo-group">
+                        <label class="text-input-label">Organization*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['organization'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls['organization'].touched" class="error-text-input-label">Please choose Employee's Organization</div>
+                        <div class="select select-fancy select-fancy-image span_4_of_4">
+                          <select class="span_4_of_4" (change)="onOrgChange(employeeInfo.controls.employeeBasicInfo.controls['organization'].value)"
+                            formControlName="organization">
+                          <option value=""></option>
+                          <option *ngFor="let organization of organizations" value="{{organization.orgId}}">{{organization.orgName}}</option>
+                        </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4" formGroupName="unit">
+                      <div class="group combo-group">
+                        <label class="text-input-label">Unit*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls.unit.controls['unitId'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls.unit.controls['unitId'].touched" class="error-text-input-label">Please choose Employee's Unit</div>
+                        <div class="select select-fancy select-fancy-image span_4_of_4">
+                          <select class="span_4_of_4" (change)="onUnitChange(employeeInfo.controls.employeeBasicInfo.controls.unit.controls['unitId'].value)"
+                            formControlName="unitId">
+                          <option value=""></option>
+                          <option *ngFor="let unit of units" value="{{unit.unitId}}">{{unit.unitName}}</option>
+                        </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4" formGroupName="department">
+                      <div class="group combo-group">
+                        <label class="text-input-label">Department*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls.department.controls['departmentId'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls.department.controls['departmentId'].touched" class="error-text-input-label">Please choose Employee's Department</div>
+                        <div class="select select-fancy select-fancy-image span_4_of_4">
+                          <select class="span_4_of_4" formControlName="departmentId">
+                          <option value=""></option>
+                          <option *ngFor="let dept of departments" value="{{dept.departmentId}}">{{dept.departmentName}}</option>
+                        </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group combo-group">
+                        <label class="text-input-label">Employee Type*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['empType'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls['empType'].touched" class="error-text-input-label">Please choose 'Employee Type'</div>
+                        <div class="select select-fancy select-fancy-image span_4_of_4">
+                          <select class="span_4_of_4" formControlName="empType">
+                          <option value="PERMANENT">Permanent</option>
+                          <option value="CONTRACT">Contract</option>
+                        </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4" formGroupName="identityDocType">
+                      <div class="group combo-group">
+                        <label class="text-input-label">Identity Doc Type*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls.identityDocType.controls['docTypeId'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls.identityDocType.controls['docTypeId'].touched"
+                          class="error-text-input-label">Please choose identity document type of employee</div>
+                        <div class="select select-fancy select-fancy-image span_4_of_4">
+                          <select class="span_4_of_4" formControlName="docTypeId">
+                          <option value=""></option>
+                          <option *ngFor="let docType of identityDocTypes" value="{{docType.docTypeId}}">{{docType.docTypeName}}</option>
+                        </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="identityNumber" maxlength="32" required>
+                        <label class="text-input-label">Identity Number*</label>
+                        <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['identityNumber'].hasError('required') && 
+                        employeeInfo.controls.employeeBasicInfo.controls['identityNumber'].touched" class="error-text-input-label">Please provide corresponding identity docuemnt number</div>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="content2" class="tab-content">
+                <div class="display-table" formGroupName="employeeAddlDetails">
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="dependentNo" required>
+                        <label class="text-input-label">No of dependents</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emergencyContactName" maxlength="30" required>
+                        <label class="text-input-label">Emergency contact name</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emergencyContactNo" maxlength="15" required>
+                        <label class="text-input-label">Emergency contact number</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="siblingNo" required>
+                        <label class="text-input-label">No of siblings</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="preMedicalCheckUpDate" required>
+                        <label class="text-input-label">Pre-employment checkup date</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                        <date-picker (outputEvents)="changeDate($event, 'preMedicalCheckUpDate')"></date-picker>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="textarea" formControlName="medicalReportComment" maxlength="32" required>
+                        <label class="text-input-label">Medical report comment</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="internalLabel">Nominee Details</div>
+                  </div>
+                  <div class="row">
+                    <div class="cell grouped">
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName1" required>
+                            <label class="text-input-label">Nominee 1's name</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare1" required>
+                            <label class="text-input-label">Nominee 1's percentage</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell grouped">
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName2" required>
+                            <label class="text-input-label">Nominee 2's name</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare2" required>
+                            <label class="text-input-label">Nominee 2's percentage</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell grouped">
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName3" required>
+                            <label class="text-input-label">Nominee 3's name</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell span_1_of_4">
+                          <div class="group">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare3" required>
+                            <label class="text-input-label">Nominee 3's percentage</label>
+                            <span class="highlight"></span>
+                            <span class="bar span_4_of_4"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="content3" class="tab-content">
+                <div formGroupName="employeeAddress">
+                  <div class="toggle">
+                    <!-- Checkbox toggle -->
+                    <input type="checkbox" value="selected" id="permanentAddress" class="toggle-input" required>
+                    <label for="permanentAddress" class="toggle-label">Permanent Address</label>
+                    <div role="toggle" class="toggle-content">
+                      <div formGroupName="permanent" class="display-table">
+                        <div class="row">
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="houseNo" maxlength="60" required>
+                              <label class="text-input-label">House No</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="streetName" maxlength="60" required>
+                              <label class="text-input-label">Street name</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="region" maxlength="60" required>
+                              <label class="text-input-label">Region</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="area" maxlength="60" required>
+                              <label class="text-input-label">Area</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="cell span_1_of_4">
+                            <div class="group combo-group">
+                              <label class="text-input-label">Country</label>
+                              <div class="select select-fancy select-fancy-image span_4_of_4">
+                                <select class="span_4_of_4" (change)="onCountryChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['countryId'].value, 'permanent')"
+                                  formControlName="countryId">
+                                <option value=""></option>
+                                <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
+                              </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="cell span_1_of_4">
+                            <div class="group combo-group">
+                              <label class="text-input-label">State</label>
+                              <div class="select select-fancy select-fancy-image span_4_of_4">
+                                <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['stateId'].value, 'permanent')">
+                                <option value=""></option>
+                                <option *ngFor="let state of statesPermanent" value="{{state.stateId}}">{{state.stateName}}</option>
+                              </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="cell span_1_of_4">
+                            <div class="group combo-group">
+                              <label class="text-input-label">District</label>
+                              <div class="select select-fancy select-fancy-image span_4_of_4">
+                                <select class="span_4_of_4" formControlName="districtId">
+                                <option value=""></option>
+                                <option *ngFor="let distr of districtsPermanent" value="{{distr.districtId}}">{{distr.districtName}}</option>
+                              </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="pinno" maxlength="60" required>
+                              <label class="text-input-label">PIN Code</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="toggle">
+                    <!-- Checkbox toggle -->
+                    <input type="checkbox" value="selected" id="presentAddress" class="toggle-input">
+                    <label for="presentAddress" class="toggle-label">Present Address</label>
+
+                    <div role="toggle" class="toggle-content">
+                      <div formGroupName="present" class="display-table">
+                        <div class="row">
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input type="checkbox" id="sameAsPermanent" class="default-checkbox span_4_of_4" [ngModelOptions]="{standalone: true}" (change)="copyFromPermanent()"
+                                [(ngModel)]="copyAddress">
+                              <label for="sameAsPermanent">Same as permanent</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="houseNo" maxlength="60" required>
+                              <label class="text-input-label">House No</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="streetName" maxlength="60" required>
+                              <label class="text-input-label">Street name</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="region" maxlength="60" required>
+                              <label class="text-input-label">Region</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="area" maxlength="60" required>
+                              <label class="text-input-label">Area</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="cell span_1_of_4">
+                            <div class="group combo-group">
+                              <label class="text-input-label">Country</label>
+                              <div class="select select-fancy select-fancy-image span_4_of_4">
+                                <select class="span_4_of_4" (change)="onCountryChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['countryId'].value, 'present')"
+                                  formControlName="countryId">
+                                <option value=""></option>
+                                <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
+                              </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="cell span_1_of_4">
+                            <div class="group combo-group">
+                              <label class="text-input-label">State</label>
+                              <div class="select select-fancy select-fancy-image span_4_of_4">
+                                <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(employeeInfo.controls.employeeAddress.controls.permanent.controls['stateId'].value, 'present')">
+                                <option value=""></option>
+                                <option *ngFor="let state of statesPresent" value="{{state.stateId}}">{{state.stateName}}</option>
+                              </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="cell span_1_of_4">
+                            <div class="group combo-group">
+                              <label class="text-input-label">District</label>
+                              <div class="select select-fancy select-fancy-image span_4_of_4">
+                                <select class="span_4_of_4" formControlName="districtId">
+                                <option value=""></option>
+                                <option *ngFor="let distr of districtsPresent" value="{{distr.districtId}}">{{distr.districtName}}</option>
+                              </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="cell span_1_of_4">
+                            <div class="group">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="pinno" maxlength="60" required>
+                              <label class="text-input-label">PIN Code</label>
+                              <span class="highlight"></span>
+                              <span class="bar span_4_of_4"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </section>
+              <section id="content4" class="tab-content">
+                <div class="display-table">
+                  <div class="row">
+                    <div class="cell span_4_of_4">
+                      <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['organization'].hasError('required')" class="alert alert-danger">Please choose Employee's Organization under 'Personal Details' tab</div>
+                    </div>
+                  </div>
+                  <div formGroupName="employeeJobRoleDetails" id="collectInputs" *ngIf="!employeeInfo.controls.employeeBasicInfo.controls['organization'].hasError('required')">
+
+                    <div class="row">
+                      <div class="cell span_2_of_4">
+                        <div class="group combo-group">
+                          <label class="text-input-label">Choose employee's grade</label>
+                          <div class="select select-fancy select-fancy-image span_4_of_4">
+                            <select class="span_4_of_4" (change)="onJobRoleChange(employeeInfo.controls.employeeJobRoleDetails.controls['jobRoleId'].value)"
+                              formControlName="jobRoleId">
+                          <option value=""></option>
+                          <option *ngFor="let jobRole of jobRoles" value="{{jobRole.jobRoleId}}">{{jobRole.grade.gradeName}}</option>
+                        </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cell span_1_of_4">
+                      </div>
+                      <div class="cell span_1_of_4">
+                      </div>
+                      <div class="cell span_1_of_4">
+                      </div>
+
+                    </div>
+                    <hr/>
+                    <div id="components" *ngIf="!employeeInfo.controls.employeeJobRoleDetails.controls['jobRoleId'].hasError('required')">
+                      <div class="toggle">
+                        <!-- Checkbox toggle -->
+                        <input type="checkbox" value="selected" id="salaryComponents" class="toggle-input">
+                        <label for="salaryComponents" class="toggle-label">Salary Components</label>
+
+                        <div role="toggle" class="toggle-content">
+
+                          <div class="display-table inner-component-width">
+                            <div class="table" #table>
+
+                              <div class="row">
+                                <div class="cell span_3_of_6">
+                                  Description
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Value in BDT
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Max limit
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Applicable?
+                                </div>
+                              </div>
+
+
+                              <div class="row" *ngFor="let component of salaryComponents">
+                                <div class="table-cell">
+                                  {{component.description}}
+                                </div>
+                                <div class="table-cell" [style.background-color]="checkLimit(component.salValue, component.maxAllowLimit)">
+                                  <input type="text" style="border-radius: 2px" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.salValue" />
+                                </div>
+                                <div class="table-cell">
+                                  {{component.maxAllowLimit | currency:'BDT':true}}
+                                </div>
+                                <div class="table-cell">
+                                  <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.selected">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="toggle">
+                        <!-- Checkbox toggle -->
+                        <input type="checkbox" value="selected" id="optionalComponents" class="toggle-input">
+                        <label for="optionalComponents" class="toggle-label">Optional Components</label>
+
+                        <div role="toggle" class="toggle-content">
+
+                          <div class="display-table inner-component-width">
+                            <div class="table" #table>
+
+                              <div class="row">
+                                <div class="cell span_3_of_6">
+                                  Description
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Value in BDT
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Max limit
+                                </div>
+                                <div class="cell span_1_of_6">
+                                  Applicable?
+                                </div>
+                              </div>
+
+
+                              <div class="row" *ngFor="let component of optionalBenefitComponents">
+                                <div class="table-cell">
+                                  {{component.description}}
+                                </div>
+                                <div class="table-cell">
+                                  <input type="text" [style.background-color]="checkLimit(component.salValue, component.maxAllowLimit)" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="component.salValue" />
+                                </div>
+                                <div class="table-cell">
+                                  {{component.maxAllowLimit| currency:'BDT':true}}
+                                </div>
+                                <div class="table-cell">
+                                  <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="component.selected">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="content5" class="tab-content">
+                <div class="display-table">
+                  <div class="row">
+                    <div class="cell span_1_of_4">
+                      <div class="group" formGroupName="employeeBasicInfo">
+                        <input type="checkbox" id="isHr" class="default-checkbox span_4_of_4" formControlName="hrFlag">
+                        <label for="isHr">Is Employee an HR?</label>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group" formGroupName="employeeBasicInfo">
+                        <input type="checkbox" id="isManager" class="default-checkbox span_4_of_4" formControlName="supervisorFlag">
+                        <label for="isManager">Is Employee a Manager?</label>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group" formGroupName="otherDetails">
+                        <input #hrEmailId list="hrEmailId" class="inputMaterial span_4_of_4" type="text" formControlName="hrEmailId" required>
+                        <datalist id="hrEmailId">
+                          <option *ngFor="let hrEmailIdSuggestion of autoCompleteSuggestions.hrEmailIdSuggestions" value="{{hrEmailIdSuggestion.hrEmailId}}">
+                        </datalist>
+                        <label class="text-input-label">HR Email</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_4">
+                      <div class="group" formGroupName="otherDetails">
+                        <input #supervisorEmailId list="supervisorEmailId" class="inputMaterial span_4_of_4" type="text" formControlName="supervisorEmailId"
+                          required>
+                        <datalist id="supervisorEmailId">
+                          <option *ngFor="let supervisorEmailIdSuggestion of autoCompleteSuggestions.supervisorEmailIdSuggestions" value="{{supervisorEmailIdSuggestion.supervisorEmailId}}">
+                        </datalist>
+                        <label class="text-input-label">Supervisor Email</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row" formGroupName="otherDetails">
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="cl" required>
+                        <label class="text-input-label">No of Casual Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="maternityLeave" required>
+                        <label class="text-input-label">No of Maternity Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="paternityLeave" required>
+                        <label class="text-input-label">No of Paternity Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+
+                    <div class="cell span_1_of_4">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="specialLeave" required>
+                        <label class="text-input-label">No Special Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_4" formGroupName="otherDetails">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="sickLeave" required>
+                        <label class="text-input-label">No of Sick Leaves</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="group" formGroupName="otherDetails">
+                      <input class="inputMaterial span_4_of_4" type="text" formControlName="probationPeriodEndDate" required>
+                      <label class="text-input-label">Probation End Date</label>
+                      <span class="highlight"></span>
+                      <span class="bar span_4_of_4"></span>
+                      <date-picker (outputEvents)="changeDate($event, 'probationPeriodEndDate')"></date-picker>
+                    </div>
+                    <div class="cell span_1_of_4" formGroupName="employeeProfile">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="qualification" required>
+                        <label class="text-input-label">Highest qualification</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="display-table">
+                  <div class="row" formGroupName="employeeProfile">
+                    <div class="cell span_1_of_2">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="description" required>
+                        <label class="text-input-label">Description</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                    <div class="cell span_1_of_2">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="comments" required>
+                        <label class="text-input-label">Comments</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div class="row">
+                <button type="submit" class="btn ripple" [disabled]="canCreate()">Create</button>
+              </div>
+            </fieldset>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-small" *ngIf="message!==''">
+  <div class="modal-header">
+    <h1>Message</h1>
+  </div>
+  <div class="modal-body">
+    <div class="group center">
+      <p>{{message}}</p>
+      <button type="button" class="btn ripple" (click)="OnClickOk()">Ok</button>
+    </div>
+  </div>
+</div>

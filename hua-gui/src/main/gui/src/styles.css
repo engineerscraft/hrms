@@ -124,7 +124,7 @@ input, button {
 
 .display-table {
    display: table;
-   table-layout: fixed;
+   /*table-layout: fixed;*/
    width:100%;
    background-color: #fff;
    padding: 5px 20px 35px 20px;
@@ -138,8 +138,12 @@ input, button {
   border-left: solid white 10px;
 }
 
-.table .row {
+.table .row:nth-of-type(even) {
   background: #E3EEFF;
+}
+
+.table .row:nth-of-type(odd) {
+  background: #fff;
 }
 
 .table .row:nth-child(1) {
@@ -480,6 +484,18 @@ app-spinner {
 }
 
 /* Modal Content */
+.modal-backdrop {
+  /*display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 49; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
 .modal-small {
     top: 50%;
     left: calc(50% + 70px);
@@ -583,7 +599,7 @@ app-spinner {
 	display: inline-block;
 	border: 1px solid #e5e5e5;
 	position: relative;
-	border-radius: 5px;
+	border-radius: 4px;
 	overflow: hidden;
   height: 28px;
 	box-shadow: inset 0 -2px 5px rgba(255, 255, 255, 0.4);
@@ -1117,3 +1133,22 @@ background-position: 10px center;
 .width-with-right-margin {
     width: calc(100% - 70px)!important;
 }
+
+
+/* For bootstrap style controls *****************/
+.formtext {
+  transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+}
+ 
+.formtext:focus {
+  box-shadow: 0 0 5px #4CA1AF;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #4CA1AF;
+}
+/* For bootstrap style controls Ends here*****************/

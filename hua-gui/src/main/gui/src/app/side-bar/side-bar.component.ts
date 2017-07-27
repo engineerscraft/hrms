@@ -23,6 +23,8 @@ export class SideBarComponent implements OnInit {
 
   private changePasswordMessage = '';
 
+  private showLogoutMessage = false;
+
   constructor(private router: Router, private authenticatorService: AuthenticatorService, private formBuilder: FormBuilder,
   private userService: UserService) { }
 
@@ -79,10 +81,10 @@ export class SideBarComponent implements OnInit {
   }
 
   logout() {
-    if(confirm("Are you sure you want to Logout ?")) {
-      this.authenticatorService.logout();
-      this.router.navigate(['']);
-    }
+    this.processingInProgess = true;
+    this.authenticatorService.logout();
+    this.processingInProgess = false;
+    this.router.navigate(['']);
   }
 
   isAuthorized(permission: string) {
@@ -186,4 +188,18 @@ export class SideBarComponent implements OnInit {
       return false;
     }
   }
+
+  getShowLogoutMessage() {
+    return this.showLogoutMessage;
+  }
+
+  onClickLogout() {
+    this.open              = false;
+    this.showLogoutMessage = true;
+  }
+
+  onCancelLogout() {
+    this.showLogoutMessage = false;
+  }
+
 }
