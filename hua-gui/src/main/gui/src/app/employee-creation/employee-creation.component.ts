@@ -440,15 +440,36 @@ export class EmployeeCreationComponent implements OnInit {
       }
     }
 
+    // var nobj = {
+    //   'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value,
+    //   'employeeAddress': [this.employeeInfo.controls.employeeAddress.get('permanent').value,
+    //   this.employeeInfo.controls.employeeAddress.get('present').value],
+    //   'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
+    //   'employeeSalary': salaryComponents,
+    //   'employeeHierarchy': this.employeeInfo.controls.otherDetails.value,
+    //   'employeeProfile': this.employeeInfo.controls.employeeProfile.value
+    // };
+
     var obj = {
-      'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value,
-      'employeeAddress': [this.employeeInfo.controls.employeeAddress.get('permanent').value,
-      this.employeeInfo.controls.employeeAddress.get('present').value],
-      'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
-      'employeeSalary': salaryComponents,
-      'employeeHierarchy': this.employeeInfo.controls.otherDetails.value,
-      'employeeProfile': this.employeeInfo.controls.employeeProfile.value
-    };
+      'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value
+    }
+    if(!this.employeeInfo.controls.employeeAddress.pristine){
+      obj['employeeAddress'] = [this.employeeInfo.controls.employeeAddress.get('permanent').value,
+      this.employeeInfo.controls.employeeAddress.get('present').value];
+    }
+    if(!this.employeeInfo.controls.employeeAddlDetails.pristine){
+      obj['employeeAddlDetails'] = this.employeeInfo.controls.employeeAddlDetails.value
+    }
+    if(!this.employeeInfo.controls.employeeJobRoleDetails.pristine){
+      obj['employeeSalary'] = salaryComponents
+    }
+    if(!this.employeeInfo.controls.otherDetails.pristine){
+      obj['employeeHierarchy'] = this.employeeInfo.controls.otherDetails.value
+    }
+    if(!this.employeeInfo.controls.employeeProfile.pristine){
+      obj['employeeProfile'] = this.employeeInfo.controls.otherDetails.value
+    }
+
     console.log(JSON.stringify(obj));
     this.processingInProgress = true;
     this.employeeService.create(obj)
