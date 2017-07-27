@@ -448,165 +448,167 @@
   </div>
 </div>
 
-<div class="modal-medium" *ngIf="getShowEditBasicInfo()">
-  <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
-  <div class="modal-header">
-    <h1>Edit Employee Details</h1>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="formGroupBasicInfo" (ngSubmit)="onBasicInfoUpdate()" method="post" class="loginform">
-      <fieldset [disabled]="isProcessingInProgress()">
-        <div class="display-table inner-component-width">
-          <div class="row">
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="title" required>
-                <label class="text-input-label">Title</label>
+<div class="modal-backdrop" *ngIf="getShowEditBasicInfo()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Employee Details</h1>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formGroupBasicInfo" (ngSubmit)="onBasicInfoUpdate()" method="post" class="loginform">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table inner-component-width">
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial input-size-small" formControlName="title" required>
+                  <label class="text-input-label">Title</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial input-size-small" formControlName="empFirstName" required>
+                  <label class="text-input-label">First Name</label>
+                </div>
               </div>
             </div>
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="empFirstName" required>
-                <label class="text-input-label">First Name</label>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial input-size-small" formControlName="empMiddleName">
+                  <label class="text-input-label">Middle Name</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial input-size-small" formControlName="empLastName" required>
+                  <label class="text-input-label">Last Name</label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="empMiddleName">
-                <label class="text-input-label">Middle Name</label>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial input-size-small" formControlName="fatherName" required>
+                  <label class="text-input-label">Father's Name</label>
+                </div>
               </div>
-            </div>
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="empLastName" required>
-                <label class="text-input-label">Last Name</label>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="fatherName" required>
-                <label class="text-input-label">Father's Name</label>
-              </div>
-            </div>
-            <div class="cell span_1_of_4">
-              <div class="group combo-group">
-                <label class="text-input-label">Sex</label>
-                <div class="select select-fancy select-fancy-image span_4_of_4">
-                  <select class="span_4_of_4" formControlName="sex">
+              <div class="cell span_1_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Sex</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="sex">
                           <option value="MALE">Male</option>
                           <option value="FEMALE">Female</option>
                           <option value="OTHER">Other</option>
                         </select>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="cell span_2_of_4">
-              <div class="group combo-group">
-                <label class="text-input-label">Nationality</label>
-                <div class="select select-fancy select-fancy-image span_4_of_4">
-                  <select class="span_4_of_4" formControlName="nationality">
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Nationality</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="nationality">
                           <option value=""></option>
                           <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
                         </select>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="cell span_2_of_4">
-              <div class="group combo-group">
-                <label class="text-input-label">Marital status</label>
-                <div class="select select-fancy select-fancy-image span_4_of_4">
-                  <select class="span_4_of_4" formControlName="maritalStatus">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Marital status</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="maritalStatus">
                           <option value="MARRIED">Married</option>
                           <option value="SINGLE">Single</option>
                           <option value="DIVORCED">Divorced</option>
                         </select>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="dob" required>
-                <label class="text-input-label">Date of Birth</label>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial input-size-small" formControlName="dob" required>
+                  <label class="text-input-label">Date of Birth</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial input-size-small" formControlName="contactNo" required>
+                  <label class="text-input-label">ContactNumber</label>
+                </div>
               </div>
             </div>
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="contactNo" required>
-                <label class="text-input-label">ContactNumber</label>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input type="checkbox" id="isHr" class="default-checkbox span_4_of_4" formControlName="hrFlag">
+                  <label for="isHr">Is Employee an HR?</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input type="checkbox" id="isManager" class="default-checkbox span_4_of_4" formControlName="supervisorFlag">
+                  <label for="isManager">Is Employee a Manager?</label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input type="checkbox" id="isHr" class="default-checkbox span_4_of_4" formControlName="hrFlag">
-                <label for="isHr">Is Employee an HR?</label>
-              </div>
-            </div>
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input type="checkbox" id="isManager" class="default-checkbox span_4_of_4" formControlName="supervisorFlag">
-                <label for="isManager">Is Employee a Manager?</label>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="cell span_2_of_4" formGroupName="identityDocType">
-              <div class="group combo-group">
-                <label class="text-input-label">Identity Doc Type</label>
-                <div class="select select-fancy select-fancy-image span_4_of_4">
-                  <select class="span_4_of_4" formControlName="docTypeId">
+            <div class="row">
+              <div class="cell span_2_of_4" formGroupName="identityDocType">
+                <div class="group combo-group">
+                  <label class="text-input-label">Identity Doc Type</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="docTypeId">
                           <option value=""></option>
                           <option *ngFor="let docType of identityDocTypes" value="{{docType.docTypeId}}">{{docType.docTypeName}}</option>
                         </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial input-size-small" formControlName="identityNumber" required>
+                  <label class="text-input-label">Identity Number</label>
                 </div>
               </div>
             </div>
-
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="identityNumber" required>
-                <label class="text-input-label">Identity Number</label>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="cell span_2_of_4">
-              <div class="group combo-group">
-                <label class="text-input-label">Employee Type</label>
-                <div class="select select-fancy select-fancy-image span_4_of_4">
-                  <select class="span_4_of_4" formControlName="empType">
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Employee Type</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="empType">
                           <option value="PERMANENT">Permanent</option>
                           <option value="CONTRACT">Contract</option>
                         </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial input-size-small" formControlName="emailId" required>
+                  <label class="text-input-label">Email Id</label>
                 </div>
               </div>
             </div>
-            <div class="cell span_2_of_4">
-              <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="emailId" required>
-                <label class="text-input-label">Email Id</label>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <button type="submit" class="btn ripple">Submit</button>
+                  <button type="button" class="btn ripple" (click)="onCancel()">Cancel</button>
+                </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="cell span_4_of_4">
-              <div class="group">
-                <button type="submit" class="btn ripple">Submit</button>
-                <button type="button" class="btn ripple" (click)="onCancel()">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-    </form>
+        </fieldset>
+      </form>
+    </div>
   </div>
 </div>
