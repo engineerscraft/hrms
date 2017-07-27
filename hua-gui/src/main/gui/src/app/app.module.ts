@@ -36,6 +36,7 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { EmployeeDetailsResolve } from './resolvers/employee-details.resolve';
 import { EmployeeHierarchySearchResultResolve } from './resolvers/employee-hierarchy-search-result.resolve';
+import { EmployeeCreationNewComponent } from './employee-creation-new/employee-creation-new.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { EmployeeHierarchySearchResultResolve } from './resolvers/employee-hiera
     EmployeeHierarchySearchResultComponent,
     EmployeeDetailsComponent,
     DatePickerComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    EmployeeCreationNewComponent
   ],
   imports: [
     BrowserModule,
