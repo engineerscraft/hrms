@@ -23,6 +23,6 @@ export const routing = RouterModule.forRoot([
     { path: 'employeeCreation', component: EmployeeCreationComponent, canActivate: [AuthguardService] },
     { path: 'userDetails', component: UserDetailsComponent, canActivate: [AuthguardService] },
     { path: 'forbidden', component: ForbiddenAccessComponent, canActivate: [AuthguardService] },
-    { path: '404', component: NotFoundComponent, canActivate: [AuthguardService] }/*,
-    { path: '**', redirectTo: '/404', canActivate: [AuthguardService] }*/
+    { path: '404', component: NotFoundComponent, canActivate: [AuthguardService] },
+    { path: '**', redirectTo: '/404', canActivate: [AuthguardService] }
 ]);
