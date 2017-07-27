@@ -138,8 +138,12 @@ input, button {
   border-left: solid white 10px;
 }
 
-.table .row {
+.table .row:nth-of-type(even) {
   background: #E3EEFF;
+}
+
+.table .row:nth-of-type(odd) {
+  background: #fff;
 }
 
 .table .row:nth-child(1) {
