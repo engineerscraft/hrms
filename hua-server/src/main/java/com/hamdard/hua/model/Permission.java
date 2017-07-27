@@ -41,4 +41,12 @@ public class Permission {
         this.resourceName = resourceName;
     }
 
+	@Override
+	public String toString() {
+		return "Permission [permissionId=" + permissionId + ", permissionName=" + permissionName + ", permissionType="
+				+ permissionType + ", resourceName=" + resourceName + "]";
+	}
+    
+    
+
 }
