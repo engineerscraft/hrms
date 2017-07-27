@@ -124,7 +124,7 @@ input, button {
 
 .display-table {
    display: table;
-   table-layout: fixed;
+   /*table-layout: fixed;*/
    width:100%;
    background-color: #fff;
    padding: 5px 20px 35px 20px;
