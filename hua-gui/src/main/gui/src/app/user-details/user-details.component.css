@@ -20,13 +20,53 @@
 	opacity: .6; 
 }
 
-.profile-pic {
+.profile-pic-container {
     position: absolute;
-    width: 180px;
-    height: 180px;
+    width: 190px;
+    height: 190px;
     left: 160px;
     top: 140px;
+    z-index: 9;
+}
+
+.custom-file-upload {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 6;
+    background: url("../../assets/img/ic_create_white_24px.svg") no-repeat 13px center;
+    width:50px;
+    height: 50px;
+    border-radius:100%;
+    color:#fff;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #4CA1AF;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.profile-pic-container:hover .profile-pic {
+  opacity: 0.7;
+}
+
+.profile-pic-container:hover .custom-file-upload {
+  opacity: 1;
+}
+
+.profile-pic {
+    position: inherit;
+    width: 180px;
+    height: 180px;
+    /*left: 160px;
+    top: 140px;*/
     z-index: 5;
+    opacity: 1;
     border-width: 5px;
     border-color: #fff;
     border-style: solid;
