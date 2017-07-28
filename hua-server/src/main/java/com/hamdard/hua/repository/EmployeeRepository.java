@@ -30,6 +30,7 @@ import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
 import com.hamdard.hua.model.Unit;
+import com.hamdard.hua.rowmapper.DocumentRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeImageFileMapper;
 import com.hamdard.hua.rowmapper.EmployeeRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeSearchResultRowMapper;
@@ -142,6 +143,12 @@ public class EmployeeRepository {
     @Value("${sql.update.employee.image.by.empId}")
     private String updateEmployeeImageByEmpId;
     
+    @Value("${sql.insert.employeeDocument}")
+    private String insertEmployeeDocument;
+     
+    @Value("${sql.update.employeeDocuments}")
+    private String updateEmployeeDocument;
+    
     /********************** GET Operations *************************/
     
     @Value("${sql.employee.get.byId}")
@@ -149,7 +156,12 @@ public class EmployeeRepository {
     
     @Value("${sql.employee.get.image.byId}")
     private String getEmployeeImageByEmpId;
+    
+    @Value("${sql.select.employeeDocumentDetail}")
+    private String selectAllDocuments;
 
+    @Value("${sql.select.employeeDocument}")
+    private String selectDocument;
     /*****************************************************************************************************/
 
     @Transactional
@@ -702,11 +714,30 @@ public class EmployeeRepository {
     }
 
     public void createDocument(String employeeId, EmployeeDocument empDoc) {
-        Object[] args = { employeeId, empDoc.getRemarks(), empDoc.getDocument(), empDoc.getClass() };
-        logger.info(sqlMarker, getEmployeeImageByEmpId);
-        logger.info(sqlMarker, "Params {}", () -> employeeId);
-        //File file = new File("/Users/isomdeb/Pictures/For-Employees.jpg");
-        jdbcTemplate.update(getEmployeeImageByEmpId, args, new EmployeeImageFileMapper());
+        Object[] args = { employeeId, empDoc.getRemarks(), empDoc.getDocTypeId(), empDoc.getDocTypeName(), empDoc.getDocument() };
+        logger.info(sqlMarker, insertEmployeeDocument);
+        logger.info(sqlMarker, "Params {}", () -> employeeId, () -> empDoc.getDocTypeId(), () -> empDoc.getRemarks(), () -> empDoc.getDocument());
+        jdbcTemplate.update(insertEmployeeDocument, args);
     }
 
+    public List<EmployeeDocument> getAllDocuments(String employeeId) {
+        Object[] args = { employeeId };
+        logger.info(sqlMarker, selectAllDocuments);
+        logger.info(sqlMarker, "Params {}", () -> employeeId);
+        return jdbcTemplate.query(selectAllDocuments, args, new DocumentRowMapper());
+    }
+
+    public EmployeeDocument getDocument(int docId) {
+        Object[] args = { docId };
+        logger.info(sqlMarker, selectDocument);
+        logger.info(sqlMarker, "Params {}", () -> docId);
+        return jdbcTemplate.queryForObject(selectDocument, args, new DocumentRowMapper());
+    }
+
+    public void updateDocument(EmployeeDocument empDoc) {
+        Object[] args = { empDoc.getDocId(), empDoc.getRemarks(), empDoc.getDocTypeId(), empDoc.getDocument() };
+        logger.info(sqlMarker, updateEmployeeDocument);
+        logger.info(sqlMarker, "Params {}", () -> empDoc.getRemarks(), () -> empDoc.getDocTypeId(), () -> empDoc.getDocument(), () -> empDoc.getDocId());
+        jdbcTemplate.update(updateEmployeeDocument, args);
+    }
 }

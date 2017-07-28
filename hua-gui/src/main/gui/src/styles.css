@@ -511,7 +511,7 @@ app-spinner {
 .modal-small {
     top: 50%;
     left: calc(50% + 70px);
-    transform: translate(-60%, -40%);
+    transform: translate(-50%, -50%);
     position: fixed;
     background-color: #fefefe;
     margin: auto;
@@ -526,7 +526,7 @@ app-spinner {
 .modal-medium {
     top: 50%;
     left: calc(50% + 70px);
-    transform: translate(-60%, -40%);
+    transform: translate(-50%, -50%);
     position: fixed;
     background-color: #fefefe;
     margin: auto;
@@ -565,7 +565,7 @@ app-spinner {
 
 .modal-body {
   padding: 10px 10px;
-  max-height: calc(100vh - 15rem);
+  max-height: calc(100vh - 8rem);
   max-width: 100%;
   overflow-y: auto;
   background-color: #f3f3f4;

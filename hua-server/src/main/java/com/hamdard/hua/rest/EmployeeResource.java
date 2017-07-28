@@ -26,6 +26,7 @@ import com.hamdard.hua.model.Employee;
 import com.hamdard.hua.model.Employee.EmployeeAddlDetails;
 import com.hamdard.hua.model.Employee.EmployeeAddress;
 import com.hamdard.hua.model.Employee.EmployeeBasicInfo;
+import com.hamdard.hua.model.Employee.EmployeeDocument;
 import com.hamdard.hua.model.Employee.EmployeeHierarchy;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
@@ -286,12 +287,60 @@ public class EmployeeResource {
     @Path("{id}/document")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response addEmployeeDocument(@PathParam("id") @Size(min=1) String employeeId, Employee.EmployeeDocument empDoc) {
+    public Response createEmployeeDocument(@PathParam("id") @Size(min=1) String employeeId, Employee.EmployeeDocument empDoc) {
         try {
-            //Employee empInfo = employeeRepository.createDocument(@PathParam("id") @Size(min=1) String employeeId, empDoc);
+            employeeRepository.createDocument(employeeId, empDoc);
             return Response.status(Response.Status.OK).entity(new Message("Document successfully saved")).build();
         } catch (Exception ex) {
             logger.error("The employee details could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @GET
+    @Path("{id}/document/{docId}")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getDocumentDetails(@PathParam("docId") @Size(min=1) int docId) {
+        try {
+            EmployeeDocument empDoc = employeeRepository.getDocument(docId);
+            return Response.status(Response.Status.OK).entity(empDoc).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("The document not found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The document could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+
+    @GET
+    @Path("{id}/document")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getAllDocumentDetails(@PathParam("id") @Size(min=1) String empId) {
+        try {
+            List<EmployeeDocument> empDocs = employeeRepository.getAllDocuments(empId);
+            return Response.status(Response.Status.OK).entity(empDocs).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("The documents not found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The documents could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+
+    @PUT
+    @Path("{id}/document/{docId}")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updateDetails(@PathParam("docId") @Size(min=1) int docId, EmployeeDocument empDoc) {
+        try {
+            employeeRepository.updateDocument(empDoc);;
+            return Response.status(Response.Status.OK).entity("Document is successfully updated").build();
+        } catch (Exception ex) {
+            logger.error("The document could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }

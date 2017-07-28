@@ -31,6 +31,22 @@ public class Employee {
         private Date uploadDate;
         private String uploadedBy;
         private String document;
+        private int docTypeId;
+        private String docTypeName;
+        
+        
+        public int getDocTypeId() {
+            return docTypeId;
+        }
+        public void setDocTypeId(int docTypeId) {
+            this.docTypeId = docTypeId;
+        }
+        public String getDocTypeName() {
+            return docTypeName;
+        }
+        public void setDocTypeName(String docTypeName) {
+            this.docTypeName = docTypeName;
+        }
         public int getDocId() {
             return docId;
         }
