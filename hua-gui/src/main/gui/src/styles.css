@@ -117,13 +117,15 @@ input, button {
 }
 
 .table {
+  background-color: #fff;
   margin: 10px 0;
+  padding: 30px;
   display: table;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.display-table {
-   display: table;
+.table .display-table {
+     display: table;
    /*table-layout: fixed;*/
    width:100%;
    background-color: #fff;
@@ -134,15 +136,26 @@ input, button {
    /*padding-right: 50px;*/
 }
 
-.column {
-  width: 48%;
-  float: left;
-  margin: 10px;
+.display-table {
+   display: inline-block;
+   /*table-layout: fixed;*/
+   width:100%;
+   background-color: #fff;
+   padding: 5px 20px 35px 20px;
+   border-radius: 4px;
+   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+   margin-bottom: 10px;
+   /*padding-right: 50px;*/
+}
+
+.table .row {
+  display: table-row;
+  border-left: solid white 10px;
 }
 
 .row {
-  display: table-row;
-  border-left: solid white 10px;
+  width: 100%;
+  display: inline-block;
 }
 
 .table .row:nth-of-type(even) {
@@ -166,9 +179,20 @@ input, button {
   background: #4CA1AF;
 }
 
-.cell{
+.table .cell{
   padding: 6px 12px;
   display: table-cell;
+  border-color: #fff;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  word-wrap: break-word;
+  font-family: 'lato', 'arial', sans-serif;
+  font-size: 12px;
+}
+
+.cell{
+  padding: 6px 12px;
+  display: inline-block;
   border-color: #fff;
   border-width: 0 1px 1px 1px;
   border-style: solid;
@@ -315,6 +339,7 @@ input {
 }
 
 .inputMaterial, .inputMaterial:disabled {
+  width: 100%;
   font-size: 16px;
   padding: 8px 0px 8px 0px;
   display: block;
@@ -443,26 +468,6 @@ input {
   to 	{ width:0; background:transparent; }
 }
 
-.input-size-extra-small {
-  width: 15rem;
-}
-
-.input-size-small {
-  width: 20rem;
-}
-
-.input-size-medium {
-  width: 25rem;
-}
-
-.input-size-large {
-  width: 30rem;
-}
-
-.input-size-extra-large {
-  width: 35rem;
-}
-
 .change-password{
   position: absolute;
 }
@@ -526,7 +531,7 @@ app-spinner {
     background-color: #fefefe;
     margin: auto;
     border: 1px solid #888;
-    width: 56rem;
+    width: 40rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
     animation-duration: 0.4s;
@@ -561,6 +566,7 @@ app-spinner {
 .modal-body {
   padding: 10px 10px;
   max-height: calc(100vh - 15rem);
+  max-width: 100%;
   overflow-y: auto;
   background-color: #f3f3f4;
 }
@@ -603,6 +609,7 @@ app-spinner {
 /*Combo*/
 
 .select-fancy {
+  width: 100%;
 	display: inline-block;
 	border: 1px solid #e5e5e5;
 	position: relative;
@@ -618,6 +625,7 @@ app-spinner {
 }
 
 .select-fancy select {
+  width: 100%;
 	background: #fff;
 	border: 0;
 	outline: 0;
@@ -726,8 +734,57 @@ select * {
 
 .search-btn-fixed {
   position: fixed;
-  top: calc(90px +1rem);
+  top: 120px;
   right: 10px;
+}
+
+
+.save-btn{
+    background: url("/assets/img/ic_save_white_24px.svg") no-repeat 13px center;
+    width:50px;
+    height: 50px;
+    border-radius:100%;
+    color:#fff;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #4CA1AF;
+    text-decoration: none;
+    z-index: 100;
+}
+.save-btn > .material-icons{font-size:20px;}
+
+.save-btn-fixed {
+  position: fixed;
+  top: 84px;
+  right: 28px;
+}
+
+.modal-close-btn{
+    background: url("/assets/img/ic_clear_white_24px.svg") no-repeat 13px center;
+    width:50px;
+    height: 50px;
+    border-radius:100%;
+    color:#fff;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #4CA1AF;
+    text-decoration: none;
+    z-index: 100;
+}
+.modal-close-btn > .material-icons{font-size:20px;}
+
+.modal-close-btn-fixed {
+  position: fixed;
+  right: 28px;
+  top: 10px;
 }
 
 .create-btn{
@@ -750,7 +807,7 @@ select * {
 
 .create-btn-fixed {
   position: fixed;
-  top: calc(90px +1rem);
+  top: calc( 90px + 1rem );
   right: 10px;
 }
 
@@ -775,7 +832,7 @@ select * {
 
 .back-btn-fixed {
   position: fixed;
-  top: calc(90px +1rem);
+  top: 120px;
   right: 10px;
 }
 
@@ -1158,29 +1215,14 @@ background-position: 10px center;
   color: #3e3e3e;
 }
 
-.even-row {
-  background: #E3EEFF;
-}
-
 .width-with-right-margin {
     width: calc(100% - 70px)!important;
 }
 
-
-/* For bootstrap style controls *****************/
-.formtext {
-  transition: all 0.30s ease-in-out;
-  outline: none;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border: 1px solid #DDDDDD;
-  border-radius: 4px;
+.group-header {
+  color: #4CA1AF;
+  font-size: 14px;  
+  text-decoration: underline;
+  text-align: center;
+  padding: 10px;
 }
- 
-.formtext:focus {
-  box-shadow: 0 0 5px #4CA1AF;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border: 1px solid #4CA1AF;
-}
-/* For bootstrap style controls Ends here*****************/

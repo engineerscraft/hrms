@@ -24,6 +24,7 @@ import com.hamdard.hua.model.Employee;
 import com.hamdard.hua.model.Employee.EmployeeAddlDetails;
 import com.hamdard.hua.model.Employee.EmployeeAddress;
 import com.hamdard.hua.model.Employee.EmployeeBasicInfo;
+import com.hamdard.hua.model.Employee.EmployeeDocument;
 import com.hamdard.hua.model.Employee.EmployeeHierarchy;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
@@ -698,6 +699,14 @@ public class EmployeeRepository {
         logger.info(sqlMarker, "Params {}", () -> employeeId);
         //File file = new File("/Users/isomdeb/Pictures/For-Employees.jpg");
         return jdbcTemplate.queryForObject(getEmployeeImageByEmpId, args, new EmployeeImageFileMapper());
+    }
+
+    public void createDocument(String employeeId, EmployeeDocument empDoc) {
+        Object[] args = { employeeId, empDoc.getRemarks(), empDoc.getDocument(), empDoc.getClass() };
+        logger.info(sqlMarker, getEmployeeImageByEmpId);
+        logger.info(sqlMarker, "Params {}", () -> employeeId);
+        //File file = new File("/Users/isomdeb/Pictures/For-Employees.jpg");
+        jdbcTemplate.update(getEmployeeImageByEmpId, args, new EmployeeImageFileMapper());
     }
 
 }

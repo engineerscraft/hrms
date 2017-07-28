@@ -288,11 +288,8 @@ public class EmployeeResource {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response addEmployeeDocument(@PathParam("id") @Size(min=1) String employeeId, Employee.EmployeeDocument empDoc) {
         try {
-            Employee empInfo = employeeRepository.getEmployeeDetailsByEmpId(employeeId);
-            return Response.status(Response.Status.OK).entity(empInfo).build();
-        } catch (EmptyResultDataAccessException e) {
-            logger.error("The employee details not found", e);
-            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+            //Employee empInfo = employeeRepository.createDocument(@PathParam("id") @Size(min=1) String employeeId, empDoc);
+            return Response.status(Response.Status.OK).entity(new Message("Document successfully saved")).build();
         } catch (Exception ex) {
             logger.error("The employee details could not be fetched", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();

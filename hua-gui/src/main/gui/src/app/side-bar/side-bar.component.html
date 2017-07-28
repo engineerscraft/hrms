@@ -109,7 +109,7 @@
             <div class="row">
               <div class="cell span_4_of4">
                 <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="currentPassword" type="password" required>
+                  <input class="inputMaterial" formControlName="currentPassword" type="password" required>
                   <label class="text-input-label">Current Password</label>
                   <label *ngIf="isFieldValueMissing('currentPassword')" class="error-text-input-label">Please enter your current password.</label>
                   <span class="highlight"></span>
@@ -120,7 +120,7 @@
             <div class="row">
               <div class="cell span_4_of4">
                 <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="newPassword" type="password" required>
+                  <input class="inputMaterial" formControlName="newPassword" type="password" required>
                   <label class="text-input-label">New Password</label>
                   <label *ngIf="isFieldValueMissing('newPassword')" class="error-text-input-label">Please enter your new password.</label>
                   <label *ngIf="isValueInvalid('newPassword')" class="error-text-input-label">Please enter atleast six characters.</label>
@@ -132,7 +132,7 @@
             <div class="row">
               <div class="cell span_4_of4">
                 <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="confirmedPassword" type="password" required>
+                  <input class="inputMaterial" formControlName="confirmedPassword" type="password" required>
                   <label class="text-input-label">Confirm Password</label>
                   <label *ngIf="isFieldValueMissing('confirmedPassword')" class="error-text-input-label">Please confirm your new password.</label>
                   <label *ngIf="isConfirmedPasswordNotMatching()" class="error-text-input-label">The confirmed password is not matching.</label>
