@@ -47,7 +47,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empFirstName" maxlength="60" required>
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empFirstName" maxlength="60" placeholder=" ">
                         <label class="text-input-label">First Name*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['empFirstName'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['empFirstName'].touched" class="error-text-input-label">First Name is required</div>
