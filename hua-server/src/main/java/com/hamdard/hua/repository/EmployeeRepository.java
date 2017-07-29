@@ -157,7 +157,7 @@ public class EmployeeRepository {
     @Value("${sql.employee.get.image.byId}")
     private String getEmployeeImageByEmpId;
     
-    @Value("${sql.select.employeeDocumentDetail}")
+    @Value("${sql.select.employeeDocumentDetails}")
     private String selectAllDocuments;
 
     @Value("${sql.select.employeeDocument}")
