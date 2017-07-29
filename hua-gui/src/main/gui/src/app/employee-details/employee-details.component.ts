@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import 'rxjs/add/operator/finally';
@@ -23,13 +23,14 @@ export class EmployeeDetailsComponent implements OnInit {
   private countries;
   private selectedDocId = 0;
   private selectedDocument = "about:blank";
+  private modalDisplay = false;
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private docTypeService: DocTypeService,
-    private countryService: CountryService ) {
+    private countryService: CountryService) {
   }
 
   ngOnInit() {
@@ -145,16 +146,13 @@ export class EmployeeDetailsComponent implements OnInit {
       },
       () => {
         this.showEditBasicInfo = true;
+        this.modalDisplay = true;
       });
 
   }
 
   getShowEditBasicInfo() {
     return this.showEditBasicInfo;
-  }
-
-  onCancel() {
-    this.showEditBasicInfo = false;
   }
 
   onBasicInfoUpdate() {
@@ -197,6 +195,21 @@ export class EmployeeDetailsComponent implements OnInit {
       (err: any) => {
 
       });
-    
+
   }
+
+  closeAllDialog(event) {
+    if (event == null || event.undefined || event.currentTarget === event.target) {
+      this.showEditBasicInfo = false;
+      this.modalDisplay = false;
+    }
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.keyCode === 27) {
+      this.closeAllDialog(null);
+    }
+  }
+
 }

@@ -15,7 +15,7 @@
 <img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
 <input type="file" style="display:none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
 <img class="profile-pic" (click)="profileImageFile.click()">
-<div class="body">
+<div class="body" [ngClass]="{'disable-scroll' : modalDisplay === true }">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:278px;">
   </div>
@@ -383,7 +383,8 @@
             </div>
           </section>
           <section id="content5" class="tab-content">
-            
+            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editBasicInfo()"></a>
+            <a class="create-btn create-btn-fixed ripple" href="javascript:void(0)" (click)="editBasicInfo()"></a>
             <div class="row">
               <div class="cell span_2_of_6">
                 <div class="display-table document-height">
@@ -479,14 +480,14 @@
   </div>
 </div>
 
-<div class="modal-backdrop" *ngIf="getShowEditBasicInfo()">
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditBasicInfo()">
   <div class="modal-medium">
     <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
     <div class="modal-header">
       <h1>Edit Employee Details</h1>
     </div>
     <div class="modal-body">
-      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="onCancel()"></a>
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog()"></a>
       <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupBasicInfoForm.ngSubmit.emit()"></a>
       <form [formGroup]="formGroupBasicInfo" #formGroupBasicInfoForm="ngForm" (ngSubmit)="onBasicInfoUpdate()" method="post">
         <fieldset [disabled]="isProcessingInProgress()">
