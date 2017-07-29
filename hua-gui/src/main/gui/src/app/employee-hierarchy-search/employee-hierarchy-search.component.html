@@ -21,7 +21,7 @@
             <div class="row">
               <div class="cell span_1_of_3">
                 <div class="group">
-                  <input #firstName list="firstName" class="inputMaterial span_4_of_4" type="text" formControlName="firstName" required>
+                  <input #firstName list="firstName" class="inputMaterial span_4_of_4" type="text" formControlName="firstName" placeholder=" ">
                   <datalist id="firstName">
                     <option *ngFor="let firstNameSuggestion of autoCompleteSuggestions.firstNameSuggestions" value="{{firstNameSuggestion.firstName}}">
                   </datalist>
@@ -32,7 +32,7 @@
               </div>
               <div class="cell span_1_of_3">
                 <div class="group">
-                  <input #middleName list="middleName" class="inputMaterial span_4_of_4" type="text" formControlName="middleName" required>
+                  <input #middleName list="middleName" class="inputMaterial span_4_of_4" type="text" formControlName="middleName" placeholder=" ">
                   <datalist id="middleName">
                     <option *ngFor="let middleNameSuggestion of autoCompleteSuggestions.middleNameSuggestions" value="{{middleNameSuggestion.middleName}}">
                   </datalist>
@@ -43,7 +43,7 @@
               </div>
               <div class="cell span_1_of_3">
                 <div class="group">
-                  <input #lastName list="lastName" class="inputMaterial span_4_of_4" type="text" formControlName="lastName" required>
+                  <input #lastName list="lastName" class="inputMaterial span_4_of_4" type="text" formControlName="lastName" placeholder=" ">
                   <datalist id="lastName">
                     <option *ngFor="let lastNameSuggestion of autoCompleteSuggestions.lastNameSuggestions" value="{{lastNameSuggestion.lastName}}">
                   </datalist>
@@ -90,7 +90,7 @@
             <div class="row">
               <div class="cell span_1_of_3">
                 <div class="group">
-                  <input #employeeId class="inputMaterial span_4_of_4" type="text" formControlName="employeeId" required>
+                  <input #employeeId class="inputMaterial span_4_of_4" type="text" formControlName="employeeId" placeholder=" ">
                   <label class="text-input-label">Employee Id</label>
                   <span class="highlight"></span>
                   <span class="bar span_4_of_4"></span>
@@ -98,7 +98,7 @@
               </div>
               <div class="cell span_1_of_3">
                 <div class="group">
-                  <input #emailId list="emailId" class="inputMaterial span_4_of_4" type="text" formControlName="emailId" required>
+                  <input #emailId list="emailId" class="inputMaterial span_4_of_4" type="text" formControlName="emailId" placeholder=" ">
                   <datalist id="emailId">
                     <option *ngFor="let emailIdSuggestion of autoCompleteSuggestions.emailIdSuggestions" value="{{emailIdSuggestion.emailId}}">
                   </datalist>
@@ -229,7 +229,7 @@
               </div>
               <div class="cell span_1_of_3">
                 <div class="group">
-                  <input #hrEmailId list="hrEmailId" class="inputMaterial span_4_of_4" type="text" formControlName="hrEmailId" required>
+                  <input #hrEmailId list="hrEmailId" class="inputMaterial span_4_of_4" type="text" formControlName="hrEmailId" placeholder=" ">
                   <datalist id="hrEmailId">
                     <option *ngFor="let hrEmailIdSuggestion of autoCompleteSuggestions.hrEmailIdSuggestions" value="{{hrEmailIdSuggestion.hrEmailId}}">
                   </datalist>
