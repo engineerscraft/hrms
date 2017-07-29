@@ -37,6 +37,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { EmployeeDetailsResolve } from './resolvers/employee-details.resolve';
 import { EmployeeHierarchySearchResultResolve } from './resolvers/employee-hierarchy-search-result.resolve';
 import { EmployeeCreationNewComponent } from './employee-creation-new/employee-creation-new.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { EmployeeCreationNewComponent } from './employee-creation-new/employee-c
     EmployeeDetailsComponent,
     DatePickerComponent,
     UserDetailsComponent,
-    EmployeeCreationNewComponent
+    EmployeeCreationNewComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

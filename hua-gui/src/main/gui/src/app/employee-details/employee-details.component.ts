@@ -21,22 +21,28 @@ export class EmployeeDetailsComponent implements OnInit {
   private formGroupBasicInfo: FormGroup;
   private identityDocTypes;
   private countries;
+  private selectedDocId = 0;
+  private selectedDocument = "about:blank";
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private docTypeService: DocTypeService,
-    private countryService: CountryService, ) {
+    private countryService: CountryService ) {
   }
 
   ngOnInit() {
     this.employeeInfo = this.activatedRoute.snapshot.data['employeeInfo'];
+    this.activatedRoute
+      .paramMap
+      .subscribe(params => {
+        this.id = params.get("id");
+      });
     if (this.employeeInfo === undefined) {
       this.activatedRoute
-        .queryParams
+        .paramMap
         .subscribe(params => {
-          this.id = params['id'];
           this.processingInProgress = true;
           let employeeBasicInfoObservable = this.employeeService.readDetails(this.id)
             .finally(() => { this.processingInProgress = false; })
@@ -176,5 +182,21 @@ export class EmployeeDetailsComponent implements OnInit {
 
   isProcessingInProgress() {
     return this.processingInProgress;
+  }
+
+  getSelectedDocId() {
+    return this.selectedDocId;
+  }
+
+  setSelectedDocId(docId) {
+    this.selectedDocId = docId;
+    this.employeeService.getDocument(docId, this.id)
+      .subscribe(data => {
+        this.selectedDocument = data.document;
+      },
+      (err: any) => {
+
+      });
+    
   }
 }

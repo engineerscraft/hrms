@@ -273,6 +273,10 @@ public class EmployeeResource {
     public Response getEmployeeDetails(@PathParam("id") @Size(min=1) String employeeId) {
         try {
             Employee empInfo = employeeRepository.getEmployeeDetailsByEmpId(employeeId);
+            empInfo.setDocumentList(employeeRepository.getAllDocuments(employeeId));
+            for(EmployeeDocument doc : empInfo.getDocumentList()) {
+                doc.setDocument(null);
+            }
             return Response.status(Response.Status.OK).entity(empInfo).build();
         } catch (EmptyResultDataAccessException e) {
             logger.error("The employee details not found", e);
@@ -301,7 +305,7 @@ public class EmployeeResource {
     @Path("{id}/document/{docId}")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response getDocumentDetails(@PathParam("docId") @Size(min=1) int docId) {
+    public Response getDocument(@PathParam("id") String empId, @PathParam("docId") Integer docId) {
         try {
             EmployeeDocument empDoc = employeeRepository.getDocument(docId);
             return Response.status(Response.Status.OK).entity(empDoc).build();

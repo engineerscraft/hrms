@@ -36,7 +36,10 @@
           <label for="tab4" class="tab-header span_1_of_6 cell">Payroll Details</label>
 
           <input id="tab5" class="tab-radio" type="radio" name="tabs" value="5" />
-          <label for="tab5" class="tab-header span_1_of_6 cell">Others</label>
+          <label for="tab5" class="tab-header span_1_of_6 cell">Documents</label>
+
+          <input id="tab6" class="tab-radio" type="radio" name="tabs" value="6" />
+          <label for="tab6" class="tab-header span_1_of_6 cell">Others</label>
 
           <section id="content1" class="tab-content">
 
@@ -162,7 +165,7 @@
           </section>
           <section id="content2" class="tab-content">
             <div class="table span_4_of_4">
-            <div></div>
+              <div></div>
               <div class="row">
                 <div class="cell">
                   <label class="text-label">Number of Dependents</label>
@@ -380,6 +383,24 @@
             </div>
           </section>
           <section id="content5" class="tab-content">
+            
+            <div class="row">
+              <div class="cell span_2_of_6">
+                <div class="display-table document-height">
+                <ul>
+                  <li *ngFor="let document of employeeInfo.documentList" [ngClass]="{'selectedDocument': getSelectedDocId() === document.docId}" (click)="setSelectedDocId(document.docId)"><h2>{{document.docTypeName}}</h2>{{document.docId}} - {{document.remarks}}</li>
+                </ul>
+                </div>
+              </div>
+              <div class="cell span_4_of_6">
+                <div class="display-table document-height">
+                <object width="100%" height="98%" [data]="selectedDocument | safe">Please upgrade the browser</object>
+                </div>
+              </div>
+            </div>
+            
+          </section>
+          <section id="content6" class="tab-content">
             <div class="table span_4_of_4">
               <div></div>
               <div class="row">
