@@ -1222,3 +1222,9 @@ background-position: 10px center;
   text-align: center;
   padding: 10px;
 }
+
+.disable-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
