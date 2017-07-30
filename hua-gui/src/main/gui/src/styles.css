@@ -157,7 +157,15 @@ input, button {
   background: #E3EEFF;
 }
 
+.table .row:nth-of-type(even):hover {
+  background: #E3EEFF;
+}
+
 .table .row:nth-of-type(odd) {
+  background: #fff;
+}
+
+.table .row:nth-of-type(odd):hover {
   background: #fff;
 }
 
