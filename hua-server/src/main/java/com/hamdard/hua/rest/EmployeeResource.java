@@ -235,13 +235,12 @@ public class EmployeeResource {
     
     @PUT
     @Path("/{id}/basicinfo")
-    //@Secured(Privilege.UPDATE_EMP_BASIC_INFO_OF_AN_EMP)
+    @Secured(Privilege.UPDATE_EMP_BASIC_INFO_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeBasicInfo(@PathParam("id") String employeeId, EmployeeBasicInfo employeeBasicInfo) {
         try {
-            //String modifiedBy = securityContext.getUserPrincipal().getName();
-            String modifiedBy = "dummy name";
+            String modifiedBy = securityContext.getUserPrincipal().getName();
 
             employeeRepository.updatedEmployeeBasicInfo(employeeId, modifiedBy, employeeBasicInfo);
             return Response.status(Response.Status.OK).entity(new Message("Employee basic info successfully updated")).build();
