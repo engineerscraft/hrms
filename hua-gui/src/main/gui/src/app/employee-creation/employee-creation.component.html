@@ -47,7 +47,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empFirstName" maxlength="60" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empFirstName" maxlength="60" required>
                         <label class="text-input-label">First Name*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['empFirstName'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['empFirstName'].touched" class="error-text-input-label">First Name is required</div>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empMiddleName" maxlength="30" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empMiddleName" maxlength="30" required>
                         <label class="text-input-label">Middle Name</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empLastName" maxlength="60" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="empLastName" maxlength="60" required>
                         <label class="text-input-label">Last Name*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['empLastName'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['empLastName'].touched" class="error-text-input-label">Last name is required</div>
@@ -77,7 +77,7 @@
                   <div class="row">
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="fatherName" maxlength="120" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="fatherName" maxlength="120" required>
                         <label class="text-input-label">Father's Name*</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="dob" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="dob" required>
                         <label class="text-input-label">Date of birth*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['dob'].touched && 
                         employeeInfo.controls.employeeBasicInfo.controls['dob'].invalid" class="error-text-input-label">Please provide a valid date of birth</div>
@@ -96,7 +96,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emailId" maxlength="30" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emailId" maxlength="30" required>
                         <label class="text-input-label">Email Id*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['emailId'].touched && 
                         employeeInfo.controls.employeeBasicInfo.controls['emailId'].invalid" class="error-text-input-label">Please provide a valid email</div>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" maxlength="15" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" maxlength="15" required>
                         <label class="text-input-label">Contact No*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['contactNo'].invalid && 
                         employeeInfo.controls.employeeBasicInfo.controls['contactNo'].touched" class="error-text-input-label">Please provide a valid Contact No.</div>
@@ -131,7 +131,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="doj" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="doj" required>
                         <label class="text-input-label">Date of Joining*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['doj'].invalid && 
                         employeeInfo.controls.employeeBasicInfo.controls['doj'].touched" class="error-text-input-label">Please provide a valid 'Date of Joining'</div>
@@ -242,7 +242,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="identityNumber" maxlength="32" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="identityNumber" maxlength="32" required>
                         <label class="text-input-label">Identity Number*</label>
                         <div *ngIf="employeeInfo.controls.employeeBasicInfo.controls['identityNumber'].hasError('required') && 
                         employeeInfo.controls.employeeBasicInfo.controls['identityNumber'].touched" class="error-text-input-label">Please provide corresponding identity docuemnt number</div>
@@ -258,7 +258,7 @@
                   <div class="row">
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="dependentNo" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="dependentNo" required>
                         <label class="text-input-label">No of dependents</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -266,7 +266,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emergencyContactName" maxlength="30" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emergencyContactName" maxlength="30" required>
                         <label class="text-input-label">Emergency contact name</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -275,7 +275,7 @@
 
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emergencyContactNo" maxlength="15" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="emergencyContactNo" maxlength="15" required>
                         <label class="text-input-label">Emergency contact number</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -284,7 +284,7 @@
 
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="siblingNo" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="siblingNo" required>
                         <label class="text-input-label">No of siblings</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -294,7 +294,7 @@
                   <div class="row">
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="preMedicalCheckUpDate" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="preMedicalCheckUpDate" required>
                         <label class="text-input-label">Pre-employment checkup date</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -303,7 +303,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="textarea" formControlName="medicalReportComment" maxlength="32" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="textarea" formControlName="medicalReportComment" maxlength="32" required>
                         <label class="text-input-label">Medical report comment</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -318,7 +318,7 @@
                       <div class="row">
                         <div class="cell span_1_of_4">
                           <div class="group">
-                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName1" placeholder=" ">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName1" required>
                             <label class="text-input-label">Nominee 1's name</label>
                             <span class="highlight"></span>
                             <span class="bar span_4_of_4"></span>
@@ -328,7 +328,7 @@
                       <div class="row">
                         <div class="cell span_1_of_4">
                           <div class="group">
-                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare1" placeholder=" ">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare1" required>
                             <label class="text-input-label">Nominee 1's percentage</label>
                             <span class="highlight"></span>
                             <span class="bar span_4_of_4"></span>
@@ -340,7 +340,7 @@
                       <div class="row">
                         <div class="cell span_1_of_4">
                           <div class="group">
-                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName2" placeholder=" ">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName2" required>
                             <label class="text-input-label">Nominee 2's name</label>
                             <span class="highlight"></span>
                             <span class="bar span_4_of_4"></span>
@@ -350,7 +350,7 @@
                       <div class="row">
                         <div class="cell span_1_of_4">
                           <div class="group">
-                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare2" placeholder=" ">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare2" required>
                             <label class="text-input-label">Nominee 2's percentage</label>
                             <span class="highlight"></span>
                             <span class="bar span_4_of_4"></span>
@@ -362,7 +362,7 @@
                       <div class="row">
                         <div class="cell span_1_of_4">
                           <div class="group">
-                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName3" placeholder=" ">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeName3" required>
                             <label class="text-input-label">Nominee 3's name</label>
                             <span class="highlight"></span>
                             <span class="bar span_4_of_4"></span>
@@ -372,7 +372,7 @@
                       <div class="row">
                         <div class="cell span_1_of_4">
                           <div class="group">
-                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare3" placeholder=" ">
+                            <input class="inputMaterial span_4_of_4" type="text" formControlName="nomineeShare3" required>
                             <label class="text-input-label">Nominee 3's percentage</label>
                             <span class="highlight"></span>
                             <span class="bar span_4_of_4"></span>
@@ -387,14 +387,14 @@
                 <div formGroupName="employeeAddress">
                   <div class="toggle">
                     <!-- Checkbox toggle -->
-                    <input type="checkbox" value="selected" id="permanentAddress" class="toggle-input" placeholder=" ">
+                    <input type="checkbox" value="selected" id="permanentAddress" class="toggle-input" required>
                     <label for="permanentAddress" class="toggle-label">Permanent Address</label>
                     <div role="toggle" class="toggle-content">
                       <div formGroupName="permanent" class="display-table">
                         <div class="row">
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="houseNo" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="houseNo" maxlength="60" required>
                               <label class="text-input-label">House No</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -402,7 +402,7 @@
                           </div>
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="streetName" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="streetName" maxlength="60" required>
                               <label class="text-input-label">Street name</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -410,7 +410,7 @@
                           </div>
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="region" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="region" maxlength="60" required>
                               <label class="text-input-label">Region</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -418,7 +418,7 @@
                           </div>
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="area" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="area" maxlength="60" required>
                               <label class="text-input-label">Area</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -465,7 +465,7 @@
 
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="pinno" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="pinno" maxlength="60" required>
                               <label class="text-input-label">PIN Code</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -496,7 +496,7 @@
                         <div class="row">
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="houseNo" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="houseNo" maxlength="60" required>
                               <label class="text-input-label">House No</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -504,7 +504,7 @@
                           </div>
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="streetName" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="streetName" maxlength="60" required>
                               <label class="text-input-label">Street name</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -512,7 +512,7 @@
                           </div>
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="region" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="region" maxlength="60" required>
                               <label class="text-input-label">Region</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -520,7 +520,7 @@
                           </div>
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="area" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="area" maxlength="60" required>
                               <label class="text-input-label">Area</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -567,7 +567,7 @@
 
                           <div class="cell span_1_of_4">
                             <div class="group">
-                              <input class="inputMaterial span_4_of_4" type="text" formControlName="pinno" maxlength="60" placeholder=" ">
+                              <input class="inputMaterial span_4_of_4" type="text" formControlName="pinno" maxlength="60" required>
                               <label class="text-input-label">PIN Code</label>
                               <span class="highlight"></span>
                               <span class="bar span_4_of_4"></span>
@@ -722,7 +722,7 @@
                     </div>
                     <div class="cell span_1_of_4">
                       <div class="group" formGroupName="otherDetails">
-                        <input #hrEmailId list="hrEmailId" class="inputMaterial span_4_of_4" type="text" formControlName="hrEmailId" placeholder=" ">
+                        <input #hrEmailId list="hrEmailId" class="inputMaterial span_4_of_4" type="text" formControlName="hrEmailId" required>
                         <datalist id="hrEmailId">
                           <option *ngFor="let hrEmailIdSuggestion of autoCompleteSuggestions.hrEmailIdSuggestions" value="{{hrEmailIdSuggestion.hrEmailId}}">
                         </datalist>
@@ -748,7 +748,7 @@
                   <div class="row" formGroupName="otherDetails">
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="cl" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="cl" required>
                         <label class="text-input-label">No of Casual Leaves</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -757,7 +757,7 @@
 
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="maternityLeave" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="maternityLeave" required>
                         <label class="text-input-label">No of Maternity Leaves</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -766,7 +766,7 @@
 
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="paternityLeave" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="paternityLeave" required>
                         <label class="text-input-label">No of Paternity Leaves</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -775,7 +775,7 @@
 
                     <div class="cell span_1_of_4">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="specialLeave" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="specialLeave" required>
                         <label class="text-input-label">No Special Leaves</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -785,14 +785,14 @@
                   <div class="row">
                     <div class="cell span_1_of_4" formGroupName="otherDetails">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="sickLeave" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="sickLeave" required>
                         <label class="text-input-label">No of Sick Leaves</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
                       </div>
                     </div>
                     <div class="group" formGroupName="otherDetails">
-                      <input class="inputMaterial span_4_of_4" type="text" formControlName="probationPeriodEndDate" placeholder=" ">
+                      <input class="inputMaterial span_4_of_4" type="text" formControlName="probationPeriodEndDate" required>
                       <label class="text-input-label">Probation End Date</label>
                       <span class="highlight"></span>
                       <span class="bar span_4_of_4"></span>
@@ -800,7 +800,7 @@
                     </div>
                     <div class="cell span_1_of_4" formGroupName="employeeProfile">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="qualification" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="qualification" required>
                         <label class="text-input-label">Highest qualification</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -812,7 +812,7 @@
                   <div class="row" formGroupName="employeeProfile">
                     <div class="cell span_1_of_2">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="description" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="description" required>
                         <label class="text-input-label">Description</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
@@ -820,7 +820,7 @@
                     </div>
                     <div class="cell span_1_of_2">
                       <div class="group">
-                        <input class="inputMaterial span_4_of_4" type="text" formControlName="comments" placeholder=" ">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="comments" required>
                         <label class="text-input-label">Comments</label>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>

@@ -14,7 +14,7 @@
     <div class="row">
       <div class="cell span_1_of_5">
         <div class="group">
-          <input #employeeId class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'employeeId')" placeholder=" ">
+          <input #employeeId class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'employeeId')" required>
           <label class="text-input-label">Employee Id</label>
           <span class="highlight"></span>
           <span class="bar span_4_of_4"></span>
@@ -22,7 +22,7 @@
       </div>
       <div class="cell span_1_of_5">
         <div class="group">
-          <input #employeeName class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'employeeName')" placeholder=" ">
+          <input #employeeName class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'employeeName')" required>
           <label class="text-input-label">Name</label>
           <span class="highlight"></span>
           <span class="bar span_4_of_4"></span>
@@ -30,7 +30,7 @@
       </div>
       <div class="cell span_1_of_5">
         <div class="group">
-          <input #emailId class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'emailId')" placeholder=" ">
+          <input #emailId class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'emailId')" required>
           <label class="text-input-label">Email</label>
           <span class="highlight"></span>
           <span class="bar span_4_of_4"></span>
@@ -38,7 +38,7 @@
       </div>
       <div class="cell span_1_of_5">
         <div class="group">
-          <input #contactNumber class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'contactNumber')" placeholder=" ">
+          <input #contactNumber class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'contactNumber')" required>
           <label class="text-input-label">Contact No.</label>
           <span class="highlight"></span>
           <span class="bar span_4_of_4"></span>
@@ -46,7 +46,7 @@
       </div>
       <div class="cell span_1_of_5">
         <div class="group">
-          <input #designation class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'designation')" placeholder=" ">
+          <input #designation class="inputMaterial span_4_of_4" type="text" (keyup)="filterEmployee($event,'designation')" required>
           <label class="text-input-label">Designation</label>
           <span class="highlight"></span>
           <span class="bar span_4_of_4"></span>
