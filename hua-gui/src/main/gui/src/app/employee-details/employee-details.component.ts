@@ -32,6 +32,7 @@ export class EmployeeDetailsComponent implements OnInit {
   private showDocumentEdit = false;
   private documentEditFunctionInvoked = false;
   private googleDocument;
+  private showUpdateMessage = false;
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
@@ -140,6 +141,7 @@ export class EmployeeDetailsComponent implements OnInit {
         },
         () => {
           me.employeeInfo.employeeBasicInfo.profileImage = fileContent;
+          me.showUpdateMessage = true;
         });
     }
   }
@@ -335,5 +337,13 @@ export class EmployeeDetailsComponent implements OnInit {
     else {
       return false;
     }
+  }
+
+  getShowUpdateMessage() {
+    return this.showUpdateMessage;
+  }
+
+  onClickUpdateMessageOk() {
+    this.showUpdateMessage = false;
   }
 }
