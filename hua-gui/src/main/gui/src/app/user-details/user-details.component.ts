@@ -21,6 +21,7 @@ export class UserDetailsComponent implements OnInit {
   private formGroupBasicInfo: FormGroup;
   private identityDocTypes;
   private countries;
+  private showUpdateMessage = false;
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
@@ -115,6 +116,7 @@ export class UserDetailsComponent implements OnInit {
         },
         () => {
           me.employeeInfo.employeeBasicInfo.profileImage = fileContent;
+          me.showUpdateMessage = true;
         });
     }
   }
@@ -175,5 +177,13 @@ export class UserDetailsComponent implements OnInit {
 
   isProcessingInProgress() {
     return this.processingInProgress;
+  }
+
+  getShowUpdateMessage() {
+    return this.showUpdateMessage;
+  }
+
+  onClickUpdateMessageOk() {
+    this.showUpdateMessage = false;
   }
 }
