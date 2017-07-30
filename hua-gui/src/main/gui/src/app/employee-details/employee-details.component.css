@@ -20,13 +20,51 @@
 	opacity: .6; 
 }
 
-.profile-pic {
+.profile-pic-container {
     position: absolute;
-    width: 180px;
-    height: 180px;
+    width: 185px;
+    height: 185px;
     left: 160px;
     top: 140px;
+    z-index: 9;
+}
+
+.custom-file-upload {
+    position: inherit;
+    bottom: 11px;
+    right: 11px;
+    z-index: 6;
+    background: url("../../assets/img/ic_camera_alt_black_24px.svg") no-repeat;
+    width: 73px;
+    height: 27px;
+    border: 2px solid gray;
+    border-top-left-radius: 6px;
+    color: black;
+    text-align: right;
+    font-family: ElMessiri-Regular;
+    font-size: 0.9rem;
+    padding: 3px;
+    background-color: gray;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.profile-pic-container:hover .profile-pic {
+  opacity: 0.7;
+}
+
+.profile-pic-container:hover .custom-file-upload {
+  opacity: 1;
+}
+
+.profile-pic {
+    position: inherit;
+    width: 180px;
+    height: 180px;
+    /*left: 160px;
+    top: 140px;*/
     z-index: 5;
+    opacity: 1;
     border-width: 5px;
     border-color: #fff;
     border-style: solid;
