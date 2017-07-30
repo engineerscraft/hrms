@@ -397,7 +397,8 @@
               </div>
               <div class="cell span_4_of_6">
                 <div class="display-table document-height">
-                  <object width="100%" height="98%" [data]="selectedDocument | safe">Please upgrade the browser</object>
+                  <object width="100%" height="98%" [title]="selectedDocDetails?.docTypeName" [data]="selectedDocument | safe">
+                  </object>
                 </div>
               </div>
             </div>
@@ -512,7 +513,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="empFirstName" placeholder=" ">
+                  <input class="inputMaterial" formControlName="empFirstName" required>
                   <label class="text-input-label">First Name</label>
                 </div>
               </div>
@@ -520,7 +521,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="empMiddleName" placeholder=" ">
+                  <input class="inputMaterial" formControlName="empMiddleName" required>
                   <label class="text-input-label">Middle Name</label>
                 </div>
               </div>
@@ -528,7 +529,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="empLastName" placeholder=" ">
+                  <input class="inputMaterial" formControlName="empLastName" required>
                   <label class="text-input-label">Last Name</label>
                 </div>
               </div>
@@ -553,7 +554,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="identityNumber" placeholder=" ">
+                  <input class="inputMaterial" formControlName="identityNumber" required>
                   <label class="text-input-label">Identity Number</label>
                 </div>
               </div>
@@ -564,7 +565,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="emailId" placeholder=" ">
+                  <input class="inputMaterial" formControlName="emailId" required>
                   <label class="text-input-label">Email Id</label>
                 </div>
               </div>
@@ -573,7 +574,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="contactNo" placeholder=" ">
+                  <input class="inputMaterial" formControlName="contactNo" required>
                   <label class="text-input-label">ContactNumber</label>
                 </div>
               </div>
@@ -584,7 +585,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="fatherName" placeholder=" ">
+                  <input class="inputMaterial" formControlName="fatherName" required>
                   <label class="text-input-label">Father's Name</label>
                 </div>
               </div>
@@ -631,7 +632,7 @@
             <div class="row">
               <div class="cell span_2_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="dob" placeholder=" ">
+                  <input class="inputMaterial" formControlName="dob" required>
                   <label class="text-input-label">Date of Birth</label>
                 </div>
               </div>
@@ -688,7 +689,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="docId" placeholder=" " readonly>
+                  <input class="inputMaterial" formControlName="docId" required readonly>
                   <label class="text-input-label">Document Id</label>
                 </div>
               </div>
@@ -705,14 +706,14 @@
               </div>
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="remarks" placeholder=" ">
+                  <input class="inputMaterial" formControlName="remarks" required>
                   <label class="text-input-label">Remarks</label>
                 </div>
               </div>
               <div class="cell span_4_of_4">
                 <div class="group">
                   <input type="file" style="display:none" accept=".pdf" (change)="documentUpload($event)" #documentFile>
-                  <input class="inputMaterial" formControlName="documentName" placeholder=" " (click)="documentFile.click()" readonly>
+                  <input class="inputMaterial" formControlName="documentName" required (click)="documentFile.click()" readonly>
                   <label class="text-input-label">Document</label>
                 </div>
               </div>

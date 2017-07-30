@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DocTypeService } from '../services/doc-type.service';
 import { Observable } from 'rxjs/Observable';
 import { CountryService } from '../services/country.service';
+import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-employee-details',
@@ -29,6 +31,7 @@ export class EmployeeDetailsComponent implements OnInit {
   private modalDisplay = false;
   private showDocumentEdit = false;
   private documentEditFunctionInvoked = false;
+  private googleDocument;
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
@@ -39,6 +42,7 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.employeeInfo = this.activatedRoute.snapshot.data['employeeInfo'];
     this.activatedRoute
       .paramMap
@@ -207,8 +211,24 @@ export class EmployeeDetailsComponent implements OnInit {
     this.selectedDocId = docId;
     this.employeeService.getDocument(docId, this.id)
       .subscribe(data => {
-        this.selectedDocDetails = data;
-        this.selectedDocument = data.document;
+        if ((navigator.appVersion.indexOf("MSIE") !== -1) || (!!window["MSInputMethodContext"] && !!document["documentMode"])) {
+          var abc=data.document.split(',')[1].replace(/\s/g, '');
+          var byteString = atob(abc);
+          var ab = new ArrayBuffer(byteString.length);
+          var ia = new Uint8Array(ab);
+          
+          for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+          }
+                    
+          var blob = new Blob([ia], { type: 'application/pdf' });
+
+          saveAs(blob, "hrmsdocument.pdf");
+          this.selectedDocument = "hrmsdocument.pdf";
+        } else {
+          this.selectedDocDetails = data;
+          this.selectedDocument = data.document;
+        }
       },
       (err: any) => {
 
