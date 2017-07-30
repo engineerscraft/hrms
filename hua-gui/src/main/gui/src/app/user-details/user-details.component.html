@@ -17,6 +17,22 @@
   <label for="file-upload" class="custom-file-upload">EDIT</label>
   <input id="file-upload" type="file" style="display: none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
   <img class="profile-pic" (click)="profileImageFile.click()">
+  <div class="modal-backdrop" *ngIf="getShowUpdateMessage()">
+    <div class="modal-small">
+      <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+      <div class="modal-header">
+        <h1>Message</h1>
+      </div>
+      <div class="modal-body">
+        <div class="group center">
+          <h3>Profile Image successfully updated !!!</h3>
+          <div style="height:30px;">
+          </div>
+          <button type="button" class="btn ripple" (click)="onClickUpdateMessageOk()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="body">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
@@ -238,7 +254,7 @@
                   <label class="text-label">Pre Employment Medical Checkup Date</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.PreMedicalCheckUpDate}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.preMedicalCheckUpDate}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Medical Report Comment</label>
