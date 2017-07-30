@@ -6095,7 +6095,7 @@ cnR4cmVmDQoxMTYNCiUlRU9GDQo=');
 INSERT INTO HRMS.EMPLOYEE_ADDITIONAL_DETAILS
 (EMP_ID, NO_OF_SIBLINGS, NO_OF_DEPENDENT, NOMINEE_NAME1, NOMINEE_NAME2, NOMINEE_NAME3, NOMINEE1_SHARE, NOMINEE2_SHARE, NOMINEE3_SHARE, EMERGENCY_CONTACT_NAME, EMERGENCY_CONTACTNO, PRE_MEDICAL_CHKUP_DATE, MEDICAL_REPORT_COMMENT)
 VALUES
-('HUB1', 2, 2, 'Clinton Sargent', 'Eric Sargent', '', 50.0, 50.0, 0, 'Clinton Sargent', '1-912-667-0622', '1990-08-19 12:01:37', 'All looks good'),
+('HUB1', 2, 2, 'Clinton Sargent', 'Eric Sargent', 'Bryan Sargent', 50.0, 10.0, 40.0, 'Clinton Sargent', '1-912-667-0622', '1990-08-19 12:01:37', 'All looks good'),
 ('HUB2', 1, 2, 'Tedd Salas', 'Bob Salas', 'Tianna Salas', 30.0, 50.0, 20.0, 'Tedd Salas', '1-912-667-0623', '1993-06-21 11:49:01', 'Report looks good'),
 ('HUB10', 2, 3, 'Sloane Lott', 'Charles Mile', '', 50.0, 50.0, 0, 'Charles Mile', '1-912-667-0624', '1993-06-21 11:49:01', 'Report looks good'),
 ('HUB42', 1, 3, 'Hillary Leblanc', 'Quail Leblanc', '', 50.0, 50.0, 0, 'Quail Leblanc', '1-912-667-0924', '1990-02-22 10:29:18', 'Report looks good');

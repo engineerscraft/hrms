@@ -56,7 +56,7 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
         emp.getEmployeeAddlDetails().setMedicalReportComment(rs.getString("MEDICAL_REPORT_COMMENT"));
         emp.getEmployeeAddlDetails().setNomineeName1(rs.getString("NOMINEE_NAME1"));
         emp.getEmployeeAddlDetails().setNomineeName2(rs.getString("NOMINEE_NAME2"));
-        emp.getEmployeeAddlDetails().setNomineeName3(rs.getString("NOMINEE_NAME2"));
+        emp.getEmployeeAddlDetails().setNomineeName3(rs.getString("NOMINEE_NAME3"));
         emp.getEmployeeAddlDetails().setNomineeShare1(rs.getDouble("NOMINEE1_SHARE"));
         emp.getEmployeeAddlDetails().setNomineeShare2(rs.getDouble("NOMINEE2_SHARE"));
         emp.getEmployeeAddlDetails().setNomineeShare3(rs.getDouble("NOMINEE3_SHARE"));
