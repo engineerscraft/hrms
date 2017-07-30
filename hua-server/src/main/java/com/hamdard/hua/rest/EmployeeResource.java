@@ -339,10 +339,10 @@ public class EmployeeResource {
     @Path("{id}/document/{docId}")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response updateDetails(@PathParam("docId") @Size(min=1) int docId, EmployeeDocument empDoc) {
+    public Response updateDetails(@PathParam("id") String employeeId, @PathParam("docId") Integer docId, EmployeeDocument empDoc) {
         try {
             employeeRepository.updateDocument(empDoc);;
-            return Response.status(Response.Status.OK).entity("Document is successfully updated").build();
+            return Response.status(Response.Status.OK).entity(new Message("Document is successfully updated")).build();
         } catch (Exception ex) {
             logger.error("The document could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();

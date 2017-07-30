@@ -85,4 +85,9 @@ export class EmployeeService {
         return this.handleError(response);
       });
   }
+
+  documentSave(doc, employeeId) {
+    return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/document/" + doc.docId, doc)
+      .map(res => res.json());
+  }
 }

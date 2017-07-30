@@ -756,7 +756,7 @@ select * {
 .save-btn-fixed {
   position: fixed;
   top: 84px;
-  right: 28px;
+  right: 20px;
 }
 
 .modal-close-btn{

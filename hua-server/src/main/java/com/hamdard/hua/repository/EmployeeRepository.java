@@ -735,7 +735,7 @@ public class EmployeeRepository {
     }
 
     public void updateDocument(EmployeeDocument empDoc) {
-        Object[] args = { empDoc.getDocId(), empDoc.getRemarks(), empDoc.getDocTypeId(), empDoc.getDocument() };
+        Object[] args = { empDoc.getRemarks(), empDoc.getDocTypeId(), empDoc.getDocument(), empDoc.getDocId() };
         logger.info(sqlMarker, updateEmployeeDocument);
         logger.info(sqlMarker, "Params {}", () -> empDoc.getRemarks(), () -> empDoc.getDocTypeId(), () -> empDoc.getDocument(), () -> empDoc.getDocId());
         jdbcTemplate.update(updateEmployeeDocument, args);

@@ -383,23 +383,25 @@
             </div>
           </section>
           <section id="content5" class="tab-content">
-            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editBasicInfo()"></a>
-            <a class="create-btn create-btn-fixed ripple" href="javascript:void(0)" (click)="editBasicInfo()"></a>
+            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editDocument()"></a>
+            <a class="create-btn create-btn-fixed ripple" href="javascript:void(0)" (click)="addDocument()"></a>
             <div class="row">
               <div class="cell span_2_of_6">
                 <div class="display-table document-height">
-                <ul>
-                  <li *ngFor="let document of employeeInfo.documentList" [ngClass]="{'selectedDocument': getSelectedDocId() === document.docId}" (click)="setSelectedDocId(document.docId)"><h2>{{document.docTypeName}}</h2>{{document.docId}} - {{document.remarks}}</li>
-                </ul>
+                  <ul>
+                    <li *ngFor="let document of employeeInfo.documentList" [ngClass]="{'selectedDocument': getSelectedDocId() === document.docId}"
+                      (click)="setSelectedDocId(document.docId)">
+                      <h2>{{document.docTypeName}}</h2>{{document.docId}} - {{document.remarks}}</li>
+                  </ul>
                 </div>
               </div>
               <div class="cell span_4_of_6">
                 <div class="display-table document-height">
-                <object width="100%" height="98%" [data]="selectedDocument | safe">Please upgrade the browser</object>
+                  <object width="100%" height="98%" [data]="selectedDocument | safe">Please upgrade the browser</object>
                 </div>
               </div>
             </div>
-            
+
           </section>
           <section id="content6" class="tab-content">
             <div class="table span_4_of_4">
@@ -487,7 +489,7 @@
       <h1>Edit Employee Details</h1>
     </div>
     <div class="modal-body">
-      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog()"></a>
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
       <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupBasicInfoForm.ngSubmit.emit()"></a>
       <form [formGroup]="formGroupBasicInfo" #formGroupBasicInfoForm="ngForm" (ngSubmit)="onBasicInfoUpdate()" method="post">
         <fieldset [disabled]="isProcessingInProgress()">
@@ -667,6 +669,74 @@
           </div>
         </fieldset>
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowDocumentEdit()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Employee Documents</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupDocumentForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupDocument" #formGroupDocumentForm="ngForm" (ngSubmit)="onDocumentUpdate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="docId" placeholder=" " readonly>
+                  <label class="text-input-label">Document Id</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Document Type</label>
+                  <div class="select select-fancy select-fancy-image">
+                    <select formControlName="docTypeId">
+                          <option value=""></option>
+                          <option *ngFor="let docType of docTypes" value="{{docType.docTypeId}}">{{docType.docTypeName}}</option>
+                        </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="remarks" placeholder=" ">
+                  <label class="text-input-label">Remarks</label>
+                </div>
+              </div>
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input type="file" style="display:none" accept=".pdf" (change)="documentUpload($event)" #documentFile>
+                  <input class="inputMaterial" formControlName="documentName" placeholder=" " (click)="documentFile.click()" readonly>
+                  <label class="text-input-label">Document</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowSelectDocumentAlert()">
+  <div class="modal-small">
+    <div class="modal-header">
+      <h1>Alert</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <div class="group center">
+        <h3>Please select a document</h3>
+        <div style="height:30px;">
+        </div>
+        <button type="button" class="btn ripple" (click)="closeAllDialog(null)">OK</button>
+      </div>
     </div>
   </div>
 </div>
