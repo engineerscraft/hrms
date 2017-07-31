@@ -19,7 +19,7 @@
 }
 
 .home-background {
-  background: linear-gradient(to right, #4CA1AF , #C4E0E5);
+  background: linear-gradient(to right, #4ca1af , #C4E0E5);
 }
 
 .body {
@@ -37,7 +37,7 @@
   left: 70px;
   top: 0;
   color: #fff;
-  background-color: #4CA1AF;
+  background-color: #4ca1af;
   padding: 40px;
   display: block;
 }

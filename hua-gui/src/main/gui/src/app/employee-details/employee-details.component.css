@@ -111,7 +111,7 @@
     align-items: center;
     justify-content: center;
     border-bottom: none; 
-    background-color: #4CA1AF;
+    background-color: #4ca1af;
     text-decoration: none;
     z-index: 24;
 }
@@ -136,7 +136,7 @@
     align-items: center;
     justify-content: center;
     border-bottom: none; 
-    background-color: #4CA1AF;
+    background-color: #4ca1af;
     text-decoration: none;
     z-index: 24;
 }
@@ -152,12 +152,12 @@ li {
     height: 100px;
     max-height: 100px;
     list-style: none;
-    border-bottom: 1px solid #4CA1AF;
+    border-bottom: 1px solid #4ca1af;
     padding: 10px 20px;
 }
 
 li:hover {
-    border-left: 3px solid #4CA1AF;
+    border-left: 3px solid #4ca1af;
     background-color: #E3EEFF;
 }
 

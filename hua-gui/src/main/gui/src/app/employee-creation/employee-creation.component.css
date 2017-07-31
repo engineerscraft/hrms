@@ -39,7 +39,7 @@
 }
 
 .table .row:nth-child(1) {
-  background-color: #4CA1AF;
+  background-color: #4ca1af;
   color: #fff;
 }
 
@@ -48,5 +48,5 @@
 }
 
 .table .row:nth-child(1):hover {
-  background: #4CA1AF;
+  background: #4ca1af;
 }
