@@ -33,4 +33,13 @@ export class CustomValidator {
         }
         return null;
     }
+
+
+    static validNumeric(control: FormControl) {
+        var pattern = /^\d+$/;
+        if (control.value.length > 0 && !control.value.match(pattern)) {
+            return { "inValidNumeric": true };
+        }
+        return null;
+    }
 }
