@@ -37,7 +37,6 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { EmployeeDetailsResolve } from './resolvers/employee-details.resolve';
 import { EmployeeHierarchySearchResultResolve } from './resolvers/employee-hierarchy-search-result.resolve';
 import { EmployeeCreationNewComponent } from './employee-creation-new/employee-creation-new.component';
-import { DialogService } from './services/dialog.service';
 import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 import { SafePipe } from './pipes/safe.pipe';
 
@@ -69,7 +68,6 @@ import { SafePipe } from './pipes/safe.pipe';
     BrowserAnimationsModule
   ],
   providers: [
-    DialogService,
     AuthenticatorService,
     AccountService,
     CollegeService,
@@ -88,6 +86,7 @@ import { SafePipe } from './pipes/safe.pipe';
     DistrictService,
     EmployeeDetailsResolve,
     EmployeeHierarchySearchResultResolve,
+    CanDeactivateGuard,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]

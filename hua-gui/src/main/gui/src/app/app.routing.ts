@@ -22,11 +22,10 @@ export const routing = RouterModule.forRoot([
     { path: 'employeeHierarchySearch', component: EmployeeHierarchySearchComponent, canActivate: [AuthguardService] },
     { path: 'employeeHierarchySearchResult', component: EmployeeHierarchySearchResultComponent, canActivate: [AuthguardService], resolve: { searchResult: EmployeeHierarchySearchResultResolve } },
     { path: 'employeeDetails/:id', component: EmployeeDetailsComponent, canActivate: [AuthguardService], resolve: { employeeInfo: EmployeeDetailsResolve } },
-    { path: 'employeeCreation', component: EmployeeCreationComponent, canActivate: [AuthguardService] },
-    { path: 'employeeCreationNew', component: EmployeeCreationNewComponent, canDeactivate: [CanDeactivateGuard] },
+    { path: 'employeeCreation', component: EmployeeCreationComponent, canActivate: [AuthguardService], canDeactivate: [CanDeactivateGuard] },
+    { path: 'employeeCreationNew', component: EmployeeCreationNewComponent},
     { path: 'userDetails', component: UserDetailsComponent, canActivate: [AuthguardService] },
     { path: 'forbidden', component: ForbiddenAccessComponent, canActivate: [AuthguardService] },
     { path: '404', component: NotFoundComponent, canActivate: [AuthguardService] },
     { path: '**', redirectTo: '/404', canActivate: [AuthguardService] },
-    ],
-    { enableTracing: true });
+    ]);

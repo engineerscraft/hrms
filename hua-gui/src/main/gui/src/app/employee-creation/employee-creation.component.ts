@@ -6,7 +6,6 @@ import { UnitService } from '../services/unit.service';
 import { DocTypeService } from '../services/doc-type.service';
 import { Observable } from 'rxjs/Observable';
 import { CountryService } from '../services/country.service';
-import { DialogService } from '../services/dialog.service'
 import { EmployeeService } from '../services/employee.service';
 import { DistrictService } from '../services/district.service';
 import { StateService } from '../services/state.service';
@@ -51,8 +50,7 @@ export class EmployeeCreationComponent implements OnInit, CanComponentDeactivate
     private employeeService: EmployeeService,
     private districtService: DistrictService,
     private stateService: StateService,
-    private jobRoleService: JobRoleService,
-    private dialogService: DialogService) { }
+    private jobRoleService: JobRoleService) { }
 
 
 
@@ -399,7 +397,7 @@ export class EmployeeCreationComponent implements OnInit, CanComponentDeactivate
   canDeactivate() {
     console.log('i am navigating away');
 
-    if (this.employeeInfo.pristine) {
+    if (this.employeeInfo.dirty) {
       return window.confirm('Discard changes?');
     }
 
