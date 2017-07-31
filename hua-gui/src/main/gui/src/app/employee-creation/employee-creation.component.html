@@ -791,12 +791,14 @@
                         <span class="bar span_4_of_4"></span>
                       </div>
                     </div>
-                    <div class="group" formGroupName="otherDetails">
-                      <input class="inputMaterial span_4_of_4" type="text" formControlName="probationPeriodEndDate" required>
-                      <label class="text-input-label">Probation End Date</label>
-                      <span class="highlight"></span>
-                      <span class="bar span_4_of_4"></span>
-                      <date-picker (outputEvents)="changeDate($event, 'probationPeriodEndDate')"></date-picker>
+                    <div class="cell span_1_of_4" formGroupName="otherDetails">
+                      <div class="group">
+                        <input class="inputMaterial span_4_of_4" type="text" formControlName="probationPeriodEndDate" required>
+                        <label class="text-input-label">Probation End Date</label>
+                        <span class="highlight"></span>
+                        <span class="bar span_4_of_4"></span>
+                        <date-picker (outputEvents)="changeDate($event, 'probationPeriodEndDate')"></date-picker>
+                      </div>
                     </div>
                     <div class="cell span_1_of_4" formGroupName="employeeProfile">
                       <div class="group">
