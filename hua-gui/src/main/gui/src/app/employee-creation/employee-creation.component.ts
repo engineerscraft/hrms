@@ -143,18 +143,18 @@ export class EmployeeCreationComponent implements OnInit {
 
   private initAdditionalInfoControls() {
     return this.formBuilder.group({
-      'dependentNo': [''],
-      'siblingNo': [''],
+      'dependentNo': ['', Validators.compose([CustomValidator.validNumeric])],
+      'siblingNo': ['', Validators.compose([CustomValidator.validNumeric])],
       'emergencyContactName': [''],
-      'emergencyContactNo': [''],
+      'emergencyContactNo': ['', Validators.compose([CustomValidator.validPhone])],
       'medicalReportComment': [''],
-      'preMedicalCheckUpDate': [''],
+      'preMedicalCheckUpDate': ['', Validators.compose([CustomValidator.properDate])],
       'nomineeName1': [''],
-      'nomineeShare1': [''],
+      'nomineeShare1': ['', Validators.compose([CustomValidator.validNumeric])],
       'nomineeName2': [''],
-      'nomineeShare2': [''],
+      'nomineeShare2': ['', Validators.compose([CustomValidator.validNumeric])],
       'nomineeName3': [''],
-      'nomineeShare3': ['']
+      'nomineeShare3': ['', Validators.compose([CustomValidator.validNumeric])]
     });
   }
 
@@ -439,16 +439,6 @@ export class EmployeeCreationComponent implements OnInit {
         }
       }
     }
-
-    // var nobj = {
-    //   'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value,
-    //   'employeeAddress': [this.employeeInfo.controls.employeeAddress.get('permanent').value,
-    //   this.employeeInfo.controls.employeeAddress.get('present').value],
-    //   'employeeAddlDetails': this.employeeInfo.controls.employeeAddlDetails.value,
-    //   'employeeSalary': salaryComponents,
-    //   'employeeHierarchy': this.employeeInfo.controls.otherDetails.value,
-    //   'employeeProfile': this.employeeInfo.controls.employeeProfile.value
-    // };
 
     var obj = {
       'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value

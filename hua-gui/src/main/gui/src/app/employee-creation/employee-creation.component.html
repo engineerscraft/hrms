@@ -260,6 +260,8 @@
                       <div class="group">
                         <input class="inputMaterial span_4_of_4" type="text" formControlName="dependentNo" required>
                         <label class="text-input-label">No of dependents</label>
+                        <div *ngIf="employeeInfo.controls.employeeAddlDetails.controls['dependentNo'].invalid && 
+                        employeeInfo.controls.employeeAddlDetails.controls['dependentNo'].dirty" class="error-text-input-label">Numeric values only</div>
                         <span class="highlight"></span>
                         <span class="bar span_4_of_4"></span>
                       </div>
