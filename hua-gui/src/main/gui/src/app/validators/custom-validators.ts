@@ -37,12 +37,9 @@ export class CustomValidator {
 
     static validNumeric(control: FormControl) {
         var pattern = /^\d+$/;
-        console.log(control.status);
         if (control.value.length > 0 && !control.value.match(pattern)) {
-            console.log('RETTT');
             return { "inValidNumeric": true };
         }
-        console.log(JSON.stringify(control));
         return null;
     }
 }

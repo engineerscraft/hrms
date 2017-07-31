@@ -6,10 +6,12 @@ import { UnitService } from '../services/unit.service';
 import { DocTypeService } from '../services/doc-type.service';
 import { Observable } from 'rxjs/Observable';
 import { CountryService } from '../services/country.service';
+import { DialogService } from '../services/dialog.service'
 import { EmployeeService } from '../services/employee.service';
 import { DistrictService } from '../services/district.service';
 import { StateService } from '../services/state.service';
 import { JobRoleService } from '../services/job-role.service';
+import { CanComponentDeactivate } from '../services/can-deactivate-guard.service';
 import { CustomValidator } from '../validators/custom-validators';
 
 @Component({
@@ -17,7 +19,7 @@ import { CustomValidator } from '../validators/custom-validators';
   templateUrl: './employee-creation.component.html',
   styleUrls: ['./employee-creation.component.css']
 })
-export class EmployeeCreationComponent implements OnInit {
+export class EmployeeCreationComponent implements OnInit, CanComponentDeactivate {
 
   private employeeInfo: FormGroup;
   private organizations;
@@ -49,7 +51,8 @@ export class EmployeeCreationComponent implements OnInit {
     private employeeService: EmployeeService,
     private districtService: DistrictService,
     private stateService: StateService,
-    private jobRoleService: JobRoleService) { }
+    private jobRoleService: JobRoleService,
+    private dialogService: DialogService) { }
 
 
 
@@ -392,6 +395,17 @@ export class EmployeeCreationComponent implements OnInit {
       }
       );
   }
+
+  canDeactivate() {
+    console.log('i am navigating away');
+
+    if (this.employeeInfo.pristine) {
+      return window.confirm('Discard changes?');
+    }
+
+    return true;
+  }
+
 
   /**
    * Copy permanent address to present address

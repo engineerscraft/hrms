@@ -11,6 +11,7 @@ import {UserDetailsComponent} from './user-details/user-details.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {ForbiddenAccessComponent} from './forbidden-access/forbidden-access.component';
 import {AuthguardService} from './services/authguard.service';
+import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 import { EmployeeDetailsResolve } from './resolvers/employee-details.resolve';
 import { EmployeeHierarchySearchResultResolve } from './resolvers/employee-hierarchy-search-result.resolve';
 
@@ -22,9 +23,10 @@ export const routing = RouterModule.forRoot([
     { path: 'employeeHierarchySearchResult', component: EmployeeHierarchySearchResultComponent, canActivate: [AuthguardService], resolve: { searchResult: EmployeeHierarchySearchResultResolve } },
     { path: 'employeeDetails/:id', component: EmployeeDetailsComponent, canActivate: [AuthguardService], resolve: { employeeInfo: EmployeeDetailsResolve } },
     { path: 'employeeCreation', component: EmployeeCreationComponent, canActivate: [AuthguardService] },
-    { path: 'employeeCreationNew', component: EmployeeCreationNewComponent },
+    { path: 'employeeCreationNew', component: EmployeeCreationNewComponent, canDeactivate: [CanDeactivateGuard] },
     { path: 'userDetails', component: UserDetailsComponent, canActivate: [AuthguardService] },
     { path: 'forbidden', component: ForbiddenAccessComponent, canActivate: [AuthguardService] },
     { path: '404', component: NotFoundComponent, canActivate: [AuthguardService] },
-    { path: '**', redirectTo: '/404', canActivate: [AuthguardService] }
-]);
+    { path: '**', redirectTo: '/404', canActivate: [AuthguardService] },
+    ],
+    { enableTracing: true });
