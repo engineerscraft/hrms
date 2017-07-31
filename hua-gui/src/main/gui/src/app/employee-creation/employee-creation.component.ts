@@ -209,6 +209,7 @@ export class EmployeeCreationComponent implements OnInit {
 
   OnClickOk() {
     this.message = '';
+    this.ngOnInit();
   }
 
   private canCreate() {
@@ -221,24 +222,26 @@ export class EmployeeCreationComponent implements OnInit {
    * Initialize all the static lists
    */
   private initiateLists() {
-    let organizationObservable = this.organizationService.getOrganizations();
-    let docTypeServiceObservable = this.docTypeService.getIdentityDocTypes();
-    let countryServiceObservable = this.countryService.getCountries();
-    this.processingInProgress = true;
-    Observable.forkJoin([organizationObservable, docTypeServiceObservable, countryServiceObservable])
-      .subscribe(
-      data => {
-        this.organizations = data[0];
-        this.identityDocTypes = data[1];
-        this.countries = data[2];
-      },
-      (err: any) => {
-        this.processingInProgress = false;
-      },
-      () => {
-        this.processingInProgress = false;
-      }
-      );
+    if (this.organizations === undefined) {
+      let organizationObservable = this.organizationService.getOrganizations();
+      let docTypeServiceObservable = this.docTypeService.getIdentityDocTypes();
+      let countryServiceObservable = this.countryService.getCountries();
+      this.processingInProgress = true;
+      Observable.forkJoin([organizationObservable, docTypeServiceObservable, countryServiceObservable])
+        .subscribe(
+        data => {
+          this.organizations = data[0];
+          this.identityDocTypes = data[1];
+          this.countries = data[2];
+        },
+        (err: any) => {
+          this.processingInProgress = false;
+        },
+        () => {
+          this.processingInProgress = false;
+        }
+        );
+    }
   }
 
   /**
@@ -443,20 +446,20 @@ export class EmployeeCreationComponent implements OnInit {
     var obj = {
       'employeeBasicInfo': this.employeeInfo.controls.employeeBasicInfo.value
     }
-    if(!this.employeeInfo.controls.employeeAddress.pristine){
+    if (!this.employeeInfo.controls.employeeAddress.pristine) {
       obj['employeeAddress'] = [this.employeeInfo.controls.employeeAddress.get('permanent').value,
       this.employeeInfo.controls.employeeAddress.get('present').value];
     }
-    if(!this.employeeInfo.controls.employeeAddlDetails.pristine){
+    if (!this.employeeInfo.controls.employeeAddlDetails.pristine) {
       obj['employeeAddlDetails'] = this.employeeInfo.controls.employeeAddlDetails.value
     }
-    if(!this.employeeInfo.controls.employeeJobRoleDetails.pristine){
+    if (!this.employeeInfo.controls.employeeJobRoleDetails.pristine) {
       obj['employeeSalary'] = salaryComponents
     }
-    if(!this.employeeInfo.controls.otherDetails.pristine){
+    if (!this.employeeInfo.controls.otherDetails.pristine) {
       obj['employeeHierarchy'] = this.employeeInfo.controls.otherDetails.value
     }
-    if(!this.employeeInfo.controls.employeeProfile.pristine){
+    if (!this.employeeInfo.controls.employeeProfile.pristine) {
       obj['employeeProfile'] = this.employeeInfo.controls.otherDetails.value
     }
 

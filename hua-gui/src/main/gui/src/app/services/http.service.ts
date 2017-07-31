@@ -35,6 +35,7 @@ export class HttpService {
             .catch(error => {
               if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
                 this.router.navigate(['']);
+                localStorage.clear();
                 return Observable.throw(error);
               }
               else {
@@ -68,6 +69,7 @@ export class HttpService {
               })
             .catch(error => {
               if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+                localStorage.clear();
                 this.router.navigate(['']);
                 return Observable.throw(error);
               }
@@ -102,6 +104,7 @@ callHttpDelete(url: string) {
               })
             .catch(error => {
               if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+                localStorage.clear();
                 this.router.navigate(['']);
                 return Observable.throw(error);
               }
@@ -135,6 +138,7 @@ callHttpPost(url: string, body: object) {
               })
             .catch(error => {
               if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+                localStorage.clear();
                 this.router.navigate(['']);
                 return Observable.throw(error);
               }

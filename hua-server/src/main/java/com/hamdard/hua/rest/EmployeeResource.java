@@ -26,6 +26,7 @@ import com.hamdard.hua.model.Employee;
 import com.hamdard.hua.model.Employee.EmployeeAddlDetails;
 import com.hamdard.hua.model.Employee.EmployeeAddress;
 import com.hamdard.hua.model.Employee.EmployeeBasicInfo;
+import com.hamdard.hua.model.Employee.EmployeeDocument;
 import com.hamdard.hua.model.Employee.EmployeeHierarchy;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
@@ -234,13 +235,12 @@ public class EmployeeResource {
     
     @PUT
     @Path("/{id}/basicinfo")
-    //@Secured(Privilege.UPDATE_EMP_BASIC_INFO_OF_AN_EMP)
+    @Secured(Privilege.UPDATE_EMP_BASIC_INFO_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeBasicInfo(@PathParam("id") String employeeId, EmployeeBasicInfo employeeBasicInfo) {
         try {
-            //String modifiedBy = securityContext.getUserPrincipal().getName();
-            String modifiedBy = "dummy name";
+            String modifiedBy = securityContext.getUserPrincipal().getName();
 
             employeeRepository.updatedEmployeeBasicInfo(employeeId, modifiedBy, employeeBasicInfo);
             return Response.status(Response.Status.OK).entity(new Message("Employee basic info successfully updated")).build();
@@ -272,6 +272,10 @@ public class EmployeeResource {
     public Response getEmployeeDetails(@PathParam("id") @Size(min=1) String employeeId) {
         try {
             Employee empInfo = employeeRepository.getEmployeeDetailsByEmpId(employeeId);
+            empInfo.setDocumentList(employeeRepository.getAllDocuments(employeeId));
+            for(EmployeeDocument doc : empInfo.getDocumentList()) {
+                doc.setDocument(null);
+            }
             return Response.status(Response.Status.OK).entity(empInfo).build();
         } catch (EmptyResultDataAccessException e) {
             logger.error("The employee details not found", e);
@@ -286,15 +290,60 @@ public class EmployeeResource {
     @Path("{id}/document")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response addEmployeeDocument(@PathParam("id") @Size(min=1) String employeeId, Employee.EmployeeDocument empDoc) {
+    public Response createEmployeeDocument(@PathParam("id") @Size(min=1) String employeeId, Employee.EmployeeDocument empDoc) {
         try {
-            Employee empInfo = employeeRepository.getEmployeeDetailsByEmpId(employeeId);
-            return Response.status(Response.Status.OK).entity(empInfo).build();
-        } catch (EmptyResultDataAccessException e) {
-            logger.error("The employee details not found", e);
-            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+            employeeRepository.createDocument(employeeId, empDoc);
+            return Response.status(Response.Status.OK).entity(new Message("Document successfully saved")).build();
         } catch (Exception ex) {
             logger.error("The employee details could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @GET
+    @Path("{id}/document/{docId}")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getDocument(@PathParam("id") String empId, @PathParam("docId") Integer docId) {
+        try {
+            EmployeeDocument empDoc = employeeRepository.getDocument(docId);
+            return Response.status(Response.Status.OK).entity(empDoc).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("The document not found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The document could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+
+    @GET
+    @Path("{id}/document")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getAllDocumentDetails(@PathParam("id") @Size(min=1) String empId) {
+        try {
+            List<EmployeeDocument> empDocs = employeeRepository.getAllDocuments(empId);
+            return Response.status(Response.Status.OK).entity(empDocs).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("The documents not found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The documents could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+
+    @PUT
+    @Path("{id}/document/{docId}")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updateDetails(@PathParam("id") String employeeId, @PathParam("docId") Integer docId, EmployeeDocument empDoc) {
+        try {
+            employeeRepository.updateDocument(empDoc);;
+            return Response.status(Response.Status.OK).entity(new Message("Document is successfully updated")).build();
+        } catch (Exception ex) {
+            logger.error("The document could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }

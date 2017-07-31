@@ -12,9 +12,28 @@
   <p *ngIf="!!employeeInfo" class="name-sub-header">Contact No: {{employeeInfo.employeeBasicInfo.contactNo}}</p>
   <p *ngIf="!!employeeInfo" class="name-sub-header">Email: {{employeeInfo.employeeBasicInfo.emailId}}</p>
 </div>
-<img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
-<input type="file" style="display:none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
-<img class="profile-pic" (click)="profileImageFile.click()">
+<div class="profile-pic-container">
+  <img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
+  <label for="file-upload" class="custom-file-upload">EDIT</label>
+  <input id="file-upload" type="file" style="display: none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
+  <img class="profile-pic" (click)="profileImageFile.click()">
+  <div class="modal-backdrop" *ngIf="getShowUpdateMessage()">
+    <div class="modal-small">
+      <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+      <div class="modal-header">
+        <h1>Message</h1>
+      </div>
+      <div class="modal-body">
+        <div class="group center">
+          <h3>Profile Image successfully updated !!!</h3>
+          <div style="height:30px;">
+          </div>
+          <button type="button" class="btn ripple" (click)="onClickUpdateMessageOk()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="body">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:278px;">
@@ -235,7 +254,7 @@
                   <label class="text-label">Pre Employment Medical Checkup Date</label>
                 </div>
                 <div class="cell span_1_of_6">
-                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.PreMedicalCheckUpDate}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.preMedicalCheckUpDate}}</label>
                 </div>
                 <div class="cell span_1_of_6">
                   <label class="text-label">Medical Report Comment</label>
@@ -464,13 +483,13 @@
           <div class="row">
             <div class="cell span_2_of_4">
               <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="title" required>
+                <input class="inputMaterial" formControlName="title" required>
                 <label class="text-input-label">Title</label>
               </div>
             </div>
             <div class="cell span_2_of_4">
               <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="empFirstName" required>
+                <input class="inputMaterial" formControlName="empFirstName" required>
                 <label class="text-input-label">First Name</label>
               </div>
             </div>
@@ -478,13 +497,13 @@
           <div class="row">
             <div class="cell span_2_of_4">
               <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="empMiddleName">
+                <input class="inputMaterial" formControlName="empMiddleName">
                 <label class="text-input-label">Middle Name</label>
               </div>
             </div>
             <div class="cell span_2_of_4">
               <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="empLastName" required>
+                <input class="inputMaterial" formControlName="empLastName" required>
                 <label class="text-input-label">Last Name</label>
               </div>
             </div>
@@ -492,7 +511,7 @@
           <div class="row">
             <div class="cell span_2_of_4">
               <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="fatherName" required>
+                <input class="inputMaterial" formControlName="fatherName" required>
                 <label class="text-input-label">Father's Name</label>
               </div>
             </div>
@@ -537,13 +556,13 @@
           <div class="row">
             <div class="cell span_2_of_4">
               <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="dob" required>
+                <input class="inputMaterial" formControlName="dob" required>
                 <label class="text-input-label">Date of Birth</label>
               </div>
             </div>
             <div class="cell span_2_of_4">
               <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="contactNo" required>
+                <input class="inputMaterial" formControlName="contactNo" required>
                 <label class="text-input-label">ContactNumber</label>
               </div>
             </div>
@@ -577,7 +596,7 @@
 
             <div class="cell span_2_of_4">
               <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="identityNumber" required>
+                <input class="inputMaterial" formControlName="identityNumber" required>
                 <label class="text-input-label">Identity Number</label>
               </div>
             </div>
@@ -586,8 +605,8 @@
             <div class="cell span_2_of_4">
               <div class="group combo-group">
                 <label class="text-input-label">Employee Type</label>
-                <div class="select select-fancy select-fancy-image span_4_of_4">
-                  <select class="span_4_of_4" formControlName="empType">
+                <div class="select select-fancy select-fancy-image">
+                  <select formControlName="empType">
                           <option value="PERMANENT">Permanent</option>
                           <option value="CONTRACT">Contract</option>
                         </select>
@@ -596,7 +615,7 @@
             </div>
             <div class="cell span_2_of_4">
               <div class="group">
-                <input class="inputMaterial input-size-small" formControlName="emailId" required>
+                <input class="inputMaterial" formControlName="emailId" required>
                 <label class="text-input-label">Email Id</label>
               </div>
             </div>

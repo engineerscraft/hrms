@@ -1,6 +1,6 @@
 # Software Requirements
 1. PostgreSQL (9.6.3) - https://www.enterprisedb.com/postgresql-963-binaries-win64?ls=Crossover&type=Crossover
-2. Pgadmin 4 (PostgreSQL Client - https://www.postgresql.org/ftp/pgadmin/pgadmin4/v1.5/windows/)
+2. DBeaver - http://dbeaver.jkiss.org/)
 3. Apache DS
 4. JXplorer (LDAP Client)
 5. Apache Maven

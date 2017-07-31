@@ -12,10 +12,32 @@
   <p *ngIf="!!employeeInfo" class="name-sub-header">Contact No: {{employeeInfo.employeeBasicInfo.contactNo}}</p>
   <p *ngIf="!!employeeInfo" class="name-sub-header">Email: {{employeeInfo.employeeBasicInfo.emailId}}</p>
 </div>
-<img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
+<div class="profile-pic-container">
+  <img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
+  <label for="file-upload" class="custom-file-upload">EDIT</label>
+  <input id="file-upload" type="file" style="display: none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
+  <img class="profile-pic" (click)="profileImageFile.click()">
+  <div class="modal-backdrop" *ngIf="getShowUpdateMessage()">
+    <div class="modal-small">
+      <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+      <div class="modal-header">
+        <h1>Message</h1>
+      </div>
+      <div class="modal-body">
+        <div class="group center">
+          <h3>Profile Image successfully updated !!!</h3>
+          <div style="height:30px;">
+          </div>
+          <button type="button" class="btn ripple" (click)="onClickUpdateMessageOk()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
 <input type="file" style="display:none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
-<img class="profile-pic" (click)="profileImageFile.click()">
-<div class="body">
+<img class="profile-pic" (click)="profileImageFile.click()"-->
+<div class="body" [ngClass]="{'disable-scroll' : modalDisplay === true }">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:278px;">
   </div>
@@ -36,207 +58,217 @@
           <label for="tab4" class="tab-header span_1_of_6 cell">Payroll Details</label>
 
           <input id="tab5" class="tab-radio" type="radio" name="tabs" value="5" />
-          <label for="tab5" class="tab-header span_1_of_6 cell">Others</label>
+          <label for="tab5" class="tab-header span_1_of_6 cell">Documents</label>
+
+          <input id="tab6" class="tab-radio" type="radio" name="tabs" value="6" />
+          <label for="tab6" class="tab-header span_1_of_6 cell">Others</label>
 
           <section id="content1" class="tab-content">
 
-            <div class="display-table">
-              <div class="span_4_of_4">
-                <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editBasicInfo()"></a>
-              </div>
-              <div class="row span_4_of_4">
-                <div class="cell span_1_of_6">
+            <div class="table span_4_of_4">
+              <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editBasicInfo()"></a>
+              <div class="row">
+                <div class="cell">
                   <label class="text-label">Title</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.title}}</label>
                 </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
               </div>
-              <div class="row span_4_of_4 even-row">
-                <div class="cell span_1_of_6">
+              <div class="row even-row">
+                <div class="cell">
                   <label class="text-label">First Name</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.empFirstName}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Middle Name</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.empMiddleName}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Last Name</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.empLastName}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4">
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Father's Name</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.fatherName}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Nationality</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.countryName}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Marital Status</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.maritalStatus}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4 even-row">
-                <div class="cell span_1_of_6">
+              <div class="row even-row">
+                <div class="cell">
                   <label class="text-label">Sex</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.sex}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Date of Birth</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.dob}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Contact Number</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.contactNo}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4">
-                <div class="cell span_1_of_6">
+              <div class="row">
+                <div class="cell">
                   <label class="text-label">Email</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.emailId}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Is Hr?</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.hrFlag}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Is Supervisor?</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.supervisorFlag}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4 even-row">
-                <div class="cell span_1_of_6">
+              <div class="row even-row">
+                <div class="cell">
                   <label class="text-label">Employment Type</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.empType}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Identity Document</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.identityDocType.docTypeName}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Identity Document Id</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeBasicInfo.identityNumber}}</label>
                 </div>
               </div>
             </div>
           </section>
           <section id="content2" class="tab-content">
-            <div class="display-table">
-              <div class="row span_4_of_4">
-                <div class="cell span_1_of_6">
+            <div class="table span_4_of_4">
+              <div></div>
+              <div class="row">
+                <div class="cell">
                   <label class="text-label">Number of Dependents</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.dependentNo}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Number of Siblings</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.siblingNo}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4 even-row">
-                <div class="cell span_1_of_6">
+              <div class="row even-row">
+                <div class="cell">
                   <label class="text-label">Emergency Contact Name</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.emergencyContactName}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Emergency Contact Number</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.emergencyContactNo}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4">
-                <div class="cell span_1_of_6">
+              <div class="row">
+                <div class="cell">
                   <label class="text-label">Nominee 1 Name</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeName1}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Nominee 1 share (%)</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeShare1}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4 even-row">
-                <div class="cell span_1_of_6">
+              <div class="row even-row">
+                <div class="cell">
                   <label class="text-label">Nominee 2 Name</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeName2}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Nominee 2 share (%)</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeShare2}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4">
-                <div class="cell span_1_of_6">
+              <div class="row ">
+                <div class="cell">
                   <label class="text-label">Nominee 3 Name</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeName3}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Nominee 3 share (%)</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.nomineeShare3}}</label>
                 </div>
               </div>
               <div class="row span_4_of_4 even-row">
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Pre Employment Medical Checkup Date</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.PreMedicalCheckUpDate}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Medical Report Comment</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeAddlDetails.medicalReportComment}}</label>
                 </div>
               </div>
@@ -249,48 +281,49 @@
               <input type="checkbox" value="selected" id="permanentAddress" class="toggle-input" checked>
               <label for="permanentAddress" class="toggle-label">Permanent Address</label>
               <div role="toggle" class="toggle-content">
-                <div class="display-table">
-                  <div class="row span_4_of_4">
-                    <div class="cell span_1_of_6">
+                <div class="table span_4_of_4">
+                  <div></div>
+                  <div class="row">
+                    <div class="cell">
                       <label class="text-label">House Number</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[0].houseNo}}</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-label">Street</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[0].streetName}}</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-label">Area</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[0].area}}</label>
                     </div>
                   </div>
-                  <div class="row span_4_of_4 even-row">
-                    <div class="cell span_1_of_6">
+                  <div class="row even-row">
+                    <div class="cell">
                       <label class="text-label">PIN / Zip Code</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[0].pinno}}</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-label">Region</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[0].region}}</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-label">District</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[0].districtName}}</label>
                     </div>
                   </div>
-                  <div class="row span_4_of_4">
+                  <div class="row">
                     <div class="cell span_1_of_6">
                       <label class="text-label">State</label>
                     </div>
@@ -311,58 +344,59 @@
               <input type="checkbox" value="selected" id="presentAddress" class="toggle-input" checked>
               <label for="presentAddress" class="toggle-label">Present Address</label>
               <div role="toggle" class="toggle-content">
-                <div class="display-table">
-                  <div class="row span_4_of_4">
-                    <div class="cell span_1_of_6">
+                <div class="table span_4_of_4">
+                  <div></div>
+                  <div class="row">
+                    <div class="cell">
                       <label class="text-label">House Number</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].houseNo}}</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-label">Street</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].streetName}}</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-label">Is Supervisor?</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].area}}</label>
                     </div>
                   </div>
-                  <div class="row span_4_of_4 even-row">
-                    <div class="cell span_1_of_6">
+                  <div class="row  even-row">
+                    <div class="cell">
                       <label class="text-label">PIN / Zip Code</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].pinno}}</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-label">Region</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].region}}</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-label">District</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].districtName}}</label>
                     </div>
                   </div>
-                  <div class="row span_4_of_4">
-                    <div class="cell span_1_of_6">
+                  <div class="row">
+                    <div class="cell">
                       <label class="text-label">State</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].stateName}}</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-label">Country</label>
                     </div>
-                    <div class="cell span_1_of_6">
+                    <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].countryName}}</label>
                     </div>
                   </div>
@@ -371,72 +405,95 @@
             </div>
           </section>
           <section id="content5" class="tab-content">
-            <div class="display-table">
-              <div class="row span_4_of_4">
-                <div class="cell span_1_of_6">
+            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editDocument()"></a>
+            <a class="create-btn create-btn-fixed ripple" href="javascript:void(0)" (click)="addDocument()"></a>
+            <div class="row">
+              <div class="cell span_2_of_6">
+                <div class="display-table document-height">
+                  <ul>
+                    <li *ngFor="let document of employeeInfo.documentList" [ngClass]="{'selectedDocument': getSelectedDocId() === document.docId}"
+                      (click)="setSelectedDocId(document.docId)">
+                      <h2>{{document.docTypeName}}</h2>{{document.docId}} - {{document.remarks}}</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="cell span_4_of_6">
+                <div class="display-table document-height">
+                  <object width="100%" height="98%" [title]="selectedDocDetails?.docTypeName" [data]="selectedDocument | safe">
+                  </object>
+                </div>
+              </div>
+            </div>
+
+          </section>
+          <section id="content6" class="tab-content">
+            <div class="table span_4_of_4">
+              <div></div>
+              <div class="row">
+                <div class="cell">
                   <label class="text-label">HR Email</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.hrEmailId}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Supervisor Email</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.supervisorEmailId}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4 even-row">
-                <div class="cell span_1_of_6">
+              <div class="row even-row">
+                <div class="cell">
                   <label class="text-label">Number of Casual Leaves</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.cL}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Number of Sick Leaves</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.specialLeave}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Number of Paternity Leaves</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.paternityLeave}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4">
-                <div class="cell span_1_of_6">
+              <div class="row">
+                <div class="cell">
                   <label class="text-label">Maternity Leave</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.maternityLeave}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Employment Status</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.status}}</label>
                 </div>
               </div>
-              <div class="row span_4_of_4 even-row">
-                <div class="cell span_1_of_6">
+              <div class="row even-row">
+                <div class="cell">
                   <label class="text-label">Probation Period End Date</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.probationPeriodEndDate}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label">Notice Period End Date</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.noticePeriodEndDate}}</label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-label"></label>
                 </div>
-                <div class="cell span_1_of_6">
+                <div class="cell">
                   <label class="text-value"></label>
                 </div>
               </div>
@@ -448,52 +505,140 @@
   </div>
 </div>
 
-<div class="modal-backdrop" *ngIf="getShowEditBasicInfo()">
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditBasicInfo()">
   <div class="modal-medium">
     <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
     <div class="modal-header">
       <h1>Edit Employee Details</h1>
     </div>
     <div class="modal-body">
-      <form [formGroup]="formGroupBasicInfo" (ngSubmit)="onBasicInfoUpdate()" method="post" class="loginform">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupBasicInfoForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupBasicInfo" #formGroupBasicInfoForm="ngForm" (ngSubmit)="onBasicInfoUpdate()" method="post">
         <fieldset [disabled]="isProcessingInProgress()">
-          <div class="display-table inner-component-width">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Name</h2>
             <div class="row">
               <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="title" required>
-                  <label class="text-input-label">Title</label>
+                <div class="group combo-group">
+                  <label class="text-input-label">Title*</label>
+                  <div class="select select-fancy select-fancy-image">
+                    <select formControlName="title">
+                          <option value="Mr.">Mr</option>
+                          <option value="Miss.">Miss</option>
+                          <option value="Mrs.">Mrs</option>
+                        </select>
+                  </div>
                 </div>
               </div>
-              <div class="cell span_2_of_4">
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="empFirstName" required>
+                  <input class="inputMaterial" formControlName="empFirstName" required>
                   <label class="text-input-label">First Name</label>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="cell span_2_of_4">
+              <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="empMiddleName">
+                  <input class="inputMaterial" formControlName="empMiddleName" required>
                   <label class="text-input-label">Middle Name</label>
                 </div>
               </div>
-              <div class="cell span_2_of_4">
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="empLastName" required>
+                  <input class="inputMaterial" formControlName="empLastName" required>
                   <label class="text-input-label">Last Name</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Identity Details</h2>
+            <div class="row">
+              <div class="cell span_4_of_4" formGroupName="identityDocType">
+                <div class="group combo-group">
+                  <label class="text-input-label">Identity Doc Type</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="docTypeId">
+                          <option value=""></option>
+                          <option *ngFor="let docType of identityDocTypes" value="{{docType.docTypeId}}">{{docType.docTypeName}}</option>
+                        </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="identityNumber" required>
+                  <label class="text-input-label">Identity Number</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Contact Information</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="emailId" required>
+                  <label class="text-input-label">Email Id</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="contactNo" required>
+                  <label class="text-input-label">ContactNumber</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Personal Details</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="fatherName" required>
+                  <label class="text-input-label">Father's Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Nationality</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="nationality">
+                          <option value=""></option>
+                          <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
+                        </select>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="fatherName" required>
-                  <label class="text-input-label">Father's Name</label>
+                <div class="group combo-group">
+                  <label class="text-input-label">Marital status</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="maritalStatus">
+                          <option value="MARRIED">Married</option>
+                          <option value="SINGLE">Single</option>
+                          <option value="DIVORCED">Divorced</option>
+                        </select>
+                  </div>
                 </div>
               </div>
-              <div class="cell span_1_of_4">
+              <div class="cell span_2_of_4">
                 <div class="group combo-group">
                   <label class="text-input-label">Sex</label>
                   <div class="select select-fancy select-fancy-image span_4_of_4">
@@ -508,43 +653,15 @@
             </div>
             <div class="row">
               <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">Nationality</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="nationality">
-                          <option value=""></option>
-                          <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
-                        </select>
-                  </div>
-                </div>
-              </div>
-              <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">Marital status</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="maritalStatus">
-                          <option value="MARRIED">Married</option>
-                          <option value="SINGLE">Single</option>
-                          <option value="DIVORCED">Divorced</option>
-                        </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell span_2_of_4">
                 <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="dob" required>
+                  <input class="inputMaterial" formControlName="dob" required>
                   <label class="text-input-label">Date of Birth</label>
                 </div>
               </div>
-              <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="contactNo" required>
-                  <label class="text-input-label">ContactNumber</label>
-                </div>
-              </div>
             </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Organization Details</h2>
             <div class="row">
               <div class="cell span_2_of_4">
                 <div class="group">
@@ -560,26 +677,6 @@
               </div>
             </div>
             <div class="row">
-              <div class="cell span_2_of_4" formGroupName="identityDocType">
-                <div class="group combo-group">
-                  <label class="text-input-label">Identity Doc Type</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="docTypeId">
-                          <option value=""></option>
-                          <option *ngFor="let docType of identityDocTypes" value="{{docType.docTypeId}}">{{docType.docTypeName}}</option>
-                        </select>
-                  </div>
-                </div>
-              </div>
-
-              <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="identityNumber" required>
-                  <label class="text-input-label">Identity Number</label>
-                </div>
-              </div>
-            </div>
-            <div class="row">
               <div class="cell span_2_of_4">
                 <div class="group combo-group">
                   <label class="text-input-label">Employee Type</label>
@@ -591,24 +688,78 @@
                   </div>
                 </div>
               </div>
-              <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial input-size-small" formControlName="emailId" required>
-                  <label class="text-input-label">Email Id</label>
-                </div>
-              </div>
             </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowDocumentEdit()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Employee Documents</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupDocumentForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupDocument" #formGroupDocumentForm="ngForm" (ngSubmit)="onDocumentUpdate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <button type="submit" class="btn ripple">Submit</button>
-                  <button type="button" class="btn ripple" (click)="onCancel()">Cancel</button>
+                  <input class="inputMaterial" formControlName="docId" required readonly>
+                  <label class="text-input-label">Document Id</label>
+                </div>
+              </div>
+              <div class="cell span_4_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Document Type</label>
+                  <div class="select select-fancy select-fancy-image">
+                    <select formControlName="docTypeId">
+                          <option value=""></option>
+                          <option *ngFor="let docType of docTypes" value="{{docType.docTypeId}}">{{docType.docTypeName}}</option>
+                        </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="remarks" required>
+                  <label class="text-input-label">Remarks</label>
+                </div>
+              </div>
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input type="file" style="display:none" accept=".pdf" (change)="documentUpload($event)" #documentFile>
+                  <input class="inputMaterial" formControlName="documentName" required (click)="documentFile.click()" readonly>
+                  <label class="text-input-label">Document</label>
                 </div>
               </div>
             </div>
           </div>
         </fieldset>
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowSelectDocumentAlert()">
+  <div class="modal-small">
+    <div class="modal-header">
+      <h1>Alert</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <div class="group center">
+        <h3>Please select a document</h3>
+        <div style="height:30px;">
+        </div>
+        <button type="button" class="btn ripple" (click)="closeAllDialog(null)">OK</button>
+      </div>
     </div>
   </div>
 </div>

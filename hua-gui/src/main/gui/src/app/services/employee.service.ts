@@ -77,4 +77,17 @@ export class EmployeeService {
     return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/basicinfo", reqBody)
       .map(res => res.json());
   }
+
+  getDocument(docId,employeeId) {
+    return this.httpService.callHttpGet("/resources/v1/employee/management/" + employeeId + "/document/" + docId)
+      .map(res => res.json())
+      .catch((response: Response) => {
+        return this.handleError(response);
+      });
+  }
+
+  documentSave(doc, employeeId) {
+    return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/document/" + doc.docId, doc)
+      .map(res => res.json());
+  }
 }

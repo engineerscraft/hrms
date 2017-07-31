@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import 'rxjs/add/operator/finally';
@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DocTypeService } from '../services/doc-type.service';
 import { Observable } from 'rxjs/Observable';
 import { CountryService } from '../services/country.service';
+import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-employee-details',
@@ -19,24 +21,39 @@ export class EmployeeDetailsComponent implements OnInit {
   private processingInProgress = false;
   private showEditBasicInfo = false;
   private formGroupBasicInfo: FormGroup;
+  private formGroupDocument: FormGroup;
   private identityDocTypes;
+  private docTypes;
   private countries;
+  private selectedDocId = 0;
+  private selectedDocument = "about:blank";
+  private selectedDocDetails;
+  private modalDisplay = false;
+  private showDocumentEdit = false;
+  private documentEditFunctionInvoked = false;
+  private googleDocument;
+  private showUpdateMessage = false;
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private docTypeService: DocTypeService,
-    private countryService: CountryService, ) {
+    private countryService: CountryService) {
   }
 
   ngOnInit() {
+
     this.employeeInfo = this.activatedRoute.snapshot.data['employeeInfo'];
+    this.activatedRoute
+      .paramMap
+      .subscribe(params => {
+        this.id = params.get("id");
+      });
     if (this.employeeInfo === undefined) {
       this.activatedRoute
-        .queryParams
+        .paramMap
         .subscribe(params => {
-          this.id = params['id'];
           this.processingInProgress = true;
           let employeeBasicInfoObservable = this.employeeService.readDetails(this.id)
             .finally(() => { this.processingInProgress = false; })
@@ -91,7 +108,15 @@ export class EmployeeDetailsComponent implements OnInit {
       'supervisorFlag': [this.employeeInfo.employeeBasicInfo.supervisorFlag]
     });
 
+    this.formGroupDocument = this.formBuilder.group({
+      'docId': [""],
+      'docTypeId': [""],
+      'remarks': [""],
+      'document': [""],
+      'documentName': [""]
+    });
   }
+
   profileImageUpload(event) {
     var reader = new FileReader();
     reader.readAsDataURL(event.srcElement.files[0]);
@@ -116,39 +141,41 @@ export class EmployeeDetailsComponent implements OnInit {
         },
         () => {
           me.employeeInfo.employeeBasicInfo.profileImage = fileContent;
+          me.showUpdateMessage = true;
         });
     }
   }
 
   editBasicInfo() {
-    let docTypeServiceObservable = this.docTypeService.getIdentityDocTypes();
-    let countryServiceObservable = this.countryService.getCountries();
-    Observable.forkJoin([docTypeServiceObservable, countryServiceObservable])
-      .finally(() => { this.processingInProgress = false; })
-      .subscribe(data => {
-        this.identityDocTypes = data[0];
-        this.countries = data[1];
-      },
-      (err: any) => {
-        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-          this.router.navigate(['forbidden']);
-        }
-        if (err.status === 404) {
-          this.router.navigate(['404']);
-        }
-      },
-      () => {
-        this.showEditBasicInfo = true;
-      });
-
+    if (this.identityDocTypes === undefined) {
+      let docTypeServiceObservable = this.docTypeService.getIdentityDocTypes();
+      let countryServiceObservable = this.countryService.getCountries();
+      Observable.forkJoin([docTypeServiceObservable, countryServiceObservable])
+        .finally(() => { this.processingInProgress = false; })
+        .subscribe(data => {
+          this.identityDocTypes = data[0];
+          this.countries = data[1];
+        },
+        (err: any) => {
+          if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
+            this.router.navigate(['forbidden']);
+          }
+          if (err.status === 404) {
+            this.router.navigate(['404']);
+          }
+        },
+        () => {
+          this.showEditBasicInfo = true;
+          this.modalDisplay = true;
+        });
+    } else {
+      this.showEditBasicInfo = true;
+      this.modalDisplay = true;
+    }
   }
 
   getShowEditBasicInfo() {
     return this.showEditBasicInfo;
-  }
-
-  onCancel() {
-    this.showEditBasicInfo = false;
   }
 
   onBasicInfoUpdate() {
@@ -176,5 +203,147 @@ export class EmployeeDetailsComponent implements OnInit {
 
   isProcessingInProgress() {
     return this.processingInProgress;
+  }
+
+  getSelectedDocId() {
+    return this.selectedDocId;
+  }
+
+  setSelectedDocId(docId) {
+    this.selectedDocId = docId;
+    this.employeeService.getDocument(docId, this.id)
+      .subscribe(data => {
+        if ((navigator.appVersion.indexOf("MSIE") !== -1) || (!!window["MSInputMethodContext"] && !!document["documentMode"])) {
+          var abc=data.document.split(',')[1].replace(/\s/g, '');
+          var byteString = atob(abc);
+          var ab = new ArrayBuffer(byteString.length);
+          var ia = new Uint8Array(ab);
+          
+          for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+          }
+                    
+          var blob = new Blob([ia], { type: 'application/pdf' });
+
+          saveAs(blob, "hrmsdocument.pdf");
+          this.selectedDocument = "hrmsdocument.pdf";
+        } else {
+          this.selectedDocDetails = data;
+          this.selectedDocument = data.document;
+        }
+      },
+      (err: any) => {
+
+      });
+  }
+
+  closeAllDialog(event) {
+    if (event === null || event.undefined || event.currentTarget === event.target) {
+      this.showEditBasicInfo = false;
+      this.modalDisplay = false;
+      this.showDocumentEdit = false;
+      this.documentEditFunctionInvoked = false;
+    }
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.keyCode === 27) {
+      this.closeAllDialog(null);
+    }
+  }
+
+  editDocument() {
+    if (this.docTypes === undefined && this.selectedDocDetails !== undefined) {
+      let docTypeServiceObservable = this.docTypeService.getDocTypes()
+        .finally(() => { this.processingInProgress = false; })
+        .subscribe(data => {
+          this.docTypes = data;
+        },
+        (err: any) => {
+          if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
+            this.router.navigate(['forbidden']);
+          }
+          if (err.status === 404) {
+            this.router.navigate(['404']);
+          }
+        },
+        () => {
+          this.showDocumentEdit = true;
+          this.modalDisplay = true;
+          this.initializeDocumentEditForm();
+        });
+    } else if (this.selectedDocDetails !== undefined) {
+      this.showDocumentEdit = true;
+      this.modalDisplay = true;
+      this.initializeDocumentEditForm();
+    } else {
+      this.documentEditFunctionInvoked = true;
+    }
+
+  }
+
+  initializeDocumentEditForm() {
+    this.formGroupDocument.setValue({
+      'docId': this.selectedDocDetails.docId,
+      'docTypeId': this.selectedDocDetails.docTypeId,
+      'remarks': this.selectedDocDetails.remarks,
+      'document': this.selectedDocDetails.document,
+      'documentName': ""
+    });
+  }
+
+  addDocument() {
+
+  }
+
+  getShowDocumentEdit() {
+    return this.showDocumentEdit;
+  }
+
+  onDocumentUpdate() {
+    this.processingInProgress = true;
+    this.employeeService.documentSave(this.formGroupDocument.value, this.id)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.closeAllDialog(null);
+      })
+      .subscribe(
+      res => {
+        this.selectedDocument = this.formGroupDocument.value.document;
+        console.log(this.formGroupDocument.value.document);
+      },
+      err => {
+      },
+      () => {
+      });
+  }
+
+  documentUpload(event) {
+    console.log(event);
+    this.formGroupDocument.controls['documentName'].setValue(event.srcElement.files[0].name);
+    var reader = new FileReader();
+    reader.readAsDataURL(event.srcElement.files[0]);
+    var me = this;
+    reader.onload = function () {
+      me.formGroupDocument.controls['document'].setValue(reader.result);
+    }
+  }
+
+  getShowSelectDocumentAlert() {
+    if (this.selectedDocDetails === undefined && this.documentEditFunctionInvoked) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  getShowUpdateMessage() {
+    return this.showUpdateMessage;
+  }
+
+  onClickUpdateMessageOk() {
+    this.showUpdateMessage = false;
   }
 }
