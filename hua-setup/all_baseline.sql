@@ -52747,7 +52747,17 @@ VALUES
 (25, 'GET_UNITS_OF_AN_ORG', 'GET /units/organizationId=?', 'A'),
 (26, 'SearchEmployee', '/employeesearch', 'V'),
 (27, 'ViewEmployee', '/employeeview', 'V'),
-(28, 'GET_EMP_SEARCH_IN_HIERARCHY', 'GET /employee?', 'A');
+(28, 'GET_EMP_SEARCH_IN_HIERARCHY', 'GET /employee?', 'A'),
+(29,'MODIFY_SAL_OF_AN_EMP','PUT /employee/{id}/salary','A'),
+(30,'CREATE_OPT_BENEFIT_OF_AN_EMP','POST /employee/{id}/optionalbenefits','A'),
+(31,'UPDATE_OPT_BENEFIT_FOR_AN_EMP','PUT /employee/{id}/optionalbenefits/{oid}','A'),
+(32,'UPDATE_EMP_HIER_STAT_OF_AN_EMP','PUT /employee/{id}/hierarchystatus','A'),
+(33,'UPDATE_IMAGE_OF_EN_EMP','PUT /employee/{id}/image','A'),
+(34,'READ_ALL_EMP_DETAILS','GET /employee/{id}','A'),
+(35,'UPDATE_DOC_FOR_AN_EMP','POST /employee/{id}/document','A'),
+(36,'READ_A_DOC_OF_AN_EMP','GET /employee/{id}/document/{docId}','A'),
+(37,'READ_ALL_DOC_OF_AN_EMP','GET /employee/{id}/document','A');
+
 
 INSERT INTO HRMS.ROLE_PERMISSION 
 SELECT ROLE_ID, PERMISSION_ID FROM

@@ -69,6 +69,7 @@ public class EmployeeResource {
 
     @PUT
     @Path("/{id}/salary")
+    @Secured(Privilege.MODIFY_SAL_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updateEmployeeSalary(@PathParam("id") @Size(min=1) String employeeId, List<EmployeeSalary> updEmployeeSalary) {
@@ -103,6 +104,7 @@ public class EmployeeResource {
 
     @POST
     @Path("/{id}/optionalbenefits")
+    @Secured(Privilege.CREATE_OPT_BENEFIT_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response insertEmployeeOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, List<EmployeeOptionalBenefit> insEmployeeOptBenefits) {
@@ -118,6 +120,7 @@ public class EmployeeResource {
 
     @PUT
     @Path("/{id}/optionalbenefits/{oid}")
+    @Secured(Privilege.UPDATE_OPT_BENEFIT_FOR_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response insertEmployeeOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, @PathParam("oid") @Min(1) int optCompId, EmployeeOptionalBenefit updEmployeeOptBenefit) {
@@ -217,14 +220,13 @@ public class EmployeeResource {
     
     @PUT
     @Path("/{id}/hierarchystatus")
-    //@Secured(Privilege.UPDATE_EMP_HIER_STAT_OF_AN_EMP)
+    @Secured(Privilege.UPDATE_EMP_HIER_STAT_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeHierarchyStatus(@PathParam("id") String employeeId, EmployeeHierarchy employeeHierarchy) {
         try {
-            //String modifiedBy = securityContext.getUserPrincipal().getName();
-            String modifiedBy = "dummy name";
-
+            String modifiedBy = securityContext.getUserPrincipal().getName();
+            
             employeeRepository.updatedEmployeeHierarchyStatus(employeeId, modifiedBy, employeeHierarchy);
             return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
@@ -252,6 +254,7 @@ public class EmployeeResource {
 
     @PUT
     @Path("{id}/image")
+    @Secured(Privilege.UPDATE_IMAGE_OF_EN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response uploadProfilePicture(@PathParam("id") @Size(min = 1) String employeeId, EmployeeBasicInfo img) {
@@ -267,6 +270,7 @@ public class EmployeeResource {
     
     @GET
     @Path("{id}")
+    @Secured(Privilege.READ_ALL_EMP_DETAILS)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response getEmployeeDetails(@PathParam("id") @Size(min=1) String employeeId) {
@@ -288,6 +292,7 @@ public class EmployeeResource {
 
     @POST
     @Path("{id}/document")
+    @Secured(Privilege.UPDATE_DOC_FOR_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response createEmployeeDocument(@PathParam("id") @Size(min=1) String employeeId, Employee.EmployeeDocument empDoc) {
@@ -302,6 +307,7 @@ public class EmployeeResource {
     
     @GET
     @Path("{id}/document/{docId}")
+    @Secured(Privilege.READ_A_DOC_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response getDocument(@PathParam("id") String empId, @PathParam("docId") Integer docId) {
@@ -319,6 +325,7 @@ public class EmployeeResource {
 
     @GET
     @Path("{id}/document")
+    @Secured(Privilege.READ_ALL_DOC_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response getAllDocumentDetails(@PathParam("id") @Size(min=1) String empId) {
@@ -336,6 +343,7 @@ public class EmployeeResource {
 
     @PUT
     @Path("{id}/document/{docId}")
+    @Secured(Privilege.UPDATE_A_DOC_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updateDetails(@PathParam("id") String employeeId, @PathParam("docId") Integer docId, EmployeeDocument empDoc) {
