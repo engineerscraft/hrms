@@ -4,6 +4,7 @@ import { AuthenticatorService } from '../services/authenticator.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidator } from '../validators/custom-validators';
 import { UserService } from '../services/user.service';
+import { HostListener } from '@angular/core';
 import 'rxjs/add/observable/throw';
 
 @Component({
@@ -12,6 +13,16 @@ import 'rxjs/add/observable/throw';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
+
+  @HostListener('window:keydown', ['$event'])
+    keyboardInput(event: KeyboardEvent) {
+      console.log(`${event.keyCode}`)
+      if(event.keyCode === 77 && event.ctrlKey && !this.open){
+        this.changeClass();
+      }else if(event.keyCode === 27 && this.open === true){
+        this.changeClass();
+      }
+  }
 
   private formGroup: FormGroup;
 
