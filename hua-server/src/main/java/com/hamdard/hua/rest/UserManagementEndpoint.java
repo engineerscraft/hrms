@@ -14,8 +14,10 @@ import org.springframework.stereotype.Component;
 
 import com.hamdard.hua.model.PasswordChangeDetails;
 import com.hamdard.hua.model.User;
+import com.hamdard.hua.privileges.Privilege;
 import com.hamdard.hua.repository.AuthenticationRepository;
 import com.hamdard.hua.repository.UserManagementRepository;
+import com.hamdard.hua.security.Secured;
 
 /**
  * @author Jyotirmoy Banerjee
@@ -34,6 +36,7 @@ public class UserManagementEndpoint {
     private SecurityContext securityContext;
 
     @POST
+    @Secured(Privilege.CHANGE_PASSWORD_OF_A_USER)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Path("/changePassword")
     public void changePassword(PasswordChangeDetails pwdDetails) {
@@ -46,6 +49,7 @@ public class UserManagementEndpoint {
     }
 
     @POST
+    @Secured(Privilege.CREATE_A_USER)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Path("/createUser")
     public String createUser(User newUser) {

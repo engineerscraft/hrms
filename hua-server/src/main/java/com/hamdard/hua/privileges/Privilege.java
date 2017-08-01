@@ -39,5 +39,7 @@ public enum Privilege {
     READ_A_DOC_OF_AN_EMP,
     READ_ALL_DOC_OF_AN_EMP,
     UPDATE_A_DOC_OF_AN_EMP,
+    CHANGE_PASSWORD_OF_A_USER,
+    CREATE_A_USER,
     DEFAULT
 }
