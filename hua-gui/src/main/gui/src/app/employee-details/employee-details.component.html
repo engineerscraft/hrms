@@ -34,9 +34,7 @@
     </div>
   </div>
 </div>
-<!--img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
-<input type="file" style="display:none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
-<img class="profile-pic" (click)="profileImageFile.click()"-->
+
 <div class="body" [ngClass]="{'disable-scroll' : modalDisplay === true }">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:278px;">
@@ -263,7 +261,7 @@
                   <label class="text-label">Pre Employment Medical Checkup Date</label>
                 </div>
                 <div class="cell">
-                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.PreMedicalCheckUpDate}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeAddlDetails.preMedicalCheckUpDate}}</label>
                 </div>
                 <div class="cell">
                   <label class="text-label">Medical Report Comment</label>
