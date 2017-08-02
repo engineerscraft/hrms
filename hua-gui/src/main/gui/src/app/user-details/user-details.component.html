@@ -17,18 +17,20 @@
   <label for="file-upload" class="custom-file-upload">EDIT</label>
   <input id="file-upload" type="file" style="display: none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
   <img class="profile-pic" (click)="profileImageFile.click()">
-  <div class="modal-backdrop" *ngIf="getShowUpdateMessage()">
+
+  <div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowUpdateMessage()">
     <div class="modal-small">
       <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
       <div class="modal-header">
         <h1>Message</h1>
       </div>
       <div class="modal-body">
+        <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
         <div class="group center">
           <h3>Profile Image successfully updated !!!</h3>
           <div style="height:30px;">
           </div>
-          <button type="button" class="btn ripple" (click)="onClickUpdateMessageOk()">Ok</button>
+          <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
         </div>
       </div>
     </div>
@@ -185,7 +187,7 @@
           </section>
           <section id="content2" class="tab-content">
             <div class="table span_4_of_4">
-              <div></div>
+              <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAdditionalInfo()"></a>
               <div class="row">
                 <div class="cell">
                   <label class="text-label">Number of Dependents</label>
@@ -684,6 +686,122 @@
                           <option value="CONTRACT">Contract</option>
                         </select>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAdditionalInfo()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Additional Details</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupAdditionalInfoForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupAdditionalInfo" #formGroupAdditionalInfoForm="ngForm" (ngSubmit)="onAdditionalInfoUpdate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <!--h2 class="group-header">Name</h2-->
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="dependentNo">
+                    <label class="text-input-label">Number of Dependents</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="siblingNo">
+                    <label class="text-input-label">Number of Siblings</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="emergencyContactName" maxlength="30">
+                  <label class="text-input-label">Emergency Contact Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="emergencyContactNo" maxlength="15">
+                  <label class="text-input-label">Emergency Contact Number</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="preMedicalCheckUpDate">
+                  <label class="text-input-label">Pre Employment Medical Checkup Date</label>
+                  <date-picker></date-picker>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="medicalReportComment"  maxlength="32">
+                  <label class="text-input-label">Medical Report Comment</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Nominee Details</h2>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeName1">
+                  <label class="text-input-label">Nominee 1 Name</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeShare1">
+                  <label class="text-input-label">Nominee 1 share (%)</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeName2">
+                  <label class="text-input-label">Nominee 2 Name</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeShare2">
+                  <label class="text-input-label">Nominee 2 share (%)</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeName3">
+                  <label class="text-input-label">Nominee 3 Name</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeShare3">
+                  <label class="text-input-label">Nominee 3 share (%)</label>
                 </div>
               </div>
             </div>

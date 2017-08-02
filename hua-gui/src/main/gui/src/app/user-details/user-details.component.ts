@@ -20,7 +20,9 @@ export class UserDetailsComponent implements OnInit {
   private employeeInfo;
   private processingInProgress = false;
   private showEditBasicInfo = false;
+  private showEditAdditionalInfo = false;
   private formGroupBasicInfo: FormGroup;
+  private formGroupAdditionalInfo: FormGroup;
   private formGroupDocument: FormGroup;
   private identityDocTypes;
   private docTypes;
@@ -109,6 +111,21 @@ export class UserDetailsComponent implements OnInit {
       'document': [""],
       'documentName': [""]
     });
+
+    this.formGroupAdditionalInfo = this.formBuilder.group({
+      'dependentNo': [this.employeeInfo.employeeAddlDetails.dependentNo],
+      'siblingNo': [this.employeeInfo.employeeAddlDetails.siblingNo],
+      'emergencyContactName': [this.employeeInfo.employeeAddlDetails.emergencyContactName],
+      'emergencyContactNo': [this.employeeInfo.employeeAddlDetails.emergencyContactNo],
+      'medicalReportComment': [this.employeeInfo.employeeAddlDetails.medicalReportComment],
+      'preMedicalCheckUpDate': [this.employeeInfo.employeeAddlDetails.preMedicalCheckUpDate],
+      'nomineeName1': [this.employeeInfo.employeeAddlDetails.nomineeName1],
+      'nomineeShare1': [this.employeeInfo.employeeAddlDetails.nomineeShare1],
+      'nomineeName2': [this.employeeInfo.employeeAddlDetails.nomineeName2],
+      'nomineeShare2': [this.employeeInfo.employeeAddlDetails.nomineeShare2],
+      'nomineeName3': [this.employeeInfo.employeeAddlDetails.nomineeName3],
+      'nomineeShare3': [this.employeeInfo.employeeAddlDetails.nomineeShare3]
+    });
   }
 
   profileImageUpload(event) {
@@ -194,6 +211,38 @@ export class UserDetailsComponent implements OnInit {
         this.employeeInfo.employeeBasicInfo = Object.assign(this.employeeInfo.employeeBasicInfo, this.formGroupBasicInfo.value);
       });
   }
+
+  editAdditionalInfo() {
+      this.showEditAdditionalInfo = true;
+      this.modalDisplay = true;
+  }
+
+  getShowEditAdditionalInfo() {
+    return this.showEditAdditionalInfo;
+  }
+
+  onAdditionalInfoUpdate() {
+    this.processingInProgress = true;
+    this.employeeService.updateAdditionalnfo(this.id, this.formGroupAdditionalInfo.value)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.showEditAdditionalInfo = false;
+      }
+      )
+      .subscribe(data => {
+      },
+      (err: any) => {
+        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
+          this.router.navigate(['forbidden']);
+        }
+        if (err.status === 404) {
+          this.router.navigate(['404']);
+        }
+      },
+      () => {
+        this.employeeInfo.employeeAddlDetails = Object.assign(this.employeeInfo.employeeAddlDetails, this.formGroupAdditionalInfo.value);
+      });
+  }
   
   getSelectedDocId() {
     return this.selectedDocId;
@@ -230,6 +279,7 @@ export class UserDetailsComponent implements OnInit {
   closeAllDialog(event) {
     if (event === null || event.undefined || event.currentTarget === event.target) {
       this.showEditBasicInfo = false;
+      this.showEditAdditionalInfo = false;
       this.modalDisplay = false;
       this.showDocumentEdit = false;
       this.documentEditFunctionInvoked = false;
