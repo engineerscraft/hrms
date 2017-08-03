@@ -17,21 +17,21 @@
   <label for="file-upload" class="custom-file-upload">EDIT</label>
   <input id="file-upload" type="file" style="display: none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
   <img class="profile-pic" (click)="profileImageFile.click()">
+</div>
 
-  <div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowUpdateMessage()">
-    <div class="modal-small">
-      <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
-      <div class="modal-header">
-        <h1>Message</h1>
-      </div>
-      <div class="modal-body">
-        <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
-        <div class="group center">
-          <h3>Profile Image successfully updated !!!</h3>
-          <div style="height:30px;">
-          </div>
-          <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowUpdateMessage()">
+  <div class="modal-small">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Message</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <div class="group center">
+        <h3>Your update request is successful !!!</h3>
+        <div style="height:30px;">
         </div>
+        <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
       </div>
     </div>
   </div>
@@ -276,7 +276,7 @@
           </section>
 
           <section id="content3" class="tab-content">
-
+            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAddressDetails()"></a>
             <div class="toggle">
               <input type="checkbox" value="selected" id="permanentAddress" class="toggle-input" checked>
               <label for="permanentAddress" class="toggle-label">Permanent Address</label>
@@ -805,6 +805,92 @@
                 </div>
               </div>
             </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAddressDetails()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Address Details</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupAddressDetailsForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupAddressDetails" #formGroupAddressDetailsForm="ngForm" (ngSubmit)="onAddressDetailsUpdate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Permanent Address</h2>
+            <div class="cell span_4_of_4" formGroupName="employeeAddress">
+            <div class="row">
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="houseNo">
+                    <label class="text-input-label">House Number</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="streetName">
+                    <label class="text-input-label">Street</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="area">
+                  <label class="text-input-label">Area</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="pinno">
+                  <label class="text-input-label">PIN / Zip Code</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="region">
+                  <label class="text-input-label">Region</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="districtName">
+                  <label class="text-input-label">District</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="stateName">
+                  <label class="text-input-label">State</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="countryName">
+                  <label class="text-input-label">Country</label>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Present Address</h2>
+            
           </div>
         </fieldset>
       </form>

@@ -21,8 +21,10 @@ export class UserDetailsComponent implements OnInit {
   private processingInProgress = false;
   private showEditBasicInfo = false;
   private showEditAdditionalInfo = false;
+  private showEditAddressDetails = false;
   private formGroupBasicInfo: FormGroup;
   private formGroupAdditionalInfo: FormGroup;
+  private formGroupAddressDetails: FormGroup;
   private formGroupDocument: FormGroup;
   private identityDocTypes;
   private docTypes;
@@ -126,6 +128,19 @@ export class UserDetailsComponent implements OnInit {
       'nomineeName3': [this.employeeInfo.employeeAddlDetails.nomineeName3],
       'nomineeShare3': [this.employeeInfo.employeeAddlDetails.nomineeShare3]
     });
+
+    this.formGroupAddressDetails = this.formBuilder.group({
+      'employeeAddress': this.formBuilder.group({
+        'houseNo': [this.employeeInfo.employeeAddress[0].houseNo],
+        'streetName': [this.employeeInfo.employeeAddress[0].streetName],
+        'area': [this.employeeInfo.employeeAddress[0].area],
+        'pinno': [this.employeeInfo.employeeAddress[0].pinno],
+        'region': [this.employeeInfo.employeeAddress[0].region],
+        'districtName': [this.employeeInfo.employeeAddress[0].districtName],
+        'stateName': [this.employeeInfo.employeeAddress[0].stateName],
+        'countryName': [this.employeeInfo.employeeAddress[0].countryName]
+      })
+    })
   }
 
   profileImageUpload(event) {
@@ -209,6 +224,7 @@ export class UserDetailsComponent implements OnInit {
       },
       () => {
         this.employeeInfo.employeeBasicInfo = Object.assign(this.employeeInfo.employeeBasicInfo, this.formGroupBasicInfo.value);
+        this.showUpdateMessage = true;
       });
   }
 
@@ -223,10 +239,13 @@ export class UserDetailsComponent implements OnInit {
 
   onAdditionalInfoUpdate() {
     this.processingInProgress = true;
-    this.employeeService.updateAdditionalnfo(this.id, this.formGroupAdditionalInfo.value)
+    this.employeeService.updateAdditionalInfo(this.id, this.formGroupAdditionalInfo.value)
       .finally(() => {
         this.processingInProgress = false;
         this.showEditAdditionalInfo = false;
+        this.modalDisplay = false;
+        this.employeeInfo.employeeAddlDetails = Object.assign(this.employeeInfo.employeeAddlDetails, this.formGroupAdditionalInfo.value);
+        this.showUpdateMessage = true;
       }
       )
       .subscribe(data => {
@@ -243,7 +262,16 @@ export class UserDetailsComponent implements OnInit {
         this.employeeInfo.employeeAddlDetails = Object.assign(this.employeeInfo.employeeAddlDetails, this.formGroupAdditionalInfo.value);
       });
   }
-  
+
+  editAddressDetails() {
+      this.showEditAddressDetails = true;
+      this.modalDisplay = true;
+  }
+
+  getShowEditAddressDetails() {
+    return this.showEditAddressDetails;
+  }
+
   getSelectedDocId() {
     return this.selectedDocId;
   }
@@ -280,9 +308,11 @@ export class UserDetailsComponent implements OnInit {
     if (event === null || event.undefined || event.currentTarget === event.target) {
       this.showEditBasicInfo = false;
       this.showEditAdditionalInfo = false;
+      this.showEditAddressDetails = false;
       this.modalDisplay = false;
       this.showDocumentEdit = false;
       this.documentEditFunctionInvoked = false;
+      this.showUpdateMessage = false;
     }
   }
 

@@ -78,7 +78,7 @@ export class EmployeeService {
       .map(res => res.json());
   }
   
-  updateAdditionalnfo(employeeId: String, reqBody: any) {
+  updateAdditionalInfo(employeeId: String, reqBody: any) {
     return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/additionaldetails", reqBody)
       .map(res => res.json());
   }
