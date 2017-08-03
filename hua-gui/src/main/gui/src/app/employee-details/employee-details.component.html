@@ -13,7 +13,7 @@
   <p *ngIf="!!employeeInfo" class="name-sub-header">Email: {{employeeInfo.employeeBasicInfo.emailId}}</p>
 </div>
 <div class="profile-pic-container">
-  <img class="profile-pic" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
+  <img class="profile-pic" *ngIf="!!employeeInfo" [src]="employeeInfo?.employeeBasicInfo.profileImage" />
   <label for="file-upload" class="custom-file-upload">EDIT</label>
   <input id="file-upload" type="file" style="display: none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
   <img class="profile-pic" (click)="profileImageFile.click()">
