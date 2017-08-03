@@ -179,7 +179,7 @@ public class EmployeeResource {
 
     @PUT
     @Path("/{id}/additionaldetails")
-    @Secured(Privilege.UPDATE_EMP_ADDL_DETLS_OF_AN_EMP)
+    @Secured(Privilege.MODIFY_ADDL_DTLS_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddlDetails employeeAddlDetails) {
@@ -202,7 +202,7 @@ public class EmployeeResource {
      */
     @PUT
     @Path("/{id}/address")
-    @Secured(Privilege.UPDATE_EMP_ADDRESS_OF_AN_EMP)
+    @Secured(Privilege.MODIFY_ADDR_DTLS_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddress employeeAddress) {
@@ -237,7 +237,7 @@ public class EmployeeResource {
     
     @PUT
     @Path("/{id}/basicinfo")
-    @Secured(Privilege.UPDATE_EMP_BASIC_INFO_OF_AN_EMP)
+    @Secured(Privilege.MODIFY_BASIC_DTLS_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updatedEmployeeBasicInfo(@PathParam("id") String employeeId, EmployeeBasicInfo employeeBasicInfo) {
