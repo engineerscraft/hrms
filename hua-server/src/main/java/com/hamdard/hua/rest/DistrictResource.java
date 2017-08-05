@@ -39,7 +39,7 @@ public class DistrictResource {
     @GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Secured(Privilege.DISTRICT_ALL_READ_CMD)
+    @Secured(Privilege.READ_DSTRS_OF_A_STATE)
     public Response getDistrict(@QueryParam("stateId") @Min(1) int stateId) {
         List<District> districts;
         try {

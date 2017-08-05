@@ -34,7 +34,6 @@ public class Employee {
         private int docTypeId;
         private String docTypeName;
         
-        
         public int getDocTypeId() {
             return docTypeId;
         }
@@ -77,10 +76,11 @@ public class Employee {
         public void setDocument(String document) {
             this.document = document;
         }
+        
         @Override
         public String toString() {
-            return "EmployeeDocument [docId=" + docId + ", remarks=" + remarks + ", uploadDate=" + uploadDate + ", uploadedBy=" + uploadedBy + "]";
-        }
+            return "EmployeeDocument [docId=" + docId + ", remarks=" + remarks + ", uploadDate=" + uploadDate + ", uploadedBy=" + uploadedBy + ", document=" + document + ", docTypeId=" + docTypeId + ", docTypeName=" + docTypeName + "]";
+        }        
     }
     
     public static class AppraisalRating {

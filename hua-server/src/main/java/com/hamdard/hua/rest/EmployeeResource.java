@@ -300,7 +300,7 @@ public class EmployeeResource {
             employeeRepository.createDocument(employeeId, empDoc);
             return Response.status(Response.Status.OK).entity(new Message("Document successfully saved")).build();
         } catch (Exception ex) {
-            logger.error("The employee details could not be fetched", ex);
+            logger.error("The employee document could not be saved", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }

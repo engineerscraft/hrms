@@ -336,6 +336,12 @@
                     <div class="cell span_1_of_6">
                       <label class="text-value">{{employeeInfo?.employeeAddress[0].countryName}}</label>
                     </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -360,7 +366,7 @@
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].streetName}}</label>
                     </div>
                     <div class="cell">
-                      <label class="text-label">Is Supervisor?</label>
+                      <label class="text-label">Area</label>
                     </div>
                     <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].area}}</label>
@@ -399,6 +405,12 @@
                     <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].countryName}}</label>
                     </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -427,6 +439,7 @@
 
           </section>
           <section id="content6" class="tab-content">
+            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editOthersDetails()"></a>
             <div class="table span_4_of_4">
               <div></div>
               <div class="row">
@@ -441,6 +454,12 @@
                 </div>
                 <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.supervisorEmailId}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
                 </div>
               </div>
               <div class="row even-row">
@@ -465,7 +484,7 @@
               </div>
               <div class="row">
                 <div class="cell">
-                  <label class="text-label">Maternity Leave</label>
+                  <label class="text-label">Number of Maternity Leave</label>
                 </div>
                 <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.maternityLeave}}</label>
@@ -475,6 +494,12 @@
                 </div>
                 <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.status}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
                 </div>
               </div>
               <div class="row even-row">
@@ -524,10 +549,11 @@
                   <label class="text-input-label">Title*</label>
                   <div class="select select-fancy select-fancy-image">
                     <select formControlName="title">
-                          <option value="Mr.">Mr</option>
-                          <option value="Miss.">Miss</option>
-                          <option value="Mrs.">Mrs</option>
-                        </select>
+                      <option value="Mr.">Dr</option>    
+                      <option value="Mr.">Mr</option>
+                      <option value="Miss.">Miss</option>
+                      <option value="Mrs.">Mrs</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -825,7 +851,7 @@
         <fieldset [disabled]="isProcessingInProgress()">
           <div class="display-table width-with-right-margin">
             <h2 class="group-header">Permanent Address</h2>
-            <div class="cell span_4_of_4" formGroupName="employeeAddress">
+            <div class="cell span_4_of_4" formGroupName="permanent">
             <div class="row">
               <div class="cell span_1_of_4">
                 <div class="group">
@@ -866,23 +892,38 @@
                 </div>
               </div>
               <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial" formControlName="districtName">
-                  <label class="text-input-label">District</label>
+                <div class="group combo-group">
+                  <label class="text-input-label">Country</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" (change)="onCountryChange(formGroupAddressDetails.controls.permanent.controls['countryId'].value, 'permanent')" formControlName="countryId">
+                      <option value=""></option>
+                      <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial" formControlName="stateName">
+                <div class="group combo-group">
                   <label class="text-input-label">State</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(formGroupAddressDetails.controls.permanent.controls['stateId'].value, 'permanent')">
+                      <option value=""></option>
+                      <option *ngFor="let state of statesPermanent" value="{{state.stateId}}">{{state.stateName}}</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial" formControlName="countryName">
-                  <label class="text-input-label">Country</label>
+                <div class="group combo-group">
+                  <label class="text-input-label">District</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="districtId">
+                      <option value=""></option>
+                      <option *ngFor="let distr of districtsPermanent" value="{{distr.districtId}}">{{distr.districtName}}</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
@@ -890,7 +931,83 @@
           </div>
           <div class="display-table width-with-right-margin">
             <h2 class="group-header">Present Address</h2>
-            
+            <div class="cell span_4_of_4" formGroupName="present">
+            <div class="row">
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="houseNo">
+                    <label class="text-input-label">House Number</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="streetName">
+                    <label class="text-input-label">Street</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="area">
+                  <label class="text-input-label">Area</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="pinno">
+                  <label class="text-input-label">PIN / Zip Code</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="region">
+                  <label class="text-input-label">Region</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Country</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" (change)="onCountryChange(formGroupAddressDetails.controls.present.controls['countryId'].value, 'present')" formControlName="countryId">
+                      <option value=""></option>
+                      <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">State</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(formGroupAddressDetails.controls.present.controls['stateId'].value, 'present')">
+                      <option value=""></option>
+                      <option *ngFor="let state of statesPresent" value="{{state.stateId}}">{{state.stateName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">District</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="districtId">
+                      <option value=""></option>
+                      <option *ngFor="let distr of districtsPresent" value="{{distr.districtId}}">{{distr.districtName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
           </div>
         </fieldset>
       </form>
@@ -939,6 +1056,141 @@
                   <input type="file" style="display:none" accept=".pdf" (change)="documentUpload($event)" #documentFile>
                   <input class="inputMaterial" formControlName="documentName" required (click)="documentFile.click()" readonly>
                   <label class="text-input-label">Document</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowDocumentAdd()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Add Employee Documents</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupDocumentForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupDocument" #formGroupDocumentForm="ngForm" (ngSubmit)="onDocumentAdd()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Document Type</label>
+                  <div class="select select-fancy select-fancy-image">
+                    <select formControlName="docTypeId">
+                      <option value=""></option>
+                      <option *ngFor="let docType of docTypes" value="{{docType.docTypeId}}">{{docType.docTypeName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="remarks" required>
+                  <label class="text-input-label">Remarks</label>
+                </div>
+              </div>
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input type="file" style="display:none" accept=".pdf" (change)="documentUpload($event)" #documentFile>
+                  <input class="inputMaterial" formControlName="documentName" required (click)="documentFile.click()" readonly>
+                  <label class="text-input-label">Document</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditOthersDetails()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Others Details</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupOthersDetailsForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupOthersDetails" #formGroupOthersDetailsForm="ngForm" (ngSubmit)="onOthersDetailsUpdate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <!--h2 class="group-header">Name</h2-->
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="hrEmailId">
+                    <label class="text-input-label">HR Email</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="supervisorEmailId">
+                    <label class="text-input-label">Supervisor Email</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="cl">
+                  <label class="text-input-label">Number of Casual Leaves</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="sickLeave">
+                  <label class="text-input-label">Number of Sick Leaves</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="paternityLeave">
+                  <label class="text-input-label">Number of Paternity Leaves</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="maternityLeave">
+                  <label class="text-input-label">Number of Maternity Leave</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="probationPeriodEndDate">
+                  <label class="text-input-label">Probation Period End Date</label>
+                  <date-picker></date-picker>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="noticePeriodEndDate">
+                  <label class="text-input-label">Notice Period End Date</label>
+                  <date-picker></date-picker>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="status">
+                  <label class="text-input-label">Employment Status</label>
                 </div>
               </div>
             </div>

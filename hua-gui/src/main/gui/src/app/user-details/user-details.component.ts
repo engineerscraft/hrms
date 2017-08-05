@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import 'rxjs/add/operator/finally';
@@ -7,6 +7,8 @@ import { DocTypeService } from '../services/doc-type.service';
 import { Observable } from 'rxjs/Observable';
 import { CountryService } from '../services/country.service';
 import { saveAs } from 'file-saver';
+import { StateService } from '../services/state.service';
+import { DistrictService } from '../services/district.service';
 
 
 @Component({
@@ -22,18 +24,25 @@ export class UserDetailsComponent implements OnInit {
   private showEditBasicInfo = false;
   private showEditAdditionalInfo = false;
   private showEditAddressDetails = false;
+  private showEditOthersDetails = false;
   private formGroupBasicInfo: FormGroup;
   private formGroupAdditionalInfo: FormGroup;
   private formGroupAddressDetails: FormGroup;
   private formGroupDocument: FormGroup;
+  private formGroupOthersDetails: FormGroup;
   private identityDocTypes;
   private docTypes;
   private countries;
+  private statesPermanent;
+  private statesPresent;
+  private districtsPermanent;
+  private districtsPresent;
   private selectedDocId = 0;
   private selectedDocument = "about:blank";
   private selectedDocDetails;
   private modalDisplay = false;
   private showDocumentEdit = false;
+  private showDocumentAdd = false;
   private documentEditFunctionInvoked = false;
   private googleDocument;
   private showUpdateMessage = false;
@@ -43,7 +52,10 @@ export class UserDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private docTypeService: DocTypeService,
-    private countryService: CountryService) {
+    private countryService: CountryService,
+    private stateService: StateService,
+    private districtService: DistrictService,
+    private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -74,6 +86,10 @@ export class UserDetailsComponent implements OnInit {
     else {
       this.formGroupInitializer();
     }
+  }
+
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
   }
 
   formGroupInitializer() {
@@ -130,17 +146,45 @@ export class UserDetailsComponent implements OnInit {
     });
 
     this.formGroupAddressDetails = this.formBuilder.group({
-      'employeeAddress': this.formBuilder.group({
-        'houseNo': [this.employeeInfo.employeeAddress[0].houseNo],
-        'streetName': [this.employeeInfo.employeeAddress[0].streetName],
-        'area': [this.employeeInfo.employeeAddress[0].area],
-        'pinno': [this.employeeInfo.employeeAddress[0].pinno],
-        'region': [this.employeeInfo.employeeAddress[0].region],
-        'districtName': [this.employeeInfo.employeeAddress[0].districtName],
-        'stateName': [this.employeeInfo.employeeAddress[0].stateName],
-        'countryName': [this.employeeInfo.employeeAddress[0].countryName]
-      })
-    })
+      'permanent': this.initAddressGroup('P', 0),
+      'present': this.initAddressGroup('T', 1)
+    });
+
+    this.formGroupOthersDetails = this.formBuilder.group({
+      'hrId': [this.employeeInfo.employeeHierarchy.hrId],
+      'hrEmailId': [this.employeeInfo.employeeHierarchy.hrEmailId],
+      'supervisorId': [this.employeeInfo.employeeHierarchy.supervisorId],
+      'supervisorEmailId': [this.employeeInfo.employeeHierarchy.supervisorEmailId],
+      'cl': [this.employeeInfo.employeeHierarchy.cl],
+      'maternityLeave': [this.employeeInfo.employeeHierarchy.maternityLeave],
+      'paternityLeave': [this.employeeInfo.employeeHierarchy.paternityLeave],
+      'pl': [this.employeeInfo.employeeHierarchy.pl],
+      'specialLeave': [this.employeeInfo.employeeHierarchy.specialLeave],
+      'sickLeave': [this.employeeInfo.employeeHierarchy.sickLeave],
+      'probationPeriodEndDate': [this.employeeInfo.employeeHierarchy.probationPeriodEndDate],
+      'noticePeriodEndDate': [this.employeeInfo.employeeHierarchy.noticePeriodEndDate],
+      'status': [this.employeeInfo.employeeHierarchy.status]
+    });
+  }
+
+  /**
+   * Create form builder group for address
+   */
+  initAddressGroup(type: string, count: number) {
+    return this.formBuilder.group({
+      'houseNo': [this.employeeInfo.employeeAddress[count].houseNo],
+      'streetName': [this.employeeInfo.employeeAddress[count].streetName],
+      'area': [this.employeeInfo.employeeAddress[count].area],
+      'pinno': [this.employeeInfo.employeeAddress[count].pinno],
+      'region': [this.employeeInfo.employeeAddress[count].region],
+      'districtId': [this.employeeInfo.employeeAddress[count].districtId],
+      'districtName': [this.employeeInfo.employeeAddress[count].districtName],
+      'stateId': [this.employeeInfo.employeeAddress[count].stateId],
+      'stateName': [this.employeeInfo.employeeAddress[count].stateName],
+      'countryId': [this.employeeInfo.employeeAddress[count].countryId],
+      'countryName': [this.employeeInfo.employeeAddress[count].countryName],
+      'addressType': type
+    });
   }
 
   profileImageUpload(event) {
@@ -264,12 +308,126 @@ export class UserDetailsComponent implements OnInit {
   }
 
   editAddressDetails() {
+    if (this.countries === undefined) {
+      let countryServiceObservable = this.countryService.getCountries();
+      let statePermanentObservable = this.stateService.getStates(this.employeeInfo.employeeAddress[0].countryId);
+      let statePresentObservable = this.stateService.getStates(this.employeeInfo.employeeAddress[1].countryId);
+      let districtPermanentObservable = this.districtService.getDistricts(this.employeeInfo.employeeAddress[0].stateId);
+      let districtPresentObservable = this.districtService.getDistricts(this.employeeInfo.employeeAddress[1].stateId);
+      Observable.forkJoin([countryServiceObservable, statePermanentObservable, statePresentObservable, districtPermanentObservable, districtPresentObservable])
+        .finally(() => { this.processingInProgress = false; })
+        .subscribe(data => {
+          this.countries = data[0];
+          this.statesPermanent = data[1];
+          this.statesPresent = data[2];
+          this.districtsPermanent = data[3];
+          this.districtsPresent = data[4];
+        },
+        (err: any) => {
+          if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
+            this.router.navigate(['forbidden']);
+          }
+          if (err.status === 404) {
+            this.router.navigate(['404']);
+          }
+        },
+        () => {
+          this.showEditAddressDetails = true;
+          this.modalDisplay = true;
+        });
+    } else {
       this.showEditAddressDetails = true;
       this.modalDisplay = true;
+    }
   }
 
   getShowEditAddressDetails() {
     return this.showEditAddressDetails;
+  }
+
+  /**
+   * Country change handler
+   * @param countryId 
+   * @param addressType 
+   */
+  onCountryChange(countryId, addressType: string) {
+    this.processingInProgress = true;
+    this.stateService.getStates(countryId)
+      .subscribe(
+      data => {
+        if (addressType === 'permanent') {
+          this.statesPermanent = data;
+          this.districtsPermanent = [];
+        } else if (addressType === 'present') {
+          this.statesPresent = data;
+          this.districtsPresent = [];
+        }
+        this.processingInProgress = false;
+      }, (error: any) => {
+        this.processingInProgress = false;
+      }, () => {
+        this.processingInProgress = false;
+      }
+      );
+  }
+
+  /**
+   * State change handler (works for both present and permanent address)
+   * @param stateId 
+   * @param addressType 
+   */
+  onStateChange(stateId, addressType: string) {
+    this.processingInProgress = true;
+    this.districtService.getDistricts(stateId)
+      .subscribe(
+      data => {
+        if (addressType === 'permanent') {
+          this.districtsPermanent = data;
+        } else if (addressType === 'present') {
+          this.districtsPresent = data;
+        }
+        this.processingInProgress = false;
+      }, (error: any) => {
+        this.processingInProgress = false;
+      }, () => {
+        this.processingInProgress = false;
+      }
+      );
+  }
+
+  editOthersDetails() {
+      this.showEditOthersDetails = true;
+      this.modalDisplay = true;
+  }
+
+  getShowEditOthersDetails() {
+    return this.showEditOthersDetails;
+  }
+
+  onOthersDetailsUpdate() {
+    this.processingInProgress = true;
+    this.employeeService.updateOthersDetails(this.id, this.formGroupOthersDetails.value)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.showEditOthersDetails = false;
+        this.modalDisplay = false;
+        this.employeeInfo.employeeHierarchy = Object.assign(this.employeeInfo.employeeHierarchy, this.formGroupOthersDetails.value);
+        this.showUpdateMessage = true;
+      }
+      )
+      .subscribe(data => {
+      },
+      (err: any) => {
+        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
+          this.router.navigate(['forbidden']);
+        }
+        if (err.status === 404) {
+          this.router.navigate(['404']);
+        }
+      },
+      () => {
+        this.employeeInfo.employeeHierarchy = Object.assign(this.employeeInfo.employeeHierarchy, this.formGroupOthersDetails.value);
+      });
   }
 
   getSelectedDocId() {
@@ -309,8 +467,10 @@ export class UserDetailsComponent implements OnInit {
       this.showEditBasicInfo = false;
       this.showEditAdditionalInfo = false;
       this.showEditAddressDetails = false;
+      this.showEditOthersDetails = false;
       this.modalDisplay = false;
       this.showDocumentEdit = false;
+      this.showDocumentAdd = false;
       this.documentEditFunctionInvoked = false;
       this.showUpdateMessage = false;
     }
@@ -363,12 +523,51 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
-  addDocument() {
+  initializeDocumentAddForm() {
+    this.formGroupDocument.setValue({
+      'docId': '',
+      'docTypeId': '',
+      'remarks': '',
+      'document': '',
+      'documentName': ''
+    });
+  }
 
+  addDocument() {
+    if (this.docTypes === undefined) {
+      let docTypeServiceObservable = this.docTypeService.getDocTypes()
+        .finally(() => {
+          this.processingInProgress = false;
+        })
+        .subscribe(data => {
+          this.docTypes = data;
+        },
+        (err: any) => {
+          if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
+            this.router.navigate(['forbidden']);
+          }
+          if (err.status === 404) {
+            this.router.navigate(['404']);
+          }
+        },
+        () => {
+          this.initializeDocumentAddForm();
+          this.showDocumentAdd = true;
+          this.modalDisplay = true;
+        });
+    } else {
+      this.initializeDocumentAddForm();
+      this.showDocumentAdd = true;
+      this.modalDisplay = true;
+    }
   }
 
   getShowDocumentEdit() {
     return this.showDocumentEdit;
+  }
+
+  getShowDocumentAdd() {
+    return this.showDocumentAdd;
   }
 
   onDocumentUpdate() {
@@ -386,10 +585,48 @@ export class UserDetailsComponent implements OnInit {
       err => {
       },
       () => {
+        this.showUpdateMessage = true;
+      });
+  }
+
+  onDocumentAdd() {
+    this.processingInProgress = true;
+    console.log(this.formGroupDocument.value);
+    var me = this;
+    this.employeeService.documentAdd(this.formGroupDocument.value, this.id)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.closeAllDialog(null);
+        this.showUpdateMessage = true;
+      })
+      .subscribe(
+      res => {},
+      err => {
+      },
+      () => {
+        this.showUpdateMessage = true;
+        //window.location.reload();
+        this.employeeService.readDetails(this.id)
+          .finally(() => { this.processingInProgress = false; })
+          .subscribe(data => {
+            this.employeeInfo = data;
+          },
+          (err: any) => {
+            if (err.status === 401 && err.json()['message'] !== 'Refresh token expired') {
+              this.router.navigate(['forbidden']);
+            }
+            if (err.status === 404) {
+              this.router.navigate(['404']);
+            }
+          },
+          () => {
+            this.formGroupInitializer();
+          });
       });
   }
 
   documentUpload(event) {
+    this.processingInProgress = true;
     console.log(event);
     this.formGroupDocument.controls['documentName'].setValue(event.srcElement.files[0].name);
     var reader = new FileReader();
@@ -397,6 +634,8 @@ export class UserDetailsComponent implements OnInit {
     var me = this;
     reader.onload = function () {
       me.formGroupDocument.controls['document'].setValue(reader.result);
+      console.log(reader.result);
+      me.processingInProgress = false;
     }
   }
 

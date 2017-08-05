@@ -95,4 +95,14 @@ export class EmployeeService {
     return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/document/" + doc.docId, doc)
       .map(res => res.json());
   }
+
+  documentAdd(doc, employeeId) {
+    return this.httpService.callHttpPost("/resources/v1/employee/management/" + employeeId + "/document", doc)
+      .map(res => res.json());
+  }
+
+  updateOthersDetails(employeeId: String, reqBody: any) {
+    return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/hierarchystatus", reqBody)
+      .map(res => res.json());
+  }
 }
