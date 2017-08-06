@@ -28,6 +28,7 @@ export class UserDetailsComponent implements OnInit {
   private formGroupBasicInfo: FormGroup;
   private formGroupAdditionalInfo: FormGroup;
   private formGroupAddressDetails: FormGroup;
+  private formArrayAddressDetails;
   private formGroupDocument: FormGroup;
   private formGroupOthersDetails: FormGroup;
   private identityDocTypes;
@@ -343,6 +344,36 @@ export class UserDetailsComponent implements OnInit {
 
   getShowEditAddressDetails() {
     return this.showEditAddressDetails;
+  }
+
+  onAddressDetailsUpdate() {
+    this.processingInProgress = true;
+    this.formArrayAddressDetails = this.formBuilder.array([
+      this.formGroupAddressDetails.controls.permanent.value,
+      this.formGroupAddressDetails.controls.present.value
+    ]);
+    this.employeeService.updateAddressDetails(this.id, this.formArrayAddressDetails.value)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.showEditAddressDetails = false;
+        this.modalDisplay = false;
+        this.employeeInfo.employeeAddress = Object.assign(this.employeeInfo.employeeAddress, this.formArrayAddressDetails.value);
+        this.showUpdateMessage = true;
+      }
+      )
+      .subscribe(data => {
+      },
+      (err: any) => {
+        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
+          this.router.navigate(['forbidden']);
+        }
+        if (err.status === 404) {
+          this.router.navigate(['404']);
+        }
+      },
+      () => {
+        this.employeeInfo.employeeAddress = Object.assign(this.employeeInfo.employeeAddress, this.formArrayAddressDetails.value);
+      });
   }
 
   /**

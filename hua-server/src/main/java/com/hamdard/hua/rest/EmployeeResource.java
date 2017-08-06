@@ -188,7 +188,7 @@ public class EmployeeResource {
             // String modifiedBy = "dummy name";
 
             employeeRepository.updatedEmployeeAddlDetails(employeeId, modifiedBy, employeeAddlDetails);
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(new Message("Employee additional details successfully updated")).build();
         } catch (Exception ex) {
             logger.error("The employee additional details could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
@@ -205,15 +205,15 @@ public class EmployeeResource {
     @Secured(Privilege.MODIFY_ADDR_DTLS_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, EmployeeAddress employeeAddress) {
+    public Response updatedEmployeeAddlDetails(@PathParam("id") String employeeId, List<EmployeeAddress> employeeAddress) {
         try {
             // String modifiedBy = securityContext.getUserPrincipal().getName();
         	
             employeeRepository.updatedEmployeeAddress(employeeId, employeeAddress);
             logger.info("Employee address details updated in successfully: {}", () -> employeeAddress);
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(new Message("Employee address details successfully updated")).build();
         } catch (Exception ex) {
-            logger.error("The employee additional details could not be updated", ex);
+            logger.error("The employee address details could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
@@ -228,7 +228,7 @@ public class EmployeeResource {
             String modifiedBy = securityContext.getUserPrincipal().getName();
             
             employeeRepository.updatedEmployeeHierarchyStatus(employeeId, modifiedBy, employeeHierarchy);
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(new Message("Employee hierarchy others details successfully updated")).build();
         } catch (Exception ex) {
             logger.error("The employee hierarchy status could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();

@@ -476,13 +476,15 @@ public class EmployeeRepository {
 
     }
 
-    public void updatedEmployeeAddress(String employeeId, EmployeeAddress employeeAddress) throws Exception {
-        logger.info(sqlMarker, employeeAddressUpdatebyEmpId);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeAddress.getHouseNo(), () -> employeeAddress.getStreetName(), () -> employeeAddress.getArea(), () -> employeeAddress.getRegion(), () -> employeeAddress.getPinno(),
-                () -> employeeAddress.getDistrictId(), () -> employeeAddress.getStateId(), () -> employeeAddress.getCountryId(), () -> employeeAddress.getDescription(), () -> employeeId);
-        jdbcTemplate.update(employeeAddressUpdatebyEmpId, new Object[] { employeeAddress.getHouseNo(), employeeAddress.getStreetName(), employeeAddress.getArea(), employeeAddress.getRegion(), employeeAddress.getPinno(), employeeAddress.getDistrictId(),
-                employeeAddress.getStateId(), employeeAddress.getCountryId(), employeeAddress.getDescription(), employeeId });
-
+    public void updatedEmployeeAddress(String employeeId, List<EmployeeAddress> employeeAddressComponents) throws Exception {
+        if (employeeAddressComponents != null)
+            for (EmployeeAddress employeeAddress : employeeAddressComponents) {
+                logger.info(sqlMarker, employeeAddressUpdatebyEmpId);
+                logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> employeeAddress.getHouseNo(), () -> employeeAddress.getStreetName(), () -> employeeAddress.getArea(), () -> employeeAddress.getRegion(),
+                        () -> employeeAddress.getPinno(), () -> employeeAddress.getDistrictId(), () -> employeeAddress.getStateId(), () -> employeeAddress.getCountryId(), () -> employeeAddress.getDescription(), () -> employeeId, () -> employeeAddress.getAddressType());
+                jdbcTemplate.update(employeeAddressUpdatebyEmpId, new Object[] { employeeAddress.getHouseNo(), employeeAddress.getStreetName(), employeeAddress.getArea(), employeeAddress.getRegion(), employeeAddress.getPinno(), employeeAddress.getDistrictId(),
+                        employeeAddress.getStateId(), employeeAddress.getCountryId(), employeeAddress.getDescription(), employeeId, employeeAddress.getAddressType() });
+            }
     }
 
     public List<Employee.EmployeeSearchResult> searchHierarchyEmployee(String firstName, String middleName, String lastName, String employeeId, String employmentType, String emailId, Integer orgId, Integer unitId, Integer departmentId, Integer jobRoleId,

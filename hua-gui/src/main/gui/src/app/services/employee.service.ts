@@ -77,9 +77,14 @@ export class EmployeeService {
     return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/basicinfo", reqBody)
       .map(res => res.json());
   }
-  
+
   updateAdditionalInfo(employeeId: String, reqBody: any) {
     return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/additionaldetails", reqBody)
+      .map(res => res.json());
+  }
+
+  updateAddressDetails(employeeId: String, reqBody: any) {
+    return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/address", reqBody)
       .map(res => res.json());
   }
 
