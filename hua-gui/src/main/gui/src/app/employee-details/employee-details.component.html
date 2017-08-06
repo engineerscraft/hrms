@@ -17,19 +17,21 @@
   <label for="file-upload" class="custom-file-upload">EDIT</label>
   <input id="file-upload" type="file" style="display: none" accept=".gif,.jpg,.jpeg,.png" (change)="profileImageUpload($event)" #profileImageFile>
   <img class="profile-pic" (click)="profileImageFile.click()">
-  <div class="modal-backdrop" *ngIf="getShowUpdateMessage()">
-    <div class="modal-small">
-      <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
-      <div class="modal-header">
-        <h1>Message</h1>
-      </div>
-      <div class="modal-body">
-        <div class="group center">
-          <h3>Profile Image successfully updated !!!</h3>
-          <div style="height:30px;">
-          </div>
-          <button type="button" class="btn ripple" (click)="onClickUpdateMessageOk()">Ok</button>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowUpdateMessage()">
+  <div class="modal-small">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Message</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <div class="group center">
+        <h3>Your update request is successful !!!</h3>
+        <div style="height:30px;">
         </div>
+        <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
       </div>
     </div>
   </div>
@@ -152,13 +154,13 @@
                   <label class="text-label">Is Hr?</label>
                 </div>
                 <div class="cell">
-                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.hrFlag}}</label>
+                  <input type="checkbox" name="isHr" [checked]="employeeInfo?.employeeBasicInfo.hrFlag" disabled />
                 </div>
                 <div class="cell">
                   <label class="text-label">Is Supervisor?</label>
                 </div>
                 <div class="cell">
-                  <label class="text-value">{{employeeInfo?.employeeBasicInfo.supervisorFlag}}</label>
+                  <input type="checkbox" name="isSupervisor" [checked]="employeeInfo?.employeeBasicInfo.supervisorFlag" disabled />
                 </div>
               </div>
               <div class="row even-row">
@@ -185,7 +187,7 @@
           </section>
           <section id="content2" class="tab-content">
             <div class="table span_4_of_4">
-              <div></div>
+              <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAdditionalInfo()"></a>
               <div class="row">
                 <div class="cell">
                   <label class="text-label">Number of Dependents</label>
@@ -274,7 +276,7 @@
           </section>
 
           <section id="content3" class="tab-content">
-
+            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAddressDetails()"></a>
             <div class="toggle">
               <input type="checkbox" value="selected" id="permanentAddress" class="toggle-input" checked>
               <label for="permanentAddress" class="toggle-label">Permanent Address</label>
@@ -334,6 +336,12 @@
                     <div class="cell span_1_of_6">
                       <label class="text-value">{{employeeInfo?.employeeAddress[0].countryName}}</label>
                     </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -358,7 +366,7 @@
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].streetName}}</label>
                     </div>
                     <div class="cell">
-                      <label class="text-label">Is Supervisor?</label>
+                      <label class="text-label">Area</label>
                     </div>
                     <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].area}}</label>
@@ -397,6 +405,12 @@
                     <div class="cell">
                       <label class="text-value">{{employeeInfo?.employeeAddress[1].countryName}}</label>
                     </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -409,7 +423,7 @@
               <div class="cell span_2_of_6">
                 <div class="display-table document-height">
                   <ul>
-                    <li *ngFor="let document of employeeInfo.documentList" [ngClass]="{'selectedDocument': getSelectedDocId() === document.docId}"
+                    <li *ngFor="let document of employeeInfo?.documentList" [ngClass]="{'selectedDocument': getSelectedDocId() === document.docId}"
                       (click)="setSelectedDocId(document.docId)">
                       <h2>{{document.docTypeName}}</h2>{{document.docId}} - {{document.remarks}}</li>
                   </ul>
@@ -425,6 +439,7 @@
 
           </section>
           <section id="content6" class="tab-content">
+            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editOthersDetails()"></a>
             <div class="table span_4_of_4">
               <div></div>
               <div class="row">
@@ -439,6 +454,12 @@
                 </div>
                 <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.supervisorEmailId}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
                 </div>
               </div>
               <div class="row even-row">
@@ -463,7 +484,7 @@
               </div>
               <div class="row">
                 <div class="cell">
-                  <label class="text-label">Maternity Leave</label>
+                  <label class="text-label">Number of Maternity Leave</label>
                 </div>
                 <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.maternityLeave}}</label>
@@ -473,6 +494,12 @@
                 </div>
                 <div class="cell">
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.status}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
                 </div>
               </div>
               <div class="row even-row">
@@ -522,10 +549,11 @@
                   <label class="text-input-label">Title*</label>
                   <div class="select select-fancy select-fancy-image">
                     <select formControlName="title">
-                          <option value="Mr.">Mr</option>
-                          <option value="Miss.">Miss</option>
-                          <option value="Mrs.">Mrs</option>
-                        </select>
+                      <option value="Mr.">Dr</option>
+                      <option value="Mr.">Mr</option>
+                      <option value="Miss.">Miss</option>
+                      <option value="Mrs.">Mrs</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -694,6 +722,299 @@
   </div>
 </div>
 
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAdditionalInfo()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Additional Details</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupAdditionalInfoForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupAdditionalInfo" #formGroupAdditionalInfoForm="ngForm" (ngSubmit)="onAdditionalInfoUpdate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <!--h2 class="group-header">Name</h2-->
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="dependentNo">
+                    <label class="text-input-label">Number of Dependents</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="siblingNo">
+                    <label class="text-input-label">Number of Siblings</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="emergencyContactName" maxlength="30">
+                  <label class="text-input-label">Emergency Contact Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="emergencyContactNo" maxlength="15">
+                  <label class="text-input-label">Emergency Contact Number</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="preMedicalCheckUpDate">
+                  <label class="text-input-label">Pre Employment Medical Checkup Date</label>
+                  <date-picker></date-picker>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="medicalReportComment"  maxlength="32">
+                  <label class="text-input-label">Medical Report Comment</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Nominee Details</h2>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeName1">
+                  <label class="text-input-label">Nominee 1 Name</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeShare1">
+                  <label class="text-input-label">Nominee 1 share (%)</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeName2">
+                  <label class="text-input-label">Nominee 2 Name</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeShare2">
+                  <label class="text-input-label">Nominee 2 share (%)</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeName3">
+                  <label class="text-input-label">Nominee 3 Name</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="nomineeShare3">
+                  <label class="text-input-label">Nominee 3 share (%)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAddressDetails()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Address Details</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupAddressDetailsForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupAddressDetails" #formGroupAddressDetailsForm="ngForm" (ngSubmit)="onAddressDetailsUpdate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Permanent Address</h2>
+            <div class="cell span_4_of_4" formGroupName="permanent">
+            <div class="row">
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="houseNo">
+                    <label class="text-input-label">House Number</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="streetName">
+                    <label class="text-input-label">Street</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="area">
+                  <label class="text-input-label">Area</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="pinno">
+                  <label class="text-input-label">PIN / Zip Code</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="region">
+                  <label class="text-input-label">Region</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Country</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" (change)="onCountryChange(formGroupAddressDetails.controls.permanent.controls['countryId'].value, 'permanent')" formControlName="countryId">
+                      <option value=""></option>
+                      <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">State</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(formGroupAddressDetails.controls.permanent.controls['stateId'].value, 'permanent')">
+                      <option value=""></option>
+                      <option *ngFor="let state of statesPermanent" value="{{state.stateId}}">{{state.stateName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">District</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="districtId">
+                      <option value=""></option>
+                      <option *ngFor="let distr of districtsPermanent" value="{{distr.districtId}}">{{distr.districtName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Present Address</h2>
+            <div class="cell span_4_of_4" formGroupName="present">
+            <div class="row">
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="houseNo">
+                    <label class="text-input-label">House Number</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="streetName">
+                    <label class="text-input-label">Street</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="area">
+                  <label class="text-input-label">Area</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="pinno">
+                  <label class="text-input-label">PIN / Zip Code</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="region">
+                  <label class="text-input-label">Region</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Country</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" (change)="onCountryChange(formGroupAddressDetails.controls.present.controls['countryId'].value, 'present')" formControlName="countryId">
+                      <option value=""></option>
+                      <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">State</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(formGroupAddressDetails.controls.present.controls['stateId'].value, 'present')">
+                      <option value=""></option>
+                      <option *ngFor="let state of statesPresent" value="{{state.stateId}}">{{state.stateName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">District</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="districtId">
+                      <option value=""></option>
+                      <option *ngFor="let distr of districtsPresent" value="{{distr.districtId}}">{{distr.districtName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowDocumentEdit()">
   <div class="modal-medium">
     <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
@@ -735,6 +1056,141 @@
                   <input type="file" style="display:none" accept=".pdf" (change)="documentUpload($event)" #documentFile>
                   <input class="inputMaterial" formControlName="documentName" required (click)="documentFile.click()" readonly>
                   <label class="text-input-label">Document</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowDocumentAdd()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Add Employee Documents</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupDocumentForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupDocument" #formGroupDocumentForm="ngForm" (ngSubmit)="onDocumentAdd()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Document Type</label>
+                  <div class="select select-fancy select-fancy-image">
+                    <select formControlName="docTypeId">
+                      <option value=""></option>
+                      <option *ngFor="let docType of docTypes" value="{{docType.docTypeId}}">{{docType.docTypeName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="remarks" required>
+                  <label class="text-input-label">Remarks</label>
+                </div>
+              </div>
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input type="file" style="display:none" accept=".pdf" (change)="documentUpload($event)" #documentFile>
+                  <input class="inputMaterial" formControlName="documentName" required (click)="documentFile.click()" readonly>
+                  <label class="text-input-label">Document</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditOthersDetails()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Others Details</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupOthersDetailsForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupOthersDetails" #formGroupOthersDetailsForm="ngForm" (ngSubmit)="onOthersDetailsUpdate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <!--h2 class="group-header">Name</h2-->
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="hrEmailId">
+                    <label class="text-input-label">HR Email</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="supervisorEmailId">
+                    <label class="text-input-label">Supervisor Email</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="cl">
+                  <label class="text-input-label">Number of Casual Leaves</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="sickLeave">
+                  <label class="text-input-label">Number of Sick Leaves</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="paternityLeave">
+                  <label class="text-input-label">Number of Paternity Leaves</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="maternityLeave">
+                  <label class="text-input-label">Number of Maternity Leave</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="probationPeriodEndDate">
+                  <label class="text-input-label">Probation Period End Date</label>
+                  <date-picker></date-picker>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="noticePeriodEndDate">
+                  <label class="text-input-label">Notice Period End Date</label>
+                  <date-picker></date-picker>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="status">
+                  <label class="text-input-label">Employment Status</label>
                 </div>
               </div>
             </div>
