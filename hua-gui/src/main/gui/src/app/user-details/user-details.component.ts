@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { EmployeeService } from '../services/employee.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import 'rxjs/add/operator/finally';
@@ -39,7 +40,7 @@ export class UserDetailsComponent implements OnInit {
   private districtsPermanent;
   private districtsPresent;
   private selectedDocId = 0;
-  private selectedDocument = "about:blank";
+  private selectedDocument = 'about:blank';
   private selectedDocDetails;
   private modalDisplay = false;
   private showDocumentEdit = false;
@@ -47,6 +48,9 @@ export class UserDetailsComponent implements OnInit {
   private documentEditFunctionInvoked = false;
   private googleDocument;
   private showUpdateMessage = false;
+  private showErrorMessage = false;
+  private errorMessage;
+  private currDateTime: number = Date.now();
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
@@ -72,12 +76,14 @@ export class UserDetailsComponent implements OnInit {
               this.employeeInfo = data;
             },
             (err: any) => {
-              if (err.status === 401 && err.json()['message'] !== 'Refresh token expired') {
+              /* if (err.status === 401 && err.json()['message'] !== 'Refresh token expired') {
                 this.router.navigate(['forbidden']);
-              }
+              } 
               if (err.status === 404) {
                 this.router.navigate(['404']);
-              }
+              } */
+              this.errorMessage = err.status + ' - ' + err.json().message;
+              this.showErrorMessage = true;
             },
             () => {
               this.formGroupInitializer();
@@ -203,12 +209,8 @@ export class UserDetailsComponent implements OnInit {
         .subscribe(data => {
         },
         (err: any) => {
-          if (err.status === 401 && err.json()['message'] !== 'Refresh token expired') {
-            me.router.navigate(['forbidden']);
-          }
-          if (err.status === 404) {
-            me.router.navigate(['404']);
-          }
+          me.errorMessage = err.status + ' - ' + err.json().message;
+          me.showErrorMessage = true;
         },
         () => {
           me.employeeInfo.employeeBasicInfo.profileImage = fileContent;
@@ -228,12 +230,8 @@ export class UserDetailsComponent implements OnInit {
           this.countries = data[1];
         },
         (err: any) => {
-          if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-            this.router.navigate(['forbidden']);
-          }
-          if (err.status === 404) {
-            this.router.navigate(['404']);
-          }
+          this.errorMessage = err.status + ' - ' + err.json().message;
+          this.showErrorMessage = true;
         },
         () => {
           this.showEditBasicInfo = true;
@@ -260,12 +258,8 @@ export class UserDetailsComponent implements OnInit {
       .subscribe(data => {
       },
       (err: any) => {
-        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-          this.router.navigate(['forbidden']);
-        }
-        if (err.status === 404) {
-          this.router.navigate(['404']);
-        }
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
       },
       () => {
         this.employeeInfo.employeeBasicInfo = Object.assign(this.employeeInfo.employeeBasicInfo, this.formGroupBasicInfo.value);
@@ -296,12 +290,8 @@ export class UserDetailsComponent implements OnInit {
       .subscribe(data => {
       },
       (err: any) => {
-        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-          this.router.navigate(['forbidden']);
-        }
-        if (err.status === 404) {
-          this.router.navigate(['404']);
-        }
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
       },
       () => {
         this.employeeInfo.employeeAddlDetails = Object.assign(this.employeeInfo.employeeAddlDetails, this.formGroupAdditionalInfo.value);
@@ -325,12 +315,8 @@ export class UserDetailsComponent implements OnInit {
           this.districtsPresent = data[4];
         },
         (err: any) => {
-          if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-            this.router.navigate(['forbidden']);
-          }
-          if (err.status === 404) {
-            this.router.navigate(['404']);
-          }
+          this.errorMessage = err.status + ' - ' + err.json().message;
+          this.showErrorMessage = true;
         },
         () => {
           this.showEditAddressDetails = true;
@@ -364,12 +350,8 @@ export class UserDetailsComponent implements OnInit {
       .subscribe(data => {
       },
       (err: any) => {
-        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-          this.router.navigate(['forbidden']);
-        }
-        if (err.status === 404) {
-          this.router.navigate(['404']);
-        }
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
       },
       () => {
         this.employeeInfo.employeeAddress = Object.assign(this.employeeInfo.employeeAddress, this.formArrayAddressDetails.value);
@@ -394,8 +376,9 @@ export class UserDetailsComponent implements OnInit {
           this.districtsPresent = [];
         }
         this.processingInProgress = false;
-      }, (error: any) => {
-        this.processingInProgress = false;
+      }, (err: any) => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
       }, () => {
         this.processingInProgress = false;
       }
@@ -418,8 +401,9 @@ export class UserDetailsComponent implements OnInit {
           this.districtsPresent = data;
         }
         this.processingInProgress = false;
-      }, (error: any) => {
-        this.processingInProgress = false;
+      }, (err: any) => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
       }, () => {
         this.processingInProgress = false;
       }
@@ -449,12 +433,8 @@ export class UserDetailsComponent implements OnInit {
       .subscribe(data => {
       },
       (err: any) => {
-        if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-          this.router.navigate(['forbidden']);
-        }
-        if (err.status === 404) {
-          this.router.navigate(['404']);
-        }
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
       },
       () => {
         this.employeeInfo.employeeHierarchy = Object.assign(this.employeeInfo.employeeHierarchy, this.formGroupOthersDetails.value);
@@ -504,6 +484,7 @@ export class UserDetailsComponent implements OnInit {
       this.showDocumentAdd = false;
       this.documentEditFunctionInvoked = false;
       this.showUpdateMessage = false;
+      this.showErrorMessage = false;
     }
   }
 
@@ -522,12 +503,8 @@ export class UserDetailsComponent implements OnInit {
           this.docTypes = data;
         },
         (err: any) => {
-          if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-            this.router.navigate(['forbidden']);
-          }
-          if (err.status === 404) {
-            this.router.navigate(['404']);
-          }
+          this.errorMessage = err.status + ' - ' + err.json().message;
+          this.showErrorMessage = true;
         },
         () => {
           this.showDocumentEdit = true;
@@ -574,12 +551,8 @@ export class UserDetailsComponent implements OnInit {
           this.docTypes = data;
         },
         (err: any) => {
-          if (err.status === 401 && err.json()["message"] !== "Refresh token expired") {
-            this.router.navigate(['forbidden']);
-          }
-          if (err.status === 404) {
-            this.router.navigate(['404']);
-          }
+          this.errorMessage = err.status + ' - ' + err.json().message;
+          this.showErrorMessage = true;
         },
         () => {
           this.initializeDocumentAddForm();
@@ -614,6 +587,8 @@ export class UserDetailsComponent implements OnInit {
         console.log(this.formGroupDocument.value.document);
       },
       err => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
       },
       () => {
         this.showUpdateMessage = true;
@@ -633,22 +608,19 @@ export class UserDetailsComponent implements OnInit {
       .subscribe(
       res => {},
       err => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
       },
       () => {
         this.showUpdateMessage = true;
-        //window.location.reload();
         this.employeeService.readDetails(this.id)
           .finally(() => { this.processingInProgress = false; })
           .subscribe(data => {
             this.employeeInfo = data;
           },
           (err: any) => {
-            if (err.status === 401 && err.json()['message'] !== 'Refresh token expired') {
-              this.router.navigate(['forbidden']);
-            }
-            if (err.status === 404) {
-              this.router.navigate(['404']);
-            }
+            this.errorMessage = err.status + ' - ' + err.json().message;
+            this.showErrorMessage = true;
           },
           () => {
             this.formGroupInitializer();
@@ -673,8 +645,7 @@ export class UserDetailsComponent implements OnInit {
   getShowSelectDocumentAlert() {
     if (this.selectedDocDetails === undefined && this.documentEditFunctionInvoked) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -691,7 +662,12 @@ export class UserDetailsComponent implements OnInit {
     return this.showUpdateMessage;
   }
 
+  getShowErrorMessage() {
+    return this.showErrorMessage;
+  }
+
   onClickUpdateMessageOk() {
     this.showUpdateMessage = false;
   }
+
 }

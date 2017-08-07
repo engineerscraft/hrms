@@ -37,6 +37,27 @@
   </div>
 </div>
 
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowErrorMessage()">
+  <div class="modal-small">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Error</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <div class="group center">
+        <h3>{{currDateTime | date:'yyyy-MM-dd HH:mm:ss'}} - {{errorMessage}}</h3>
+        <div style="height:15px;">
+        </div>
+        <h3>Please try again later !!!</h3>
+        <div style="height:30px;">
+        </div>
+        <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="body" [ngClass]="{'disable-scroll' : modalDisplay === true }">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:278px;">
@@ -439,7 +460,7 @@
 
           </section>
           <section id="content6" class="tab-content">
-            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editOthersDetails()"></a>
+            <!--a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editOthersDetails()"></a-->
             <div class="table span_4_of_4">
               <div></div>
               <div class="row">
