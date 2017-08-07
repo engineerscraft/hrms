@@ -37,6 +37,27 @@
   </div>
 </div>
 
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowErrorMessage()">
+  <div class="modal-small">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Error</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <div class="group center">
+        <h3>{{currDateTime | date:'yyyy-MM-dd HH:mm:ss'}} - {{errorMessage}}</h3>
+        <div style="height:15px;">
+        </div>
+        <h3>Please try again later !!!</h3>
+        <div style="height:30px;">
+        </div>
+        <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="body" [ngClass]="{'disable-scroll' : modalDisplay === true }">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div style="height:278px;">
@@ -467,13 +488,13 @@
                   <label class="text-label">Number of Casual Leaves</label>
                 </div>
                 <div class="cell">
-                  <label class="text-value">{{employeeInfo?.employeeHierarchy.cL}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.cl}}</label>
                 </div>
                 <div class="cell">
                   <label class="text-label">Number of Sick Leaves</label>
                 </div>
                 <div class="cell">
-                  <label class="text-value">{{employeeInfo?.employeeHierarchy.specialLeave}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.sickLeave}}</label>
                 </div>
                 <div class="cell">
                   <label class="text-label">Number of Paternity Leaves</label>
@@ -682,6 +703,7 @@
                 <div class="group">
                   <input class="inputMaterial" formControlName="dob" required>
                   <label class="text-input-label">Date of Birth</label>
+                  <date-picker (outputEvents)="changeDate($event, 'dob')" popup-placement="auto bottom"></date-picker>
                 </div>
               </div>
             </div>
@@ -774,7 +796,7 @@
                 <div class="group">
                   <input class="inputMaterial" formControlName="preMedicalCheckUpDate">
                   <label class="text-input-label">Pre Employment Medical Checkup Date</label>
-                  <date-picker></date-picker>
+                  <date-picker (outputEvents)="changeDate($event, 'preMedicalCheckUpDate')" popup-placement="auto bottom"></date-picker>
                 </div>
               </div>
             </div>
@@ -1175,14 +1197,14 @@
                 <div class="group">
                   <input class="inputMaterial" formControlName="probationPeriodEndDate">
                   <label class="text-input-label">Probation Period End Date</label>
-                  <date-picker></date-picker>
+                  <date-picker (outputEvents)="changeDate($event, 'probationPeriodEndDate')"></date-picker>
                 </div>
               </div>
               <div class="cell span_2_of_4">
                 <div class="group">
                   <input class="inputMaterial" formControlName="noticePeriodEndDate">
                   <label class="text-input-label">Notice Period End Date</label>
-                  <date-picker></date-picker>
+                  <date-picker (outputEvents)="changeDate($event, 'noticePeriodEndDate')" popup-placement="auto top"></date-picker>
                 </div>
               </div>
             </div>

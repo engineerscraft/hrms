@@ -488,13 +488,13 @@
                   <label class="text-label">Number of Casual Leaves</label>
                 </div>
                 <div class="cell">
-                  <label class="text-value">{{employeeInfo?.employeeHierarchy.cL}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.cl}}</label>
                 </div>
                 <div class="cell">
                   <label class="text-label">Number of Sick Leaves</label>
                 </div>
                 <div class="cell">
-                  <label class="text-value">{{employeeInfo?.employeeHierarchy.specialLeave}}</label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.sickLeave}}</label>
                 </div>
                 <div class="cell">
                   <label class="text-label">Number of Paternity Leaves</label>
@@ -703,6 +703,7 @@
                 <div class="group">
                   <input class="inputMaterial" formControlName="dob" required>
                   <label class="text-input-label">Date of Birth</label>
+                  <date-picker (outputEvents)="changeDate($event, 'dob')" popup-placement="auto bottom"></date-picker>
                 </div>
               </div>
             </div>
@@ -795,7 +796,7 @@
                 <div class="group">
                   <input class="inputMaterial" formControlName="preMedicalCheckUpDate">
                   <label class="text-input-label">Pre Employment Medical Checkup Date</label>
-                  <date-picker></date-picker>
+                  <date-picker (outputEvents)="changeDate($event, 'preMedicalCheckUpDate')" popup-placement="auto bottom"></date-picker>
                 </div>
               </div>
             </div>
@@ -1196,14 +1197,14 @@
                 <div class="group">
                   <input class="inputMaterial" formControlName="probationPeriodEndDate">
                   <label class="text-input-label">Probation Period End Date</label>
-                  <date-picker></date-picker>
+                  <date-picker (outputEvents)="changeDate($event, 'probationPeriodEndDate')" popup-placement="auto bottom"></date-picker>
                 </div>
               </div>
               <div class="cell span_2_of_4">
                 <div class="group">
                   <input class="inputMaterial" formControlName="noticePeriodEndDate">
                   <label class="text-input-label">Notice Period End Date</label>
-                  <date-picker></date-picker>
+                  <date-picker (outputEvents)="changeDate($event, 'noticePeriodEndDate')" popup-placement="auto bottom"></date-picker>
                 </div>
               </div>
             </div>

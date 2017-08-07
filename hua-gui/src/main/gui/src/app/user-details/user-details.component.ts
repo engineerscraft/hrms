@@ -670,4 +670,50 @@ export class UserDetailsComponent implements OnInit {
     this.showUpdateMessage = false;
   }
 
+  /**
+   *
+   * @param event Date change handler for Employee Creation
+   * the labelName guides which field is to be changed
+   * @param labelName
+   */
+  changeDate(event, labelName) {
+
+    if (labelName === 'preMedicalCheckUpDate') {
+      if (event.type === 'dateChanged') {
+        this.formGroupAdditionalInfo.patchValue({ preMedicalCheckUpDate: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.formGroupAdditionalInfo.patchValue({ preMedicalCheckUpDate: '' });
+      }
+    } else if (labelName === 'dob') {
+      if (event.type === 'dateChanged') {
+        this.formGroupBasicInfo.patchValue({ dob: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.formGroupBasicInfo.patchValue({ dob: '' });
+      }
+    } else if (labelName === 'doj') {
+      if (event.type === 'dateChanged') {
+        this.formGroupBasicInfo.patchValue({ doj: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.formGroupBasicInfo.patchValue({ doj: '' });
+      }
+    } else if (labelName === 'probationPeriodEndDate') {
+      if (event.type === 'dateChanged') {
+        this.formGroupOthersDetails.patchValue({ probationPeriodEndDate: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.formGroupOthersDetails.patchValue({ probationPeriodEndDate: '' });
+      }
+    } else if (labelName === 'noticePeriodEndDate') {
+      if (event.type === 'dateChanged') {
+        this.formGroupOthersDetails.patchValue({ noticePeriodEndDate: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.formGroupOthersDetails.patchValue({ noticePeriodEndDate: '' });
+      }
+    }
+  }
+
 }
