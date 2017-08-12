@@ -295,7 +295,6 @@
               </div>
             </div>
           </section>
-
           <section id="content3" class="tab-content">
             <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAddressDetails()"></a>
             <div class="toggle">
@@ -437,6 +436,111 @@
               </div>
             </div>
           </section>
+          <section id="content4" class="tab-content">
+            <div class="row">
+              <div class="cell span_2_of_6">
+                <div class="display-table document-height">
+                  <div class="toggle">
+                  <input type="checkbox" value="selected" id="incomeDetails" class="toggle-input" checked>
+                  <label for="incomeDetails" class="toggle-label">Earning Details</label>
+                  <div role="toggle" class="toggle-content">
+                    <div class="table span_4_of_4">
+                      <div></div>
+                      <div class="row">
+                        <div class="cell">
+                          <label class="text-label">Basic</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell">
+                          <label class="text-label">D.A.</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell">
+                          <label class="text-label">H.R.A.</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell">
+                          <label class="text-label">Conveyance Allowance</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell">
+                          <label class="text-label">Medical Allowance</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell">
+                          <label class="text-label">Food Allowance</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div></div>
+                  <div class="toggle">
+                  <input type="checkbox" value="selected" id="deductionDetails" class="toggle-input" checked>
+                  <label for="deductionDetails" class="toggle-label">Deduction Details</label>
+                  <div role="toggle" class="toggle-content">
+                    <div class="table span_4_of_4">
+                      <div></div>
+                      <div class="row">
+                        <div class="cell">
+                          <label class="text-label">P.F.</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell">
+                          <label class="text-label">E.S.I</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell">
+                          <label class="text-label">Car Lease</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_4_of_6">
+                <div class="display-table document-height">
+                  <object width="100%" height="98%" type="application/pdf" title="Payslip" data="assets/PaySlip_Sample.pdf">
+                  </object>
+                </div>
+              </div>
+            </div>
+          </section>
           <section id="content5" class="tab-content">
             <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editDocument()"></a>
             <a class="create-btn create-btn-fixed ripple" href="javascript:void(0)" (click)="addDocument()"></a>
@@ -457,7 +561,6 @@
                 </div>
               </div>
             </div>
-
           </section>
           <section id="content6" class="tab-content">
             <!--a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editOthersDetails()"></a-->
@@ -477,13 +580,13 @@
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.supervisorEmailId}}</label>
                 </div>
                 <div class="cell">
-                  <label class="text-label"></label>
+                  <label class="text-label">Employment Status</label>
                 </div>
                 <div class="cell">
-                  <label class="text-label"></label>
+                  <label class="text-value">{{employeeInfo?.employeeHierarchy.status}}</label>
                 </div>
               </div>
-              <div class="row even-row">
+              <!--div class="row even-row">
                 <div class="cell">
                   <label class="text-label">Number of Casual Leaves</label>
                 </div>
@@ -511,18 +614,18 @@
                   <label class="text-value">{{employeeInfo?.employeeHierarchy.maternityLeave}}</label>
                 </div>
                 <div class="cell">
-                  <label class="text-label">Employment Status</label>
+                  <label class="text-label"></label>
                 </div>
                 <div class="cell">
-                  <label class="text-value">{{employeeInfo?.employeeHierarchy.status}}</label>
+                  <label class="text-value"></label>
                 </div>
                 <div class="cell">
                   <label class="text-label"></label>
                 </div>
                 <div class="cell">
-                  <label class="text-label"></label>
+                  <label class="text-value"></label>
                 </div>
-              </div>
+              </div-->
               <div class="row even-row">
                 <div class="cell">
                   <label class="text-label">Probation Period End Date</label>
@@ -540,7 +643,185 @@
                   <label class="text-label"></label>
                 </div>
                 <div class="cell">
-                  <label class="text-value"></label>
+                  <label class="text-label"></label>
+                </div>
+              </div>
+            </div>
+            <div class="toggle">
+              <input type="checkbox" value="selected" id="leaveDetails" class="toggle-input" checked>
+              <label for="leaveDetails" class="toggle-label">Leave Details</label>
+              <div role="toggle" class="toggle-content">
+                <div class="table span_4_of_4">
+                  <div></div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">Applicable Leaves (This Year)</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Remaining Leaves (This Year)</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Availed Leaves (This Month)</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value"></label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value"></label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">Casual Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Casual Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Casual Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">Earned Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Earned Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Earned Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">Sick Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Sick Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Sick Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">Maternity/Paternity Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Maternity/Paternity Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Maternity/Paternity Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">Special Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Special Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Special Leave</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="toggle">
+              <input type="checkbox" value="selected" id="extraClassesDetails" class="toggle-input" checked>
+              <label for="extraClassesDetails" class="toggle-label">Extra Classes Details</label>
+              <div role="toggle" class="toggle-content">
+                <div class="table span_6_of_6">
+                  <div></div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">Charge of Extra Class</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Number of Extra Classes (This Month)</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Total Extra Classes (This Year)</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">0</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
