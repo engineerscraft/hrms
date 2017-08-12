@@ -179,6 +179,38 @@ button {
   background: #4ca1af;
 }
 
+.table .header {
+  display: table-header-group;
+  /*border-left: solid white 10px;*/
+  background: #4ca1af;
+  border-bottom: solid white 10px;
+}
+
+.table .header .head {
+	padding: 6px 12px;
+  display: table-cell;
+  border-color: #fff;
+  border-width: 0 0 5px 0;
+  border-style: solid;
+  word-wrap: break-word;
+  font-family: 'lato', 'arial', sans-serif;
+  font-size: 14px;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.table .header .head .head-label {
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+.table .footer .cell {
+  padding-top: 10px;
+  border-top: 4px solid #444444;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .table .cell {
   padding: 6px 12px;
   display: table-cell;

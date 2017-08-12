@@ -494,6 +494,14 @@
                           <label class="text-value">0</label>
                         </div>
                       </div>
+                      <div class="row footer">
+                        <div class="cell">
+                          <label class="text-label">Total</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   </div>
@@ -528,6 +536,14 @@
                           <label class="text-value">0</label>
                         </div>
                       </div>
+                      <div class="row footer">
+                        <div class="cell">
+                          <label class="text-label">Total</label>
+                        </div>
+                        <div class="cell">
+                          <label class="text-value">0</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   </div>
@@ -536,6 +552,7 @@
               <div class="cell span_4_of_6">
                 <div class="display-table document-height">
                   <object width="100%" height="98%" type="application/pdf" title="Payslip" data="assets/PaySlip_Sample.pdf">
+                    <p><b>PaySlip</b>: This browser does not support PDFs. Please download the PDF to view it: <a href="assets/PaySlip_Sample.pdf">Download PDF</a>.</p>
                   </object>
                 </div>
               </div>
@@ -653,45 +670,25 @@
               <div role="toggle" class="toggle-content">
                 <div class="table span_4_of_4">
                   <div></div>
-                  <div class="row">
-                    <div class="cell">
-                      <label class="text-label">Applicable Leaves (This Year)</label>
+                  <div class="header">
+                    <div class="head">
+                      <label class="head-label">Applicable Leaves ({{currDateTime | date:'yyyy'}})</label>
                     </div>
-                    <div class="cell">
-                      <label class="text-value"></label>
+                    <div class="head">
                     </div>
-                    <div class="cell">
-                      <label class="text-label">Remaining Leaves (This Year)</label>
+                    <div class="head">
+                      <label class="head-label">Remaining Leaves ({{currDateTime | date:'yyyy'}})</label>
                     </div>
-                    <div class="cell">
-                      <label class="text-value"></label>
+                    <div class="head">
                     </div>
-                    <div class="cell">
-                      <label class="text-label">Availed Leaves (This Month)</label>
+                    <div class="head">
+                      <label class="head-label">Availed Leaves ({{currDateTime | date:'MMMM yyyy'}})</label>
                     </div>
-                    <div class="cell">
-                      <label class="text-value"></label>
+                    <div class="head">
                     </div>
                   </div>
                   <div class="row">
-                    <div class="cell">
-                      <label class="text-label"></label>
-                    </div>
-                    <div class="cell">
-                      <label class="text-value"></label>
-                    </div>
-                    <div class="cell">
-                      <label class="text-label"></label>
-                    </div>
-                    <div class="cell">
-                      <label class="text-value"></label>
-                    </div>
-                    <div class="cell">
-                      <label class="text-label"></label>
-                    </div>
-                    <div class="cell">
-                      <label class="text-value"></label>
-                    </div>
+                    <div class="cell"></div>
                   </div>
                   <div class="row">
                     <div class="cell">
