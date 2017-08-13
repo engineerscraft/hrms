@@ -5,10 +5,7 @@ package com.hamdard.hua.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * @author Biswajit
- *
- */
+
 @XmlRootElement
 public class Country {
     private int countryId;
