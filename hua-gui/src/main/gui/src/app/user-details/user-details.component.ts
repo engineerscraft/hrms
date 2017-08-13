@@ -26,12 +26,16 @@ export class UserDetailsComponent implements OnInit {
   private showEditAdditionalInfo = false;
   private showEditAddressDetails = false;
   private showEditOthersDetails = false;
+  private showEditLeaveDetails = false;
+  private showEditPayrollDetails = false;
   private formGroupBasicInfo: FormGroup;
   private formGroupAdditionalInfo: FormGroup;
   private formGroupAddressDetails: FormGroup;
   private formArrayAddressDetails;
   private formGroupDocument: FormGroup;
   private formGroupOthersDetails: FormGroup;
+  private formGroupLeaveDetails: FormGroup;
+  private formGroupPayrollDetails: FormGroup;
   private identityDocTypes;
   private docTypes;
   private countries;
@@ -172,6 +176,25 @@ export class UserDetailsComponent implements OnInit {
       'noticePeriodEndDate': [this.employeeInfo.employeeHierarchy.noticePeriodEndDate],
       'status': [this.employeeInfo.employeeHierarchy.status]
     });
+
+    this.formGroupLeaveDetails = this.formBuilder.group({
+      'applicableLeaves': this.formBuilder.group({
+        'casualLeave': '',
+        'earnedLeave': '',
+        'sickLeave': '',
+        'maternityLeave': '',
+        'specialLeave': ''
+      }),
+      'availedLeaves': this.formBuilder.group({
+        'casualLeave': '',
+        'earnedLeave': '',
+        'sickLeave': '',
+        'maternityLeave': '',
+        'specialLeave': ''
+      })
+    });
+
+    this.formGroupPayrollDetails = this.formBuilder.group({});
   }
 
   /**
@@ -441,6 +464,32 @@ export class UserDetailsComponent implements OnInit {
       });
   }
 
+  editLeaveDetails() {
+    this.showEditLeaveDetails = true;
+    this.modalDisplay = true;
+  }
+
+  getShowEditLeaveDetails() {
+    return this.showEditLeaveDetails;
+  }
+
+  onLeaveDetailsUpdate() {
+
+  }
+
+  editPayrollDetails() {
+    this.showEditPayrollDetails = true;
+    this.modalDisplay = true;
+  }
+
+  getShowEditPayrollDetails() {
+    return this.showEditPayrollDetails;
+  }
+
+  onPayrollDetailsUpdate() {
+
+  }
+
   getSelectedDocId() {
     return this.selectedDocId;
   }
@@ -479,6 +528,8 @@ export class UserDetailsComponent implements OnInit {
       this.showEditAdditionalInfo = false;
       this.showEditAddressDetails = false;
       this.showEditOthersDetails = false;
+      this.showEditLeaveDetails = false;
+      this.showEditPayrollDetails = false;
       this.modalDisplay = false;
       this.showDocumentEdit = false;
       this.showDocumentAdd = false;
