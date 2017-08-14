@@ -1,5 +1,5 @@
 <div class="sidebar" [ngClass]="{'sidebar-open': getOpen() === true}">
-  <div class="menu-icon" title="Menu" (click)="changeClass()" [ngClass]="{'open': getOpen() === true}">
+  <div class="menu-icon" (mouseover)="menuOpen()" (click)="changeClass()" [ngClass]="{'open': getOpen() === true}">
     <span></span>
     <span></span>
     <span></span>
@@ -15,7 +15,8 @@
     </span>
   </div>
 </div>
-<div class="menu" [ngClass]="{'show-menu': getOpen() === true}" *ngIf="getOpen()">
+<div [ngClass]="{'arrow': getOpen() === true}"></div>
+<div class="menu" [ngClass]="{'show-menu': getOpen() === true}" *ngIf="getOpen()" (mouseleave)="menuClose()">
   <div class="sidebar-row">
     <div class="col span_4_of_4">
       <h1 class="username">{{getUserName()}}</h1>

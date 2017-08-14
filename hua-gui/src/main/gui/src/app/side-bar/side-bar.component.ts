@@ -75,6 +75,19 @@ export class SideBarComponent implements OnInit {
       this.open = false;
   }
 
+  menuOpen() {
+    if (this.open === false) {
+      this.open = true;
+      this.showChangePassword = false;
+    }    
+  }
+
+  menuClose() {
+    if (this.open === true) {
+      this.open = false;
+    }
+  }
+
   getOpen() {
     return this.open;
   }

@@ -3,65 +3,77 @@ a {
 }
 
 .sidebar {
-    background-color: #0F6177;
-    height: 100vh;
-    left: 0;
-    position: fixed;
-    top: 0;
-    transition: width 0.5s;
-    width: 70px;
-    z-index: 30;
+  background-color: #0f6177;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: width 0.5s;
+  width: 70px;
+  z-index: 30;
 }
 
 .sidebar:after {
   content: "";
   border: 1px solid #fff;
   height: 100%;
-  position:absolute;
+  position: absolute;
   left: 70px;
 }
 
+.arrow {
+  position: absolute;
+  top: 2.5rem;
+  left: 61px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #fff; 
+  z-index: 31;
+  animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
 .menu {
-  position:absolute;
-  top: 90px;
+  position: absolute;
+  top: 2rem;
   width: 0;
   opacity: 0;
-  left: 90px;
+  left: 70px;
   z-index: 30;
-  padding-bottom: 150px;
+  background: #fff;
+  max-height: calc(100vh - 2rem);
+  height: calc(100vh - 4rem);
+  overflow-y: scroll;
+  border-width: 30px;
+  border-style: solid;
+  border-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  animation: fadein;
+  animation: fadein 0.5s;
 }
 
 .show-menu {
-  animation: show-menu-animation;
-  width: 60rem;
-  animation-fill-mode: forwards;
-  animation-duration: 0.5s;
+  width: 55rem;
   margin: 0;
-}
-
-@keyframes show-menu-animation {
-  0% {
-    opacity: 0;
-    left: 0rem;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    left: 3rem;
-  }
+  opacity: 1;
 }
 
 .username {
-  color: #fff;
+  color: #333;
   padding-bottom: 5px;
   text-align: right;
+  font-family: lato-light;
 }
 
 .change-password {
   position: relative;
-  color: white;
+  color: #333;
   padding: 8px;
   font-size: 12px;
   cursor: pointer;
@@ -71,8 +83,9 @@ a {
 }
 
 .menu-header {
+  font-family: 'lato-regular', 'arial', sans-serif;
   color: white;
-  font-size: 20px;
+  font-size: 14px;
   text-align: left;
   color: #4ca1af;
   border-bottom: solid 1px #4ca1af;
@@ -86,15 +99,13 @@ a {
 }
 
 .menu-item {
-  font-family: 'lato', 'arial', sans-serif;
+  font-family: 'lato-light', 'arial', sans-serif;
   position: relative;
-  color: white;
+  color: #333;
   padding: 4px 0;
   display: inline-block;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
-  letter-spacing: 1px;
-  word-spacing: 4px;
   text-decoration: none;
 }
 
@@ -112,6 +123,10 @@ a {
 }
 
 .menu-item:hover:after { transform: scaleX(1); }
+
+.menu-item:hover {
+  color: orange;
+}
 
 .menu-icon {
   top: 2rem;
@@ -169,13 +184,13 @@ a {
   left: 8px;
 }
 
-.sidebar-open {
+/*.sidebar-open {
     width: 60rem;
-}
+}*/
 
 .sidebar-row {
     max-width: 40rem;
-    margin: 0 auto 0 8rem;
+    margin: 0 auto 0 4rem;
     width:100%;
 }
 
