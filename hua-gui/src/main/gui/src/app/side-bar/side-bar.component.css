@@ -79,7 +79,11 @@ a {
   cursor: pointer;
   letter-spacing: 1px;
   word-spacing: 4px;
-  text-align: right;  
+  text-align: right;
+}
+
+.change-password a {
+  color: #333;
 }
 
 .menu-header {
