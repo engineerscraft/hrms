@@ -1,4 +1,4 @@
-// dot 2.38.0 on Windows 7 6.1
+// dot 2.38.0 on Windows 8.1 6.3
 digraph "employee_profile_history" {
   graph [
     rankdir="RL"

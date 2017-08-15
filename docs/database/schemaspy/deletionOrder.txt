@@ -8,11 +8,17 @@ salary_master
 role_permission
 role_department
 job_role_designation
+employee_tax
+employee_optional_benefits_history
 employee_optional_benefits
+employee_monthly_payroll
 employee_docs
 org_leave
+leave_master_history
+leave_master
 employee_profile_history
 employee_profile
+employee_payslip
 employee_hierarchy_status_history
 employee_additional_details_history
 employee_additional_details
@@ -24,7 +30,7 @@ department_master
 unit_master
 state_master
 organisation_master
-salary_opt_component_master
+tax_component_master
 permission_master
 organisation_type_master
 grade_master
@@ -33,4 +39,5 @@ role_master
 doc_type_master
 designation_master
 appraisal_cycle
+salary_opt_component_master
 country_master
