@@ -594,7 +594,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_18">2.17.6. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_updateprofile">2.18. Updates the Profile of an Employee.</a>
+<li><a href="#_insertpayslip">2.18. Adds payslip of an Employee</a>
 <ul class="sectlevel3">
 <li><a href="#_description_18">2.18.1. Description</a></li>
 <li><a href="#_parameters_18">2.18.2. Parameters</a></li>
@@ -604,7 +604,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_19">2.18.6. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_updatesalarydetails">2.19. Updates the Salary of an Employee</a>
+<li><a href="#_getpayslip">2.19. Fetch payslip of an Employee</a>
 <ul class="sectlevel3">
 <li><a href="#_description_19">2.19.1. Description</a></li>
 <li><a href="#_parameters_19">2.19.2. Parameters</a></li>
@@ -614,25 +614,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_20">2.19.6. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getjobrolesoforg">2.20. Returns List of Job Roles in a Given Organization</a>
+<li><a href="#_updateprofile">2.20. Updates the Profile of an Employee.</a>
 <ul class="sectlevel3">
 <li><a href="#_description_20">2.20.1. Description</a></li>
 <li><a href="#_parameters_20">2.20.2. Parameters</a></li>
 <li><a href="#_responses_20">2.20.3. Responses</a></li>
-<li><a href="#_produces_20">2.20.4. Produces</a></li>
-<li><a href="#_tags_21">2.20.5. Tags</a></li>
+<li><a href="#_consumes_12">2.20.4. Consumes</a></li>
+<li><a href="#_produces_20">2.20.5. Produces</a></li>
+<li><a href="#_tags_21">2.20.6. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getjobroleoptbenefits">2.21. Gets the Optional Benefits of a Given Job Role</a>
+<li><a href="#_updatesalarydetails">2.21. Updates the Salary of an Employee</a>
 <ul class="sectlevel3">
 <li><a href="#_description_21">2.21.1. Description</a></li>
 <li><a href="#_parameters_21">2.21.2. Parameters</a></li>
 <li><a href="#_responses_21">2.21.3. Responses</a></li>
-<li><a href="#_produces_21">2.21.4. Produces</a></li>
-<li><a href="#_tags_22">2.21.5. Tags</a></li>
+<li><a href="#_consumes_13">2.21.4. Consumes</a></li>
+<li><a href="#_produces_21">2.21.5. Produces</a></li>
+<li><a href="#_tags_22">2.21.6. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getjobrolesalary">2.22. Gets the Salary of a Given Job Role</a>
+<li><a href="#_getjobrolesoforg">2.22. Returns List of Job Roles in a Given Organization</a>
 <ul class="sectlevel3">
 <li><a href="#_description_22">2.22.1. Description</a></li>
 <li><a href="#_parameters_22">2.22.2. Parameters</a></li>
@@ -641,7 +643,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_23">2.22.5. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getorganizations">2.23. Returns List of Organizations</a>
+<li><a href="#_getjobroleoptbenefits">2.23. Gets the Optional Benefits of a Given Job Role</a>
 <ul class="sectlevel3">
 <li><a href="#_description_23">2.23.1. Description</a></li>
 <li><a href="#_parameters_23">2.23.2. Parameters</a></li>
@@ -650,7 +652,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_24">2.23.5. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getpermissions">2.24. Retrieves the Permissions of the Logged In User</a>
+<li><a href="#_getjobrolesalary">2.24. Gets the Salary of a Given Job Role</a>
 <ul class="sectlevel3">
 <li><a href="#_description_24">2.24.1. Description</a></li>
 <li><a href="#_parameters_24">2.24.2. Parameters</a></li>
@@ -659,7 +661,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_25">2.24.5. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getstates">2.25. Gets List of States for a Given Country</a>
+<li><a href="#_getorganizations">2.25. Returns List of Organizations</a>
 <ul class="sectlevel3">
 <li><a href="#_description_25">2.25.1. Description</a></li>
 <li><a href="#_parameters_25">2.25.2. Parameters</a></li>
@@ -668,12 +670,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tags_26">2.25.5. Tags</a></li>
 </ul>
 </li>
-<li><a href="#_getunits">2.26. Returns List of Units in a Given Organization</a>
+<li><a href="#_getpermissions">2.26. Retrieves the Permissions of the Logged In User</a>
 <ul class="sectlevel3">
-<li><a href="#_parameters_26">2.26.1. Parameters</a></li>
-<li><a href="#_responses_26">2.26.2. Responses</a></li>
-<li><a href="#_produces_26">2.26.3. Produces</a></li>
-<li><a href="#_tags_27">2.26.4. Tags</a></li>
+<li><a href="#_description_26">2.26.1. Description</a></li>
+<li><a href="#_parameters_26">2.26.2. Parameters</a></li>
+<li><a href="#_responses_26">2.26.3. Responses</a></li>
+<li><a href="#_produces_26">2.26.4. Produces</a></li>
+<li><a href="#_tags_27">2.26.5. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getstates">2.27. Gets List of States for a Given Country</a>
+<ul class="sectlevel3">
+<li><a href="#_description_27">2.27.1. Description</a></li>
+<li><a href="#_parameters_27">2.27.2. Parameters</a></li>
+<li><a href="#_responses_27">2.27.3. Responses</a></li>
+<li><a href="#_produces_27">2.27.4. Produces</a></li>
+<li><a href="#_tags_28">2.27.5. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_getunits">2.28. Returns List of Units in a Given Organization</a>
+<ul class="sectlevel3">
+<li><a href="#_parameters_28">2.28.1. Parameters</a></li>
+<li><a href="#_responses_28">2.28.2. Responses</a></li>
+<li><a href="#_produces_28">2.28.3. Produces</a></li>
+<li><a href="#_tags_29">2.28.4. Tags</a></li>
 </ul>
 </li>
 </ul>
@@ -691,23 +711,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_employeebasicinfo">3.9. EmployeeBasicInfo</a></li>
 <li><a href="#_employeehierarchy">3.10. EmployeeHierarchy</a></li>
 <li><a href="#_employeeoptionalbenefit">3.11. EmployeeOptionalBenefit</a></li>
-<li><a href="#_employeeprofile">3.12. EmployeeProfile</a></li>
-<li><a href="#_employeesalary">3.13. EmployeeSalary</a></li>
-<li><a href="#_grade">3.14. Grade</a></li>
-<li><a href="#_jobrole">3.15. JobRole</a></li>
-<li><a href="#_logindetails">3.16. LoginDetails</a></li>
-<li><a href="#_message">3.17. Message</a></li>
-<li><a href="#_optionalsalary">3.18. OptionalSalary</a></li>
-<li><a href="#_organization">3.19. Organization</a></li>
-<li><a href="#_organizationtype">3.20. OrganizationType</a></li>
-<li><a href="#_passwordchangedetails">3.21. PasswordChangeDetails</a></li>
-<li><a href="#_permission">3.22. Permission</a></li>
-<li><a href="#_salary">3.23. Salary</a></li>
-<li><a href="#_salarycomponent">3.24. SalaryComponent</a></li>
-<li><a href="#_salaryoptcomponent">3.25. SalaryOptComponent</a></li>
-<li><a href="#_state">3.26. State</a></li>
-<li><a href="#_token">3.27. Token</a></li>
-<li><a href="#_unit">3.28. Unit</a></li>
+<li><a href="#_employeepayslip">3.12. EmployeePayslip</a></li>
+<li><a href="#_employeeprofile">3.13. EmployeeProfile</a></li>
+<li><a href="#_employeesalary">3.14. EmployeeSalary</a></li>
+<li><a href="#_grade">3.15. Grade</a></li>
+<li><a href="#_jobrole">3.16. JobRole</a></li>
+<li><a href="#_logindetails">3.17. LoginDetails</a></li>
+<li><a href="#_message">3.18. Message</a></li>
+<li><a href="#_optionalsalary">3.19. OptionalSalary</a></li>
+<li><a href="#_organization">3.20. Organization</a></li>
+<li><a href="#_organizationtype">3.21. OrganizationType</a></li>
+<li><a href="#_passwordchangedetails">3.22. PasswordChangeDetails</a></li>
+<li><a href="#_permission">3.23. Permission</a></li>
+<li><a href="#_salary">3.24. Salary</a></li>
+<li><a href="#_salarycomponent">3.25. SalaryComponent</a></li>
+<li><a href="#_salaryoptcomponent">3.26. SalaryOptComponent</a></li>
+<li><a href="#_state">3.27. State</a></li>
+<li><a href="#_token">3.28. Token</a></li>
+<li><a href="#_unit">3.29. Unit</a></li>
 </ul>
 </li>
 </ul>
@@ -2874,16 +2895,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_updateprofile"><a class="anchor" href="#_updateprofile"></a>2.18. Updates the Profile of an Employee.</h3>
+<h3 id="_insertpayslip"><a class="anchor" href="#_insertpayslip"></a>2.18. Adds payslip of an Employee</h3>
 <div class="literalblock">
 <div class="content">
-<pre>PUT /resources/v1/employee/{id}/profile</pre>
+<pre>POST /resources/v1/employee/{id}/payslip</pre>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_description_18"><a class="anchor" href="#_description_18"></a>2.18.1. Description</h4>
 <div class="paragraph">
-<p>Updates the profile of a given employee.</p>
+<p>Insert payslip of a given employee.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2915,15 +2936,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The employee id for which the data will be updated.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The employee id for which the optional benefit will be created.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>reqBody</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Employee profile data.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_employeeprofile">EmployeeProfile</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Employee optional benefit data.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_employeepayslip">EmployeePayslip</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -2946,18 +2967,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The data is successfully updated.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The payslip stored successfully.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The access token expired or the access token is invalid.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to execute this command.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
@@ -3010,16 +3021,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_updatesalarydetails"><a class="anchor" href="#_updatesalarydetails"></a>2.19. Updates the Salary of an Employee</h3>
+<h3 id="_getpayslip"><a class="anchor" href="#_getpayslip"></a>2.19. Fetch payslip of an Employee</h3>
 <div class="literalblock">
 <div class="content">
-<pre>PUT /resources/v1/employee/{id}/salary</pre>
+<pre>GET /resources/v1/employee/{id}/payslip</pre>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_description_19"><a class="anchor" href="#_description_19"></a>2.19.1. Description</h4>
 <div class="paragraph">
-<p>Updates the salary of a given employee.</p>
+<p>To get payslip of an particular employee</p>
 </div>
 </div>
 <div class="sect3">
@@ -3055,11 +3066,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>reqBody</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Employee salary data.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_employeesalary">EmployeeSalary</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>month</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The month which will filter out payslip selection.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>year</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The year which will filter out payslip selecion.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer</p></td>
 </tr>
 </tbody>
 </table>
@@ -3082,8 +3100,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The salary information of the employee is successfully updated.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">payslip fetched successfully.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_employeepayslip">EmployeePayslip</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -3146,20 +3164,292 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getjobrolesoforg"><a class="anchor" href="#_getjobrolesoforg"></a>2.20. Returns List of Job Roles in a Given Organization</h3>
+<h3 id="_updateprofile"><a class="anchor" href="#_updateprofile"></a>2.20. Updates the Profile of an Employee.</h3>
+<div class="literalblock">
+<div class="content">
+<pre>PUT /resources/v1/employee/{id}/profile</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_20"><a class="anchor" href="#_description_20"></a>2.20.1. Description</h4>
+<div class="paragraph">
+<p>Updates the profile of a given employee.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_20"><a class="anchor" href="#_parameters_20"></a>2.20.2. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token to be sent for authentication and authorization.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The employee id for which the data will be updated.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>reqBody</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Employee profile data.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_employeeprofile">EmployeeProfile</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_20"><a class="anchor" href="#_responses_20"></a>2.20.3. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The data is successfully updated.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The access token expired or the access token is invalid.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to execute this command.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No employee is found with the given employee id.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_consumes_12"><a class="anchor" href="#_consumes_12"></a>2.20.4. Consumes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_produces_20"><a class="anchor" href="#_produces_20"></a>2.20.5. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_21"><a class="anchor" href="#_tags_21"></a>2.20.6. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>employee</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updatesalarydetails"><a class="anchor" href="#_updatesalarydetails"></a>2.21. Updates the Salary of an Employee</h3>
+<div class="literalblock">
+<div class="content">
+<pre>PUT /resources/v1/employee/{id}/salary</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_21"><a class="anchor" href="#_description_21"></a>2.21.1. Description</h4>
+<div class="paragraph">
+<p>Updates the salary of a given employee.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_21"><a class="anchor" href="#_parameters_21"></a>2.21.2. Parameters</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Authorization: Bearer </strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Access token to be sent for authentication and authorization.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The employee id for which the data will be updated.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>reqBody</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Employee salary data.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_employeesalary">EmployeeSalary</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_21"><a class="anchor" href="#_responses_21"></a>2.21.3. Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP Code</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The salary information of the employee is successfully updated.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The access token expired or the access token is invalid.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">User does not have permission to execute this command.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No employee is found with the given employee id.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_message">Message</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_consumes_13"><a class="anchor" href="#_consumes_13"></a>2.21.4. Consumes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_produces_21"><a class="anchor" href="#_produces_21"></a>2.21.5. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/xml</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_22"><a class="anchor" href="#_tags_22"></a>2.21.6. Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>employee</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getjobrolesoforg"><a class="anchor" href="#_getjobrolesoforg"></a>2.22. Returns List of Job Roles in a Given Organization</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/jobrole</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_20"><a class="anchor" href="#_description_20"></a>2.20.1. Description</h4>
+<h4 id="_description_22"><a class="anchor" href="#_description_22"></a>2.22.1. Description</h4>
 <div class="paragraph">
 <p>Returns list of job roles in a given organization.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_20"><a class="anchor" href="#_parameters_20"></a>2.20.2. Parameters</h4>
+<h4 id="_parameters_22"><a class="anchor" href="#_parameters_22"></a>2.22.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -3194,7 +3484,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_20"><a class="anchor" href="#_responses_20"></a>2.20.3. Responses</h4>
+<h4 id="_responses_22"><a class="anchor" href="#_responses_22"></a>2.22.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3240,7 +3530,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_20"><a class="anchor" href="#_produces_20"></a>2.20.4. Produces</h4>
+<h4 id="_produces_22"><a class="anchor" href="#_produces_22"></a>2.22.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3253,7 +3543,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_21"><a class="anchor" href="#_tags_21"></a>2.20.5. Tags</h4>
+<h4 id="_tags_23"><a class="anchor" href="#_tags_23"></a>2.22.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3264,20 +3554,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getjobroleoptbenefits"><a class="anchor" href="#_getjobroleoptbenefits"></a>2.21. Gets the Optional Benefits of a Given Job Role</h3>
+<h3 id="_getjobroleoptbenefits"><a class="anchor" href="#_getjobroleoptbenefits"></a>2.23. Gets the Optional Benefits of a Given Job Role</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/jobrole/{id}/optbenefit</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_21"><a class="anchor" href="#_description_21"></a>2.21.1. Description</h4>
+<h4 id="_description_23"><a class="anchor" href="#_description_23"></a>2.23.1. Description</h4>
 <div class="paragraph">
 <p>Gets the optional benefits of a given job role.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_21"><a class="anchor" href="#_parameters_21"></a>2.21.2. Parameters</h4>
+<h4 id="_parameters_23"><a class="anchor" href="#_parameters_23"></a>2.23.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -3312,7 +3602,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_21"><a class="anchor" href="#_responses_21"></a>2.21.3. Responses</h4>
+<h4 id="_responses_23"><a class="anchor" href="#_responses_23"></a>2.23.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3356,7 +3646,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_21"><a class="anchor" href="#_produces_21"></a>2.21.4. Produces</h4>
+<h4 id="_produces_23"><a class="anchor" href="#_produces_23"></a>2.23.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3369,7 +3659,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_22"><a class="anchor" href="#_tags_22"></a>2.21.5. Tags</h4>
+<h4 id="_tags_24"><a class="anchor" href="#_tags_24"></a>2.23.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3380,20 +3670,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getjobrolesalary"><a class="anchor" href="#_getjobrolesalary"></a>2.22. Gets the Salary of a Given Job Role</h3>
+<h3 id="_getjobrolesalary"><a class="anchor" href="#_getjobrolesalary"></a>2.24. Gets the Salary of a Given Job Role</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/jobrole/{id}/salary</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_22"><a class="anchor" href="#_description_22"></a>2.22.1. Description</h4>
+<h4 id="_description_24"><a class="anchor" href="#_description_24"></a>2.24.1. Description</h4>
 <div class="paragraph">
 <p>Gets the salary of a given job role.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_22"><a class="anchor" href="#_parameters_22"></a>2.22.2. Parameters</h4>
+<h4 id="_parameters_24"><a class="anchor" href="#_parameters_24"></a>2.24.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -3428,7 +3718,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_22"><a class="anchor" href="#_responses_22"></a>2.22.3. Responses</h4>
+<h4 id="_responses_24"><a class="anchor" href="#_responses_24"></a>2.24.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3472,7 +3762,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_22"><a class="anchor" href="#_produces_22"></a>2.22.4. Produces</h4>
+<h4 id="_produces_24"><a class="anchor" href="#_produces_24"></a>2.24.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3485,7 +3775,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_23"><a class="anchor" href="#_tags_23"></a>2.22.5. Tags</h4>
+<h4 id="_tags_25"><a class="anchor" href="#_tags_25"></a>2.24.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3496,20 +3786,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getorganizations"><a class="anchor" href="#_getorganizations"></a>2.23. Returns List of Organizations</h3>
+<h3 id="_getorganizations"><a class="anchor" href="#_getorganizations"></a>2.25. Returns List of Organizations</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/organization</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_23"><a class="anchor" href="#_description_23"></a>2.23.1. Description</h4>
+<h4 id="_description_25"><a class="anchor" href="#_description_25"></a>2.25.1. Description</h4>
 <div class="paragraph">
 <p>Returns a complete list of organizations defined in the system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_23"><a class="anchor" href="#_parameters_23"></a>2.23.2. Parameters</h4>
+<h4 id="_parameters_25"><a class="anchor" href="#_parameters_25"></a>2.25.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -3537,7 +3827,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_23"><a class="anchor" href="#_responses_23"></a>2.23.3. Responses</h4>
+<h4 id="_responses_25"><a class="anchor" href="#_responses_25"></a>2.25.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3583,7 +3873,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_23"><a class="anchor" href="#_produces_23"></a>2.23.4. Produces</h4>
+<h4 id="_produces_25"><a class="anchor" href="#_produces_25"></a>2.25.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3596,7 +3886,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_24"><a class="anchor" href="#_tags_24"></a>2.23.5. Tags</h4>
+<h4 id="_tags_26"><a class="anchor" href="#_tags_26"></a>2.25.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3607,20 +3897,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getpermissions"><a class="anchor" href="#_getpermissions"></a>2.24. Retrieves the Permissions of the Logged In User</h3>
+<h3 id="_getpermissions"><a class="anchor" href="#_getpermissions"></a>2.26. Retrieves the Permissions of the Logged In User</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/permission</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_24"><a class="anchor" href="#_description_24"></a>2.24.1. Description</h4>
+<h4 id="_description_26"><a class="anchor" href="#_description_26"></a>2.26.1. Description</h4>
 <div class="paragraph">
 <p>Retrieves the permissions of the logged in user at the GUI level or at the API level.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_24"><a class="anchor" href="#_parameters_24"></a>2.24.2. Parameters</h4>
+<h4 id="_parameters_26"><a class="anchor" href="#_parameters_26"></a>2.26.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -3655,7 +3945,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_24"><a class="anchor" href="#_responses_24"></a>2.24.3. Responses</h4>
+<h4 id="_responses_26"><a class="anchor" href="#_responses_26"></a>2.26.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3699,7 +3989,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_24"><a class="anchor" href="#_produces_24"></a>2.24.4. Produces</h4>
+<h4 id="_produces_26"><a class="anchor" href="#_produces_26"></a>2.26.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3712,7 +4002,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_25"><a class="anchor" href="#_tags_25"></a>2.24.5. Tags</h4>
+<h4 id="_tags_27"><a class="anchor" href="#_tags_27"></a>2.26.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3723,20 +4013,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getstates"><a class="anchor" href="#_getstates"></a>2.25. Gets List of States for a Given Country</h3>
+<h3 id="_getstates"><a class="anchor" href="#_getstates"></a>2.27. Gets List of States for a Given Country</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/state</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_25"><a class="anchor" href="#_description_25"></a>2.25.1. Description</h4>
+<h4 id="_description_27"><a class="anchor" href="#_description_27"></a>2.27.1. Description</h4>
 <div class="paragraph">
 <p>Gets the list of states for a given country. This data will be required while saving the address of the employee.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_25"><a class="anchor" href="#_parameters_25"></a>2.25.2. Parameters</h4>
+<h4 id="_parameters_27"><a class="anchor" href="#_parameters_27"></a>2.27.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -3771,7 +4061,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_25"><a class="anchor" href="#_responses_25"></a>2.25.3. Responses</h4>
+<h4 id="_responses_27"><a class="anchor" href="#_responses_27"></a>2.27.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3817,7 +4107,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_25"><a class="anchor" href="#_produces_25"></a>2.25.4. Produces</h4>
+<h4 id="_produces_27"><a class="anchor" href="#_produces_27"></a>2.27.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3830,7 +4120,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_26"><a class="anchor" href="#_tags_26"></a>2.25.5. Tags</h4>
+<h4 id="_tags_28"><a class="anchor" href="#_tags_28"></a>2.27.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3841,14 +4131,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getunits"><a class="anchor" href="#_getunits"></a>2.26. Returns List of Units in a Given Organization</h3>
+<h3 id="_getunits"><a class="anchor" href="#_getunits"></a>2.28. Returns List of Units in a Given Organization</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /resources/v1/unit</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_26"><a class="anchor" href="#_parameters_26"></a>2.26.1. Parameters</h4>
+<h4 id="_parameters_28"><a class="anchor" href="#_parameters_28"></a>2.28.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11%;">
@@ -3883,7 +4173,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_26"><a class="anchor" href="#_responses_26"></a>2.26.2. Responses</h4>
+<h4 id="_responses_28"><a class="anchor" href="#_responses_28"></a>2.28.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3929,7 +4219,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_26"><a class="anchor" href="#_produces_26"></a>2.26.3. Produces</h4>
+<h4 id="_produces_28"><a class="anchor" href="#_produces_28"></a>2.28.3. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3942,7 +4232,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_27"><a class="anchor" href="#_tags_27"></a>2.26.4. Tags</h4>
+<h4 id="_tags_29"><a class="anchor" href="#_tags_29"></a>2.28.4. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4734,7 +5024,57 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_employeeprofile"><a class="anchor" href="#_employeeprofile"></a>3.12. EmployeeProfile</h3>
+<h3 id="_employeepayslip"><a class="anchor" href="#_employeepayslip"></a>3.12. EmployeePayslip</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 61%;">
+<col style="width: 22%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>month</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Month of the payslip.<br>
+<strong>Maximal length</strong> : <code>15</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (varchar)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>payslipFile</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This will display the Payslip in pdf.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (text)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>totalDeduction</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Total deuction value in the payslip.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">number (double)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>totalEarning</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Total earning value in the payslip.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">number (double)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>year</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">year of the payslip.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int 32)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_employeeprofile"><a class="anchor" href="#_employeeprofile"></a>3.13. EmployeeProfile</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -4774,7 +5114,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_employeesalary"><a class="anchor" href="#_employeesalary"></a>3.13. EmployeeSalary</h3>
+<h3 id="_employeesalary"><a class="anchor" href="#_employeesalary"></a>3.14. EmployeeSalary</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -4805,7 +5145,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_grade"><a class="anchor" href="#_grade"></a>3.14. Grade</h3>
+<h3 id="_grade"><a class="anchor" href="#_grade"></a>3.15. Grade</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -4837,7 +5177,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_jobrole"><a class="anchor" href="#_jobrole"></a>3.15. JobRole</h3>
+<h3 id="_jobrole"><a class="anchor" href="#_jobrole"></a>3.16. JobRole</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -4886,7 +5226,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_logindetails"><a class="anchor" href="#_logindetails"></a>3.16. LoginDetails</h3>
+<h3 id="_logindetails"><a class="anchor" href="#_logindetails"></a>3.17. LoginDetails</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -4924,7 +5264,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_message"><a class="anchor" href="#_message"></a>3.17. Message</h3>
+<h3 id="_message"><a class="anchor" href="#_message"></a>3.18. Message</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -4949,7 +5289,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_optionalsalary"><a class="anchor" href="#_optionalsalary"></a>3.18. OptionalSalary</h3>
+<h3 id="_optionalsalary"><a class="anchor" href="#_optionalsalary"></a>3.19. OptionalSalary</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -4986,7 +5326,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_organization"><a class="anchor" href="#_organization"></a>3.19. Organization</h3>
+<h3 id="_organization"><a class="anchor" href="#_organization"></a>3.20. Organization</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5031,7 +5371,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_organizationtype"><a class="anchor" href="#_organizationtype"></a>3.20. OrganizationType</h3>
+<h3 id="_organizationtype"><a class="anchor" href="#_organizationtype"></a>3.21. OrganizationType</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5070,7 +5410,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_passwordchangedetails"><a class="anchor" href="#_passwordchangedetails"></a>3.21. PasswordChangeDetails</h3>
+<h3 id="_passwordchangedetails"><a class="anchor" href="#_passwordchangedetails"></a>3.22. PasswordChangeDetails</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5107,7 +5447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_permission"><a class="anchor" href="#_permission"></a>3.22. Permission</h3>
+<h3 id="_permission"><a class="anchor" href="#_permission"></a>3.23. Permission</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5140,7 +5480,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_salary"><a class="anchor" href="#_salary"></a>3.23. Salary</h3>
+<h3 id="_salary"><a class="anchor" href="#_salary"></a>3.24. Salary</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5177,7 +5517,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_salarycomponent"><a class="anchor" href="#_salarycomponent"></a>3.24. SalaryComponent</h3>
+<h3 id="_salarycomponent"><a class="anchor" href="#_salarycomponent"></a>3.25. SalaryComponent</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5223,7 +5563,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_salaryoptcomponent"><a class="anchor" href="#_salaryoptcomponent"></a>3.25. SalaryOptComponent</h3>
+<h3 id="_salaryoptcomponent"><a class="anchor" href="#_salaryoptcomponent"></a>3.26. SalaryOptComponent</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5295,7 +5635,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_state"><a class="anchor" href="#_state"></a>3.26. State</h3>
+<h3 id="_state"><a class="anchor" href="#_state"></a>3.27. State</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5340,7 +5680,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_token"><a class="anchor" href="#_token"></a>3.27. Token</h3>
+<h3 id="_token"><a class="anchor" href="#_token"></a>3.28. Token</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5384,7 +5724,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_unit"><a class="anchor" href="#_unit"></a>3.28. Unit</h3>
+<h3 id="_unit"><a class="anchor" href="#_unit"></a>3.29. Unit</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5453,7 +5793,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-06-21 17:20:21 IST
+Last updated 2017-08-11 21:11:57 IST
 </div>
 </div>
 </body>

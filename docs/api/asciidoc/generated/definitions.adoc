@@ -316,6 +316,26 @@ __optional__|The stop date of this benefit for the employee.|string (date-time)
 |===
 
 
+[[_employeepayslip]]
+=== EmployeePayslip
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**month** +
+__optional__|Month of the payslip. +
+**Maximal length** : `15`|string (varchar)
+|**payslipFile** +
+__optional__|This will display the Payslip in pdf.|string (text)
+|**totalDeduction** +
+__optional__|Total deuction value in the payslip.|number (double)
+|**totalEarning** +
+__optional__|Total earning value in the payslip.|number (double)
+|**year** +
+__optional__|year of the payslip.|integer (int 32)
+|===
+
+
 [[_employeeprofile]]
 === EmployeeProfile
 

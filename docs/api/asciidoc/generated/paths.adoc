@@ -873,6 +873,116 @@ __optional__|Employee optional benefit data.|<<_employeeoptionalbenefit,Employee
 * employee
 
 
+[[_insertpayslip]]
+=== Adds payslip of an Employee
+....
+POST /resources/v1/employee/{id}/payslip
+....
+
+
+==== Description
+Insert payslip of a given employee.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the optional benefit will be created.|integer
+|**Body**|**reqBody** +
+__optional__|Employee optional benefit data.|<<_employeepayslip,EmployeePayslip>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|The payslip stored successfully.|No Content
+|**404**|No employee is found with the given employee id.|<<_message,Message>>
+|**500**|Internal Server Error.|<<_message,Message>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
+[[_getpayslip]]
+=== Fetch payslip of an Employee
+....
+GET /resources/v1/employee/{id}/payslip
+....
+
+
+==== Description
+To get payslip of an particular employee
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**Authorization: Bearer ** +
+__required__|Access token to be sent for authentication and authorization.|string
+|**Path**|**id** +
+__required__|The employee id for which the data will be updated.|integer
+|**Query**|**month** +
+__required__|The month which will filter out payslip selection.|string
+|**Query**|**year** +
+__required__|The year which will filter out payslip selecion.|integer
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|payslip fetched successfully.|<<_employeepayslip,EmployeePayslip>>
+|**401**|The access token expired or the access token is invalid.|<<_message,Message>>
+|**403**|User does not have permission to execute this command.|<<_message,Message>>
+|**404**|No employee is found with the given employee id.|<<_message,Message>>
+|**500**|Internal Server Error.|<<_message,Message>>
+|===
+
+
+==== Consumes
+
+* `application/xml`
+* `application/json`
+
+
+==== Produces
+
+* `application/xml`
+* `application/json`
+
+
+==== Tags
+
+* employee
+
+
 [[_updateprofile]]
 === Updates the Profile of an Employee.
 ....
