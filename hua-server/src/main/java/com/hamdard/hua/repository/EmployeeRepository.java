@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hamdard.hua.model.Employee;
+import com.hamdard.hua.model.EmployeePayslip;
 import com.hamdard.hua.model.Employee.EmployeeAddlDetails;
 import com.hamdard.hua.model.Employee.EmployeeAddress;
 import com.hamdard.hua.model.Employee.EmployeeBasicInfo;
@@ -32,6 +33,7 @@ import com.hamdard.hua.model.Employee.EmployeeSalary;
 import com.hamdard.hua.model.Unit;
 import com.hamdard.hua.rowmapper.DocumentRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeImageFileMapper;
+import com.hamdard.hua.rowmapper.EmployeePayslipRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeSearchResultRowMapper;
 
@@ -162,6 +164,12 @@ public class EmployeeRepository {
 
     @Value("${sql.select.employeeDocument}")
     private String selectDocument;
+    
+	@Value("${sql.employeepayslip.get.byMonthYear}")
+	private String employeePayslipGetSql;
+
+	@Value("${sql.insert.payslip}")
+	private String employeePayslipInsertSql;
     /*****************************************************************************************************/
 
     @Transactional
@@ -742,4 +750,41 @@ public class EmployeeRepository {
         logger.info(sqlMarker, "Params {}", () -> empDoc.getRemarks(), () -> empDoc.getDocTypeId(), () -> empDoc.getDocument(), () -> empDoc.getDocId());
         jdbcTemplate.update(updateEmployeeDocument, args);
     }
+    
+	/**
+	 * fetch from employee_payslip table
+	 * @param employeeId
+	 * @param month
+	 * @param year
+	 */
+	public EmployeePayslip getPayslip(String employeeId, String month, int year) {
+
+		logger.info(sqlMarker, employeePayslipGetSql);
+		EmployeePayslip employeePayslip = (EmployeePayslip) jdbcTemplate.queryForObject(employeePayslipGetSql,
+				new Object[] { employeeId, month, year}, new EmployeePayslipRowMapper());
+		logger.debug("Retrieved organizations: {}", () -> employeePayslip.toString());
+		return employeePayslip;
+	}
+
+	/**
+	 * insert into employee_payslip table
+	 * @param employeeId
+	 * @param employeePayslip
+	 * @throws Exception
+	 */
+	public void insertPayslip(String employeeId, EmployeePayslip employeePayslip) throws Exception {
+
+		logger.info(sqlMarker, employeePayslipInsertSql);
+		logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}", () -> employeeId, () -> employeePayslip.getMonth(),
+				() -> employeePayslip.getYear(), () -> employeePayslip.getTotalEarning(),
+				() -> employeePayslip.getTotalDeduction(), () -> employeePayslip.getNetPayable(),
+				() -> employeePayslip.getPayslipFile());
+
+		jdbcTemplate.update(employeePayslipInsertSql,
+				new Object[] { employeeId, employeePayslip.getMonth(), employeePayslip.getYear(),
+						employeePayslip.getTotalEarning(), employeePayslip.getTotalDeduction(),
+						employeePayslip.getNetPayable(), employeePayslip.getPayslipFile() });
+
+	}
+
 }

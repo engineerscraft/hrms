@@ -31,6 +31,7 @@ import com.hamdard.hua.model.Employee.EmployeeHierarchy;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
+import com.hamdard.hua.model.EmployeePayslip;
 import com.hamdard.hua.model.Message;
 import com.hamdard.hua.privileges.Privilege;
 import com.hamdard.hua.repository.EmployeeRepository;
@@ -355,4 +356,39 @@ public class EmployeeResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
+    
+    @GET
+    @Path("{id}/payslip")
+    @Secured(Privilege.READ_PAYSLIP_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getPayslip(@PathParam("id") @Size(min=1) String employeeId,
+    		 @QueryParam("month") String month, @QueryParam("year") int year) {
+        try {
+            EmployeePayslip employeePayslip = employeeRepository.getPayslip(employeeId, month, year);
+            return Response.status(Response.Status.OK).entity(employeePayslip).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No payslip info found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The payslip could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @POST
+    @Path("/{id}/payslip")
+    @Secured(Privilege.INSERT_PAYSLIP_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response insertPayslip(@PathParam("id") @Size(min=1) String employeeId, EmployeePayslip employeePayslip) {
+        try {
+            employeeRepository.insertPayslip(employeeId, employeePayslip);
+            return Response.status(Response.Status.OK).build();
+        } catch (Exception ex) {
+            logger.error("The employee payslip info could not be stored", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+
 }
