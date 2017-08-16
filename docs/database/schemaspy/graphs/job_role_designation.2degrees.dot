@@ -14,7 +14,7 @@ digraph "twoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "appraisal_rating":"appraisal_rating.heading":w -> "job_role_master":"job_role_id":e [arrowtail=crowodot arrowhead=none];
+  "appraisal_rating":"appraisal_rating.heading":w -> "designation_master":"designation_id":e [arrowtail=crowodot arrowhead=none];
   "job_role_designation":"designation_id":w -> "designation_master":"designation_id":e [arrowtail=crowtee arrowhead=none];
   "job_role_designation":"job_role_id":w -> "job_role_master":"job_role_id":e [arrowtail=crowtee arrowhead=none];
   "job_role_master":"grade_id":w -> "grade_master":"grade_master.heading":e [arrowtail=crowtee arrowhead=none];

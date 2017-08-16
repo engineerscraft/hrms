@@ -25,7 +25,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="permission_name" COLSPAN="3" ALIGN="LEFT">permission_name</TD></TR>
       <TR><TD PORT="permission_type" COLSPAN="3" ALIGN="LEFT">permission_type</TD></TR>
       <TR><TD PORT="resource_name" COLSPAN="3" ALIGN="LEFT">resource_name</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">39 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">41 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
     </TABLE>>
     URL="permission_master.html#graph"
     tooltip="permission_master"
@@ -57,7 +57,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="role_permission.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role_permission</TD></TR>
       <TR><TD PORT="role_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD><TD PORT="role_id.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="permission_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">permission_id</TD><TD PORT="permission_id.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">151 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">156 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 &gt;</TD></TR>
     </TABLE>>
     URL="role_permission.html#"
     tooltip="role_permission"

@@ -14,9 +14,9 @@ digraph "twoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "address":"address.heading":w -> "employee":"employee.heading":e [arrowtail=crowtee arrowhead=none];
   "address":"state_id":w -> "state_master":"state_id.type":e [arrowtail=crowodot arrowhead=none];
   "district_master":"state_id":w -> "state_master":"state_id.type":e [arrowtail=crowodot arrowhead=none];
+  "employee":"employee.heading":w -> "country_master":"country_master.heading":e [arrowtail=crowodot arrowhead=none];
   "state_master":"country_id":w -> "country_master":"country_id":e [arrowtail=crowodot arrowhead=none];
   "address" [
     label=<

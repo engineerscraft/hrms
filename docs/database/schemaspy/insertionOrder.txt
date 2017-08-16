@@ -1,10 +1,10 @@
 country_master
-salary_opt_component_master
+salary_component_master
 appraisal_cycle
 designation_master
 doc_type_master
 role_master
-salary_component_master
+salary_opt_component_master
 grade_master
 organisation_type_master
 permission_master

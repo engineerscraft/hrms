@@ -392,10 +392,11 @@
          </column>
          <column autoUpdated="false" digits="0" id="1" name="month" nullable="true" remarks="" size="15" type="varchar"/>
          <column autoUpdated="false" digits="0" id="2" name="year" nullable="true" remarks="" size="10" type="int4"/>
-         <column autoUpdated="false" digits="0" id="3" name="opt_comp_id" nullable="true" remarks="" size="10" type="int4">
-            <parent column="opt_comp_id" foreignKey="employee_monthly_payroll_opt_comp_id_fkey" implied="false" onDeleteCascade="false" table="salary_opt_component_master"/>
+         <column autoUpdated="false" digits="0" id="3" name="comp_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="comp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="salary_component_master"/>
          </column>
-         <column autoUpdated="false" digits="17" id="4" name="opt_comp_value" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="17" id="4" name="comp_value" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="0" id="5" name="comp_type" nullable="true" remarks="" size="2147483647" type="component_type"/>
       </table>
       <table name="employee_optional_benefits" numRows="0" remarks="" schema="hrms" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('hrms.emp_opt_benefit_seq'::regclass)" digits="0" id="0" name="benefit_id" nullable="false" remarks="" size="10" type="serial"/>
@@ -452,7 +453,7 @@
             <column ascending="true" name="opt_benefit_hist_id"/>
          </index>
       </table>
-      <table name="employee_payslip" numRows="2" remarks="" schema="hrms" type="TABLE">
+      <table name="employee_payslip" numRows="1" remarks="" schema="hrms" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('hrms.employee_payslip_id_seq'::regclass)" digits="0" id="0" name="payslip_id" nullable="false" remarks="" size="19" type="bigserial"/>
          <column autoUpdated="false" digits="0" id="1" name="emp_id" nullable="true" remarks="" size="20" type="varchar">
             <parent column="emp_id" foreignKey="employee_payslip_emp_id_fkey" implied="false" onDeleteCascade="false" table="employee"/>
@@ -678,7 +679,7 @@
             <column ascending="true" name="org_type_id"/>
          </index>
       </table>
-      <table name="permission_master" numRows="39" remarks="" schema="hrms" type="TABLE">
+      <table name="permission_master" numRows="41" remarks="" schema="hrms" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="permission_id" nullable="false" remarks="" size="10" type="int4">
             <child column="permission_id" foreignKey="role_permission_permission_id_fkey" implied="false" onDeleteCascade="false" table="role_permission"/>
          </column>
@@ -716,7 +717,7 @@
             <column ascending="true" name="role_id"/>
          </index>
       </table>
-      <table name="role_permission" numRows="151" remarks="" schema="hrms" type="TABLE">
+      <table name="role_permission" numRows="156" remarks="" schema="hrms" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="role_id" nullable="false" remarks="" size="10" type="int4">
             <parent column="role_id" foreignKey="role_permission_role_id_fkey" implied="false" onDeleteCascade="false" table="role_master"/>
          </column>
@@ -732,6 +733,7 @@
       </table>
       <table name="salary_component_master" numRows="0" remarks="" schema="hrms" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="comp_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="comp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_monthly_payroll"/>
             <child column="comp_id" foreignKey="employee_salary_comp_id_fkey" implied="false" onDeleteCascade="false" table="employee_salary"/>
             <child column="sal_comp_id" foreignKey="sal_comp_fk" implied="false" onDeleteCascade="false" table="salary_master"/>
          </column>
@@ -766,7 +768,6 @@
       </table>
       <table name="salary_opt_component_master" numRows="0" remarks="" schema="hrms" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="opt_comp_id" nullable="false" remarks="" size="10" type="int4">
-            <child column="opt_comp_id" foreignKey="employee_monthly_payroll_opt_comp_id_fkey" implied="false" onDeleteCascade="false" table="employee_monthly_payroll"/>
             <child column="opt_comp_id" foreignKey="employee_optional_benefits_opt_comp_id_fkey" implied="false" onDeleteCascade="false" table="employee_optional_benefits"/>
             <child column="opt_comp_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="employee_optional_benefits_history"/>
          </column>

@@ -34,10 +34,10 @@ tax_component_master
 permission_master
 organisation_type_master
 grade_master
-salary_component_master
+salary_opt_component_master
 role_master
 doc_type_master
 designation_master
 appraisal_cycle
-salary_opt_component_master
+salary_component_master
 country_master

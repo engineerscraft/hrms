@@ -142,7 +142,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_monthly_payroll.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_monthly_payroll</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_monthly_payroll.html#graph"
     tooltip="employee_monthly_payroll"
@@ -168,7 +168,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="total_deduction" COLSPAN="2" ALIGN="LEFT">total_deduction</TD><TD PORT="total_deduction.type" ALIGN="LEFT">float8[17,17]</TD></TR>
       <TR><TD PORT="net_payable" COLSPAN="2" ALIGN="LEFT">net_payable</TD><TD PORT="net_payable.type" ALIGN="LEFT">float8[17,17]</TD></TR>
       <TR><TD PORT="payslip_file" COLSPAN="2" ALIGN="LEFT">payslip_file</TD><TD PORT="payslip_file.type" ALIGN="LEFT">text[2147483647]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 &gt;</TD></TR>
     </TABLE>>
     URL="employee_payslip.html#"
     tooltip="employee_payslip"

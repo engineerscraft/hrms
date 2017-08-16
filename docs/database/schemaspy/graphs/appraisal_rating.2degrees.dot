@@ -32,9 +32,9 @@ digraph "twoDegreesRelationshipsGraph" {
   "employee_optional_benefits":"employee_optional_benefits.heading":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
   "employee_payslip":"employee_payslip.heading":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
   "employee_profile":"employee_profile.heading":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
-  "employee_salary":"employee_salary.heading":w -> "appraisal_cycle":"appraisal_id":e [arrowtail=crowtee arrowhead=none];
+  "employee_salary":"employee_salary.heading":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
   "employee_tax":"employee_tax.heading":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
-  "job_role_designation":"job_role_designation.heading":w -> "job_role_master":"job_role_id":e [arrowtail=crowtee arrowhead=none];
+  "job_role_designation":"job_role_designation.heading":w -> "designation_master":"designation_id":e [arrowtail=crowtee arrowhead=none];
   "job_role_master":"grade_id":w -> "grade_master":"grade_master.heading":e [arrowtail=crowtee arrowhead=none];
   "job_role_master":"org_id":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowtee arrowhead=none];
   "leave_master":"leave_master.heading":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
@@ -182,7 +182,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_monthly_payroll.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_monthly_payroll</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_monthly_payroll.html#graph"
     tooltip="employee_monthly_payroll"
@@ -200,7 +200,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_payslip.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_payslip</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_payslip.html#graph"
     tooltip="employee_payslip"

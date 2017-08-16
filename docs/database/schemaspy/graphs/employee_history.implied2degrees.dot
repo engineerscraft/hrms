@@ -14,7 +14,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "employee":"employee.heading":w -> "department_master":"department_master.heading":e [arrowtail=crowodot arrowhead=none];
+  "employee":"employee.heading":w -> "unit_master":"unit_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_additional_details_history":"employee_additional_details_history.heading":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_hierarchy_status_history":"employee_hierarchy_status_history.heading":w -> "employee_hierarchy_status":"emp_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_history":"department_id":w -> "department_master":"department_id":e [arrowtail=crowodot arrowhead=none style=dashed];

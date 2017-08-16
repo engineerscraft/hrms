@@ -15,8 +15,8 @@ digraph "twoDegreesRelationshipsGraph" {
     arrowsize="0.8"
   ];
   "address":"country_id":w -> "country_master":"country_id.type":e [arrowtail=crowodot arrowhead=none];
-  "address":"address.heading":w -> "district_master":"district_master.heading":e [arrowtail=crowodot arrowhead=none];
   "appraisal_rating":"appraisal_rating.heading":w -> "employee":"employee.heading":e [arrowtail=crowtee arrowhead=none];
+  "district_master":"district_master.heading":w -> "state_master":"state_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee":"employee.heading":w -> "department_master":"department_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee":"employee.heading":w -> "doc_type_master":"doc_type_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee":"nationality":w -> "country_master":"country_id.type":e [arrowtail=crowodot arrowhead=none];
@@ -166,7 +166,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_monthly_payroll.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_monthly_payroll</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_monthly_payroll.html#graph"
     tooltip="employee_monthly_payroll"
@@ -184,7 +184,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_payslip.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_payslip</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_payslip.html#graph"
     tooltip="employee_payslip"
