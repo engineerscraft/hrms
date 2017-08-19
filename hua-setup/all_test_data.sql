@@ -11997,22 +11997,25 @@ INSERT INTO hrms.employee_salary
 (appraisal_id, emp_id, comp_id, entry_by, entry_date, sal_value)
 VALUES(1, 'HUB1', 5, 'HUB10', CURRENT_TIMESTAMP, -1500);
 
-INSERT INTO hrms.salary_opt_component_master
-(opt_comp_id, opt_component_name, description, sal_opt_component, restriction_window, frequency, end_date, credit_debit_flag, emp_opt_out_flag)
-VALUES(1, 'Travel Reimbursement', 'Travel Reimbursement', 'Optional', 0, 1, '2017-12-31 23:59:59', 'C', 'T');
 
 INSERT INTO hrms.salary_opt_component_master
 (opt_comp_id, opt_component_name, description, sal_opt_component, restriction_window, frequency, end_date, credit_debit_flag, emp_opt_out_flag)
-VALUES(2, 'Food Reimbursement', 'Food Reimbursement', 'Optional', 0, 1, '2017-12-31 23:59:59', 'C', 'T');
+VALUES(1, 'Fuel Allowance', 'Fuel Allowance', 'Optional', 0, 1, '2017-12-31 23:59:59', 'C', 'T');
+
+INSERT INTO hrms.salary_opt_component_master
+(opt_comp_id, opt_component_name, description, sal_opt_component, restriction_window, frequency, end_date, credit_debit_flag, emp_opt_out_flag)
+VALUES(2, 'Sodexo Coupon', 'Sodexo Coupon', 'Optional', 0, 1, '2017-12-31 23:59:59', 'D', 'T');
 
 INSERT INTO hrms.employee_optional_benefits
 (emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration)
-VALUES( 'HUB1', 1, 1, 500.00, '2017-08-19', '2017-08-19', '2017-08-19', 'Travel Reimbursement', 'HUB10', CURRENT_TIMESTAMP, 1, 0);
+VALUES( 'HUB1', 1, 1, 1000.00, '2017-08-19', '2017-08-19', '2017-08-19', 'To opt for Fuel Allowance', 'HUB10', CURRENT_TIMESTAMP, 1, 0);
 
 
 INSERT INTO hrms.employee_optional_benefits
 (emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration)
-VALUES( 'HUB1', 2, 1, 150.00, '2017-08-20', '2017-08-20', '2017-08-20', 'Food Reimbursement', 'HUB10', CURRENT_TIMESTAMP, 1, 0);
+VALUES( 'HUB1', 2, 1, -2000.00, '2017-08-20', '2017-08-20', '2017-08-20', 'Sodexo Coupon', 'HUB10', CURRENT_TIMESTAMP, 1, 0);
+
+
 
 INSERT INTO hrms.tax_component_master
 (tax_comp_name, tax_comp_description)
