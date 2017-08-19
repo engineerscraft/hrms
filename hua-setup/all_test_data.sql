@@ -11956,3 +11956,68 @@ ZFQGk1pgN+iAyWlgESkwKQkmxdHZTGBZpvNgkTawacJgUh/six4gych0E8QWegNWMxVMfgf69/dr
 sB+BPAQp+A9dhLokx0damcz4CUwy4FPD+geiBiDAAGC7F9ANCmVuZHN0cmVhbQ1lbmRvYmoNc3Rh
 cnR4cmVmDQoxMTYNCiUlRU9GDQo=');
 
+
+INSERT INTO hrms.salary_component_master
+(comp_id, component_name, description, sal_component)
+VALUES(1, 'Basic', 'Basic Salary', 'Fixed');
+
+INSERT INTO hrms.salary_component_master
+(comp_id, component_name, description, sal_component)
+VALUES(2, 'HRA', 'House Rent Allowances', 'Fixed');
+
+INSERT INTO hrms.salary_component_master
+(comp_id, component_name, description, sal_component)
+VALUES(3, 'DA', 'Dearness Allowances', 'Fixed');
+
+INSERT INTO hrms.salary_component_master
+(comp_id, component_name, description, sal_component)
+VALUES(4, 'Conveyance', 'Conveyance', 'Fixed');
+
+INSERT INTO hrms.salary_component_master
+(comp_id, component_name, description, sal_component)
+VALUES(5, 'PF', 'Provident Fund', 'Fixed');
+
+INSERT INTO hrms.employee_salary
+(appraisal_id, emp_id, comp_id, entry_by, entry_date, sal_value)
+VALUES(1, 'HUB1', 1, 'HUB10', CURRENT_TIMESTAMP, 9000);
+
+INSERT INTO hrms.employee_salary
+(appraisal_id, emp_id, comp_id, entry_by, entry_date, sal_value)
+VALUES(1, 'HUB1', 2, 'HUB10', CURRENT_TIMESTAMP, 5000);
+
+INSERT INTO hrms.employee_salary
+(appraisal_id, emp_id, comp_id, entry_by, entry_date, sal_value)
+VALUES(1, 'HUB1', 3, 'HUB10', CURRENT_TIMESTAMP, 6500);
+
+INSERT INTO hrms.employee_salary
+(appraisal_id, emp_id, comp_id, entry_by, entry_date, sal_value)
+VALUES(1, 'HUB1', 4, 'HUB10', CURRENT_TIMESTAMP, 1000);
+
+INSERT INTO hrms.employee_salary
+(appraisal_id, emp_id, comp_id, entry_by, entry_date, sal_value)
+VALUES(1, 'HUB1', 5, 'HUB10', CURRENT_TIMESTAMP, -1500);
+
+INSERT INTO hrms.salary_opt_component_master
+(opt_comp_id, opt_component_name, description, sal_opt_component, restriction_window, frequency, end_date, credit_debit_flag, emp_opt_out_flag)
+VALUES(1, 'Travel Reimbursement', 'Travel Reimbursement', 'Optional', 0, 1, '2017-12-31 23:59:59', 'C', 'T');
+
+INSERT INTO hrms.salary_opt_component_master
+(opt_comp_id, opt_component_name, description, sal_opt_component, restriction_window, frequency, end_date, credit_debit_flag, emp_opt_out_flag)
+VALUES(2, 'Food Reimbursement', 'Food Reimbursement', 'Optional', 0, 1, '2017-12-31 23:59:59', 'C', 'T');
+
+INSERT INTO hrms.employee_optional_benefits
+(emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration)
+VALUES( 'HUB1', 1, 1, 500.00, '2017-08-19', '2017-08-19', '2017-08-19', 'Travel Reimbursement', 'HUB10', CURRENT_TIMESTAMP, 1, 0);
+
+
+INSERT INTO hrms.employee_optional_benefits
+(emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration)
+VALUES( 'HUB1', 2, 1, 150.00, '2017-08-20', '2017-08-20', '2017-08-20', 'Food Reimbursement', 'HUB10', CURRENT_TIMESTAMP, 1, 0);
+
+INSERT INTO hrms.tax_component_master
+(tax_comp_name, tax_comp_description)
+VALUES( 'Professional Tax', 'Employee Professional Tax');
+
+INSERT INTO hrms.employee_tax
+(emp_id, tax_comp_id, entry_by, entry_date, tax_comp_value)
+VALUES('HUB1', 1, 'HUB10', current_timestamp, 1200);
