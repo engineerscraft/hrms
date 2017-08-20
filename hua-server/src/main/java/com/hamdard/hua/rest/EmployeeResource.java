@@ -285,7 +285,15 @@ public class EmployeeResource {
             empInfo.setEmployeeOptionalBenefit(employeeRepository.getemployeeOptionalBenefitList(employeeId));
             empInfo.setEmployeeSalary(employeeRepository.getEmployeeSalaryList(employeeId));
             empInfo.setEmployeeTaxList(employeeRepository.getEmployeeTaxList(employeeId));
-            empInfo.setLeave(employeeRepository.getEmployeeLeave(employeeId));
+            Leave leave=new Leave();
+            try{
+            	leave=employeeRepository.getEmployeeLeave(employeeId);
+            	empInfo.setLeave(leave);
+            }
+            catch(Exception ex){
+            	logger.error("The leave info not found", ex);
+            	empInfo.setLeave(null);
+            }
             return Response.status(Response.Status.OK).entity(empInfo).build();
         } catch (EmptyResultDataAccessException e) {
             logger.error("The employee details not found", e);
@@ -416,7 +424,7 @@ public class EmployeeResource {
     
     @GET
     @Path("{id}/leave")
-    @Secured(Privilege.READ_LEAVE_OF_AN_EMP)
+    //@Secured(Privilege.READ_LEAVE_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response getEmployeeLeave(@PathParam("id") @Size(min=1) String employeeId) {
@@ -439,7 +447,8 @@ public class EmployeeResource {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updateEmployeeLeave(@PathParam("id") @Size(min = 1) String empId, Leave leave) {
     	String employeeName = securityContext.getUserPrincipal().getName();
-        try {
+    	//String employeeName="dummy";
+    	try {
             int rowsUpdated=employeeRepository.updateEmployeeLeave(leave, empId, employeeName);
             if(rowsUpdated>0)
             	return Response.status(200).entity(new Message("Leave info updated successfully")).build();

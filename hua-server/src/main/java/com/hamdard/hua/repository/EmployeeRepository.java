@@ -876,6 +876,7 @@ public class EmployeeRepository {
 	 */
 	public Leave getEmployeeLeave(String employeeId){
 		logger.info(sqlMarker, employeeGetLeaveSql);
+		logger.info(sqlMarker, "Params {}, -> employeeId");
 		Leave leave = (Leave) jdbcTemplate.queryForObject(employeeGetLeaveSql,
 				new Object[] {employeeId}, new LeaveRowMapper());
 		logger.debug("Retrieved employee leaves: {}", () -> leave);
@@ -884,38 +885,56 @@ public class EmployeeRepository {
 	
 	@Transactional
 	public int updateEmployeeLeave(Leave leave, String empId, String employeeName) {
+		Leave oldLeave = new Leave();
+		oldLeave = getEmployeeLeave(empId);
+		logger.info("Old leave data", oldLeave);
+
+		/*
+		 * Calculate remaining leave as Old remaining leaves- current availed
+		 * leaves
+		 */
+		leave.setRemainingCl(oldLeave.getRemainingCl() - leave.getAvailedCl());
+		leave.setRemainingPaternityMaternityLeave(
+				oldLeave.getRemainingPaternityMaternityLeave() - leave.getAvailedPaternityMaternityLeave());
+		leave.setRemainingPl(oldLeave.getRemainingPl() - leave.getAvailedPl());
+		leave.setRemainingSickLeave(oldLeave.getRemainingSickLeave() - leave.getAvailedSickLeave());
+		leave.setRemainingSpecialLeave(oldLeave.getRemainingSpecialLeave() - leave.getAvailedSpecialLeave());
+
 		Object[] args = { leave.getEligibleCl(), leave.getEligiblePl(), leave.getEligiblePaternityMaternityLeave(),
 				leave.getEligibleSickLeave(), leave.getEligibleSpecialLeave(), leave.getAvailedCl(),
 				leave.getAvailedPl(), leave.getAvailedPaternityMaternityLeave(), leave.getAvailedSickLeave(),
-				leave.getAvailedSpecialLeave(), empId };
+				leave.getAvailedSpecialLeave(), leave.getRemainingCl(), leave.getRemainingPl(),
+				leave.getRemainingPaternityMaternityLeave(), leave.getRemainingSickLeave(),
+				leave.getRemainingSpecialLeave(), empId };
 		logger.info(sqlMarker, employeeUpdateLeaveSql);
-		logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> leave.getEligibleCl(),
-				() -> leave.getEligiblePl(), () -> leave.getEligiblePaternityMaternityLeave(),
-				() -> leave.getEligibleSickLeave(), () -> leave.getEligibleSpecialLeave(), () -> leave.getAvailedCl(),
-				() -> leave.getAvailedPl(), () -> leave.getAvailedPaternityMaternityLeave(),
-				() -> leave.getAvailedSickLeave(), () -> leave.getAvailedSpecialLeave(), () -> empId);
+		logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+				() -> leave.getEligibleCl(), () -> leave.getEligiblePl(),
+				() -> leave.getEligiblePaternityMaternityLeave(), () -> leave.getEligibleSickLeave(),
+				() -> leave.getEligibleSpecialLeave(), () -> leave.getAvailedCl(), () -> leave.getAvailedPl(),
+				() -> leave.getAvailedPaternityMaternityLeave(), () -> leave.getAvailedSickLeave(),
+				() -> leave.getAvailedSpecialLeave(), () -> leave.getRemainingCl(), () -> leave.getRemainingPl(),
+				() -> leave.getRemainingPaternityMaternityLeave(), () -> leave.getRemainingSickLeave(),
+				() -> leave.getRemainingSpecialLeave(), () -> empId);
 		int rowsUpdated = jdbcTemplate.update(employeeUpdateLeaveSql, args);
 		if (rowsUpdated > 0) {
 			Object[] leaveHistoryArgs = { empId, leave.getEligibleCl(), leave.getEligiblePl(),
 					leave.getEligiblePaternityMaternityLeave(), leave.getEligibleSickLeave(),
 					leave.getEligibleSpecialLeave(), leave.getAvailedCl(), leave.getAvailedPl(),
 					leave.getAvailedPaternityMaternityLeave(), leave.getAvailedSickLeave(),
-					leave.getAvailedSpecialLeave(), leave.getEligibleCl() - leave.getAvailedCl(),
-					leave.getEligiblePl() - leave.getAvailedPl(),
-					leave.getEligiblePaternityMaternityLeave() - leave.getAvailedPaternityMaternityLeave(),
-					leave.getEligibleSickLeave() - leave.getAvailedSickLeave(),
-					leave.getEligibleSpecialLeave() - leave.getAvailedSpecialLeave(), employeeName };
+					leave.getAvailedSpecialLeave(), leave.getRemainingCl(), leave.getRemainingPl(),
+					leave.getRemainingPaternityMaternityLeave(), leave.getRemainingSickLeave(),
+					leave.getRemainingSpecialLeave(), employeeName };
 			logger.info(sqlMarker, employeeInsertIntoLeaveHistorySql);
 			logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
 					() -> empId, () -> leave.getEligibleCl(), () -> leave.getEligiblePl(),
 					() -> leave.getEligiblePaternityMaternityLeave(), () -> leave.getEligibleSickLeave(),
 					() -> leave.getEligibleSpecialLeave(), () -> leave.getAvailedCl(), () -> leave.getAvailedPl(),
 					() -> leave.getAvailedPaternityMaternityLeave(), () -> leave.getAvailedSickLeave(),
-					() -> leave.getAvailedSpecialLeave(), () -> leave.getEligibleCl() - leave.getAvailedCl(),
-					() -> leave.getEligiblePl() - leave.getAvailedPl(),
-					() -> leave.getEligiblePaternityMaternityLeave() - leave.getAvailedPaternityMaternityLeave(),
-					() -> leave.getEligibleSickLeave() - leave.getAvailedSickLeave(),
-					() -> leave.getEligibleSpecialLeave() - leave.getAvailedSpecialLeave(), () -> employeeName);
+					() -> leave.getAvailedSpecialLeave(),
+					() -> leave.getRemainingCl(), () -> leave.getRemainingPl(),
+					() -> leave.getRemainingPaternityMaternityLeave(), () -> leave.getRemainingSickLeave(),
+					() -> leave.getRemainingSpecialLeave(),
+					() -> employeeName);
 			jdbcTemplate.update(employeeInsertIntoLeaveHistorySql, leaveHistoryArgs);
 		}
 		return rowsUpdated;
