@@ -24,6 +24,7 @@ public class Employee {
     private List<EmployeeSalary> employeeSalary;
     private AppraisalRating appraisalRating;
     private List<EmployeeDocument> documentList;
+    private List<EmployeeTax> employeeTaxList;
 
     public static class EmployeeDocument {
         private int docId;
@@ -1006,6 +1007,45 @@ public class Employee {
         }
     }
 
+    
+    public static class EmployeeTax{
+    	private TaxComponent taxComponent;
+    	private String entryBy;
+    	@XmlJavaTypeAdapter(DateAdapter.class)
+        private Date entryDate;
+    	private double taxCompValue;
+    	
+    	public TaxComponent getTaxComponent() {
+			return taxComponent;
+		}
+		public void setTaxComponent(TaxComponent taxComponent) {
+			this.taxComponent = taxComponent;
+		}
+		public String getEntryBy() {
+			return entryBy;
+		}
+		public void setEntryBy(String entryBy) {
+			this.entryBy = entryBy;
+		}
+		public Date getEntryDate() {
+			return entryDate;
+		}
+		public void setEntryDate(Date entryDate) {
+			this.entryDate = entryDate;
+		}
+		public double getTaxCompValue() {
+			return taxCompValue;
+		}
+		public void setTaxCompValue(double taxCompValue) {
+			this.taxCompValue = taxCompValue;
+		}
+		@Override
+		public String toString() {
+			return "EmployeeTax [taxComponent=" + taxComponent + ", entryBy=" + entryBy + ", entryDate=" + entryDate
+					+ ", taxCompValue=" + taxCompValue + "]";
+		}
+		
+    }
     public AppraisalRating getAppraisalRating() {
         return appraisalRating;
     }
@@ -1078,10 +1118,21 @@ public class Employee {
         this.documentList = documentList;
     }
 
-    @Override
-    public String toString() {
-        return "Employee [employeeAddlDetails=" + this.employeeAddlDetails + ", employeeAddress=" + this.employeeAddress + ", employeeBasicDetails=" + this.employeeBasicInfo + ", employeeHierarchy=" + this.employeeHierarchy + ", employeeOptionalBenefit="
-                + this.employeeOptionalBenefit + ", employeeProfile=" + this.employeeProfile + ", employeeSalary=" + this.employeeSalary + "]";
-    }
+    public List<EmployeeTax> getEmployeeTaxList() {
+		return employeeTaxList;
+	}
+
+	public void setEmployeeTaxList(List<EmployeeTax> employeeTaxList) {
+		this.employeeTaxList = employeeTaxList;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [employeeAddlDetails=" + employeeAddlDetails + ", employeeAddress=" + employeeAddress
+				+ ", employeeBasicInfo=" + employeeBasicInfo + ", employeeHierarchy=" + employeeHierarchy
+				+ ", employeeOptionalBenefit=" + employeeOptionalBenefit + ", employeeProfile=" + employeeProfile
+				+ ", employeeSalary=" + employeeSalary + ", appraisalRating=" + appraisalRating + ", documentList="
+				+ documentList + ", employeeTaxList=" + employeeTaxList + "]";
+	}
 
 }
