@@ -31,6 +31,7 @@ import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
 import com.hamdard.hua.model.Employee.EmployeeTax;
+import com.hamdard.hua.model.Employee.Leave;
 import com.hamdard.hua.model.Unit;
 import com.hamdard.hua.rowmapper.DocumentRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeImageFileMapper;
@@ -40,6 +41,7 @@ import com.hamdard.hua.rowmapper.EmployeeRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeSalaryRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeSearchResultRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeTaxRowMapper;
+import com.hamdard.hua.rowmapper.LeaveRowMapper;
 
 /**
  * @author Jyotirmoy Banerjee
@@ -182,7 +184,11 @@ public class EmployeeRepository {
 	private String employeeGetSalarySql;	
 	
 	@Value("${sql.employee.tax.get.byEmpId}")
-	private String employeeGetTaxSql;	
+	private String employeeGetTaxSql;
+	
+	@Value("${sql.leave.get.byEmpId}")
+	private String employeeGetLeaveSql;
+	
 	
     /*****************************************************************************************************/
 
@@ -855,6 +861,19 @@ public class EmployeeRepository {
 				new Object[] {employeeId}, new EmployeeTaxRowMapper());
 		logger.debug("Retrieved employee tax components: {}", () -> employeeTaxList);
 		return employeeTaxList;	
+	}
+	
+	/**
+	 * fetch data from leave_master
+	 * @param employeeId
+	 * @return Leave
+	 */
+	public Leave getEmployeeLeave(String employeeId){
+		logger.info(sqlMarker, employeeGetLeaveSql);
+		Leave leave = (Leave) jdbcTemplate.queryForObject(employeeGetLeaveSql,
+				new Object[] {employeeId}, new LeaveRowMapper());
+		logger.debug("Retrieved employee leaves: {}", () -> leave);
+		return leave;	
 	}
 
 }
