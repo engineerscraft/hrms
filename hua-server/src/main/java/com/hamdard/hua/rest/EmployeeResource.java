@@ -438,8 +438,9 @@ public class EmployeeResource {
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response updateEmployeeLeave(@PathParam("id") @Size(min = 1) String empId, Leave leave) {
+    	String employeeName = securityContext.getUserPrincipal().getName();
         try {
-            employeeRepository.updateEmployeeLeave(leave, empId);
+            employeeRepository.updateEmployeeLeave(leave, empId, employeeName);
             return Response.status(200).entity(new Message("Leave info updated successfully")).build();
         } catch (Exception ex) {
             logger.error("Leave info could not be updated.", ex);
