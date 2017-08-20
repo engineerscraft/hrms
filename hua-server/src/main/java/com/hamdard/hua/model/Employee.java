@@ -25,6 +25,7 @@ public class Employee {
     private AppraisalRating appraisalRating;
     private List<EmployeeDocument> documentList;
     private List<EmployeeTax> employeeTaxList;
+    private Leave leave;
 
     public static class EmployeeDocument {
         private int docId;
@@ -1007,7 +1008,6 @@ public class Employee {
         }
     }
 
-    
     public static class EmployeeTax{
     	private TaxComponent taxComponent;
     	private String entryBy;
@@ -1046,6 +1046,131 @@ public class Employee {
 		}
 		
     }
+    
+    public static class Leave{
+    	private int eligibleCl;
+    	private int eligiblePl;
+    	private int eligiblePaternityMaternityLeave;
+    	private int eligibleSickLeave;
+    	private int eligibleSpecialLeave;
+    	
+    	private int availedCl;
+    	private int availedPl;
+    	private int availedPaternityMaternityLeave;
+    	private int availedSickLeave;
+    	private int availedSpecialLeave;
+    	
+    	private int remainingCl;
+    	private int remainingPl;
+    	private int remainingPaternityMaternityLeave;
+    	private int remainingSickLeave;
+    	private int remainingSpecialLeave;
+    	
+		public int getEligibleCl() {
+			return eligibleCl;
+		}
+		public void setEligibleCl(int eligibleCl) {
+			this.eligibleCl = eligibleCl;
+		}
+		public int getEligiblePl() {
+			return eligiblePl;
+		}
+		public void setEligiblePl(int eligiblePl) {
+			this.eligiblePl = eligiblePl;
+		}
+		public int getEligiblePaternityMaternityLeave() {
+			return eligiblePaternityMaternityLeave;
+		}
+		public void setEligiblePaternityMaternityLeave(int eligiblePaternityMaternityLeave) {
+			this.eligiblePaternityMaternityLeave = eligiblePaternityMaternityLeave;
+		}
+		public int getEligibleSickLeave() {
+			return eligibleSickLeave;
+		}
+		public void setEligibleSickLeave(int eligibleSickLeave) {
+			this.eligibleSickLeave = eligibleSickLeave;
+		}
+		public int getEligibleSpecialLeave() {
+			return eligibleSpecialLeave;
+		}
+		public void setEligibleSpecialLeave(int eligibleSpecialLeave) {
+			this.eligibleSpecialLeave = eligibleSpecialLeave;
+		}
+		public int getAvailedCl() {
+			return availedCl;
+		}
+		public void setAvailedCl(int availedCl) {
+			this.availedCl = availedCl;
+		}
+		public int getAvailedPl() {
+			return availedPl;
+		}
+		public void setAvailedPl(int availedPl) {
+			this.availedPl = availedPl;
+		}
+		public int getAvailedPaternityMaternityLeave() {
+			return availedPaternityMaternityLeave;
+		}
+		public void setAvailedPaternityMaternityLeave(int availedPaternityMaternityLeave) {
+			this.availedPaternityMaternityLeave = availedPaternityMaternityLeave;
+		}
+		public int getAvailedSickLeave() {
+			return availedSickLeave;
+		}
+		public void setAvailedSickLeave(int availedSickLeave) {
+			this.availedSickLeave = availedSickLeave;
+		}
+		public int getAvailedSpecialLeave() {
+			return availedSpecialLeave;
+		}
+		public void setAvailedSpecialLeave(int availedSpecialLeave) {
+			this.availedSpecialLeave = availedSpecialLeave;
+		}
+		public int getRemainingCl() {
+			return remainingCl;
+		}
+		public void setRemainingCl(int remainingCl) {
+			this.remainingCl = remainingCl;
+		}
+		public int getRemainingPl() {
+			return remainingPl;
+		}
+		public void setRemainingPl(int remainingPl) {
+			this.remainingPl = remainingPl;
+		}
+		public int getRemainingPaternityMaternityLeave() {
+			return remainingPaternityMaternityLeave;
+		}
+		public void setRemainingPaternityMaternityLeave(int remainingPaternityMaternityLeave) {
+			this.remainingPaternityMaternityLeave = remainingPaternityMaternityLeave;
+		}
+		public int getRemainingSickLeave() {
+			return remainingSickLeave;
+		}
+		public void setRemainingSickLeave(int remainingSickLeave) {
+			this.remainingSickLeave = remainingSickLeave;
+		}
+		public int getRemainingSpecialLeave() {
+			return remainingSpecialLeave;
+		}
+		public void setRemainingSpecialLeave(int remainingSpecialLeave) {
+			this.remainingSpecialLeave = remainingSpecialLeave;
+		}
+		
+		@Override
+		public String toString() {
+			return "Leave [eligibleCl=" + eligibleCl + ", eligiblePl=" + eligiblePl
+					+ ", eligiblePaternityMaternityLeave=" + eligiblePaternityMaternityLeave + ", eligibleSickLeave="
+					+ eligibleSickLeave + ", eligibleSpecialLeave=" + eligibleSpecialLeave + ", availedCl=" + availedCl
+					+ ", availedPl=" + availedPl + ", availedPaternityMaternityLeave=" + availedPaternityMaternityLeave
+					+ ", availedSickLeave=" + availedSickLeave + ", availedSpecialLeave=" + availedSpecialLeave
+					+ ", remainingCl=" + remainingCl + ", remainingPl=" + remainingPl
+					+ ", remainingPaternityMaternityLeave=" + remainingPaternityMaternityLeave + ", remainingSickLeave="
+					+ remainingSickLeave + ", remainingSpecialLeave=" + remainingSpecialLeave + "]";
+		}
+
+    }
+    
     public AppraisalRating getAppraisalRating() {
         return appraisalRating;
     }
@@ -1126,13 +1251,21 @@ public class Employee {
 		this.employeeTaxList = employeeTaxList;
 	}
 
+	public Leave getLeave() {
+		return leave;
+	}
+
+	public void setLeave(Leave leave) {
+		this.leave = leave;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [employeeAddlDetails=" + employeeAddlDetails + ", employeeAddress=" + employeeAddress
 				+ ", employeeBasicInfo=" + employeeBasicInfo + ", employeeHierarchy=" + employeeHierarchy
 				+ ", employeeOptionalBenefit=" + employeeOptionalBenefit + ", employeeProfile=" + employeeProfile
 				+ ", employeeSalary=" + employeeSalary + ", appraisalRating=" + appraisalRating + ", documentList="
-				+ documentList + ", employeeTaxList=" + employeeTaxList + "]";
+				+ documentList + ", employeeTaxList=" + employeeTaxList + ", leave=" + leave + "]";
 	}
 
 }
