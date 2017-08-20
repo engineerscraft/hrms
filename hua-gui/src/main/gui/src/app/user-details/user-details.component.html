@@ -472,116 +472,52 @@
                 <div class="display-table document-height">
                   <div class="toggle">
                   <input type="checkbox" value="selected" id="incomeDetails" class="toggle-input" checked>
-                  <label for="incomeDetails" class="toggle-label">Earning Details</label>
+                  <label for="incomeDetails" class="toggle-label">Salary Details</label>
                   <div role="toggle" class="toggle-content">
                     <div class="table span_4_of_4">
                       <div></div>
-                      <div class="row">
+                      <div class="row" *ngFor="let fixedSalary of employeeInfo?.employeeSalary">
                         <div class="cell">
-                          <label class="text-label">Basic</label>
+                          <label class="text-label">{{fixedSalary.salaryComponent.compName}}</label>
                         </div>
                         <div class="cell">
-                          <label class="text-value">0</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="cell">
-                          <label class="text-label">D.A.</label>
-                        </div>
-                        <div class="cell">
-                          <label class="text-value">0</label>
+                          <label class="text-value">{{fixedSalary.salaryValue}}</label>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="cell">
-                          <label class="text-label">H.R.A.</label>
-                        </div>
-                        <div class="cell">
-                          <label class="text-value">0</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="cell">
-                          <label class="text-label">Conveyance Allowance</label>
-                        </div>
-                        <div class="cell">
-                          <label class="text-value">0</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="cell">
-                          <label class="text-label">Medical Allowance</label>
-                        </div>
-                        <div class="cell">
-                          <label class="text-value">0</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="cell">
-                          <label class="text-label">Food Allowance</label>
-                        </div>
-                        <div class="cell">
-                          <label class="text-value">0</label>
-                        </div>
-                      </div>
-                      <div class="row footer">
+                      <!--<div class="row footer">
                         <div class="cell">
                           <label class="text-label">Total</label>
                         </div>
                         <div class="cell">
-                          <label class="text-value">0</label>
+                          <label class="text-value">{{salaryTotal}}</label>
                         </div>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                   </div>
                   <div></div>
                   <div class="toggle">
                   <input type="checkbox" value="selected" id="deductionDetails" class="toggle-input" checked>
-                  <label for="deductionDetails" class="toggle-label">Deduction Details</label>
+                  <label for="deductionDetails" class="toggle-label">Optional Benefit Details</label>
                   <div role="toggle" class="toggle-content">
                     <div class="table span_4_of_4">
                       <div></div>
-                      <div class="row">
+                      <div class="row" *ngFor="let optBenefits of employeeInfo?.employeeOptionalBenefit">
                         <div class="cell">
-                          <label class="text-label">P.F.</label>
+                          <label class="text-label">{{optBenefits.optSalaryComponent.optCompName}}</label>
                         </div>
                         <div class="cell">
-                          <label class="text-value">0</label>
+                          <label class="text-value">{{optBenefits.benefitValue}}</label>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="cell">
-                          <label class="text-label">E.S.I</label>
-                        </div>
-                        <div class="cell">
-                          <label class="text-value">0</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="cell">
-                          <label class="text-label">Car Lease</label>
-                        </div>
-                        <div class="cell">
-                          <label class="text-value">0</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                          <div class="cell">
-                            <label class="text-label">Professional Tax</label>
-                          </div>
-                          <div class="cell">
-                            <label class="text-value">0</label>
-                          </div>
-                        </div>
-                      <div class="row footer">
+                      <!--<div class="row footer">
                         <div class="cell">
                           <label class="text-label">Total</label>
                         </div>
                         <div class="cell">
                           <label class="text-value">0</label>
                         </div>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                   </div>
@@ -758,19 +694,19 @@
                       <label class="text-label">Casual Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.eligibleCl}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Casual Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.remainingCl}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Casual Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.availedCl}}</label>
                     </div>
                   </div>
                   <div class="row">
@@ -778,19 +714,19 @@
                       <label class="text-label">Earned Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.eligiblePl}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Earned Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.remainingPl}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Earned Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.availedPl}}</label>
                     </div>
                   </div>
                   <div class="row">
@@ -798,19 +734,19 @@
                       <label class="text-label">Sick Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.eligibleSickLeave}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Sick Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.remainingSickLeave}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Sick Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.availedSickLeave}}</label>
                     </div>
                   </div>
                   <div class="row">
@@ -818,19 +754,19 @@
                       <label class="text-label">Maternity/Paternity Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.eligiblePaternityMaternityLeave}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Maternity/Paternity Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.remainingPaternityMaternityLeave}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Maternity/Paternity Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.availedPaternityMaternityLeave}}</label>
                     </div>
                   </div>
                   <div class="row">
@@ -838,19 +774,19 @@
                       <label class="text-label">Special Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.eligibleSpecialLeave}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Special Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.remainingSpecialLeave}}</label>
                     </div>
                     <div class="cell">
                       <label class="text-label">Special Leave</label>
                     </div>
                     <div class="cell">
-                      <label class="text-value">0</label>
+                      <label class="text-value">{{employeeInfo?.leave.availedSpecialLeave}}</label>
                     </div>
                   </div>
                 </div>
@@ -1541,12 +1477,12 @@
         <fieldset [disabled]="isProcessingInProgress()">
           <div class="display-table width-with-right-margin">
             <h2 class="group-header">Applicable Leaves ({{currDateTime | date:'yyyy'}})</h2>
-            <div class="cell span_4_of_4" formGroupName="applicableLeaves">
+            <div class="cell span_4_of_4">
               <div class="row">
                 <div class="cell span_1_of_4">
                   <div class="group">
                     <div class="group">
-                      <input class="inputMaterial" formControlName="casualLeave">
+                      <input class="inputMaterial" formControlName="eligibleCl">
                       <label class="text-input-label">Casual Leave</label>
                     </div>
                   </div>
@@ -1554,20 +1490,20 @@
                 <div class="cell span_1_of_4">
                   <div class="group">
                     <div class="group">
-                      <input class="inputMaterial" formControlName="earnedLeave">
+                      <input class="inputMaterial" formControlName="eligiblePl">
                       <label class="text-input-label">Earned Leave</label>
                     </div>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="sickLeave">
+                    <input class="inputMaterial" formControlName="eligibleSickLeave">
                     <label class="text-input-label">Sick Leave</label>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="specialLeave">
+                    <input class="inputMaterial" formControlName="eligibleSpecialLeave">
                     <label class="text-input-label">Special Leave</label>
                   </div>
                 </div>
@@ -1575,7 +1511,7 @@
               <div class="row">
                 <div class="cell span_2_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="maternityLeave">
+                    <input class="inputMaterial" formControlName="eligiblePaternityMaternityLeave">
                     <label class="text-input-label">Maternity/Paternity Leave</label>
                   </div>
                 </div>
@@ -1584,12 +1520,12 @@
           </div>
           <div class="display-table width-with-right-margin">
             <h2 class="group-header">Availed Leaves ({{currDateTime | date:'MMMM yyyy'}})</h2>
-            <div class="cell span_4_of_4" formGroupName="availedLeaves">
+            <div class="cell span_4_of_4">
               <div class="row">
                 <div class="cell span_1_of_4">
                   <div class="group">
                     <div class="group">
-                      <input class="inputMaterial" formControlName="casualLeave">
+                      <input class="inputMaterial" formControlName="availedCl">
                       <label class="text-input-label">Casual Leave</label>
                     </div>
                   </div>
@@ -1597,20 +1533,20 @@
                 <div class="cell span_1_of_4">
                   <div class="group">
                     <div class="group">
-                      <input class="inputMaterial" formControlName="earnedLeave">
+                      <input class="inputMaterial" formControlName="availedPl">
                       <label class="text-input-label">Earned Leave</label>
                     </div>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="sickLeave">
+                    <input class="inputMaterial" formControlName="availedSickLeave">
                     <label class="text-input-label">Sick Leave</label>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="specialLeave">
+                    <input class="inputMaterial" formControlName="availedSpecialLeave">
                     <label class="text-input-label">Special Leave</label>
                   </div>
                 </div>
@@ -1618,7 +1554,7 @@
               <div class="row">
                 <div class="cell span_2_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="maternityLeave">
+                    <input class="inputMaterial" formControlName="availedPaternityMaternityLeave">
                     <label class="text-input-label">Maternity/Paternity Leave</label>
                   </div>
                 </div>
