@@ -1,7 +1,7 @@
 package com.hamdard.hua.privileges;
 
 public enum Privilege {
-    ACCOUNT_ALL_READ_CMD,
+	ACCOUNT_ALL_READ_CMD,
     ACCOUNT_UPDATE_CMD,
     ACCOUNT_DELETE_CMD,
     ACCOUNT_CREATE_CMD,
@@ -48,5 +48,6 @@ public enum Privilege {
     INSERT_PAYSLIP_OF_AN_EMP,
     READ_SALARYSTACK_OF_AN_EMP,
     READ_LEAVE_OF_AN_EMP,
+    UPDATE_LEAVE_OF_AN_EMP,
     DEFAULT
 }

@@ -189,6 +189,8 @@ public class EmployeeRepository {
 	@Value("${sql.leave.get.byEmpId}")
 	private String employeeGetLeaveSql;
 	
+	@Value("${sql.leave.update.byEmpId}")
+	private String employeeUpdateLeaveSql;
 	
     /*****************************************************************************************************/
 
@@ -875,5 +877,20 @@ public class EmployeeRepository {
 		logger.debug("Retrieved employee leaves: {}", () -> leave);
 		return leave;	
 	}
+	
+	public void updateEmployeeLeave(Leave leave, String empId) {
+		Object[] args = { leave.getEligibleCl(), leave.getEligiblePl(), leave.getEligiblePaternityMaternityLeave(),
+				leave.getEligibleSickLeave(), leave.getEligibleSpecialLeave(), leave.getAvailedCl(),
+				leave.getAvailedPl(), leave.getAvailedPaternityMaternityLeave(), leave.getAvailedSickLeave(),
+				leave.getAvailedSpecialLeave(), empId };
+		logger.info(sqlMarker, employeeUpdateLeaveSql);
+		logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> leave.getEligibleCl(),
+				() -> leave.getEligiblePl(), () -> leave.getEligiblePaternityMaternityLeave(),
+				() -> leave.getEligibleSickLeave(), () -> leave.getEligibleSpecialLeave(), () -> leave.getAvailedCl(),
+				() -> leave.getAvailedPl(), () -> leave.getAvailedPaternityMaternityLeave(),
+				() -> leave.getAvailedSickLeave(), () -> leave.getAvailedSpecialLeave(), () -> empId);
+		jdbcTemplate.update(employeeUpdateLeaveSql, args);
+	}
+	
 
 }

@@ -432,6 +432,19 @@ public class EmployeeResource {
         }
     }
     
-    
+    @PUT
+    @Path("{id}/leave")
+    @Secured(Privilege.UPDATE_LEAVE_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updateEmployeeLeave(@PathParam("id") @Size(min = 1) String empId, Leave leave) {
+        try {
+            employeeRepository.updateEmployeeLeave(leave, empId);
+            return Response.status(200).entity(new Message("Leave info updated successfully")).build();
+        } catch (Exception ex) {
+            logger.error("Leave info could not be updated.", ex);
+            return Response.status(500).entity(ex.getMessage()).build();
+        }
+    }
 
 }
