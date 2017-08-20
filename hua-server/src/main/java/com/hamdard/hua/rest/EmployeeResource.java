@@ -31,6 +31,7 @@ import com.hamdard.hua.model.Employee.EmployeeHierarchy;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
+import com.hamdard.hua.model.Employee.Leave;
 import com.hamdard.hua.model.EmployeePayslip;
 import com.hamdard.hua.model.Message;
 import com.hamdard.hua.privileges.Privilege;
@@ -284,6 +285,7 @@ public class EmployeeResource {
             empInfo.setEmployeeOptionalBenefit(employeeRepository.getemployeeOptionalBenefitList(employeeId));
             empInfo.setEmployeeSalary(employeeRepository.getEmployeeSalaryList(employeeId));
             empInfo.setEmployeeTaxList(employeeRepository.getEmployeeTaxList(employeeId));
+            empInfo.setLeave(employeeRepository.getEmployeeLeave(employeeId));
             return Response.status(Response.Status.OK).entity(empInfo).build();
         } catch (EmptyResultDataAccessException e) {
             logger.error("The employee details not found", e);
@@ -411,5 +413,25 @@ public class EmployeeResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
+    
+    @GET
+    @Path("{id}/leave")
+    @Secured(Privilege.READ_LEAVE_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getEmployeeLeave(@PathParam("id") @Size(min=1) String employeeId) {
+        try {
+        	Leave leave = employeeRepository.getEmployeeLeave(employeeId);
+            return Response.status(Response.Status.OK).entity(leave).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No leave info found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The leave info could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    
 
 }
