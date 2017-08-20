@@ -281,6 +281,9 @@ public class EmployeeResource {
             for(EmployeeDocument doc : empInfo.getDocumentList()) {
                 doc.setDocument(null);
             }
+            empInfo.setEmployeeOptionalBenefit(employeeRepository.getemployeeOptionalBenefitList(employeeId));
+            empInfo.setEmployeeSalary(employeeRepository.getEmployeeSalaryList(employeeId));
+            empInfo.setEmployeeTaxList(employeeRepository.getEmployeeTaxList(employeeId));
             return Response.status(Response.Status.OK).entity(empInfo).build();
         } catch (EmptyResultDataAccessException e) {
             logger.error("The employee details not found", e);
@@ -387,6 +390,24 @@ public class EmployeeResource {
             return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
             logger.error("The employee payslip info could not be stored", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @GET
+    @Path("{id}/salarystack")
+    @Secured(Privilege.READ_SALARYSTACK_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getSalaryStack(@PathParam("id") @Size(min=1) String employeeId) {
+        try {
+        	Employee employee = employeeRepository.getSalaryStack(employeeId);
+            return Response.status(Response.Status.OK).entity(employee).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No salary stack info found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The salary stack could not be fetched", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
