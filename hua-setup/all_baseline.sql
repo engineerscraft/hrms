@@ -52761,7 +52761,8 @@ VALUES
 (39,'CREATE_A_USER','POST /userManagement/createUser','A'),
 (40,'READ_PAYSLIP_OF_AN_EMP','GET /employee/{id}/payslip','A'),
 (41,'INSERT_PAYSLIP_OF_AN_EMP','POST /employee/{id}/payslip','A'),
-(42,'READ_SALARYSTACK_OF_AN_EMP','GET /employee/{id}/salarystack','A');
+(42,'READ_SALARYSTACK_OF_AN_EMP','GET /employee/{id}/salarystack','A'),
+(43,'READ_LEAVE_OF_AN_EMP','GET /employee/{id}/leave','A');
 
 
 --INSERT INTO HRMS.ROLE_PERMISSION 
@@ -52929,7 +52930,11 @@ VALUES
 (4,40),
 (3,41),
 (3,42),
-(4,42);
+(4,42),
+(1,43),
+(2,43),
+(3,43),
+(4,43);
 
 INSERT INTO HRMS.ROLE_DEPARTMENT 
 (SELECT DEPARTMENT_ID, ROLE_ID FROM
