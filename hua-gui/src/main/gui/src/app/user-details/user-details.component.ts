@@ -38,6 +38,7 @@ export class UserDetailsComponent implements OnInit {
   private formGroupPayrollDetails: FormGroup;
   private identityDocTypes;
   private docTypes;
+  private employeePaySlipInfo;
   private countries;
   private statesPermanent;
   private statesPresent;
@@ -54,7 +55,7 @@ export class UserDetailsComponent implements OnInit {
   private showUpdateMessage = false;
   private showErrorMessage = false;
   private errorMessage;
-  private currDateTime: number = Date.now();
+  private currDateTime: Date = new Date(Date.now());
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
@@ -69,15 +70,19 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.employeeInfo = this.activatedRoute.snapshot.data['employeeInfo'];
+    this.currDateTime.setMonth(this.currDateTime.getMonth() - 1);
     if (this.employeeInfo === undefined) {
       this.activatedRoute
         .queryParams
         .subscribe(params => {
           this.processingInProgress = true;
-          let employeeBasicInfoObservable = this.employeeService.readDetails(this.id)
+          let employeeBasicInfoObservable = this.employeeService.readDetails(this.id);
+          let employeePaySlipObservable = this.employeeService.getPaySlip(this.id, '2017', 'January');
+          Observable.forkJoin([employeeBasicInfoObservable, employeePaySlipObservable])
             .finally(() => { this.processingInProgress = false; })
             .subscribe(data => {
-              this.employeeInfo = data;
+              this.employeeInfo = data[0];
+              this.employeePaySlipInfo = data[1];
             },
             (err: any) => {
               /* if (err.status === 401 && err.json()['message'] !== 'Refresh token expired') {

@@ -110,4 +110,9 @@ export class EmployeeService {
     return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/hierarchystatus", reqBody)
       .map(res => res.json());
   }
+
+  getPaySlip(employeeId: String, payYear: String, payMonth: String) {
+    return this.httpService.callHttpGet("/resources/v1/employee/management/" + employeeId + "/payslip?year=" + payYear + "&month=" + payMonth)
+      .map(res => res.json());
+  }
 }

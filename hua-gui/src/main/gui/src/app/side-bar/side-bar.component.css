@@ -22,7 +22,7 @@ a {
 }
 
 .arrow {
-  position: absolute;
+  position: fixed;
   top: 2.5rem;
   left: 61px;
   width: 0;
@@ -40,7 +40,7 @@ a {
 }
 
 .menu {
-  position: absolute;
+  position: fixed;
   top: 2rem;
   width: 0;
   opacity: 0;
