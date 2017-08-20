@@ -883,7 +883,7 @@ public class EmployeeRepository {
 	}
 	
 	@Transactional
-	public void updateEmployeeLeave(Leave leave, String empId, String employeeName) {
+	public int updateEmployeeLeave(Leave leave, String empId, String employeeName) {
 		Object[] args = { leave.getEligibleCl(), leave.getEligiblePl(), leave.getEligiblePaternityMaternityLeave(),
 				leave.getEligibleSickLeave(), leave.getEligibleSpecialLeave(), leave.getAvailedCl(),
 				leave.getAvailedPl(), leave.getAvailedPaternityMaternityLeave(), leave.getAvailedSickLeave(),
@@ -918,6 +918,7 @@ public class EmployeeRepository {
 					() -> leave.getEligibleSpecialLeave() - leave.getAvailedSpecialLeave(), () -> employeeName);
 			jdbcTemplate.update(employeeInsertIntoLeaveHistorySql, leaveHistoryArgs);
 		}
+		return rowsUpdated;
 	}
 	
 

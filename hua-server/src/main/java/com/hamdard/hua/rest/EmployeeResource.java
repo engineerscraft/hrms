@@ -440,8 +440,11 @@ public class EmployeeResource {
     public Response updateEmployeeLeave(@PathParam("id") @Size(min = 1) String empId, Leave leave) {
     	String employeeName = securityContext.getUserPrincipal().getName();
         try {
-            employeeRepository.updateEmployeeLeave(leave, empId, employeeName);
-            return Response.status(200).entity(new Message("Leave info updated successfully")).build();
+            int rowsUpdated=employeeRepository.updateEmployeeLeave(leave, empId, employeeName);
+            if(rowsUpdated>0)
+            	return Response.status(200).entity(new Message("Leave info updated successfully")).build();
+            else
+            	return Response.status(500).entity(new Message("No record found")).build();
         } catch (Exception ex) {
             logger.error("Leave info could not be updated.", ex);
             return Response.status(500).entity(ex.getMessage()).build();
