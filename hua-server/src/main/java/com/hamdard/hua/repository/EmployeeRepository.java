@@ -30,12 +30,16 @@ import com.hamdard.hua.model.Employee.EmployeeHierarchy;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
+import com.hamdard.hua.model.Employee.EmployeeTax;
 import com.hamdard.hua.model.Unit;
 import com.hamdard.hua.rowmapper.DocumentRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeImageFileMapper;
+import com.hamdard.hua.rowmapper.EmployeeOptionalBenefitRowMapper;
 import com.hamdard.hua.rowmapper.EmployeePayslipRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeRowMapper;
+import com.hamdard.hua.rowmapper.EmployeeSalaryRowMapper;
 import com.hamdard.hua.rowmapper.EmployeeSearchResultRowMapper;
+import com.hamdard.hua.rowmapper.EmployeeTaxRowMapper;
 
 /**
  * @author Jyotirmoy Banerjee
@@ -168,8 +172,18 @@ public class EmployeeRepository {
 	@Value("${sql.employeepayslip.get.byMonthYear}")
 	private String employeePayslipGetSql;
 
+	@Value("${sql.employee.optional.benifits.get.byEmpId}")
+	private String employeeOptionalBenifitsGetSql;
+	
 	@Value("${sql.insert.payslip}")
 	private String employeePayslipInsertSql;
+	
+	@Value("${sql.employee.salary.get.byEmpId}")
+	private String employeeGetSalarySql;	
+	
+	@Value("${sql.employee.tax.get.byEmpId}")
+	private String employeeGetTaxSql;	
+	
     /*****************************************************************************************************/
 
     @Transactional
@@ -785,6 +799,62 @@ public class EmployeeRepository {
 						employeePayslip.getTotalEarning(), employeePayslip.getTotalDeduction(),
 						employeePayslip.getNetPayable(), employeePayslip.getPayslipFile() });
 
+	}
+	
+	/**
+	 * 
+	 * @param employeeId
+	 * @return Employee
+	 */
+	public Employee getSalaryStack(String employeeId) {
+		Employee employee=new Employee();
+		employee.setEmployeeOptionalBenefit(getemployeeOptionalBenefitList(employeeId));
+		employee.setEmployeeSalary(getEmployeeSalaryList(employeeId));
+		employee.setEmployeeTaxList(getEmployeeTaxList(employeeId));	
+		return employee;
+	}
+	
+	/**
+	 * get employee_optional_components
+	 * fetch from employee_optional_benefits, salary_opt_component_master
+	 * @param employeeId
+	 * @return EmployeeOptionalBenefitList
+	 */
+	public List<EmployeeOptionalBenefit> getemployeeOptionalBenefitList(String employeeId){
+		logger.info(sqlMarker, employeeOptionalBenifitsGetSql);
+		List<EmployeeOptionalBenefit> employeeOptionalBenefitList = (List<EmployeeOptionalBenefit> ) jdbcTemplate.query(employeeOptionalBenifitsGetSql,
+				new Object[] {employeeId}, new EmployeeOptionalBenefitRowMapper());
+		logger.debug("Retrieved optional benifits: {}", () -> employeeOptionalBenefitList);
+		return employeeOptionalBenefitList;
+		
+	}
+	
+	/**
+	 * Get employee_salary(fixed components) 
+	 * fetch from sal_comp_master, employee_salary
+	 * @param employeeId
+	 * @return EmployeeSalaryList
+	 */
+	public List<EmployeeSalary> getEmployeeSalaryList(String employeeId){
+		logger.info(sqlMarker, employeeGetSalarySql);
+		List<EmployeeSalary> employeeSalaryList = (List<EmployeeSalary> ) jdbcTemplate.query(employeeGetSalarySql,
+				new Object[] {employeeId}, new EmployeeSalaryRowMapper());
+		logger.debug("Retrieved employee salary fixed components: {}", () -> employeeSalaryList);
+		return employeeSalaryList;	
+	}
+	
+	/**
+	 *  Get employee_tax 
+	 *  fetch from tax_comp_master, employee_tax tables
+	 *  @param employeeId
+	 *  @return EmployeeTaxList
+	 *  */
+	public List<EmployeeTax> getEmployeeTaxList(String employeeId){
+		logger.info(sqlMarker, employeeGetTaxSql);
+		List<EmployeeTax> employeeTaxList = (List<EmployeeTax> ) jdbcTemplate.query(employeeGetTaxSql,
+				new Object[] {employeeId}, new EmployeeTaxRowMapper());
+		logger.debug("Retrieved employee tax components: {}", () -> employeeTaxList);
+		return employeeTaxList;	
 	}
 
 }
