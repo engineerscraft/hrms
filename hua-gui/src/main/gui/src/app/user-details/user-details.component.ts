@@ -56,6 +56,7 @@ export class UserDetailsComponent implements OnInit {
   private showErrorMessage = false;
   private errorMessage;
   private currDateTime: Date = new Date(Date.now());
+  private salaryTotal = 0;
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
@@ -183,20 +184,16 @@ export class UserDetailsComponent implements OnInit {
     });
 
     this.formGroupLeaveDetails = this.formBuilder.group({
-      'applicableLeaves': this.formBuilder.group({
-        'casualLeave': '',
-        'earnedLeave': '',
-        'sickLeave': '',
-        'maternityLeave': '',
-        'specialLeave': ''
-      }),
-      'availedLeaves': this.formBuilder.group({
-        'casualLeave': '',
-        'earnedLeave': '',
-        'sickLeave': '',
-        'maternityLeave': '',
-        'specialLeave': ''
-      })
+      'eligibleCl': [this.employeeInfo.leave.eligibleCl],
+      'eligiblePl': [this.employeeInfo.leave.eligiblePl],
+      'eligiblePaternityMaternityLeave': [this.employeeInfo.leave.eligiblePaternityMaternityLeave],
+      'eligibleSickLeave': [this.employeeInfo.leave.eligibleSickLeave],
+      'eligibleSpecialLeave': [this.employeeInfo.leave.eligibleSpecialLeave],
+      'availedCl': [this.employeeInfo.leave.availedCl],
+      'availedPl': [this.employeeInfo.leave.availedPl],
+      'availedPaternityMaternityLeave': [this.employeeInfo.leave.availedPaternityMaternityLeave],
+      'availedSickLeave': [this.employeeInfo.leave.availedSickLeave],
+      'availedSpecialLeave': [this.employeeInfo.leave.availedSpecialLeave]
     });
 
     this.formGroupPayrollDetails = this.formBuilder.group({});
@@ -479,7 +476,35 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onLeaveDetailsUpdate() {
-
+    this.processingInProgress = true;
+    this.employeeService.updateLeaveDetails(this.id, this.formGroupLeaveDetails.value)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.closeAllDialog(null);
+        this.showUpdateMessage = true;
+      }
+      )
+      .subscribe(data => {
+      },
+      (err: any) => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
+      },
+      () => {
+        this.showUpdateMessage = true;
+        this.employeeService.readDetails(this.id)
+          .finally(() => { this.processingInProgress = false; })
+          .subscribe(data => {
+            this.employeeInfo = data;
+          },
+          (err: any) => {
+            this.errorMessage = err.status + ' - ' + err.json().message;
+            this.showErrorMessage = true;
+          },
+          () => {
+            this.formGroupInitializer();
+          });
+      });
   }
 
   editPayrollDetails() {
