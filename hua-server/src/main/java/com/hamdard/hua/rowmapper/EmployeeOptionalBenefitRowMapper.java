@@ -29,9 +29,11 @@ public class EmployeeOptionalBenefitRowMapper implements RowMapper<EmployeeOptio
     	employeeOptionalBenefit.setIterations(rs.getInt("no_of_iteration"));
     	employeeOptionalBenefit.setNextDueDate(rs.getDate("next_due_date"));
     	employeeOptionalBenefit.setRemarks(rs.getString("remarks"));
-    	employeeOptionalBenefit.setStartDate(rs.getDate("sal_opt_end_date"));
+    	employeeOptionalBenefit.setStartDate(rs.getDate("sal_opt_start_date"));
     	employeeOptionalBenefit.setStopDate(rs.getDate("sal_opt_end_date"));
-    	
+    	employeeOptionalBenefit.setTotalAmount(rs.getDouble("total_amount"));
+    	employeeOptionalBenefit.setSalOptFlag(rs.getInt("sal_opt_flag"));
+    	employeeOptionalBenefit.setBenefitId(rs.getInt("benefit_id"));
     	return employeeOptionalBenefit;
     }
 }

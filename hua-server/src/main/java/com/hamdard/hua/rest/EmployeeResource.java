@@ -125,13 +125,34 @@ public class EmployeeResource {
     @Secured(Privilege.UPDATE_OPT_BENEFIT_FOR_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response insertEmployeeOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, @PathParam("oid") @Min(1) int optCompId, EmployeeOptionalBenefit updEmployeeOptBenefit) {
+    public Response updateEmployeeOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, @PathParam("oid") @Min(1) int optCompId, EmployeeOptionalBenefit updEmployeeOptBenefit) {
         try {
             String entryBy = securityContext.getUserPrincipal().getName();
-            employeeRepository.updateEmpOptionalBenefits(employeeId, optCompId, entryBy, updEmployeeOptBenefit);
-            return Response.status(Response.Status.OK).build();
+        	if(updEmployeeOptBenefit != null){
+	            employeeRepository.updateEmpOptionalBenefits(employeeId, optCompId, entryBy, updEmployeeOptBenefit);
+	            return Response.status(Response.Status.OK).build();
+        	}
+        	else{
+        		throw new NullPointerException("EmployeeOptionalBenefit is null");
+        	}
         } catch (Exception ex) {
             logger.error("The employee optional benefits could not be updated", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @PUT
+    @Path("/{id}/optionalbenefits")
+    @Secured(Privilege.UPDATE_ALL_OPT_BENEFIT_FOR_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updateEmployeeAllOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, List<EmployeeOptionalBenefit> employeeOptionalBenefitList) {
+        try {
+            String entryBy = securityContext.getUserPrincipal().getName();
+	        employeeRepository.updateAllEmpOptionalBenefits(employeeId, entryBy, employeeOptionalBenefitList);
+	        return Response.status(Response.Status.OK).build();
+        } catch (Exception ex) {
+            logger.error("The employee optional benefits list could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
@@ -424,7 +445,7 @@ public class EmployeeResource {
     
     @GET
     @Path("{id}/leave")
-    //@Secured(Privilege.READ_LEAVE_OF_AN_EMP)
+    @Secured(Privilege.READ_LEAVE_OF_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response getEmployeeLeave(@PathParam("id") @Size(min=1) String employeeId) {

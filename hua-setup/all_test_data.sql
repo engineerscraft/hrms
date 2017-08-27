@@ -12007,13 +12007,13 @@ INSERT INTO hrms.salary_opt_component_master
 VALUES(2, 'Sodexo Coupon', 'Sodexo Coupon', 'Optional', 0, 1, '2017-12-31 23:59:59', 'D', 'T');
 
 INSERT INTO hrms.employee_optional_benefits
-(emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration)
-VALUES( 'HUB1', 1, 1, 1000.00, '2017-08-19', '2017-08-19', '2017-08-19', 'To opt for Fuel Allowance', 'HUB10', CURRENT_TIMESTAMP, 1, 0);
+(emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration, total_amount)
+VALUES( 'HUB1', 1, 1, 1000.00, '2017-08-19', '2017-08-19', '2017-08-19', 'To opt for Fuel Allowance', 'HUB10', CURRENT_TIMESTAMP, 1, 0, 5000.00);
 
 
 INSERT INTO hrms.employee_optional_benefits
-(emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration)
-VALUES( 'HUB1', 2, 1, -2000.00, '2017-08-20', '2017-08-20', '2017-08-20', 'Sodexo Coupon', 'HUB10', CURRENT_TIMESTAMP, 1, 0);
+(emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration, total_amount)
+VALUES( 'HUB1', 2, 1, -2000.00, '2017-08-20', '2017-08-20', '2017-08-20', 'Sodexo Coupon', 'HUB10', CURRENT_TIMESTAMP, 1, 0, 6000.00);
 
 
 
