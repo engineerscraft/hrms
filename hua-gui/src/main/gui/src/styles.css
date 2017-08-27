@@ -661,7 +661,7 @@ app-spinner {
   position: relative;
   border-radius: 4px;
   overflow: hidden;
-  height: 28px;
+  height: 18px;
   box-shadow: inset 0 -2px 5px rgba(255, 255, 255, 0.4);
   top: 15px;
 }

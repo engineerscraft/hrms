@@ -238,18 +238,11 @@ export class UserDetailsComponent implements OnInit {
            'nextDueDate': [optComp.nextDueDate],
            'optCompName': [optComp.optSalaryComponent.optCompName],
            'creditDebitFlag': [optComp.optSalaryComponent.creditDebitFlag],
-           'totalAmount': [this.employeeInfo.employeeHierarchy.hrEmailId],
+           'totalAmount': [optComp.totalAmount],
            'isEditComponent': false
          })
        );
     });
-  }
-
-  isInputValueNull(input) {
-    if(input.length > 0)
-      return false;
-    else
-      return true;
   }
 
   profileImageUpload(event) {
