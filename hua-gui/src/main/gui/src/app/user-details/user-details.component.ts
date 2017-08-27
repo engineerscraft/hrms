@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { EmployeeService } from '../services/employee.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import 'rxjs/add/operator/finally';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DocTypeService } from '../services/doc-type.service';
 import { Observable } from 'rxjs/Observable';
 import { CountryService } from '../services/country.service';
@@ -31,11 +31,12 @@ export class UserDetailsComponent implements OnInit {
   private formGroupBasicInfo: FormGroup;
   private formGroupAdditionalInfo: FormGroup;
   private formGroupAddressDetails: FormGroup;
-  private formArrayAddressDetails;
+  private formArrayAddressDetails: FormArray;
   private formGroupDocument: FormGroup;
   private formGroupOthersDetails: FormGroup;
   private formGroupLeaveDetails: FormGroup;
   private formGroupPayrollDetails: FormGroup;
+  private formArrayOptionalBenefits;
   private identityDocTypes;
   private docTypes;
   private employeePaySlipInfo;
@@ -196,7 +197,12 @@ export class UserDetailsComponent implements OnInit {
       'availedSpecialLeave': [this.employeeInfo.leave.availedSpecialLeave]
     });
 
-    this.formGroupPayrollDetails = this.formBuilder.group({});
+    this.formGroupPayrollDetails = this.formBuilder.group({
+      formArrayOptionalBenefits: this.formBuilder.array([])
+    });
+
+    this.initOptionalComponents();
+
   }
 
   /**
@@ -217,6 +223,33 @@ export class UserDetailsComponent implements OnInit {
       'countryName': [this.employeeInfo.employeeAddress[count].countryName],
       'addressType': type
     });
+  }
+
+  initOptionalComponents() {
+    this.formArrayOptionalBenefits = this.formGroupPayrollDetails.get('formArrayOptionalBenefits') as FormArray;
+    this.employeeInfo.employeeOptionalBenefit.forEach(optComp => {
+       this.formArrayOptionalBenefits.push(
+         this.formBuilder.group({
+           'description': [optComp.optSalaryComponent.description],
+           'benefitValue': [optComp.benefitValue],
+           'frequency': [optComp.frequency],
+           'startDate': [optComp.startDate],
+           'stopDate': [optComp.stopDate],
+           'nextDueDate': [optComp.nextDueDate],
+           'optCompName': [optComp.optSalaryComponent.optCompName],
+           'creditDebitFlag': [optComp.optSalaryComponent.creditDebitFlag],
+           'totalAmount': [this.employeeInfo.employeeHierarchy.hrEmailId],
+           'isEditComponent': false
+         })
+       );
+    });
+  }
+
+  isInputValueNull(input) {
+    if(input.length > 0)
+      return false;
+    else
+      return true;
   }
 
   profileImageUpload(event) {

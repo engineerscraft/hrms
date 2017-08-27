@@ -666,6 +666,10 @@ app-spinner {
   top: 15px;
 }
 
+.select-fancy select:disabled {
+  color: #afafaf;
+}
+
 .select-fancy,
 .select-fancy > * {
   cursor: pointer;

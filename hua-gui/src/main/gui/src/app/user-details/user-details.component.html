@@ -472,7 +472,7 @@
                 <div class="display-table document-height">
                   <div class="toggle">
                   <input type="checkbox" value="selected" id="incomeDetails" class="toggle-input" checked>
-                  <label for="incomeDetails" class="toggle-label">Salary Details</label>
+                  <label for="incomeDetails" class="toggle-label">Fixed Salary Details</label>
                   <div role="toggle" class="toggle-content">
                     <div class="table span_4_of_4">
                       <div></div>
@@ -1571,94 +1571,68 @@
   <div class="modal-medium">
     <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
     <div class="modal-header">
-      <h1>Edit Payroll Details</h1>
+      <h1>Edit Optional Benefit Details</h1>
     </div>
     <div class="modal-body">
       <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
       <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupPayrollDetailsForm.ngSubmit.emit()"></a>
       <form [formGroup]="formGroupPayrollDetails" #formGroupPayrollDetailsForm="ngForm" (ngSubmit)="onPayrollDetailsUpdate()" method="post">
         <fieldset [disabled]="isProcessingInProgress()">
-          <div class="display-table width-with-right-margin">
-            <h2 class="group-header">Earning Details</h2>
-            <div class="cell span_4_of_4" formGroupName="">
+          <div class="display-table width-with-right-margin" formArrayName="formArrayOptionalBenefits" *ngFor="let optBenefits of formGroupPayrollDetails.get('formArrayOptionalBenefits').controls; let i = index;">
+            <div class="cell span_4_of_4" [formGroupName]="i">
+            <h2 class="group-header">{{formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.optCompName.value}}</h2>
+              <div class="group">
+                <input type="checkbox" id="editOptComponent{{i}}" class="default-checkbox span_4_of_4" formControlName="isEditComponent">
+                <label for="editOptComponent{{i}}">Edit Component</label>
+              </div>
               <div class="row">
-                <div class="cell span_2_of_4">
+                <div class="cell span_1_of_4">
                   <div class="group">
-                    <div class="group">
-                      <input class="inputMaterial" formControlName="">
-                      <label class="text-input-label">Basic</label>
-                    </div>
+                    <input class="inputMaterial" formControlName="benefitValue" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.benefitValue.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <label class="text-input-label">Amount</label>
                   </div>
                 </div>
-                <div class="cell span_2_of_4">
+                <div class="cell span_1_of_4">
                   <div class="group">
-                    <div class="group">
-                      <input class="inputMaterial" formControlName="">
-                      <label class="text-input-label">D.A.</label>
+                    <input class="inputMaterial" formControlName="frequency" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.frequency.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <label class="text-input-label">Frequency</label>
+                  </div>
+                </div>
+                <div class="cell span_1_of_4">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="totalAmount" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.totalAmount.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <label class="text-input-label">Total Amount</label>
+                  </div>
+                </div>
+                <div class="cell span_1_of_4">
+                  <div class="group combo-group">
+                    <label class="text-input-label">Type</label>
+                    <div class="select select-fancy select-fancy-image span_4_of_4">
+                      <select class="span_4_of_4" formControlName="creditDebitFlag" [attr.disabled]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value?null:''">
+                        <option value="C">Credit</option>
+                        <option value="D">Debit</option>
+                      </select>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="cell span_2_of_4">
-                  <div class="group">
-                    <input class="inputMaterial" formControlName="">
-                    <label class="text-input-label">H.R.A.</label>
-                  </div>
-                </div>
-                <div class="cell span_2_of_4">
-                  <div class="group">
-                    <input class="inputMaterial" formControlName="">
-                    <label class="text-input-label">Conveyance Allowance</label>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="cell span_2_of_4">
-                  <div class="group">
-                    <input class="inputMaterial" formControlName="">
-                    <label class="text-input-label">Medical Allowance</label>
-                  </div>
-                </div>
-                <div class="cell span_2_of_4">
-                    <div class="group">
-                      <input class="inputMaterial" formControlName="">
-                      <label class="text-input-label">Food Allowance</label>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="display-table width-with-right-margin">
-            <h2 class="group-header">Deduction Details</h2>
-            <div class="cell span_4_of_4" formGroupName="">
-              <div class="row">
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <div class="group">
-                      <input class="inputMaterial" formControlName="">
-                      <label class="text-input-label">P.F.</label>
-                    </div>
+                    <input class="inputMaterial" formControlName="startDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.startDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <label class="text-input-label">Start Date</label>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <div class="group">
-                      <input class="inputMaterial" formControlName="">
-                      <label class="text-input-label">E.S.I.</label>
-                    </div>
+                    <input class="inputMaterial" formControlName="stopDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.stopDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <label class="text-input-label">Stop Date</label>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="">
-                    <label class="text-input-label">Car Lease</label>
-                  </div>
-                </div>
-                <div class="cell span_1_of_4">
-                  <div class="group">
-                    <input class="inputMaterial" formControlName="">
-                    <label class="text-input-label">Professional Tax</label>
+                    <input class="inputMaterial" formControlName="nextDueDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.nextDueDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <label class="text-input-label">Next Due Date</label>
                   </div>
                 </div>
               </div>
