@@ -209,6 +209,10 @@ public class Employee {
         @XmlJavaTypeAdapter(DateAdapter.class)
         private Date stopDate;
         private String remarks;
+        private double totalAmount;
+        private int salOptFlag;
+        private int benefitId;
+        private boolean needToUpdate;
 
         public double getBenefitValue() {
             return this.benefitValue;
@@ -274,11 +278,46 @@ public class Employee {
             this.remarks = remarks;
         }
 
-        @Override
-        public String toString() {
-            return "EmployeeOptionalBenefit [benefitValue=" + this.benefitValue + ", frequency=" + this.frequency + ", iterations=" + this.iterations + ", nextDueDate=" + this.nextDueDate + ", optSalaryComponent=" + this.optSalaryComponent + ", startDate="
-                    + this.startDate + ", stopDate=" + this.stopDate + "]";
-        }
+        public double getTotalAmount() {
+			return totalAmount;
+		}
+
+		public void setTotalAmount(double totalAmount) {
+			this.totalAmount = totalAmount;
+		}
+
+		public int getSalOptFlag() {
+			return salOptFlag;
+		}
+
+		public void setSalOptFlag(int salOptFlag) {
+			this.salOptFlag = salOptFlag;
+		}
+
+		public int getBenefitId() {
+			return benefitId;
+		}
+
+		public void setBenefitId(int benefitId) {
+			this.benefitId = benefitId;
+		}
+
+		public boolean isNeedToUpdate() {
+			return needToUpdate;
+		}
+
+		public void setNeedToUpdate(boolean needToUpdate) {
+			this.needToUpdate = needToUpdate;
+		}
+
+		@Override
+		public String toString() {
+			return "EmployeeOptionalBenefit [benefitValue=" + benefitValue + ", frequency=" + frequency
+					+ ", iterations=" + iterations + ", nextDueDate=" + nextDueDate + ", optSalaryComponent="
+					+ optSalaryComponent + ", startDate=" + startDate + ", stopDate=" + stopDate + ", remarks="
+					+ remarks + ", totalAmount=" + totalAmount + ", salOptFlag=" + salOptFlag + ", benefitId="
+					+ benefitId + ", needToUpdate=" + needToUpdate + "]";
+		}
 
     }
 

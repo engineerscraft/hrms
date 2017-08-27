@@ -52763,7 +52763,8 @@ VALUES
 (41,'INSERT_PAYSLIP_OF_AN_EMP','POST /employee/{id}/payslip','A'),
 (42,'READ_SALARYSTACK_OF_AN_EMP','GET /employee/{id}/salarystack','A'),
 (43,'READ_LEAVE_OF_AN_EMP','GET /employee/{id}/leave','A'),
-(44,'UPDATE_LEAVE_OF_AN_EMP','PUT /employee/{id}/leave','A');
+(44,'UPDATE_LEAVE_OF_AN_EMP','PUT /employee/{id}/leave','A'),
+(45,'UPDATE_ALL_OPT_BENEFIT_FOR_AN_EMP','PUT /employee/{id}/optionalbenefits','A');
 
 
 --INSERT INTO HRMS.ROLE_PERMISSION 
@@ -52937,7 +52938,11 @@ VALUES
 (3,43),
 (4,43),
 (2,44),
-(3,44);
+(3,44),
+(1,45),
+(2,45),
+(3,45),
+(4,45);
 
 INSERT INTO HRMS.ROLE_DEPARTMENT 
 (SELECT DEPARTMENT_ID, ROLE_ID FROM
