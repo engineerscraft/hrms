@@ -1580,27 +1580,27 @@
         <fieldset [disabled]="isProcessingInProgress()">
           <div class="display-table width-with-right-margin" formArrayName="formArrayOptionalBenefits" *ngFor="let optBenefits of formGroupPayrollDetails.get('formArrayOptionalBenefits').controls; let i = index;">
             <div class="cell span_4_of_4" [formGroupName]="i">
-            <h2 class="group-header">{{formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.optCompName.value}}</h2>
+            <h2 class="group-header">{{formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.optSalaryComponent.controls.optCompName.value}}</h2>
               <div class="group">
-                <input type="checkbox" id="editOptComponent{{i}}" class="default-checkbox span_4_of_4" formControlName="isEditComponent">
+                <input type="checkbox" id="editOptComponent{{i}}" class="default-checkbox span_4_of_4" formControlName="needToUpdate">
                 <label for="editOptComponent{{i}}">Edit Component</label>
               </div>
               <div class="row">
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="benefitValue" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.benefitValue.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <input class="inputMaterial" formControlName="benefitValue" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.benefitValue.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.needToUpdate.value">
                     <label class="text-input-label">Amount</label>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="frequency" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.frequency.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <input class="inputMaterial" formControlName="frequency" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.frequency.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.needToUpdate.value">
                     <label class="text-input-label">Frequency</label>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="totalAmount" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.totalAmount.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <input class="inputMaterial" formControlName="totalAmount" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.totalAmount.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.needToUpdate.value">
                     <label class="text-input-label">Total Amount</label>
                   </div>
                 </div>
@@ -1608,7 +1608,7 @@
                   <div class="group combo-group">
                     <label class="text-input-label">Type</label>
                     <div class="select select-fancy select-fancy-image span_4_of_4">
-                      <select class="span_4_of_4" formControlName="creditDebitFlag" [attr.disabled]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value?null:''">
+                      <select class="span_4_of_4" formControlName="creditDebitFlag" [attr.disabled]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.needToUpdate.value?null:''">
                         <option value="C">Credit</option>
                         <option value="D">Debit</option>
                       </select>
@@ -1619,19 +1619,19 @@
               <div class="row">
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="startDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.startDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <input class="inputMaterial" formControlName="startDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.startDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.needToUpdate.value">
                     <label class="text-input-label">Start Date</label>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="stopDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.stopDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <input class="inputMaterial" formControlName="stopDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.stopDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.needToUpdate.value">
                     <label class="text-input-label">Stop Date</label>
                   </div>
                 </div>
                 <div class="cell span_1_of_4">
                   <div class="group">
-                    <input class="inputMaterial" formControlName="nextDueDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.nextDueDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.isEditComponent.value">
+                    <input class="inputMaterial" formControlName="nextDueDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.nextDueDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.needToUpdate.value">
                     <label class="text-input-label">Next Due Date</label>
                   </div>
                 </div>

@@ -120,4 +120,9 @@ export class EmployeeService {
     return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/leave", reqBody)
       .map(res => res.json());
   }
+
+  updateOptionalBenefits(employeeId: String, reqBody: any) {
+    return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/optionalbenefits", reqBody)
+      .map(res => res.json());
+  }
 }

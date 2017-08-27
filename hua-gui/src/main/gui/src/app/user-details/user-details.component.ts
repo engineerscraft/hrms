@@ -228,20 +228,25 @@ export class UserDetailsComponent implements OnInit {
   initOptionalComponents() {
     this.formArrayOptionalBenefits = this.formGroupPayrollDetails.get('formArrayOptionalBenefits') as FormArray;
     this.employeeInfo.employeeOptionalBenefit.forEach(optComp => {
-       this.formArrayOptionalBenefits.push(
-         this.formBuilder.group({
-           'description': [optComp.optSalaryComponent.description],
-           'benefitValue': [optComp.benefitValue],
-           'frequency': [optComp.frequency],
-           'startDate': [optComp.startDate],
-           'stopDate': [optComp.stopDate],
-           'nextDueDate': [optComp.nextDueDate],
-           'optCompName': [optComp.optSalaryComponent.optCompName],
-           'creditDebitFlag': [optComp.optSalaryComponent.creditDebitFlag],
-           'totalAmount': [optComp.totalAmount],
-           'isEditComponent': false
-         })
-       );
+      this.formArrayOptionalBenefits.push(
+        this.formBuilder.group({
+          'benefitValue': [optComp.benefitValue],
+          'frequency': [optComp.frequency],
+          'startDate': [optComp.startDate],
+          'stopDate': [optComp.stopDate],
+          'nextDueDate': [optComp.nextDueDate],
+          'creditDebitFlag': [optComp.optSalaryComponent.creditDebitFlag],
+          'totalAmount': [optComp.totalAmount],
+          'needToUpdate': false,
+          'salOptFlag': [optComp.salOptFlag],
+          'benefitId': [optComp.benefitId],
+          'optSalaryComponent': this.formBuilder.group({
+            'optCompId': [optComp.optSalaryComponent.optCompId],
+            'optCompName': [optComp.optSalaryComponent.optCompName],
+            'description': [optComp.optSalaryComponent.description]
+          })
+        })
+      );
     });
   }
 
@@ -543,7 +548,24 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onPayrollDetailsUpdate() {
-
+    this.processingInProgress = true;
+    this.employeeService.updateOptionalBenefits(this.id, this.formGroupPayrollDetails.controls.formArrayOptionalBenefits.value)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.closeAllDialog(null);
+        this.employeeInfo.employeeOptionalBenefit = Object.assign(this.employeeInfo.employeeOptionalBenefit, this.formGroupPayrollDetails.controls.formArrayOptionalBenefits.value);
+        this.showUpdateMessage = true;
+      }
+      )
+      .subscribe(data => {
+      },
+      (err: any) => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
+      },
+      () => {
+        this.employeeInfo.employeeOptionalBenefit = Object.assign(this.employeeInfo.employeeOptionalBenefit, this.formGroupPayrollDetails.controls.formArrayOptionalBenefits.value);
+      });
   }
 
   getSelectedDocId() {
