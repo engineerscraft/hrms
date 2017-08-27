@@ -12008,12 +12008,12 @@ VALUES(2, 'Sodexo Coupon', 'Sodexo Coupon', 'Optional', 0, 1, '2017-12-31 23:59:
 
 INSERT INTO hrms.employee_optional_benefits
 (emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration, total_amount)
-VALUES( 'HUB1', 1, 1, 1000.00, '2017-08-19', '2017-08-19', '2017-08-19', 'To opt for Fuel Allowance', 'HUB10', CURRENT_TIMESTAMP, 1, 0, 5000.00);
+VALUES( 'HUB1', 1, 1, 1000.00, '2017-08-19', '2018-08-19', '2017-08-19', 'To opt for Fuel Allowance', 'HUB10', CURRENT_TIMESTAMP, 1, 0, 5000.00);
 
 
 INSERT INTO hrms.employee_optional_benefits
 (emp_id, opt_comp_id, sal_opt_flag, sal_opt_value, sal_opt_start_date, sal_opt_end_date, next_due_date, remarks, entry_by, entry_date, frequency, no_of_iteration, total_amount)
-VALUES( 'HUB1', 2, 1, -2000.00, '2017-08-20', '2017-08-20', '2017-08-20', 'Sodexo Coupon', 'HUB10', CURRENT_TIMESTAMP, 1, 0, 6000.00);
+VALUES( 'HUB1', 2, 1, -2000.00, '2017-08-20', '2018-08-20', '2017-08-20', 'Sodexo Coupon', 'HUB10', CURRENT_TIMESTAMP, 1, 0, 6000.00);
 
 
 
@@ -12024,3 +12024,8 @@ VALUES( 'Professional Tax', 'Employee Professional Tax');
 INSERT INTO hrms.employee_tax
 (emp_id, tax_comp_id, entry_by, entry_date, tax_comp_value)
 VALUES('HUB1', 1, 'HUB10', current_timestamp, 1200);
+
+
+INSERT INTO hrms.leave_master
+(emp_id, eligible_cl, eligible_pl, eligible_paternity_maternity_leave, eligible_sick_leave, eligible_special_leave, availed_cl, availed_pl, availed_paternity_maternity_leave, availed_sick_leave, availed_special_leave, remaining_cl, remaining_pl, remaining_paternity_maternity_leave, remaining_sick_leave, remaining_special_leave)
+VALUES('HUB1', 10, 20, 0, 5, 0, NULL, NULL, NULL, NULL, NULL, 10, 20, 0, 5, NULL);
