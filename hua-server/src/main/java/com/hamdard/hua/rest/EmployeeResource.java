@@ -34,6 +34,7 @@ import com.hamdard.hua.model.Employee.EmployeeSalary;
 import com.hamdard.hua.model.Employee.Leave;
 import com.hamdard.hua.model.EmployeePayslip;
 import com.hamdard.hua.model.Message;
+import com.hamdard.hua.model.SalaryOptComponent;
 import com.hamdard.hua.privileges.Privilege;
 import com.hamdard.hua.repository.EmployeeRepository;
 import com.hamdard.hua.security.Secured;
@@ -478,6 +479,24 @@ public class EmployeeResource {
         } catch (Exception ex) {
             logger.error("Leave info could not be updated.", ex);
             return Response.status(500).entity(ex.getMessage()).build();
+        }
+    }
+    
+    @GET
+    @Path("{id}/eligiblesaloptcomponent")
+    @Secured(Privilege.READ_ELGBL_SAL_OPT_COMP_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getEligibleSalOptCompList(@PathParam("id") @Size(min=1) String employeeId) {
+        try {
+        	List<SalaryOptComponent> salaryOptComponentList = employeeRepository.getEmployeeEligibleSalaryOptCompList(employeeId);
+            return Response.status(Response.Status.OK).entity(salaryOptComponentList).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No sal opt comp info found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("Sal Opt Comp could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
 
