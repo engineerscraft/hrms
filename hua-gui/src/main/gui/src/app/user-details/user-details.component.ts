@@ -28,6 +28,7 @@ export class UserDetailsComponent implements OnInit {
   private showEditOthersDetails = false;
   private showEditLeaveDetails = false;
   private showEditPayrollDetails = false;
+  private showAddOptionalBenefit = false;
   private formGroupBasicInfo: FormGroup;
   private formGroupAdditionalInfo: FormGroup;
   private formGroupAddressDetails: FormGroup;
@@ -37,6 +38,8 @@ export class UserDetailsComponent implements OnInit {
   private formGroupLeaveDetails: FormGroup;
   private formGroupPayrollDetails: FormGroup;
   private formArrayOptionalBenefits;
+  private formGroupOptionalBenefit: FormGroup;
+  private optionalBenefitTypes;
   private identityDocTypes;
   private docTypes;
   private employeePaySlipInfo;
@@ -146,6 +149,17 @@ export class UserDetailsComponent implements OnInit {
       'remarks': [""],
       'document': [""],
       'documentName': [""]
+    });
+
+    this.formGroupOptionalBenefit = this.formBuilder.group({
+      'optCompId': '',
+      'salOptFlag': '1',
+      'salOptValue': '',
+      'totalAmount': '',
+      'salOptStartDate': '',
+      'salOptEndDate': '',
+      'frequency': '',
+      'creditDebitFlag': ''
     });
 
     this.formGroupAdditionalInfo = this.formBuilder.group({
@@ -568,6 +582,72 @@ export class UserDetailsComponent implements OnInit {
       });
   }
 
+  initializeAddOptionalBenefit() {
+    this.formGroupOptionalBenefit.setValue({
+      'optCompId': '',
+      'salOptFlag': '1',
+      'salOptValue': '',
+      'totalAmount': '',
+      'salOptStartDate': '',
+      'salOptEndDate': '',
+      'frequency': '',
+      'creditDebitFlag': ''
+    });
+  }
+
+  addOptionalBenefit() {
+    this.showAddOptionalBenefit = true;
+    this.modalDisplay = true;
+
+    if (this.optionalBenefitTypes === undefined) {
+      let optionalBenefitsObservable = this.employeeService.getOptionalBenefitList(this.id)
+        .finally(() => {
+          this.processingInProgress = false;
+        })
+        .subscribe(data => {
+          this.optionalBenefitTypes = data;
+        },
+        (err: any) => {
+          this.errorMessage = err.status + ' - ' + err.json().message;
+          this.showErrorMessage = true;
+        },
+        () => {
+          this.initializeAddOptionalBenefit();
+          this.showAddOptionalBenefit = true;
+          this.modalDisplay = true;
+        });
+    } else {
+      this.initializeAddOptionalBenefit();
+      this.showAddOptionalBenefit = true;
+      this.modalDisplay = true;
+    }
+  }
+
+  getShowAddOptionalBenefit() {
+    return this.showAddOptionalBenefit;
+  }
+
+  onOptionalBenefitAdd() {
+    this.processingInProgress = true;
+    this.employeeService.updateOptionalBenefits(this.id, this.formGroupPayrollDetails.controls.formArrayOptionalBenefits.value)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.closeAllDialog(null);
+        this.employeeInfo.employeeOptionalBenefit = Object.assign(this.employeeInfo.employeeOptionalBenefit, this.formGroupPayrollDetails.controls.formArrayOptionalBenefits.value);
+        this.showUpdateMessage = true;
+      }
+      )
+      .subscribe(data => {
+      },
+      (err: any) => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
+      },
+      () => {
+        this.employeeInfo.employeeOptionalBenefit = Object.assign(this.employeeInfo.employeeOptionalBenefit, this.formGroupPayrollDetails.controls.formArrayOptionalBenefits.value);
+      });
+  }
+
   getSelectedDocId() {
     return this.selectedDocId;
   }
@@ -614,6 +694,7 @@ export class UserDetailsComponent implements OnInit {
       this.documentEditFunctionInvoked = false;
       this.showUpdateMessage = false;
       this.showErrorMessage = false;
+      this.showAddOptionalBenefit = false;
     }
   }
 
@@ -841,6 +922,20 @@ export class UserDetailsComponent implements OnInit {
       }
       if (event.type === 'clear') {
         this.formGroupOthersDetails.patchValue({ noticePeriodEndDate: '' });
+      }
+    } else if (labelName === 'salOptBenefitStartDate') {
+      if (event.type === 'dateChanged') {
+        this.formGroupOptionalBenefit.patchValue({ salOptStartDate: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.formGroupOptionalBenefit.patchValue({ salOptStartDate: '' });
+      }
+    } else if (labelName === 'salOptBenefitEndDate') {
+      if (event.type === 'dateChanged') {
+        this.formGroupOptionalBenefit.patchValue({ salOptEndDate: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.formGroupOptionalBenefit.patchValue({ salOptEndDate: '' });
       }
     }
   }

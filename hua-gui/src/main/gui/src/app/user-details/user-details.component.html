@@ -438,6 +438,7 @@
           </section>
           <section id="content4" class="tab-content">
             <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editPayrollDetails()"></a>
+            <a class="create-btn create-btn-fixed ripple" href="javascript:void(0)" (click)="addOptionalBenefit()"></a>
             <div class="row">
               <div class="cell span_4_of_6">
                 <div class="display-table document-height">
@@ -1634,6 +1635,85 @@
                     <input class="inputMaterial" formControlName="nextDueDate" [readonly]="formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.nextDueDate.value == null || !formGroupPayrollDetails.get('formArrayOptionalBenefits').controls[i].controls.needToUpdate.value">
                     <label class="text-input-label">Next Due Date</label>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowAddOptionalBenefit()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Add Optional Benefit</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupOptionalBenefitForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupOptionalBenefit" #formGroupOptionalBenefitForm="ngForm" (ngSubmit)="onOptionalBenefitAdd()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Optional Component</label>
+                  <div class="select select-fancy select-fancy-image">
+                    <select formControlName="optCompId">
+                    <option value=""></option>
+                    <option *ngFor="let optBenefit of optionalBenefitTypes" value="{{optBenefit.optCompId}}">{{optBenefit.optCompName}}</option>
+                  </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="salOptValue">
+                  <label class="text-input-label">Amount</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="frequency">
+                  <label class="text-input-label">Frequency</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="totalAmount">
+                  <label class="text-input-label">Total Amount</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Type</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="creditDebitFlag" [attr.disabled]="true">
+                        <option value="C">Credit</option>
+                        <option value="D">Debit</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="salOptStartDate">
+                  <label class="text-input-label">Start Date</label>
+                  <date-picker (outputEvents)="changeDate($event, 'salOptBenefitStartDate')" popup-placement="auto"></date-picker>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="salOptEndDate">
+                  <label class="text-input-label">Stop Date</label>
+                  <date-picker (outputEvents)="changeDate($event, 'salOptBenefitEndDate')" popup-placement="auto"></date-picker>
                 </div>
               </div>
             </div>
