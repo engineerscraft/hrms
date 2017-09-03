@@ -1658,14 +1658,14 @@
         <fieldset [disabled]="isProcessingInProgress()">
           <div class="display-table width-with-right-margin">
             <div class="row">
-              <div class="cell span_4_of_4">
+              <div class="cell span_4_of_4" formGroupName="optSalaryComponent">
                 <div class="group combo-group">
-                  <label class="text-input-label">Optional Component</label>
+                  <label class="text-input-label">Optional Benefit Name</label>
                   <div class="select select-fancy select-fancy-image">
-                    <select formControlName="optCompId">
-                    <option value=""></option>
-                    <option *ngFor="let optBenefit of optionalBenefitTypes" value="{{optBenefit.optCompId}}">{{optBenefit.optCompName}}</option>
-                  </select>
+                    <select formControlName="optCompId" (change)="onOptionalBenefitChange(formGroupOptionalBenefit.controls.optSalaryComponent.controls['optCompId'].value)">
+                      <option value=""></option>
+                      <option *ngFor="let optBenefit of optionalBenefitTypes" value="{{optBenefit.optCompId}}">{{optBenefit.optCompName}}</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -1673,7 +1673,7 @@
             <div class="row">
               <div class="cell span_1_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="salOptValue">
+                  <input class="inputMaterial" formControlName="benefitValue">
                   <label class="text-input-label">Amount</label>
                 </div>
               </div>
@@ -1704,14 +1704,14 @@
             <div class="row">
               <div class="cell span_2_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="salOptStartDate">
+                  <input class="inputMaterial" formControlName="startDate">
                   <label class="text-input-label">Start Date</label>
                   <date-picker (outputEvents)="changeDate($event, 'salOptBenefitStartDate')" popup-placement="auto"></date-picker>
                 </div>
               </div>
               <div class="cell span_2_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="salOptEndDate">
+                  <input class="inputMaterial" formControlName="stopDate">
                   <label class="text-input-label">Stop Date</label>
                   <date-picker (outputEvents)="changeDate($event, 'salOptBenefitEndDate')" popup-placement="auto"></date-picker>
                 </div>

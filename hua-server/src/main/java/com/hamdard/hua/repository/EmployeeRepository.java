@@ -516,19 +516,17 @@ public class EmployeeRepository {
 		if (optBenefits != null)
 			for (EmployeeOptionalBenefit optBenefit : optBenefits) {
 				logger.info(sqlMarker, employeeOptionalBenefitsUpdate);
-				logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> null,
+				logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> null,
 						() -> employeeId, () -> optBenefit.getOptSalaryComponent().getOptCompId(),
-						() -> optBenefit.getOptSalaryComponent().getSalOptComponent(),
+						() -> optBenefit.getSalOptFlag(),
 						() -> optBenefit.getBenefitValue(), () -> optBenefit.getStartDate(),
-						() -> optBenefit.getStopDate(), () -> optBenefit.getNextDueDate(),
-						() -> optBenefit.getRemarks(), () -> entryBy, () -> optBenefit.getFrequency(),
-						() -> optBenefit.getIterations());
+						() -> optBenefit.getStopDate(),	() -> optBenefit.getRemarks(),
+						() -> entryBy, () -> optBenefit.getFrequency());
 				jdbcTemplate.update(employeeOptionalBenefitsInsert,
-						new Object[] { null, employeeId, optBenefit.getOptSalaryComponent().getOptCompId(),
-								optBenefit.getOptSalaryComponent().getSalOptComponent(), optBenefit.getBenefitValue(),
-								optBenefit.getStartDate(), optBenefit.getStopDate(), optBenefit.getNextDueDate(),
-								optBenefit.getRemarks(), entryBy, optBenefit.getFrequency(),
-								optBenefit.getIterations() });
+						new Object[] { employeeId, optBenefit.getOptSalaryComponent().getOptCompId(),
+								optBenefit.getSalOptFlag(), optBenefit.getBenefitValue(),
+								optBenefit.getStartDate(), optBenefit.getStopDate(),
+								optBenefit.getRemarks(), entryBy, optBenefit.getFrequency()});
 			}
 	}
 

@@ -130,4 +130,9 @@ export class EmployeeService {
     return this.httpService.callHttpGet("/resources/v1/employee/management/" + employeeId + "/eligiblesaloptcomponent")
       .map(res => res.json());
   }
+
+  addOptionalBenefit(employeeId: String, reqBody: any) {
+    return this.httpService.callHttpPost("/resources/v1/employee/management/" + employeeId + "/optionalbenefits", reqBody)
+      .map(res => res.json());
+  }
 }
