@@ -60,6 +60,7 @@ export class UserDetailsComponent implements OnInit {
   private showErrorMessage = false;
   private errorMessage;
   private currDateTime: Date = new Date(Date.now());
+  private currMonths: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   private salaryTotal = 0;
 
   constructor(private formBuilder: FormBuilder,
@@ -82,7 +83,7 @@ export class UserDetailsComponent implements OnInit {
         .subscribe(params => {
           this.processingInProgress = true;
           let employeeBasicInfoObservable = this.employeeService.readDetails(this.id);
-          let employeePaySlipObservable = this.employeeService.getPaySlip(this.id, '2017', 'January');
+          let employeePaySlipObservable = this.employeeService.getPaySlip(this.id, this.currDateTime.getFullYear().toString(), this.currMonths[this.currDateTime.getMonth()]);
           Observable.forkJoin([employeeBasicInfoObservable, employeePaySlipObservable])
             .finally(() => { this.processingInProgress = false; })
             .subscribe(data => {

@@ -60,6 +60,7 @@ export class EmployeeDetailsComponent implements OnInit {
   private showErrorMessage = false;
   private errorMessage;
   private currDateTime: Date = new Date(Date.now());
+  private currMonths: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   private salaryTotal = 0;
 
   constructor(private formBuilder: FormBuilder,
@@ -80,7 +81,7 @@ export class EmployeeDetailsComponent implements OnInit {
     this.activatedRoute
       .paramMap
       .subscribe(params => {
-        this.id = params.get("id");
+        this.id = params.get('id');
       });
     if (this.employeeInfo === undefined) {
       this.activatedRoute
@@ -88,7 +89,7 @@ export class EmployeeDetailsComponent implements OnInit {
         .subscribe(params => {
           this.processingInProgress = true;
           let employeeBasicInfoObservable = this.employeeService.readDetails(this.id);
-          let employeePaySlipObservable = this.employeeService.getPaySlip(this.id, '2017', 'January');
+          let employeePaySlipObservable = this.employeeService.getPaySlip(this.id, this.currDateTime.getFullYear().toString(), this.currMonths[this.currDateTime.getMonth()]);
           Observable.forkJoin([employeeBasicInfoObservable, employeePaySlipObservable])
             .finally(() => { this.processingInProgress = false; })
             .subscribe(data => {
@@ -150,11 +151,11 @@ export class EmployeeDetailsComponent implements OnInit {
     });
 
     this.formGroupDocument = this.formBuilder.group({
-      'docId': [""],
-      'docTypeId': [""],
-      'remarks': [""],
-      'document': [""],
-      'documentName': [""]
+      'docId': [''],
+      'docTypeId': [''],
+      'remarks': [''],
+      'document': [''],
+      'documentName': ['']
       });
 
       this.formGroupOptionalBenefit = this.formBuilder.group({
@@ -686,7 +687,7 @@ export class EmployeeDetailsComponent implements OnInit {
     this.selectedDocId = docId;
     this.employeeService.getDocument(docId, this.id)
       .subscribe(data => {
-        if ((navigator.appVersion.indexOf("MSIE") !== -1) || (!!window["MSInputMethodContext"] && !!document["documentMode"])) {
+        if ((navigator.appVersion.indexOf('MSIE') !== -1) || (!!window['MSInputMethodContext'] && !!document['documentMode'])) {
           var abc=data.document.split(',')[1].replace(/\s/g, '');
           var byteString = atob(abc);
           var ab = new ArrayBuffer(byteString.length);
@@ -698,8 +699,8 @@ export class EmployeeDetailsComponent implements OnInit {
                     
           var blob = new Blob([ia], { type: 'application/pdf' });
 
-          saveAs(blob, "hrmsdocument.pdf");
-          this.selectedDocument = "hrmsdocument.pdf";
+          saveAs(blob, 'hrmsdocument.pdf');
+          this.selectedDocument = 'hrmsdocument.pdf';
         } else {
           this.selectedDocDetails = data;
           this.selectedDocument = data.document;
@@ -767,7 +768,7 @@ export class EmployeeDetailsComponent implements OnInit {
       'docTypeId': this.selectedDocDetails.docTypeId,
       'remarks': this.selectedDocDetails.remarks,
       'document': this.selectedDocDetails.document,
-      'documentName': ""
+      'documentName': ''
     });
   }
 
