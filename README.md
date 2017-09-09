@@ -13,7 +13,7 @@
 
 # Code Checkout
 1. Go to a folder where you want to checkout the entire hrms folder
-2. Run the command `https://github.com/engineerscraft/hrms.git`
+2. Run the command `git clone https://github.com/engineerscraft/hrms.git`
 
 # Database Setup
 1. Add the bin/ location of the extracted PostgreSQL folder in the environment PATH variable
