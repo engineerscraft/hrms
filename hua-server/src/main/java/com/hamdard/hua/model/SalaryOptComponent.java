@@ -83,4 +83,12 @@ public class SalaryOptComponent {
         this.salOptComponent = salOptComponent;
     }
 
+	@Override
+	public String toString() {
+		return "SalaryOptComponent [creditDebitFlag=" + creditDebitFlag + ", description=" + description
+				+ ", empOptOutFlag=" + empOptOutFlag + ", endDate=" + endDate + ", frequency=" + frequency
+				+ ", optCompId=" + optCompId + ", optCompName=" + optCompName + ", salOptComponent=" + salOptComponent
+				+ "]";
+	}
+
 }

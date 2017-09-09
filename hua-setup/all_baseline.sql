@@ -52760,9 +52760,14 @@ VALUES
 (38,'CHANGE_PASSWORD_OF_A_USER','POST /userManagement/changePassword','A'),
 (39,'CREATE_A_USER','POST /userManagement/createUser','A'),
 (40,'READ_PAYSLIP_OF_AN_EMP','GET /employee/{id}/payslip','A'),
-(41,'INSERT_PAYSLIP_OF_AN_EMP','POST /employee/{id}/payslip','A');
+(41,'INSERT_PAYSLIP_OF_AN_EMP','POST /employee/{id}/payslip','A'),
+(42,'READ_SALARYSTACK_OF_AN_EMP','GET /employee/{id}/salarystack','A'),
+(43,'READ_LEAVE_OF_AN_EMP','GET /employee/{id}/leave','A'),
+(44,'UPDATE_LEAVE_OF_AN_EMP','PUT /employee/{id}/leave','A'),
+(45,'UPDATE_ALL_OPT_BENEFIT_FOR_AN_EMP','PUT /employee/{id}/optionalbenefits','A'),
+(46,'READ_ELGBL_SAL_OPT_COMP_OF_AN_EMP','GET /employee/{id}/eligiblesaloptcomponent','A');
 
-
+READ_ELGBL_SAL_OPT_COMP_OF_AN_EMP
 --INSERT INTO HRMS.ROLE_PERMISSION 
 --SELECT ROLE_ID, PERMISSION_ID FROM
 --HRMS.PERMISSION_MASTER, HRMS.ROLE_MASTER;
@@ -52926,7 +52931,23 @@ VALUES
 (2,40),
 (3,40),
 (4,40),
-(3,41);
+(3,41),
+(3,42),
+(4,42),
+(1,43),
+(2,43),
+(3,43),
+(4,43),
+(2,44),
+(3,44),
+(1,45),
+(2,45),
+(3,45),
+(4,45),
+(1,46),
+(2,46),
+(3,46),
+(4,46);
 
 INSERT INTO HRMS.ROLE_DEPARTMENT 
 (SELECT DEPARTMENT_ID, ROLE_ID FROM

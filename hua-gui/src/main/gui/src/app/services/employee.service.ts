@@ -110,4 +110,29 @@ export class EmployeeService {
     return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/hierarchystatus", reqBody)
       .map(res => res.json());
   }
+
+  getPaySlip(employeeId: String, payYear: String, payMonth: String) {
+    return this.httpService.callHttpGet("/resources/v1/employee/management/" + employeeId + "/payslip?year=" + payYear + "&month=" + payMonth)
+      .map(res => res.json());
+  }
+
+  updateLeaveDetails(employeeId: String, reqBody: any) {
+    return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/leave", reqBody)
+      .map(res => res.json());
+  }
+
+  updateOptionalBenefits(employeeId: String, reqBody: any) {
+    return this.httpService.callHttpPut("/resources/v1/employee/management/" + employeeId + "/optionalbenefits", reqBody)
+      .map(res => res.json());
+  }
+
+  getOptionalBenefitList(employeeId: String) {
+    return this.httpService.callHttpGet("/resources/v1/employee/management/" + employeeId + "/eligiblesaloptcomponent")
+      .map(res => res.json());
+  }
+
+  addOptionalBenefit(employeeId: String, reqBody: any) {
+    return this.httpService.callHttpPost("/resources/v1/employee/management/" + employeeId + "/optionalbenefits", reqBody)
+      .map(res => res.json());
+  }
 }

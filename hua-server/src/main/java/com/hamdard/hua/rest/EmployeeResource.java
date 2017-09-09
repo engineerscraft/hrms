@@ -31,8 +31,10 @@ import com.hamdard.hua.model.Employee.EmployeeHierarchy;
 import com.hamdard.hua.model.Employee.EmployeeOptionalBenefit;
 import com.hamdard.hua.model.Employee.EmployeeProfile;
 import com.hamdard.hua.model.Employee.EmployeeSalary;
+import com.hamdard.hua.model.Employee.Leave;
 import com.hamdard.hua.model.EmployeePayslip;
 import com.hamdard.hua.model.Message;
+import com.hamdard.hua.model.SalaryOptComponent;
 import com.hamdard.hua.privileges.Privilege;
 import com.hamdard.hua.repository.EmployeeRepository;
 import com.hamdard.hua.security.Secured;
@@ -124,13 +126,34 @@ public class EmployeeResource {
     @Secured(Privilege.UPDATE_OPT_BENEFIT_FOR_AN_EMP)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response insertEmployeeOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, @PathParam("oid") @Min(1) int optCompId, EmployeeOptionalBenefit updEmployeeOptBenefit) {
+    public Response updateEmployeeOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, @PathParam("oid") @Min(1) int optCompId, EmployeeOptionalBenefit updEmployeeOptBenefit) {
         try {
             String entryBy = securityContext.getUserPrincipal().getName();
-            employeeRepository.updateEmpOptionalBenefits(employeeId, optCompId, entryBy, updEmployeeOptBenefit);
-            return Response.status(Response.Status.OK).build();
+        	if(updEmployeeOptBenefit != null){
+	            employeeRepository.updateEmpOptionalBenefits(employeeId, optCompId, entryBy, updEmployeeOptBenefit);
+	            return Response.status(Response.Status.OK).build();
+        	}
+        	else{
+        		throw new NullPointerException("EmployeeOptionalBenefit is null");
+        	}
         } catch (Exception ex) {
             logger.error("The employee optional benefits could not be updated", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @PUT
+    @Path("/{id}/optionalbenefits")
+    @Secured(Privilege.UPDATE_ALL_OPT_BENEFIT_FOR_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updateEmployeeAllOptionalBenefits(@PathParam("id") @Size(min=1) String employeeId, List<EmployeeOptionalBenefit> employeeOptionalBenefitList) {
+        try {
+            String entryBy = securityContext.getUserPrincipal().getName();
+	        employeeRepository.updateAllEmpOptionalBenefits(employeeId, entryBy, employeeOptionalBenefitList);
+	        return Response.status(Response.Status.OK).build();
+        } catch (Exception ex) {
+            logger.error("The employee optional benefits list could not be updated", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }
@@ -281,6 +304,18 @@ public class EmployeeResource {
             for(EmployeeDocument doc : empInfo.getDocumentList()) {
                 doc.setDocument(null);
             }
+            empInfo.setEmployeeOptionalBenefit(employeeRepository.getemployeeOptionalBenefitList(employeeId));
+            empInfo.setEmployeeSalary(employeeRepository.getEmployeeSalaryList(employeeId));
+            empInfo.setEmployeeTaxList(employeeRepository.getEmployeeTaxList(employeeId));
+            Leave leave=new Leave();
+            try{
+            	leave=employeeRepository.getEmployeeLeave(employeeId);
+            	empInfo.setLeave(leave);
+            }
+            catch(Exception ex){
+            	logger.error("The leave info not found", ex);
+            	empInfo.setLeave(null);
+            }
             return Response.status(Response.Status.OK).entity(empInfo).build();
         } catch (EmptyResultDataAccessException e) {
             logger.error("The employee details not found", e);
@@ -387,6 +422,80 @@ public class EmployeeResource {
             return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
             logger.error("The employee payslip info could not be stored", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @GET
+    @Path("{id}/salarystack")
+    @Secured(Privilege.READ_SALARYSTACK_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getSalaryStack(@PathParam("id") @Size(min=1) String employeeId) {
+        try {
+        	Employee employee = employeeRepository.getSalaryStack(employeeId);
+            return Response.status(Response.Status.OK).entity(employee).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No salary stack info found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The salary stack could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @GET
+    @Path("{id}/leave")
+    @Secured(Privilege.READ_LEAVE_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getEmployeeLeave(@PathParam("id") @Size(min=1) String employeeId) {
+        try {
+        	Leave leave = employeeRepository.getEmployeeLeave(employeeId);
+            return Response.status(Response.Status.OK).entity(leave).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No leave info found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("The leave info could not be fetched", ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
+        }
+    }
+    
+    @PUT
+    @Path("{id}/leave")
+    @Secured(Privilege.UPDATE_LEAVE_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response updateEmployeeLeave(@PathParam("id") @Size(min = 1) String empId, Leave leave) {
+    	String employeeName = securityContext.getUserPrincipal().getName();
+    	//String employeeName="dummy";
+    	try {
+            int rowsUpdated=employeeRepository.updateEmployeeLeave(leave, empId, employeeName);
+            if(rowsUpdated>0)
+            	return Response.status(200).entity(new Message("Leave info updated successfully")).build();
+            else
+            	return Response.status(500).entity(new Message("No record found")).build();
+        } catch (Exception ex) {
+            logger.error("Leave info could not be updated.", ex);
+            return Response.status(500).entity(ex.getMessage()).build();
+        }
+    }
+    
+    @GET
+    @Path("{id}/eligiblesaloptcomponent")
+    @Secured(Privilege.READ_ELGBL_SAL_OPT_COMP_OF_AN_EMP)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getEligibleSalOptCompList(@PathParam("id") @Size(min=1) String employeeId) {
+        try {
+        	List<SalaryOptComponent> salaryOptComponentList = employeeRepository.getEmployeeEligibleSalaryOptCompList(employeeId);
+            return Response.status(Response.Status.OK).entity(salaryOptComponentList).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No sal opt comp info found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+        } catch (Exception ex) {
+            logger.error("Sal Opt Comp could not be fetched", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ex.getMessage())).build();
         }
     }

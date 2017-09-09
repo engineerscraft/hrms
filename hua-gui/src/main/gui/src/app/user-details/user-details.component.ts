@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { EmployeeService } from '../services/employee.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import 'rxjs/add/operator/finally';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DocTypeService } from '../services/doc-type.service';
 import { Observable } from 'rxjs/Observable';
 import { CountryService } from '../services/country.service';
@@ -28,16 +28,21 @@ export class UserDetailsComponent implements OnInit {
   private showEditOthersDetails = false;
   private showEditLeaveDetails = false;
   private showEditPayrollDetails = false;
+  private showAddOptionalBenefit = false;
   private formGroupBasicInfo: FormGroup;
   private formGroupAdditionalInfo: FormGroup;
   private formGroupAddressDetails: FormGroup;
-  private formArrayAddressDetails;
+  private formArrayAddressDetails: FormArray;
   private formGroupDocument: FormGroup;
   private formGroupOthersDetails: FormGroup;
   private formGroupLeaveDetails: FormGroup;
   private formGroupPayrollDetails: FormGroup;
+  private formArrayOptionalBenefits;
+  private formGroupOptionalBenefit: FormGroup;
+  private optionalBenefitTypes;
   private identityDocTypes;
   private docTypes;
+  private employeePaySlipInfo;
   private countries;
   private statesPermanent;
   private statesPresent;
@@ -54,7 +59,9 @@ export class UserDetailsComponent implements OnInit {
   private showUpdateMessage = false;
   private showErrorMessage = false;
   private errorMessage;
-  private currDateTime: number = Date.now();
+  private currDateTime: Date = new Date(Date.now());
+  private currMonths: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  private salaryTotal = 0;
 
   constructor(private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
@@ -69,15 +76,19 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.employeeInfo = this.activatedRoute.snapshot.data['employeeInfo'];
+    this.currDateTime.setMonth(this.currDateTime.getMonth() - 1);
     if (this.employeeInfo === undefined) {
       this.activatedRoute
         .queryParams
         .subscribe(params => {
           this.processingInProgress = true;
-          let employeeBasicInfoObservable = this.employeeService.readDetails(this.id)
+          let employeeBasicInfoObservable = this.employeeService.readDetails(this.id);
+          let employeePaySlipObservable = this.employeeService.getPaySlip(this.id, this.currDateTime.getFullYear().toString(), this.currMonths[this.currDateTime.getMonth()]);
+          Observable.forkJoin([employeeBasicInfoObservable, employeePaySlipObservable])
             .finally(() => { this.processingInProgress = false; })
             .subscribe(data => {
-              this.employeeInfo = data;
+              this.employeeInfo = data[0];
+              this.employeePaySlipInfo = data[1];
             },
             (err: any) => {
               /* if (err.status === 401 && err.json()['message'] !== 'Refresh token expired') {
@@ -141,6 +152,21 @@ export class UserDetailsComponent implements OnInit {
       'documentName': [""]
     });
 
+    this.formGroupOptionalBenefit = this.formBuilder.group({
+      'benefitValue': '',
+      'frequency': '',
+      'startDate': '',
+      'stopDate': '',
+      'creditDebitFlag': '',
+      'totalAmount': '',
+      'salOptFlag': '1',
+      'optSalaryComponent': this.formBuilder.group({
+        'optCompId': '',
+        'optCompName': '',
+        'description': ''
+      })
+    });
+
     this.formGroupAdditionalInfo = this.formBuilder.group({
       'dependentNo': [this.employeeInfo.employeeAddlDetails.dependentNo],
       'siblingNo': [this.employeeInfo.employeeAddlDetails.siblingNo],
@@ -178,23 +204,24 @@ export class UserDetailsComponent implements OnInit {
     });
 
     this.formGroupLeaveDetails = this.formBuilder.group({
-      'applicableLeaves': this.formBuilder.group({
-        'casualLeave': '',
-        'earnedLeave': '',
-        'sickLeave': '',
-        'maternityLeave': '',
-        'specialLeave': ''
-      }),
-      'availedLeaves': this.formBuilder.group({
-        'casualLeave': '',
-        'earnedLeave': '',
-        'sickLeave': '',
-        'maternityLeave': '',
-        'specialLeave': ''
-      })
+      'eligibleCl': [this.employeeInfo.leave.eligibleCl],
+      'eligiblePl': [this.employeeInfo.leave.eligiblePl],
+      'eligiblePaternityMaternityLeave': [this.employeeInfo.leave.eligiblePaternityMaternityLeave],
+      'eligibleSickLeave': [this.employeeInfo.leave.eligibleSickLeave],
+      'eligibleSpecialLeave': [this.employeeInfo.leave.eligibleSpecialLeave],
+      'availedCl': [this.employeeInfo.leave.availedCl],
+      'availedPl': [this.employeeInfo.leave.availedPl],
+      'availedPaternityMaternityLeave': [this.employeeInfo.leave.availedPaternityMaternityLeave],
+      'availedSickLeave': [this.employeeInfo.leave.availedSickLeave],
+      'availedSpecialLeave': [this.employeeInfo.leave.availedSpecialLeave]
     });
 
-    this.formGroupPayrollDetails = this.formBuilder.group({});
+    this.formGroupPayrollDetails = this.formBuilder.group({
+      formArrayOptionalBenefits: this.formBuilder.array([])
+    });
+
+    this.initOptionalComponents();
+
   }
 
   /**
@@ -214,6 +241,31 @@ export class UserDetailsComponent implements OnInit {
       'countryId': [this.employeeInfo.employeeAddress[count].countryId],
       'countryName': [this.employeeInfo.employeeAddress[count].countryName],
       'addressType': type
+    });
+  }
+
+  initOptionalComponents() {
+    this.formArrayOptionalBenefits = this.formGroupPayrollDetails.get('formArrayOptionalBenefits') as FormArray;
+    this.employeeInfo.employeeOptionalBenefit.forEach(optComp => {
+      this.formArrayOptionalBenefits.push(
+        this.formBuilder.group({
+          'benefitValue': [optComp.benefitValue],
+          'frequency': [optComp.frequency],
+          'startDate': [optComp.startDate],
+          'stopDate': [optComp.stopDate],
+          'nextDueDate': [optComp.nextDueDate],
+          'creditDebitFlag': [optComp.optSalaryComponent.creditDebitFlag],
+          'totalAmount': [optComp.totalAmount],
+          'needToUpdate': false,
+          'salOptFlag': [optComp.salOptFlag],
+          'benefitId': [optComp.benefitId],
+          'optSalaryComponent': this.formBuilder.group({
+            'optCompId': [optComp.optSalaryComponent.optCompId],
+            'optCompName': [optComp.optSalaryComponent.optCompName],
+            'description': [optComp.optSalaryComponent.description]
+          })
+        })
+      );
     });
   }
 
@@ -474,7 +526,35 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onLeaveDetailsUpdate() {
-
+    this.processingInProgress = true;
+    this.employeeService.updateLeaveDetails(this.id, this.formGroupLeaveDetails.value)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.closeAllDialog(null);
+        this.showUpdateMessage = true;
+      }
+      )
+      .subscribe(data => {
+      },
+      (err: any) => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
+      },
+      () => {
+        this.showUpdateMessage = true;
+        this.employeeService.readDetails(this.id)
+          .finally(() => { this.processingInProgress = false; })
+          .subscribe(data => {
+            this.employeeInfo = data;
+          },
+          (err: any) => {
+            this.errorMessage = err.status + ' - ' + err.json().message;
+            this.showErrorMessage = true;
+          },
+          () => {
+            this.formGroupInitializer();
+          });
+      });
   }
 
   editPayrollDetails() {
@@ -487,7 +567,110 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onPayrollDetailsUpdate() {
+    this.processingInProgress = true;
+    this.employeeService.updateOptionalBenefits(this.id, this.formGroupPayrollDetails.controls.formArrayOptionalBenefits.value)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.closeAllDialog(null);
+        this.employeeInfo.employeeOptionalBenefit = Object.assign(this.employeeInfo.employeeOptionalBenefit, this.formGroupPayrollDetails.controls.formArrayOptionalBenefits.value);
+        this.showUpdateMessage = true;
+      }
+      )
+      .subscribe(data => {
+      },
+      (err: any) => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
+      },
+      () => {
+        this.employeeInfo.employeeOptionalBenefit = Object.assign(this.employeeInfo.employeeOptionalBenefit, this.formGroupPayrollDetails.controls.formArrayOptionalBenefits.value);
+      });
+  }
 
+  initializeAddOptionalBenefit() {
+    this.formGroupOptionalBenefit.setValue({
+      'benefitValue': '',
+      'frequency': '',
+      'startDate': '',
+      'stopDate': '',
+      'creditDebitFlag': '',
+      'totalAmount': '',
+      'salOptFlag': '1',
+      'optSalaryComponent': {
+        'optCompId': '',
+        'optCompName': '',
+        'description': ''
+      }
+    });
+  }
+
+  addOptionalBenefit() {
+    if (this.optionalBenefitTypes === undefined) {
+      let optionalBenefitsObservable = this.employeeService.getOptionalBenefitList(this.id)
+        .finally(() => {
+          this.processingInProgress = false;
+        })
+        .subscribe(data => {
+          this.optionalBenefitTypes = data;
+        },
+        (err: any) => {
+          this.errorMessage = err.status + ' - ' + err.json().message;
+          this.showErrorMessage = true;
+        },
+        () => {
+          this.initializeAddOptionalBenefit();
+          this.showAddOptionalBenefit = true;
+          this.modalDisplay = true;
+        });
+    } else {
+      this.initializeAddOptionalBenefit();
+      this.showAddOptionalBenefit = true;
+      this.modalDisplay = true;
+    }
+  }
+
+  getShowAddOptionalBenefit() {
+    return this.showAddOptionalBenefit;
+  }
+
+  onOptionalBenefitChange(optComponentId) {
+    this.optionalBenefitTypes.forEach(optComp => {
+      if (optComp.optCompId === Number(optComponentId)) {
+        this.formGroupOptionalBenefit.setValue({
+          'benefitValue': '0',
+          'frequency': optComp.frequency,
+          'startDate': '',
+          'stopDate': '',
+          'creditDebitFlag': optComp.creditDebitFlag,
+          'totalAmount': '',
+          'salOptFlag': '1',
+          'optSalaryComponent': {
+            'optCompId': optComp.optCompId,
+            'optCompName': optComp.optCompName,
+            'description': ''
+          }
+        });
+      } else {}
+    });
+  }
+
+  onOptionalBenefitAdd() {
+    this.processingInProgress = true;
+    this.employeeService.addOptionalBenefit(this.id, this.formBuilder.array([this.formGroupOptionalBenefit.value]).value)
+      .finally(() => {
+        this.processingInProgress = false;
+        this.showAddOptionalBenefit = false;
+      }
+      )
+      .subscribe(data => {
+      },
+      (err: any) => {
+        this.errorMessage = err.status + ' - ' + err.json().message;
+        this.showErrorMessage = true;
+      },
+      () => {
+        this.showUpdateMessage = true;
+      });
   }
 
   getSelectedDocId() {
@@ -536,6 +719,7 @@ export class UserDetailsComponent implements OnInit {
       this.documentEditFunctionInvoked = false;
       this.showUpdateMessage = false;
       this.showErrorMessage = false;
+      this.showAddOptionalBenefit = false;
     }
   }
 
@@ -763,6 +947,20 @@ export class UserDetailsComponent implements OnInit {
       }
       if (event.type === 'clear') {
         this.formGroupOthersDetails.patchValue({ noticePeriodEndDate: '' });
+      }
+    } else if (labelName === 'salOptBenefitStartDate') {
+      if (event.type === 'dateChanged') {
+        this.formGroupOptionalBenefit.patchValue({ startDate: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.formGroupOptionalBenefit.patchValue({ startDate: '' });
+      }
+    } else if (labelName === 'salOptBenefitEndDate') {
+      if (event.type === 'dateChanged') {
+        this.formGroupOptionalBenefit.patchValue({ stopDate: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.formGroupOptionalBenefit.patchValue({ stopDate: '' });
       }
     }
   }
