@@ -1,4 +1,4 @@
-// dot 2.38.0 on Windows 8.1 6.3
+// dot 2.38.0 on Windows 7 6.1
 digraph "impliedTwoDegreesRelationshipsGraph" {
   graph [
     rankdir="RL"
@@ -16,11 +16,8 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   ];
   "address":"address.heading":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
   "appraisal_rating":"appraisal_rating.heading":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
-  "employee":"department_id":w -> "department_master":"department_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee":"identity_doc_type_id":w -> "doc_type_master":"doc_type_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee":"nationality":w -> "country_master":"country_master.heading":e [arrowtail=crowodot arrowhead=none];
-  "employee":"org_id":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none];
-  "employee":"unit_id":w -> "unit_master":"unit_master.heading":e [arrowtail=crowodot arrowhead=none];
   "employee_additional_details":"employee_additional_details.heading":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
   "employee_additional_details_history":"emp_id":w -> "employee_hierarchy_status":"emp_id.type":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_docs":"employee_docs.heading":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
@@ -28,18 +25,14 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   "employee_hierarchy_status":"hr_id":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status":"supervisor_id":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
   "employee_hierarchy_status_history":"emp_id":w -> "employee_hierarchy_status":"emp_id.type":e [arrowtail=crowodot arrowhead=none style=dashed];
+  "employee_history":"department_id":w -> "department_master":"department_master.heading":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_history":"emp_id":w -> "employee_hierarchy_status":"emp_id.type":e [arrowtail=crowodot arrowhead=none style=dashed];
-  "employee_monthly_payroll":"employee_monthly_payroll.heading":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
+  "employee_history":"org_id":w -> "organisation_master":"organisation_master.heading":e [arrowtail=crowodot arrowhead=none style=dashed];
+  "employee_history":"unit_id":w -> "unit_master":"unit_master.heading":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_optional_benefits":"employee_optional_benefits.heading":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
-  "employee_optional_benefits_history":"emp_id":w -> "employee_hierarchy_status":"emp_id.type":e [arrowtail=crowodot arrowhead=none style=dashed];
-  "employee_optional_benefits_history":"opt_comp_id":w -> "salary_opt_component_master":"salary_opt_component_master.heading":e [arrowtail=crowodot arrowhead=none style=dashed];
-  "employee_payslip":"employee_payslip.heading":w -> "employee":"emp_id":e [arrowtail=crowodot arrowhead=none];
   "employee_profile":"employee_profile.heading":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
   "employee_profile_history":"emp_id":w -> "employee_hierarchy_status":"emp_id.type":e [arrowtail=crowodot arrowhead=none style=dashed];
   "employee_salary":"employee_salary.heading":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
-  "employee_tax":"employee_tax.heading":w -> "employee":"emp_id":e [arrowtail=crowtee arrowhead=none];
-  "leave_master":"leave_master.heading":w -> "employee":"emp_id":e [arrowtail=tee arrowhead=none];
-  "leave_master_history":"emp_id":w -> "employee_hierarchy_status":"emp_id.type":e [arrowtail=crowodot arrowhead=none style=dashed];
   "address" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -71,7 +64,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="department_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">department_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="department_master.html#graph"
     tooltip="department_master"
@@ -113,7 +106,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="hr_flag" COLSPAN="3" ALIGN="LEFT">hr_flag</TD></TR>
       <TR><TD PORT="supervisor_flag" COLSPAN="3" ALIGN="LEFT">supervisor_flag</TD></TR>
       <TR><TD PORT="employee_image" COLSPAN="3" ALIGN="LEFT">employee_image</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">14 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">101 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 &gt;</TD></TR>
     </TABLE>>
     URL="employee.html#graph"
     tooltip="employee"
@@ -122,7 +115,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="employee_additional_details.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_additional_details</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="employee_additional_details.html#graph"
     tooltip="employee_additional_details"
@@ -177,13 +170,10 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="sick_leave" COLSPAN="2" ALIGN="LEFT">sick_leave</TD><TD PORT="sick_leave.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="maternity_leave" COLSPAN="2" ALIGN="LEFT">maternity_leave</TD><TD PORT="maternity_leave.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="special_leave" COLSPAN="2" ALIGN="LEFT">special_leave</TD><TD PORT="special_leave.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD PORT="charge_of_extra_class" COLSPAN="2" ALIGN="LEFT">charge_of_extra_class</TD><TD PORT="charge_of_extra_class.type" ALIGN="LEFT">float8[17,17]</TD></TR>
-      <TR><TD PORT="monthly_extra_class" COLSPAN="2" ALIGN="LEFT">monthly_extra_class</TD><TD PORT="monthly_extra_class.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD PORT="yearly_extra_class" COLSPAN="2" ALIGN="LEFT">yearly_extra_class</TD><TD PORT="yearly_extra_class.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="probation_period_end_date" COLSPAN="2" ALIGN="LEFT">probation_period_end_date</TD><TD PORT="probation_period_end_date.type" ALIGN="LEFT">timestamp[22]</TD></TR>
       <TR><TD PORT="notice_period_last_date" COLSPAN="2" ALIGN="LEFT">notice_period_last_date</TD><TD PORT="notice_period_last_date.type" ALIGN="LEFT">timestamp[22]</TD></TR>
       <TR><TD PORT="last_mod_date" COLSPAN="2" ALIGN="LEFT">last_mod_date</TD><TD PORT="last_mod_date.type" ALIGN="LEFT">timestamp[22]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">6 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="employee_hierarchy_status.html#"
     tooltip="employee_hierarchy_status"
@@ -248,15 +238,6 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     URL="employee_history.html#graph"
     tooltip="employee_history"
   ];
-  "employee_monthly_payroll" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="employee_monthly_payroll.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_monthly_payroll</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="employee_monthly_payroll.html#graph"
-    tooltip="employee_monthly_payroll"
-  ];
   "employee_optional_benefits" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -265,40 +246,6 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     </TABLE>>
     URL="employee_optional_benefits.html#graph"
     tooltip="employee_optional_benefits"
-  ];
-  "employee_optional_benefits_history" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="employee_optional_benefits_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_optional_benefits_history</TD></TR>
-      <TR><TD PORT="opt_benefit_hist_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opt_benefit_hist_id</TD></TR>
-      <TR><TD PORT="benefit_id" COLSPAN="3" ALIGN="LEFT">benefit_id</TD></TR>
-      <TR><TD PORT="emp_id" COLSPAN="3" ALIGN="LEFT">emp_id</TD></TR>
-      <TR><TD PORT="opt_comp_id" COLSPAN="3" ALIGN="LEFT">opt_comp_id</TD></TR>
-      <TR><TD PORT="sal_opt_flag" COLSPAN="3" ALIGN="LEFT">sal_opt_flag</TD></TR>
-      <TR><TD PORT="sal_opt_value" COLSPAN="3" ALIGN="LEFT">sal_opt_value</TD></TR>
-      <TR><TD PORT="sal_opt_start_date" COLSPAN="3" ALIGN="LEFT">sal_opt_start_date</TD></TR>
-      <TR><TD PORT="sal_opt_end_date" COLSPAN="3" ALIGN="LEFT">sal_opt_end_date</TD></TR>
-      <TR><TD PORT="next_due_date" COLSPAN="3" ALIGN="LEFT">next_due_date</TD></TR>
-      <TR><TD PORT="remarks" COLSPAN="3" ALIGN="LEFT">remarks</TD></TR>
-      <TR><TD PORT="entry_by" COLSPAN="3" ALIGN="LEFT">entry_by</TD></TR>
-      <TR><TD PORT="entry_date" COLSPAN="3" ALIGN="LEFT">entry_date</TD></TR>
-      <TR><TD PORT="frequency" COLSPAN="3" ALIGN="LEFT">frequency</TD></TR>
-      <TR><TD PORT="no_of_iteration" COLSPAN="3" ALIGN="LEFT">no_of_iteration</TD></TR>
-      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
-      <TR><TD PORT="last_mod_date" COLSPAN="3" ALIGN="LEFT">last_mod_date</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="employee_optional_benefits_history.html#graph"
-    tooltip="employee_optional_benefits_history"
-  ];
-  "employee_payslip" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="employee_payslip.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_payslip</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="employee_payslip.html#graph"
-    tooltip="employee_payslip"
   ];
   "employee_profile" [
     label=<
@@ -337,75 +284,20 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     URL="employee_salary.html#graph"
     tooltip="employee_salary"
   ];
-  "employee_tax" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="employee_tax.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">employee_tax</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="employee_tax.html#graph"
-    tooltip="employee_tax"
-  ];
-  "leave_master" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="leave_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">leave_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="leave_master.html#graph"
-    tooltip="leave_master"
-  ];
-  "leave_master_history" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="leave_master_history.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">leave_master_history</TD></TR>
-      <TR><TD PORT="leave_mas_hist_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">leave_mas_hist_id</TD></TR>
-      <TR><TD PORT="emp_id" COLSPAN="3" ALIGN="LEFT">emp_id</TD></TR>
-      <TR><TD PORT="eligible_cl" COLSPAN="3" ALIGN="LEFT">eligible_cl</TD></TR>
-      <TR><TD PORT="eligible_pl" COLSPAN="3" ALIGN="LEFT">eligible_pl</TD></TR>
-      <TR><TD PORT="eligible_paternity_maternity_leave" COLSPAN="3" ALIGN="LEFT">eligible_paternity_maternity_leave</TD></TR>
-      <TR><TD PORT="eligible_sick_leave" COLSPAN="3" ALIGN="LEFT">eligible_sick_leave</TD></TR>
-      <TR><TD PORT="eligible_special_leave" COLSPAN="3" ALIGN="LEFT">eligible_special_leave</TD></TR>
-      <TR><TD PORT="availed_cl" COLSPAN="3" ALIGN="LEFT">availed_cl</TD></TR>
-      <TR><TD PORT="availed_pl" COLSPAN="3" ALIGN="LEFT">availed_pl</TD></TR>
-      <TR><TD PORT="availed_paternity_maternity_leave" COLSPAN="3" ALIGN="LEFT">availed_paternity_maternity_leave</TD></TR>
-      <TR><TD PORT="availed_sick_leave" COLSPAN="3" ALIGN="LEFT">availed_sick_leave</TD></TR>
-      <TR><TD PORT="availed_special_leave" COLSPAN="3" ALIGN="LEFT">availed_special_leave</TD></TR>
-      <TR><TD PORT="remaining_cl" COLSPAN="3" ALIGN="LEFT">remaining_cl</TD></TR>
-      <TR><TD PORT="remaining_pl" COLSPAN="3" ALIGN="LEFT">remaining_pl</TD></TR>
-      <TR><TD PORT="remaining_paternity_maternity_leave" COLSPAN="3" ALIGN="LEFT">remaining_paternity_maternity_leave</TD></TR>
-      <TR><TD PORT="remaining_sick_leave" COLSPAN="3" ALIGN="LEFT">remaining_sick_leave</TD></TR>
-      <TR><TD PORT="remaining_special_leave" COLSPAN="3" ALIGN="LEFT">remaining_special_leave</TD></TR>
-      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
-      <TR><TD PORT="last_mod_date" COLSPAN="3" ALIGN="LEFT">last_mod_date</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="leave_master_history.html#graph"
-    tooltip="leave_master_history"
-  ];
   "organisation_master" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="organisation_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">organisation_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
     </TABLE>>
     URL="organisation_master.html#graph"
     tooltip="organisation_master"
-  ];
-  "salary_opt_component_master" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="salary_opt_component_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">salary_opt_component_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
-    </TABLE>>
-    URL="salary_opt_component_master.html#graph"
-    tooltip="salary_opt_component_master"
   ];
   "unit_master" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="unit_master.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">unit_master</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="unit_master.html#graph"
     tooltip="unit_master"

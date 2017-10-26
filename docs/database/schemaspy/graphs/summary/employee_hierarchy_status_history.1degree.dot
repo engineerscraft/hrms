@@ -1,4 +1,4 @@
-// dot 2.38.0 on Windows 8.1 6.3
+// dot 2.38.0 on Windows 7 6.1
 digraph "employee_hierarchy_status_history" {
   graph [
     rankdir="RL"

@@ -101,17 +101,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
     <td class='constraint'>Implied Constraint</td>
    </tr>
    <tr class='impliedRelationship' valign='top'>
-    <td class='relatedTable' title="employee_optional_benefits_history.emp_id's name implies that it's a child of employee_hierarchy_status.emp_id, but it doesn't reference that column."><a href='employee_optional_benefits_history.html'>employee_optional_benefits_history</a><span class='relatedKey'>.emp_id</span>
-    </td>
-    <td class='constraint'>Implied Constraint</td>
-   </tr>
-   <tr class='impliedRelationship' valign='top'>
     <td class='relatedTable' title="employee_profile_history.emp_id's name implies that it's a child of employee_hierarchy_status.emp_id, but it doesn't reference that column."><a href='employee_profile_history.html'>employee_profile_history</a><span class='relatedKey'>.emp_id</span>
-    </td>
-    <td class='constraint'>Implied Constraint</td>
-   </tr>
-   <tr class='impliedRelationship' valign='top'>
-    <td class='relatedTable' title="leave_master_history.emp_id's name implies that it's a child of employee_hierarchy_status.emp_id, but it doesn't reference that column."><a href='leave_master_history.html'>leave_master_history</a><span class='relatedKey'>.emp_id</span>
     </td>
     <td class='constraint'>Implied Constraint</td>
    </tr>
@@ -266,39 +256,6 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>charge_of_extra_class</td>
- <td class='detail'>float8</td>
- <td class='detail' align='right'>17,17</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>monthly_extra_class</td>
- <td class='detail'>int4</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>yearly_extra_class</td>
- <td class='detail'>int4</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td> </td>
- <td class='comment'></td>
-</tr>
-<tr>
  <td class='detail'>probation_period_end_date</td>
  <td class='detail'>timestamp</td>
  <td class='detail' align='right'>22</td>
@@ -332,7 +289,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 100 rows at Wed Aug 16 22:59 IST 2017
+<p/>Table contained 100 rows at Thu Oct 26 21:27 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -373,55 +330,44 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/employee_hierarchy_status.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="employee_hierarchy_status.html#" title="employee_hierarchy_status" alt="" coords="243,5,556,501"/>
+<area shape="rect" id="node1" href="employee_hierarchy_status.html#" title="employee_hierarchy_status" alt="" coords="243,5,556,429"/>
 <area shape="rect" id="node2" href="employee.html#graph" title="employee" alt="" coords="5,32,195,667"/>
 </map>
 <map id="impliedTwoDegreesRelationshipsGraph" name="impliedTwoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="549,1419,671,1477"/>
-<area shape="rect" id="node2" href="employee.html#graph" title="employee" alt="" coords="216,2287,405,2921"/>
-<area shape="rect" id="node4" href="department_master.html#graph" title="department_master" alt="" coords="7,2575,166,2633"/>
-<area shape="rect" id="node5" href="doc_type_master.html#graph" title="doc_type_master" alt="" coords="15,2740,158,2799"/>
-<area shape="rect" id="node6" href="country_master.html#graph" title="country_master" alt="" coords="18,2657,155,2716"/>
-<area shape="rect" id="node7" href="organisation_master.html#graph" title="organisation_master" alt="" coords="5,2409,168,2468"/>
-<area shape="rect" id="node8" href="unit_master.html#graph" title="unit_master" alt="" coords="24,2492,149,2551"/>
-<area shape="rect" id="node3" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="541,1501,679,1560"/>
-<area shape="rect" id="node9" href="employee_additional_details.html#graph" title="employee_additional_details" alt="" coords="504,1584,716,1643"/>
-<area shape="rect" id="node10" href="employee_additional_details_history.html#graph" title="employee_additional_details_history" alt="" coords="817,5,1079,448"/>
-<area shape="rect" id="node11" href="employee_hierarchy_status.html#" title="employee_hierarchy_status" alt="" coords="453,1667,767,2163"/>
-<area shape="rect" id="node12" href="employee_docs.html#graph" title="employee_docs" alt="" coords="543,2269,677,2328"/>
-<area shape="rect" id="node13" href="employee_hierarchy_status_history.html#graph" title="employee_hierarchy_status_history" alt="" coords="818,472,1078,891"/>
-<area shape="rect" id="node14" href="employee_history.html#graph" title="employee_history" alt="" coords="853,915,1043,1621"/>
-<area shape="rect" id="node15" href="employee_monthly_payroll.html#graph" title="employee_monthly_payroll" alt="" coords="509,2352,711,2411"/>
-<area shape="rect" id="node16" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="505,2435,715,2493"/>
-<area shape="rect" id="node17" href="employee_optional_benefits_history.html#graph" title="employee_optional_benefits_history" alt="" coords="817,2507,1079,2949"/>
-<area shape="rect" id="node18" href="salary_opt_component_master.html#graph" title="salary_opt_component_master" alt="" coords="494,2187,726,2245"/>
-<area shape="rect" id="node19" href="employee_payslip.html#graph" title="employee_payslip" alt="" coords="537,2517,683,2576"/>
-<area shape="rect" id="node20" href="employee_profile.html#graph" title="employee_profile" alt="" coords="540,2600,680,2659"/>
-<area shape="rect" id="node21" href="employee_profile_history.html#graph" title="employee_profile_history" alt="" coords="853,1645,1043,1944"/>
-<area shape="rect" id="node22" href="employee_salary.html#graph" title="employee_salary" alt="" coords="540,2683,680,2741"/>
-<area shape="rect" id="node23" href="employee_tax.html#graph" title="employee_tax" alt="" coords="549,2765,671,2824"/>
-<area shape="rect" id="node24" href="leave_master.html#graph" title="leave_master" alt="" coords="549,2848,671,2907"/>
-<area shape="rect" id="node25" href="leave_master_history.html#graph" title="leave_master_history" alt="" coords="815,1968,1081,2483"/>
+<area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="529,688,651,747"/>
+<area shape="rect" id="node2" href="employee.html#graph" title="employee" alt="" coords="196,987,385,1621"/>
+<area shape="rect" id="node4" href="doc_type_master.html#graph" title="doc_type_master" alt="" coords="5,1352,148,1411"/>
+<area shape="rect" id="node5" href="country_master.html#graph" title="country_master" alt="" coords="8,1269,145,1328"/>
+<area shape="rect" id="node3" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="521,771,659,829"/>
+<area shape="rect" id="node6" href="employee_additional_details.html#graph" title="employee_additional_details" alt="" coords="484,853,696,912"/>
+<area shape="rect" id="node7" href="employee_additional_details_history.html#graph" title="employee_additional_details_history" alt="" coords="795,5,1057,448"/>
+<area shape="rect" id="node8" href="employee_hierarchy_status.html#" title="employee_hierarchy_status" alt="" coords="433,936,747,1360"/>
+<area shape="rect" id="node9" href="employee_docs.html#graph" title="employee_docs" alt="" coords="523,1632,657,1691"/>
+<area shape="rect" id="node10" href="employee_hierarchy_status_history.html#graph" title="employee_hierarchy_status_history" alt="" coords="796,472,1056,891"/>
+<area shape="rect" id="node11" href="employee_history.html#graph" title="employee_history" alt="" coords="831,1237,1021,1944"/>
+<area shape="rect" id="node12" href="department_master.html#graph" title="department_master" alt="" coords="511,1549,669,1608"/>
+<area shape="rect" id="node13" href="organisation_master.html#graph" title="organisation_master" alt="" coords="509,1384,671,1443"/>
+<area shape="rect" id="node14" href="unit_master.html#graph" title="unit_master" alt="" coords="527,1467,653,1525"/>
+<area shape="rect" id="node15" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="485,1715,695,1773"/>
+<area shape="rect" id="node16" href="employee_profile.html#graph" title="employee_profile" alt="" coords="520,1797,660,1856"/>
+<area shape="rect" id="node17" href="employee_profile_history.html#graph" title="employee_profile_history" alt="" coords="831,915,1021,1213"/>
+<area shape="rect" id="node18" href="employee_salary.html#graph" title="employee_salary" alt="" coords="520,1880,660,1939"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
 <area shape="rect" id="node1" href="address.html#graph" title="address" alt="" coords="549,5,671,64"/>
-<area shape="rect" id="node2" href="employee.html#graph" title="employee" alt="" coords="216,621,405,1256"/>
-<area shape="rect" id="node4" href="department_master.html#graph" title="department_master" alt="" coords="7,909,166,968"/>
-<area shape="rect" id="node5" href="doc_type_master.html#graph" title="doc_type_master" alt="" coords="15,1075,158,1133"/>
-<area shape="rect" id="node6" href="country_master.html#graph" title="country_master" alt="" coords="18,992,155,1051"/>
-<area shape="rect" id="node7" href="organisation_master.html#graph" title="organisation_master" alt="" coords="5,744,168,803"/>
-<area shape="rect" id="node8" href="unit_master.html#graph" title="unit_master" alt="" coords="24,827,149,885"/>
+<area shape="rect" id="node2" href="employee.html#graph" title="employee" alt="" coords="216,351,405,985"/>
+<area shape="rect" id="node4" href="department_master.html#graph" title="department_master" alt="" coords="7,639,166,697"/>
+<area shape="rect" id="node5" href="doc_type_master.html#graph" title="doc_type_master" alt="" coords="15,804,158,863"/>
+<area shape="rect" id="node6" href="country_master.html#graph" title="country_master" alt="" coords="18,721,155,780"/>
+<area shape="rect" id="node7" href="organisation_master.html#graph" title="organisation_master" alt="" coords="5,473,168,532"/>
+<area shape="rect" id="node8" href="unit_master.html#graph" title="unit_master" alt="" coords="24,556,149,615"/>
 <area shape="rect" id="node3" href="appraisal_rating.html#graph" title="appraisal_rating" alt="" coords="541,88,679,147"/>
 <area shape="rect" id="node9" href="employee_additional_details.html#graph" title="employee_additional_details" alt="" coords="504,171,716,229"/>
 <area shape="rect" id="node10" href="employee_docs.html#graph" title="employee_docs" alt="" coords="543,253,677,312"/>
-<area shape="rect" id="node11" href="employee_hierarchy_status.html#" title="employee_hierarchy_status" alt="" coords="453,336,767,832"/>
-<area shape="rect" id="node12" href="employee_monthly_payroll.html#graph" title="employee_monthly_payroll" alt="" coords="509,856,711,915"/>
-<area shape="rect" id="node13" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="505,939,715,997"/>
-<area shape="rect" id="node14" href="employee_payslip.html#graph" title="employee_payslip" alt="" coords="537,1021,683,1080"/>
-<area shape="rect" id="node15" href="employee_profile.html#graph" title="employee_profile" alt="" coords="540,1104,680,1163"/>
-<area shape="rect" id="node16" href="employee_salary.html#graph" title="employee_salary" alt="" coords="540,1187,680,1245"/>
-<area shape="rect" id="node17" href="employee_tax.html#graph" title="employee_tax" alt="" coords="549,1269,671,1328"/>
-<area shape="rect" id="node18" href="leave_master.html#graph" title="leave_master" alt="" coords="549,1352,671,1411"/>
+<area shape="rect" id="node11" href="employee_hierarchy_status.html#" title="employee_hierarchy_status" alt="" coords="453,336,767,760"/>
+<area shape="rect" id="node12" href="employee_optional_benefits.html#graph" title="employee_optional_benefits" alt="" coords="505,784,715,843"/>
+<area shape="rect" id="node13" href="employee_profile.html#graph" title="employee_profile" alt="" coords="540,867,680,925"/>
+<area shape="rect" id="node14" href="employee_salary.html#graph" title="employee_salary" alt="" coords="540,949,680,1008"/>
 </map>
 </td></tr></table>
 </div>
